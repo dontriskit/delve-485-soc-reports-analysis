@@ -48,3 +48,4 @@ worker/seed_*.sql
 reports/charts/
 reports/quantitative/
 reports/analysis/*.png
+.claude/
