@@ -1,0 +1,19 @@
+{
+  "doc_id": "1Ten2Lj3KUsw_DMsAbV2AoTgycVrpzv-3Yjw-dkp6V_M",
+  "link": "https://docs.google.com/document/d/1Ten2Lj3KUsw_DMsAbV2AoTgycVrpzv-3Yjw-dkp6V_M",
+  "timestamp": "10/6/2025 15:05:50",
+  "display_name": "OnDesk",
+  "legal_name": "OnDesk, Inc.",
+  "company_name": "OnDesk",
+  "system_description": "A B2B SaaS solution for production houses and talent agencies in Hollywood that uses a fine-tuned, MoE algorithm.",
+  "audit_end_date": "",
+  "observation_period": "June 27, 2025 - September 27, 2025",
+  "infra_provider": "Supabase",
+  "website": "https://itsondesk.com",
+  "contact_email": "teddy@itsondesk.com",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1Ten2Lj3KUsw_DMsAbV2AoTgycVrpzv-3Yjw-dkp6V_M.pdf",
+  "txt_file": "1Ten2Lj3KUsw_DMsAbV2AoTgycVrpzv-3Yjw-dkp6V_M.txt",
+  "has_report": true
+}

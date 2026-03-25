@@ -1,0 +1,19 @@
+{
+  "doc_id": "1JJEHCF_P2CS6kSkXeR9h8K_kE-Dwdm2udi1n69M9IPw",
+  "link": "https://docs.google.com/document/d/1JJEHCF_P2CS6kSkXeR9h8K_kE-Dwdm2udi1n69M9IPw",
+  "timestamp": "12/3/2025 15:29:34",
+  "display_name": "Northsea",
+  "legal_name": "Northsea AI B.V.",
+  "company_name": "Northsea",
+  "system_description": "Northsea is an AI-native research platform for consultants and investors to run quantitative surveys with.",
+  "audit_end_date": "",
+  "observation_period": "August 25, 2025 - November 25, 2025",
+  "infra_provider": "Supabase",
+  "website": "https://northsea.co",
+  "contact_email": "security@northsea.co",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1JJEHCF_P2CS6kSkXeR9h8K_kE-Dwdm2udi1n69M9IPw.pdf",
+  "txt_file": "1JJEHCF_P2CS6kSkXeR9h8K_kE-Dwdm2udi1n69M9IPw.txt",
+  "has_report": true
+}

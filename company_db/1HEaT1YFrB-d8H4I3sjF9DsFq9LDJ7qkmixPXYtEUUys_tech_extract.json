@@ -1,0 +1,242 @@
+{
+  "company": "Thrive AI Co",
+  "product": "ThriveAI (Your AI Product Manager)",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "September 5, 2025 - December 5, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "1111B S Governors Ave Unit 28280, Dover, DE 19904, United States",
+  "signing_authority": "Brian Ngo, Chief Technology Officer",
+
+  "system_description": {
+    "overview": "ThriveAI is a SaaS platform operating as an AI-powered product manager. It connects to customer-selected product information sources (product metrics, user feedback, internal documentation) and uses AI-driven analysis to proactively flag emerging issues, surface insights, and provide on-demand support for product decision-making and prioritization.",
+    "products": {
+      "ThriveAI SaaS Platform": "Web-based application for product teams with data ingestion/integration connectors, AI-driven analysis for insights/trends/alerts, proactive monitoring and alerting, on-demand natural-language product management assistance, and administrative capabilities for user/account management"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Google Cloud Platform (GCP) — carve-out",
+    "regions": ["Not explicitly named; GCP multi-AZ mentioned"],
+    "physical_presence": "None — no physical offices; all data processed on cloud",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": ["Neon PostgreSQL (AWS us-east-2, carve-out external service)"],
+    "serverless": [],
+    "cdn": "Google-managed SSL Certificate / GCP Global Load Balancer (static IP)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with Access Control Lists (ACLs). Customer access segmented from other customer accounts. Network segmentation implemented to separate systems and data based on sensitivity and criticality.",
+    "api_gateway": "API Server (FastAPI)",
+    "waf": "Web Application Firewall (WAF) via GCP — visible in network diagram as 'WebSocket (WSS)' entry point",
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via GCP to identify and protect against threats in conjunction with security policy network settings",
+    "vpn": "Bastion host with VPN for remote access",
+    "tls": "TLS (Transport Layer Security) for all web-based communications; certificates from established third-party CA",
+    "content_filtering": "Content filtering system routed through proxy server; all systems restricted to internet via proxy",
+    "multi_region": false,
+    "topology": "Internet traffic enters via HTTPS to GCP Global Load Balancer (Static IP) -> Google-managed SSL Certificate -> GCP AutoPilot Cluster: Back App + Webapp (Next.JS) via internal HTTP -> API Server (FastAPI) -> Data Integration Platform / Job Workers / Analytics Database -> Cloud Storage + Memorystore (Redis). External services: Neon PostgreSQL (AWS us-east-2) and LLM Providers (OpenAI, Anthropic, etc.)"
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices",
+    "languages": ["Python (FastAPI)", "JavaScript/TypeScript (Next.JS)"],
+    "frameworks": ["Next.JS (frontend/webapp)", "FastAPI (API server/backend)"],
+    "compute": ["GCP AutoPilot Cluster (Kubernetes)", "Back App", "Job Workers"],
+    "api_style": "REST (FastAPI)",
+    "environments": "Separate development/test and production environments; changes tested before deployment to Stage or Production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Neon PostgreSQL (AWS us-east-2 — external service)", "Analytics Database (GCP)"],
+    "caching": ["Memorystore (Redis) on GCP"],
+    "file_storage": ["Cloud Storage (GCP)"],
+    "data_warehouse": "Analytics Database (purpose not further specified)",
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "GCP (password policy via GCP); MFA enforced for production platform",
+    "mfa": "MFA enforced for all user accounts with administrative access to production platform; also enforced for source code management tool access and remote access",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Periodic forced changes, password expiry and complexity requirements; accounts disabled after limited unsuccessful logon attempts; no guest/anonymous logins; unattended desktops locked on inactivity"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service (GCP KMS implied)",
+    "key_management": "GCP cloud provider key management service; access to production environment access keys restricted to authorized individuals",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (name not disclosed; MFA-protected, branch rules enforced)",
+    "ci_cd_tool": "Not named explicitly",
+    "branch_protection": "Code repository branch rules configured to require additional approval for every merge request to move change to production environment",
+    "iac": "Configuration as code — baseline configurations retained within infrastructure as code; configuration management tool used for implementation and rollback",
+    "container_orchestration": "GCP AutoPilot (Kubernetes managed)",
+    "patch_management": "Automatic patch management set up by CTO; monthly patch management reviews; workstations configured for automatic updates; daily patch compliance scans; OS patches applied as available",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named — monitoring tool generates alerts on predefined thresholds; tracked in change-management/ticketing application",
+    "siem": "Not named",
+    "log_aggregation": "GCP logging (implied); logs cover administrative activities, logon attempts, data deletions, changes to functions, security configurations, permissions, and roles",
+    "alerting": "Automated alerts to IT management for high and critical risk events; incident management process invoked for confirmed events",
+    "metrics": ["CPU utilization", "disk space", "incoming/outgoing network traffic", "packet loss", "system capacity"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Google Cloud Platform (GCP)", "purpose": "Primary cloud infrastructure, compute, storage, networking, data center services", "criticality": "Critical"},
+    {"vendor": "Neon", "purpose": "PostgreSQL database service (AWS us-east-2)", "criticality": "Critical"},
+    {"vendor": "OpenAI", "purpose": "LLM provider for AI analysis and features", "criticality": "High"},
+    {"vendor": "Anthropic", "purpose": "LLM provider for AI analysis and features", "criticality": "High"},
+    {"vendor": "LLM Providers (others)", "purpose": "Additional LLM providers shown in network diagram", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers and Mac workstations/laptops; definitions updated weekly on servers, daily automatic scans; endpoint security solution with automatic scanning",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; scan frequency adjustable; remediation plan for critical/high vulnerabilities",
+    "penetration_testing": "Annual external penetration testing by independent third party",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 52,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — no significant changes to people/roles during engagement period",
+      "CC3.2.1 — cybersecurity insurance control could not be tested because no cyber incidents reported during engagement period",
+      "CC6.5.2 — customer data deletion control could not be tested because no customer terminations during engagement period",
+      "CC7.3.1 — security incident response control could not be tested because no security incidents reported during engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — GCP responsible for physical security of data center; physical security controls not in scope",
+      "A1.2 — Thrive AI does not have an office; environmental security controls managed by building management/GCP",
+      "Processing Integrity and Privacy trust services categories determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "MFA enforced for all administrative access to production platform AND source code tool",
+      "Quarterly user access reviews for all user accounts including administrative privilege accounts",
+      "Access termination within one business day",
+      "Annual external penetration testing by third party",
+      "Monthly vulnerability scans with automated tooling",
+      "BCDR tested at least annually per loss scenario schedule",
+      "Daily backups with multi-AZ configuration confirmed",
+      "Risk and Governance Executive Committee (RGEC) meets semiannually; IT Leadership Committee meets weekly"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 7,
+      "max": 10,
+      "rationale": "GCP multi-AZ with Kubernetes AutoPilot, IaC-based configuration management, VPC segmentation, WAF, IDS/IPS, bastion/VPN. No multi-region. External PostgreSQL dependency on Neon (AWS) adds cross-cloud complexity. CDN via GCP Global Load Balancer."
+    },
+    "application_architecture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Microservices on GCP with Next.JS frontend, FastAPI backend, dedicated Job Workers and Analytics DB layer. Separate environments, branch protection with required approvals. Language stack not fully named beyond these two frameworks. No mention of automated testing coverage."
+    },
+    "data_layer": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Multi-database approach (Neon PostgreSQL + Analytics DB), Redis caching, GCP Cloud Storage, daily backups with multi-AZ. Data classification and retention policies in place. Per-tenant segregation confirmed. No explicit data warehouse named."
+    },
+    "security_posture": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Strong posture: WAF + IDS/IPS + firewall + annual external pen test + monthly vuln scans + endpoint protection + antivirus + MFA enforced across production and SCM + cybersecurity insurance. Log protection and automated alerting in place. No named SIEM tool."
+    },
+    "devops_maturity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "IaC confirmed, GCP Kubernetes AutoPilot, branch protection with required approvals, separate environments, emergency change process, automatic patch management. CI/CD tooling not named. Source control tool not named."
+    },
+    "bcdr_readiness": {
+      "score": 7,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually, annual testing per loss scenario schedule, daily backups with multi-AZ, multi-AZ failover capability via GCP. No RTO/RPO disclosed. No multi-region failover."
+    },
+    "vendor_diversity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "5+ vendors identified (GCP, Neon/AWS, OpenAI, Anthropic, others). Primary compute on GCP (high concentration). Critical database dependency on Neon (AWS, external). LLM multi-provider is a strength. LLM dependency overall is a risk for AI product."
+    },
+    "overall": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Solid early-stage SaaS security posture on GCP with Kubernetes microservices, strong access controls (MFA, quarterly reviews, 1-day revocation SLA), annual pen testing, and monthly vuln scans. Good network diagram transparency. Gaps: RTO/RPO not disclosed, CI/CD tooling unnamed, SIEM not named, single-region deployment, cross-cloud DB dependency on Neon (AWS)."
+    }
+  },
+
+  "red_flags": [
+    "RTO and RPO not disclosed — no quantified recovery commitments",
+    "Primary database (Neon PostgreSQL) hosted on AWS us-east-2 — cross-cloud dependency outside primary GCP environment",
+    "CI/CD tool and source control platform not named — limits auditability transparency",
+    "No multi-region failover — single GCP region deployment"
+  ],
+
+  "yellow_flags": [
+    "LLM providers (OpenAI, Anthropic) are critical dependencies for core product functionality — subject to third-party availability and policy changes",
+    "No SIEM named — logging infrastructure relies on unspecified tooling",
+    "APM tool unnamed — monitoring system identity not disclosed",
+    "3-month audit period (Sep-Dec 2025) is short — limited operating effectiveness evidence window",
+    "Cybersecurity insurance control could not be tested (no incidents during period) — not a finding but noted as untestable"
+  ],
+
+  "green_flags": [
+    "Network diagram included in report showing full GCP production architecture with named components",
+    "MFA enforced for all production admin access AND source code management tool",
+    "Quarterly user access reviews including privileged accounts",
+    "Access revocation within one business day of termination",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scanning with remediation tracking",
+    "Daily backups with multi-AZ configuration tested",
+    "BCDR tested annually per documented loss scenario schedule",
+    "Zero exceptions across all 52 tested controls",
+    "Content filtering via proxy server for all internet traffic",
+    "Endpoint protection on all production servers and Mac workstations",
+    "IaC-based configuration management with rollback capability",
+    "Per-tenant data segregation confirmed"
+  ],
+
+  "key_observations": [
+    "Thrive AI uses a cross-cloud architecture: primary GCP for compute/hosting but Neon (an AWS-hosted managed PostgreSQL) as the primary database — this is an unusual dependency that creates cross-cloud latency and availability coupling",
+    "The network diagram explicitly shows LLM Providers (OpenAI, Anthropic, etc.) as external services in the production flow — the AI product is tightly coupled to third-party LLM APIs, making LLM provider uptime/policy a first-order business risk",
+    "FastAPI backend suggests Python-first server-side architecture, consistent with an AI-heavy product stack",
+    "GCP AutoPilot (serverless Kubernetes) is used — this means Google manages the node infrastructure, reducing operational overhead but also reducing direct infrastructure visibility",
+    "The report covers only Security trust criteria — Availability, Processing Integrity, Confidentiality, and Privacy were not tested"
+  ]
+}

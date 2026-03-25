@@ -1,0 +1,19 @@
+{
+  "doc_id": "1NJT1rXacq6W4m5KJKiopfKByiWiHD9-38gboh1L02h0",
+  "link": "https://docs.google.com/document/d/1NJT1rXacq6W4m5KJKiopfKByiWiHD9-38gboh1L02h0",
+  "timestamp": "12/1/2025 15:54:44",
+  "display_name": "UMeTime Corp DBA Stream",
+  "legal_name": "Stream Orders",
+  "company_name": "UMeTime Corp DBA Stream",
+  "system_description": "Stream is an API-first restaurant technology platform enabling partners to offer seamless multi-channel menu and order management\u2014integrating directly with POS systems and major online ordering and delivery providers.",
+  "audit_end_date": "November 25, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://streamorders.com",
+  "contact_email": "security@streamorders.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1NJT1rXacq6W4m5KJKiopfKByiWiHD9-38gboh1L02h0.pdf",
+  "txt_file": "1NJT1rXacq6W4m5KJKiopfKByiWiHD9-38gboh1L02h0.txt",
+  "has_report": true
+}

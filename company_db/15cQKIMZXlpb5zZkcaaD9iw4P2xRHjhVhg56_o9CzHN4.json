@@ -1,0 +1,19 @@
+{
+  "doc_id": "15cQKIMZXlpb5zZkcaaD9iw4P2xRHjhVhg56_o9CzHN4",
+  "link": "https://docs.google.com/document/d/15cQKIMZXlpb5zZkcaaD9iw4P2xRHjhVhg56_o9CzHN4",
+  "timestamp": "11/26/2025 19:11:55",
+  "display_name": "Kestrel",
+  "legal_name": "Kestrel Systems, Inc.",
+  "company_name": "Kestrel",
+  "system_description": "Kestrel AI is an AI-native Kubernetes ops & security platform.",
+  "audit_end_date": "November 21, 2025",
+  "observation_period": "",
+  "infra_provider": "GCP",
+  "website": "https://usekestrel.ai",
+  "contact_email": "hello@usekestrel.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "15cQKIMZXlpb5zZkcaaD9iw4P2xRHjhVhg56_o9CzHN4.pdf",
+  "txt_file": "15cQKIMZXlpb5zZkcaaD9iw4P2xRHjhVhg56_o9CzHN4.txt",
+  "has_report": true
+}

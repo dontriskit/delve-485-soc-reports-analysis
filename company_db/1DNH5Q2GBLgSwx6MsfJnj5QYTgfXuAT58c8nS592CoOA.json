@@ -1,0 +1,19 @@
+{
+  "doc_id": "1DNH5Q2GBLgSwx6MsfJnj5QYTgfXuAT58c8nS592CoOA",
+  "link": "https://docs.google.com/document/d/1DNH5Q2GBLgSwx6MsfJnj5QYTgfXuAT58c8nS592CoOA",
+  "timestamp": "11/21/2025 15:51:23",
+  "display_name": "Career Bird",
+  "legal_name": "Career Bird, Inc",
+  "company_name": "Career Bird",
+  "system_description": "Career Bird is an AI-powered talent development platform that helps mid-sized organizations build structured job architectures, assess employee skills and gaps, and deliver personalized learning and growth plans \u2014 enabling better workforce planning and retention in a changing skills marketplace.",
+  "audit_end_date": "",
+  "observation_period": "August 14, 2025 - November 14, 2025",
+  "infra_provider": "Vercel",
+  "website": "https://careerbird.ai",
+  "contact_email": "security@careerbird.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1DNH5Q2GBLgSwx6MsfJnj5QYTgfXuAT58c8nS592CoOA.pdf",
+  "txt_file": "1DNH5Q2GBLgSwx6MsfJnj5QYTgfXuAT58c8nS592CoOA.txt",
+  "has_report": true
+}

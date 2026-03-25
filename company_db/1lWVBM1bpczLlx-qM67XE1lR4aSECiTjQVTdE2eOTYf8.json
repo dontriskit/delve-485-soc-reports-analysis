@@ -1,0 +1,19 @@
+{
+  "doc_id": "1lWVBM1bpczLlx-qM67XE1lR4aSECiTjQVTdE2eOTYf8",
+  "link": "https://docs.google.com/document/d/1lWVBM1bpczLlx-qM67XE1lR4aSECiTjQVTdE2eOTYf8",
+  "timestamp": "10/30/2025 19:08:32",
+  "display_name": "Q Concierge",
+  "legal_name": "Quickserve AI Inc",
+  "company_name": "Q Concierge",
+  "system_description": "Q Concierge offers voice AI employees to the hospitality industry.",
+  "audit_end_date": "October 14, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://qconcierge.io",
+  "contact_email": "security@qconcierge.io",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1lWVBM1bpczLlx-qM67XE1lR4aSECiTjQVTdE2eOTYf8.pdf",
+  "txt_file": "1lWVBM1bpczLlx-qM67XE1lR4aSECiTjQVTdE2eOTYf8.txt",
+  "has_report": true
+}

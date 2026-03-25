@@ -1,0 +1,19 @@
+{
+  "doc_id": "1PWuTGpK6VOh4nPf_gKkEfXRHD2DL-5TZ0GkYLLSUy50",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1PWuTGpK6VOh4nPf_gKkEfXRHD2DL-5TZ0GkYLLSUy50",
+  "timestamp": "5/9/2025 10:20:43",
+  "display_name": "Lumari",
+  "legal_name": "Lumari, Inc.",
+  "company_name": "Lumari",
+  "system_description": "Lumari Platform",
+  "audit_end_date": "Apr 23",
+  "observation_period": "",
+  "infra_provider": "GCP",
+  "website": "https://www.lumari.io/",
+  "contact_email": "sam@lumari.io",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1PWuTGpK6VOh4nPf_gKkEfXRHD2DL-5TZ0GkYLLSUy50.pdf",
+  "txt_file": "1PWuTGpK6VOh4nPf_gKkEfXRHD2DL-5TZ0GkYLLSUy50.txt",
+  "has_report": true
+}

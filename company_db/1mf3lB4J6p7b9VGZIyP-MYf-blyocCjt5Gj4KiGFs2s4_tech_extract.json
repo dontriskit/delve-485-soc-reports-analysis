@@ -1,0 +1,251 @@
+{
+  "company": "BIChart Inc",
+  "product": "BIChart",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "May 15, 2025 - August 15, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "3452 Margaret St Miami FL, 33133",
+  "signing_authority": "Alec Smith, Chief Executive Officer",
+
+  "system_description": {
+    "overview": "BIChart is an enterprise SaaS platform that automates the migration of Tableau dashboards to Power BI, including visuals, data models, and DAX logic. The platform leverages AI to transform Tableau expressions into DAX queries and includes features to transform visuals from one BI service to another with no engineering lift.",
+    "products": {
+      "Automated Business Intelligence Migration": "End-to-end automation for migrating Tableau dashboards, workbooks, data models, and calculated fields into Microsoft Power BI and Microsoft Fabric environments",
+      "AI-Powered Analytics Conversion": "AI-assisted conversion of Tableau calculations and logic into DAX and Power BI-compatible structures with semantic understanding of visual layouts and intelligent error detection",
+      "Data and Workspace Management": "Secure handling of customer metadata, report definitions, and transformation logic with workspace configuration aligned with Microsoft Fabric architecture and role-based access",
+      "Implementation and Support Services": "White-glove onboarding and training for enterprise users with access to BIChart support specialists for migration assistance and validation"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out)",
+    "regions": null,
+    "physical_presence": "No physical offices; HQ address is 3452 Margaret St Miami FL, 33133 but no physical servers - all cloud",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": ["Google Cloud Run (for LLM processing)"],
+    "serverless": ["AWS Lambda"],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with access control lists (ACLs). Network segmentation implemented to separate systems and data based on sensitivity and criticality.",
+    "api_gateway": "AWS Amplify (serves as application gateway per network diagram)",
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via AWS to identify and protect against threats in conjunction with security policy network settings. Firewalls and intrusion detection tools configured to prevent unauthorized access and detect external security threats.",
+    "vpn": "Remote access via bastion host with VPN",
+    "tls": "TLS encryption using certificates from established third-party certificate authority for all web-based system requests",
+    "content_filtering": "Content filtering system routed through proxy server; all systems restricted to internet through this system",
+    "multi_region": false,
+    "topology": "User -> Amazon Cognito (authentication) -> AWS Amplify -> Lambda Functions (retrieve/migrate data) -> AWS Secrets Manager (DB creds) -> PostgreSQL (store data) / AWS Fargate (task execution) -> S3 (file uploads) -> Google Cloud Run (LLM processing)"
+  },
+
+  "application_architecture": {
+    "pattern": "Serverless-heavy",
+    "languages": null,
+    "frameworks": null,
+    "compute": ["AWS Lambda", "AWS Fargate", "Google Cloud Run"],
+    "api_style": null,
+    "environments": "Separate development/test and production environments confirmed (CC8.1.4: changes developed and tested in separate environment before implementation)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["PostgreSQL"],
+    "caching": null,
+    "file_storage": ["Amazon S3"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Amazon Cognito",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform. MFA enforced for all remote access. MFA required for source code management tool access. Two-factor authentication required for employee email access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day",
+    "password_policy": "Controlled through AWS password policy with periodic forced changes, password expiry, complexity requirements. Accounts disabled after limited unsuccessful logon attempts."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider KMS (AWS KMS)",
+    "key_management": "AWS KMS - cloud provider key management service used to encrypt data at rest and store/manage encryption keys. Access to production access keys restricted to authorized individuals.",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (specific vendor not named; MFA-protected access, changes logged/timestamped/attributed to author)",
+    "ci_cd_tool": "Not specifically named; formal change management policy with development lifecycle documented",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to production requires additional approval. Developers cannot make changes to production without additional approval.",
+    "iac": "Infrastructure as code confirmed - baseline configurations retained within IaC, configuration management tool used for implementation and rollback",
+    "container_orchestration": "AWS Fargate (serverless containers)",
+    "patch_management": "Automatic patch management with monthly patch management reviews by CTO. Workstations configured for automatic updates and scanned daily for patch compliance. OS patches managed and applied as they become available.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not specifically named; monitoring tools used for continuous system capacity and performance monitoring with threshold-based alerting",
+    "siem": null,
+    "log_aggregation": "Not specifically named; logging enabled to monitor administrative activities, logon attempts, data deletions, changes to functions, security configurations, permissions, and roles",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events",
+    "metrics": ["CPU utilization", "disc space", "incoming/outgoing network traffic", "packet loss", "system capacity", "performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Primary cloud infrastructure provider - compute, storage, networking, identity, secrets management, serverless", "criticality": "Critical"},
+    {"vendor": "Google Cloud Run", "purpose": "LLM processing for AI-powered analytics conversion", "criticality": "High"},
+    {"vendor": "Microsoft Power BI / Fabric", "purpose": "Target platform for migration output (customer-side)", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Endpoint Security Solution with anti-virus, anti-malware, and Trojan protection installed on all desktops, laptops, and production servers. Automatic scanning with daily definition updates. Weekly anti-virus definition updates for production servers. Mac-based workstations also covered.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications with frequency adjusted as needed. Internal IT Infrastructure team performs periodic scans. Self-assessment scan prior to every production release or yearly.",
+    "penetration_testing": "Annual external penetration testing by independent third-party. High/critical findings remediated and tracked via risk register.",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 52,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 - Significant changes to people/roles/responsibilities could not be tested because there were no significant changes during the engagement period",
+      "CC3.2.1 - Cybersecurity insurance control could not be tested because there were no cyber incidents reported during the engagement period",
+      "CC6.5.2 - Customer data deletion upon termination could not be tested because there were no customer terminations during the engagement period",
+      "CC7.3.1 - Security incident response could not be tested because there were no security incidents reported during the engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 - Physical access controls excluded; AWS responsible for physical security of data centers",
+      "A1.2 - Environmental protections excluded; BIChart has no physical office/servers, managed by building management/AWS",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "Risk and Governance Executive Committee (RGEC) meets semiannually to review internal controls",
+      "IT Leadership Committee meets weekly to review security activities and performance metrics",
+      "Formal vendor management policy with annual SOC report reviews and quarterly risk assessments for vendors without SOC reports",
+      "Source code changes logged, timestamped, and attributed with MFA-protected access to source code tool",
+      "Baseline configurations retained as infrastructure-as-code with configuration management tool for rollback"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "AWS with multi-AZ, VPC segmentation, and IaC for baseline configs. However, single region (no multi-region), no CDN mentioned, and relies on secondary cloud (Google Cloud Run) without clear documentation of that integration. Serverless-heavy architecture with Lambda and Fargate is modern."
+    },
+    "application_architecture": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Serverless-heavy pattern with Lambda, Fargate, and Cloud Run is modern but no languages or frameworks disclosed. Branch protection and code review are confirmed. Separate environments exist. No mention of testing frameworks, API style, or detailed architecture beyond the network diagram."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Single database type (PostgreSQL) with S3 for file storage. Daily backups with multi-AZ confirmed. Data classification and retention policies exist. Per-tenant segregation confirmed. However, no caching layer, no data warehouse, and no specifics on backup retention periods or replication strategy."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong access controls with MFA, RBAC, quarterly access reviews, 1-day access revocation SLA. IDS/IPS, firewalls, endpoint protection, annual pen testing, monthly vulnerability scanning, server hardening, and cybersecurity insurance all present. Encryption at rest (KMS) and in transit (TLS). No WAF or SIEM mentioned. No specific TLS version disclosed."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "IaC confirmed with configuration management tool and rollback capability. Branch protection with required approval for production merges. Formal change management with emergency change process. Source code management with MFA. However, specific CI/CD tool and source control platform not named, and no mention of automated testing in pipeline."
+    },
+    "bcdr_readiness": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual DR testing with different loss scenarios. Multi-AZ failover with daily backups. However, no RTO/RPO disclosed, no multi-region failover, and DR details are in Section 5 (not audited). Procedures for spinning up across all AZs are described but not quantified."
+    },
+    "vendor_diversity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Heavy AWS dependency for nearly all infrastructure (compute, storage, networking, identity, secrets). Google Cloud Run used only for LLM processing. Very few named vendors. High single-vendor concentration risk on AWS with carve-out model meaning their controls are not audited within this report."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BIChart demonstrates a reasonably mature security posture for an early-stage enterprise SaaS company. Unqualified opinion with zero exceptions is positive. The serverless-heavy AWS architecture is modern but lacks multi-region redundancy and detailed technology disclosures. The very small team (5 people in org chart: CEO, CTO, CMO, Lead Engineer, Data Analyst Intern) raises concerns about key-person dependency and operational resilience. Many technology specifics (languages, frameworks, CI/CD tools, monitoring tools, SIEM) are not disclosed, limiting the depth of technical assessment."
+    }
+  },
+
+  "red_flags": [
+    "Extremely small team: only 5 people shown in org chart (CEO, CTO, CMO, Lead Engineer, Data Analyst Intern) - significant key-person dependency risk",
+    "No SIEM or named monitoring/alerting platform disclosed",
+    "No WAF mentioned despite being a web application",
+    "Google Cloud Run used for LLM processing creates multi-cloud complexity without clear documentation of security controls spanning both clouds",
+    "Processing Integrity trust criteria excluded despite being an AI-powered data transformation platform where processing accuracy is core to the product",
+    "Privacy trust criteria excluded despite handling customer Tableau metadata and report definitions",
+    "3-month audit period (May-Aug 2025) is relatively short for a Type 2 report"
+  ],
+
+  "yellow_flags": [
+    "No multi-region failover capability",
+    "RTO and RPO not disclosed",
+    "No specific TLS version mentioned (could be using older TLS)",
+    "No CDN mentioned for a web application",
+    "Many security tools referenced generically without naming specific products (monitoring tool, endpoint security solution, source code management tool)",
+    "4 controls could not be tested for operating effectiveness due to no events occurring during the engagement period",
+    "Section 5 (DR details) explicitly not audited by independent auditor",
+    "No mention of SSO for enterprise customers despite targeting enterprise market",
+    "Audit firm (Accorp Partners, PAC-FIRM-LIC-47383) is not a well-known Big 4 or major audit firm"
+  ],
+
+  "green_flags": [
+    "Unqualified opinion with zero exceptions on all tested controls",
+    "MFA enforced across production access, remote access, source code, and email",
+    "Infrastructure as code with configuration management and rollback capability",
+    "Branch protection with required approval for production merges - developers cannot push directly to production",
+    "Daily backups with multi-AZ configuration and backup failure alerting",
+    "Annual external penetration testing by independent third-party",
+    "Monthly automated vulnerability scanning with remediation tracking",
+    "Quarterly user access reviews including administrative accounts",
+    "1 business day access revocation SLA upon termination",
+    "Cybersecurity insurance maintained",
+    "Formal vendor management program with annual SOC report reviews",
+    "Server hardening with documented baseline configurations",
+    "Data classification policy implemented"
+  ],
+
+  "key_observations": [
+    "The network diagram reveals a hybrid cloud architecture: AWS for core infrastructure but Google Cloud Run for LLM processing - this multi-cloud dependency is not discussed in the system description text",
+    "Amazon Cognito is used for authentication (visible in network diagram) but not mentioned by name in the text - suggests the report was not thoroughly cross-referenced between diagram and narrative",
+    "AWS Secrets Manager is used for database credential management (per diagram) - a strong practice but not highlighted in the control descriptions",
+    "The org chart shows only 5 people total, with a Data Analyst Intern - this is an extremely lean team for an enterprise SaaS company undergoing SOC 2 certification",
+    "AWS Amplify serves as the application layer (per diagram), suggesting a relatively simple frontend architecture",
+    "Despite being an AI company, there is no mention of AI/ML-specific security controls, model governance, or data handling procedures for the LLM component",
+    "The report excludes both Processing Integrity and Privacy criteria, which is unusual for a data transformation platform that handles customer business intelligence data",
+    "No specific regions or availability zones are named despite multi-AZ being confirmed - prevents assessment of data residency compliance"
+  ]
+}

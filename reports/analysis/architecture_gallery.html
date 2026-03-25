@@ -1,0 +1,6549 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8"><title>Architecture Diagram Gallery — 105 Validated</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+body { background:#0f172a; color:#e2e8f0; font-family:Inter,-apple-system,sans-serif; margin:0; padding:20px; }
+h1 { text-align:center; margin-bottom:8px; }
+.stats { text-align:center; color:#94a3b8; margin-bottom:20px; font-size:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(550px,1fr)); gap:16px; }
+.card { background:#1e293b; border:1px solid #334155; border-radius:12px; padding:16px; overflow:hidden; }
+.card h3 { margin:0 0 4px; font-size:15px; }
+.card .meta { color:#94a3b8; font-size:11px; margin-bottom:10px; }
+.card .mermaid { background:#0f172a; padding:8px; border-radius:8px; overflow-x:auto; font-size:12px; }
+.search { width:100%; padding:10px; background:#1e293b; border:1px solid #334155; color:#e2e8f0; border-radius:8px; margin-bottom:16px; font-size:14px; }
+</style></head><body>
+<h1>Architecture Diagram Gallery</h1>
+<div class="stats">105 validated Mermaid diagrams from 485 SOC 2 compliance reports</div>
+<input type="text" class="search" placeholder="Search companies..." oninput="filter(this.value)">
+<div class="grid" id="gallery">
+
+<div class="card" data-name="loggia ai, inc.">
+  <h3>Loggia AI, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · AWS (carve-out)</div>
+  <pre class="mermaid">graph TD
+    %% Perimeter Layer
+    subgraph Perimeter
+        Internet([Internet])
+        ALB[Application Load Balancer]
+        FW_App[Firewall - App Gateway]
+        FW_Prod[Firewall - Production Network]
+        IDS[AWS IDS/IPS]
+    end
+    
+    %% Compute Layer
+    subgraph Compute
+        ECS_S[ECS Fargate - Shared]
+        ECS_P[ECS Fargate - Production]
+        ECS_T[ECS Fargate - Staging]
+        NAT[NAT Gateway]
+    end
+    
+    %% Data Layer
+    subgraph Data
+        DB[(Cloud Database Services)]
+        Cache[(Intelligent Caching)]
+        KMS[AWS KMS]
+    end
+    
+    %% Integrations Layer
+    subgraph Integrations
+        AD[Active Directory]
+        Pentest[Third Party Pentest]
+        Internet_Out([Internet Outbound])
+    end
+    
+    %% Products Layer
+    subgraph Products
+        App[Loggia AI Microservices]
+    end
+
+    %% Data Flow
+    Internet -->|TLS| ALB
+    ALB --> FW_App
+    FW_App --> FW_Prod
+    FW_Prod --> IDS
+    IDS -->|Route| ECS_S
+    IDS -->|Route| ECS_P
+    IDS -->|Route| ECS_T
+    
+    ECS_S -->|Host| App
+    ECS_P -->|Host| App
+    ECS_T -->|Host| App
+    
+    App -->|Query| DB</pre>
+</div>
+
+<div class="card" data-name="anneal, inc">
+  <h3>Anneal, Inc</h3>
+  <div class="meta">SOC 2 Type 1 · Multi-cloud: AWS + Fly.io + Azure (all c</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        CF[Cloudflare<br/>DNS, CDN, DDoS]
+        Vercel[Vercel<br/>Frontend Hosting]
+        FW[System Firewalls & IDS]
+    end
+
+    subgraph Compute
+        Fly[Fly.io<br/>Primary Compute Cluster]
+        Agent[big-smart-agent]
+        Builder[mcp-app-builder]
+        Tester[mcp-app-test-builds]
+        Memory[big-smart-memory-generator]
+        UApps[User Apps]
+        AWS[AWS<br/>Cloud Infrastructure]
+        Azure[Microsoft Azure<br/>Cloud Infrastructure]
+    end
+
+    subgraph Data
+        PG[(PostgreSQL<br/>Primary Database)]
+        Tigris[Tigris<br/>Object Storage]
+    end
+
+    subgraph Integrations
+        SQS[AWS SQS<br/>Messaging]
+        Clerk[Clerk<br/>Identity & Auth]
+        Langfuse[Langfuse<br/>LLM Observability]
+        OpenAI[OpenAI<br/>LLM Inference]
+        Sentry[Sentry<br/>APM & Error Tracking]
+        Doppler[Doppler<br/>Secrets Management]
+    end
+
+    subgraph Products
+        GitHub[GitHub<br/>Source Control]
+        Depot[Depot<br/>Build Acceleration]
+        Linear[Linear<br/>Issue Tracking]
+        Notion[Notion<br/>Knowledge Base]
+        Slack[Slack<br/>Internal Comms]
+        Delve[Delve<br/>Security Compliance]
+    end
+
+    CF -->|Route| Vercel
+    Vercel -->|HTTP| Agent
+    Vercel -->|HTTP| Builder
+    Vercel -->|HTTP| Tester
+    Vercel -->|HTTP| Memory
+    Vercel -->|HTTP| UApps
+    
+    FW -.->|Protect| Fly
+    Fly -.->|Host| Agent
+    Fly -.->|Host| Builder
+    Fly -.->|Host| Tester
+    Fly -.->|Host| Memory
+    Fly -.->|Host| UApps
+    
+    Agent -->|Query| PG
+    Builder -->|Query| PG
+    Tester -->|Query| PG
+    Memory -->|Query| PG
+    UApps -->|Query| PG
+    
+    Agent -->|Store Objects| Tigris
+    Builder -->|Store Objects| Tigris
+    Memory -->|Store Objects| Tigris
+    
+    Agent -->|Authenticate| Clerk
+    Builder -->|Authenticate| Clerk
+    UApps -->|Authenticate| Clerk
+    
+    Agent -->|Send/Receive| SQS
+    Builder -->|Send/Receive| SQS
+    
+    Agent -->|Observe| Langfuse
+    Builder -->|Observe| Langfuse
+    Memory -->|Observe| Langfuse
+    
+    Agent -->|LLM Calls| OpenAI
+    Memory -->|LLM Calls| OpenAI
+    
+    Agent -->|Monitor| Sentry
+    UApps -->|Monitor| Sentry
+    
+    Agent -->|Fetch Secrets| Doppler
+    Builder -->|Fetch Secrets| Doppler
+    
+    GitHub -.->|Deploy| Vercel
+    GitHub -.->|Deploy| Fly
+    Depot -.->|Build Images| Fly
+    Linear -.->|Track| Sentry
+    Delve -.->|Audit| FW
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c</pre>
+</div>
+
+<div class="card" data-name="nexus intelligence, inc.">
+  <h3>Nexus Intelligence, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Render (carve-out subservice organizatio</div>
+  <pre class="mermaid">graph TD
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    subgraph Perimeter
+        Internet([Internet])
+        IG[Internet Gateway]
+        FW[System Firewalls<br/>App Gateway & Production Network]
+        IDS[IDS/IPS via Render]
+        Pentest[Annual External Pentesting]
+    end
+
+    subgraph Compute
+        R_West[Render Virtual Servers<br/>us-west-2]
+        R_East[Render Virtual Servers<br/>us-east-1 Failover]
+        AD[Active Directory]
+    end
+
+    subgraph Products
+        FE[Frontend Server]
+        API[Backend API Server]
+        SVC[Other Backend Services]
+    end
+
+    subgraph Integrations
+        SQS[AWS SQS Queue]
+        SNS[AWS SNS Email]
+    end
+
+    subgraph Data
+        S3[(AWS S3 Buckets)]
+    end
+
+    Internet -->|TLS| IG
+    IG --> FW
+    FW --> IDS
+    IDS --> R_West
+    IDS -.->|Failover Traffic| R_East
+
+    R_West --> FE
+    R_West --> API
+    R_West --> SVC
+
+    FE -->|API Calls| API
+    API -->|Auth| AD
+    API -->|Enqueue| SQS
+    API -->|Notify| SNS
+    API -->|Store<br/>KMS Encrypted| S3
+    
+    SVC -->|Internal Calls| API
+
+    class S3,SQS,SNS aws;
+    class FW,IDS,Pentest security;</pre>
+</div>
+
+<div class="card" data-name="centralaxis, inc">
+  <h3>CentralAxis, Inc</h3>
+  <div class="meta">SOC 2 Type 2 · Supabase (carve-out subservice organizat</div>
+  <pre class="mermaid">graph TD
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    subgraph Perimeter
+        EU[End User]:::product
+        BR[Browser UI]:::product
+        WAF[Vercel WAF & Firewall<br/>Logging/Observability]:::security
+        IDS[Supabase IDS/IPS]:::security
+        FW[System & Gateway Firewalls]:::security
+    end
+
+    subgraph Compute
+        VER[Vercel<br/>Next.js Application]:::product
+        AWS[AWS EC2<br/>Managed Service]:::aws
+        UN[Utility Node<br/>Node.js CLI Agent]:::product
+    end
+
+    subgraph Data
+        SUP[(Supabase PostgreSQL<br/>Auth RLS Backups SOC2)]:::data
+        INF[(InfluxDB<br/>Time Series Metrics)]:::data
+    end</pre>
+</div>
+
+<div class="card" data-name="willow care inc.">
+  <h3>Willow Care Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Supabase (carve-out) - primary database/</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        CF[Cloudflare<br/>JWT Verification Gateway]
+        FW[System Firewalls<br/>VPC]
+        IDS[IDS/IPS via Supabase]
+    end
+    
+    subgraph Compute
+        BT[Baseten<br/>ML Voice-to-Text]
+        GQ[Groq<br/>LLM Formatting]
+    end
+    
+    subgraph Data
+        SB_DB[(Supabase<br/>PostgreSQL<br/>Carve-out)]
+        KMS[Cloud Provider KMS]
+    end
+    
+    subgraph Integrations
+        SB_AUTH[Supabase Auth]
+        PENTEST[Third-Party Pentest]
+    end
+    
+    subgraph Products
+        CLIENT[Mac Native Client]
+    end
+    
+    CLIENT --"1. Active JWT + Audio File"--> CF
+    CF --"2. JWT Verification"--> CF
+    CF --"3. Audio File"--> BT
+    BT --"4. Transcription"--> GQ
+    GQ --"5. Formatted Transcription"--> CLIENT
+    CLIENT --"6. Updated Word Count"--> SB_DB
+    
+    CLIENT -.->|Authenticate| SB_AUTH
+    SB_AUTH -.->|Issue JWT| CLIENT
+    
+    PENTEST -.->|Annual Assessment| CF
+    PENTEST -.->|Annual Assessment| SB_DB
+    
+    KMS -.->|Encryption Keys| SB_DB
+    KMS -.->|TLS| CF
+    
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+    
+    class BT,GQ aws;
+    class CF,FW,IDS,SB_AUTH,PENTEST,KMS security;
+    class SB_DB data;
+    class CLIENT product;</pre>
+</div>
+
+<div class="card" data-name="grove ai, inc.">
+  <h3>Grove AI, Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · Google Cloud Platform (GCP) - carve-out </div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter["Perimeter"]
+        Internet([Internet])
+        LB[GCP Load Balancer]
+        FW[Gateway Firewall<br/>Annual Review]
+        IDS[GuardDuty IDS/IPS]
+        VPC[GCP VPC]
+    end
+
+    subgraph Compute["Compute"]
+        NEG[Network Endpoint Groups]
+        subgraph Region1 ["Region 1"]
+            R1[Grove PRM<br/>Virtual Servers]
+        end
+        subgraph Region2 ["Region 2"]
+            R2[Grove PRM<br/>Virtual Servers]
+        end
+        subgraph Region3 ["Region 3"]
+            R3[Grove PRM<br/>Virtual Servers]
+        end
+        GCE[GCP Compute<br/>Multi-Region]
+    end
+
+    subgraph Data["Data"]
+        DB[GCP-managed Databases]
+        KMS[GCP KMS<br/>Key Management]
+    end
+
+    subgraph Integrations["Integrations"]
+        AD[Active Directory<br/>Server/DB Auth]
+        Pentest[Third-Party<br/>Annual Penetration Test]
+        GCP_Policy[GCP Password Policy]
+    end
+
+    subgraph Products["Products"]
+        GrovePRM[Grove PRM<br/>Microservices Application]
+        Users[Users & Services]
+    end
+
+    Internet -->|TLS| LB
+    LB --> FW
+    FW --> VPC
+    VPC --> NEG
+    NEG --> R1
+    NEG --> R2
+    NEG --> R3
+    
+    R1 <-->|Cross-AZ Failover| R2
+    R2 <-->|Cross-AZ Failover| R3
+    
+    R1 -->|Query| DB
+    R2 -->|Query| DB
+    R3 -->|Query| DB
+    
+    R1 -->|Encrypt| KMS
+    R2 -->|Encrypt| KMS
+    R3 -->|Encrypt| KMS
+    
+    AD -->|Auth| R1
+    AD -->|Auth| R2
+    AD -->|Auth| R3
+    AD -->|Auth| DB
+    
+    IDS -.->|Monitor| VPC
+    IDS -.->|Monitor| FW
+    
+    Pentest -.->|Test| Perimeter
+    
+    R1 -->|Serve| Users
+    R2 -->|Serve| Users
+    R3 -->|Serve| Users
+    
+    R1 -.->|Hosted On| GCE
+    R2 -.->|Hosted On| GCE
+    R3 -.->|Hosted On| GCE
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class LB,GCE,NEG,VPC,GCP_Policy aws
+    class FW,IDS,Pentest security
+    class DB,KMS data
+    class R1,R2,R3,GrovePRM,Users product</pre>
+</div>
+
+<div class="card" data-name="delve technologies inc.">
+  <h3>Delve Technologies Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · Microsoft Azure (carve-out — Azure data </div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter["Perimeter Layer"]
+        Internet([Internet])
+        RemoteUsers[Remote Users]
+        VPNGW[Azure VPN Gateway]
+        Bastion[Bastion Host]
+        IDSIPS[Azure IDS/IPS]
+        FW[System Firewalls]
+    end
+
+    subgraph Compute["Compute Layer"]
+        AppGW[Application Gateway]
+        subgraph VPC_WEST["VPC WEST"]
+            ProdHA[Prod HA Virtual Servers]
+            Dev[Dev Virtual Servers]
+            Test[Test Virtual Servers]
+            Dcom[D.com Virtual Servers]
+        end
+        subgraph VPC_EAST["VPC EAST"]
+            ProdHR[Prod HR Virtual Servers]
+        end
+    end
+
+    subgraph Data["Data Layer"]
+        DB[(Azure Database)]
+        KMS[Azure Key Vault]
+    end
+
+    subgraph Integrations["Integrations Layer"]
+        AAD[Azure Active Directory]
+        VPNIPSec[IPSec VPN Tunnel]
+    end
+
+    subgraph Products["Products Layer"]
+        ProdApp[Production HA Application]
+        DevApp[Development Environment]
+        TestApp[Test Environment]
+        DcomApp[D.com Product]
+        HRApp[HR Production System]
+    end
+
+    Internet -->|TLS| VPNGW
+    RemoteUsers -->|VPN Connection| Bastion
+    VPNGW --> IDSIPS
+    IDSIPS --> FW
+    FW --> AppGW
+    Bastion --> VPC_WEST
+    Bastion --> VPC_EAST
+    
+    AppGW --> ProdHA
+    AppGW --> Dev</pre>
+</div>
+
+<div class="card" data-name="xerpa ai inc">
+  <h3>Xerpa AI INC</h3>
+  <div class="meta">SOC 2 Type 1 · AWS (carve-out)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users([Users])
+        TLS[TLS Encryption]
+        IDS_IPS[AWS IDS/IPS]
+        Firewall[Firewall / App Gateway]
+        VPN[VPN / Bastion Host]
+    end
+
+    subgraph Compute
+        VPC[AWS VPC]
+        EC2[AWS Virtual Servers]
+        IAM[AWS IAM / Active Directory]
+        MultiAZ[Multi-AZ Failover]
+    end
+
+    subgraph Data
+        DB[(AWS Hosted Databases)]
+        KMS[AWS KMS]
+    end
+
+    subgraph Integrations
+        SF[Salesforce]
+        HS[HubSpot]
+        Zoom[Zoom]
+        GMeet[Google Meet]
+        Gmail[Gmail]
+        Outlook[Outlook]
+    end
+
+    subgraph Products
+        Xerpa[Xerpa AI Platform]
+    end
+
+    Users -->|HTTPS Requests| TLS
+    TLS -->|Encrypted Traffic| Firewall
+    Firewall -->|Filtered Traffic| IDS_IPS
+    IDS_IPS -->|Monitored Traffic| VPC
+    VPN -.->|Admin Access| VPC
+    
+    VPC -->|Segmented Subnets| EC2
+    EC2 -->|Failover| MultiAZ
+    IAM -.->|Authentication| EC2
+    
+    EC2 -->|Read/Write| DB
+    DB -.->|Encryption Keys| KMS
+    KMS -.->|At Rest Encryption| DB
+    
+    EC2 <-->|Bi-Directional Sync| SF
+    EC2 <-->|Bi-Directional Sync| HS
+    EC2 -->|Conferencing API| Zoom
+    EC2 -->|Conferencing API| GMeet
+    EC2 -->|Email Automation| Gmail
+    EC2 -->|Email Automation| Outlook
+    
+    EC2 -->|Hosts| Xerpa
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class VPC,EC2,MultiAZ aws
+    class TLS,IDS_IPS,Firewall,VPN,IAM security
+    class DB,KMS data
+    class Xerpa,SF,HS,Zoom,GMeet,Gmail,Outlook product</pre>
+</div>
+
+<div class="card" data-name="filed, inc.">
+  <h3>Filed, Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · Microsoft Azure (carve-out method)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Internet[Internet]
+        FW[System Firewalls<br/>App Gateway<br/>Annual Review]
+        IDS[Azure IDS/IPS<br/>Threat Detection]
+        VPNGW[Azure VPN Gateway<br/>IPSec Endpoint]
+    end
+    
+    subgraph Compute
+        AVS_E1[Azure Virtual Servers<br/>Production HA US-East]
+        AVS_E2[Azure Virtual Servers<br/>Production HA US-East2]
+        AVS_C[Azure Virtual Servers<br/>Dev/Test US-Central]
+        AVS_D[Azure Virtual Servers<br/>D.com Private Subnet]
+    end
+    
+    subgraph Data
+        DB[Azure Managed Databases]
+        KV[Azure Key Vault<br/>Cloud KMS]
+    end
+    
+    subgraph Integrations
+        AAD[Azure Active Directory]
+        CTRL[External Controllers]
+        Pentest[Independent Third Party<br/>Annual Penetration Testing]
+    end
+    
+    subgraph Products
+        Prod[Production HA Environment]
+        Dev[Dev Environment]
+        Test[Test Environment]
+        Dcom[D.com Application]
+    end
+    
+    Internet -->|TLS| FW
+    FW -->|Filtered Traffic| IDS
+    IDS -->|Monitored| VPNGW
+    VPNGW -->|VPN Connection| AVS_E1
+    VPNGW -->|VPN Connection| AVS_E2
+    VPNGW -->|VPN Connection| AVS_C
+    VPNGW -->|VPN Connection| AVS_D
+    
+    AVS_E1 -->|Hosts| Prod
+    AVS_E2 -->|Hosts| Prod
+    AVS_C -->|Hosts| Dev
+    AVS_C -->|Hosts| Test
+    AVS_D -->|Hosts| Dcom
+    
+    Prod -->|Auth| AAD
+    Dev -->|Auth| AAD
+    Test -->|Auth| AAD
+    Dcom -->|Auth| AAD
+    
+    Prod -->|Encrypted Queries| DB
+    Dev -->|Queries| DB
+    Test -->|Queries| DB
+    Dcom -->|Queries| DB
+    
+    Prod -->|Key Management| KV
+    Dev -->|Key Management| KV
+    Test -->|Key Management| KV
+    Dcom -->|Key Management| KV
+    
+    VPNGW <-.->|IPSec VPN Tunnel| CTRL
+    Pentest -.->|High/Critical Findings| FW
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class Internet,FW,AVS_E1,AVS_E2,AVS_C,AVS_D,IDS aws
+    class VPNGW,AAD,Pentest security
+    class DB,KV data
+    class Prod,Dev,Test,Dcom product</pre>
+</div>
+
+<div class="card" data-name="coframe inc.">
+  <h3>Coframe Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · AWS (carve-out)</div>
+  <pre class="mermaid">graph TD
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    subgraph Perimeter
+        tls[TLS Encryption]
+        fw_app[System Firewall - App Gateway]
+        fw_prod[System Firewall - Production Network]
+        idsips[AWS IDS/IPS]
+        vpn[VPN/Bastion Host]
+        pentest[Annual External Pentest]
+    end
+
+    subgraph Compute
+        vpc[AWS VPC]
+        subnets[Segmented Subnets & ACLs]
+        ec2[AWS Virtual Servers]
+        appgw[Application Gateway]
+    end
+
+    subgraph Data
+        ad[Active Directory]
+        kms[AWS KMS]
+        storage[Encrypted Data Storage]
+    end
+
+    subgraph Integrations
+        aws_vendor[Amazon Web Services]
+    end
+
+    subgraph Products
+        users[End Users]
+        admins[Remote Admins]
+        app[Coframe Application]
+    end
+
+    users --TLS Encrypted Requests--> tls
+    tls --> fw_app
+    fw_app --> appgw
+    appgw --> fw_prod
+    fw_prod --> vpc
+    vpc --> subnets
+    subnets --> ec2
+    ec2 --> app
+
+    admins --VPN Access--> vpn
+    vpn --> vpc
+
+    ec2 --User Auth--> ad
+    ec2 --Read/Write--> storage
+    kms --Encryption at Rest--> storage
+
+    idsips --Network Monitoring--> vpc
+    pentest --Validates--> fw_app
+    pentest --Validates--> idsips
+
+    aws_vendor --Infrastructure Provider--> vpc
+    aws_vendor --Key Management--> kms
+
+    class tls,fw_app,fw_prod,idsips,vpn,pentest security
+    class vpc,subnets,ec2,appgw,kms aws
+    class ad,storage data
+    class users,admins,app product</pre>
+</div>
+
+<div class="card" data-name="basata inc.">
+  <h3>Basata Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Microsoft Azure (carve-out)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Client([Client Users])
+        Admin([Remote Admin])
+        VPN[Basata VPN]
+        Firewall[Azure Firewall<br/>IDS/IPS]
+    end
+
+    subgraph Products
+        App[app.basata.ai]
+    end
+
+    subgraph Compute
+        VM[Azure VM<br/>Monolith Host]
+    end
+
+    subgraph Data
+        DB[(Database<br/>Encrypted at Rest)]
+        Storage[(File Storage<br/>Encrypted at Rest)]
+        KMS[Azure KMS]
+    end
+
+    subgraph Integrations
+        AzureOpenAI[Azure OpenAI]
+        DocIntel[Azure Document Intelligence]
+        OpenAIVoice[OpenAI<br/>Voice Transcription]
+        RingCentral[RingCentral<br/>TriCity Integration]
+        Twilio[Twilio<br/>Calls/Recordings]
+        Mailgun[Mailgun<br/>Email Service]
+        AAD[Azure Active Directory]
+    end
+
+    Client -->|HTTPS/TLS| Firewall
+    Firewall -->|Filtered Requests| App
+    Admin -->|VPN Tunnel| VPN
+    VPN -->|Admin Access| VM
+    App -->|Runs On| VM
+    
+    VM -->|Read/Write| DB
+    VM -->|Read/Write| Storage
+    VM -->|Encryption Keys| KMS
+    
+    App <-->|AI Processing| AzureOpenAI
+    App <-->|Document Analysis| DocIntel
+    App <-->|Voice Processing| OpenAIVoice
+    App <-->|Inbound Faxes| RingCentral
+    App <-->|Outbound Calls| Twilio
+    App <-->|Email Traffic| Mailgun
+    App -->|Auth/SSO| AAD
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class VM,AzureOpenAI,DocIntel,Firewall,KMS,AAD aws
+    class VPN security
+    class DB,Storage data
+    class Client,Admin,App,OpenAIVoice,RingCentral,Twilio,Mailgun product</pre>
+</div>
+
+<div class="card" data-name="timeglass, inc.">
+  <h3>Timeglass, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · GCP (carve-out subservice organization)</div>
+  <pre class="mermaid">graph TD
+    User([Internet Users]) --> Perimeter
+    Admin([Administrators]) --> Perimeter
+    
+    subgraph Perimeter ["Perimeter"]
+        Firewall[("GCP Firewall<br/>Rules as Code")]
+        IDS[("GCP IDS/IPS<br/>Infrastructure Controls")]
+        VPC[VPC Network<br/>Carve-Out Subservice]
+    end
+    
+    subgraph Compute ["Compute"]
+        CE[Compute Engine]
+        GKE[GKE Cluster]
+        Bastion[Bastion Host]
+    end
+    
+    subgraph Data ["Data"]
+        Supabase[(Supabase PostgreSQL)]
+        GCS[("GCP Cloud Storage<br/>AES-256")]
+    end
+    
+    subgraph Integrations ["Integrations"]
+        Gemini[Google Gemini API]
+        Auth[Google Workspace / GCP IAM]
+    end
+    
+    subgraph Products ["Products"]
+        App[Timeglass Application]
+    end
+    
+    User -->|TLS| Firewall
+    Admin -->|SSH| Bastion
+    
+    Firewall --> VPC
+    VPC --> CE
+    VPC --> GKE
+    Bastion --> VPC
+    
+    CE --> Supabase
+    GKE --> Supabase
+    CE --> GCS
+    GKE --> GCS
+    
+    CE -->|AI/ML| Gemini
+    GKE -->|AI/ML| Gemini
+    
+    Auth -.->|Authentication| App
+    Auth -.->|IAM| CE
+    Auth -.->|IAM| GKE
+    
+    App --> CE
+    App --> GKE
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class Firewall,IDS,Bastion security
+    class Supabase,GCS data
+    class App product
+    class CE,GKE,VPC,IDS,Firewall aws</pre>
+</div>
+
+<div class="card" data-name="dime media inc.">
+  <h3>Dime Media Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · GCP (Google Cloud Platform)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users[End Users]
+        Internet[Internet]
+        VPNClient[Remote VPN Client]
+        ThirdPartyCA[Third-Party Certificate Authority]
+    end
+
+    subgraph Compute
+        VPNGateway[VPN Gateway]
+        VPC[VPC Network]
+        BastionHost[Bastion Host]
+        ComputeServices[Compute Services]
+        ACL[Access Control Lists]
+    end
+
+    subgraph Data
+        ProdDB[(Production Database)]
+    end
+
+    subgraph Integrations
+        SubserviceOrg[Subservice Organization]
+    end
+
+    subgraph Products
+        WebApp[Web Application]
+    end
+
+    Users -->|HTTPS| Internet
+    Internet -->|Web Traffic| WebApp
+    VPNClient -->|VPN Tunnel| VPNGateway
+    VPNGateway -->|Secure Access| BastionHost
+    BastionHost -->|Administration| ComputeServices
+    ThirdPartyCA -.->|SSL Certificates| WebApp
+    WebApp -->|Process| ComputeServices
+    ComputeServices -->|Enforce| ACL
+    ACL -->|Read/Write| ProdDB
+    ComputeServices -->|API Integration| SubserviceOrg
+
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    class VPNGateway,VPC,BastionHost,ComputeServices aws;
+    class VPNGateway,BastionHost,ThirdPartyCA,ACL,VPNClient security;
+    class ProdDB data;
+    class WebApp product;</pre>
+</div>
+
+<div class="card" data-name="subrik">
+  <h3>Subrik</h3>
+  <div class="meta">SOC 2 Type 2 · AWS</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        MobileClients[Mobile Clients]
+        AdminClients[Administrator Clients]
+        ThirdPartyCA[Third-Party Certificate Authority]
+    end
+
+    subgraph Compute
+        DjangoApp[Django Central Application]
+        REST_API[Django REST Framework<br/>API Endpoints]
+        CatalogSearch[Advanced Catalog Search Service]
+    end
+
+    subgraph Data
+        PostgreSQL[(PostgreSQL)]
+        Redis[(Redis Cache)]
+        S3[S3 Storage]
+    end
+
+    subgraph Integrations
+        Metabase[Metabase Data Analytics]
+    end
+
+    subgraph Products
+        AdminPanel[HTML5 Admin Panel Dashboard]
+    end
+
+    MobileClients -->|Search| CatalogSearch
+    MobileClients -->|GET/POST/PUT/PATCH| REST_API
+    MobileClients -->|Direct Access| S3
+
+    AdminClients -->|Dashboard| AdminPanel
+    AdminClients -->|Analytics| Metabase
+
+    REST_API --> DjangoApp
+    CatalogSearch --> DjangoApp
+    AdminPanel --> DjangoApp
+
+    DjangoApp --> PostgreSQL
+    DjangoApp --> Redis
+    DjangoApp --> S3
+
+    Metabase -->|Reads Data| PostgreSQL
+
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    class DjangoApp,REST_API,CatalogSearch aws;
+    class PostgreSQL,Redis,S3 data;
+    class AdminPanel,Metabase product;
+    class ThirdPartyCA security;</pre>
+</div>
+
+<div class="card" data-name="sim studio, inc">
+  <h3>Sim Studio, Inc</h3>
+  <div class="meta">SOC 2 Type 1 · Vercel</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter["Perimeter"]
+        Users["Users"]
+        CA["Third-Party Certificate Authority"]
+        VPN["VPN"]
+        Bastion["Bastion Host"]
+        VercelIDS["Vercel IDS/IPS"]
+    end
+    
+    subgraph Compute["Compute"]
+        Vercel["Vercel Platform"]
+        AWS["AWS VPC & Infrastructure"]
+    end
+    
+    subgraph Data["Data"]
+        Supabase["Supabase"]
+        Postgres["PostgreSQL"]
+        DBAccounts["Database Accounts"]
+    end
+    
+    subgraph Products["Products"]
+        SimStudio["Sim Studio Application"]
+    end
+    
+    subgraph Integrations["Integrations"]
+        HRMS["HRMS Portal"]
+        BuildingMgmt["Building Management"]
+        ThirdParty["Third-Party Vendors"]
+        ServiceProviders["Service Providers"]
+        CriticalVendors["Critical Vendors"]
+    end
+    
+    Users -->|"TLS Encryption"| VercelIDS
+    CA -->|"Certificates"| VercelIDS
+    VPN -->|"Remote Access"| Bastion
+    Bastion -->|"Management"| AWS
+    VercelIDS --> Vercel
+    AWS --> Vercel
+    Vercel --> SimStudio
+    SimStudio --> Supabase
+    Supabase --> Postgres
+    Supabase --> DBAccounts
+    SimStudio --> HRMS
+    SimStudio --> BuildingMgmt
+    SimStudio --> ThirdParty
+    SimStudio --> ServiceProviders
+    SimStudio --> CriticalVendors
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class AWS aws
+    class CA,VPN,Bastion,VercelIDS security
+    class Supabase,Postgres,DBAccounts data
+    class SimStudio product</pre>
+</div>
+
+<div class="card" data-name="polymet ai, inc.">
+  <h3>Polymet AI, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Vercel</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter["Perimeter Layer"]
+        Users([End Users])
+        AppGw[Application Gateway]
+        ProdFirewall[Production Network<br/>System Firewalls]
+        VercelNet[Vercel Global Network]
+    end
+
+    subgraph Compute["Compute Layer"]
+        VCompute[Vercel Serverless Compute]
+    end
+
+    subgraph Data["Data Layer"]
+        DB[(Databases)]
+        DBAcc[Database Accounts]
+        AD[(Active Directory)]
+        SrvAcc[Server Accounts]
+    end
+
+    subgraph Integrations["Integrations Layer"]
+        GitHub[GitHub]
+        Slack[Slack]
+        Figma[Figma]
+        Accorp[Accorp Partners]
+        SubOrg[Subservice Organization]
+        ThirdParty[Third-Party Vendors]
+        SvcProvider[Service Providers/Vendors]
+        CriticalVendor[Critical Third-Party Vendors]
+    end
+
+    subgraph Products["Products Layer"]
+        WebApp[Polymet AI Web Application]
+        ITMgmt[IT Management<br/>Annual Review]
+    end
+
+    Users -->|HTTPS Requests| AppGw
+    AppGw -->|Filtered Traffic| ProdFirewall
+    ProdFirewall --> VercelNet
+    VercelNet --> VCompute
+    VCompute --> WebApp
+    
+    WebApp -->|Read/Write| DB
+    WebApp -->|Auth| AD
+    AD -->|Manage| SrvAcc
+    WebApp -->|Access| DBAcc
+    
+    WebApp -->|Integrate| GitHub
+    WebApp -->|Integrate| Slack
+    WebApp -->|Integrate| Figma
+    WebApp -->|Integrate| Accorp
+    WebApp -->|Integrate| SubOrg
+    WebApp -->|Integrate| ThirdParty
+    WebApp -->|Integrate| SvcProvider
+    WebApp -->|Integrate| CriticalVendor
+    
+    ITMgmt -.->|Review Firewall Rules| AppGw
+    ITMgmt -.->|Review Firewall Rules| ProdFirewall
+
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    class VercelNet,VCompute aws;
+    class AppGw,ProdFirewall,AD,SrvAcc security;
+    class DB,DBAcc data;
+    class GitHub,Slack,Figma,Accorp,SubOrg,ThirdParty,SvcProvider,CriticalVendor,WebApp,ITMgmt,Users product;</pre>
+</div>
+
+<div class="card" data-name="daero group, inc.">
+  <h3>DAERO Group, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · AWS</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        CF[CloudFront Distribution Group]
+        APIGW[API Gateway V2]
+        WAF[WAF]
+    end
+
+    subgraph Compute
+        Lambda[Lambda Function Group]
+    end
+
+    subgraph Data
+        S3[S3 Bucket Group]
+        DB[(Databases)]
+        Secrets[Secrets Manager]
+    end
+
+    subgraph Integrations
+        CW[CloudWatch Alarms & Logs]
+        GD[GuardDuty]
+        INS[Inspector]
+        IAM[IAM Authentication]
+    end
+
+    subgraph Products
+        Users[End Users]
+        Mobile[Mobile Devices]
+    end
+
+    Users -->|JWT Token Authentication| APIGW
+    APIGW -->|Process Requests| Lambda
+    
+    Users -.->|Request Signed URLs| CF
+    CF -->|Signed URLs with Expiry| S3
+    
+    Mobile -->|IAM Auth| S3
+    
+    Lambda -->|Retrieve Credentials| Secrets
+    Lambda -->|Query/Update| DB
+    
+    WAF -.->|Protect| APIGW
+    GD -.->|Threat Monitor| Perimeter
+    INS -.->|Vulnerability Scan| Compute
+    CW -.->|Log & Alert| Lambda
+    CW -.->|Log & Alert| APIGW
+
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    class CF,APIGW,Lambda,CW,GD,INS,IAM aws;
+    class WAF,GD,INS,IAM security;
+    class S3,DB,Secrets data;
+    class Users,Mobile product;</pre>
+</div>
+
+<div class="card" data-name="verita artificial intelligence corporation">
+  <h3>Verita Artificial Intelligence Corporation</h3>
+  <div class="meta">SOC 2 Type 1 · AWS</div>
+  <pre class="mermaid">graph TD
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    subgraph Perimeter ["Perimeter"]
+        Users[External Users]
+        CF[CloudFront]
+        Shield[AWS Shield]
+        WAF[WAF]
+    end
+
+    subgraph Compute ["Compute"]
+        ALB[Application Load Balancer]
+        NAT[NAT Gateway]
+        EC2[EC2 Instances]
+        SG[Security Groups]
+        IAM[IAM Roles & Policies]
+    end
+
+    subgraph Data ["Data"]
+        DB[(Database)]
+        NACL[Network ACLs]
+        Flow[VPC Flow Logs]
+    end
+
+    subgraph Integrations ["Integrations"]
+        Slack[Slack]
+        Gmail[Gmail]
+        ThirdParty[Third-Party Vendors]
+    end
+
+    subgraph Products ["Products"]
+        App[Verita AI Platform]
+    end
+
+    Users -->|HTTPS Request| CF
+    CF -->|DDoS Protection| Shield
+    Shield --> WAF
+    WAF -->|Filtered Traffic| ALB
+    ALB -->|Route| EC2
+    EC2 -->|Query| DB
+    EC2 -->|Outbound via| NAT
+    
+    EC2 <-->|API Integration| Slack
+    EC2 <-->|API Integration| Gmail
+    EC2 <-->|API Integration| ThirdParty
+    
+    SG -.->|Protect| EC2
+    IAM -.->|Authorize| EC2
+    NACL -.->|Subnet Control| EC2
+    Flow -.->|Monitor| EC2
+    
+    EC2 ---|Hosts| App
+
+    class CF,Shield,WAF,ALB,NAT,EC2 aws
+    class SG,IAM,NACL,Flow security
+    class DB data
+    class Users,Slack,Gmail,ThirdParty,App product</pre>
+</div>
+
+<div class="card" data-name="dartboard energy inc">
+  <h3>Dartboard Energy Inc</h3>
+  <div class="meta">SOC 2 Type 1 · AWS (Amazon Web Services)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        ext_api[External API]
+        aws_cloud[AWS Cloud]
+        az[High Availability AZs]
+        vpc[Segmented VPC]
+        acl[Network ACLs]
+        ids[IDS/IPS via AWS]
+        tls[TLS Encryption]
+        iam[AWS IAM]
+    end
+
+    subgraph Integrations
+        cicd[CI/CD Pipeline]
+        sns[SNS Topic]
+    end
+
+    subgraph Compute
+        ec2[AWS EC2 Backend Server]
+        lambda[AWS Lambda]
+    end
+
+    subgraph Data
+        s3[S3 Bucket]
+    end
+
+    subgraph Products
+        web[Web Application]
+    end
+
+    ext_api -->|Code/Artifacts| cicd
+    cicd -->|Deploy| s3
+    s3 -->|Data| ec2
+    ec2 -->|Serve| web
+    lambda -->|Access Every 10m| s3
+    ids -->|Alerts| sns
+    aws_cloud -->|Hosts| az
+    az -->|Contains| vpc
+    vpc -->|Network Protection| acl
+    vpc -->|Threat Detection| ids
+    ec2 -.->|Auth| iam
+    lambda -.->|Auth| iam
+
+    classDef aws fill:#ff9900,color:#</pre>
+</div>
+
+<div class="card" data-name="praxisai inc">
+  <h3>PraxisAI Inc</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users([Internet Users])
+        WAF[AWS WAF]
+        IDS[AWS IDS/IPS]
+        ACL[Network ACLs]
+        VPN[AWS VPN Gateway]
+        Bastion[Bastion Host]
+    end
+    
+    subgraph Compute
+        VPC[AWS Segmented VPC]
+        ALB[AWS ALB]
+        EC2_AZ1[AWS EC2 AZ1]
+        EC2_AZ2[AWS EC2 AZ2]
+    end
+    
+    subgraph Data
+        RDS_P[AWS RDS PostgreSQL Primary]
+        RDS_S[AWS RDS PostgreSQL Standby]
+    end
+    
+    subgraph Integrations
+        Auth[Internal Auth System]
+    end
+    
+    subgraph Products
+        SaaS[PraxisAI SaaS Platform]
+    end
+    
+    Users -->|TLS| WAF
+    WAF --> IDS
+    IDS --> ACL
+    ACL --> ALB
+    VPN -->|Remote Access| Bastion
+    Bastion --> EC2_AZ1
+    Bastion --> EC2_AZ2
+    ALB -->|Failover| EC2_AZ1
+    ALB -->|Failover| EC2_AZ2
+    EC2_AZ1 --> RDS_P
+    EC2_AZ2 --> RDS_P
+    RDS_P <-->|Multi-AZ Replication| RDS_S
+    EC2_AZ1 --> Auth
+    EC2_AZ2 --> Auth
+    EC2_AZ1 --> SaaS
+    EC2_AZ2 --> SaaS
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class WAF,IDS,ACL,VPN,Bastion security
+    class RDS_P,RDS_S data
+    class Auth,SaaS product
+    class VPC,ALB,EC2_AZ1,EC2_AZ2 aws</pre>
+</div>
+
+<div class="card" data-name="aerovy mobility, inc.">
+  <h3>Aerovy Mobility, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    Internet([Internet Traffic])
+    
+    subgraph Perimeter ["Perimeter (Multi-AZ VPC)"]
+        WAF[AWS WAF]
+        IDS[AWS IDS/IPS]
+        SG[AWS Security Groups]
+        NACL[Network ACLs]
+    end
+    
+    subgraph Compute ["Compute Layer"]
+        ALB[Application Load Balancer]
+        Fargate[Amazon ECS Fargate]
+    end
+    
+    subgraph Products ["Products & Services"]
+        MS[Microservices]
+        Auth[Internal Auth System]
+    end
+    
+    subgraph Data ["Data Layer"]
+        DDB[(Amazon DynamoDB)]
+        TS[(Amazon Timestream)]
+        PG[(PostgreSQL)]
+        S3[(Amazon S3)]
+    end
+    
+    subgraph Integrations ["Integrations"]
+        IoT[AWS IoT Core]
+        Endpoints[Gateway VPC Endpoints]
+    end
+    
+    Internet -->|TLS 1.2| WAF
+    WAF -->|Filtered| ALB
+    ALB -->|via| SG
+    SG --> Fargate
+    Fargate -->|Subnet| NACL
+    Fargate --> MS
+    MS -->|Auth| Auth
+    MS -->|Query| DDB</pre>
+</div>
+
+<div class="card" data-name="h2 corporation">
+  <h3>H2 Corporation</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        IG[Internet Gateway]
+        WAF[AWS WAF]
+        CA[Certificate Authority]
+        IDS[AWS IDS/IPS]
+        FW[AWS Security Groups<br/>and Network ACLs]
+    end
+
+    subgraph Compute
+        ALB[Application Load Balancers]
+        EC2[AWS EC2]
+        EKS[AWS ECS/EKS]
+        Lambda[AWS Lambda]
+    end
+
+    subgraph Data
+        RDS[(PostgreSQL<br/>AWS RDS)]
+        DDB[(DynamoDB)]
+        S3[(AWS S3)]
+        Cache[(AWS ElastiCache<br/>Redis)]
+    end
+
+    subgraph Integrations
+        IAM[AWS IAM]
+        KMS[AWS KMS]
+    end
+
+    subgraph Products
+        MS[H2 Microservices]
+    end
+
+    IG -->|HTTPS/TLS 1.2+| WAF
+    WAF -->|Filtered Traffic| ALB
+    CA -.->|TLS Certificates| ALB
+    IDS -.->|Monitor| WAF
+    FW -.->|Protect| ALB
+    FW -.->|Protect| EC2
+    FW -.->|Protect| EKS
+    
+    ALB -->|Route to AZs| EC2
+    ALB -->|Route to AZs| EKS
+    ALB -->|Route to AZs| Lambda
+    
+    EC2 -->|Container Host| MS
+    EKS -->|Orchestrate| MS
+    Lambda -->|Serverless Functions| MS
+    
+    MS -->|SQL Queries| RDS
+    MS -->|NoSQL Queries| DDB
+    MS -->|Object Storage| S3
+    MS -->|Cache Data| Cache
+    
+    IAM -.->|Identity Auth| MS
+    KMS -.->|Encrypt| RDS
+    KMS -.->|Encrypt| DDB
+    KMS -.->|Encrypt| S3
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class IG,ALB,EC2,EKS,Lambda aws</pre>
+</div>
+
+<div class="card" data-name="test">
+  <h3>test</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Internet([Internet])
+        VPN[AWS VPN Gateway]
+        Bastion[Bastion Host]
+        IDS[AWS IDS/IPS]
+        SG[AWS Security Groups]
+        NACL[Network ACLs]
+    end
+    
+    subgraph Compute
+        VPE_West[VPE West Segment]
+        VPE_East[VPE East Segment]
+        EC2_AZ1[EC2 Production Server<br/>Availability Zone 1]
+        EC2_AZ2[EC2 Production Server<br/>Availability Zone 2]
+    end
+    
+    subgraph Data
+        DB[(AWS Cloud Databases)]
+        Encrypt[AWS Encryption<br/>TLS & KMS]
+    end
+    
+    subgraph Integrations
+        Auth[Internal User Management<br/>Unique Login IDs]
+    end
+    
+    subgraph Products
+        SaaS[SaaS Application]
+    end
+    
+    Internet -->|TLS 1.2+| VPN
+    VPN -->|Remote Access| Bastion
+    Bastion -->|Access Control| SG
+    Internet -.->|Self-Assessment<br/>Penetration Testing| IDS
+    IDS -->|Monitor| SG
+    SG -->|Filter| NACL
+    NACL --> VPE_West
+    NACL --> VPE_East
+    VPE_West --> EC2_AZ1
+    VPE_East --> EC2_AZ2
+    EC2_AZ1 -.->|Cross-AZ Failover| EC2_AZ2
+    EC2_AZ1 -->|Read/Write| DB
+    EC2_AZ2 -->|Read/Write| DB
+    DB -->|Encryption at Rest| Encrypt
+    EC2_AZ1 -->|Authentication| Auth
+    EC2_AZ2 -->|Authentication| Auth
+    EC2_AZ1 -->|Serve| SaaS
+    EC2_AZ2 -->|Serve| SaaS
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class VPN,Bastion,VPE_West,VPE_East,EC2_AZ1,EC2_AZ2,DB aws
+    class IDS,SG,NACL,Auth security
+    class Encrypt data
+    class SaaS product</pre>
+</div>
+
+<div class="card" data-name="venvee, inc.">
+  <h3>Venvee, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter["Perimeter"]
+        WAF[AWS WAF]
+        IDS[IDS/IPS]
+        FW[Firewall & ACLs]
+        VPN[VPN Gateway]
+        IAM[AWS IAM]
+    end
+    
+    subgraph Compute["Compute"]
+        VPC[AWS VPC]
+        EC2[EC2 Per-Tenant<br/>Multi-AZ]
+    end
+    
+    subgraph Data["Data"]
+        RDS[(AWS RDS)]
+        RS[(AWS Redshift)]
+        S3[(AWS S3)]
+        Redis[(Redis Cache)]
+    end
+    
+    subgraph Integrations["Integrations"]
+        CC[Customer Clouds]
+        SFTP[SFTP Destinations]
+    end
+    
+    subgraph Products["Products"]
+        CAM[Cameras]
+        EDGE[Venvee Edge Server]
+        IPMI[IPMI Manager]
+    end
+    
+    CAM -->|video stream| EDGE
+    IPMI -.->|out-of-band| EDGE
+    EDGE -->|VPN 443/tcp| VPN
+    VPN --> VPC
+    VPC --> EC2
+    EC2 --> RDS
+    EC2 --> RS
+    EC2 --> S3
+    EC2 --> Redis
+    EC2 -->|TLS| CC
+    EC2 -->|TLS/SSL| SFTP
+    WAF --> FW
+    FW --> VPC
+    IDS -.->|monitor| FW
+    IAM -.->|auth| EC2
+    
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+    
+    class VPN,VPC,EC2 aws;
+    class WAF,IDS,FW,IAM security;
+    class RDS,RS,S3,Redis data;
+    class CAM,EDGE,IPMI product;</pre>
+</div>
+
+<div class="card" data-name="nextbyte, inc.">
+  <h3>NextByte, Inc.</h3>
+  <div class="meta">SOC 2 Type II · Supabase (subservice organization)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter ["Perimeter Layer"]
+        Users[Users/Browsers]
+        Admin[Admin Users]
+        TLS[TLS Encryption]
+        IDS[IDS/IPS<br/>Supabase Security]
+        ACL[Access Control Lists<br/>Firewall Rules]
+        VPN[VPN Gateway<br/>Bastion Host]
+    end
+
+    subgraph Compute ["Compute Layer"]
+        VPC[Supabase VPC<br/>Segmented Networks]
+        VS[Virtual Servers<br/>Supabase Compute]
+        Infra[Supabase Infrastructure<br/>HA Data Centers<br/>Multi-AZ]
+    end
+
+    subgraph Data ["Data Layer"]
+        DB[(PostgreSQL Database<br/>Supabase)]
+        Enc[Data Encryption<br/>At Rest]
+    end
+
+    subgraph Integrations ["Integrations Layer"]
+        Auth[Supabase Auth<br/>Internal Authentication System]
+    end
+
+    subgraph Products ["Products Layer"]
+        SaaS[NextByte SaaS Platform<br/>Cloud-Native Application]
+    end
+
+    Users -->|HTTPS Requests| TLS
+    TLS -->|Encrypted Traffic| IDS
+    IDS -->|Monitored| ACL
+    ACL -->|Allowed Traffic| VPC
+    VPC --> VS
+    
+    Admin -->|VPN Tunnel| VPN
+    VPN -->|Remote Access| VPC
+    
+    VS -->|Hosts| SaaS
+    SaaS -->|Query| DB
+    SaaS -->|Authenticate| Auth
+    Auth -.->|User Credentials| DB
+    VS -.->|Runs On| Infra
+    DB -.->|Secured By| Enc
+
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    class VPC,VS,Infra,Auth aws;
+    class TLS,IDS,ACL,VPN security;
+    class DB,Enc data;
+    class SaaS product;</pre>
+</div>
+
+<div class="card" data-name="rippleshot inc">
+  <h3>Rippleshot Inc</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Internet([Internet])
+        VPN[VPN Connection]
+        RemoteAdmin[Remote Administration]
+        CustomerSFTP[Customer SFTP Server]
+        CA[Third-Party Certificate Authority]
+    end
+
+    subgraph Compute
+        IGW[Internet Gateway]
+        ACL[Access Control Lists]
+        IDS[AWS IDS/IPS]
+        IAM[AWS IAM]
+        EC2Prod[EC2 Production]
+        EC2Dev[EC2 Development]
+        EIPs[Elastic IPs]
+    end
+
+    subgraph Data
+        RDS[(Amazon RDS)]
+    end
+
+    subgraph Integrations
+        VPCEndpoint[VPC Endpoint]
+    end
+
+    subgraph Products
+        App[Rippleshot Application]
+    end
+
+    Internet -->|HTTPS| IGW
+    VPN -->|Encrypted Tunnel| ACL
+    RemoteAdmin -->|Secure Access| ACL
+    IGW --> ACL
+    ACL --> IDS
+    IDS --> EC2Prod
+    IDS --> EC2Dev
+    IAM -.->|Authentication| EC2Prod
+    IAM -.->|Authentication| EC2Dev
+    EC2Prod --> EIPs
+    EC2Dev --> EIPs
+    EC2Prod --> App
+    EC2Dev --> App
+    EC2Prod -->|Read/Write| RDS
+    EC2Dev -.->|Read| RDS
+    EC2Prod -->|SFTP| VPCEndpoint
+    VPCEndpoint --> CustomerSFTP
+    CA -.->|TLS Certificates| EC2Prod
+    CA -.->|TLS Certificates| EC2Dev
+
+    class IGW,ACL,IDS,IAM,EC2Prod,EC2Dev,EIPs,VPCEndpoint aws
+    class ACL,IDS,CA security
+    class RDS data
+    class App product</pre>
+</div>
+
+<div class="card" data-name="keyplay, inc.">
+  <h3>Keyplay, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Google Cloud Platform (GCP)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        LB[HTTPS Load Balancer]
+        WAF[Cloud Armor WAF]
+        FW[VPC Firewall Rules]
+        IDS[GCP IDS/IPS Services]
+    end
+    
+    subgraph Compute
+        CF[Cloud Functions]
+        CR[Cloud Run]
+        CW[Background Workers<br/>Cloud Tasks]
+        API[Express API]
+        PVC[Private VPC Connector]
+    end
+    
+    subgraph Data
+        MDB[(MongoDB Cluster<br/>Private Subnet)]
+        ENC[Encryption at Rest<br/>TLS 1.2+]
+    end
+    
+    subgraph Integrations
+        AUTH[Auth0 Identity]
+        SENTRY[Sentry Error Tracking]
+        LLM[LLM Provider<br/>Inference API]
+    end
+    
+    subgraph Products
+        USER[End Users]
+        SF[Salesforce CRM]
+        HS[HubSpot CRM]
+    end
+    
+    USER -->|HTTPS Requests| LB
+    LB -->|Traffic Inspection| WAF
+    WAF --> FW
+    FW --> IDS
+    IDS --> CF
+    IDS --> CR
+    IDS --> API
+    
+    CF --> PVC
+    CR --> PVC
+    API --> PVC
+    CW -->|Internal Jobs| PVC
+    
+    PVC -->|Private IP| MDB
+    MDB -.-> ENC
+    
+    CF -->|JWT Validation| AUTH
+    CR -->|JWT Validation| AUTH
+    API -->|JWT Validation| AUTH
+    
+    CF -->|OAuth Exchange| SF
+    API -->|OAuth Exchange| SF
+    CR -->|OAuth Exchange| HS
+    
+    CF -.->|Error Tracking| SENTRY
+    CR -.->|Error Tracking| SENTRY
+    API -.->|Error Tracking| SENTRY
+    CW -.->|Error Tracking| SENTRY
+    
+    CF -->|AI Inference| LLM
+    CR -->|AI Inference| LLM
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class LB,CF,CR,CW,API,PVC,IDS,FW aws
+    class WAF,AUTH,ENC security
+    class MDB data
+    class USER,SF,HS,SENTRY,LLM product</pre>
+</div>
+
+<div class="card" data-name="cluely, inc.">
+  <h3>Cluely, Inc.</h3>
+  <div class="meta">SOC 2 Type II · Vercel (subservice organization for data</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Edge[Vercel Edge Network]
+        WAF[Web Application Firewall]
+        FW[Virtual Firewall]
+        IDS[IDS/IPS System]
+        TLS[TLS Termination]
+    end
+    
+    subgraph Compute
+        VPC[Vercel VPC Infrastructure]
+        LB[Load Balancer]
+        VS[Vercel Virtual Servers]
+        ACL[Access Control Lists]
+        AZ[Multi-AZ Failover]
+    end
+    
+    subgraph Data
+        DB[Cloud Databases on Vercel]
+        Auth[Internal Database Authentication]
+        Enc[Encryption at Rest]
+    end
+    
+    subgraph Integrations
+        CA[Third-Party Certificate Authority]
+    end
+    
+    subgraph Products
+        SaaS[SaaS Platform]
+        Tenant[Multi-tenant Application]
+    end
+    
+    User -->|HTTPS Request| Edge
+    Edge -->|Traffic Inspection| WAF
+    WAF -->|Filter| FW
+    FW -->|Threat Detection| IDS
+    IDS -->|Route| LB
+    LB -->|Distribute Load| VS
+    VS -->|Hosted In| VPC
+    VPC -->|Network Segmentation| ACL
+    VS -->|Host| SaaS
+    SaaS -->|Serve| Tenant
+    VS -->|Query| DB
+    DB -->|Access Control| Auth
+    DB -->|Data Protection| Enc
+    CA -->|Issue Certificates| TLS
+    TLS -->|Encrypt Connection| Edge
+    AZ -.->|High Availability| VS
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class Edge,VPC,VS,LB,AZ aws
+    class WAF,FW,IDS,TLS,ACL,Auth,CA security
+    class DB,Enc data
+    class SaaS,Tenant product</pre>
+</div>
+
+<div class="card" data-name="lemma inc.">
+  <h3>Lemma Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter ["Perimeter (us-west-2)"]
+        Internet([Internet])
+        NLB[Network Load Balancer]
+        IDS[AWS IDS/IPS]
+        SG[Security Groups]
+        NACL[Network ACLs]
+    end
+    
+    subgraph Compute
+        VPC[AWS VPC]
+        PubSub[Public Subnet]
+        PrivSub[Private Subnet]
+        EKS[Amazon EKS]
+        Workers[EKS Worker Nodes]
+    end
+    
+    subgraph Data
+        ECR[Elastic Container Registry]
+    end
+    
+    subgraph Integrations
+        IAM[AWS IAM]
+    end
+    
+    subgraph Products
+        Apps[Container Applications]
+    end
+    
+    Internet -->|TLS| NLB
+    NLB -->|Traffic| PubSub
+    PubSub --> PrivSub
+    PrivSub --> EKS
+    EKS --> Workers
+    Workers --> Apps
+    
+    IAM -.->|Auth| EKS
+    ECR -.->|Pull Images| Workers
+    
+    SG -.->|Protect| VPC
+    NACL -.->|Filter| VPC
+    IDS -.->|Monitor| NLB
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class NLB,VPC,PubSub,PrivSub,EKS,Workers aws
+    class IDS,SG,NACL,IAM security
+    class ECR data
+    class Apps product</pre>
+</div>
+
+<div class="card" data-name="cheres, inc">
+  <h3>Cheres, Inc</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter ["Perimeter & Network"]
+        ECOM[External E-Commerce Platforms]
+        MKT[External Marketing Platforms]
+        VPC[VPC Environment]
+        IDS[IDS/IPS via AWS]
+        SG[Security Groups & Network ACLs]
+    end
+    
+    subgraph Compute ["Compute Services"]
+        ELT[AWS Batch<br/>ELT]
+        RBB[AWS Batch<br/>ReBeat]
+        SM[Amazon SageMaker]
+        LAMBDA[AWS Lambda]
+    end
+    
+    subgraph Data ["Data Layer"]
+        RDS_E[(Amazon RDS<br/>Events RDS<br/>Multi-AZ)]
+        RDS_C[(Amazon RDS<br/>Core RDS<br/>Multi-AZ)]
+    end
+    
+    subgraph Integrations ["Integrations"]
+        APIG[Amazon API Gateway]
+    end
+    
+    subgraph Products ["Product Interfaces"]
+        GP[Ground Pixel]
+        GD[Ground Dashboard]
+    end
+
+    ECOM -->|pull data| ELT
+    MKT -->|pull data| RBB
+    ELT -->|load| RDS_E
+    RBB -->|load| RDS_C
+    SM -->|push events| RDS_E
+    LAMBDA -->|process events| RDS_E
+    RDS_C -->|query| LAMBDA
+    APIG -->|serve| GP
+    APIG -->|serve| GD
+    LAMBDA <-->|interface| APIG
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class VPC,ELT,RBB,SM,LAMBDA,APIG aws
+    class IDS,SG security
+    class RDS_E,RDS_C data
+    class ECOM,MKT,GP,GD product</pre>
+</div>
+
+<div class="card" data-name="north parks labs, inc.">
+  <h3>North Parks Labs, Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · Render</div>
+  <pre class="mermaid">graph TD
+    %% Nodes
+    Users([Users])
+    Cloudflare[Cloudflare CDN<br/>*.magicpatterns.app]
+    Vercel[Vercel Hosting]
+    ClientApp[SaaS Web Client]
+    
+    RenderVPC[Render VPC<br/>Multi-AZ]
+    ACLs[Access Control Lists]
+    IDSIPS[IDS/IPS via Render]
+    RenderCloud[Render Cloud Servers]
+    RenderVirtual[Render Virtual Servers]
+    ServerApp[Application Server]
+    AuthService[Internal Identity Management]
+    
+    MongoDB[(MongoDB<br/>Encrypted)]
+    
+    Anthropic[Anthropic AI Model]
+    Figma[Figma Integration]
+    GitHub[GitHub Sync & Export]
+    
+    %% Subgraphs
+    subgraph Perimeter
+        Users
+        Cloudflare
+        Vercel
+        ClientApp
+    end
+    
+    subgraph Compute
+        RenderVPC
+        ACLs
+        IDSIPS
+        RenderCloud
+        RenderVirtual
+        ServerApp
+        AuthService
+    end
+    
+    subgraph Data
+        MongoDB
+    end
+    
+    subgraph Integrations
+        Anthropic
+        Figma
+        GitHub
+    end
+    
+    %% Data Flow
+    Users -->|TLS 1.2+| Cloudflare
+    Cloudflare -->|CDN| Vercel
+    Vercel -->|Hosts| ClientApp
+    ClientApp -->|API Requests| RenderVPC
+    RenderVPC -->|Segmented Network| ACLs
+    ACLs -->|Filter| IDSIPS
+    IDSIPS -->|Protected| RenderCloud
+    IDSIPS -->|Protected| RenderVirtual
+    RenderCloud -->|Runs| ServerApp
+    RenderVirtual -->|Runs| ServerApp
+    ServerApp -->|Auth| AuthService
+    ServerApp -->|Query| MongoDB
+    ServerApp -->|AI Code Gen| Anthropic
+    ServerApp -->|Design Import| Figma
+    ServerApp -->|Code Export| GitHub
+    
+    %% Styling
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+    
+    class Cloudflare,Vercel,RenderVPC,RenderCloud,RenderVirtual,Anthropic,Figma,GitHub aws;
+    class ACLs,IDSIPS,AuthService security;
+    class MongoDB data;
+    class Users,ClientApp,ServerApp product;</pre>
+</div>
+
+<div class="card" data-name="anara labs, inc.">
+  <h3>Anara Labs, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Internet([Internet Users])
+        Proxy[Proxy Server<br/>Content Filtering]
+        Firewall[Production Network Firewalls]
+        AppGW[Application Gateway]
+        IDS[IDS/IPS<br/>AWS Native]
+    end
+
+    subgraph Compute
+        VPC[VPC<br/>Segmented + ACLs]
+        EC2Primary[EC2 Primary Server]
+        EC2Failover[EC2 Failover Server]
+        IAM[AWS IAM]
+    end
+
+    subgraph Data
+        RDS[(AWS RDS)]
+        Encryption[TLS Encryption<br/>Third-party Certs]
+    end
+
+    subgraph Integrations
+        GDrive[Google Drive]
+        OneDrive[Microsoft OneDrive]
+        Zotero[Zotero]
+    end
+
+    subgraph Products
+        Anara[Anara Labs Platform]
+    end
+
+    Internet -->|HTTPS/TLS| Proxy
+    Proxy -->|Filtered Traffic| Firewall
+    Firewall -->|Inspected Traffic| AppGW
+    AppGW -->|Routed to| VPC
+    VPC -.->|Monitor| IDS
+    VPC -->|Deploy| EC2Primary
+    VPC -->|Deploy| EC2Failover
+    EC2Primary <-->|Failover| EC2Failover
+    EC2Primary -->|Authenticate| IAM
+    EC2Primary -->|Read/Write| RDS
+    RDS -.->|Encrypt| Encryption
+    EC2Primary -->|Document Mgmt| GDrive
+    EC2Primary -->|Document Mgmt| OneDrive
+    EC2Primary -->|Citation Mgmt| Zotero
+    EC2Primary -->|Hosts| Anara
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class Proxy,Firewall,AppGW security
+    class IDS,VPC,EC2Primary,EC2Failover,IAM aws
+    class RDS,Encryption data
+    class Anara product</pre>
+</div>
+
+<div class="card" data-name="wellbridge health, inc.">
+  <h3>WellBridge Health, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter["Perimeter Layer"]
+        Users[("External Users")]
+        Internet([Internet Gateway])
+        TLS["TLS 1.2+ Encryption"]
+        IDS["AWS IDS/IPS"]
+        Firewall["Security Groups & NACLs"]
+        VPC["AWS VPC<br/>172.31.0.0/16<br/>us-east-1"]
+    end
+    
+    subgraph Compute["Compute Layer"]
+        Lambda["AWS Lambda<br/>Serverless Microservices"]
+    end
+    
+    subgraph Data["Data Layer"]
+        S3[(Amazon S3)]
+        KMS[AWS KMS]
+        Snowflake[("Snowflake<br/>Data Warehouse")]
+    end
+    
+    subgraph Integrations["Integrations Layer"]
+        VPCE[VPC Endpoint<br/>S3 PrivateLink]
+        IAM[AWS IAM<br/>Authentication]
+        CW[CloudWatch<br/>Monitoring]
+    end
+    
+    subgraph Products["Products Layer"]
+        WB[WellBridge Health<br/>Application]
+    end
+    
+    Users -->|HTTPS Requests| Internet
+    Internet -->|Encrypted Traffic| TLS
+    TLS -->|Inspect| IDS
+    IDS -->|Filter| Firewall
+    Firewall -->|Route| VPC
+    VPC -->|Trigger| Lambda
+    Lambda -->|Authenticate| IAM
+    Lambda -->|Private Link| VPCE
+    VPCE -->|Object Storage| S3
+    Lambda -->|Data Queries| Snowflake
+    Lambda -->|Encrypt/Decrypt| KMS
+    CW -.->|Logs & Metrics| Lambda
+    CW -.->|Network Monitoring| VPC
+    WB -.->|API Gateway| Lambda
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class Internet,VPC,Lambda,S3,KMS,VPCE,IAM,CW aws
+    class TLS,IDS,Firewall security
+    class Snowflake data
+    class WB product</pre>
+</div>
+
+<div class="card" data-name="saha health, inc">
+  <h3>Saha Health, Inc</h3>
+  <div class="meta">SOC 2 Type 1 · Google Cloud Platform (GCP)</div>
+  <pre class="mermaid">graph TD
+    %% Nodes
+    Users[Users/Internet]
+    IG[Internet Gateway]
+    VPNGW[VPN Gateway]
+    IPSec[IPSec VPN Tunnels]
+    FW[GCP Firewall Rules]
+    IDS[GCP IDS/IPS]
+    ACL[Network ACLs]
+    VPC[GCP VPC US Region]
+    LB[Load Balancer]
+    VM1[GCP Virtual Servers AZ-1]
+    VM2[GCP Virtual Servers AZ-2]
+    IAM[GCP IAM]
+    DB[Cloud-hosted Databases]
+    Storage[GCP Cloud Storage]
+    ENC[GCP Encryption at Rest]
+    EXT[External Corporate Network]
+    APP[Saha Health SaaS Platform]
+
+    %% Layer Subgraphs
+    subgraph Perimeter
+        IG
+        VPNGW
+        IPSec
+        FW
+        IDS
+        ACL
+    end
+
+    subgraph Compute
+        VPC
+        LB
+        VM1
+        VM2
+        IAM
+    end
+
+    subgraph Data
+        DB
+        Storage
+        ENC
+    end
+
+    subgraph Integrations
+        EXT
+    end
+
+    subgraph Products
+        APP
+    end
+
+    %% Data Flows
+    Users -->|TLS| IG
+    IG --> FW
+    FW --> IDS
+    IDS --> ACL
+    ACL --> VPC
+    VPC --> LB
+    LB -->|Route| VM1
+    LB -->|Route| VM2
+    VM1 -->|Auth| IAM
+    VM2 -->|Auth| IAM
+    VM1 <-->|Read/Write| DB
+    VM2 <-->|Read/Write| DB
+    VM1 --> Storage
+    VM2 --> Storage
+    DB -.->|Encrypt| ENC
+    Storage -.->|Encrypt| ENC
+    EXT <-->|IPSec Tunnel| VPNGW
+    VPNGW --> VPC
+    VM1 -.->|Hosts| APP
+    VM2 -.->|Hosts| APP
+
+    %% Styling Classes
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    class IG,VPNNGW,IPSec,VPC,LB,VM1,VM2,Storage aws;
+    class FW,IDS,ACL,IAM,ENC security;
+    class DB data;
+    class APP product;</pre>
+</div>
+
+<div class="card" data-name="mandala for us inc.">
+  <h3>Mandala for Us Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Railway</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Wix[Wix IP Filter]
+        VPC[Railway VPC/ACLs]
+        IDS[Railway IDS/IPS]
+    end
+    
+    subgraph Compute
+        App[Railway App]
+    end
+    
+    subgraph Data
+        PG[Railway PostgreSQL]
+        Pinecone[Pinecone Vector DB]
+    end
+    
+    subgraph Integrations
+        Slack[Slack Platform]
+        OpenRouter[OpenRouter AI]
+        Langfuse[Langfuse]
+        PostHog[PostHog]
+    end
+    
+    subgraph Products
+        Platform[Mandala AI Coaching]
+    end
+    
+    User -->|Interact| Slack
+    Slack -->|Webhook| Wix
+    Wix -->|Filter| VPC
+    VPC -->|Segment| IDS
+    IDS -->|Route| App
+    App -->|Query| PG
+    App -->|Vector Search| Pinecone
+    App -->|Inference| OpenRouter
+    App -->|Observability| Langfuse
+    App -->|Analytics| PostHog
+    App -->|Serve| Platform
+    Platform -->|Response| Slack
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class VPC,App,PG aws
+    class Wix,IDS security
+    class Pinecone data
+    class Slack,OpenRouter,Langfuse,PostHog,Platform product</pre>
+</div>
+
+<div class="card" data-name="blng corporation">
+  <h3>BLNG CORPORATION</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        dns[Route53 DNS]:::aws
+        waf[AWS WAF]:::aws
+        ids[AWS IDS/IPS]:::aws
+        ca[Third-party CA]:::security
+    end
+
+    subgraph Compute
+        vpc[VPC Segmented Network]:::aws
+        pub[Public Subnets]:::aws
+        priv[Private Subnets]:::aws
+        ec2[EC2 Production Servers]:::aws
+        failover[Multi-AZ Failover]:::aws
+        sg[Security Groups & NACLs]:::aws
+        iam[Internal Identity Management]:::product
+    end
+
+    subgraph Data
+        db[(AWS Database Service)]:::data
+        kms[AWS KMS Encryption]:::aws
+    end
+
+    subgraph Integrations
+        tls[TLS Encryption]:::security
+        pentest[External Pentest Vendor]:::security
+    end
+
+    subgraph Products
+        app[BLNG SaaS Platform]:::product
+        users[End Users]:::product
+    end
+
+    users --HTTPS Request--> dns
+    dns -->|Resolve| waf
+    waf -->|Filtered Traffic| pub
+    pub -->|Route| ec2
+    ec2 --Hosts--> app
+    ec2 --Database Queries--> db
+    db --Resides In--> priv
+    ec2 --Resides In--> pub
+    vpc --Contains--> pub
+    vpc --Contains--> priv
+    ec2 --Authenticate--> iam
+    ec2 --Key Management--> kms
+    sg --Protects--> ec2
+    failover --High Availability--> ec2
+    ids --Threat Monitoring--> waf
+    pentest --Annual Testing--> waf
+    ca --Issues Certificates--> tls
+    tls -.->|Encrypts| users
+
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;</pre>
+</div>
+
+<div class="card" data-name="orchid surgical, inc.">
+  <h3>Orchid Surgical, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        R53[Amazon Route53]
+        WAF[AWS WAF]
+        IDS[AWS IDS/IPS]
+        VPC[VPC us-east-1<br/>Public Subnets]
+    end
+    
+    subgraph Compute
+        ALB[AWS Application Load Balancer]
+        SG[AWS Security Groups]
+        ECS[Amazon ECS Fargate]
+        Lambda[AWS Lambda]
+    end
+    
+    subgraph Data
+        NACL[Network ACLs]
+        Aurora[Amazon Aurora PostgreSQL]
+        Dynamo[Amazon DynamoDB]
+        Redis[Redis]
+        Enc[AWS Managed Encryption<br/>TLS]
+    end
+    
+    subgraph Integrations
+        AWS[Amazon Web Services<br/>Infrastructure Vendor]
+        IDM[Internal Identity Management]
+        Pentest[Annual External Pentest]
+    end
+    
+    subgraph Products
+        App[Orchid Surgical<br/>Microservices]
+    end
+    
+    R53 -->|DNS Resolution| WAF
+    WAF -->|Filtered HTTPS| ALB
+    ALB -->|Route| ECS
+    ECS -->|SQL| Aurora
+    ECS -->|NoSQL| Dynamo
+    ECS -->|Cache| Redis
+    ECS -->|Event| Lambda
+    IDM -->|Auth| ECS
+    Pentest -.->|Audit| WAF
+    AWS -.->|Host| ECS
+    AWS -.->|Manage| Aurora
+    App -.->|Runs On| ECS
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class R53,WAF,ALB,ECS,Lambda,Aurora,Dynamo,Redis,VPC,AWS aws
+    class WAF,IDS,SG,NACL,Pentest,Enc security
+    class Aurora,Dynamo,Redis,Enc data
+    class App product</pre>
+</div>
+
+<div class="card" data-name="opensesame ai inc.">
+  <h3>OpenSesame AI Inc.</h3>
+  <div class="meta">SOC 2 Type I · Google Cloud Platform (GCP)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users([External Users/Clients])
+        ExtLB[External HTTPS Load Balancer]
+        Armor[Cloud Armor WAF]
+        IDS[IDS/IPS Services]
+        VPC[VPC with Firewalls & ACLs]
+    end
+    
+    subgraph Products
+        APIGateway[OpenSesame AI API Gateway]
+    end
+    
+    subgraph Compute
+        Run[Cloud Run Microservices]
+        Func[Cloud Functions]
+        CE[Compute Engine Workloads]
+        IntLB[Internal Load Balancer]
+    end
+    
+    subgraph Data
+        SQL[(Cloud SQL PostgreSQL)]
+        Firestore[(Firestore Vector DB)]
+        Redis[(Cloud Memorystore Redis)]
+    end
+    
+    subgraph Integrations
+        PubSub[Pub/Sub]
+        Tasks[Cloud Tasks]
+        Scheduler[Cloud Scheduler]
+    end
+    
+    Users -->|HTTPS TLS 1.2+| ExtLB
+    ExtLB --> Armor
+    Armor -->|Filtered Traffic| VPC
+    VPC --> IDS
+    IDS -->|Auth: Internal User Mgmt| APIGateway
+    APIGateway --> Run
+    Run --> IntLB
+    IntLB --> CE
+    
+    Run -->|Read/Write| SQL
+    Run -->|Vector Search| Firestore
+    Run -->|Cache Ops| Redis
+    
+    Run -->|Publish Events| PubSub
+    PubSub -->|Subscribe| Func
+    Func -->|Process| SQL
+    Func -->|Update| Firestore
+    
+    Scheduler -->|Schedule| Tasks
+    Tasks -->|Execute Async| Run
+    
+    CE -->|Batch Processing| SQL
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class ExtLB,Run,Func,CE,IntLB,SQL,Firestore,Redis,PubSub,Tasks,Scheduler,VPC aws
+    class Armor,IDS security
+    class SQL,Firestore,Redis data
+    class APIGateway,Users product</pre>
+</div>
+
+<div class="card" data-name="anchor forge ltd.">
+  <h3>Anchor Forge LTD.</h3>
+  <div class="meta">SOC 2 Type II · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        IG[Internet Gateway]
+        WAF[AWS WAF]
+        IDS[IDS and IPS via AWS]
+        ALB[Application Load Balancer]
+        SG[Security Groups]
+        NACL[Network ACLs]
+    end
+    
+    subgraph Compute
+        EKS[Amazon EKS Cluster<br/>Multi-AZ]
+        EC2[Virtual Servers]
+        NAT[NAT Gateways]
+    end
+    
+    subgraph Data
+        RDS[Amazon RDS<br/>Encrypted at Rest]
+        S3[Amazon S3<br/>Encrypted at Rest]
+    end
+    
+    subgraph Integrations
+        OK[Okta<br/>Identity Provider]
+        AZ[Azure AD<br/>Identity Provider]
+    end
+    
+    subgraph Products
+        CW[Amazon CloudWatch Monitoring]
+    end
+    
+    Users([External Users]) -->|TLS Encrypted| IG
+    IG --> WAF
+    WAF -->|Filtered Traffic| ALB
+    ALB --> SG
+    SG --> NACL
+    NACL -->|Internal Traffic| EKS
+    EKS -->|Orchestrates| EC2
+    EKS -->|SQL Queries| RDS
+    EKS -->|Object Storage| S3
+    EC2 -->|Outbound via| NAT
+    NAT --> IG
+    EKS -->|Authenticate| OK
+    EKS -->|Authenticate| AZ
+    EKS -->|Logs & Metrics| CW
+    
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#</pre>
+</div>
+
+<div class="card" data-name="glance app inc.">
+  <h3>Glance App Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · AWS</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter ["Perimeter"]
+        Internet([Internet])
+        VPN_East[VPN Gateway East]
+        VPN_West[VPN Gateway West]
+        IGW_East[Internet Gateway East]
+        IGW_West[Internet Gateway West]
+        Bastion[Bastion Host]
+    end
+
+    subgraph Compute ["Compute"]
+        App_East[App Components East]
+        App_West[App Components West]
+    end
+
+    subgraph Data ["Data"]
+        DB1[(databases)]
+        DB2[(CRM)]
+        DB3[(tables)]
+        DB4[(continuous-learning repository)]
+        DB5[(speck-db)]
+        DB6[(speck-state)]
+    end
+
+    subgraph Integrations ["Integrations"]
+        EndpointSec[Endpoint Security Solution]
+        AV[Anti-virus Software]
+        HRMS[HRMS Portal]
+        SubOrg[Subservice Organization]
+    end
+
+    subgraph Products ["Products"]
+        GlanceApp[Glance App]
+    end
+
+    Internet -->|Internet Traffic| VPN_East
+    Internet -->|Internet Traffic| VPN_West
+    VPN_East -->|VPN Connection| Bastion
+    VPN_West -->|VPN Connection| Bastion
+    
+    Bastion -->|Client Access| App_East
+    Bastion -->|Client Access| App_West
+    
+    App_East --> DB1
+    App_East --> DB2
+    App_East --> DB5
+    App_West --> DB3
+    App_West --> DB4
+    App_West --> DB6
+    
+    App_East --> EndpointSec
+    App_West --> AV
+    App_East --> HRMS
+    App_West --> SubOrg
+    
+    App_East --> GlanceApp
+    App_West --> GlanceApp
+
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    class VPN_East,IGW_East,VPN_West,IGW_West,Bastion,App_East,App_West aws;
+    class EndpointSec,AV security;
+    class DB1,DB2,DB3,DB4,DB5,DB6 data;
+    class GlanceApp,HRMS,SubOrg product;</pre>
+</div>
+
+<div class="card" data-name="indent">
+  <h3>Indent</h3>
+  <div class="meta">SOC 2 Type II · AWS (Amazon Web Services)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        WAF[AWS WAF]:::security
+        FW[Application Gateway<br/>Firewall]:::security
+        IDS[Intrusion Detection System]:::security
+    end
+
+    subgraph Compute
+        VPC[AWS VPC]:::aws
+        EC2[AWS EC2<br/>Multi-AZ Deployment]:::aws
+    end
+
+    subgraph Data
+        KMS[AWS KMS<br/>Encryption at Rest]:::data
+        TLS[Encryption in Transit]:::data
+    end
+
+    subgraph Integrations
+        AD[Active Directory]:::product
+        Pentest[Independent Third-Party<br/>Penetration Testing]:::security
+    end
+
+    subgraph Products
+        Indent[Indent Platform]:::product
+        Customers[Customer Accounts]:::product
+    end
+
+    Users([Users]) -->|HTTPS Request| WAF
+    WAF -->|Inspect| FW
+    FW -->|Filter| IDS
+    IDS -->|Secure Channel| VPC
+    VPC --> EC2
+    EC2 --> Indent
+    Indent -->|Encrypt Data| KMS
+    Indent -.->|Auth| AD
+    Indent -.->|Account Segmentation| Customers
+    Pentest -.->|Annual Security Test| Indent
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000</pre>
+</div>
+
+<div class="card" data-name="tracelight ltd">
+  <h3>Tracelight Ltd</h3>
+  <div class="meta">SOC 2 Type 1 · Vercel</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        VPC[VPC & Access Control Lists]:::security
+        IDS[IDS/IPS via Vercel]:::security
+        EdgeFirewall[Vercel Edge Firewall]:::aws
+        VPN[Bastion Host with VPN]:::security
+        SubOrg[Subservice Organization<br/>Cloud Hosting & Physical Security]:::aws
+    end
+    
+    subgraph Compute
+        Middleware[Edge Middleware]:::aws
+        Functions[Vercel Serverless Functions]:::aws
+    end
+    
+    subgraph Data
+        Supabase[Supabase]:::data
+        DB[(Databases & Tables)]:::data
+        DBSecure[IP-Restricted SSL Access]:::security
+    end
+    
+    subgraph Integrations
+        OpenAI[OpenAI API]
+        Anthropic[Anthropic API]
+        Google[Google Services]
+        Microsoft[Microsoft Services]
+        Axiom[Axiom Logging]
+        Sentry[Sentry Error Tracking]
+    end
+    
+    subgraph Products
+        App[Tracelight Application]:::product
+    end
+    
+    Users((End Users)) -->|HTTPS/TLS| EdgeFirewall
+    Admins((Administrators)) -->|VPN Tunnel| VPN
+    
+    EdgeFirewall -->|Filter| Middleware
+    Middleware -->|Protect| Functions
+    VPN -.->|Manage| Functions
+    
+    Functions -->|Encrypted Queries| DBSecure
+    DBSecure --> Supabase
+    Supabase -->|Store| DB
+    
+    Functions -->|AI Requests| OpenAI
+    Functions -->|AI Requests| Anthropic
+    Functions -->|API Calls| Google
+    Functions -->|Identity/Services| Microsoft
+    Functions -->|Observability| Axiom
+    Functions -->|Error Reporting| Sentry
+    
+    Functions -->|Serve| App
+    
+    SubOrg -.->|Underlying Infrastructure| EdgeFirewall
+    SubOrg -.->|Underlying Infrastructure| Supabase
+    
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;</pre>
+</div>
+
+<div class="card" data-name="openroll inc">
+  <h3>Openroll Inc</h3>
+  <div class="meta">SOC 2 Type 1 · Microsoft Azure</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users([Internet Users])
+        IDS[Azure IDS/IPS]
+        NSG[Network ACLs & Segmentation]
+    end
+    
+    subgraph Compute
+        INT_SUB[App Service Integration Subnet]
+        APP[Azure App Service]
+        VM[Virtual Servers]
+    end
+    
+    subgraph Data
+        PE_SUB[Private Endpoints Subnet]
+        PG[(Azure Database for PostgreSQL)]
+    end
+    
+    subgraph Integrations
+        AAD[Azure AD]
+    end
+    
+    subgraph Products
+        WEB[Openroll SaaS Application]
+        API[Backend API Services]
+    end
+    
+    Users -->|TLS| IDS
+    IDS --> NSG
+    NSG --> INT_SUB
+    INT_SUB --> APP
+    NSG --> VM
+    APP --> WEB
+    VM --> API
+    APP -->|Private Link| PE_SUB
+    VM -->|Private Link| PE_SUB
+    PE_SUB --> PG
+    WEB -.->|Auth| AAD
+    API -.->|Auth| AAD
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class APP,VM,INT_SUB,PE_SUB,AAD aws
+    class IDS,NSG security
+    class PG data
+    class WEB,API product</pre>
+</div>
+
+<div class="card" data-name="adversa ai ltd">
+  <h3>ADVERSA AI LTD</h3>
+  <div class="meta">SOC 2 Type 1 · Google Cloud Platform (GCP)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users([End Users]):::product
+        Proxy[Proxy Server<br/>Content Filtering/WAF]:::security
+        IDS[IDS/IPS<br/>GCP Cloud IDS]:::security
+        Firewall[GCP Firewall<br/>Segmented VPC ACLs]:::security
+        VPC[GCP Virtual Private Cloud<br/>Multi-Region]:::aws
+    end
+
+    subgraph Compute
+        VM[GCP Compute Instances<br/>Virtual Servers<br/>Multi-AZ HA]:::aws
+    end
+
+    subgraph Data
+        DB[Cloud Databases<br/>GCP Managed]:::data
+    end
+
+    subgraph Integrations
+        Auth[Internal Auth System<br/>GCP Password Policy]:::security
+    end
+
+    subgraph Products
+        SaaS[Adversa AI SaaS Platform]:::product
+    end
+
+    Users -->|TLS Encrypted| Proxy
+    Proxy -->|Filtered Traffic| IDS
+    IDS -->|Inspected/Monitored| Firewall
+    Firewall -->|Allowed| VPC
+    VPC -->|Internal Routing| VM
+    VM -->|Host/Run| SaaS
+    SaaS -->|Query| DB
+    SaaS -->|Authenticate| Auth
+
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;</pre>
+</div>
+
+<div class="card" data-name="cheres, inc">
+  <h3>Cheres, Inc</h3>
+  <div class="meta">SOC 2 Type 2 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        CA[Third-party Certificate Authority]
+        AV[Antivirus/Endpoint Security Vendor]
+        VPC[AWS VPC]
+        ACL[Access Control Lists]
+        IDS[AWS IDS and IPS]
+        IAM[AWS IAM]
+    end
+    
+    subgraph Integrations
+        EC[Ecommerce Platforms]
+        MK[Marketing Platforms]
+    end
+    
+    subgraph Compute
+        EL[ELT AWS Batch]
+        RB[ReBeat Batch]
+        SM[Amazon SageMaker]
+        LM[AWS Lambda]
+    end
+    
+    subgraph Data
+        ER[Events RDS<br/>Multi-AZ]
+        CR[Core RDS<br/>Multi-AZ]
+    end
+    
+    subgraph Products
+        AG[Amazon API Gateway]
+        GP[Ground Pixel]
+        GD[Ground Dashboard]
+    end
+    
+    EC -->|TLS Encryption| VPC
+    MK -->|TLS Encryption| VPC
+    CA -.->|SSL/TLS Certificates| VPC
+    AV -.->|Virus Definitions| VPC
+    
+    VPC --> ACL
+    ACL --> IDS
+    
+    IDS -->|Batch Processing| EL
+    IDS -->|Batch Processing| RB
+    EL -->|Feed| SM
+    RB -->|Feed| SM
+    SM -->|AI Processing| ER
+    SM -->|AI Processing| CR
+    
+    IDS -->|Event Processing| LM
+    LM -->|Serve| AG
+    AG --> GP
+    AG --> GD
+    
+    LM -.->|Auth| IAM
+    AG -.->|Auth| IAM
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class VPC,EL,RB,SM,LM,AG aws
+    class CA,AV,ACL,IDS,IAM security
+    class ER,CR data
+    class GP,GD product</pre>
+</div>
+
+<div class="card" data-name="the human chemical company">
+  <h3>The Human Chemical Company</h3>
+  <div class="meta">SOC 2 Type II · Google Cloud Platform (GCP)</div>
+  <pre class="mermaid">graph TD
+    %% Perimeter Layer
+    subgraph Perimeter ["Perimeter Layer"]
+        internet([Internet Traffic])
+        gclb[GKE Load Balancer]
+        ids[Cloud IDS/IPS]
+        firewall[VPC Firewall & ACLs]
+        vpc[VPC Network<br/>us-central-1]
+        tls[TLS Encryption]
+    end
+
+    %% Compute Layer
+    subgraph Compute ["Compute Layer"]
+        gke_prod[GKE Prod Cluster<br/>Regional: us-central-1]
+        gke_stage[GKE Staging Cluster<br/>Regional: us-central-1]
+        vms[Virtual Servers]
+    end
+
+    %% Products Layer
+    subgraph Products ["Products Layer"]
+        frontend[Frontend App]
+        backend[Backend App]
+    end
+
+    %% Data Layer
+    subgraph Data ["Data Layer"]
+        postgres[(PostgreSQL Cloud SQL)]
+        kms[Google Key Manager]
+        encryption[Data Encryption at Rest]
+    end
+
+    %% Integrations Layer
+    subgraph Integrations ["Integrations Layer"]
+        gcp_vendor[Google Cloud Platform<br/>Infrastructure Vendor]
+        iam[Internal Identity Management<br/>Unique Login IDs]
+        pentest[Self-Assessment Pentest Scans]
+    end
+
+    %% Data Flow Connections
+    internet -->|HTTPS Traffic| gclb
+    gclb -->|Route| firewall
+    firewall -->|Segmented Access| vpc
+    vpc -->|Ingress| gke_prod
+    vpc -->|Ingress| gke_stage
+    
+    gke_prod -->|Hosts| frontend
+    frontend -->|API Requests| backend
+    backend -->|SQL Queries| postgres
+    
+    backend -.->|Key Retrieval| kms
+    postgres -.->|Encrypted by| encryption
+    kms -.->|Key Management| encryption
+    
+    iam -.->|Authentication| frontend
+    iam -.->|Authentication| backend
+    
+    ids -.->|Threat Monitoring| vpc
+    ids -.->|Threat Monitoring| gke_prod
+    pentest -.->|Security Scan| gke_prod
+    pentest -.->|Security Scan| vms
+    tls -.->|Encrypts| internet
+    tls -.->|Encrypts| gclb
+
+    %% Class Definitions
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+    
+    %% Apply Classes
+    class gclb,vpc,gke_prod,gke_stage,vms,postgres,gcp_vendor aws;
+    class ids,firewall,tls,iam,pentest security;
+    class kms,encryption data;
+    class frontend,backend product;</pre>
+</div>
+
+<div class="card" data-name="peakmetrics, inc.">
+  <h3>PeakMetrics, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter ["Perimeter"]
+        users((Internet Users))
+        waf[AWS WAF]:::security
+        ids[AWS IDS/IPS]:::security
+        vpn[Bastion Host with VPN]:::security
+    end
+
+    subgraph Compute ["Compute"]
+        vpc[VPC Environment<br/>Segmented ACLs]:::aws
+        sg[Security Groups<br/>Network ACLs]:::security
+        ec2[AWS EC2<br/>Multi-AZ Virtual Servers]:::aws
+        managed[AWS Managed Services]:::aws
+    end
+
+    subgraph Data ["Data"]
+        db[(Cloud-based Databases)]:::data
+        encryption[AWS Managed Encryption]:::aws
+    end
+
+    subgraph Integrations ["Integrations"]
+        aiml[AI/ML Components]:::aws
+        auth[Internal Identity Management]:::security
+        pentest[Annual Pentest<br/>Third-Party]:::security
+    end
+
+    subgraph Products ["Products"]
+        saas[PeakMetrics<br/>Cloud-Native SaaS]:::product
+    end
+
+    users -->|TLS Encrypted Traffic| waf
+    waf -->|Inspect| ids
+    ids -->|Filtered Traffic| vpc
+    vpn -->|Secure Remote Access| ec2
+    vpc -->|Enforce| sg
+    sg --> ec2
+    ec2 -->|Query/Store| db
+    ec2 -->|Orchestrate| managed
+    managed -->|AI/ML Processing| aiml
+    ec2 -->|Authenticate| auth
+    ec2 -->|Host| saas
+    db -.->|Data at Rest| encryption
+    ec2 -.->|Annual Audit| pentest
+
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;</pre>
+</div>
+
+<div class="card" data-name="reworks inc.">
+  <h3>Reworks Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Supabase</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        User["User Device"]
+        TLS["TLS 1.2/1.3 Encryption"]
+        IDS["IDS/IPS<br/>(Supabase)"]
+        ACL["Access Control Lists"]
+        VPC["Supabase VPC Infrastructure"]
+    end
+    
+    subgraph Products
+        WebApp["Web Application<br/>(Vercel Hosting)"]
+        Desktop["Electron Desktop App"]
+    end
+    
+    subgraph Compute
+        Serverless["Serverless Functions"]
+        Workers["Background Workers"]
+        VS["Virtual Servers"]
+    end
+    
+    subgraph Data
+        Auth["Supabase Auth"]
+        Postgres["Supabase Postgres"]
+        Storage["Supabase Storage"]
+    end
+    
+    subgraph Integrations
+        ThirdParty["Third-Party APIs"]
+        Webhooks["Webhooks"]
+    end
+    
+    User -->|TLS| WebApp
+    WebApp -->|API Calls| Serverless
+    WebApp -->|SQL Queries| Postgres
+    Desktop -->|Auth/API| Auth
+    
+    Serverless -->|Read/Write| Postgres
+    Serverless -->|Read/Write| Storage
+    Workers -->|Process| Postgres
+    VS -->|Connect| Postgres
+    
+    Serverless <-->|HTTPS| ThirdParty
+    ThirdParty -->|Events| Webhooks
+    Webhooks -->|Trigger| Serverless
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class VPC,IDS,ACL,TLS security
+    class Postgres,Storage,Auth data
+    class WebApp,Desktop product
+    class Serverless,Workers,VS aws</pre>
+</div>
+
+<div class="card" data-name="bandar systems inc.">
+  <h3>Bandar Systems Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Internet([Internet Traffic])
+        VPN[AWS VPN Gateway]
+        Bastion[Bastion Host]
+        IDS[AWS IDS/IPS]
+        SG[AWS Security Groups]
+        NACL[AWS Network ACLs]
+    end
+    
+    subgraph Compute
+        VPC[AWS VPC<br/>Segmented]
+        EC2[AWS EC2<br/>Virtual Servers]
+    end
+    
+    subgraph Data
+        KMS[AWS KMS<br/>Key Management]
+    end
+    
+    subgraph Integrations
+        AWS[Amazon Web Services<br/>Cloud Platform]
+    end
+    
+    subgraph Products
+        App[Bandar Systems<br/>Applications]
+    end
+    
+    Internet -->|TLS Encrypted| IDS
+    VPN -->|Remote Access| Bastion
+    VPN -->|Encrypted Tunnel| SG
+    IDS --> SG
+    Bastion -->|Admin Access| EC2
+    SG --> NACL
+    NACL --> VPC
+    VPC --> EC2
+    EC2 <-->|Encrypt/Decrypt| KMS
+    EC2 -->|Hosts| App
+    AWS -.->|Infrastructure| VPC
+    AWS -.->|Key Services| KMS
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class VPN,Bastion,EC2,VPC,AWS aws
+    class Internet,IDS,SG,NACL security
+    class KMS data
+    class App product</pre>
+</div>
+
+<div class="card" data-name="trudiagnostic inc">
+  <h3>TruDiagnostic Inc</h3>
+  <div class="meta">SOC 2 Type 2 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter["Perimeter Layer"]
+        Users((External Users))
+        Admin((Administrators))
+        WAF[AWS WAF]:::security
+        IG[Internet Gateway]:::aws
+        VPN[VPN Gateway]:::security
+        Bastion[Bastion Host]:::aws
+    end
+    
+    subgraph Integrations["Integrations Layer"]
+        VPC[AWS VPC]:::aws
+        ACL[Network ACLs]:::security
+        SG[AWS Security Groups]:::security
+        IDS[AWS IDS/IPS]:::security
+    end
+    
+    subgraph Compute["Compute Layer"]
+        EC2[AWS EC2 Instances]:::aws
+        ASG[Auto Scaling Group]:::aws
+        MAZ[Multi-AZ Deployment]:::aws
+    end
+    
+    subgraph Data["Data Layer"]
+        DB[(Production Database)]:::data
+    end
+    
+    subgraph Products["Products Layer"]
+        App[TruDiagnostic SaaS]:::product
+        Auth[Internal Authentication]:::product
+    end
+    
+    Users --"HTTPS/TLS"--> WAF
+    WAF --> IG
+    IG --> VPC
+    Admin --"VPN Tunnel"--> VPN
+    VPN --> Bastion
+    Bastion --> EC2
+    
+    VPC --> ACL
+    ACL --> SG
+    SG -.-> IDS
+    SG --> EC2
+    
+    EC2 --> ASG
+    ASG -.-> MAZ
+    
+    EC2 --> App
+    App --> Auth
+    App --"TLS Encryption"--> DB
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000</pre>
+</div>
+
+<div class="card" data-name="g2i inc.">
+  <h3>G2i Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Railway (subservice organization for dat</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter ["Perimeter Layer"]
+        User[End User]
+        Internet[Internet]
+        Bastion[Bastion Host<br/>VPN Gateway]
+        TLSCert[TLS Encryption]
+    end
+
+    subgraph Integrations ["Integrations Layer"]
+        CA[Third-Party Certificate Authority]
+    end
+
+    subgraph Compute ["Compute Layer"]
+        VPC[Railway VPC Environment]
+        ACL[ACLs & Network Segmentation]
+        IDS[IDS/IPS via Railway]
+        ProdAZ1[Virtual Production Servers<br/>Availability Zone 1]
+        ProdAZ2[Virtual Production Servers<br/>Availability Zone 2]
+    end
+
+    subgraph Data ["Data Layer"]
+        CloudDB[Cloud Database]
+    end
+
+    subgraph Products ["Products Layer"]
+        WebApp[Web Application]
+    end
+
+    User -->|HTTPS Request| Internet
+    Internet -->|TLS Encrypted Traffic| VPC
+    VPC --> ACL
+    ACL --> IDS
+    IDS</pre>
+</div>
+
+<div class="card" data-name="dentin inc.">
+  <h3>Dentin Inc.</h3>
+  <div class="meta">SOC 2 Type II · Google Cloud Platform (GCP)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users((Users))
+        TLS[TLS/SSL Encryption]
+        Firewall[GCP Firewall & ACLs]
+        IDS[GCP IDS/IPS]
+        VPC_GW[VPC Gateway]
+    end
+
+    subgraph Compute
+        VPC1[Segmented VPC]
+        AZ_A[Availability Zone A]
+        AZ_B[Availability Zone B]
+        VS_A[Virtual Servers]
+        VS_B[Virtual Servers - Failover]
+    end
+
+    subgraph Data
+        DB[(Cloud Databases)]
+        Enc[Data Encryption]
+    end
+
+    subgraph Integrations
+        CA[Third-party Certificate Authority]
+    end
+
+    subgraph Products
+        App[Dentin SaaS Platform]
+    end
+
+    Users -->|HTTPS| TLS
+    CA -->|Issues Certificates| TLS
+    TLS -->|Encrypted Traffic| Firewall
+    Firewall -->|Filtered Traffic| IDS
+    IDS -->|Monitored Traffic| VPC_GW
+    VPC_GW --> VPC1
+    VPC1 --> AZ_A
+    VPC1 --> AZ_B
+    AZ_A --> VS_A
+    AZ_B --> VS_B
+    VS_A -->|Hosts| App
+    VS_B -.->|Failover| App
+    App -->|Query| DB
+    DB -->|Protected by| Enc
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82</pre>
+</div>
+
+<div class="card" data-name="rally europe b.v.">
+  <h3>Rally Europe B.V.</h3>
+  <div class="meta">SOC 2 Type 2 · Supabase</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter["Perimeter Layer"]
+        Users["Users / Clients"]
+        CA["Third-party Certificate Authority<br/>TLS Certificates"]
+    end
+
+    subgraph Compute["Compute Layer"]
+        VPC["Supabase VPC<br/>Infrastructure"]
+        FW["Network Firewalls<br/>Supabase Managed"]
+        IPS["IDS / IPS<br/>Supabase Threat Protection"]
+        ACL["Access Control Lists"]
+        VS["Supabase<br/>Virtual Servers"]
+        Auth["Supabase<br/>Authentication Service"]
+    end
+
+    subgraph Data["Data Layer"]
+        DB["PostgreSQL<br/>Supabase Database"]
+        HA["Failover Capabilities<br/>Supabase HA"]
+    end
+
+    subgraph Integrations["Integrations Layer"]
+        Pentest["External Penetration Testing<br/>Independent Third-Party"]
+    end
+
+    subgraph Products["Products Layer"]
+        Platform["Rally Europe B.V.<br/>Cloud-Native SaaS Platform"]
+    end
+
+    Users --"HTTPS/TLS 1.2+"--> VPC
+    CA --"TLS Certificate"--> Users
+    CA --"TLS Certificate"--> Platform
+    VPC --> FW
+    FW --> IPS
+    IPS --> ACL
+    ACL --> VS
+    VS --> Auth
+    VS --> Platform
+    Platform --> DB
+    DB -.-> HA
+    Pentest --"Annual Security Audit"--> Platform
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class VS,VPC,Auth,HA aws
+    class FW,IPS,ACL,Pentest security
+    class DB data
+    class Platform product</pre>
+</div>
+
+<div class="card" data-name="conway enterprises, inc.">
+  <h3>Conway Enterprises, Inc.</h3>
+  <div class="meta">SOC 2 Type II · Vercel</div>
+  <pre class="mermaid">graph TD
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    subgraph Perimeter ["Perimeter"]
+        users([Internet Users])
+        edge[Vercel Edge Network]
+        fw[Network Firewalls<br/>VPC Isolation]
+        phys[Vercel Physical Security]
+    end
+
+    subgraph Compute ["Compute"]
+        serverless[Vercel Serverless Functions]
+    end
+
+    subgraph Data ["Data"]
+        nodata[(No Database Services)]
+    end
+
+    subgraph Integrations ["Integrations"]
+        auth[Local/Vercel<br/>Password Policy]
+    end
+
+    subgraph Products ["Products"]
+        app[Conway Enterprises<br/>Application]
+    end
+
+    users -->|HTTPS Request| edge
+    edge -->|Managed Traffic| fw
+    fw -->|Authorized Traffic| serverless
+    serverless -->|Server-Side Render| app
+    serverless -.->|Auth Check| auth
+    phys -.->|Secures Infrastructure| edge
+
+    class edge,serverless,phys aws;
+    class fw,auth security;
+    class nodata data;
+    class app product;</pre>
+</div>
+
+<div class="card" data-name="a37 inc.">
+  <h3>a37 Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users([End Users]):::product
+        Internet([Internet]):::product
+        IG[Internet Gateway]:::aws
+        VPN_GW[VPN Gateway]:::aws
+        IDS_IPS[IDS/IPS]:::security
+        TLS_CA[TLS / Third-Party CA]:::security
+    end
+    
+    subgraph Compute
+        EC2[EC2 Instances]:::aws
+        SG[Security Groups]:::security
+    end
+    
+    subgraph Data
+        DB[(Cloud Databases)]:::data
+        ACLs[Network ACLs]:::security
+    end
+    
+    subgraph Integrations
+        VPN_Conn[VPC VPN Connection]:::aws
+        IAM[AWS IAM]:::aws
+    end
+    
+    subgraph Products
+        SaaS[SaaS Application]:::product
+    end
+    
+    Users -->|HTTPS| Internet
+    Internet -->|Encrypted| IG
+    IG -->|Monitored| IDS_IPS
+    IDS_IPS --> SG
+    SG --> EC2
+    EC2 -->|Read/Write| DB
+    VPN_GW -->|Site-to-Site| VPN_Conn
+    VPN_Conn -->|Private Access| ACLs
+    ACLs --> DB
+    IAM -.->|Authenticate| EC2
+    IAM -.->|Authorize| DB
+    EC2 -->|Hosts| SaaS
+    TLS_CA -.->|Certificates| IG
+    
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#</pre>
+</div>
+
+<div class="card" data-name="chonkie, inc">
+  <h3>Chonkie, Inc</h3>
+  <div class="meta">SOC 2 Type 2 · Vercel</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Client[Client Browser/Device]
+        Edge[Vercel Edge Network<br/>CDN]
+        CA[Third-party Certificate Authority<br/>TLS Certificates]
+        Sec[Vercel Security<br/>VPC/ACLs/IDS/IPS]
+    end
+
+    subgraph Compute
+        Static[Vercel Platform<br/>Static Assets/Build Output]
+        Functions[Vercel Serverless Functions<br/>API Routes]
+    end
+
+    subgraph Data
+        DB[Backend Database Services]
+    end
+
+    subgraph Integrations
+        ExtAPI[External API]
+    end
+
+    subgraph Products
+        App[Chonkie Application]
+    end
+
+    Client -->|HTTPS/TLS| Edge
+    CA -.->|Encrypts| Edge
+    Sec -.->|Network Protection| Edge
+    Sec -.->|VPC Segmentation| Functions
+    
+    Edge -->|Serve Static Content| Static
+    Edge -->|Route API Requests| Functions
+    
+    Static -->|API Calls| Functions
+    Functions -->|Query/Update| DB
+    Functions -->|Integrate| ExtAPI
+    
+    Static -->|Delivers| App
+    Functions -->|Business Logic| App
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class Edge,Static,Functions aws
+    class CA,Sec security
+    class DB data
+    class App product</pre>
+</div>
+
+<div class="card" data-name="anchor forge ltd">
+  <h3>Anchor Forge LTD</h3>
+  <div class="meta">SOC 2 Type 1 · AWS</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users[External Users]
+        Internet[Internet]
+        TLS[TLS Encryption]
+        ThirdPartyCA[Third Party CA]
+        VPN[VPN Gateway]
+        Bastion[Bastion Host]
+    end
+    
+    subgraph Compute
+        VPC[AWS VPC]
+        ACLs[Network ACLs]
+        IDSIPS[AWS IDS/IPS]
+        WebApp[Web Application]
+    end
+    
+    subgraph Data
+        DB[(Application Databases)]
+    end
+    
+    subgraph Integrations
+        Accorp[Accorp Partners]
+        Suborg[Subservice Organizations]
+    end
+    
+    subgraph Products
+        SmartDraw[SmartDraw]
+        GDraw[Google Drawings]
+        Lucid[LucidChart]
+        BMS[Building Management]
+    end
+    
+    Users -->|HTTPS| Internet
+    Internet -->|Encrypted Traffic| WebApp
+    ThirdPartyCA -->|Certificates| TLS
+    TLS -.->|Secures| WebApp
+    Users -.->|Remote Access| VPN
+    VPN -->|Tunnel| Bastion
+    Bastion -->|Admin| WebApp
+    WebApp -->|Read/Write| DB
+    WebApp <-->|Data Exchange| Accorp
+    WebApp <-->|Subservice| Suborg
+    VPC --- WebApp
+    ACLs -.->|Filter| WebApp
+    IDSIPS -.->|Monitor| WebApp
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class VPC,IDSIPS,WebApp aws
+    class TLS,VPN,Bastion,ACLs security
+    class DB data
+    class SmartDraw,GDraw,Lucid,BMS product</pre>
+</div>
+
+<div class="card" data-name="tembo data systems, inc.">
+  <h3>Tembo Data Systems, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        internet([Public Internet])
+        tailscale[Tailscale VPN]
+        bastion[Bastion Host]
+        alb[Application Load Balancer]
+        ids[AWS IDS/IPS]
+        sg[Security Groups]
+        acl[Network ACLs]
+    end
+
+    subgraph Compute
+        fargate[ECS Fargate Tasks]
+        ec2[EC2 Auto Scaling Group]
+        agents[Agent Workers]
+    end
+
+    subgraph Data
+        aurora[(Aurora PostgreSQL Serverless v2)]
+        rds[(RDS PostgreSQL Legacy)]
+        redis[(ElastiCache Redis Multi-AZ)]
+    end
+
+    subgraph Integrations
+        litellm[LiteLLM]
+    end
+
+    subgraph Products
+        api[API Services]
+        platform[Tembo Platform]
+    end
+
+    internet -->|HTTPS| alb
+    tailscale -->|VPN Tunnel| bastion
+    bastion -->|SSH Admin| ec2
+    bastion -->|Manage| fargate
+    
+    alb -->|Route| fargate
+    sg -.->|Protect| alb
+    sg -.->|Protect| fargate
+    acl -.->|Segment| aurora
+    acl -.->|Segment| rds
+    ids -.->|Inspect| alb
+    
+    fargate -->|Host| api
+    fargate -->|SQL| aurora
+    fargate -->|SQL Legacy| rds
+    fargate -->|Cache| redis
+    fargate -->|LLM Proxy| litellm
+    
+    ec2 -->|Run| agents
+    agents -->|Process| aurora
+    agents -->|Process| redis
+    
+    api -->|Power| platform
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class alb,fargate,ec2,agents,aurora,rds,redis,sg,acl aws
+    class tailscale,bastion,ids security
+    class aurora,rds,redis data
+    class api,litellm,platform product</pre>
+</div>
+
+<div class="card" data-name="marc property management software limited">
+  <h3>MARC Property Management Software Limited</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter["Perimeter (AWS US-east-1)"]
+        Users([Users])
+        IGW[Internet Gateway]
+        ALB[Application Load Balancer]
+        WAF[AWS WAF]
+        IDS[AWS IDS/IPS]
+        SSO[SSO Auth]
+    end
+    
+    subgraph Compute["Compute (VPC - Private Subnets)"]
+        EC2[EC2 Customer Isolated]
+        Lambda[Lambda Functions]
+        APIGW[API Gateway]
+        Bastion[Bastion Host]
+        NAT[NAT Gateway]
+        ACLs[ACLs & Security Groups]
+    end
+    
+    subgraph Data["Data Layer"]
+        RDS[(Amazon RDS Primary)]
+        Replica[(RDS Prod Replica)]
+    end
+    
+    subgraph Integrations["Integrations"]
+        Claude[Claude Anthropic]
+        Rclone[rclone]
+        ExtStorage[External Cloud Storage]
+    end
+    
+    subgraph Products["Products"]
+        App[MARC Property Management]
+        Chat[AI Chat Interface]
+    end
+
+    Users --"TLS 1.2+"--> IGW
+    IGW --> ALB
+    ALB --> WAF
+    WAF --> IDS
+    IDS --> SSO
+    SSO --> EC2
+    SSO --> APIGW
+    APIGW --> Lambda
+    EC2 --"SQL/TLS"--> RDS
+    Lambda --"SQL/TLS"--> RDS
+    RDS --"Multi-AZ Replication"--> Replica
+    EC2 --"Outbound Traffic"--> NAT
+    Lambda --"Outbound Traffic"--> NAT
+    NAT --> Claude
+    NAT --> Rclone
+    Rclone --> ExtStorage
+    Bastion --"SSH Access"--> EC2
+    App -.-> EC2
+    Chat -.-> Lambda
+    Lambda -.-> Claude
+
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    class IGW,ALB,EC2,Lambda,APIGW,Bastion,NAT,SSO aws;
+    class WAF,IDS,ACLs security;
+    class RDS,Replica data;
+    class Claude,Rclone,ExtStorage,App,Chat product;</pre>
+</div>
+
+<div class="card" data-name="janet ai inc">
+  <h3>JANET AI INC</h3>
+  <div class="meta">SOC 2 Type 2 · Supabase (Subservice Organization)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users((Internet Users))
+        Ingress[HTTPS Ingress<br/>Supabase TLS Termination]
+        ACL[Supabase ACLs<br/>Access Control]
+    end
+
+    subgraph Compute
+        Frontend[Frontend Virtual Server]
+        Backend[Backend Virtual Server]
+        DiscordBot[Discord Bot Virtual Server]
+        IDS[Supabase IDS/IPS]
+    end
+
+    subgraph Data
+        Postgres[(PostgreSQL<br/>Managed by Supabase)]
+        VPC[Supabase VPC<br/>Private Subnets]
+    end
+
+    subgraph Integrations
+        WorkOS[WorkOS<br/>Enterprise Auth]
+        Slack[Slack<br/>Ticket Management]
+        GoogleCal[Google Calendar<br/>Meeting Transcription]
+        GoogleDrive[Google Drive<br/>Document Analysis]
+        DiscordExt[Discord<br/>Bug Reports & Features]
+    end
+
+    subgraph Products
+        WebApp[JANET AI Web App]
+        API[JANET AI API]
+        CommunityBot[Community Discord Bot]
+    end
+
+    Users -->|HTTPS| Ingress
+    Ingress --> ACL
+    ACL --> Frontend
+    ACL --> Backend
+    
+    Frontend -->|Authentication| WorkOS
+    Backend -->|Validate Token| WorkOS
+    Backend -->|DATABASE_URL| Postgres
+    DiscordBot -->|DATABASE_URL| Postgres
+    Backend -->|Ticket API| Slack
+    Backend -->|Calendar API| GoogleCal
+    Backend -->|Drive API| GoogleDrive
+    DiscordBot -->|Bot API| DiscordExt
+    
+    Compute -.->|Deployed in| VPC
+    Postgres -.->|Hosted in| VPC
+    IDS -.->|Monitors| ACL
+    IDS -.->|Monitors| Compute
+    
+    WebApp -.->|Uses| Frontend
+    API -.->|Uses| Backend
+    CommunityBot -.->|Uses| DiscordBot
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#000
+    classDef product fill:#22c55e,color:#000
+
+    class Ingress,ACL,VPC,Frontend,Backend,DiscordBot,IDS aws
+    class IDS,ACL security
+    class Postgres data
+    class WebApp,API,CommunityBot product</pre>
+</div>
+
+<div class="card" data-name="kapwork, inc.">
+  <h3>Kapwork, Inc.</h3>
+  <div class="meta">SOC 2 Type II · Render</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter["Perimeter Layer"]
+        Internet([Internet])
+        Firewall[Firewall & Access Control Lists]
+        IDS[IDS/IPS via Render]
+        TLS[TLS Encryption]
+    end
+
+    subgraph Integrations["Integrations Layer"]
+        Render[Render Platform<br/>Data Center & Hosting]
+        VPC_SFO3[VPC default-sfo3<br/>10.124.0.0/20]
+        VPC_NYC1[VPC default-nyc1<br/>10.116.0.0/20]
+    end
+
+    subgraph Compute["Compute Layer"]
+        VirtSvr[Virtual Servers]
+        ProdApp[prod-v.kapwork.com]
+        EmailAgent[Email Agents]
+    end
+
+    subgraph Data["Data Layer"]
+        PG_Pri[(PostgreSQL 17 Primary)]
+        PG_Rep[(PostgreSQL 17 Read-Only Replica)]
+        DataEnc[Data Encryption]
+    end
+
+    subgraph Products["Products Layer"]
+        Kapwork[Kapwork Application]
+    end
+
+    Internet -->|Inbound Traffic| Firewall
+    Firewall -->|Filter| IDS
+    IDS -->|Inspect| VPC_SFO3
+    VPC_SFO3 -->|Contains| VirtSvr
+    VirtSvr -->|Hosts| ProdApp
+    VirtSvr -->|Hosts| EmailAgent
+    ProdApp -->|Read/Write| PG_Pri
+    EmailAgent -->|Store| PG_Pri
+    PG_Pri -.->|Protected By| DataEnc
+    PG_Pri -.->|Replicate to| VPC_NYC1
+    VPC_NYC1 -->|Contains| PG_Rep
+    PG_Rep -.->|Protected By| DataEnc
+    ProdApp -->|Delivers| Kapwork
+    Render -.->|Manages| VPC_SFO3
+    Render -.->|Manages| VPC_NYC1
+    Render -.->|Provides| IDS
+    Render -.->|Implements| TLS
+
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    class Render,VPC_SFO3,VPC_NYC1,VirtSvr aws;
+    class Firewall,IDS,TLS,DataEnc security;
+    class PG_Pri,PG_Rep data;
+    class Kapwork,ProdApp,EmailAgent product;</pre>
+</div>
+
+<div class="card" data-name="altrina corporation">
+  <h3>Altrina Corporation</h3>
+  <div class="meta">SOC 2 Type 1 · DigitalOcean</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Internet[Internet]
+        DO_IDS[IDS/IPS<br/>DigitalOcean]
+        DO_VPC[Virtual Private Cloud<br/>DigitalOcean]
+        ACL[Access Control Lists]
+        TLS[TLS Encryption<br/>Third-Party CA]
+        Bastion[Bastion Host<br/>VPN Access]
+    end
+    
+    subgraph Compute
+        VS[Virtual Servers<br/>Cloud Infrastructure]
+        Scheduler[Scheduler]
+        Server[Altrina Server]
+        Worker[Worker]
+    end
+    
+    subgraph Data
+        DB[(Database<br/>Component)]
+    end
+    
+    subgraph Integrations
+        CA[Third-Party CA<br/>Certificates]
+        IAM[Internal Identity<br/>Management]
+    end
+    
+    subgraph Products
+        Frontend[Frontend<br/>Web Application]
+    end
+    
+    User[End User] -->|HTTPS Request| TLS
+    Admin[System Admin] -->|VPN Connection| Bastion
+    
+    TLS -->|Encrypted Traffic| Internet
+    Internet -->|Inbound| DO_IDS
+    DO_IDS -->|Filtered| ACL
+    ACL -->|Allow| Frontend
+    
+    Frontend -->|API Calls| Server
+    Server -->|Private VPC| Scheduler
+    Server -->|Private VPC| Worker
+    Server -->|Query| DB
+    Worker -->|Update| DB
+    Scheduler -->|Dispatch| Worker
+    
+    Bastion -->|Admin Access| Server
+    
+    CA -.->|Provide Certs| TLS
+    IAM -.->|Authenticate| Server
+    IAM -.->|Authenticate| Frontend
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class DO_IDS,DO_VPC,VS aws
+    class TLS,Bastion,IAM,ACL,CA,Internet security
+    class DB data
+    class Frontend,Server,Scheduler,Worker product</pre>
+</div>
+
+<div class="card" data-name="bandar systems inc.">
+  <h3>Bandar Systems Inc.</h3>
+  <div class="meta">SOC 2 Type II · AWS (Amazon Web Services)</div>
+  <pre class="mermaid">graph TD
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    subgraph Perimeter
+        DNS[Route 53 DNS]
+        IGW[Internet Gateway]
+        ACL[Network ACLs]
+        IDS[AWS IDS/IPS]
+    end
+
+    subgraph Compute
+        NLB[Network Load Balancer]
+        PubSub[Public Subnets - 3 AZs]
+        NAT[NAT Gateways]
+        PrivSub[Private Subnets - 3 AZs]
+        ASG[Auto Scaling Groups]
+        EC2[Virtual Servers EC2]
+        Containers[Container Orchestration Platform]
+    end
+
+    subgraph Data
+        S3[S3 Object Storage]
+        KMS[AWS KMS]
+    end
+
+    subgraph Integrations
+        API[Serverless API]
+    end
+
+    subgraph Products
+        App[Containerized Applications]
+    end
+
+    Users([Users]) -->|TLS| DNS
+    DNS --> IGW
+    IGW --> ACL
+    ACL -->|Inbound| NLB
+    NLB --> PrivSub
+    PrivSub --> Containers
+    Containers -->|Scaling| ASG
+    ASG -->|Runs on| EC2
+    Containers -.->|Hosts| App
+    Containers -->|Invokes| API
+    PrivSub -->|Outbound| NAT
+    NAT --> PubSub
+    PubSub --> IGW
+    Containers -->|Encrypted Storage| S3
+    S3 -->|Keys| KMS
+    ACL -.->|Traffic Monitor| IDS
+
+    class DNS,IGW,NAT,NLB,PubSub,PrivSub,ASG,EC2,Containers,API,S3,KMS aws
+    class ACL,IDS security
+    class S3,KMS data
+    class App product</pre>
+</div>
+
+<div class="card" data-name="kubera apps, inc.">
+  <h3>Kubera Apps, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · AWS</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users[External Users]
+        Internet((Internet))
+        ThirdPartyCA[Third-Party Certificate Authority]
+        VPN[VPN Gateway]
+        GuardDuty[AWS GuardDuty IDS/IPS]
+        VPC[AWS VPC with ACLs]
+    end
+
+    subgraph Compute
+        ALB[AWS Application Load Balancer]
+        Bastion[Bastion Host]
+        AppServer[EC2 Application Servers]
+    end
+
+    subgraph Data
+        AD[(Active Directory)]
+        DB[(Application Databases)]
+    end
+
+    subgraph Integrations
+        Accorp[Accorp Partners]
+        SubOrg[Subservice Organization]
+    end
+
+    subgraph Products
+        Kubera[[Kubera Apps Application]]
+    end
+
+    Users -->|HTTPS Requests| Internet
+    Internet -->|TLS Encrypted| VPC
+    ThirdPartyCA -.->|Issues Certificates| ALB
+    VPC -->|Monitored by| GuardDuty
+    VPN -->|Remote Access| Bastion
+    Bastion -->|Administrative| AppServer
+    VPC -->|Routes to| ALB
+    ALB -->|Forwards| AppServer
+    AppServer -->|Authenticates| AD
+    AppServer -->|Reads/Writes| DB
+    AppServer -->|API Calls| Accorp
+    AppServer -->|Sub-service| SubOrg
+    AppServer -->|Hosts| Kubera
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000</pre>
+</div>
+
+<div class="card" data-name="aion technologies inc">
+  <h3>AION Technologies Inc</h3>
+  <div class="meta">SOC 2 Type II · AWS (Amazon Web Services)</div>
+  <pre class="mermaid">graph TD
+    Internet([Internet])
+    
+    subgraph Perimeter ["Perimeter Layer (eu-west-1)"]
+        VPC[VPC 10.0.0.0/16]
+        IGW[Internet Gateway]
+        WAF[AWS WAF]
+        IDS[AWS IDS/IPS]
+        ELB[Elastic Load Balancer]
+        NAT[NAT Gateway]
+        PS[Public Subnets]
+        SG[Security Groups]
+        NACL[Network ACLs]
+    end
+    
+    subgraph Compute ["Compute Layer"]
+        PrS[Private Subnets]
+        EKS[EKS Cluster]
+        EC2[EC2 Instances]
+        GPU[Baremetal GPU Compute]
+    end
+    
+    subgraph Data ["Data Layer"]
+        IS[Intra Subnets]
+        AUR[Aurora PostgreSQL<br/>Cross-AZ Replication]
+        RED[ElastiCache Redis]
+    end
+    
+    subgraph Integrations ["Integrations"]
+        IAM[AWS IAM]
+    end
+    
+    subgraph Products ["Products"]
+        MS[Microservices]
+        GW[GPU Workloads]
+    end
+    
+    Internet -->|TLS| IGW
+    IGW --> WAF
+    WAF --> IDS
+    IDS --> ELB
+    ELB -->|Ingress| EKS
+    ELB -->|Ingress| EC2
+    
+    EKS --> MS
+    GPU --> GW
+    
+    PrS -->|Egress| NAT
+    NAT --> IGW
+    
+    MS -->|SQL Queries| AUR
+    MS -->|Cache Operations| RED
+    GW -->|Data Access| AUR
+    
+    EKS -->|Auth & Secrets| IAM
+    EC2 -->|Auth| IAM
+    GPU -->|Auth| IAM
+    
+    SG -.->|Protect| EKS
+    SG -.->|Protect| EC2
+    SG -.->|Protect| GPU
+    NACL -.->|Filter| PS
+    NACL -.->|Filter| PrS</pre>
+</div>
+
+<div class="card" data-name="nozomio inc.">
+  <h3>Nozomio Inc.</h3>
+  <div class="meta">SOC 2 Type I · Google Cloud Platform (GCP)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users([Users/Internet])
+        TLS[TLS 1.2/1.3 Encryption]
+        VPC[GCP VPC]
+        Firewall[GCP Firewalls & ACLs]
+        IDS[GCP IDS/IPS]
+        Bastion[Bastion Host VPN]
+    end
+    
+    subgraph Compute
+        LB[GCP Load Balancer]
+        VMs[GCP Virtual Servers]
+        Run[Cloud Run Services]
+        AZ{Multi-AZ Failover}
+    end
+    
+    subgraph Data
+        DB[GCP Cloud Databases]
+        Encrypt[GCP Encryption at Rest]
+    end
+    
+    subgraph Integrations
+        Auth[Internal/GCP Auth]
+    end
+    
+    subgraph Products
+        Platform[Nozomio SaaS Platform]
+    end
+    
+    Users -->|Encrypted Requests| TLS
+    TLS --> VPC
+    VPC -->|Segmented Network| Firewall
+    Firewall -->|Monitored Traffic| IDS
+    IDS --> LB
+    LB -->|Route| VMs
+    LB -->|Route| Run
+    Bastion -.->|Admin VPN Access| VMs
+    VMs -.->|Failover| AZ
+    Run -.->|Failover| AZ
+    VMs -->|Read/Write| DB
+    Run -->|Read/Write| DB
+    DB -->|Secured by| Encrypt
+    VMs -->|Authenticate| Auth
+    Run -->|Authenticate| Auth
+    VMs -->|Host| Platform
+    Run -->|Host| Platform
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class VPC,LB,VMs,Run,AZ,Auth aws
+    class TLS,Firewall,IDS,Bastion,Encrypt security
+    class DB data
+    class Users,Platform product</pre>
+</div>
+
+<div class="card" data-name="beheard labs, inc.">
+  <h3>Beheard Labs, Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · AWS (Amazon Web Services)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users([End Users])
+        WAF[AWS WAF]
+        ELB[AWS Elastic Load Balancer]
+        Firewall[AWS Security Groups & NACLs]
+        IDS[AWS IDS/IPS]
+        VPC[AWS VPC]
+    end
+    
+    subgraph Compute
+        ECS[AWS ECS/Fargate]
+        Lambda[AWS Lambda]
+        EC2[EC2 Instances]
+    end
+    
+    subgraph Data
+        RDS[(Amazon RDS PostgreSQL)]
+        Dynamo[(Amazon DynamoDB)]
+        Redis[(Redis Cache)]
+    end
+    
+    subgraph Integrations
+        IAM[AWS IAM]
+        KMS[AWS KMS<br/>TLS 1.2+ AES-256]
+        Peering[VPC Peering]
+    end
+    
+    subgraph Products
+        WebApp[Web Applications]
+        APIs[API Services]
+    end</pre>
+</div>
+
+<div class="card" data-name="double blind bio inc">
+  <h3>Double Blind Bio Inc</h3>
+  <div class="meta">SOC 2 Type 1 · Google Cloud Platform (GCP)</div>
+  <pre class="mermaid">graph TD
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    subgraph Perimeter ["Perimeter Layer"]
+        Internet([Internet])
+        IG[Internet Gateway<br/>GCP]
+        VPN[VPN Gateway<br/>IP Sec VPN Tunnel]
+        IDS[IDS/IPS<br/>GCP]
+        FW[Firewall & ACLs]
+    end
+    
+    subgraph Compute ["Compute Layer"]
+        LB[Load Balancer]
+        VS[Virtual Servers<br/>Production<br/>3 AZs]
+        FO[Failover Servers]
+    end
+    
+    subgraph Data ["Data Layer"]
+        DB[Cloud Databases<br/>GCP]
+        ENC[Encryption<br/>GCP Managed]
+    end
+    
+    subgraph Integrations ["Integrations Layer"]
+        CA[Third-Party CA<br/>TLS Certificates]
+        AUTH[Domain Authentication<br/>Internal Login ID]
+    end
+    
+    subgraph Products ["Products Layer"]
+        SaaS[Web SaaS Platform<br/>Double Blind Bio Inc.]
+    end
+    
+    Internet -->|HTTPS Traffic| IG
+    IG --> IDS
+    IDS --> FW
+    FW -->|To Private VPC| LB
+    LB --> VS
+    VS -.->|Failover| FO
+    VS -->|Read/Write| DB
+    DB --> ENC
+    VPN -->|Remote Access| FW
+    VS -->|Auth Request| AUTH
+    VS -->|TLS Handshake| CA
+    Users([End Users]) --> Internet
+    Remote([Remote Users]) --> VPN
+    SaaS -.->|Runs On| VS
+    
+    class IG,VS,FO,LB,ENC aws
+    class VPN,IDS,FW,CA,AUTH security
+    class DB data
+    class SaaS product</pre>
+</div>
+
+<div class="card" data-name="bluealpha labs, inc.">
+  <h3>BlueAlpha Labs, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter["Perimeter Layer"]
+        Users([External Users])
+        IGW[Internet Gateway<br/>AWS]
+        IDS[AWS IDS/IPS]
+        SG[AWS Security Groups]
+        NACL[AWS Network ACLs]
+    end
+
+    subgraph Compute["Compute Layer"]
+        VPCProd[VPC Production<br/>Segmented Environment]
+        VPCDev[VPC Development<br/>Segmented Environment]
+        PubSub[Public Subnets<br/>Multi-AZ]
+        PrivSub[Private Subnets<br/>Multi-AZ]
+        EC2[AWS EC2<br/>Virtual Servers]
+    end
+
+    subgraph Products["Products Layer"]
+        App[Platform App]
+        API[Platform API]
+    end
+
+    subgraph Data["Data Layer"]
+        DB[(AWS Managed<br/>Databases)]
+    end
+
+    subgraph Integrations["Integrations Layer"]
+        Auth[Internal Authentication<br/>System]
+    end
+
+    Users -->|TLS/HTTPS| IGW
+    IGW -->|Filter| IDS
+    IDS -->|Inspect| NACL
+    NACL -->|Allow| SG
+    SG -->|Route| PubSub
+    PubSub --> VPCProd
+    VPCProd --> EC2
+    EC2 -->|Hosts| App
+    EC2 -->|Hosts| API
+    App -->|API Calls| API
+    API -->|Private Routing| PrivSub
+    PrivSub --> DB
+    API -->|Authenticate| Auth
+    App -.->|Encrypted Connection| DB
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class IGW,EC2,VPCProd,VPCDev,PubSub,PrivSub aws
+    class IDS,SG,NACL,Auth security
+    class DB data
+    class App,API product</pre>
+</div>
+
+<div class="card" data-name="lisnr inc.">
+  <h3>Lisnr Inc.</h3>
+  <div class="meta">SOC 2 Type II · AWS (Amazon Web Services)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        IG[Internet Gateway]
+        WAF[WAF]
+        VPN[VPN Gateway]
+        FW[Network Firewall<br/>Security Groups & ACLs]
+        CA[Third-Party CA<br/>TLS Certificates]
+    end
+
+    subgraph Compute
+        subgraph West ["VPE WEST"]
+            EC2_W[EC2 Virtual Servers<br/>Prod/Dev/Test/DR]
+        end
+        subgraph East ["VPE EAST"]
+            EC2_E[EC2 Virtual Servers<br/>Prod/Dev/Test/DR]
+        end
+    end
+
+    subgraph Data
+        DB_W[Production Databases<br/>West]
+        DB_E[Production Databases<br/>East]
+        ENC[Data Encryption]
+    end
+
+    subgraph Integrations
+        IAM[AWS IAM]
+        IDS[IDS/IPS<br/>AWS Security Services]
+        LA[Local User ID Auth]
+    end
+
+    subgraph Products
+        SAAS[Lisnr SaaS Platform]
+    end
+
+    Internet([Internet]) -->|HTTPS Requests| IG
+    IG --> WAF
+    WAF --> FW
+    FW -->|Traffic Filter| EC2_W
+    FW -->|Traffic Filter| EC2_E
+    VPN -->|Admin Access| FW
+    
+    EC2_W -->|Read/Write| DB_W
+    EC2_E -->|Read/Write| DB_E
+    
+    EC2_W -->|Hosts| SAAS
+    EC2_E -->|Hosts| SAAS
+    
+    CA -.->|TLS Certificates| WAF
+    IAM -.->|Access Control| EC2_W
+    IAM -.->|Access Control| EC2_E
+    IDS -.->|Threat Detection| FW
+    LA -.->|Authenticate| SAAS
+    
+    DB_W -.->|Encrypted| ENC
+    DB_E -.->|Encrypted| ENC
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class IG,WAF,FW,EC2_W,EC2_E,DB_W,DB_E aws
+    class VPN,IDS,IAM,CA,LA security
+    class ENC data
+    class SAAS product</pre>
+</div>
+
+<div class="card" data-name="sammy labs, inc.">
+  <h3>Sammy Labs, Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · AWS</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Internet([Internet])
+        FW[System Firewalls]:::security
+        AG[Application Gateway]:::aws
+        CA[Third-Party Certificate Authority]:::security
+    end
+    
+    subgraph Compute
+        PN[Production Network]:::aws
+    end
+    
+    subgraph Data
+        DDB[Dynamo DB]:::aws
+        RDS[RDS]:::aws
+        PDB[Production Database]:::data
+        DBA[Database Accounts]:::data
+    end
+    
+    subgraph Integrations
+        SO[Subservice Organization]
+        BM[Building Management]
+    end
+    
+    subgraph Products
+        APP[Sammy Labs Application]:::product
+    end
+    
+    Internet -->|Request| FW
+    FW -->|Filter| AG
+    AG -->|TLS Verify| CA
+    AG -->|Route| PN
+    PN -->|Query| DDB
+    PN -->|SQL| RDS
+    PN -->|Access| PDB
+    PN -->|Auth| DBA
+    PN -->|External API| SO
+    BM -.->|Physical Security| PN
+    PN -->|Serve| APP
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000</pre>
+</div>
+
+<div class="card" data-name="propay ai, inc">
+  <h3>ProPay AI, Inc</h3>
+  <div class="meta">SOC 2 Type II · Supabase</div>
+  <pre class="mermaid">graph TD
+    subgraph Products
+        Users[Users/Clients]
+        Auth[Internal Login System<br/>Unique User IDs]
+    end
+
+    subgraph Perimeter
+        Anycast[Anycast Edge Routing]
+        CA[Third-Party Certificate Authority]
+        IDS[IDS/IPS via Supabase<br/>Self-Assessment Pentest]
+        ACL[Access Control Lists<br/>Segmented VPCs]
+        VPC[VPC Infrastructure - Supabase]
+    end
+
+    subgraph Compute
+        RegionA[Region A - Primary]
+        RegionB[Region B - Secondary/Failover]
+        SupabaseCompute[Supabase Compute Instances]
+        VirtualServers[Virtual Servers]
+        RTNodes[Realtime Nodes]
+    end
+
+    subgraph Data
+        RTCluster[Realtime Global Cluster]
+        TenantDB[Tenant Database]
+        Postgres[PostgreSQL via Supabase]
+        AES256[AES-256 Encryption]
+    end
+
+    subgraph Integrations
+        GitHub[GitHub]
+        Preview[Preview Environment]
+        Production[Production Environment]
+    end
+
+    Users -->|1. Request| Anycast
+    Users -.->|Login| Auth
+    
+    Anycast -->|2. Route to Healthy Edge| VPC
+    CA -.->|TLS Certificates| Anycast
+    IDS -.->|Monitor| VPC
+    ACL -->|Filter| VPC
+    
+    VPC -->|Primary Traffic| RegionA
+    VPC -.->|Failover| RegionB
+    
+    RegionA --> SupabaseCompute
+    RegionA --> VirtualServers
+    RegionB --> SupabaseCompute
+    RegionB --> VirtualServers
+    
+    SupabaseCompute -->|Stream| RTNodes
+    VirtualServers -->|Process| RTNodes
+    
+    RTNodes <-->|3. Sync| RTCluster
+    RTCluster -->|Store| TenantDB
+    TenantDB -->|Managed| Postgres
+    
+    Postgres -.->|Encrypt| AES256
+    TenantDB -.->|Encrypt| AES256
+    
+    GitHub -->|CI/CD| Preview
+    GitHub -->|CI/CD| Production
+    Preview -.->|Deploy| RegionA
+    Production -.->|Deploy| RegionA
+
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    class Anycast,VPC,RegionA,RegionB,SupabaseCompute,VirtualServers,RTNodes aws;
+    class CA,IDS,ACL,Auth security;
+    class RTCluster,TenantDB,Postgres,AES256 data;
+    class Users,GitHub,Preview,Production product;</pre>
+</div>
+
+<div class="card" data-name="speck">
+  <h3>Speck</h3>
+  <div class="meta">SOC 2 Type 2 · cloud provider (generic mention)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Internet([Internet Users])
+        AppGateway[Application Gateway]
+        PerimFW[System Firewall]
+    end
+
+    subgraph Compute
+        AppServer[Application Server]
+    end
+
+    subgraph Data
+        ProdFW[System Firewall]
+        ProdDB[(Production Database)]
+    end
+
+    subgraph Integrations
+        AWS[(AWS Cloud)]
+        SubOrg[Subservice Organization]
+    end
+
+    subgraph Products
+        Speck[Speck Platform]
+    end
+
+    Internet -->|HTTPS| AppGateway
+    AppGateway -->|Inspect| PerimFW
+    PerimFW -->|Forward| AppServer
+    AppServer -->|Host| Speck
+    Speck -->|Query Filter| ProdFW
+    ProdFW -->|Access| ProdDB
+    Speck -->|API Integration| SubOrg
+    AppServer -.->|Infrastructure| AWS
+
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    class AWS aws;
+    class PerimFW,ProdFW security;
+    class ProdDB data;
+    class Speck product;</pre>
+</div>
+
+<div class="card" data-name="turbolayer inc.">
+  <h3>TurboLayer Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · AWS</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users[Internet Users]
+        CA[Third-Party Certificate Authority]
+        VPN[AWS VPN Gateway]
+        Bastion[Bastion Host]
+        VPC[Segmented VPC]
+        ACL[Network ACLs]
+        IDPS[AWS IDS/IPS]
+    end
+    
+    subgraph Compute
+        ALB[AWS Application Load Balancer]
+        WebApp[Web-Based Systems]
+    end
+    
+    subgraph Data
+        RDSPrimary[RDS PostgreSQL<br/>Production Database]
+        RDSReplica[RDS Read Replica]
+    end
+    
+    subgraph Integrations
+        SubOrg[Subservice Organization]
+    end
+    
+    subgraph Products
+        TurboLayer[TurboLayer Application]
+    end
+    
+    Users -->|TLS Encryption| ALB
+    CA -.->|SSL Certificates| ALB
+    Users -.->|Remote Admin| VPN
+    VPN --> Bastion
+    Bastion -->|Management| WebApp
+    
+    VPC --> ACL
+    ACL --> IDPS
+    IDPS --> ALB
+    
+    ALB --> WebApp
+    WebApp -->|Read/Write| RDSPrimary
+    RDSPrimary -->|Async Replication| RDSReplica
+    WebApp <-->|API Calls| SubOrg
+    WebApp --> TurboLayer
+    
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+    
+    class VPN,Bastion,VPC,ACL,IDPS,ALB,WebApp aws;
+    class CA security;
+    class RDSPrimary,RDSReplica data;
+    class Users,SubOrg,TurboLayer product;</pre>
+</div>
+
+<div class="card" data-name="tally">
+  <h3>Tally</h3>
+  <div class="meta">SOC 2 Type 2 · Supabase</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users((Users))
+        VPN[VPN Gateway]
+        Bastion[Bastion Host]
+        TLS[Third-party CA/TLS]
+        ACL[Access Control Lists]
+        IDS[IDS/IPS via Supabase]
+        VPC[Supabase VPC Environment]
+    end
+
+    subgraph Compute
+        Supabase[Supabase Platform]
+        Apps[Application Servers]
+    end
+
+    subgraph Data
+        ProdDB[(Production Databases)]
+        AD[(Active Directory)]
+        DBAcc[Database Accounts]
+    end
+
+    subgraph Integrations
+        SmartDraw[SmartDraw]
+        GoogleDraw[Google Drawings]
+        Lucid[LucidChart]
+        ThirdParty[Third-party Vendors]
+        ServiceVendors[Service Providers/Vendors]
+        Critical[Critical Vendors]
+        Subservice[Subservice Organization]
+        CloudVendor[Cloud Provider]
+    end
+
+    subgraph Products
+        WebSys[Tally Web-based Systems]
+        TallyApp[Tally Software Application]
+    end
+
+    Users --"HTTPS/TLS"--> WebSys
+    Users --"Remote Access"--> VPN
+    VPN --> Bastion
+    Bastion --> Apps
+    WebSys --> Supabase
+    Supabase --> ProdDB
+    Supabase --> AD
+    Apps --> DBAcc
+    Supabase --> CloudVendor
+    TallyApp --> ThirdParty
+    TallyApp --> ServiceVendors
+    TallyApp --> Critical
+    TallyApp --> Subservice
+    TallyApp -.-> SmartDraw
+    TallyApp -.-> GoogleDraw
+    TallyApp -.-> Lucid
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class Supabase,CloudVendor aws
+    class VPN,Bastion,TLS,ACL,IDS security
+    class ProdDB,AD,DBAcc data
+    class WebSys,TallyApp product</pre>
+</div>
+
+<div class="card" data-name="edexia inc">
+  <h3>Edexia Inc</h3>
+  <div class="meta">SOC 2 Type 2 · GCP</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users[Edexia Users]
+        Boundary[Boundary Protection Mechanisms]
+        Encryption[Encryption for Public Networks]
+    end
+    
+    subgraph Compute
+        GCP[Google Cloud Platform]
+        AppLayer[Application Compute Layer]
+    end
+    
+    subgraph Data
+        ProdDB[(Production Database)]
+        AppDB[(Application Databases)]
+        DBTables[(Database Tables)]
+        DBAccounts[(Database Accounts)]
+    end
+    
+    subgraph Integrations
+        Datadog[Datadog]
+        SubOrg[Subservice Organizations]
+        ThirdParty[Third-Party Vendors]
+        SvcProviders[Service Providers]
+        CriticalVendors[Critical Vendors]
+        BuildingMgmt[Building Management]
+        AICPA[AICPA]
+    end
+    
+    subgraph Products
+        EdexiaApp[Edexia Application]
+    end
+    
+    Users -->|Access| Boundary
+    Boundary -->|Segmented Traffic| GCP
+    GCP -->|Hosts| AppLayer
+    Encryption -.->|Protects| Boundary
+    
+    AppLayer -->|Read/Write| ProdDB
+    AppLayer -->|Query| AppDB
+    AppDB -->|Contains| DBTables
+    AppLayer -->|Authenticates via| DBAccounts
+    
+    AppLayer -.->|Monitoring & Logging| Datadog
+    AppLayer -.->|Subservice Integration| SubOrg
+    AppLayer -.->|External APIs| ThirdParty
+    AppLayer -.->|Vendor Services| SvcProviders
+    AppLayer -.->|Critical Dependencies| CriticalVendors
+    
+    Users -.->|Physical Access Control| BuildingMgmt
+    AppLayer -.->|Compliance Framework| AICPA
+    
+    AppLayer -->|Delivers| EdexiaApp
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class GCP aws
+    class Boundary,Encryption,DBAccounts,Datadog security
+    class ProdDB,AppDB,DBTables data
+    class AppLayer,EdexiaApp product</pre>
+</div>
+
+<div class="card" data-name="zeropath corp.">
+  <h3>ZeroPath Corp.</h3>
+  <div class="meta">SOC 2 Type 2 · Digital Ocean</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Internet([Internet Users])
+        CA[Third-party Certificate Authority]
+        VPN[Bastion Host with VPN]
+    end
+    
+    subgraph Compute
+        VPC[Digital Ocean VPC]
+        ACL[Access Control Lists]
+        GuardDuty[Digital Ocean GuardDuty]
+        App[Application Servers]
+    end
+    
+    subgraph Data
+        PG[Managed Postgres]
+        Redis[Managed Redis]
+        ProdDB[Production Database]
+    end
+    
+    subgraph Integrations
+        AzureOpenAI[Azure OpenAI]
+        GoogleGemini[Google Gemini]
+        AWSAnthropic[AWS Anthropic]
+        ThirdParty[Independent Third-party]
+        Subservice[Subservice Organization]
+    end
+    
+    subgraph Products
+        ProductUI[ZeroPath Corp Product]
+    end
+    
+    Internet -->|TLS Encryption| ProductUI
+    CA -.->|TLS Certificates| ProductUI
+    VPN -->|Remote Access| App
+    ProductUI --> App
+    App -->|Read/Write| PG
+    App -->|Cache| Redis
+    App -->|Queries| ProdDB
+    App -->|API| AzureOpenAI
+    App -->|API| GoogleGemini
+    App -->|API| AWSAnthropic
+    App -->|API| ThirdParty
+    App -->|API| Subservice
+    ACL -.->|Network Segmentation| VPC
+    GuardDuty -.->|IDS/IPS Monitoring| VPC
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class AWSAnthropic aws
+    class CA,VPN,ACL,GuardDuty security
+    class PG,Redis,ProdDB data
+    class App,ProductUI product</pre>
+</div>
+
+<div class="card" data-name="wispr ai, inc.">
+  <h3>Wispr AI, Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · AWS</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        AWS[AWS Cloud]
+        AGW[API Gateway]
+        ALB[fastapi-alb]
+    end
+    
+    subgraph Compute
+        WSC[websocket-connect]
+        WSD[websocket-disconnect]
+        WSDF[default-websocket]
+        AFL[api-flow Lambda]
+    end
+    
+    subgraph Products
+        FVB[flowvoice/backend]
+        FVW[flow-server/websocket]
+    end
+    
+    subgraph Integrations
+        VPC1[vpc-4dd2a230]
+        VPC2[fastapi-vpc-vpc]
+        Peer[VPC Peering]
+    end
+    
+    subgraph Data
+        PDB[platform-db]
+        PGC[pgcopysdb]
+        MDB[main-db]
+        UDB[usage-database]
+        DBC[db-cache]
+    end
+    
+    AWS -->|Host| AGW
+    AGW -->|HTTP| ALB
+    AGW -->|WS| WSC
+    AGW -->|WS| WSD
+    AGW -->|WS| WSDF
+    ALB -->|Route| FVB
+    ALB -->|Route| FVW
+    FVB -->|Invoke| AFL
+    AFL -->|Query| PDB
+    AFL -->|Query| PGC
+    FVB -->|Read/Write| MDB
+    FVW -->|Read/Write| UDB
+    FVB -->|Cache| DBC
+    VPC1 <-->|Peer| Peer
+    VPC2 <-->|Peer| Peer
+    VPC1 -.->|Network| ALB
+    VPC2 -.->|Network| AFL
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class AWS,AGW,ALB,WSC,WSD,WSDF,AFL,VPC1,VPC2,Peer aws
+    class PDB,PGC,MDB,UDB,DBC data
+    class FVB,FVW product</pre>
+</div>
+
+<div class="card" data-name="fullyramped">
+  <h3>FullyRamped</h3>
+  <div class="meta">SOC 2 Type 2 · AWS</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        IG[Internet Gateway<br/>AWS]
+        VPN[VPN Gateway<br/>AWS]
+    end
+    
+    subgraph Compute ["Compute (Private Subnets - Multi-AZ)"]
+        PROD[Prod HA Instances<br/>AWS]
+        DEV[Dev Instances<br/>AWS]
+        TEST[Test Instances<br/>AWS]
+        DCON[D Con Instances<br/>AWS]
+        HR[Prod HR Instances<br/>AWS]
+    end
+    
+    subgraph Data
+        PDB[Production Database<br/>AWS]
+        ADB[Application Databases<br/>AWS]
+    end
+    
+    subgraph Integrations
+        CTRL1[On-Prem Controller Main<br/>building management]
+        CTRL2[On-Prem Controller Backup<br/>building management]
+        IOS[iOS Devices]
+        PWR[Sub Power Systems]
+        SUB[Subservice Organization]
+    end
+    
+    subgraph Products
+        SD[SmartDraw]
+        GD[Google Drawings]
+        LC[LucidChart]
+        AIC[AICPA]
+    end
+    
+    Internet([Internet]) -->|Internet Connectivity| IG
+    IG -->|Access| PROD
+    IG -->|Access| DEV
+    IG -->|Access| TEST
+    
+    VPN <-->|IP Sec VPN Tunnel| CTRL1
+    VPN <-->|IP Sec VPN Tunnel| CTRL2
+    VPN <-->|IP Sec VPN Tunnel| IOS
+    VPN <-->|IP Sec VPN Tunnel| PWR
+    
+    PROD -->|Read/Write| PDB
+    HR -->|Read/Write| PDB
+    DEV -->|Read/Write| ADB
+    TEST -->|Read/Write| ADB
+    DCON -->|Read/Write| PDB
+    
+    SUB -.->|Data Exchange| PROD
+    
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+    
+    class IG,VPN,PROD,DEV,TEST,DCON,HR,PDB,ADB aws;</pre>
+</div>
+
+<div class="card" data-name="entangl, inc.">
+  <h3>Entangl, Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · AWS</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Internet([Internet])
+        Staff([External Staff])
+        NordLayer[NordLayer VPN]
+        ALB[AWS ALB]
+    end
+    
+    subgraph Compute
+        NAT[NAT Gateway]
+        ExcelEC2[Excel EC2 Instance]
+        Neo4jEC2[Neo4j EC2 Instance]
+        AppServers[FastAPI App Servers]
+    end
+    
+    subgraph Data
+        Postgres[(PostgreSQL)]
+        Neo4jDB[(Neo4j Database)]
+        Infisical[Infisical Secrets]
+        Supabase[(Supabase)]
+    end
+    
+    subgraph Integrations
+        GitHub[GitHub]
+        Datadog[Datadog]
+        SentinelOne[SentinelOne]
+        Aikido[Aikido Security]
+        Jamf[Jamf]
+        Accorp[Accorp Partners]
+        Azure[Microsoft Azure]
+        GCP[Google Cloud]
+        Oracle[Oracle Cloud]
+    end
+    
+    subgraph Products
+        WebApp[Entangl Web App<br/>SvelteKit]
+        API[Entangl API]
+    end
+    
+    Internet -->|HTTPS| ALB
+    Staff -->|VPN Tunnel| NordLayer
+    NordLayer -->|RDP Whitelist| ExcelEC2
+    NordLayer -->|Neo4j Protocol| Neo4jEC2
+    
+    ALB -->|Route Traffic| WebApp
+    ALB -->|Route Traffic| API
+    
+    API -->|Read/Write| Postgres
+    API -->|Graph Queries| Neo4jDB
+    API -->|Fetch Secrets| Infisical
+    API -->|DBaaS| Supabase
+    
+    ExcelEC2 -->|Outbound| NAT
+    Neo4jEC2 -->|Outbound| NAT
+    AppServers -->|Outbound| NAT
+    
+    API -->|Partner Data| Accorp
+    WebApp -->|Cloud Integration| Azure
+    WebApp -->|Cloud Integration| GCP
+    WebApp -->|Cloud Integration| Oracle
+    
+    AppServers -->|Monitoring| Datadog
+    ExcelEC2 -->|Endpoint Protection| SentinelOne
+    Neo4jEC2 -->|Endpoint Protection| SentinelOne
+    AppServers -->|Endpoint Protection| SentinelOne
+    
+    GitHub -->|CI/CD Deploy| AppServers
+    Jamf -->|Device Management| Staff
+    Aikido -->|Security Scan| GitHub
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#</pre>
+</div>
+
+<div class="card" data-name="judgement, inc">
+  <h3>Judgement, Inc</h3>
+  <div class="meta">SOC 2 Type 1 · AWS (Amazon Web Services)</div>
+  <pre class="mermaid">graph TD
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    subgraph Perimeter["Perimeter Layer"]
+        Internet([Internet Traffic])
+        TLS[TLS Encryption]
+        Firewall[System Firewalls]
+        ALB[Application Load Balancer]
+        GuardDuty[AWS GuardDuty<br/>IDS]
+    end
+
+    subgraph Compute["Compute Layer"]
+        VPC[AWS VPC<br/>us-west-1<br/>ACLs]
+        ECS[AWS ECS<br/>Fargate]
+        Lambda[AWS Lambda]
+    end
+
+    subgraph Data["Data Layer"]
+        ElastiCache[ElastiCache Redis]
+        S3[Amazon S3]
+        RabbitMQ[RabbitMQ]
+    end
+
+    subgraph Integrations["Integrations Layer"]
+        GitHub[GitHub<br/>CI/CD Triggers]
+    end
+
+    subgraph Products["Products Layer"]
+        JS[judgment-server]
+        JW[judgment-websocket]
+        OPS[osero-proxy-server]
+    end
+
+    Internet -->|HTTPS| TLS
+    TLS --> Firewall
+    Firewall -->|Filtered Traffic| ALB
+    ALB -->|Routes| JS
+    ALB -->|Routes| JW
+    ALB -->|Routes| OPS
+    
+    GitHub -->|Webhook| Lambda
+    Lambda -->|Deploy| ECS
+    ECS -->|Microservice| JS
+    ECS -->|Microservice| JW
+    ECS -->|Microservice| OPS
+    
+    JS -->|Cache| ElastiCache
+    JS -->|Store/Retrieve| S3
+    JS -->|Queue/Topic| RabbitMQ
+    
+    JW -->|Cache| ElastiCache
+    JW -->|Messaging| RabbitMQ
+    
+    OPS -->|Object Storage| S3
+    
+    GuardDuty -.->|Monitor| VPC
+    GuardDuty -.->|Analyze| ALB
+    
+    class ALB,ECS,Lambda,VPC aws;
+    class TLS,Firewall,GuardDuty security;
+    class ElastiCache,S3,RabbitMQ data;
+    class JS,JW,OPS product;</pre>
+</div>
+
+<div class="card" data-name="transcrypt solutions inc">
+  <h3>Transcrypt Solutions Inc</h3>
+  <div class="meta">SOC 2 Type 2 · Vercel</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        User[User/Client]
+        CA[Third-party Certificate Authority]
+    end
+    
+    subgraph Compute
+        Edge[Vercel Edge Network]
+        Serverless[Vercel Serverless Compute]
+        Transient[In-Memory Transient Processing]
+        VPC[VPC with ACLs]
+        IDS[IDS/IPS via Vercel]
+        Auth[Internal Auth System]
+    end
+    
+    subgraph Products
+        App[Transcrypt SaaS Application]
+    end
+    
+    subgraph Integrations
+        HRIS[Customer HRIS Systems]
+    end
+    
+    subgraph Data
+        Storage[Customer S3/DynamoDB]
+    end
+    
+    User -->|TLS Encrypted Request| Edge
+    CA -.->|TLS Certificates| Edge
+    Edge --> Serverless
+    Serverless --> App
+    App --> Transient
+    Auth -.->|Vercel Password Policy| App
+    VPC -.->|Network Segmentation| Serverless
+    IDS -.->|Threat Protection| Serverless
+    
+    App <-->|Authentication & Data Read| HRIS
+    Transient -->|Export Documents| Storage
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class Edge,Serverless,Transient aws
+    class CA,VPC,IDS,Auth security
+    class Storage data
+    class App product</pre>
+</div>
+
+<div class="card" data-name="kl">
+  <h3>kl</h3>
+  <div class="meta">SOC 2 Type 1 · Supabase</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Internet((Internet))
+        IG[Internet Gateway]
+        FW[Firewall / ACLs]
+        WAF[WAF]
+        IDS[IDS/IPS]
+        VPN[IP Sec VPN Tunnel]
+        Bastion[Bastion Host]
+    end
+
+    subgraph Compute
+        VPC[Supabase VPC]
+        VS[Virtual Servers]
+        subgraph AZs["Availability Zones"]
+            ProdHA[Prod HA]
+            Dev[Dev]
+            Test[Test]
+            Dcon[D-Con]
+            ProdHR[Prod HR]
+        end
+    end
+
+    subgraph Data
+        DB[(PostgreSQL)]
+        TLS[TLS Encryption]
+    end
+
+    subgraph Integrations
+        OnPrem[On-Premise Controllers]
+        Accorp[Accorp Partners<br/>SOC 2 Audit]
+    end
+
+    subgraph Products
+        SaaS[Cloud-Native SaaS Platform]
+        Auth[Supabase Auth]
+    end
+
+    Internet -->|HTTPS/TLS| IG
+    IG --> FW
+    FW --> WAF
+    WAF --> IDS
+    IDS -->|Filtered Traffic| VPC
+    VPN -->|Secure Tunnel| VPC
+    Bastion -->|Remote Admin| VPC
+    VPC --> VS
+    VS --> AZs
+    VS -->|Read/Write| DB
+    DB -.->|Managed by| TLS
+    OnPrem --> VPN
+    SaaS -->|Hosted On| VS
+    Auth -->|Authenticates| SaaS
+    Accorp -.->|Attestation| SaaS
+    
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+    
+    class IG,VPC,VS,AZs,ProdHA,Dev,Test,Dcon,ProdHR aws;
+    class FW,WAF,IDS,VPN,Bastion,Accorp security;
+    class DB,TLS data;
+    class SaaS,Auth product;</pre>
+</div>
+
+<div class="card" data-name="arvo ai, inc.">
+  <h3>Arvo AI, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Microsoft Azure</div>
+  <pre class="mermaid">graph TD
+    subgraph Products
+        Client[Client Application<br/>Arvo AI SaaS<br/>Client-side Processing]
+    end
+
+    subgraph Perimeter
+        LB[Azure Load Balancer<br/>Microsoft Azure]
+        Auth[Azure AD / Internal Auth<br/>Microsoft Azure]
+        IDS[IDS/IPS<br/>Microsoft Azure]
+        FW[Firewall / ACLs / Security Groups<br/>Microsoft Azure]
+    end
+
+    subgraph Compute
+        subgraph "Region: East US (Virginia)"
+            VM_East[Arvo Backend<br/>arvo-us-east-virginia<br/>Azure Virtual Machines]
+            VNet_East[VPC / Azure VNet]
+        end
+        subgraph "Region: West US (Ohio)"
+            VM_West[Arvo Backend<br/>arvo-us-west-ohio<br/>Azure Virtual Machines]
+            VNet_West[VPC / Azure VNet]
+        end
+    end
+
+    subgraph Data
+        Cosmos[Azure Cosmos DB<br/>License Storage<br/>Encryption at Rest<br/>Microsoft Azure]
+    end
+
+    subgraph Integrations
+        OpenAI[OpenAI API<br/>AI Processing]
+        Deepgram[Deepgram API<br/>Voice/Audio Processing]
+    end
+
+    Client ==>|"TLS Encryption<br/>Data in Transit"| LB
+    LB ==>|"Route"| VM_East
+    LB ==>|"Route"| VM_West
+    LB -.->|"Monitored by"| IDS
+    FW -.->|"Filters"| VM_East
+    FW -.->|"Filters"| VM_West
+
+    VM_East -->|"Authentication"| Auth
+    VM_West -->|"Authentication"| Auth
+    VM_East -->|"License Data"| Cosmos
+    VM_West -->|"License Data"| Cosmos
+    VM_East -->|"External API"| OpenAI
+    VM</pre>
+</div>
+
+<div class="card" data-name="varsi, inc">
+  <h3>Varsi, Inc</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Products
+        Clients([Clients])
+        Employees([Internal Employees])
+    end
+
+    subgraph Perimeter
+        Cloudflare[Cloudflare CDN/WAF]
+        OpenVPN[OpenVPN Access Server]
+        VPC[VPC ca-central-1]
+    end
+
+    subgraph Compute
+        ALB[Application Load Balancer<br/>Public Subnets]
+        EC2[EC2 Auto-scaling Group<br/>ca-central-1a/1b]
+    end
+
+    subgraph Data
+        RDS[(Amazon RDS PostgreSQL)]
+        Redis[(Amazon ElastiCache Redis)]
+    end
+
+    subgraph Integrations
+        IAM[AWS IAM]
+        IDS[AWS IDS/IPS]
+        FW[Security Groups & NACLs]
+    end
+
+    Clients -->|TLS 1.2+| Cloudflare
+    Cloudflare -->|HTTPS| ALB
+    Employees -->|VPN Tunnel| OpenVPN
+    OpenVPN -->|Internal Access| ALB
+    
+    ALB -->|Route| EC2
+    EC2 -->|SQL Connection| RDS
+    EC2 -->|Cache Connection| Redis
+    
+    IAM -.->|Authentication| EC2
+    IAM -.->|Authentication| RDS
+    FW -.->|Firewall Rules| VPC
+    IDS -.->|Threat Monitoring| VPC
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class VPC,ALB,EC2,IAM aws
+    class Cloudflare,OpenVPN,IDS,FW security
+    class RDS,Redis data
+    class Clients,Employees product</pre>
+</div>
+
+<div class="card" data-name="lilee ai inc.">
+  <h3>Lilee AI Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · Supabase</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users([Internet Users])
+        TLS[TLS Encryption]
+        ACL[Access Control Lists]
+        FW[Firewall<br/>Security Policy Settings]
+        IDS[IDS/IPS via Supabase]
+    end
+    
+    subgraph Compute
+        VPC[Supabase VPC<br/>Segmented VPCs]
+        AZ1[Availability Zone 1]
+        AZ2[Availability Zone 2]
+        VS1[Virtual Server]
+        VS2[Virtual Server<br/>Failover]
+    end
+    
+    subgraph Data
+        DB[(Supabase PostgreSQL)]
+    end
+    
+    subgraph Integrations
+        Auth[Supabase Internal<br/>Identity Management]
+    end
+    
+    subgraph Products
+        WebApp[Lilee AI Cloud<br/>Web Application]
+    end
+    
+    Users -->|HTTPS Requests| TLS
+    TLS --> ACL
+    ACL --> FW
+    FW --> IDS
+    IDS --> VPC
+    VPC --> AZ1
+    VPC --> AZ2
+    AZ1 --> VS1
+    AZ2 --> VS2
+    VS1 -->|Hosts| WebApp
+    VS2 -->|Hosts| WebApp
+    WebApp -->|Authenticates| Auth
+    WebApp -->|Reads/Writes| DB
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class VPC,AZ1,AZ2,VS1,VS2 aws
+    class TLS,ACL,FW,IDS,Auth security
+    class DB data
+    class WebApp product</pre>
+</div>
+
+<div class="card" data-name="daommo inc.">
+  <h3>Daommo Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · AWS (Amazon Web Services)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        CF["Amazon CloudFront"]
+        WAF["AWS WAF"]
+        GD["Amazon GuardDuty"]
+        VPC["Amazon VPC (US-East-2)"]
+        FW["AWS Security Groups & Network ACLs"]
+    end
+
+    subgraph Integrations
+        COG["AWS Cognito User Pool"]
+    end
+
+    subgraph Compute
+        APIG["Amazon API Gateway"]
+        LAMB["AWS Lambda"]
+        VPCE["VPC Endpoints"]
+    end
+
+    subgraph Data
+        DDB["Amazon DynamoDB"]
+        S3["Amazon S3"]
+    end
+
+    subgraph Products
+        CLIENT["Daommo Application Users"]
+    end
+
+    CLIENT -->|HTTPS/TLS| CF
+    CF -->|Filtered Traffic| WAF
+    WAF -->|Secure Request| APIG
+    APIG -->|Authentication| COG
+    COG -->|Auth Tokens| APIG
+    APIG -->|Invoke Function| LAMB
+    LAMB -->|Private Connectivity| VPCE
+    VPCE -->|Encrypted Data| DDB
+    VPCE -->|Encrypted Objects| S3
+    GD -.->|IDS Monitoring| VPC
+    FW -.->|Inbound/Outbound Rules| LAMB
+    FW -.->|Inbound/Outbound Rules| DDB
+    FW -.->|Inbound/Outbound Rules| S3
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class CF,VPC,APIG,LAMB,VPCE,COG aws
+    class WAF,GD,FW security
+    class DDB,S3 data
+    class CLIENT product</pre>
+</div>
+
+<div class="card" data-name="oxels inc.">
+  <h3>Oxels Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        internet([Internet Users])
+        tls[TLS Encryption]
+        ca[Third-Party CA]
+        alb[Application Load Balancer]
+        ids[IDS/IPS<br/>AWS Native]
+        sg[Security Groups & NACLs]
+        nat[NAT Gateway]
+        vpc[AWS VPC Environment]
+    end
+
+    subgraph Compute
+        ec2[EC2 Virtual Servers]
+        runners[Self-hosted Runners]
+        iam[AWS IAM<br/>Authentication]
+    end
+
+    subgraph Data
+        rds[(RDS Database)]
+        redis[(ElastiCache Redis)]
+    end
+
+    subgraph Integrations
+        github[GitHub<br/>Source Control & CI/CD]
+        genai[GenAI API Services]
+        pentest[External Pentesting]
+    end
+
+    subgraph Products
+        saas[Oxels SaaS Platform]
+    end
+
+    internet -->|HTTPS| tls
+    tls -->|Encrypted Traffic| alb
+    alb -->|Route| sg
+    sg -->|Filter| ec2
+    ec2 -->|Host| saas
+
+    ec2 <-->|Query| rds
+    ec2 <-->|Cache| redis
+
+    ec2 -->|API Request| nat
+    nat -->|External Call| genai
+
+    github -->|Trigger CI/CD| runners
+    runners -->|Deploy/Update| ec2
+
+    ca -.->|Provide Certificates| tls
+    ids -.->|Monitor| alb
+    iam -.->|Access Control| ec2
+    iam -.->|Access Control| rds
+    iam -.->|Access Control| redis
+    pentest -.->|Annual Test| internet
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class alb,nat,ec2,runners,sg,vpc,ids aws
+    class tls,ca,iam,pentest security
+    class rds,redis data
+    class saas product</pre>
+</div>
+
+<div class="card" data-name="omni research inc.">
+  <h3>Omni Research Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · AWS (Amazon Web Services)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Internet((Internet))
+        IGW[AWS Internet Gateway]
+        VPN[VPN/Bastion Host]
+        IDS[IDS/IPS via AWS]
+        Firewall[AWS Security Groups & ACLs]
+        VPC[AWS VPC]
+    end
+
+    subgraph Compute
+        PubSub[Public Subnets]
+        PrivSub[Private Subnets]
+        EC2Prod[EC2 Production<br>Multi-AZ]
+        EC2Dev[EC2 Development]
+        EC2Test[EC2 Test]
+    end
+
+    subgraph Data
+        PG[(PostgreSQL)]
+        CloudDB[(AWS Cloud Databases)]
+    end
+
+    subgraph Integrations
+        Clients[Client Technology Stacks]
+    end
+
+    subgraph Products
+        SaaS[Omni Research SaaS Platform]
+        Identity[Internal Identity Management]
+    end
+
+    Internet -->|TLS 1.2+| IGW
+    Clients -->|API Integration| IGW
+    IGW --> VPC
+    VPC --> PubSub
+    VPC --> PrivSub
+    
+    Internet -.->|Remote Access| VPN
+    VPN -->|Jump Host| PrivSub
+    
+    PubSub --> IDS
+    IDS --> Firewall
+    
+    Firewall -->|Filtered Traffic| EC2Prod
+    Firewall -->|Filtered Traffic| EC2Dev
+    Firewall -->|Filtered Traffic| EC2Test
+    
+    EC2Prod --> SaaS
+    SaaS -->|Authentication| Identity
+    SaaS -->|Queries| PG
+    SaaS -->|Queries| CloudDB
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class IGW,VPC,PubSub,PrivSub,EC2Prod,EC2Dev,EC2Test,CloudDB,IDS aws
+    class VPN,Firewall security
+    class PG data
+    class SaaS,Identity,Clients product</pre>
+</div>
+
+<div class="card" data-name="matisse technologies, inc.">
+  <h3>Matisse Technologies, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    subgraph Products
+        users([End Users / SaaS Interface]):::product
+    end
+
+    subgraph Perimeter
+        igw[Internet Gateway]:::aws
+        waf[WAF]:::security
+        ids[IDS/IPS]:::security
+        fw[AWS Firewall & ACLs]:::security
+    end
+
+    subgraph Compute
+        vpc[AWS VPC]:::aws
+        subnet[Private Subnet]:::aws
+        ec2_web[EC2 Web Server]:::aws
+        ec2_img[EC2 Image Preview]:::aws
+    end
+
+    subgraph Data
+        s3[(S3 Bucket)]:::data
+        convex[(Convex DB)]:::data
+    end
+
+    subgraph Integrations
+        iam[IAM]:::aws
+        tls[TLS Encryption]:::security
+    end
+
+    users -->|HTTPS Traffic| igw
+    igw --> waf
+    waf --> ids
+    ids --> fw
+    fw --> vpc
+    vpc --> subnet
+    subnet --> ec2_web
+    subnet --> ec2_img
+    
+    ec2_web -->|Store/Retrieve| s3
+    ec2_img -->|Store/Retrieve| s3
+    ec2_web -->|Query Data| convex
+    ec2_img -->|Query Data| convex
+    
+    iam -.->|Access Control| ec2_web
+    iam -.->|Access Control| ec2_img
+    iam -.->|Access Control| s3
+    tls -.->|Secure Channel| users
+    tls -.->|Secure Channel| igw</pre>
+</div>
+
+<div class="card" data-name="loop smart ai inc">
+  <h3>LOOP SMART AI INC</h3>
+  <div class="meta">SOC 2 Type 1 · Google Cloud Platform (GCP)</div>
+  <pre class="mermaid">graph TD
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+
+    subgraph Perimeter["Perimeter Layer"]
+        Internet((Internet))
+        CA[Third-party Certificate Authority<br/>TLS 1.3]
+        ArmorFW[Cloud Armor Firewall]
+        ArmorWAF[Cloud Armor WAF]
+        IDPS[IDS and IPS via GCP]
+    end
+
+    subgraph Integrations["Integrations Layer"]
+        VPC[VPC Network]
+        SegVPC[Segmented VPCs]
+        IAM[Google Cloud IAM]
+    end
+
+    subgraph Compute["Compute Layer"]
+        Hosting[Firebase App Hosting<br/>Web]
+        FnsAPI[Firebase Functions<br/>API]
+        Run[Google Cloud Run Functions<br/>Serverless]
+    end
+
+    subgraph Data["Data Layer"]
+        Firestore[(Firestore DB<br/>AES-256)]
+        BigQuery[(Google Cloud BigQuery)]
+    end
+
+    subgraph Products["Products Layer"]
+        Platform[Multi-Agent Platform]
+    end
+
+    Internet -->|HTTPS| ArmorFW
+    CA -.->|Certificate| ArmorFW
+    ArmorFW --> ArmorWAF
+    ArmorWAF --> IDPS
+    IDPS --> VPC
+    VPC --> SegVPC
+    
+    SegVPC --> Hosting
+    SegVPC --> FnsAPI
+    
+    IAM -.->|AuthZ| Hosting
+    IAM -.->|AuthZ| FnsAPI
+    IAM -.->|AuthZ| Run
+    
+    Hosting -->|API Calls| FnsAPI
+    FnsAPI -->|Trigger| Run
+    Run -->|CRUD| Firestore
+    Run -->|Query| BigQuery
+    
+    Platform -.->|UI| Hosting
+    Platform -.->|Logic| FnsAPI
+    Platform -.->|Agents| Run
+
+    class ArmorFW,ArmorWAF,IDPS,CA,IAM security;
+    class FnsAPI,Run aws;
+    class Firestore,BigQuery data;
+    class Hosting,Platform product;</pre>
+</div>
+
+<div class="card" data-name="mihafa inc.">
+  <h3>Mihafa Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    subgraph Products
+        Users[End Users]
+    end
+
+    subgraph Perimeter
+        CF[Cloudflare<br/>DNS/Proxy/DDoS/WebWorker]
+        IDS[AWS IDS/IPS]
+        Net[VPC & Network ACLs]
+    end
+
+    subgraph Compute
+        Vercel[Vercel<br/>Serverless Hosting]
+        Lambda[AWS Lambda<br/>Microservices]
+        IAM[AWS IAM]
+    end
+
+    subgraph Data
+        Supabase[Supabase<br/>PostgreSQL]
+        DynamoDB[AWS DynamoDB]
+        S3[AWS S3<br/>Object Storage]
+        SQS[AWS SQS<br/>Message Queue]
+    end
+
+    subgraph Integrations
+        OpenAI[OpenAI]
+        Vertex[GCP Vertex AI]
+        Knock[Knock]
+        Facebook[Facebook/Meta]
+        Instagram[Instagram]
+        TikTok[TikTok]
+        Shopify[Shopify]
+        Statsig[Statsig]
+    end
+
+    Users -->|TLS 1.2+| CF
+    CF -->|Proxy| Vercel
+    CF -->|API Traffic| Lambda
+    CF -.->|DDoS Protection| IDS
+    IDS -.->|Monitor| Net
+    Verc</pre>
+</div>
+
+<div class="card" data-name="coretsu inc.">
+  <h3>Coretsu Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users([Internet Users])
+        WAF[AWS WAF]
+        IDS[AWS IDS/IPS]
+        ACL[AWS Network ACLs]
+        VPC[AWS VPC]
+    end
+    
+    subgraph Compute
+        SG[AWS Security Groups]
+        EKS[Amazon EKS]
+        EC2[Amazon EC2]
+        Fargate[AWS Fargate]
+        Vercel[Vercel Platform]
+    end
+    
+    subgraph Data
+        Supabase[PostgreSQL on Supabase]
+        RDS[Amazon RDS PostgreSQL]
+    end
+    
+    subgraph Integrations
+        IAM[AWS IAM]
+        Crypto[AWS KMS / TLS]
+    end
+    
+    subgraph Products
+        App[Next.js Web Application]
+    end
+    
+    %% Target AWS Architecture
+    Users -->|HTTPS| WAF
+    WAF --> IDS
+    IDS --> ACL
+    ACL --> VPC
+    VPC --> SG
+    SG --> EKS
+    SG --> EC2
+    SG --> Fargate
+    EKS --> RDS
+    EC2 --> RDS
+    Fargate --> RDS
+    
+    %% Current Architecture
+    Users -.->|Current| Vercel
+    Vercel -.-> App
+    App -.->|Current DB| Supabase
+    
+    %% Security & Auth Flows
+    IAM -.->|Auth| EKS
+    IAM -.->|Auth| EC2
+    IAM -.->|Auth| Fargate
+    Crypto -.->|Encryption| RDS
+    Crypto -.->|Encryption| Supabase
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class WAF,IDS,ACL,SG,IAM security
+    class VPC,EKS,EC2,Fargate,Crypto aws
+    class Supabase,RDS data
+    class App,Vercel product</pre>
+</div>
+
+<div class="card" data-name="rescript, inc.">
+  <h3>Rescript, Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Microsoft Azure</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        FD[Azure Front Door + WAF]
+        FW[Azure Firewall]
+        IDS[IDS/IPS via Azure]
+        VPN[Azure VPN Gateway]
+        Bastion[Azure Bastion Host]
+    end
+
+    subgraph Compute
+        VMs[Azure Compute VMs/ACI]
+        AppSvc[Azure App Service]
+        Functions[Azure Functions]
+    end
+
+    subgraph Data
+        Postgres[(Azure PostgreSQL)]
+        MongoAzure[(MongoDB on Azure)]
+        Pinecone[(Pinecone Vector DB)]
+        MongoAtlas[(MongoDB Atlas)]
+    end
+
+    subgraph Integrations
+        AD[Azure AD]
+        Sentry[Sentry]
+        GCP[GCP - Sentry Hosting]
+    end
+
+    subgraph Products
+        WebApp[Web Application]
+        API[API Services]
+        AIML[AI/ML Services]
+    end
+
+    Users -->|TLS 1.2| FD
+    FD -->|WAF Protected| FW
+    FW -->|Segmented VPC| WebApp
+    FW --> API
+    FW --> AIML
+    
+    Admin --> VPN
+    Admin --> Bastion
+    VPN --> VMs
+    Bastion --> VMs
+    
+    WebApp --> AppSvc
+    API --> Functions
+    AIML --> VMs
+    
+    AppSvc -->|Private Endpoint| Postgres
+    AppSvc -->|Private Endpoint| MongoAzure
+    Functions -->|Private Endpoint| MongoAzure
+    VMs -->|Private Endpoint| MongoAtlas
+    AIML -->|Vector Search| Pinecone
+    
+    AppSvc -.->|Monitoring| Sentry
+    Functions -.->|Monitoring| Sentry
+    VMs -.->|Monitoring| Sentry
+    Sentry -.->|Hosted On| GCP
+    
+    WebApp -->|Auth| AD
+    API -->|Auth| AD
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class FD,FW,IDS,VPN,Bastion security
+    class VMs,AppSvc,Functions,AD aws
+    class Postgres,MongoAzure,Pinecone,MongoAtlas data
+    class WebApp,API,AIML product</pre>
+</div>
+
+<div class="card" data-name="carmel computing company (dba mesa)">
+  <h3>Carmel Computing Company (dba Mesa)</h3>
+  <div class="meta">SOC 2 Type II · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Internet([Internet])
+        IGW[VPC Internet Gateway]
+        Bastion[Bastion Host<br/>EC2]
+        SG[Security Groups<br/>Network ACLs]
+        IDS[IDS/IPS<br/>AWS Native]
+    end
+
+    subgraph Integrations
+        GitHub[GitHub]
+        Stripe[Stripe]
+    end
+
+    subgraph Compute
+        Backend[Backend Services]
+        VS[Rocicorp Zero<br/>View-Syncer]
+        RM[Rocicorp Zero<br/>Replication Manager]
+        Lambda[Lambda Handlers]
+    end
+
+    subgraph Data
+        RDS[Mesa RDS DB<br/>Amazon RDS]
+        SNS_GH[SNS: GitHub Events]
+        SNS_ST[SNS: Stripe Events]
+        SQS_GH[SQS: GitHub Events]
+        SQS_ST[SQS: Stripe Events]
+        SQS_BG[SQS: Background Tasks]
+    end
+
+    subgraph Products
+        Mesa[Mesa Application]
+    end
+
+    Internet -->|HTTPS/TLS| IGW
+    IGW -->|Route| Backend
+    Bastion -.->|Management| Backend
+    Bastion -.->|Management| RDS
+    SG -.->|Protect| IGW
+    IDS -.->|Monitor| IGW
+
+    GitHub -->|Webhooks| SNS_GH
+    Stripe -->|Events| SNS_ST
+
+    SNS_GH -->|Subscribe| SQS_GH
+    SNS_ST -->|Subscribe| SQS_ST
+    Backend -->|Publish| SQS_BG
+
+    SQS_GH -->|Trigger| Lambda
+    SQS_ST -->|Trigger| Lambda
+    SQS_BG -->|Trigger| Lambda
+
+    Lambda -->|Process| Backend
+    Lambda -->|Update| RDS
+
+    Backend -->|CRUD| RDS
+    Backend <-->|Sync| VS
+    VS <-->|Sync| RM
+    RM -->|Replicate| RDS
+
+    Backend -->|Serve| Mesa
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class IGW,Bastion,Backend,VS,RM,Lambda aws
+    class SG,IDS security
+    class RDS,SNS_GH,SNS_ST,SQS_GH,SQS_ST,SQS_BG data
+    class Mesa product</pre>
+</div>
+
+<div class="card" data-name="tracelight ltd">
+  <h3>Tracelight Ltd</h3>
+  <div class="meta">SOC 2 Type II · Vercel</div>
+  <pre class="mermaid">graph TD
+    subgraph Products
+        UserDevice[User Device<br/>Excel Add-in]
+    end
+    
+    subgraph Perimeter
+        VercelWAF[Vercel Edge Middleware<br/>WAF • IDS/IPS • Network Firewall]
+    end
+    
+    subgraph Compute
+        VercelCompute[Vercel Serverless Functions<br/>VPC Isolated]
+    end
+    
+    subgraph Data
+        SupabaseDB[(Supabase<br/>Database & File Storage<br/>Encryption at Rest)]
+    end
+    
+    subgraph Integrations
+        OpenAI[OpenAI]
+        GoogleAI[Google]
+        Anthropic[Anthropic]
+        Axiom[Axiom]
+        Sentry[Sentry]
+    end
+    
+    UserDevice -->|"TLS 1.3 In Transit"| VercelWAF
+    VercelWAF -->|"Filtered Request"| VercelCompute
+    VercelCompute -->|"Read/Write"| SupabaseDB
+    VercelCompute -->|"Zero Data Retention"| OpenAI
+    VercelCompute -->|"Zero Data Retention"| GoogleAI
+    VercelCompute -->|"Zero Data Retention"| Anthropic
+    VercelCompute -->|"Logs - No PII"| Axiom
+    VercelCompute -->|"Monitoring - No PII"| Sentry
+    
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+    
+    class VercelCompute aws;
+    class VercelWAF security;
+    class SupabaseDB data;
+    class UserDevice product;</pre>
+</div>
+
+<div class="card" data-name="revyse inc.">
+  <h3>Revyse Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter["Perimeter Layer"]
+        ALB[("AWS ALB")]
+        VPC[("AWS VPC")]
+        SG[("AWS Security Groups")]
+        ACL[("Network ACLs")]
+        GD[("AWS GuardDuty")]
+        INS[("AWS Inspector")]
+        TLS[("TLS Encryption")]
+    end
+    
+    subgraph Compute["Compute Layer"]
+        ECS[("AWS ECS Cluster")]
+        EC2[("EC2 Virtual Servers")]
+        IAM[("AWS IAM")]
+    end
+    
+    subgraph Data["Data Layer"]
+        RDS[("AWS RDS")]
+        CACHE[("AWS ElastiCache")]
+        S3[("AWS S3")]
+    end
+    
+    subgraph Integrations["Integrations Layer"]
+        GH[("GitHub")]
+        PT[("PenTest-Tools")]
+    end
+    
+    subgraph Products["Products Layer"]
+        APP[("Revyse Application")]
+    end
+    
+    Internet([Internet]) -->|HTTPS Traffic| ALB
+    ALB -->|Route to Private Subnet| ECS
+    ECS -->|Container Hosts| EC2
+    ECS -->|Microservices| APP
+    APP -->|Query| RDS
+    APP -->|Cache| CACHE
+    APP -->|Store Objects| S3
+    GH -->|CI/CD Deploy| ECS
+    PT -.->|Penetration Testing| APP
+    GD -.->|IDS Monitor| VPC
+    INS -.->|Security Assessment| EC2
+    IAM -.->|Auth Control| ECS
+    SG -.->|Firewall Rules| ALB
+    ACL -.->|Subnet Filtering| ECS
+    TLS -.->|Encrypt| RDS
+    TLS -.->|Encrypt| S3
+    
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+    
+    class ALB,VPC,ECS,EC2 aws;
+    class RDS,CACHE,S3 data;
+    class SG,ACL,GD,INS,IAM,TLS,PT security;
+    class GH,APP product;</pre>
+</div>
+
+<div class="card" data-name="coretsu inc.">
+  <h3>Coretsu Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    classDef aws fill:#ff9900,color:#000;
+    classDef security fill:#ef4444,color:#fff;
+    classDef data fill:#3b82f6,color:#fff;
+    classDef product fill:#22c55e,color:#000;
+    
+    subgraph Perimeter["Perimeter Layer"]
+        Users([Users])
+        Internet([Internet])
+        IGW[Internet Gateway<br/>AWS]
+        WAF[Web Application Firewall<br/>AWS]
+        Proxy[Proxy Server]
+        IDS[IDS/IPS<br/>AWS]
+        VPN[VPN Gateway<br/>AWS]
+    end
+    
+    subgraph Compute["Compute Layer"]
+        subgraph "EAST Region"
+            VPCE[VPC EAST<br/>AWS]
+            ACL_E[Network ACLs]
+            SG_E[Security Groups]
+            ProdHA[Prod HA Subnet]
+            ProdHR[Prod HR Subnet]
+            EC2_E[EC2 Virtual Servers]
+        end
+        
+        subgraph "WEST Region"
+            VPCW[VPC WEST<br/>AWS]
+            ACL_W[Network ACLs]
+            SG_W[Security Groups]
+            Dev[Dev Subnet]
+            Test[Test Subnet]
+            EC2_W[EC2 Virtual Servers]
+        end
+    end
+    
+    subgraph Data["Data Layer"]
+        DB[Cloud Database<br/>AWS]
+        KMS[AWS Encryption<br/>KMS/TLS]
+    end
+    
+    subgraph Integrations["Integrations Layer"]
+        CA[Third Party CA]
+        IAM[Identity Management<br/>Internal]
+    end
+    
+    subgraph Products["Products Layer"]
+        Platform[Coretsu SaaS Platform]
+    end
+    
+    Users -->|Access| Internet
+    Internet -->|Inbound| IGW
+    IGW -->|Filtered| WAF
+    WAF -->|Routed| Proxy
+    Proxy -->|Monitored| IDS
+    IDS -->|Traffic| VPCE
+    IDS -->|Traffic| VPCW
+    VPN -->|Remote| VPCE
+    VPN -->|Remote| VPCW
+    
+    VPCE --> ACL_E
+    VPCW --> ACL_W
+    ACL_E --> SG_E
+    ACL_W --> SG_W
+    SG_E --> EC2_E
+    SG_W --> EC2_W
+    
+    ProdHA --> EC2_E
+    ProdHR --> EC2_E
+    Dev --> EC2_W
+    Test --> EC2_W
+    
+    EC2_E -->|Queries| DB
+    EC2_W -->|Queries| DB
+    
+    EC2_E -.->|TLS Encrypt| KMS
+    EC2_W -.->|TLS Encrypt| KMS
+    KMS -.->|Certificates| CA
+    
+    Users -->|Login| IAM
+    IAM -->|Session| Platform
+    
+    EC2_E -.->|Hosts| Platform
+    EC2_W -.->|Hosts| Platform
+    
+    class IGW,VPCE,VPCW,VPN,EC2_E,EC2_W aws;
+    class WAF,IDS,ACL_E,ACL_W,SG_E,SG_W security;
+    class DB,KMS data;
+    class Platform product;</pre>
+</div>
+
+<div class="card" data-name="athena studio sarl">
+  <h3>athena studio SARL</h3>
+  <div class="meta">SOC 2 Type II · Vercel</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users([End Users]):::product
+        IG[Internet Gateway]:::aws
+        FW[Vercel IDS/IPS<br/>ACLs & Firewall]:::security
+        TLS[TLS Encryption]:::security
+    end
+    
+    subgraph Integrations
+        VPNGW[VPN Gateways]:::aws
+        VPC_W[VPC VPE WEST]:::aws
+        VPC_E[VPC VPE EAST]:::aws
+        Seg[Network Segmentation]:::aws
+    end
+    
+    subgraph Compute
+        VS[Vercel Virtual Servers<br/>Failover Enabled]:::aws
+        ProdHA[Prod HA Environment]:::aws
+        ProdHR[Prod HR Environment]:::aws
+        Dev[Dev Environment]:::aws
+        Test[Test Environment]:::aws
+        Bastion[Bastion Host]:::security
+    end
+    
+    subgraph Data
+        DB[Production Databases]:::data
+        Enc[Data Encryption at Rest]:::data
+        Auth[Vercel Password Policy]:::security
+    end
+    
+    subgraph Products
+        App[Athena Studio SaaS]:::product
+    end
+    
+    Users -->|Request| IG
+    IG --> FW
+    FW --> TLS
+    TLS --> VS
+    VS --> VPC_W & VPC</pre>
+</div>
+
+<div class="card" data-name="prime intellect inc.">
+  <h3>Prime Intellect Inc.</h3>
+  <div class="meta">SOC 2 Type 1 · Google Cloud Platform (GCP)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        LB[Cloud Load Balancer]
+        WAF[WAF]
+        IDS[IDS/IPS]
+        FW[Cloud Firewall Rules]
+        VPC[VPC Network]
+    end
+    
+    subgraph Compute
+        AG[API Gateway]
+        FE[Frontend<br/>Cloud Run]
+        BE[Backend<br/>Cloud Run]
+        WK[Worker<br/>Cloud Run]
+    end
+    
+    subgraph Data
+        PG[(Cloud SQL<br/>PostgreSQL)]
+        Redis[(Cloud Memorystore<br/>Redis)]
+        Mongo[(Atlas MongoDB)]
+    end
+    
+    subgraph Integrations
+        Stripe[Stripe Payments API]
+    end
+    
+    subgraph Products
+        Users[End Users]
+        Admin[Admin Clients]
+    end
+    
+    Users -->|HTTPS| LB
+    Admin -->|HTTPS| LB
+    LB --> WAF
+    WAF --> IDS
+    IDS --> FW
+    FW --> VPC
+    VPC --> AG
+    AG --> FE
+    FE -->|API Calls| BE
+    BE -->|Background Jobs| WK
+    BE -->|Query| PG
+    BE -->|Cache Ops| Redis
+    BE -->|Document CRUD| Mongo
+    WK -->|Process| PG
+    WK -->|Cache| Redis
+    BE -->|Payment Request| Stripe
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class LB,VPC,AG,FE,BE,WK,Stripe aws
+    class WAF,IDS,FW security
+    class PG,Redis,Mongo data
+    class Users,Admin product</pre>
+</div>
+
+<div class="card" data-name="camu health inc.">
+  <h3>Camu Health Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · AWS</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users[End Users]
+        CDN[AWS CloudFront<br/>Static Site Hosting]
+        SG[AWS Security Groups<br/>Network ACLs]
+        IDS[AWS IDS/IPS]
+    end
+    
+    subgraph Products
+        Dashboard[Dashboard App]
+        Patient[Patient App]
+    end
+    
+    subgraph Compute
+        API[Core API<br/>EC2 Instances]
+    end
+    
+    subgraph Data
+        RDS[(RDS PostgreSQL<br/>Primary Multi-AZ)]
+        Replica[(RDS PostgreSQL<br/>Read Replica)]
+        Redis[(ElastiCache Redis<br/>Core Redis)]
+    end
+    
+    subgraph Integrations
+        Auth0[Auth0<br/>Authentication]
+        Stripe[Stripe<br/>Payments]
+        Mailgun[Mailgun<br/>Email]
+        GoodRx[GoodRx<br/>Pharmacy Pricing]
+    end
+    
+    Users -->|HTTPS/TLS| CDN
+    CDN --> Dashboard
+    CDN --> Patient
+    Dashboard -->|API Requests| SG
+    Patient -->|API Requests| SG
+    SG -->|Filtered| IDS
+    IDS --> API
+    
+    API -->|Encrypted| RDS
+    API -->|Read| Replica
+    API -->|Cache| Redis
+    
+    API <-->|HTTPS/TLS| Auth0
+    API <-->|HTTPS/TLS| Stripe
+    API <-->|HTTPS/TLS| Mailgun
+    API <-->|HTTPS/TLS| GoodRx
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class CDN,API,RDS,Replica,Redis,SG,IDS aws
+    class SG,IDS security
+    class RDS,Replica,Redis data
+    class Dashboard,Patient product</pre>
+</div>
+
+<div class="card" data-name="rev intelligence inc.">
+  <h3>Rev Intelligence Inc.</h3>
+  <div class="meta">SOC 2 Type 2 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    Internet((Internet))
+    RemoteUser[Remote User]
+    
+    subgraph Perimeter
+        VPC[AWS VPC]
+        IGW[Internet Gateway]
+        VGW[VPN Gateway]
+        IPsec[IPsec VPN Tunnel]
+        Bastion[Bastion Host]
+    end
+    
+    subgraph Compute
+        EC2_AZ1[EC2 Production Servers AZ1]
+        EC2_AZ2[EC2 Production Servers AZ2]
+    end
+    
+    subgraph Data
+        Storage[Encrypted Data Storage]
+    end
+    
+    subgraph Integrations
+        IAM[AWS IAM]
+        SG[Security Groups]
+        NACL[Network ACLs]
+        IDS[AWS IDS/IPS]
+    end
+    
+    subgraph Products
+        App[Rev Intelligence Platform]
+    end
+    
+    Internet -->|TLS| IGW
+    IGW --> VPC
+    VPC --> NACL
+    NACL --> SG
+    SG --> EC2_AZ1
+    SG --> EC2_AZ2
+    
+    RemoteUser -->|VPN| VGW
+    VGW --> IPsec
+    IPsec --> Bastion
+    Bastion -->|Management| EC2_AZ1
+    Bastion -->|Management| EC2_AZ2
+    
+    EC2_AZ1 -->|Process| App
+    EC2_AZ2 -->|Failover| App
+    App -->|TLS| Storage
+    
+    IAM -.->|Authenticate| EC2_AZ1
+    IAM -.->|Authenticate| EC2_AZ2
+    IAM -.->|Authorize| App
+    
+    IDS -.->|Monitor| IGW
+    IDS -.->|Monitor| VGW
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class VPC,IGW,VGW,IPsec,EC2_AZ1,EC2_AZ2 aws
+    class Bastion,SG,NACL,IDS,IAM security
+    class Storage data
+    class App product</pre>
+</div>
+
+<div class="card" data-name="worldforce inc">
+  <h3>Worldforce Inc</h3>
+  <div class="meta">SOC 2 Type I · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Internet([Internet])
+        VPN_Gateway[VPN Gateway]
+        Bastion_Host[Bastion Host]
+        Firewall_ACLs[Firewall & ACLs]
+        IDS_IPS[IDS/IPS<br/>AWS]
+    end
+
+    subgraph Compute
+        ALB[AWS ALB]
+        EC2_West[EC2 West<br/>VPC West]
+        EC2_East[EC2 East<br/>VPC East]
+    end
+
+    subgraph Data
+        Cloud_DB[(Cloud Databases<br/>AWS RDS)]
+        Streams[Transaction Streams<br/>AWS Kinesis]
+        Files[(Files<br/>AWS S3)]
+        Tables[(Tables<br/>AWS DynamoDB)]
+    end
+
+    subgraph Integrations
+        AWS_Backbone[AWS Infrastructure<br/>Data Center & Networking]
+    end
+
+    subgraph Products
+        SaaS_App[SaaS Application]
+        Auth_System[Internal Auth<br/>User ID/Password]
+    end
+
+    Users([Users]) -->|TLS 1.2/1.3| Internet
+    Internet -->|VPN Tunnel| VPN_Gateway
+    VPN_Gateway -->|Remote Access| Bastion_Host
+    Bastion_Host -->|SSH/Jump| EC2_West
+    
+    Internet -->|Encrypted Traffic| Firewall_ACLs
+    Firewall_ACLs -->|Filtered| IDS_IPS
+    IDS_IPS -->|Monitored| ALB
+    
+    ALB -->|Primary| EC2_West
+    ALB -->|Failover| EC2_East
+    
+    EC2_West -->|Hosts| SaaS_App
+    SaaS_App -->|Authenticates| Auth_System
+    
+    EC2_West -->|SQL/Transactions| Cloud_DB
+    EC2_West -->|Object Storage| Files
+    EC2_West -->|Real-time Events| Streams
+    EC2_West -->|NoSQL Queries| Tables
+    
+    EC2_East -.->|Replication| Cloud_DB
+    
+    AWS_Backbone -.->|Manages| EC2_West
+    AWS_Backbone -.->|AES-256 Encryption| Cloud_DB
+
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+
+    class VPN_Gateway,Bastion_Host,Firewall_ACLs,IDS_IPS security
+    class ALB,EC2_West,EC2_East,AWS_Backbone aws
+    class Cloud_DB,Streams,Files,Tables data
+    class SaaS_App,Auth_System product</pre>
+</div>
+
+<div class="card" data-name="quickserve ai inc">
+  <h3>Quickserve AI Inc</h3>
+  <div class="meta">SOC 2 Type 1 · Amazon Web Services (AWS)</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter ["Perimeter Layer"]
+        direction TB
+        Users["🌐 Users"]
+        CF["Amazon CloudFront"]
+        CA["Certificate Authority<br/>(Third-party)"]
+        IDS["AWS IDS and IPS"]
+    end
+
+    subgraph Compute ["Compute Layer"]
+        direction TB
+        ALB["Application Load Balancer"]
+        SG["Security Groups"]
+        EC2_AZ1["Amazon EC2<br/>(Private Subnet AZ1)"]
+        EC2_AZ2["Amazon EC2<br/>(Private Subnet AZ2)"]
+        Lambda["AWS Lambda"]
+    end
+
+    subgraph Data ["Data Layer"]
+        direction TB
+        RDS["Amazon RDS Cluster<br/>(PostgreSQL)"]
+        Cache["Amazon ElastiCache<br/>(Redis)"]
+    end
+
+    subgraph Integrations ["Integrations Layer"]
+        direction TB
+        IAM["AWS IAM<br/>(Identity Management)"]
+        VPC["AWS VPC<br/>(us-east-1)"]
+        NACL["Network ACLs"]
+        Pentest["Annual External Pentest<br/>(Third-party)"]
+    end
+
+    subgraph Products ["Products Layer"]
+        direction TB
+        App["Quickserve AI Application"]
+    end
+
+    Users -->|TLS 1.2+| CF
+    CA -->|TLS/SSL Certificates| CF
+    CF -->|HTTPS| ALB
+    ALB -->|Route| EC2_AZ1
+    ALB -->|Route| EC2_AZ2
+    
+    SG -.->|Controls| EC2_AZ1
+    SG -.->|Controls| EC2_AZ2
+    NACL -.->|Subnet Controls| VPC
+    VPC -.->|Hosts| ALB
+    VPC -.->|Hosts| RDS
+    VPC -.->|Hosts| Cache
+    
+    EC2_AZ1 -->|Read/Write| RDS
+    EC2_AZ2 -->|Read/Write| RDS
+    EC2_AZ1 -->|Cache| Cache
+    EC2_AZ2 -->|Cache| Cache
+    EC2_AZ1 -->|Invoke| Lambda
+    EC2_AZ</pre>
+</div>
+
+<div class="card" data-name="tropir inc. (doing business as aviro)">
+  <h3>TROPIR INC. (doing business as Aviro)</h3>
+  <div class="meta">SOC 2 Type II · Vercel</div>
+  <pre class="mermaid">graph TD
+    subgraph Perimeter
+        Users[Users]
+        Internet[Internet]
+        TLS[TLS Encryption]
+        VPN[VPN Gateway]
+        Bastion[Bastion Host]
+        VPC[Vercel VPC]
+        ACL[Network ACLs]
+        IDS[IDS/IPS - Vercel]
+    end
+    
+    subgraph Compute
+        Edge[Vercel Edge Network]
+        Functions[Serverless/Edge Functions]
+        AZ1[Availability Zone 1]
+        AZ2[Availability Zone 2]
+        Failover[Failover Controller]
+    end
+    
+    subgraph Data
+        Postgres[(PostgreSQL - Vercel)]
+    end
+    
+    subgraph Integrations
+        Auth[Vercel Auth & Access Controls]
+        Pentest[Penetration Testing]
+    end
+    
+    subgraph Products
+        Aviro[Aviro Application]
+    end
+    
+    Users -->|HTTPS Requests| Internet
+    Internet -->|Encrypted Traffic| TLS
+    TLS --> VPC
+    VPC --> ACL
+    ACL --> IDS
+    IDS --> Edge
+    Edge --> Functions
+    VPN -->|Secure Admin Access| Bastion
+    Bastion --> Functions
+    Functions --> Failover
+    Failover --> AZ1
+    Failover --> AZ2
+    Functions -->|Read/Write| Postgres
+    Functions -.->|Authentication| Auth
+    Pentest -.->|Security Validation| Functions
+    
+    classDef aws fill:#ff9900,color:#000
+    classDef security fill:#ef4444,color:#fff
+    classDef data fill:#3b82f6,color:#fff
+    classDef product fill:#22c55e,color:#000
+    
+    class VPC,Edge,Functions,AZ1,AZ2,Failover aws
+    class TLS,VPN,Bastion,ACL,IDS,Auth,Pentest security
+    class Postgres data
+    class Users,Aviro product</pre>
+</div>
+
+</div>
+<script>
+mermaid.initialize({ startOnLoad: true, theme: 'dark', securityLevel: 'loose',
+  themeVariables: { primaryColor: '#3b82f6', lineColor: '#94a3b8', primaryBorderColor: '#334155' }});
+function filter(q) {
+  document.querySelectorAll('.card').forEach(c => {
+    c.style.display = c.dataset.name.includes(q.toLowerCase()) ? '' : 'none';
+  });
+}
+</script></body></html>

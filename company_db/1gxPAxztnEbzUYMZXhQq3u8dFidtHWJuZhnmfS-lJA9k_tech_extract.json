@@ -1,0 +1,225 @@
+{
+  "company": "North Parks Labs, Inc.",
+  "product": null,
+  "report_type": "ISO 27001",
+  "audit_period": "8/29/2025 (certification agreement date; observation period not disclosed)",
+  "auditor": "Gradient Certification Inc.",
+  "opinion": "Certification agreement signed; certificate not included in document",
+  "trust_criteria": ["Information Security (ISO/IEC 27001:2022)"],
+  "hq": "1111B S Governors Avenue PMB 6270 Dover, DE 19904",
+  "signing_authority": "Alexander Danilowicz (signatory on behalf of North Parks Labs, Inc.)",
+
+  "system_description": {
+    "overview": "The scope of the ISO/IEC 27001:2022 certification is limited to the Information Security Management System (ISMS) supporting North Parks Labs, Inc.'s services and operations. This includes all systems, infrastructure, and personnel involved in the development, deployment, and maintenance of the organization's services, in accordance with Statement of Applicability version 1.0.",
+    "products": {}
+  },
+
+  "infrastructure": {
+    "cloud_provider": null,
+    "regions": [],
+    "physical_presence": "1111B S Governors Avenue PMB 6270 Dover, DE 19904 (registered address; appears to be a PMB/virtual office)",
+    "availability_zones": null,
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": null,
+    "_note": "No infrastructure details disclosed in this document. Document is a certification agreement, not the audit report or Statement of Applicability."
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": null,
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": null,
+    "ids_ips": null,
+    "vpn": null,
+    "tls": null,
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. Document is a certification agreement only.",
+    "_note": "No network architecture details disclosed."
+  },
+
+  "application_architecture": {
+    "pattern": null,
+    "languages": [],
+    "frameworks": [],
+    "compute": [],
+    "api_style": null,
+    "environments": null,
+    "branch_protection": null,
+    "code_review_required": null,
+    "_note": "No application architecture details disclosed."
+  },
+
+  "data_storage": {
+    "databases": [],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": null,
+    "backup_frequency": null,
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null,
+    "_note": "No data storage details disclosed."
+  },
+
+  "authentication_access_control": {
+    "identity_provider": null,
+    "mfa": null,
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": null,
+    "password_policy": null,
+    "_note": "No authentication or access control details disclosed."
+  },
+
+  "encryption": {
+    "in_transit": null,
+    "at_rest": null,
+    "key_management": null,
+    "end_to_end": null,
+    "_note": "No encryption details disclosed."
+  },
+
+  "ci_cd_devops": {
+    "source_control": null,
+    "ci_cd_tool": null,
+    "branch_protection": null,
+    "iac": null,
+    "container_orchestration": null,
+    "patch_management": null,
+    "separate_environments": null,
+    "emergency_change_process": null,
+    "_note": "No CI/CD or DevOps details disclosed."
+  },
+
+  "monitoring_logging": {
+    "apm_tool": null,
+    "siem": null,
+    "log_aggregation": null,
+    "alerting": null,
+    "metrics": [],
+    "log_protection": null,
+    "ids": null,
+    "_note": "No monitoring or logging details disclosed."
+  },
+
+  "third_party_services": [
+    {"vendor": "Gradient Certification Inc.", "purpose": "ISO 27001 certification body / auditor", "criticality": "Low"},
+    {"vendor": "United Accreditation Foundation Inc (UAF)", "purpose": "Accreditation body for the CAB (Gradient Certification)", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": null,
+    "endpoint_protection": null,
+    "vulnerability_scanning": null,
+    "penetration_testing": null,
+    "server_hardening": null,
+    "cybersecurity_insurance": null,
+    "_note": "No security tooling details disclosed."
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed",
+    "_note": "No BCDR details disclosed."
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": [
+      "Document references Statement of Applicability version 1.0 but does not include it",
+      "Audit mandays: Stage 1 = 2, Stage 2 = 3, Surveillance 1 = 2, Surveillance 2 = 2, Total = 9",
+      "Certification cycle is 3 years with annual surveillance audits"
+    ],
+    "_note": "This document is the certification agreement, not the audit report. No control testing results are included."
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No infrastructure details disclosed whatsoever. Cannot assess."
+    },
+    "application_architecture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No application architecture details disclosed. Scope mentions 'development, deployment, and maintenance' but no specifics."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No data layer details disclosed."
+    },
+    "security_posture": {
+      "score": 2,
+      "max": 10,
+      "rationale": "ISO 27001:2022 certification in progress indicates an ISMS exists, but zero technical security controls are described in this document."
+    },
+    "devops_maturity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No DevOps or CI/CD details disclosed."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No BCDR details disclosed."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No technology vendors disclosed. Only the certification body is identified."
+    },
+    "overall": {
+      "score": 1,
+      "max": 10,
+      "rationale": "This document is a certification agreement form, not an audit report. It provides essentially no technical information about North Parks Labs' systems, infrastructure, or security posture. The only positive signal is that the company is pursuing ISO 27001:2022 certification."
+    }
+  },
+
+  "red_flags": [
+    "Document is NOT an ISO 27001 audit report — it is only a Certification Agreement Form between the company and Gradient Certification Inc.",
+    "No technical content: zero infrastructure, architecture, security, or operational details are disclosed.",
+    "Only 6 pages total; flagged as potentially incomplete report (fewer than 10 pages).",
+    "PMB (Private Mailbox) address in Dover, DE suggests this may be a shell/virtual office registration rather than a physical operational presence.",
+    "The Statement of Applicability (SoA) version 1.0 is referenced but not included in this document.",
+    "No actual ISO 27001 certificate is included — only the agreement to undergo certification.",
+    "UAF (United Accreditation Foundation) is a less widely recognized accreditation body compared to ANAB, UKAS, or other IAF MLA signatories.",
+    "Audit mandays total of 9 is relatively low, suggesting either a small scope or lightweight audit."
+  ],
+
+  "yellow_flags": [
+    "Gradient Certification Inc. is a less well-known certification body; due diligence on the CAB itself may be warranted.",
+    "No product name, website, or business description provided — unclear what services North Parks Labs actually offers.",
+    "Company metadata fields (system_description, infra_provider, website, contact_email) are all empty.",
+    "The document contains only the certification agreement terms and conditions, with no evidence of actual audit findings or conformity assessment results."
+  ],
+
+  "green_flags": [
+    "Company is pursuing ISO/IEC 27001:2022 certification (the latest version of the standard).",
+    "Scope covers all systems, infrastructure, and personnel — not a narrowly scoped certification."
+  ],
+
+  "key_observations": [
+    "This document cannot be used for meaningful tech due diligence. The actual ISO 27001 audit report, Statement of Applicability (SoA), and/or the certificate itself would be needed to extract any technical data.",
+    "The certification agreement was signed on 8/29/2025 — this may indicate the audit process is still in progress or only recently completed.",
+    "North Parks Labs should be asked to provide: (1) the ISO 27001 certificate, (2) the Statement of Applicability, and (3) ideally the Stage 2 audit report for any meaningful technical assessment.",
+    "The UAF endorsement letter on page 1 is signed by Alexander Danilowicz on behalf of North Parks Labs, which is unusual — typically the client does not endorse the accreditation body."
+  ]
+}

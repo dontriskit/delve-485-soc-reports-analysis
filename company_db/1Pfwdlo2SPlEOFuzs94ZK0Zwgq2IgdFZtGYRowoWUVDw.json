@@ -1,0 +1,19 @@
+{
+  "doc_id": "1Pfwdlo2SPlEOFuzs94ZK0Zwgq2IgdFZtGYRowoWUVDw",
+  "link": "https://docs.google.com/document/d/1Pfwdlo2SPlEOFuzs94ZK0Zwgq2IgdFZtGYRowoWUVDw",
+  "timestamp": "11/24/2025 14:17:23",
+  "display_name": "Dentin",
+  "legal_name": "Dentin Inc.",
+  "company_name": "Dentin",
+  "system_description": "Dentin.ai is an AI-powered dental practice platform designed to boost case acceptance, streamline workflows, and deliver smarter patient engagements. With Dentin.ai, dental teams can activate operational & clinical data, build tailored patient journeys (from lead to treatment), and communicate via dynamic, multilingual experiences at every touchpoint.",
+  "audit_end_date": "",
+  "observation_period": "August 20, 2025 - November 20, 2025",
+  "infra_provider": "GCP",
+  "website": "https://dentin.ai",
+  "contact_email": "security@dentin.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1Pfwdlo2SPlEOFuzs94ZK0Zwgq2IgdFZtGYRowoWUVDw.pdf",
+  "txt_file": "1Pfwdlo2SPlEOFuzs94ZK0Zwgq2IgdFZtGYRowoWUVDw.txt",
+  "has_report": true
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "1AZ0BYDOclGBuULEe4ssxxgqYVGhhC2TsNacdZFONe3s",
+  "link": "https://docs.google.com/document/d/1AZ0BYDOclGBuULEe4ssxxgqYVGhhC2TsNacdZFONe3s",
+  "timestamp": "12/15/2025 15:15:49",
+  "display_name": "Superlinked",
+  "legal_name": "Superlinked, Inc.",
+  "company_name": "Superlinked",
+  "system_description": "Superlinked develops a Cloud Infrastructure for AI Engineers building high-performance search & recommendation applications that combine structured and unstructured data.",
+  "audit_end_date": "",
+  "observation_period": "September 3, 2025 - December 3, 2025",
+  "infra_provider": "GCP",
+  "website": "https://superlinked.com",
+  "contact_email": "alexandra@superlinked.com",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1AZ0BYDOclGBuULEe4ssxxgqYVGhhC2TsNacdZFONe3s.pdf",
+  "txt_file": "1AZ0BYDOclGBuULEe4ssxxgqYVGhhC2TsNacdZFONe3s.txt",
+  "has_report": true
+}

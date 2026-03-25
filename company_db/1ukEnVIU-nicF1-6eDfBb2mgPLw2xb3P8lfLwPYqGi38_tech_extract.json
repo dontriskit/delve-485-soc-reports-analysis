@@ -1,0 +1,238 @@
+{
+  "company": "Basata Inc.",
+  "product": "Basata",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of August 29, 2025",
+  "auditor": "Accorp Partners (PAC-FIRM-LIC-47383)",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "709 E. Nighthawk Way, Phoenix, AZ 85048",
+  "signing_authority": "Kaled Alhanafi, Co-founder and Chief Executive Officer",
+
+  "system_description": {
+    "overview": "Basata is a healthcare SaaS company that uses AI to automate administrative workflows for medical practices, including fax/referral intake processing, AI voice agents for call center automation, and patient scheduling. The platform assists clinicians and staff with scheduling, referral management, paperwork automation, and patient communication.",
+    "products": {
+      "Automate faxes and referral intake / Administrative AI": "Processes all unstructured documents including faxes, record requests, lab orders, pharmacy or referrals. Processes new patient referrals in minutes.",
+      "Automate practice call centers / Voice AI": "Answers calls and schedules patients with AI voice agents and chatbots using practice requirements and scheduling logic.",
+      "Professional Services": "White glove onboarding and implementation with ongoing customer support."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Microsoft Azure (carve-out)",
+    "regions": ["Not specified beyond 'Azure'"],
+    "physical_presence": "No physical offices; no physical servers. Headquartered at 709 E. Nighthawk Way, Phoenix, AZ 85048 (administrative only).",
+    "availability_zones": "Multi-AZ — 'spinning up multiple servers across all availability zones in Azure'",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "System hosted in Microsoft Azure in a VPC environment. Network topology includes segmented VPCs and ACLs. Customer accounts are segmented from each other (CC6.1.3).",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via Azure to identify and protect against threats. Intrusion detection tools configured to prevent unauthorized access and detect external threats (CC6.6.1).",
+    "vpn": "Remote access via bastion host with VPN. 'Basata VPN' visible in network diagram.",
+    "tls": "TLS using certificates from established third-party certificate authority",
+    "content_filtering": "All systems restricted to internet via content filtering system routed through proxy server",
+    "multi_region": false,
+    "topology": "Client requests → app.basata.ai on Azure VM (db and storage on disk encrypted at rest) → Azure OpenAI and Document Intelligence. Inbound faxes via RingCentral (TriCity Integration), outbound calls/recordings via Twilio, inbound/outbound emails via Mailgun, Voice Transcription via OpenAI. Basata VPN for remote admin access."
+  },
+
+  "application_architecture": {
+    "pattern": "Monolith (single Azure VM hosts app + DB + storage)",
+    "languages": ["Not disclosed"],
+    "frameworks": ["Not disclosed"],
+    "compute": ["Azure VM"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development/test and production environments (CC8.1.4)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Database on Azure VM disk (encrypted at rest)"],
+    "caching": [],
+    "file_storage": ["Azure VM disk storage (encrypted at rest)"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Formal backup policy documented; backup procedures defined — frequency not specified",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Azure Active Directory (Active Directory mentioned for server/database accounts; Azure password policy)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1). MFA required for source code tool access (CC8.1.3). MFA required for employee email (2FA).",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Azure password policy — periodic forced changes, expiry, complexity requirements; accounts disabled after limited unsuccessful logon attempts; guest/anonymous logins not allowed"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service — 'db and storage on disk encrypted at rest' (Azure KMS)",
+    "key_management": "Azure cloud provider key management service (CC6.1.5)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (name not disclosed; MFA-protected, logged, time-stamped — likely GitHub)",
+    "ci_cd_tool": "Not explicitly named",
+    "branch_protection": "Code repository branch rules configured so every merge request to production requires additional approval (CC8.1.2)",
+    "iac": "Configuration management tool used for baseline configuration implementation and rollback (CC7.1.1) — tool not named",
+    "container_orchestration": "None mentioned",
+    "patch_management": "Automatic patch management; CTO performs monthly patch management reviews; workstations scanned daily for patch compliance (CC7.5.1)",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Unnamed monitoring tool — 'IT team continuously monitors system capacity and performance through use of monitoring tools' (CC5.2.1)",
+    "siem": "None explicitly named",
+    "log_aggregation": "Logging enabled for administrative activities, logon attempts, data deletions, function changes, security configurations, permissions, and roles (CC7.2.1)",
+    "alerting": "Automated alerts notify IT management of high and critical risk events (CC7.2.1)",
+    "metrics": ["disc space", "incoming/outgoing network traffic", "packet loss", "CPU utilization"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Microsoft Azure", "purpose": "Primary cloud infrastructure, data center services, IDS/IPS, key management, OpenAI and Document Intelligence services", "criticality": "Critical"},
+    {"vendor": "OpenAI", "purpose": "Voice transcription and AI processing", "criticality": "Critical"},
+    {"vendor": "RingCentral (TriCity Integration)", "purpose": "Inbound faxes integration", "criticality": "High"},
+    {"vendor": "Twilio", "purpose": "Outbound calls and call recordings", "criticality": "High"},
+    {"vendor": "Mailgun", "purpose": "Inbound and outbound emails", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software on all production servers (continuous auto-scan, weekly AV definition updates) and all desktops/laptops. Configured for Mac workstations. (CC6.8.1)",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; frequency adjusted as needed (CC7.1.2)",
+    "penetration_testing": "Annual external penetration testing by independent third party (CC4.1)",
+    "server_hardening": true,
+    "cybersecurity_insurance": "Not mentioned"
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — Physical access controls excluded; Azure is responsible for physical data center security",
+      "A1.2 — Environmental protections excluded; Basata has no office/physical servers; managed by Azure",
+      "Processing Integrity — Determined not relevant to the system",
+      "Privacy — Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC6.6.1: Firewalls AND intrusion detection tools both configured at application gateway and production network",
+      "CC4.1: Annual external penetration testing by independent third party",
+      "CC7.1.2: Monthly automated vulnerability scans with remediation plan for critical/high findings",
+      "CC8.1.2: Branch protection requiring additional approval for every merge to production",
+      "CC6.2.2: Quarterly user access reviews for all accounts including privileged users",
+      "CC6.1.4: Access revoked within one business day upon termination",
+      "CC7.4.1: BCDR plan documented, reviewed annually, tested at least annually per defined testing schedule",
+      "Network diagram shows RingCentral, Twilio, Mailgun, OpenAI as key integrations"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Microsoft Azure with Multi-AZ failover capability is a strong foundation, but the architecture shows a single Azure VM running app + DB + storage (monolithic), no CDN, no multi-region, and no IaC tooling named. The carve-out approach means Azure's physical controls are inherited but not audited."
+    },
+    "application_architecture": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Single Azure VM hosts the entire application stack (app + DB + storage on disk) — classic monolith. Languages, frameworks, and API style are undisclosed. Separate dev/test and prod environments exist, and branch protection is in place, but the single-VM architecture is a significant concern for a healthcare SaaS."
+    },
+    "data_layer": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Database resides on the Azure VM disk alongside the application — no separate managed database service mentioned, no caching layer, no data warehouse, no backup frequency specified beyond 'formal backup policy exists'. Data is encrypted at rest on disk."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Strong set of controls: IDS/IPS via Azure, firewalls on application gateway + production network, anti-virus on all endpoints, MFA for admin access and source code, annual external pen test, monthly vulnerability scans, quarterly access reviews, 1-business-day access revocation, content filtering proxy. Weaknesses: no WAF explicitly, no SIEM named, no cybersecurity insurance mentioned."
+    },
+    "devops_maturity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Branch protection and code review enforced, separate environments, emergency change process, automated patch management with monthly reviews. However, CI/CD tool is unnamed, IaC tool is unnamed, no container orchestration, deployment approach appears manual/VM-based."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented, reviewed annually, tested at least annually per a defined testing schedule with multiple loss scenarios. Multi-AZ failover via Azure. However, no RTO/RPO disclosed, no multi-region failover, and daily backup confirmation is absent."
+    },
+    "vendor_diversity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Five identified vendors: Azure (critical), OpenAI (critical), RingCentral, Twilio, Mailgun. Azure is a single critical dependency for nearly all infrastructure. Heavy reliance on OpenAI for core AI functionality creates a second critical external dependency. Vendor management policy with quarterly risk assessments for vendors without SOC reports."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Basata has a solid security process framework for a Type 1 report — annual pen testing, monthly vuln scans, MFA, quarterly access reviews, BCDR testing. The main technical concern is the single-VM architecture hosting app + DB + storage together, which lacks resilience and scalability. Healthcare data sensitivity elevates the risk of this architectural choice. The Azure carve-out means core infra controls are inherited but not directly audited."
+    }
+  },
+
+  "red_flags": [
+    "Single Azure VM hosts app, database, and file storage together — no separation of compute and data layers",
+    "No managed database service mentioned (e.g., Azure SQL, CosmosDB) — DB on VM disk is operationally fragile",
+    "No backup frequency disclosed despite formal backup policy",
+    "No RTO or RPO disclosed for a healthcare administrative platform",
+    "No CDN or WAF mentioned despite web-based patient scheduling and call handling"
+  ],
+  "yellow_flags": [
+    "CI/CD tool not named — automated deployment pipeline maturity unclear",
+    "IaC tool not named — configuration management approach unclear despite baseline config being stored as code",
+    "No SIEM tool named — log aggregation and alerting tooling undisclosed",
+    "OpenAI is a critical dependency for core AI functions — no mention of fallback or alternative",
+    "Languages and frameworks entirely undisclosed in the report",
+    "Cybersecurity insurance not mentioned",
+    "Processing Integrity and Privacy trust criteria excluded as 'not relevant' despite handling patient healthcare administrative data"
+  ],
+  "green_flags": [
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scanning with remediation plans for critical/high findings",
+    "MFA enforced for admin access, source code access, and employee email",
+    "Quarterly user access reviews for all accounts including privileged users",
+    "Access revocation within one business day upon termination",
+    "BCDR plan documented, reviewed annually, and tested at least annually per defined testing schedule",
+    "Multi-AZ failover capability via Azure",
+    "Formal change management process with branch protection requiring additional approval for production merges",
+    "Vendor management with quarterly risk assessment for vendors lacking SOC reports",
+    "Network diagram provided showing all key integrations (RingCentral, Twilio, Mailgun, OpenAI)"
+  ],
+  "key_observations": [
+    "The network diagram (p.17) is unusually detailed for a SOC 2 Type 1 — it reveals the entire production topology: a single 'Basata Box' Azure VM is the core of the system, connected to all AI and communication services via VPN",
+    "The healthcare context (PHI/administrative data) combined with the single-VM architecture creates meaningful concentration risk — a single VM failure or compromise affects all services simultaneously",
+    "Azure OpenAI and Azure Document Intelligence are used within the Azure boundary (shown on same network diagram), suggesting these may be Azure-native services rather than external OpenAI API calls — this is a subtle but important architectural detail",
+    "The report explicitly excludes Processing Integrity and Privacy trust criteria as 'not relevant' — noteworthy for a healthcare AI platform processing patient referrals, prescriptions, and lab orders",
+    "Basata routes all internet-bound traffic through a content filtering proxy — unusual and noteworthy for a small startup; suggests mature network security thinking",
+    "The Accorp Partners auditor (PAC-FIRM-LIC-47383) is a common SOC 2 prep firm for early-stage startups — this is a first-time Type 1 report"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "1i7G18Q3UI04xs0Xpr7xM02g3rDvwSgc-OUUzLRZASKA",
+  "link": "https://docs.google.com/document/d/1i7G18Q3UI04xs0Xpr7xM02g3rDvwSgc-OUUzLRZASKA",
+  "timestamp": "10/1/2025 15:36:09",
+  "display_name": "Shinobi Security",
+  "legal_name": "Shinobi Security Inc",
+  "company_name": "Shinobi Security",
+  "system_description": "Shinobi Security builds AI agents for offensive security.",
+  "audit_end_date": "September 22, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://shinobi.security",
+  "contact_email": "varun@shinobi.security",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1i7G18Q3UI04xs0Xpr7xM02g3rDvwSgc-OUUzLRZASKA.pdf",
+  "txt_file": "1i7G18Q3UI04xs0Xpr7xM02g3rDvwSgc-OUUzLRZASKA.txt",
+  "has_report": true
+}

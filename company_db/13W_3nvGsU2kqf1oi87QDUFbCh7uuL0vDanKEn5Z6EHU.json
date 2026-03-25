@@ -1,0 +1,19 @@
+{
+  "doc_id": "13W_3nvGsU2kqf1oi87QDUFbCh7uuL0vDanKEn5Z6EHU",
+  "link": "https://docs.google.com/document/d/13W_3nvGsU2kqf1oi87QDUFbCh7uuL0vDanKEn5Z6EHU",
+  "timestamp": "9/28/2025 13:24:42",
+  "display_name": "Surfboard",
+  "legal_name": "Daommo Inc.",
+  "company_name": "Surfboard",
+  "system_description": "Surfboard is an AI-driven, people-centric board management platform that transforms how organizations engage board members.",
+  "audit_end_date": "",
+  "observation_period": "June 20, 2025 - September 20, 2025",
+  "infra_provider": "AWS",
+  "website": "https://surfboard.team",
+  "contact_email": "chuhan@surfboard.team",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "13W_3nvGsU2kqf1oi87QDUFbCh7uuL0vDanKEn5Z6EHU.pdf",
+  "txt_file": "13W_3nvGsU2kqf1oi87QDUFbCh7uuL0vDanKEn5Z6EHU.txt",
+  "has_report": true
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "14_7T7x078DgCNddkmPs72LW6xUCFe87GWTjM8dTXxxE",
+  "link": "https://docs.google.com/document/d/14_7T7x078DgCNddkmPs72LW6xUCFe87GWTjM8dTXxxE",
+  "timestamp": "9/5/2025 15:23:08",
+  "display_name": "Ground",
+  "legal_name": "Cheres, Inc",
+  "company_name": "Ground",
+  "system_description": "Ground AI senses intent - then guides each shopper like your best sales associate would. Personalize every journey in real time, turning missed conversions into lifelong customers.",
+  "audit_end_date": "August 28, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://joinground.com",
+  "contact_email": "security@joinground.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "14_7T7x078DgCNddkmPs72LW6xUCFe87GWTjM8dTXxxE.pdf",
+  "txt_file": "14_7T7x078DgCNddkmPs72LW6xUCFe87GWTjM8dTXxxE.txt",
+  "has_report": true
+}

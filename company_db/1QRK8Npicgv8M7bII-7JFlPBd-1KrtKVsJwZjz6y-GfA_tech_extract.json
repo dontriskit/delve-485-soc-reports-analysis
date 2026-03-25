@@ -1,0 +1,243 @@
+{
+  "company": "Lucid Spring Inc.",
+  "product": "palace.so (AI Board Observer)",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of July 14, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "151 Mott Street, New York, NY 10013",
+  "signing_authority": "Derek Ye, CTO (August 29, 2025)",
+
+  "system_description": {
+    "overview": "Lucid Spring operates palace.so, an AI board observer platform for private market investors. The platform provides portfolio monitoring, automated reporting, and AI-powered insights by integrating with 40+ ERP, CRM, and data systems used by portfolio companies.",
+    "products": {
+      "palace.so Web Application": "AI-powered board observer for private market investors — automated data collection, portfolio monitoring, and reporting",
+      "Data Integration Layer": "40+ pre-built integrations to ERPs, CRMs, and financial systems for automated portfolio company data ingestion",
+      "AI Analysis Engine": "AI-powered analysis of portfolio data to generate board-level insights and reports"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out — AWS controls excluded from scope)",
+    "regions": ["us-east-1", "us-east-2"],
+    "physical_presence": "None — operates from co-working space; no owned/leased office; environmental controls managed by building management / AWS",
+    "availability_zones": "Multi-AZ (disaster recovery via spinning up multiple servers across all availability zones in AWS)",
+    "additional_cloud": [],
+    "serverless": ["Lambda (confirmed in network diagram — private API Gateway + Lambda functions in both us-east-1 and us-east-2)"],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "VPC with private API Gateways in each region. Network diagram shows Account A with API Gateway Regional + VPC Link + NLB + VPC Endpoint connecting to both us-east-1 and us-east-2, each with private API Gateway and Lambda functions. Customer access appropriately segmented from other customer accounts (CC6.1.3).",
+    "api_gateway": "AWS API Gateway (Regional in Account A; Private API Gateways in each region connected via VPC Link + NLB + VPC Endpoint)",
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management. Intrusion detection tools configured to prevent unauthorized access and detect external security threats.",
+    "ids_ips": "IDS/IPS via AWS — firewalls and intrusion detection tools configured to prevent unauthorized access and detect external security threats (CC6.6.1)",
+    "vpn": "Remote access via bastion host with VPN (referenced in earlier section on network security)",
+    "tls": "Encryption technologies used to protect communication and transmission of data over public networks (CC6.1.6, CC6.6 — TLS via established third-party certificate authority)",
+    "content_filtering": null,
+    "multi_region": true,
+    "topology": "Client requests hit API Gateway Regional (Account A), traffic routed via VPC Link + NLB + VPC Endpoint to private API Gateways in us-east-1 and us-east-2. Each region runs Lambda functions for compute. Multi-region active-active or active-passive architecture provides failover via spinning up multiple servers across availability zones."
+  },
+
+  "application_architecture": {
+    "pattern": "Serverless-heavy",
+    "languages": ["Not explicitly named"],
+    "frameworks": ["Not explicitly named"],
+    "compute": ["Lambda (confirmed in network diagram)", "API Gateway (Regional and Private)"],
+    "api_style": "REST (inferred from API Gateway architecture)",
+    "environments": "Separate development/test environment confirmed (CC8.1.4: changes tested in separate development or test environment before implementation)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Not explicitly named — AWS-hosted database referenced as production database"],
+    "caching": ["Not mentioned"],
+    "file_storage": ["S3 (inferred — AWS-native architecture)"],
+    "data_warehouse": "Not mentioned",
+    "backup_frequency": "Not explicitly stated — backup policy documented; backup procedures defined in Backup Policy",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS (password policy via AWS — periodic forced changes, password expiry, complexity requirements, account lockout after limited failed attempts; Active Directory referenced for infrastructure accounts)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1); source code management tool access requires MFA (CC8.1.3)",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination (CC6.1.4)",
+    "password_policy": "AWS password policy: periodic forced changes, password expiry, complexity requirements, account lockout after limited failed attempts; guest/anonymous logins not allowed; unattended desktops locked on inactivity"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified — 'encryption technologies used to protect communication and transmission of data over public networks')",
+    "at_rest": "Cloud provider KMS — 'organization uses its cloud provider key management service to encrypt data at rest and to store and manage encryption keys' (CC6.1.5)",
+    "key_management": "AWS KMS (cloud provider key management service; access to production environment's access keys restricted to authorized individuals)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "GitHub (inferred — source code management tool with MFA requirement and branch protection per CC8.1.2, CC8.1.3)",
+    "ci_cd_tool": "Not explicitly named (CI/CD tool referenced but not identified; likely GitHub Actions or AWS CodePipeline given AWS-native architecture)",
+    "branch_protection": "Code repository branch rules configured to require additional approval for every merge request to move change to production environment (CC8.1.2)",
+    "iac": "Configuration management tool used for baseline configurations and rollback capability (specific tool not named — 'baseline configurations are retained within the infrastructure as a code and a configuration management tool is used for implementation and for rollback capability')",
+    "container_orchestration": "None confirmed — serverless Lambda architecture; no ECS/EKS/K8s mentioned",
+    "patch_management": "Automatic patch management set up by CTO; monthly patch management reviews; workstations scanned daily for patch compliance; OS patches applied automatically (CC7.5.1)",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "AWS-native monitoring (automated monitoring tool generates alerts when predefined thresholds are met — CC5.2.1)",
+    "siem": "Not mentioned",
+    "log_aggregation": "Logging enabled for administrative activities, logon attempts, data deletions, changes to functions, security configurations, permissions, and roles (CC7.2.1)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; issues resolved via incident management process (CC7.2.1)",
+    "metrics": ["System capacity", "Performance anomalies", "Predefined threshold triggers"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Primary cloud infrastructure — compute (Lambda), networking (VPC, API Gateway, NLB), multi-region deployment (us-east-1 and us-east-2), key management (KMS)", "criticality": "Critical"},
+    {"vendor": "40+ ERP/CRM integrations (unnamed)", "purpose": "Data ingestion from portfolio company systems (ERPs, CRMs, financial data sources)", "criticality": "High"},
+    {"vendor": "GitHub (inferred)", "purpose": "Source code management with branch protection and MFA", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed and configured on all production servers; continuous scanning; weekly AV definition updates for production servers; installed and configured for Mac-based workstations and laptops (CC6.8.1)",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; management reviews and takes action on high/critical vulnerabilities; remediation plan developed for critical/high findings (CC7.1.2)",
+    "penetration_testing": "Annual external penetration testing by independent third party; high/critical findings remediated and tracked (CC4.1.1)",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": true,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — Physical access to data center facilities: AWS is responsible for physical security; not in scope",
+      "A1.2 — Environmental protections: Lucid Spring has no office; manages from co-working space; environmental controls managed by building management / AWS",
+      "Processing Integrity — Determined not relevant to the system",
+      "Privacy — Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC6.1.1: MFA enforced for user accounts with administrative access to production platform",
+      "CC6.1.4: Access revoked within one business day of termination; employee termination checklist used",
+      "CC6.2.2: Quarterly user access reviews for all accounts including privileged accounts",
+      "CC7.1.2: Monthly automated vulnerability scans; high/critical remediation plan required",
+      "CC4.1.1: Annual external penetration testing by independent third party",
+      "CC8.1.2: Branch protection enforced — merge to production requires additional approval",
+      "CC8.1.3: Source code changes logged, time-stamped, attributed to author; MFA required for SCM access",
+      "CC7.4.1: BCDR policy documented, reviewed annually, and tested annually with multiple loss scenarios",
+      "CC7.1.1: Baseline configurations retained as code with configuration management tool for rollback",
+      "Note: This is a Type 1 report (design assessment only, not operating effectiveness)"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Multi-region deployment confirmed (us-east-1 AND us-east-2) with multi-AZ failover — rare for an early-stage startup. Serverless Lambda architecture with private API Gateways connected via VPC Link. IaC referenced (configuration management as code). No CDN or WAF mentioned. AWS-native stack."
+    },
+    "application_architecture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Serverless-heavy architecture (Lambda + API Gateway) with clear multi-region deployment shown in network diagram. Branch protection enforced, separate development/test environment. CI/CD tool not named. Programming languages not disclosed. Very small team (3 people) — architecture may be simpler than it appears."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Database engine not named. Backup policy exists but frequency not disclosed. Data classification and retention policies referenced. Per-tenant segregation stated. No caching layer mentioned. No data warehouse. Limited technical specifics about the data tier."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Annual external pen test, monthly vulnerability scans, MFA on admin and SCM access, quarterly access reviews, 1-business-day access revocation, IDS/IPS via AWS, antivirus on all servers and workstations, firewall rules reviewed annually. No WAF identified. No cybersecurity insurance mentioned. No SIEM."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Branch protection enforced, emergency change process, IaC for baseline configurations, separate dev/test environment, automatic patch management with monthly reviews. CI/CD tool not named. Very small team limits the maturity signal. Source code management with MFA confirmed."
+    },
+    "bcdr_readiness": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong for a startup: multi-region failover capability (us-east-1 and us-east-2), multi-AZ spinning up, BCDR policy reviewed annually and tested annually with multiple loss scenarios. Business impact analysis performed. However, RTO/RPO not disclosed and backup frequency not stated."
+    },
+    "vendor_diversity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Heavily AWS-concentrated with Lambda, API Gateway, VPC, KMS. Only additional vendors are 40+ unnamed ERP/CRM integration targets (these are customer-side systems, not Lucid Spring's infrastructure vendors) and inferred GitHub. Single-vendor infrastructure dependency on AWS."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Lucid Spring is a 3-person startup with a technically sophisticated multi-region serverless architecture on AWS — the multi-region deployment (us-east-1 + us-east-2) is a standout for a company this size. However, this is only a Type 1 report (design only, no operating effectiveness testing), the team is extremely small creating key-person risk, CI/CD tooling is unnamed, database specifics are undisclosed, and no cybersecurity insurance is mentioned. The controls framework appears template-heavy (Accorp Partners boilerplate) with limited company-specific evidence."
+    }
+  },
+
+  "red_flags": [
+    "SOC 2 Type 1 only — design assessment, no evidence that controls are actually operating effectively over time",
+    "3-person team (CEO, CTO, Founding Designer) — extreme key-person risk, especially for CTO who is signing authority, sets up automatic patch management, and manages all technical controls",
+    "CI/CD tool not named — reduces confidence in deployment automation maturity",
+    "Database engine and backup frequency not disclosed",
+    "No cybersecurity insurance mentioned",
+    "Programming languages and frameworks not disclosed"
+  ],
+
+  "yellow_flags": [
+    "Auditor (Accorp Partners) is a lower-tier/newer SOC 2 audit firm — not Big 4 or well-known mid-tier",
+    "Controls table appears heavily templated — many controls use identical boilerplate language reused across multiple criteria",
+    "No SIEM mentioned despite logging and monitoring controls",
+    "No WAF despite internet-facing API Gateway endpoints",
+    "No SSO for customer authentication",
+    "40+ ERP/CRM integrations are a significant attack surface — each integration is a potential data access vector; no specifics on integration security",
+    "Public brand (palace.so) differs from legal entity name (Lucid Spring Inc.) — adds due diligence complexity"
+  ],
+
+  "green_flags": [
+    "Multi-region deployment (us-east-1 AND us-east-2) is exceptional for a 3-person startup — demonstrates architectural foresight",
+    "Serverless Lambda architecture inherently provides high scalability and eliminates traditional server management overhead",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scans with high/critical remediation plan",
+    "BCDR policy tested annually with multiple loss scenarios",
+    "MFA enforced on admin production access and source code management",
+    "Quarterly access reviews and 1-business-day access revocation SLA",
+    "AWS KMS for encryption at rest and in transit",
+    "Branch protection with required additional approval for merges to production",
+    "Emergency change process documented"
+  ],
+
+  "key_observations": [
+    "Palace.so serves private market investors and ingests portfolio company financial data via 40+ ERP/CRM integrations — this is highly sensitive M&A-adjacent data that would be extremely valuable to adversaries",
+    "The 3-person team (Leeds Rising CEO, Derek Ye CTO, Adam Lukasik Designer) means the CTO is likely the sole technical operator — if Derek Ye were unavailable, the entire technical operation could be impaired",
+    "Multi-region architecture (us-east-1 + us-east-2) with Lambda is architecturally mature but the Type 1 report only attests that these controls are designed, not that they are working in practice",
+    "The 40+ integrations are listed as a product feature but represent a significant security surface area — OAuth tokens, API keys, and credentials for dozens of external systems need to be securely stored and rotated",
+    "Controls table heavily reuses the same control numbers (CC2.1.2, CC2.2.1, etc.) across multiple CC criteria — this is characteristic of Accorp Partners' templated SOC 2 approach and provides less company-specific assurance than a more bespoke audit",
+    "No mention of data residency controls despite multi-region architecture — unclear if customer data stays in a specific region or may traverse regions",
+    "BCDR section is explicitly labeled as 'Other Information Provided by Lucid Spring' not audited by Accorp — the DR description is management assertion only"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "1TikdfO5oCu5I2kXWZk2mgmTsFxJHO94Xhior9ULarLI",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1TikdfO5oCu5I2kXWZk2mgmTsFxJHO94Xhior9ULarLI",
+  "timestamp": "7/19/2025 18:48:24",
+  "display_name": "Knowtex",
+  "legal_name": "Knowtex Inc.",
+  "company_name": "Knowtex",
+  "system_description": "Knowtex uses GenAI to parse doctor-patient conversations into actions and insight.",
+  "audit_end_date": "July 9, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://knowtex.ai",
+  "contact_email": "jocelyn@knowtex.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1TikdfO5oCu5I2kXWZk2mgmTsFxJHO94Xhior9ULarLI.pdf",
+  "txt_file": "1TikdfO5oCu5I2kXWZk2mgmTsFxJHO94Xhior9ULarLI.txt",
+  "has_report": true
+}

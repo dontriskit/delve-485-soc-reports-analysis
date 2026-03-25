@@ -1,0 +1,247 @@
+{
+  "company": "Tutor Intelligence, Inc.",
+  "product": "Tutor Intelligence Platform",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of July 8, 2025",
+  "auditor": "ACCORP PARTNERS",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "80 Coolidge Hill Road, Watertown, MA",
+  "signing_authority": "Joshua Gruenstein, CEO — signed 07/22/2025",
+
+  "system_description": {
+    "overview": "Tutor Intelligence provides AI-driven palletizing cells for logistics and manufacturing customers via a Robotics-as-a-Service (RaaS) subscription model. The platform combines physical robotic hardware with cloud-based AI and a 24/7 operations team to automate palletizing workflows. Robots connect to the cloud over WireGuard VPN for monitoring and management.",
+    "products": {
+      "AI Palletizing System": "Automated palletizing robotic cells deployed at customer sites; AI-driven operation",
+      "Tutor Cloud Platform": "Cloud backend for robot management, monitoring, and AI model deployment (AWS + Azure)",
+      "Tutor Operations Center": "24/7 Head of Tutor Operations team monitoring all robot deployments across customer sites",
+      "RaaS Subscription": "Subscription model providing hardware, software, and operations as a bundled service"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (S3, Cognito) + Azure (AKS, Load Balancer, vnet East US, WireGuard Cloud Router) — dual-cloud architecture; physical security delegated to AWS and Azure as subservice organizations",
+    "regions": ["Azure: East US (vnet East US)", "AWS: Not explicitly named — single region implied"],
+    "physical_presence": "80 Coolidge Hill Road, Watertown, MA (office/HQ); customer sites with deployed robot hardware across logistics/manufacturing facilities",
+    "availability_zones": "Multi-AZ — 'continuity of operations in the event of an availability zone failure by spinning up multiple servers across all availability zones in AWS'",
+    "additional_cloud": ["Azure (AKS compute cluster, Azure Load Balancer, vnet East US, WireGuard Cloud Router, Internet Gateway)", "Vercel (web application hosting)"],
+    "serverless": [],
+    "cdn": "Not mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Azure vnet East US with segmented subnets; AKS cluster isolated within vnet; ACLs control traffic between network segments",
+    "api_gateway": "Azure Load Balancer (explicitly shown in network diagram as entry point to Azure vnet)",
+    "waf": null,
+    "firewalls": "Firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services; firewall rules reviewed annually by IT management",
+    "ids_ips": "IDS and IPS via AWS and Azure — employs IDS and IPS to identify and protect against threats in conjunction with security policy network settings",
+    "vpn": "WireGuard VPN — robots at customer sites connect to WireGuard Cloud Router in Azure vnet East US; used for robot-to-cloud secure connectivity over customer networks",
+    "tls": "TLS with certificates from established third-party certificate authority",
+    "content_filtering": "Proxy server — all systems restricted to internet through content filtering system routed through proxy server",
+    "multi_region": false,
+    "topology": "Customer Robot (WireGuard VPN) → Azure vnet East US [Internet Gateway → Azure Load Balancer → WireGuard Cloud Router → AKS Compute Cluster]; AWS S3 + Cognito for storage and auth; Vercel (Web App) for frontend; AKS handles backend compute and robot management"
+  },
+
+  "application_architecture": {
+    "pattern": "Container-based microservices on Azure AKS; dual-cloud data/auth services on AWS (S3 + Cognito); web frontend on Vercel",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["Azure AKS (Kubernetes cluster — primary compute)", "Azure Load Balancer", "AWS S3 (file/artifact storage)", "AWS Cognito (authentication)", "Vercel (web app hosting)", "WireGuard Cloud Router (VPN gateway in Azure vnet)"],
+    "api_style": "REST (implied from web app + AKS backend pattern)",
+    "environments": "Separate development/test and production environments; changes tested in separate dev/test environment before production deployment (CC8.1.4)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Not specified by name — database implied within AKS cluster or managed Azure service"],
+    "caching": [],
+    "file_storage": ["AWS S3 (explicitly named in network diagram for storage)"],
+    "data_warehouse": "Not mentioned",
+    "backup_frequency": "Backup policy established; formal backup and recovery procedures; frequency not explicitly stated",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": "Not explicitly disclosed — implied by AKS namespace isolation"
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS Cognito (explicitly named in network diagram for user authentication); Active Directory referenced for server accounts; password policy via AWS",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1); MFA required for source code tool access (CC8.1.3); 2FA required for employee email access",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day of termination — 'user accounts being disabled within one business day upon termination of employment' (CC6.1.4)",
+    "password_policy": "Via AWS password policy; periodic forced changes, password expiry, complexity requirements; account disabled after limited failed logon attempts; no guest/anonymous logins; unattended desktop lockout"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified) with certificates from established third-party CA; WireGuard VPN encryption for robot-to-cloud traffic",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest (CC6.1.5) — AWS KMS implied",
+    "key_management": "AWS KMS — 'cloud provider key management service to encrypt data at rest and to store and manage encryption keys'; access to production access keys restricted to authorized individuals",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Git-based SCM tool — 'source code management tool' referenced; code repository branch rules configured (CC8.1.2); access restricted via MFA (CC8.1.3)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Code repository branch rules configured to ensure every merge request to production requires additional approval; developers cannot make production code changes without approval (CC8.1.2)",
+    "iac": "Configuration management tool used for baseline configuration implementation and rollback capability (CC7.1.1) — 'baseline configurations are retained within the infrastructure as a code'",
+    "container_orchestration": "Azure AKS (Kubernetes — explicitly shown in network diagram as primary compute platform)",
+    "patch_management": "CTO/Management sets up automatic patch management; monthly patch management reviews; workstations configured for automatic updates; workstations scanned for patch compliance daily; patches tested for stability/availability before production deployment",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named — monitoring tool with predefined thresholds; 24/7 Tutor Operations Center team monitoring robot deployments; performance monitoring covers disc space, incoming/outgoing network traffic, packet loss, CPU utilization",
+    "siem": "Not named",
+    "log_aggregation": "Logging enabled for administrative activities, logon attempts, data deletions at application and infrastructure level, changes to functions, security configurations, permissions, and roles (CC7.2.1); access to log configuration and modification is restricted",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; issues resolved via incident management process; 24/7 operations team provides continuous robot monitoring",
+    "metrics": ["CPU utilization", "disc space", "incoming/outgoing network traffic", "packet loss", "robot operational status"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS", "purpose": "S3 (file storage) + Cognito (authentication) — partial cloud role; subservice organization under carve-out method", "criticality": "Critical"},
+    {"vendor": "Azure", "purpose": "Primary compute platform — AKS cluster, Load Balancer, vnet East US, WireGuard Cloud Router, Internet Gateway; subservice organization under carve-out method", "criticality": "Critical"},
+    {"vendor": "Vercel", "purpose": "Web application hosting (frontend)", "criticality": "Medium"},
+    {"vendor": "WireGuard", "purpose": "VPN protocol for robot-to-cloud secure connectivity; Cloud Router deployed in Azure vnet", "criticality": "Critical"},
+    {"vendor": "Third-party certificate authority (unnamed)", "purpose": "TLS certificates for production endpoints", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and malware protection installed on all production servers (continuous auto-scan; definitions updated weekly on production servers); also on Mac workstations/laptops; endpoint security solution with log review by IT Head",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; scan frequency adjusted as required; high/critical vulnerabilities remediated per incident response plan",
+    "penetration_testing": "Annual external penetration test by independent third party; high/critical findings remediated and tracked to resolution (CC4.1.1)",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": "Backup policy established but frequency not explicitly stated as daily",
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — Physical facility access controls excluded (AWS and Azure responsibility as subservice orgs; no owned servers)",
+      "A1.2 — Environmental protections excluded (building management and AWS/Azure responsibility)",
+      "Processing Integrity — determined not relevant to the system",
+      "Privacy — determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC8.1.3 — Source code tool access restricted to authorized users via MFA",
+      "CC6.1.4 — 1-business-day access revocation SLA explicitly stated",
+      "CC6.2.2 — Quarterly user access reviews for all user accounts including admin-privileged",
+      "CC4.1.1 — Annual external penetration test; high/critical findings tracked to resolution",
+      "CC7.1.1 — Infrastructure as Code (IaC) for baseline configuration with rollback capability",
+      "CC9.2.1 — Quarterly vendor risk assessments for critical vendors lacking SOC reports",
+      "CC7.4.1 — BCDR tested annually against multiple defined loss scenarios",
+      "CC2.1.4 — CISO role assigned; defined roles/responsibilities for security oversight",
+      "24/7 Tutor Operations Center — continuous robot monitoring across all customer deployments (unique physical operations control not present in software-only peers)"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Dual-cloud (AWS + Azure) is the most sophisticated infrastructure in this batch — AWS for auth/storage (Cognito + S3), Azure for compute (AKS + Load Balancer + vnet). Vercel for web frontend adds a third managed layer. WireGuard VPN for robot connectivity is purpose-built for the use case. Multi-AZ confirmed. Single primary region. No CDN, no WAF."
+    },
+    "application_architecture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Azure AKS for container orchestration is the only company in this batch with named Kubernetes. AWS Cognito for auth explicitly named. AWS S3 for storage explicitly named. WireGuard VPN for robot connectivity is architecturally unique. No programming languages or frameworks named. No database name disclosed. The physical robotics dimension (real-world hardware + cloud) adds complexity not visible in the report."
+    },
+    "data_layer": {
+      "score": 3,
+      "max": 10,
+      "rationale": "AWS S3 confirmed for file storage. No database name disclosed despite AKS cluster implying a managed database service. No caching layer, no data warehouse. Backup policy exists but frequency not explicitly stated. Data classification and retention policies in place. Very limited data layer disclosure for a company managing robot operational data and AI model artifacts."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Annual external pen test, monthly automated vuln scans, IDS/IPS via AWS and Azure, anti-virus on production servers (weekly definitions), endpoint protection on workstations, MFA on admin access and source code, firewall with annual review, content filtering via proxy, quarterly access reviews, 1-day revocation SLA. No WAF named. No cybersecurity insurance disclosed. WireGuard encryption for robot traffic is a domain-specific security positive."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Azure AKS (Kubernetes) for container orchestration is the strongest DevOps indicator in this batch. IaC confirmed with rollback. Branch protection with MFA for SCM access. Emergency change process. Separate environments. Monthly patch reviews with automatic patch management, daily workstation compliance scanning. CI/CD tool not named. The physical hardware deployment pipeline adds operational complexity beyond typical SaaS."
+    },
+    "bcdr_readiness": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BCDR policy exists and is tested annually. Multi-AZ failover in AWS confirmed. DR plan covers BIA, roles, critical systems, time frames. No multi-region failover. No RTO/RPO disclosed. Backup frequency not stated. The physical robot deployment dimension creates unique DR complexity — robot hardware at customer sites cannot be 'failed over' in the same way cloud services can."
+    },
+    "vendor_diversity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "AWS + Azure dual cloud is the strongest cloud diversification in this batch. Vercel for web, WireGuard for VPN — 4 named technology platforms. Physical hardware supply chain adds additional vendor dimensions not visible in SOC report. Quarterly vendor risk assessments. No single cloud provider holds all critical services. Concentration risk: Azure holds primary compute; Azure outage would affect AKS, Load Balancer, and robot connectivity simultaneously."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Tutor Intelligence has the most architecturally complex and unique setup in this batch: dual-cloud (AWS + Azure), Azure AKS for Kubernetes, AWS Cognito for auth, WireGuard VPN for robot-to-cloud connectivity, Vercel for web frontend, and a 24/7 operations center. The physical robotics use case (AI palletizing for logistics/manufacturing) creates unique security and BCDR considerations not covered by standard SOC 2 criteria. SOC 2 Type 1 limits assurance to design only. No database name disclosed and no cybersecurity insurance are notable gaps. The network diagram is genuine and reveals a sophisticated multi-cloud architecture."
+    }
+  },
+
+  "red_flags": [
+    "SOC 2 Type 1 only — point-in-time design assessment; no operating effectiveness testing",
+    "No database name disclosed despite AKS cluster and substantial data operations",
+    "No cybersecurity insurance disclosed",
+    "Physical robot hardware at customer sites creates attack surface and DR complexity not addressed by SOC 2 controls",
+    "No WAF despite internet-facing API for robot management and web application"
+  ],
+
+  "yellow_flags": [
+    "No RTO or RPO disclosed despite operating robotics-as-a-service where physical equipment downtime has direct customer impact",
+    "No CI/CD pipeline named — deployment process for AKS services and robot firmware unspecified",
+    "Backup frequency not stated — critical for robot operational data and AI model artifacts",
+    "No CDN mentioned",
+    "Processing Integrity and Privacy excluded from scope despite handling robot operational data and potentially PII from manufacturing environments",
+    "Azure as primary compute (single Azure region) — no multi-region Azure DR"
+  ],
+
+  "green_flags": [
+    "Dual-cloud architecture (AWS + Azure) — most sophisticated cloud diversification in this batch",
+    "Azure AKS (Kubernetes) — only company in this batch with named container orchestration platform",
+    "AWS Cognito explicitly named for authentication — strongest auth platform disclosure in batch",
+    "Real network diagram revealing full architecture: AWS S3 + Cognito, Azure vnet + AKS + Load Balancer + WireGuard Cloud Router, Vercel",
+    "Management assertion actually signed (Joshua Gruenstein, CEO, 07/22/2025)",
+    "WireGuard VPN for robot-to-cloud connectivity — purpose-built, modern VPN protocol appropriate for IoT/robotics use case",
+    "24/7 Tutor Operations Center monitoring all robot deployments — operational maturity beyond typical SaaS companies",
+    "Annual external penetration test by independent third party",
+    "Monthly automated vulnerability scans with remediation tracking",
+    "MFA required for source code tool access (CC8.1.3)",
+    "IaC with rollback capability for all baseline configurations",
+    "1-business-day access revocation SLA explicitly stated",
+    "Quarterly user access reviews including admin-privileged accounts",
+    "Content filtering via proxy server for all internet access",
+    "BCDR tested annually against multiple defined loss scenarios"
+  ],
+
+  "key_observations": [
+    "Tutor Intelligence is the only physical technology company in this batch — deploying robotic hardware at customer sites fundamentally changes the security and operational risk profile vs. pure SaaS companies. Robot firmware updates, physical access controls at customer facilities, and robot operational data are unique dimensions not addressed by the SOC 2 report",
+    "The dual-cloud architecture (AWS for auth/storage + Azure for compute) is the most sophisticated in this batch and suggests deliberate architecture decisions — possibly Azure chosen for AKS cost/performance characteristics and AWS chosen for Cognito's managed auth capabilities",
+    "WireGuard as the robot VPN protocol is a strong technical signal — WireGuard is modern (2020 Linux kernel integration), high-performance, and well-suited for IoT/embedded devices where OpenVPN/IPsec overhead would be prohibitive. This suggests engineering sophistication",
+    "The 24/7 Tutor Operations Center is an unusual control for a startup — having human operators continuously monitoring physical robots across all customer sites implies significant operational investment and creates both a security control (anomaly detection) and a risk surface (insider access to customer operational data)",
+    "No database name is disclosed despite the company operating AKS containers that would clearly require persistent storage — this is likely a managed Azure database service (Azure Database for PostgreSQL or Azure SQL) or an in-cluster solution, but the SOC report doesn't reveal it",
+    "The RaaS (Robotics-as-a-Service) subscription model means Tutor Intelligence has physical hardware at customer sites that it owns and manages — creating liability and security obligations beyond typical cloud software. The SOC 2 report does not address physical security controls at customer facilities"
+  ]
+}

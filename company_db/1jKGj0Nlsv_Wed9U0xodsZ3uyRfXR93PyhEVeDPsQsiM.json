@@ -1,0 +1,19 @@
+{
+  "doc_id": "1jKGj0Nlsv_Wed9U0xodsZ3uyRfXR93PyhEVeDPsQsiM",
+  "link": "https://docs.google.com/document/d/1jKGj0Nlsv_Wed9U0xodsZ3uyRfXR93PyhEVeDPsQsiM",
+  "timestamp": "11/17/2025 16:10:54",
+  "display_name": "FeedOtter",
+  "legal_name": "FeedOtter LLC",
+  "company_name": "FeedOtter",
+  "system_description": "Feedotter is an email newsletter software.",
+  "audit_end_date": "",
+  "observation_period": "August 13, 2025 - November 13, 2025",
+  "infra_provider": "AWS",
+  "website": "https://feedotter.com",
+  "contact_email": "security@feedotter.com",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1jKGj0Nlsv_Wed9U0xodsZ3uyRfXR93PyhEVeDPsQsiM.pdf",
+  "txt_file": "1jKGj0Nlsv_Wed9U0xodsZ3uyRfXR93PyhEVeDPsQsiM.txt",
+  "has_report": true
+}

@@ -1,0 +1,245 @@
+{
+  "company": "Cluely, Inc.",
+  "product": "Cluely",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "June 27, 2025 - September 27, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "520 Bryant St, San Francisco CA, 94107",
+  "signing_authority": "Neel Shanmugam, Chief Operating Officer",
+
+  "system_description": {
+    "overview": "Cluely is an AI sales assistant that gives real-time answers, prospect insights, and objection handling during calls. It also provides knowledge base sync, instant meeting briefs, CRM integrations, detailed performance analytics, and enterprise-grade privacy for sales, recruiting, and operations teams.",
+    "products": {
+      "AI Meeting Assistance": "Real-time answers, objection handling, follow-up suggestions, live prospect insights during calls, no-bot note taking, AI-generated meeting briefs, auto post-call action items, interactive meeting analytics, pre-call briefs with smart calendar integration",
+      "Custom Knowledge Base": "Sync and manage full library of knowledge, sales content, process docs; 400k+ token context window, RAG-powered retrieval, team-level permissions, usage analytics",
+      "Coaching and Analytics": "Call performance dashboards, missed opportunity tracking, post-call coaching, team/admin reporting",
+      "White Glove Onboarding & Support": "Personalized onboarding, team training, usage analytics, 24/7 direct founder and enterprise support"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Vercel (carve-out — Vercel holds its own SOC 2)",
+    "regions": ["Not explicitly named; Vercel multi-availability zone data centers"],
+    "physical_presence": "None — no physical offices or servers; fully cloud-hosted on Vercel",
+    "availability_zones": "Multi-AZ (Vercel high-availability data centers with multiple availability zones)",
+    "additional_cloud": ["AWS (Bedrock — listed as coming soon in network diagram)", "Cloudflare Workers (listed in network diagram for Workers, JS, DNS)"],
+    "serverless": ["Vercel serverless/edge functions (Workers in diagram)", "AWS Lambda (implied via Bedrock integration)"],
+    "cdn": "Cloudflare (Workers/DNS shown in network diagram)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Hosted in Vercel VPC with segmented VPCs and ACLs. Network segmentation implemented to separate systems and data by sensitivity and criticality. Customer accounts are appropriately segmented from each other.",
+    "api_gateway": "Vercel (handles Dashboard, Analytics, Authentication per network diagram)",
+    "waf": "Vercel (IDS/IPS and firewall capabilities via Vercel platform)",
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via Vercel to identify and protect against threats. Intrusion detection system utilized to monitor and detect unauthorized access or anomalies.",
+    "vpn": "Remote access via bastion host with VPN",
+    "tls": "TLS (Transport Layer Security) with certificates from established third-party certificate authority",
+    "content_filtering": "All systems restricted to internet with content filtering routed through proxy server",
+    "multi_region": false,
+    "topology": "User requests → Vercel (Dashboard/Analytics/Authentication) → Cloudflare Workers (JS/DNS) → Neon (Data Storage); PostHog for Analytics/Feature Flags; WorkOS for Authentication; AssemblyAI for Transcription; AWS Bedrock (coming soon) for Transcription; OpenAI and Groq for LLMs; Axiom for Monitoring and Alerting"
+  },
+
+  "application_architecture": {
+    "pattern": "Serverless-heavy (Vercel-native with edge/serverless functions)",
+    "languages": ["Not explicitly named in report"],
+    "frameworks": ["Not explicitly named in report"],
+    "compute": ["Vercel serverless/edge", "Cloudflare Workers", "AWS Bedrock (coming soon)"],
+    "api_style": "Not explicitly stated",
+    "environments": "Separate development/test and production environments; changes tested before migration to production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Neon (PostgreSQL-based serverless database — shown as Data Storage in network diagram)"],
+    "caching": ["Not explicitly mentioned"],
+    "file_storage": ["Not explicitly mentioned; likely Vercel/cloud storage"],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Daily (CC7.4.2: Backups taken daily, multi-availability zones configured, alerts in place)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "WorkOS (shown as Authentication in network diagram)",
+    "mfa": "MFA enforced for all user accounts with administrative access to production platform; MFA required to access source code management tool; two-factor authentication required for employee email",
+    "rbac": true,
+    "sso": true,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination of employment",
+    "password_policy": "Password policy via Vercel; periodic forced changes, password expiry and complexity requirements; accounts disabled after limited unsuccessful logon attempts"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest",
+    "key_management": "Cloud provider KMS (Vercel/AWS KMS); access to production environment access keys restricted to authorized individuals",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Git-based (source code management tool with branch protection; MFA required — likely GitHub)",
+    "ci_cd_tool": "Not explicitly named (deployment managed via Vercel pipeline)",
+    "branch_protection": "Code repository branch rules configured to require additional approval for every merge request to production. Approval process followed prior to merging to master branch.",
+    "iac": "Baseline configurations retained within infrastructure as code; configuration management tool used for implementation and rollback",
+    "container_orchestration": "None mentioned (serverless/edge architecture via Vercel)",
+    "patch_management": "CTO/Management sets up automatic patch management; monthly patch management reviews; workstations scanned for patch compliance daily; critical/security patches applied as available",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Axiom (Monitoring and Alerting shown in network diagram)",
+    "siem": "Not explicitly named",
+    "log_aggregation": "Axiom; logging enabled for administrative activities, logon attempts, data deletions, changes to functions, security configurations, permissions and roles",
+    "alerting": "Axiom (automated alerts configured to notify IT management of high and critical risk events)",
+    "metrics": ["CPU utilization", "disk space", "incoming/outgoing network traffic", "packet loss", "system performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Vercel", "purpose": "Primary cloud infrastructure — hosting, serverless compute, authentication, analytics, dashboard", "criticality": "Critical"},
+    {"vendor": "Neon", "purpose": "Data storage (serverless PostgreSQL)", "criticality": "Critical"},
+    {"vendor": "WorkOS", "purpose": "Authentication / SSO", "criticality": "Critical"},
+    {"vendor": "AssemblyAI", "purpose": "Audio transcription", "criticality": "High"},
+    {"vendor": "OpenAI", "purpose": "LLM inference", "criticality": "High"},
+    {"vendor": "Groq", "purpose": "LLM inference (alternative/additional)", "criticality": "High"},
+    {"vendor": "Cloudflare", "purpose": "Workers, DNS, CDN, JS runtime", "criticality": "High"},
+    {"vendor": "PostHog", "purpose": "Analytics and feature flags", "criticality": "Medium"},
+    {"vendor": "Axiom", "purpose": "Monitoring and alerting", "criticality": "Medium"},
+    {"vendor": "AWS Bedrock", "purpose": "Transcription and LLM (coming soon)", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers and Mac-based workstations/laptops; continuous automatic scanning; definitions updated weekly on production servers",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; self-assessment scan prior to every production release or annually",
+    "penetration_testing": "Annual external penetration testing by independent third party",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 69,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — could not be tested because there were no significant changes to people, roles and responsibilities during the engagement period",
+      "CC3.2.1 (cybersecurity insurance effectiveness) — could not be tested because there were no cyber incidents reported during the engagement period",
+      "CC6.5.2 (customer data deletion) — could not be tested because there were no customer terminations during the engagement period",
+      "CC7.3.1 (incident response) — could not be tested because there were no security incidents reported during the engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — Physical access to data center facilities; Vercel is responsible for physical security, not Cluely",
+      "A1.2 — Environmental protections; Cluely does not have an office; environmental controls managed by Vercel"
+    ],
+    "notable_controls": [
+      "Daily backups with multi-AZ configuration confirmed (CC7.4.2)",
+      "BCDR plan tested annually with loss scenario testing (CC7.4.1)",
+      "Quarterly user access reviews including privileged accounts (CC6.2.2)",
+      "Access revocation within 1 business day of termination (CC6.1.4)",
+      "External penetration testing conducted annually (CC4.1.1)",
+      "Monthly vulnerability scans (CC7.1.2)",
+      "Risk and Governance Executive Committee (RGEC) meets semiannually; IT Leadership Committee meets weekly",
+      "Source code access protected by MFA (CC8.1.3)",
+      "Branch protection with required approvals before merging to master (CC8.1.2)"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Vercel-native serverless architecture with multi-AZ and daily backups confirmed. Cloudflare CDN/Workers present. However single cloud provider (Vercel), no explicit multi-region failover, and AWS Bedrock is listed as 'coming soon' suggesting early-stage diversification. IaC in place."
+    },
+    "application_architecture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Modern serverless-heavy pattern on Vercel with clear separation of environments, branch protection, and MFA-gated code commits. Specific languages/frameworks not disclosed. RAG + multi-LLM strategy (OpenAI + Groq) shows architectural sophistication."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Neon (serverless Postgres) confirmed as primary data store, daily backups with multi-AZ. No explicit caching layer, data warehouse, or file storage beyond Neon mentioned. Data classification and retention policies in place."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong posture for company age: annual external pen test, monthly vuln scans, IDS/IPS via Vercel, anti-malware on all endpoints, MFA enforced broadly, cybersecurity insurance, quarterly access reviews, access revocation within 1 business day. No exceptions in any controls tested."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "IaC confirmed, branch protection with required approvals, separate environments, emergency change process, monthly patch reviews. CI/CD tooling not explicitly named. No container orchestration (serverless-only). Automatic patch management set up by CTO."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented, reviewed and tested annually with multiple loss scenarios. Daily backups with multi-AZ. RTO/RPO not disclosed. No multi-region failover mentioned. Solid for an early-stage company."
+    },
+    "vendor_diversity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Rich vendor ecosystem visible in network diagram: Vercel, Neon, WorkOS, AssemblyAI, OpenAI, Groq, Cloudflare, PostHog, Axiom, and AWS Bedrock (coming soon). Multiple LLM providers reduces AI concentration risk. Heavy Vercel dependency is notable single point. 9+ named vendors."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Strong security program for a short-history SOC 2 Type 2 (only 3-month period). Fully cloud-native on Vercel with a rich vendor ecosystem. Key gaps: RTO/RPO not published, no multi-region DR, specific tech stack not disclosed in report, and the 3-month audit period is short. No exceptions in any of 69 controls tested is a strong positive signal."
+    }
+  },
+
+  "red_flags": [
+    "Very short audit period (3 months: June 27 – September 27, 2025) — limits confidence in control operating effectiveness over time",
+    "Entire infrastructure is on a single cloud provider (Vercel); multi-region failover not in place",
+    "RTO and RPO not publicly disclosed in the report",
+    "AWS Bedrock labeled 'coming soon' in the network diagram — indicates infrastructure is still evolving"
+  ],
+  "yellow_flags": [
+    "Primary database (Neon) is a relatively early-stage serverless Postgres provider — vendor stability risk",
+    "No explicit data warehouse or caching layer mentioned — may indicate limited analytics/performance infrastructure",
+    "Specific programming languages and frameworks not disclosed — limits technical due diligence",
+    "4 controls could not be tested (no incidents/changes during period) — not exceptions but incomplete operating evidence"
+  ],
+  "green_flags": [
+    "Zero exceptions across all 69 controls tested in the audit",
+    "Annual external penetration testing by independent third party confirmed",
+    "Monthly automated vulnerability scanning confirmed",
+    "Daily backups with multi-AZ configuration confirmed",
+    "BCDR plan documented, reviewed, and tested annually",
+    "Quarterly user access reviews for all accounts including privileged",
+    "Access revocation within 1 business day of termination",
+    "Cybersecurity insurance in place",
+    "Rich third-party vendor ecosystem with multiple LLM providers (OpenAI + Groq) for redundancy",
+    "MFA enforced broadly: email, production platform admin, source code access",
+    "Formal Risk and Governance Executive Committee (RGEC) with IT Leadership Committee meeting weekly"
+  ],
+  "key_observations": [
+    "Network diagram in report explicitly names all major vendors — unusually transparent for a SOC 2 report; architecture is Vercel-centric with Cloudflare for edge/DNS, Neon for data, WorkOS for auth, multiple AI providers",
+    "The 3-month audit period (Jun–Sep 2025) is the company's first SOC 2 Type 2, suggesting rapid compliance maturation — but the short period means limited operating history evidence",
+    "Cluely markets itself as a 'desktop AI assistant' but the system description reveals it is primarily a sales intelligence/coaching platform — the system boundary covers an AI-powered real-time meeting assistant with CRM integrations, RAG knowledge base, and post-call analytics",
+    "AWS Bedrock listed as 'coming soon' for transcription in the network diagram alongside AssemblyAI, suggesting a planned migration or hybrid approach to audio transcription",
+    "Neon (serverless Postgres) as the primary data store is notable — Neon is a modern, fast-scaling option but is a newer vendor compared to established RDS/Aurora options; appropriate for a fast-growing startup",
+    "The audit explicitly carves out Vercel's controls (carve-out method) — meaning Vercel's physical security, availability controls and data center operations are not covered; customers must rely on Vercel's own SOC 2"
+  ]
+}

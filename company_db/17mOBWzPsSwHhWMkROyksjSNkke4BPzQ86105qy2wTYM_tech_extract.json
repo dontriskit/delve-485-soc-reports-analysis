@@ -1,0 +1,261 @@
+{
+  "company": "OWND ApS dba Parahelp",
+  "product": "Parahelp",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of July 31, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "Copenhagen, Denmark (no street address disclosed); website: parahelp.com; contact: mads@parahelp.com",
+  "signing_authority": "Mads Lunau Liechti, COO (signed August 7, 2025)",
+
+  "system_description": {
+    "overview": "Parahelp is an AI-powered customer support automation platform that enables companies to create their own AI support agent to automate repetitive support tickets end-to-end. The platform analyzes historical support tickets and generates contextual responses to incoming customer queries, integrating with knowledge bases and CRM systems.",
+    "products": {
+      "Automated Ticket Handling": "AI-powered generation of contextual responses to incoming support queries; integrations with key systems to retrieve contextual information (knowledge base articles, support policies) and perform actions like posting ticket responses",
+      "Support Ticket Handling Analysis": "AI-powered analysis of historical support tickets; AI-powered generation of support reports",
+      "Support Services": "Comprehensive onboarding and implementation support including technical configuration of system integrations; access to continuous dedicated support"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Amazon Web Services (AWS) — carve-out method (subservice organization with its own SOC 2 report)",
+    "regions": ["us-east-1 — confirmed from network diagram region label"],
+    "physical_presence": "No physical offices; no physical servers. All data processed on cloud services.",
+    "availability_zones": "Multi-AZ (spins up multiple servers across all availability zones in AWS on AZ failure)",
+    "additional_cloud": ["PlanetScale (managed MySQL database, hosted within AWS via PrivateLink)"],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Parahelp VPC in AWS us-east-1 with private and public subnets. Security groups configured: (1) SG allowing outgoing traffic to PlanetScale VPC, (2) SG allowing only internal incoming traffic on port 5432, (3) load balancer SG allowing public incoming traffic on ports 80 & 443. Segmented VPCs and ACLs. IDS and IPS via AWS.",
+    "api_gateway": "Load balancer in public subnet routing traffic to API Server (api.parahelp.com) in private subnet via EKS",
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services; reviewed annually by IT management (CC6.6.1). Formal network diagram maintained for all network connections reviewed annually (CC2.3.4).",
+    "ids_ips": "IDS and IPS via AWS to identify and protect against threats; firewalls and intrusion detection tools configured to prevent unauthorized access and detect external security threats (CC6.6.1)",
+    "vpn": "Remote access via bastion host with VPN",
+    "tls": "TLS using certificates from an established third-party certificate authority (CC6.1.6)",
+    "content_filtering": "Content filtering system routed through proxy server; email scanning to prevent malicious scripts and viruses; antivirus and anti-malware with Trojan protection on all systems and devices",
+    "multi_region": false,
+    "topology": "Internet -> Internet Gateway -> Load Balancer (public subnet, SG: ports 80 & 443) -> Parahelp VPC (private subnet, us-east-1): EKS cluster [Hatchet Engine + Hatchet worker + Procrastinate worker + API Server (api.parahelp.com) + Grafana (grafana.parahelp.com) + Hatchet Frontend (hatchet.parahelp.com)] + Aurora DB (Task Queue, SG: internal port 5432) -> PrivateLink -> PlanetScale VPC [MySQL DB]"
+  },
+
+  "application_architecture": {
+    "pattern": "Container-based microservices on Kubernetes (EKS) with specialized workers",
+    "languages": ["Not disclosed"],
+    "frameworks": ["Not disclosed"],
+    "compute": ["EKS (Amazon Elastic Kubernetes Service) — container orchestration for API server and workers", "Aurora DB (AWS managed — task queue)", "PlanetScale (managed MySQL — primary database, via PrivateLink)"],
+    "api_style": "REST (API Server at api.parahelp.com)",
+    "environments": "Separate development and production environments; changes tested before migration to production (CC8.1.4)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["PlanetScale (managed MySQL, hosted in AWS via PrivateLink — primary database)", "Aurora DB (AWS managed — task queue storage)"],
+    "caching": ["Not mentioned"],
+    "file_storage": ["Not specifically named"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Not specified (backup policy exists; backup and restoration logs maintained for defined retention periods per Backup Policy)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS (passwords controlled through AWS password policy; Active Directory for server/database accounts)",
+    "mfa": "MFA enforced for all administrative access to production platform (CC6.1.1); MFA required to access source code management tool (CC8.1.3); 2FA for employee email",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination (CC6.1.4) — termination checklist used",
+    "password_policy": "AWS password policy with periodic forced changes, password expiry, complexity requirements; account lockout after limited unsuccessful logon attempts; no guest or anonymous logins; unattended desktops locked within inactivity timeout"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified) — CC6.1.6",
+    "at_rest": "Cloud provider key management service (AWS KMS) used to encrypt data at rest (CC6.1.5)",
+    "key_management": "AWS KMS; access to production environment access keys restricted to authorized individuals",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named (source code management tool with MFA access; branch rules configured; source code changes logged, time-stamped, and attributed to author — CC8.1.3)",
+    "ci_cd_tool": "Not named; changes documented in internal tool tracked from initiation through deployment and validation (CC8.1.1)",
+    "branch_protection": "Code repository branch rules configured to require additional approval for every merge request to move change to production environment (CC8.1.2). Developers cannot make changes to production code without additional approval.",
+    "iac": "Configuration management tool used for implementation and rollback; baseline configurations retained as code in infrastructure (CC7.1.1). Reviewed annually or when required.",
+    "container_orchestration": "Amazon EKS (Elastic Kubernetes Service) — Hatchet Engine, Hatchet worker, Procrastinate worker, API Server all run as pods in EKS cluster",
+    "patch_management": "Automatic patch management set up by CTO/Management; monthly patch management reviews; workstations configured for automatic updates and scanned daily for patch compliance (CC7.5.1)",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Grafana (grafana.parahelp.com) — visible in network diagram as dedicated monitoring pod in EKS cluster; monitoring tools for capacity and anomaly detection with threshold alerting (CC5.2.1)",
+    "siem": "Not named",
+    "log_aggregation": "AWS logging (implied); logging enabled for administrative activities, logon attempts, data deletions at application and infrastructure level, changes to functions, security configurations, permissions, and roles (CC7.2.1). Access to change log configuration and modify logs is restricted.",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; issues resolved in timely manner through incident management process; logs and alerts tracked until resolved in change-management/ticketing application (CC7.2.1)",
+    "metrics": ["disk space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "capacity metrics"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Primary cloud infrastructure subservice — compute (EKS, EC2), Aurora DB, VPC networking, KMS, IAM, multi-AZ", "criticality": "Critical"},
+    {"vendor": "PlanetScale", "purpose": "Managed MySQL database — primary data store, connected via AWS PrivateLink", "criticality": "Critical"},
+    {"vendor": "Hatchet", "purpose": "Workflow orchestration engine (Hatchet Engine + Hatchet worker + Hatchet Frontend) running as dedicated pods in EKS", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed and configured on all production servers (continuous auto-scan; definitions updated weekly). Anti-virus and Malware protection software installed and configured for Mac based workstations and laptops (CC6.8.1). Endpoint protection includes Trojan protection and e-mail scanning.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; management reviews and takes action on high/critical findings; remediation plan developed; resolution follows incident response plan (CC7.1.2). Self-assessment scan prior to every production release or annually.",
+    "penetration_testing": "Annual external penetration testing by independent third-party; high and critical findings remediated and tracked to resolution via incident management (CC4.1.1)",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed (business impact analysis referenced; time frames identified in DR plan)",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 29,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — Physical access to data center; AWS is responsible for physical security; SOC 2 report of AWS reviewed annually (CC6.4.1)",
+      "A1.2 — Environmental protections and software/data backup recovery infrastructure; managed by building management/AWS",
+      "Processing Integrity — determined not relevant to the system by Parahelp management",
+      "Privacy — determined not relevant to the system by Parahelp management"
+    ],
+    "notable_controls": [
+      "CC4.1.1: Annual external penetration testing by independent third-party; high/critical findings remediated and tracked via incident management",
+      "CC5.2.1: IT team continuously monitors system capacity and performance; alerts on predefined thresholds via monitoring tools",
+      "CC6.1.1: MFA enforced for all administrative access to production platform",
+      "CC6.1.4: Access revoked within one business day of termination via termination checklist",
+      "CC6.1.5: AWS KMS used to encrypt data at rest",
+      "CC6.4.1: All production systems in cloud; AWS SOC 2 report reviewed annually",
+      "CC6.5.1: Formal data retention and disposal policy; customer data retained per contractual agreement post-termination",
+      "CC6.6.1: Firewalls and IDS deployed to prevent unauthorized access and detect external threats",
+      "CC7.1.1: Server hardening; baseline configurations retained as code with rollback capability",
+      "CC7.1.2: Monthly automated vulnerability scanning; high/critical findings remediated",
+      "CC7.4.1: BCDR policy tested annually across multiple loss scenarios including AZ-level failover",
+      "CC8.1.2: Branch protection — no production changes without additional approval",
+      "CC8.1.3: Source code management with MFA; changes logged and attributed to author",
+      "CC8.1.4: Separate dev/test environments; changes tested before promotion to production",
+      "CC9.2.1: Annual SOC report reviews of AWS; quarterly vendor risk assessments for non-SOC vendors",
+      "CC9.2.2: Vendor security commitments documented and agreed during onboarding",
+      "CC9.2.3: Vendor termination process with access revocation checklist"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 7,
+      "max": 10,
+      "rationale": "AWS us-east-1 with multi-AZ failover, EKS container orchestration, dedicated private/public subnet separation, security groups with granular rules, PrivateLink for PlanetScale connectivity, IaC (config-as-code), Grafana monitoring. No CDN mentioned, no multi-region, single primary cloud provider. Detailed custom network diagram."
+    },
+    "application_architecture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Genuinely modern architecture: EKS (Kubernetes) running multiple specialized workers (Hatchet Engine, Hatchet worker, Procrastinate worker), dedicated API server, Grafana monitoring, Aurora DB for task queueing, PlanetScale (MySQL) for primary data via PrivateLink. Separate environments, branch protection, code reviews. No programming languages or frameworks disclosed."
+    },
+    "data_layer": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Two distinct database technologies: PlanetScale MySQL (primary data store) via PrivateLink and Aurora DB (task queue). No caching layer explicitly disclosed. No data warehouse. Backup policy exists but frequency not specified. Per-tenant segregation confirmed. Multi-AZ via AWS."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Annual external pen testing, monthly vuln scans, IDS/IPS via AWS, firewalls with granular security groups, MFA for admin access and source code, antivirus on servers (weekly definitions) and Mac endpoints (daily), quarterly access reviews, 1-day revocation SLA, AWS KMS encryption, content filtering via proxy, email scanning, CISO role assigned (CC2.1.4). No WAF named, no SIEM named, no cybersecurity insurance."
+    },
+    "devops_maturity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "EKS container orchestration (Kubernetes) is a notable maturity indicator. Branch protection with mandatory approval for production merges, separate environments, emergency change process, config-as-code (unnamed tool), automatic patch management, monthly reviews, Grafana monitoring visible in diagram. CI/CD tool not named, IaC tool not named, source control tool not named."
+    },
+    "bcdr_readiness": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BCDR policy documented, reviewed and tested annually across multiple loss scenarios. Multi-AZ failover via AWS. Business impact analysis referenced. No RTO/RPO disclosed, no multi-region failover, backup frequency not specified. DR relies entirely on AZ-level redundancy within us-east-1."
+    },
+    "vendor_diversity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Three identified vendors (AWS, PlanetScale, Hatchet). AWS is primary infrastructure with PlanetScale providing database independence via PrivateLink — slightly better than pure AWS concentration. Hatchet for workflow orchestration adds functional separation. However still very AWS-concentrated and PlanetScale itself runs on AWS."
+    },
+    "overall": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Parahelp has a notably sophisticated architecture for an AI startup: EKS-based containerized microservices, PlanetScale MySQL via PrivateLink, Aurora DB for async job queuing, Grafana monitoring, and the Hatchet workflow orchestration engine all visible in a genuine custom network diagram. Strong security hygiene with annual pen testing, monthly vuln scans, MFA everywhere, and zero exceptions. Key weaknesses: Security criteria only, no RTO/RPO, backup frequency unspecified, no WAF or SIEM named, no CDN, no multi-region. Yellow-highlighted text in system description is template formatting artifact but actual technical content is genuine."
+    }
+  },
+
+  "red_flags": [
+    "No RTO or RPO disclosed — BCDR maturity cannot be quantified",
+    "No WAF named — web application attack surface for an AI API platform unclear",
+    "No SIEM tool named — security event correlation capability unknown",
+    "CI/CD tool, IaC tool, and source control tool names not disclosed — tooling quality unverifiable",
+    "Security trust criteria only — Availability, Confidentiality, Processing Integrity, and Privacy not covered",
+    "Backup frequency not specified — data recovery exposure unknown"
+  ],
+  "yellow_flags": [
+    "Single primary cloud region (AWS us-east-1) — regional outage would impact service despite multi-AZ",
+    "PlanetScale itself runs on AWS, so PrivateLink separation does not provide true cloud provider diversity",
+    "No CDN mentioned — performance for distributed customers may be limited",
+    "No caching layer explicitly disclosed — potential performance concern for AI workloads",
+    "No cybersecurity insurance mentioned",
+    "No multi-region failover — entire DR relies on AZ-level redundancy",
+    "System description section has yellow-highlighted formatting (template editing artifact) though technical content appears genuine",
+    "OWND ApS is a Danish company (ApS = Danish private limited company) operating under GDPR — Privacy trust criteria exclusion is notable given European jurisdiction"
+  ],
+  "green_flags": [
+    "EKS (Kubernetes) container orchestration — significantly more mature than typical early-stage AI startup",
+    "Grafana monitoring deployed as dedicated infrastructure component (visible in network diagram)",
+    "Hatchet workflow orchestration engine with dedicated Hatchet Engine + Hatchet worker + Hatchet Frontend pods",
+    "PlanetScale MySQL via AWS PrivateLink — private connectivity without internet exposure",
+    "Aurora DB for async task queue — separate database technology for job queue workloads",
+    "Annual external penetration testing by independent third-party",
+    "Monthly automated vulnerability scanning with high/critical remediation",
+    "MFA enforced for all administrative access, source code management, and employee email (2FA)",
+    "Quarterly user access reviews including privileged accounts",
+    "Access revocation within one business day of termination",
+    "BCDR plan tested annually with multiple loss scenarios and multi-AZ failover",
+    "Branch protection with mandatory approval for all production merges",
+    "Separate development and production environments with testing gate",
+    "IDS/IPS active via AWS with firewalls and granular security groups",
+    "Antivirus on production servers (weekly definitions) and Mac workstations/laptops",
+    "Content filtering via proxy server with email scanning",
+    "Config-as-code with rollback capability",
+    "Zero exceptions across all 29 tested controls",
+    "AWS SOC 2 report reviewed annually; quarterly vendor risk assessments for non-SOC vendors",
+    "Board of Directors with formal charter acknowledged annually"
+  ],
+  "key_observations": [
+    "Parahelp's network diagram is the most technically detailed and genuinely custom among the companies reviewed — explicitly showing EKS pod-level architecture (Hatchet Engine, Hatchet worker, Procrastinate worker, API Server, Grafana, Hatchet Frontend) with named security groups, subnet types, and PrivateLink connectivity",
+    "The use of Hatchet (hatchet.run) as an embedded workflow orchestration engine is distinctive — Parahelp runs Hatchet as part of its own infrastructure (not as a SaaS), suggesting deeper control over async job processing than typical managed-service approaches",
+    "Procrastinate worker appearing in the EKS cluster suggests Parahelp uses the Procrastinate Python task queue library (or a similarly named custom component) for additional async processing alongside Hatchet",
+    "PlanetScale MySQL via PrivateLink is an architecturally interesting choice — keeps primary database in a managed service while maintaining private network connectivity, avoiding internet-exposed database access",
+    "Aurora DB as task queue storage is a mature pattern — using AWS Aurora for async job state rather than a simpler in-memory queue indicates high-throughput or durability requirements for AI workflow processing",
+    "OWND ApS is a Danish company (ApS = Danish private limited company, equivalent to GmbH/Ltd) operating under GDPR — the exclusion of Privacy trust criteria from SOC 2 scope is notable given that Danish and EU privacy law obligations are more stringent than in most other jurisdictions",
+    "The signing authority is the COO (Mads Lunau Liechti) rather than CEO, mirroring the management assertion being signed by an operations-focused executive — suggests the CEO may be primarily technical/product focused",
+    "Trust criteria: Security only — despite being an AI platform handling customer support data that could include sensitive customer information, Availability, Confidentiality, Processing Integrity, and Privacy are all out of scope",
+    "The yellow highlighting visible in the system description section appears to be a template formatting artifact from the Accorp workflow (same yellow highlighting style seen in the Lilee AI draft), but unlike the Lilee draft report, the technical content here is substantive and genuine — the highlighting does not indicate placeholder content",
+    "The org chart shows CEO + COO at top, with Product & Engineering Team, Sales Team, and Customer Success Team reporting down — a lean but complete go-to-market structure for an AI SaaS startup"
+  ]
+}

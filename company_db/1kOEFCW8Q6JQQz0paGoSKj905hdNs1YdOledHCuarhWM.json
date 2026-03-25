@@ -1,0 +1,19 @@
+{
+  "doc_id": "1kOEFCW8Q6JQQz0paGoSKj905hdNs1YdOledHCuarhWM",
+  "link": "https://docs.google.com/document/d/1kOEFCW8Q6JQQz0paGoSKj905hdNs1YdOledHCuarhWM",
+  "timestamp": "12/1/2025 15:27:57",
+  "display_name": "Disco",
+  "legal_name": "Disco Technology, Inc.",
+  "company_name": "Disco",
+  "system_description": "Disco is the AI layer for the transactional web.   We power personalized discovery for consumers wherever commerce happens, using a proprietary commerce graph of over 150 million shopper profiles and $50B in transaction data to help retailers deliver timely, relevant offers.",
+  "audit_end_date": "",
+  "observation_period": "August 26, 2025 - November 26, 2025",
+  "infra_provider": "AWS",
+  "website": "https://disconetwork.com",
+  "contact_email": "security@disconetwork.com",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1kOEFCW8Q6JQQz0paGoSKj905hdNs1YdOledHCuarhWM.pdf",
+  "txt_file": "1kOEFCW8Q6JQQz0paGoSKj905hdNs1YdOledHCuarhWM.txt",
+  "has_report": true
+}

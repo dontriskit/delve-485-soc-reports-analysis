@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Readiness — Delve Tech DD</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        bg: '#0f172a', bg2: '#1e293b', card: '#1a2332', border: '#334155',
+      }
+    }
+  }
+}
+</script>
+<style>
+body { background: #0f172a; }
+.prose { max-width: none; }
+.prose h1 { color: #e2e8f0; font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+.prose h2 { color: #e2e8f0; font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }
+.prose h3 { color: #3b82f6; font-size: 1.1rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+.prose p { color: #e2e8f0; line-height: 1.7; margin-bottom: 0.75rem; }
+.prose li { color: #e2e8f0; line-height: 1.6; }
+.prose strong { color: #e2e8f0; }
+.prose table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+.prose th { text-align: left; padding: 8px 12px; background: #1e293b; color: #94a3b8; font-size: 12px; text-transform: uppercase; border-bottom: 1px solid #334155; }
+.prose td { padding: 8px 12px; border-bottom: 1px solid #1a2332; color: #e2e8f0; font-size: 14px; }
+.prose tr:hover td { background: #1a2332; }
+.metric { background: #1a2332; border: 1px solid #334155; border-radius: 12px; padding: 20px; }
+.metric .value { font-size: 2rem; font-weight: 800; }
+.metric .label { color: #94a3b8; font-size: 0.75rem; margin-top: 4px; }
+.insight { background: #1a2332; border-left: 3px solid #3b82f6; padding: 16px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+.flag-red { background: rgba(239,68,68,0.1); border-left: 3px solid #ef4444; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.flag-yellow { background: rgba(245,158,11,0.1); border-left: 3px solid #f59e0b; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.flag-green { background: rgba(34,197,94,0.1); border-left: 3px solid #22c55e; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+</style>
+</head>
+<body class="min-h-screen">
+<div class="max-w-5xl mx-auto px-6 py-10">
+
+  <!-- Nav -->
+  <div class="mb-4">
+    <a href="../index.html" class="text-sm text-blue-400 hover:text-blue-300">← Back to Index</a>
+  </div>
+
+  <!-- Header -->
+  <div class="mb-8">
+    <div class="text-sm text-gray-400 mb-1">Delve Tech Due Diligence · Meta-Analysis</div>
+    <h1 class="text-3xl font-extrabold text-white">Investment Readiness</h1>
+    <p class="text-gray-400 mt-1">From 485 companies to the investable few — the quality funnel</p>
+  </div>
+
+  <!-- Content -->
+  <div class="prose">
+    <h2>The Investment Funnel</h2>
+
+<p>Starting from 485 companies, each progressive quality filter narrows the pool dramatically.</p>
+
+<div class="my-6"><img src="funnel.png" class="rounded-lg w-full" alt="funnel.png"></div>
+
+<table><thead><tr><th>Stage</th><th>Remaining</th><th>Drop-off</th><th>What it means</th></tr></thead><tbody><tr><td>Total Portfolio</td><td>485</td><td>—</td><td>All companies with SOC 2 reports</td></tr><tr><td>Type 2 (Operational)</td><td>254</td><td>231 lack operational evidence</td><td>Controls tested over time, not just designed</td></tr><tr><td>Scored 5+</td><td>109</td><td>145 below baseline</td><td>Minimum acceptable tech maturity</td></tr><tr><td>Scored 7+</td><td>19</td><td>90 adequate but not exceptional</td><td>Strong tech foundations</td></tr><tr><td>Full Maturity</td><td>20</td><td>-1 missing resilience</td><td>Multi-region + WAF + pen test + backups + reviews</td></tr></tbody></table>
+
+<div class="insight"><strong>Only 20 companies (4.1%) meet the full maturity bar.</strong> This means 96% of the portfolio has concrete improvement opportunities — a value creation thesis for PE.</div>
+<h2>Readiness Tiers</h2>
+
+<div class="my-6"><img src="tiers.png" class="rounded-lg w-full" alt="tiers.png"></div>
+
+<p>Of 121 scored companies:</p>
+<ul>
+<li><strong style="color:#22c55e">HIGH (8-10):</strong> 1 companies — best-in-class</li>
+<li><strong style="color:#3b82f6">MODERATE-HIGH (7):</strong> 18 companies — strong foundations</li>
+<li><strong style="color:#f59e0b">MODERATE (5-6):</strong> 90 companies — adequate, undifferentiated</li>
+<li><strong style="color:#ef4444">LOW (3-4):</strong> 12 companies — material gaps</li>
+</ul>
+<h2>Cheapest Fixes</h2>
+
+<p>These interventions would move the most companies up the maturity ladder with the least effort:</p>
+
+<div class="my-6"><img src="cheapest_fixes.png" class="rounded-lg w-full" alt="cheapest_fixes.png"></div>
+
+<div class="flag-green"><strong>Quick wins:</strong> Adding WAF (Cloudflare/AWS WAF, 1 day) and establishing quarterly access reviews (process change, $0) would benefit 56-78% of the portfolio.</div>
+<div class="flag-yellow"><strong>Medium effort:</strong> Multi-region migration and pen testing programs require weeks of work but dramatically reduce portfolio-level risk.</div>
+
+    <div class="mt-6"><img src="funnel.png" class="rounded-lg w-full" alt="funnel.png"></div>
+<div class="mt-6"><img src="tiers.png" class="rounded-lg w-full" alt="tiers.png"></div>
+<div class="mt-6"><img src="cheapest_fixes.png" class="rounded-lg w-full" alt="cheapest_fixes.png"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="mt-12 pt-6 border-t border-gray-700 text-gray-500 text-sm">
+    <p>Generated from investment readiness module · 485 SOC 2 compliance reports · 2026-03-24</p>
+  </div>
+
+</div>
+</body>
+</html>

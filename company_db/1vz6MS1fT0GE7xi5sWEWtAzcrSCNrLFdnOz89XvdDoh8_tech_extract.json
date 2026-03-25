@@ -1,0 +1,226 @@
+{
+  "company": "Timeglass, Inc.",
+  "product": "Timeglass",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "September 8, 2025",
+  "auditor": "ACCORP Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability"],
+  "hq": "Not disclosed",
+  "signing_authority": "Not disclosed",
+
+  "system_description": {
+    "overview": "Timeglass is an AI-powered time tracking and project management platform for professional services teams. It automates timesheets, provides productivity insights, and manages client billing.",
+    "products": {
+      "Work Tracking & Timelines": "Automated time capture and project timeline management",
+      "Performance & Productivity Insights": "AI-driven analytics on team and individual productivity",
+      "Client & Project Management": "Tools for managing client relationships and project delivery",
+      "Billing & Invoicing": "Automated billing based on tracked time and project milestones"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "GCP (carve-out subservice organization)",
+    "regions": ["Not explicitly named"],
+    "physical_presence": "None (no physical office)",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Not mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "VPC with network segmentation; production environment isolated from development and test environments",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Firewalls configured to restrict unauthorized access; firewall rules managed as code",
+    "ids_ips": "IDS/IPS provided via GCP infrastructure controls",
+    "vpn": "Bastion host used for secure administrative access",
+    "tls": "TLS in transit for all communications",
+    "content_filtering": null,
+    "multi_region": false,
+    "topology": "Internet traffic routed through GCP VPC; application services access Supabase (Postgres) database; administrative access via bastion host; GCP manages underlying physical infrastructure (carve-out)"
+  },
+
+  "application_architecture": {
+    "pattern": "Not explicitly disclosed; cloud-native on GCP",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["Compute Engine", "GKE (implied by GCP usage)"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development, test, and production environments",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Supabase (PostgreSQL)"],
+    "caching": [],
+    "file_storage": ["Google Cloud Storage"],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Not explicitly stated",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": false
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Google Workspace / GCP IAM",
+    "mfa": "MFA enforced for source code access and administrative accounts; Google Workspace SSO with MFA",
+    "rbac": true,
+    "sso": true,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Not explicitly stated",
+    "password_policy": "Managed via Google Workspace; complexity and expiry enforced"
+  },
+
+  "encryption": {
+    "in_transit": "TLS",
+    "at_rest": "AES-256 via GCP Cloud Storage encryption",
+    "key_management": "GCP managed keys",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Git-based (specific platform not named)",
+    "ci_cd_tool": "Not explicitly named",
+    "branch_protection": "Merge approval required before merging to main branch; branch protection rules enforced",
+    "iac": "Firewall configurations managed as code; full IaC not confirmed",
+    "container_orchestration": "GKE (implied)",
+    "patch_management": "Automatic patch management; CTO responsible for overseeing patch process",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not disclosed",
+    "siem": "Not disclosed",
+    "log_aggregation": "Google Cloud Logging / Stackdriver",
+    "alerting": "Not explicitly named",
+    "metrics": ["System availability", "Performance metrics"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "GCP (Google Cloud Platform)", "purpose": "Primary cloud infrastructure (carve-out subservice organization)", "criticality": "Critical"},
+    {"vendor": "Supabase", "purpose": "Managed PostgreSQL database", "criticality": "Critical"},
+    {"vendor": "Google Gemini API", "purpose": "AI/ML capabilities for time tracking automation and productivity insights", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Antivirus deployed on endpoints; weekly definition updates",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans",
+    "penetration_testing": "Annual external penetration test",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access controls delegated to GCP (carve-out)",
+      "A1.2 - No physical office; physical environmental controls not applicable"
+    ],
+    "notable_controls": [
+      "Branch protection with required merge approvals enforced in source control",
+      "Server configurations managed as code (infrastructure as code for firewall rules)",
+      "Annual BC/DR testing covering multiple loss scenarios",
+      "Quarterly logical access reviews",
+      "Formal change management process with emergency change procedure"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Multi-AZ on GCP with VPC and managed services. No multi-region, no CDN mentioned, no explicit IaC beyond firewall configs. Supabase as managed DB adds vendor dependency."
+    },
+    "application_architecture": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Limited disclosure. Separate environments and branch protection confirmed but no language, framework, or architecture pattern disclosed. GCP-native compute implied."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Supabase (Postgres) + GCS for file storage. Data classification and retention policies in place. Multi-AZ. No caching layer or data warehouse mentioned. Backup frequency not stated."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Monthly vuln scans + annual pen test + antivirus + IDS/IPS + server hardening + MFA. No WAF explicitly mentioned. No SIEM named. Good baseline security controls."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Branch protection, separate environments, formal change management, and patch management confirmed. CI/CD tool not named, IaC only partial (firewall configs). Emergency change process in place."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy with annual review and testing, multi-AZ failover. RTO/RPO not disclosed. No multi-region failover. Daily backups implied but frequency not explicitly stated."
+    },
+    "vendor_diversity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Heavy reliance on GCP ecosystem (GCP + Supabase hosted on GCP + Google Gemini). Three vendors but all Google-adjacent. Single cloud provider risk."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Solid foundational security posture for a Type 1 report. Multi-AZ, quarterly access reviews, annual pen test, and branch protection are positives. Significant gaps in disclosed technical detail (no CI/CD tool, no languages, no explicit IaC), heavy GCP ecosystem dependency, and no WAF or SIEM named."
+    }
+  },
+
+  "red_flags": [
+    "No WAF explicitly mentioned despite being a cloud-hosted SaaS",
+    "RTO and RPO not disclosed",
+    "All infrastructure (GCP, Supabase, Gemini) concentrated in Google ecosystem — single cloud provider risk",
+    "Backup frequency not explicitly stated"
+  ],
+  "yellow_flags": [
+    "Limited application architecture disclosure — no languages, frameworks, or architecture pattern named",
+    "No SIEM tool named",
+    "CI/CD tool not identified",
+    "IaC only partially confirmed (firewall configs); full infrastructure-as-code not stated",
+    "SOC 2 Type 1 only — no operational effectiveness demonstrated over time"
+  ],
+  "green_flags": [
+    "Annual external penetration testing",
+    "Monthly automated vulnerability scanning",
+    "Quarterly access reviews",
+    "Branch protection with required merge approvals",
+    "Server configurations managed as code",
+    "Multi-AZ deployment on GCP",
+    "Annual BC/DR testing covering multiple loss scenarios",
+    "MFA enforced across source control and admin accounts"
+  ],
+  "key_observations": [
+    "Supabase used as managed database layer — Supabase itself is a startup, adding a layer of vendor risk beyond a hyperscaler DB service",
+    "Google Gemini API is core to the AI-powered automation features — any Gemini API changes or outages directly affect product functionality",
+    "GCP carve-out approach means GCP's own SOC 2 report covers physical and environmental controls — appropriate for this deployment model",
+    "Timeglass positions itself as AI-native time tracking but report reveals relatively modest disclosed tech stack for a Series A/seed-stage product",
+    "Privacy and Processing Integrity trust criteria excluded from scope — notable for an AI-powered productivity tool that processes employee activity data"
+  ]
+}

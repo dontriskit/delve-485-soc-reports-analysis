@@ -1,0 +1,198 @@
+{
+  "company": "Lumari, Inc.",
+  "product": "Lumari AI Platform",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of April 23, 2025",
+  "auditor": "Accorp Partners (License PAC-FIRM-LIC-47383)",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+  "hq": "2261 Market Street #86634, San Francisco, CA 94114",
+  "signing_authority": "Eshani Mehta, CEO (signed May 9, 2025)",
+
+  "system_description": {
+    "overview": "Lumari is an AI-first platform that helps teams leverage AI to improve operational capabilities. It provides AI-powered workflows and tooling for business operations, deployed via Vercel with GCP backend services.",
+    "products": {
+      "Lumari Platform": "AI-first platform for teams to automate and improve operational workflows using AI capabilities"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "GCP (carve-out)",
+    "regions": ["us-central1 (inferred)"],
+    "physical_presence": "2261 Market Street #86634, San Francisco, CA 94114",
+    "availability_zones": "Multi-AZ (GCP)",
+    "additional_cloud": ["Vercel"],
+    "serverless": null,
+    "cdn": "Vercel (built-in edge network)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with ACLs on GCP; separate network boundaries for Vercel edge, Supabase, and GCP backend services",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "VPC firewall rules and ACLs on GCP",
+    "ids_ips": "GCP-native threat detection (equivalent to GuardDuty on GCP)",
+    "vpn": "VPN bastion host for administrative access to production",
+    "tls": "TLS enforced for all data in transit",
+    "content_filtering": null,
+    "multi_region": false,
+    "topology": "Services: Backend API → Supabase (DB) + Sentry (error tracking) + Gemini (AI); AI Backend Service; Worker Service | Deployment: Vercel + GitHub | Management: Google Workspace + Linear"
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices (separate Backend API, AI Backend, Worker Service)",
+    "languages": ["TypeScript (inferred from Next.js/Vercel stack)"],
+    "frameworks": ["Next.js (inferred)"],
+    "compute": ["Vercel (managed containers)", "GCP compute (inferred)"],
+    "api_style": "REST (inferred)",
+    "environments": "Separate development, staging, and production environments",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Supabase (PostgreSQL)"],
+    "caching": null,
+    "file_storage": null,
+    "data_warehouse": null,
+    "backup_frequency": "Daily (Supabase automated backups)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Supabase Auth",
+    "mfa": "MFA enforced for all production system access",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day",
+    "password_policy": "Minimum length and complexity enforced; unique user IDs required"
+  },
+
+  "encryption": {
+    "in_transit": "TLS",
+    "at_rest": "Cloud provider KMS (GCP KMS / Supabase encryption)",
+    "key_management": "GCP KMS / Supabase (cloud-managed)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "GitHub",
+    "ci_cd_tool": "Vercel (GitHub-integrated CI/CD)",
+    "branch_protection": "Branch protection enforced; pull requests required for merges to main",
+    "iac": null,
+    "container_orchestration": "Vercel (managed containers)",
+    "patch_management": "Automated patch management; regular OS and dependency updates",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Sentry (error tracking and performance monitoring)",
+    "siem": null,
+    "log_aggregation": "Vercel logging + GCP logging",
+    "alerting": "Automated alerts configured",
+    "metrics": ["CPU", "disk", "network", "system parameters"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "GCP", "purpose": "Primary cloud infrastructure (compute, networking, VPC, storage)", "criticality": "Critical"},
+    {"vendor": "Vercel", "purpose": "Application hosting, CI/CD, edge network, logging", "criticality": "Critical"},
+    {"vendor": "Supabase", "purpose": "PostgreSQL database, authentication, row-level security, automated backups", "criticality": "Critical"},
+    {"vendor": "Google Gemini", "purpose": "AI/LLM capabilities powering the platform", "criticality": "Critical"},
+    {"vendor": "GitHub", "purpose": "Source control and code collaboration", "criticality": "High"},
+    {"vendor": "Sentry", "purpose": "Error tracking and application performance monitoring", "criticality": "Medium"},
+    {"vendor": "Google Workspace", "purpose": "Internal team collaboration and management", "criticality": "Medium"},
+    {"vendor": "Linear", "purpose": "Project management and issue tracking", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Installed on all endpoints; continuous scanning with weekly definition updates",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scanning",
+    "penetration_testing": "Annual external penetration test",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 35,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — Physical access controls managed by GCP and Vercel as subservice organizations",
+      "A1.2 — Environmental controls managed by building management and cloud providers"
+    ],
+    "notable_controls": [
+      "All 5 trust service criteria in scope (Security, Availability, Processing Integrity, Confidentiality, Privacy) — unusually comprehensive for a Type 1",
+      "Row-level security enforced at Supabase database layer",
+      "Sentry integration provides proactive error monitoring and incident detection",
+      "Google Gemini as critical AI dependency creates a novel third-party AI risk"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {"score": 6, "max": 10, "rationale": "GCP multi-AZ with Vercel edge hosting is solid. No IaC mentioned, no multi-region, and split primary hosting between GCP and Vercel adds complexity. Five trust criteria shows maturity of compliance intent."},
+    "application_architecture": {"score": 6, "max": 10, "rationale": "Three distinct services (Backend API, AI Backend, Worker) indicate a microservices approach. Branch protection and code review enforced. No typed language explicitly confirmed, no test framework mentioned."},
+    "data_layer": {"score": 5, "max": 10, "rationale": "Single database (Supabase PostgreSQL) with daily backups, multi-AZ, per-tenant RLS. No caching, no data warehouse. Simpler than CentralAxis's dual-DB approach."},
+    "security_posture": {"score": 7, "max": 10, "rationale": "IDS (GCP-native), Sentry APM, monthly vuln scanning, annual pen test, endpoint AV, MFA enforced, quarterly access reviews. No WAF explicitly mentioned. 5-criteria SOC 2 shows security breadth."},
+    "devops_maturity": {"score": 6, "max": 10, "rationale": "GitHub + Vercel CI/CD with branch protection and code review. No IaC. Separate environments. Linear for project management shows process maturity."},
+    "bcdr_readiness": {"score": 6, "max": 10, "rationale": "Policy documented, annually reviewed and tested, multi-AZ, daily backups. No RTO/RPO disclosed. No multi-region failover."},
+    "vendor_diversity": {"score": 7, "max": 10, "rationale": "8 named vendors across infrastructure, AI, monitoring, and collaboration. GCP, Vercel, Supabase, Gemini, GitHub, Sentry, Google Workspace, Linear. Some Google concentration (GCP + Gemini + Workspace) but overall good diversity."},
+    "overall": {"score": 6, "max": 10, "rationale": "Strong compliance posture for a SOC 2 Type 1 with all 5 trust criteria. Well-architected microservices with good third-party tooling. Key concerns: no IaC, no WAF, RTO/RPO undisclosed, heavy Google dependency (GCP + Gemini + Workspace), and AI supply chain risk via Gemini."}
+  },
+
+  "red_flags": [
+    "No IaC tooling mentioned — infrastructure changes appear to be manual",
+    "RTO and RPO not disclosed despite BCDR policy existing",
+    "Critical dependency on Google Gemini for AI capabilities — AI supply chain risk with limited alternatives disclosed",
+    "No WAF mentioned despite all 5 trust criteria in scope"
+  ],
+
+  "yellow_flags": [
+    "Google concentration risk: GCP (infra) + Gemini (AI) + Google Workspace (collaboration) — three critical dependencies on single ecosystem",
+    "No SIEM mentioned",
+    "No caching layer or data warehouse",
+    "Vercel and GCP as dual primary infrastructure providers adds operational complexity",
+    "AI product with Gemini dependency means product functionality is tightly coupled to a third-party AI vendor's availability and pricing"
+  ],
+
+  "green_flags": [
+    "All 5 SOC 2 trust criteria in scope (Security, Availability, Processing Integrity, Confidentiality, Privacy) — unusually comprehensive for Type 1",
+    "Three-service microservices architecture (Backend API, AI Backend, Worker) shows thoughtful separation of concerns",
+    "Sentry for error tracking provides proactive monitoring beyond basic logging",
+    "Monthly automated vulnerability scanning with annual external pen test",
+    "MFA enforced for all production access",
+    "Quarterly access reviews with 1 business day revocation SLA",
+    "Zero exceptions in SOC 2 Type 1 report",
+    "Linear for project management shows process maturity beyond typical early-stage startup"
+  ],
+
+  "key_observations": [
+    "Having all 5 trust service criteria in a Type 1 report is aggressive and signals strong compliance intent — this may be driven by enterprise customer requirements",
+    "The three-service architecture (Backend API, AI Backend, Worker) explicitly separating AI processing is architecturally mature for an early-stage AI company",
+    "Google concentration across infrastructure (GCP), AI (Gemini), and collaboration (Workspace) is a notable single-ecosystem dependency that deserves diligence on contingency plans",
+    "Sentry integration at this stage suggests the team has a culture of observability and proactive incident management",
+    "The combination of Supabase for auth + database and Vercel for deployment is a well-trodden pattern for AI startups; it trades vendor concentration for speed of development"
+  ]
+}

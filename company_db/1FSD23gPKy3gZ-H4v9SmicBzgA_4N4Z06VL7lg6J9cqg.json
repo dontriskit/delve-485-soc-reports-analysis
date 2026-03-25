@@ -1,0 +1,19 @@
+{
+  "doc_id": "1FSD23gPKy3gZ-H4v9SmicBzgA_4N4Z06VL7lg6J9cqg",
+  "link": "https://docs.google.com/document/d/1FSD23gPKy3gZ-H4v9SmicBzgA_4N4Z06VL7lg6J9cqg",
+  "timestamp": "9/5/2025 14:57:31",
+  "display_name": "Omi AI",
+  "legal_name": "Based Hardware Inc.",
+  "company_name": "Omi AI",
+  "system_description": "Omi is an AI-powered wearable and software platform that captures and organizes daily life through audio. The ecosystem includes a pendant device, mobile and desktop apps, and a Chrome extension, enabling continuous recording, real-time transcription, searchable memory, and AI-driven insights.",
+  "audit_end_date": "August 27, 2025",
+  "observation_period": "",
+  "infra_provider": "GCP",
+  "website": "https://basedhardware.com",
+  "contact_email": "team@basedhardware.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1FSD23gPKy3gZ-H4v9SmicBzgA_4N4Z06VL7lg6J9cqg.pdf",
+  "txt_file": "1FSD23gPKy3gZ-H4v9SmicBzgA_4N4Z06VL7lg6J9cqg.txt",
+  "has_report": true
+}

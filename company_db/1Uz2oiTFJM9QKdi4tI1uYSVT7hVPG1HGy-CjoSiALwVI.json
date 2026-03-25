@@ -1,0 +1,19 @@
+{
+  "doc_id": "1Uz2oiTFJM9QKdi4tI1uYSVT7hVPG1HGy-CjoSiALwVI",
+  "link": "https://docs.google.com/document/d/1Uz2oiTFJM9QKdi4tI1uYSVT7hVPG1HGy-CjoSiALwVI",
+  "timestamp": "10/1/2025 16:00:39",
+  "display_name": "Duckie",
+  "legal_name": "Duckie AI, Inc.",
+  "company_name": "Duckie",
+  "system_description": "Duckie is a platform that lets customer support teams design and deploy AI support agents.",
+  "audit_end_date": "September 24, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://duckie.ai",
+  "contact_email": "founders@duckie.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1Uz2oiTFJM9QKdi4tI1uYSVT7hVPG1HGy-CjoSiALwVI.pdf",
+  "txt_file": "1Uz2oiTFJM9QKdi4tI1uYSVT7hVPG1HGy-CjoSiALwVI.txt",
+  "has_report": true
+}

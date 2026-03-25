@@ -1,0 +1,19 @@
+{
+  "doc_id": "1MJCHHnYzC2uQrQ0WwXNWeTG88CCAEkukj7IBtY2rUP0",
+  "link": "https://docs.google.com/document/d/1MJCHHnYzC2uQrQ0WwXNWeTG88CCAEkukj7IBtY2rUP0",
+  "timestamp": "9/4/2025 14:35:13",
+  "display_name": "Integrated Reasoning",
+  "legal_name": "Integrated Reasoning, Inc.",
+  "company_name": "Integrated Reasoning",
+  "system_description": "Integrated Reasoning builds efficient computer processors that are tailored to the memory access patterns of Karp's 21 NP-complete problems. We\u2019re making it 100x - 10,000x faster to perform computations like scheduling airline pilots or optimizing packing layouts for shipping containers.  We recently launched Isofold, an optimizing proxy for BigQuery, AWS Aurora, and Snowflake, that uses logical rewrites to cut query costs by 25%.",
+  "audit_end_date": "",
+  "observation_period": "May 14, 2025 - August 14, 2025",
+  "infra_provider": "Fly.io",
+  "website": "https://integrated-reasoning.com",
+  "contact_email": "david@integrated-reasoning.com",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1MJCHHnYzC2uQrQ0WwXNWeTG88CCAEkukj7IBtY2rUP0.pdf",
+  "txt_file": "1MJCHHnYzC2uQrQ0WwXNWeTG88CCAEkukj7IBtY2rUP0.txt",
+  "has_report": true
+}

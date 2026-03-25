@@ -1,0 +1,19 @@
+{
+  "doc_id": "1-MnV0rjBkkyBsF6ypGNyRstRlS4peZu8IRGeo4NULQY",
+  "link": "https://docs.google.com/document/d/1-MnV0rjBkkyBsF6ypGNyRstRlS4peZu8IRGeo4NULQY",
+  "timestamp": "10/23/2025 9:38:58",
+  "display_name": "Trellus",
+  "legal_name": "Outpost Labs Inc.",
+  "company_name": "Trellus",
+  "system_description": "Trellus is an AI-powered parallel dialer platform that allows reps to efficiently place cold calls.",
+  "audit_end_date": "",
+  "observation_period": "July 14, 2025 - October 14, 2025",
+  "infra_provider": "AWS",
+  "website": "https://trellus.ai",
+  "contact_email": "ajinkya@trellus.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1-MnV0rjBkkyBsF6ypGNyRstRlS4peZu8IRGeo4NULQY.pdf",
+  "txt_file": "1-MnV0rjBkkyBsF6ypGNyRstRlS4peZu8IRGeo4NULQY.txt",
+  "has_report": true
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "1LccjDngqUiqvytcgfalZ5iR0taz7OViItpUpOpHcD9E",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1LccjDngqUiqvytcgfalZ5iR0taz7OViItpUpOpHcD9E",
+  "timestamp": "7/17/2025 11:31:30",
+  "display_name": "Cyberdesk",
+  "legal_name": "Cyberdesk, Inc",
+  "company_name": "Cyberdesk",
+  "system_description": "Cyberdesk is an AI native desktop automation software.",
+  "audit_end_date": "July 15, 2025",
+  "observation_period": "",
+  "infra_provider": "Render",
+  "website": "https://cyberdesk.io",
+  "contact_email": "mahmoud@cyberdesk.io",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1LccjDngqUiqvytcgfalZ5iR0taz7OViItpUpOpHcD9E.pdf",
+  "txt_file": "1LccjDngqUiqvytcgfalZ5iR0taz7OViItpUpOpHcD9E.txt",
+  "has_report": true
+}

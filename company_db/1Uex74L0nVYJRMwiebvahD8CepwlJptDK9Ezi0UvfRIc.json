@@ -1,0 +1,19 @@
+{
+  "doc_id": "1Uex74L0nVYJRMwiebvahD8CepwlJptDK9Ezi0UvfRIc",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1Uex74L0nVYJRMwiebvahD8CepwlJptDK9Ezi0UvfRIc",
+  "timestamp": "6/27/2025 15:24:11",
+  "display_name": "Rescript",
+  "legal_name": "Rescript, Inc.",
+  "company_name": "Rescript",
+  "system_description": "Rescript is the AI-powered workspace for efficient policy teams. It tracks, filters, summarizes, and organizes policy content across jurisdictions \u2014 all in one place.",
+  "audit_end_date": "June 16, 2025",
+  "observation_period": "",
+  "infra_provider": "Azure",
+  "website": "https://landing.rescript.ai",
+  "contact_email": "security@rescript.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1Uex74L0nVYJRMwiebvahD8CepwlJptDK9Ezi0UvfRIc.pdf",
+  "txt_file": "1Uex74L0nVYJRMwiebvahD8CepwlJptDK9Ezi0UvfRIc.txt",
+  "has_report": true
+}

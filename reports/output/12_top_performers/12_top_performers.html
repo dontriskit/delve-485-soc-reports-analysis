@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top Performers — Delve Tech DD</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        bg: '#0f172a', bg2: '#1e293b', card: '#1a2332', border: '#334155',
+      }
+    }
+  }
+}
+</script>
+<style>
+body { background: #0f172a; }
+.prose { max-width: none; }
+.prose h1 { color: #e2e8f0; font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+.prose h2 { color: #e2e8f0; font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }
+.prose h3 { color: #3b82f6; font-size: 1.1rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+.prose p { color: #e2e8f0; line-height: 1.7; margin-bottom: 0.75rem; }
+.prose li { color: #e2e8f0; line-height: 1.6; }
+.prose strong { color: #e2e8f0; }
+.prose table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+.prose th { text-align: left; padding: 8px 12px; background: #1e293b; color: #94a3b8; font-size: 12px; text-transform: uppercase; border-bottom: 1px solid #334155; }
+.prose td { padding: 8px 12px; border-bottom: 1px solid #1a2332; color: #e2e8f0; font-size: 14px; }
+.prose tr:hover td { background: #1a2332; }
+.metric { background: #1a2332; border: 1px solid #334155; border-radius: 12px; padding: 20px; }
+.metric .value { font-size: 2rem; font-weight: 800; }
+.metric .label { color: #94a3b8; font-size: 0.75rem; margin-top: 4px; }
+.insight { background: #1a2332; border-left: 3px solid #3b82f6; padding: 16px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+.flag-red { background: rgba(239,68,68,0.1); border-left: 3px solid #ef4444; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.flag-yellow { background: rgba(245,158,11,0.1); border-left: 3px solid #f59e0b; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.flag-green { background: rgba(34,197,94,0.1); border-left: 3px solid #22c55e; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+</style>
+</head>
+<body class="min-h-screen">
+<div class="max-w-5xl mx-auto px-6 py-10">
+
+  <!-- Nav -->
+  <div class="mb-4">
+    <a href="../index.html" class="text-sm text-blue-400 hover:text-blue-300">← Back to Index</a>
+  </div>
+
+  <!-- Header -->
+  <div class="mb-8">
+    <div class="text-sm text-gray-400 mb-1">Delve Tech Due Diligence · Meta-Analysis</div>
+    <h1 class="text-3xl font-extrabold text-white">Top Performers</h1>
+    <p class="text-gray-400 mt-1">What the best companies do differently — profiling the top 20</p>
+  </div>
+
+  <!-- Content -->
+  <div class="prose">
+    <h2>Top 20 Leaderboard</h2>
+
+<div class="my-6"><img src="top20_leaderboard.png" class="rounded-lg w-full" alt="top20_leaderboard.png"></div>
+
+<table><thead><tr><th>Company</th><th>Score</th><th>Cloud</th><th>Type</th><th>Vendors</th></tr></thead><tbody><tr><td>Scribeberry Ltd.</td><td>8</td><td>GCP</td><td>SOC 2 Type</td><td>3</td></tr><tr><td>Toffu AI, Inc.</td><td>7</td><td>AWS</td><td>SOC 2 Type</td><td>11</td></tr><tr><td>Anneal, Inc</td><td>7</td><td>AWS</td><td>SOC 2 Type</td><td>17</td></tr><tr><td>OWND ApS dba Parahelp</td><td>7</td><td>AWS</td><td>SOC 2 Type</td><td>3</td></tr><tr><td>Thrive AI Co</td><td>7</td><td>GCP</td><td>SOC 2 Type</td><td>5</td></tr><tr><td>Judgment, Inc</td><td>7</td><td>AWS</td><td>SOC 2 Type</td><td>2</td></tr><tr><td>GetCounsel, Inc.</td><td>7</td><td>AWS</td><td>SOC 2 Type</td><td>4</td></tr><tr><td>Refine Technology Inc</td><td>7</td><td>GCP</td><td>SOC 2 Type</td><td>5</td></tr><tr><td>Grove AI, Inc.</td><td>7</td><td>GCP</td><td>SOC 2 Type</td><td>1</td></tr><tr><td>Vimes INC</td><td>7</td><td>AWS</td><td>SOC 2 Type</td><td>4</td></tr><tr><td>Minutes AI, LLC</td><td>7</td><td>GCP</td><td>SOC 2 Type</td><td>1</td></tr><tr><td>Lucidic AI, Inc.</td><td>7</td><td>AWS</td><td>SOC 2 Type</td><td>7</td></tr><tr><td>Reftab LLC</td><td>7</td><td>Other</td><td>SOC 2 Type</td><td>7</td></tr><tr><td>Antes AI, Inc</td><td>7</td><td>GCP</td><td>SOC 2 Type</td><td>3</td></tr><tr><td>AutoInfra, Inc.</td><td>7</td><td>AWS</td><td>SOC 2 Type</td><td>8</td></tr><tr><td>Grantable, Inc.</td><td>7</td><td>Supabase</td><td>SOC 2 Type</td><td>5</td></tr><tr><td>Anypoint, Inc.</td><td>7</td><td>GCP</td><td>SOC 2 Type</td><td>11</td></tr><tr><td>Ziina Payment LLC</td><td>7</td><td>AWS</td><td>SOC 2 Type</td><td>8</td></tr><tr><td>Promptless, Inc.</td><td>7</td><td>AWS</td><td>SOC 2 Type</td><td>9</td></tr><tr><td>Lilee AI Inc.</td><td>6</td><td>Supabase</td><td>SOC 2 Type</td><td>5</td></tr></tbody></table>
+<h2>Top vs Bottom: What Differs</h2>
+
+<div class="my-6"><img src="top_vs_bottom.png" class="rounded-lg w-full" alt="top_vs_bottom.png"></div>
+
+<div class="insight"><strong>The biggest gap is in Vendor Diversity and Infrastructure.</strong> Top companies name 2-3x more vendors and invest in multi-region, CDN, and WAF. Security is the closest dimension — both groups have similar baseline security.</div>
+<h2>Feature Adoption Gap</h2>
+
+<p>Which features do top performers adopt more than the portfolio average?</p>
+<div class="my-6"><img src="top_features.png" class="rounded-lg w-full" alt="top_features.png"></div>
+
+<h3>What top performers have in common:</h3>
+<ul>
+<li>Multi-region deployment (most portfolio companies are single-region)</li>
+<li>WAF deployed on all internet-facing services</li>
+<li>Named monitoring/SIEM tools (not just "monitoring tool")</li>
+<li>5+ vendors disclosed transparently</li>
+<li>Branch protection with mandatory code review</li>
+</ul>
+
+<div class="flag-green"><strong>Gold standard checklist:</strong> Multi-region + WAF + pen testing + daily backups + quarterly reviews + 5+ named vendors + branch protection. Only ~4% of the portfolio meets all criteria.</div>
+
+    <div class="mt-6"><img src="top20_leaderboard.png" class="rounded-lg w-full" alt="top20_leaderboard.png"></div>
+<div class="mt-6"><img src="top_vs_bottom.png" class="rounded-lg w-full" alt="top_vs_bottom.png"></div>
+<div class="mt-6"><img src="top_features.png" class="rounded-lg w-full" alt="top_features.png"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="mt-12 pt-6 border-t border-gray-700 text-gray-500 text-sm">
+    <p>Generated from top performers module · 485 SOC 2 compliance reports · 2026-03-24</p>
+  </div>
+
+</div>
+</body>
+</html>

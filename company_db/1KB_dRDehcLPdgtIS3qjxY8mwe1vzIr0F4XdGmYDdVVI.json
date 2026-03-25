@@ -1,0 +1,19 @@
+{
+  "doc_id": "1KB_dRDehcLPdgtIS3qjxY8mwe1vzIr0F4XdGmYDdVVI",
+  "link": "https://docs.google.com/document/d/1KB_dRDehcLPdgtIS3qjxY8mwe1vzIr0F4XdGmYDdVVI",
+  "timestamp": "10/27/2025 15:37:56",
+  "display_name": "Magentic AI",
+  "legal_name": "Magentic AI LTD",
+  "company_name": "Magentic AI",
+  "system_description": "Developer tools that bridge human workflows and AI agents.",
+  "audit_end_date": "October 17, 2025",
+  "observation_period": "",
+  "infra_provider": "Azure",
+  "website": "https://magentic.ai",
+  "contact_email": "security@magentic.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1KB_dRDehcLPdgtIS3qjxY8mwe1vzIr0F4XdGmYDdVVI.pdf",
+  "txt_file": "1KB_dRDehcLPdgtIS3qjxY8mwe1vzIr0F4XdGmYDdVVI.txt",
+  "has_report": true
+}

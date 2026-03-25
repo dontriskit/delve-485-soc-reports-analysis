@@ -1,0 +1,19 @@
+{
+  "doc_id": "1vjQjsLQvhQreQGkeOPGq9_UF6QXpP6FHNSO2fHI7k8g",
+  "link": "https://docs.google.com/document/d/1vjQjsLQvhQreQGkeOPGq9_UF6QXpP6FHNSO2fHI7k8g",
+  "timestamp": "8/29/2025 16:41:55",
+  "display_name": "Indent",
+  "legal_name": "Minimal Surface, Inc.",
+  "company_name": "Indent",
+  "system_description": "Indent is an AI software engineer that helps your team automate engineering tasks like code review, incident response, and data anlaysis",
+  "audit_end_date": "August 21, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://indent.com",
+  "contact_email": "team@indent.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1vjQjsLQvhQreQGkeOPGq9_UF6QXpP6FHNSO2fHI7k8g.pdf",
+  "txt_file": "1vjQjsLQvhQreQGkeOPGq9_UF6QXpP6FHNSO2fHI7k8g.txt",
+  "has_report": true
+}

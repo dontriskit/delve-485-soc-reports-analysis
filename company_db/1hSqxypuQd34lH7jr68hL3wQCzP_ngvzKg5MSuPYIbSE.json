@@ -1,0 +1,19 @@
+{
+  "doc_id": "1hSqxypuQd34lH7jr68hL3wQCzP_ngvzKg5MSuPYIbSE",
+  "link": "https://docs.google.com/document/d/1hSqxypuQd34lH7jr68hL3wQCzP_ngvzKg5MSuPYIbSE",
+  "timestamp": "12/1/2025 15:40:19",
+  "display_name": "Keyplay",
+  "legal_name": "Keyplay, Inc.",
+  "company_name": "Keyplay",
+  "system_description": "Keyplay provides an AI-powered, cloud-hosted platform for B2B sales and marketing teams to define and maintain market-specific ideal customer profiles (ICPs) with configurable fit signals and lookalike modeling, then derive and manage target account lists by combining those definitions with intent scoring and operational constraints. The platform integrates with Salesforce and HubSpot to automate account research, enrichment, scoring, segmentation, and list synchronization. By unifying fit and intent, Keyplay supports prioritization, territory planning, and account-based marketing.",
+  "audit_end_date": "",
+  "observation_period": "August 22, 2025 - November 22, 2025",
+  "infra_provider": "GCP",
+  "website": "https://keyplay.io",
+  "contact_email": "security@keyplay.io",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1hSqxypuQd34lH7jr68hL3wQCzP_ngvzKg5MSuPYIbSE.pdf",
+  "txt_file": "1hSqxypuQd34lH7jr68hL3wQCzP_ngvzKg5MSuPYIbSE.txt",
+  "has_report": true
+}

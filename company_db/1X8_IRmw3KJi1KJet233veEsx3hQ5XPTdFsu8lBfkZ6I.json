@@ -1,0 +1,19 @@
+{
+  "doc_id": "1X8_IRmw3KJi1KJet233veEsx3hQ5XPTdFsu8lBfkZ6I",
+  "link": "https://docs.google.com/document/d/1X8_IRmw3KJi1KJet233veEsx3hQ5XPTdFsu8lBfkZ6I",
+  "timestamp": "12/1/2025 15:53:37",
+  "display_name": "Lua Legal",
+  "legal_name": "Lua Legal Corporation",
+  "company_name": "Lua Legal",
+  "system_description": "Lua Legal provides an AI-powered, cloud-based platform for law firms to automatically capture, transcribe, and summarize meetings, generate follow-ups, and sync notes into legal workflows \u2014 all with secure, compliant data handling.",
+  "audit_end_date": "",
+  "observation_period": "August 23, 2025 - November 23, 2025",
+  "infra_provider": "Supabase",
+  "website": "https://lualegal.ai",
+  "contact_email": "cliff@lualegal.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1X8_IRmw3KJi1KJet233veEsx3hQ5XPTdFsu8lBfkZ6I.pdf",
+  "txt_file": "1X8_IRmw3KJi1KJet233veEsx3hQ5XPTdFsu8lBfkZ6I.txt",
+  "has_report": true
+}

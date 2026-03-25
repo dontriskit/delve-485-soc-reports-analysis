@@ -1,0 +1,19 @@
+{
+  "doc_id": "1b6Ygq_MSHiADmzCaUi4ChZCF8kGvw1hxKm6Lzzf_2Gg",
+  "link": "https://docs.google.com/document/d/1b6Ygq_MSHiADmzCaUi4ChZCF8kGvw1hxKm6Lzzf_2Gg",
+  "timestamp": "9/10/2025 16:20:40",
+  "display_name": "Anara",
+  "legal_name": "Anara Labs, Inc.",
+  "company_name": "Anara",
+  "system_description": "Anara is AI for scientific advancement. We help researchers and students understand, organize and write scientific documents.",
+  "audit_end_date": "September 3, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://anara.com",
+  "contact_email": "security@anara.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1b6Ygq_MSHiADmzCaUi4ChZCF8kGvw1hxKm6Lzzf_2Gg.pdf",
+  "txt_file": "1b6Ygq_MSHiADmzCaUi4ChZCF8kGvw1hxKm6Lzzf_2Gg.txt",
+  "has_report": true
+}

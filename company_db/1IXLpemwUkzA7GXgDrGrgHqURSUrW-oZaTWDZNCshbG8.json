@@ -1,0 +1,19 @@
+{
+  "doc_id": "1IXLpemwUkzA7GXgDrGrgHqURSUrW-oZaTWDZNCshbG8",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1IXLpemwUkzA7GXgDrGrgHqURSUrW-oZaTWDZNCshbG8",
+  "timestamp": "6/11/2025 18:15:14",
+  "display_name": "Rev Intelligence",
+  "legal_name": "Rev Intelligence Inc.",
+  "company_name": "Rev Intelligence",
+  "system_description": "Rev Intelligence provides AI-driven \u201cexegraphic\u201d sales intelligence that goes deeper than firmographics, technographics, or intent data, analyzing how companies truly operate",
+  "audit_end_date": "May 7, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://revint.ai/",
+  "contact_email": "compliance@revint.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1IXLpemwUkzA7GXgDrGrgHqURSUrW-oZaTWDZNCshbG8.pdf",
+  "txt_file": "1IXLpemwUkzA7GXgDrGrgHqURSUrW-oZaTWDZNCshbG8.txt",
+  "has_report": true
+}

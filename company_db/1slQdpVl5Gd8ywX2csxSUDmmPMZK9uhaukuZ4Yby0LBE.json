@@ -1,0 +1,19 @@
+{
+  "doc_id": "1slQdpVl5Gd8ywX2csxSUDmmPMZK9uhaukuZ4Yby0LBE",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1slQdpVl5Gd8ywX2csxSUDmmPMZK9uhaukuZ4Yby0LBE",
+  "timestamp": "5/22/2025 22:25:34",
+  "display_name": "Speck",
+  "legal_name": "Glance App Inc.",
+  "company_name": "Speck",
+  "system_description": "Speck Platform",
+  "audit_end_date": "May 12th, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "speck.sh",
+  "contact_email": "raghav@speck.sh",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1slQdpVl5Gd8ywX2csxSUDmmPMZK9uhaukuZ4Yby0LBE.pdf",
+  "txt_file": "1slQdpVl5Gd8ywX2csxSUDmmPMZK9uhaukuZ4Yby0LBE.txt",
+  "has_report": true
+}

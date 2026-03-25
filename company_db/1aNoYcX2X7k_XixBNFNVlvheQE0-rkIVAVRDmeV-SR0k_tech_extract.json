@@ -1,0 +1,247 @@
+{
+  "company": "Longitude Labs Inc.",
+  "product": "Meridian AI",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of August 20, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+  "hq": "418 Broadway, Albany, NY 12207",
+  "signing_authority": "John Ling, CEO",
+
+  "system_description": {
+    "overview": "Meridian AI is an AI-powered platform that integrates with Excel and other spreadsheet environments to automate data manipulation, formula generation, and model interpretation. The platform leverages AI agents to perform tasks such as formula creation, spreadsheet restructuring, data cleaning, and automated multi-step workflows while maintaining compatibility with standard Excel file formats.",
+    "products": {
+      "Meridian IDE (macOS Application)": "Standalone spreadsheet IDE that integrates AI agents into familiar Excel-like workflows. Supports opening, editing, and saving .xlsx files. Provides contextual natural language assistance for formula generation, model interpretation, and multi-step workflow automation.",
+      "Meridian Excel Plugin": "A plugin that embeds Meridian's AI agent directly into Microsoft Excel. Offers natural language interactions for formula creation, data cleaning, and model updates.",
+      "Implementation and Onboarding": "Guided setup and training to help finance, operations, and investment teams adopt Meridian effectively.",
+      "Ongoing Support": "Continuous product support to maintain reliability and accuracy of AI-driven workflows."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Microsoft Azure (carve-out method)",
+    "regions": ["Not explicitly named; hosted in high availability data centers with multiple availability zones"],
+    "physical_presence": "None - no physical offices in scope; all data processed on cloud services",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "System hosted in Azure VPC environment with segmented VPCs and access control lists (ACLs)",
+    "api_gateway": "Firewalls configured on the application gateway and production network",
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "Azure IDS and IPS employed to identify and protect against threats in conjunction with security policy network settings",
+    "vpn": "Remote access done through a bastion host with a virtual private network (VPN)",
+    "tls": "Transport Layer Security (TLS) using certificates from established third-party certificate authority for user requests to web-based systems",
+    "content_filtering": "All systems restricted to internet with content filtering system routed through proxy server",
+    "multi_region": false,
+    "topology": "Internet -> Internet Gateway -> Azure VM (VPC with segmented subnets and ACLs) -> macOS Firewall -> Client. Network diagram shows a simple linear flow: Internet Gateway to Azure VM to macOS Firewall to Client."
+  },
+
+  "application_architecture": {
+    "pattern": "Not explicitly disclosed; appears to be a monolith or small service architecture based on Azure VM usage in network diagram",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["Azure VM"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development/test and production environments (CC8.1.4 confirms changes developed and tested in separate environment before implementation)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Not specifically named; report references databases generically"],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Not explicitly stated; formal backup policies and procedures exist",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Azure Active Directory (implied by Azure Password policy and Active Directory references in CC6.1.2)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1). Also required for source code tool access (CC8.1.3) and email access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination of employment",
+    "password_policy": "Controlled through Azure Password policy with periodic forced changes, password expiry, and complexity requirements. Accounts disabled after limited unsuccessful logon attempts. Guest and anonymous logins not allowed. Desktops locked after inactivity."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest (CC6.1.5)",
+    "key_management": "Azure Key Management Service (cloud provider KMS per CC6.1.5)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool with logging, timestamps, and author attribution (specific vendor not named, likely GitHub given MFA requirement for access)",
+    "ci_cd_tool": "Not specifically named; internal tool used for tracking changes from initiation through deployment and validation",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to move changes to production requires additional approval (CC8.1.2)",
+    "iac": "Configuration management tool used for implementation and rollback capability (CC7.1.1); baseline configurations retained as infrastructure as code",
+    "container_orchestration": "None mentioned",
+    "patch_management": "Automatic patch management with monthly patch management reviews by CTO. Workstations configured for automatic updates and scanned for patch compliance daily. OS patches managed and applied as they become available.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not specifically named; monitoring tools used to continuously monitor system capacity and performance (CC5.2.1)",
+    "siem": "Not specifically named",
+    "log_aggregation": "Not specifically named; logging enabled to monitor administrative activities, logon attempts, data deletions at application and infrastructure level (CC7.2.1)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; monitoring tool generates alerts when predefined thresholds are met (CC5.2.1, CC7.2.1)",
+    "metrics": ["disc space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "system capacity", "performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Microsoft Azure", "purpose": "Primary cloud infrastructure and data center services (subservice organization)", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed and configured on all production servers with continuous automatic scanning. Definitions updated weekly for production servers. Also installed on Mac-based workstations and laptops.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications with frequency adjusted as required. Self-assessment scan of vulnerabilities performed prior every release to production or yearly (CC7.1.2).",
+    "penetration_testing": "Annual external penetration testing conducted by independent third-party. Results reviewed by IT management. High/critical findings remediated in timely manner (CC4.1.1).",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 47,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities; Azure responsible for physical security of data center, not in scope",
+      "A1.2 - Environmental protections for infrastructure; Meridian AI has no office or working space, managed by building management/Azure",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC6.1.1 - MFA enforced for administrative access to production",
+      "CC6.1.3 - Customer access appropriately segmented from other customer accounts",
+      "CC8.1.2 - Branch protection with merge request approval required for production changes",
+      "CC8.1.3 - Source code changes logged, timestamped, and attributed; MFA required for source code tool access",
+      "CC7.4.1 - BCDR policy with annual testing of loss scenarios",
+      "CC4.1.1 - Annual external penetration testing by independent third party",
+      "CC7.1.2 - Monthly automated vulnerability scanning",
+      "CC9.2.1 - Vendor management policy with annual SOC report reviews and quarterly risk assessments for critical vendors without SOC reports"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Single cloud provider (Azure) with multi-AZ but no multi-region. Network diagram is extremely simple (Internet Gateway -> Azure VM -> Client). No CDN, no serverless, no container orchestration mentioned. Infrastructure as code referenced but no specific IaC tool named. Appears to be a basic VM-based setup."
+    },
+    "application_architecture": {
+      "score": 3,
+      "max": 10,
+      "rationale": "No programming languages, frameworks, or specific compute patterns disclosed. Network diagram shows a single Azure VM. No mention of microservices, API style, or testing frameworks. Branch protection and code review are positives, but overall architecture is opaque. Appears to be a very early-stage tech stack."
+    },
+    "data_layer": {
+      "score": 3,
+      "max": 10,
+      "rationale": "No specific databases named. No caching, file storage, or data warehouse mentioned. Data classification and retention policies exist, and per-tenant segregation is confirmed. Multi-AZ for data is implied. Backup policy exists but frequency not stated. Very low specificity."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Good fundamentals: MFA for admin and source code access, IDS/IPS, annual pen testing by third party, monthly vulnerability scanning, endpoint protection with AV on all systems, encryption at rest and in transit, RBAC, quarterly access reviews, access revocation within 1 business day. Missing: no named WAF, no named SIEM, no specific encryption versions (TLS version not stated). Content filtering through proxy server is a plus."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Branch protection with merge approval required. Source code managed with logging and MFA. IaC with configuration management tool and rollback capability. Separate dev/test and production environments. Emergency change process documented. However, no specific CI/CD tool, source control platform, or container orchestration named. Patch management is well-described with monthly reviews."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual testing of loss scenarios with results reviewed and plans updated. Multi-AZ failover with multiple servers across availability zones. Incident response plan included. However, no RTO/RPO disclosed, no multi-region failover, and backup frequency not explicitly stated."
+    },
+    "vendor_diversity": {
+      "score": 2,
+      "max": 10,
+      "rationale": "Only Microsoft Azure identified as a third-party vendor. Complete single-vendor dependency for all infrastructure. No other SaaS tools, monitoring vendors, or cloud services named anywhere in the report. This represents significant concentration risk."
+    },
+    "overall": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Meridian AI presents a very early-stage compliance posture. While governance and policy frameworks are reasonably mature for a startup (annual pen tests, monthly vuln scans, BCDR testing, vendor management), the technical disclosure is extremely thin. No specific technologies, databases, languages, frameworks, or tooling are named beyond Azure and Azure VM. The network diagram is the simplest possible (4 nodes). This is a Type 1 report (point-in-time design only, no operating effectiveness tested), which further limits assurance. The report reads as a template-driven SOC 2 with minimal customization to the actual Meridian AI tech stack."
+    }
+  },
+
+  "red_flags": [
+    "Network diagram is extremely simplistic (4 nodes: Internet Gateway -> Azure VM -> macOS Firewall -> Client) suggesting either an immature architecture or significant under-disclosure",
+    "No specific databases, programming languages, frameworks, or cloud services named anywhere in the 57-page report",
+    "Complete single-vendor dependency on Microsoft Azure with no other vendors disclosed",
+    "Type 1 report only (design review, no operating effectiveness testing) - controls have never been tested in operation",
+    "No WAF mentioned despite being a web-accessible AI platform",
+    "No specific SIEM or log aggregation platform named despite claims of monitoring",
+    "Report contains significant boilerplate/template language with heavy control reuse across multiple criteria (e.g., CC1.4.1, CC2.1.2 repeated verbatim across 6+ criteria)",
+    "Processing Integrity excluded from scope despite being an AI agent that manipulates spreadsheet data - this is a notable omission for an AI-powered data manipulation tool"
+  ],
+
+  "yellow_flags": [
+    "No RTO/RPO disclosed despite having a BCDR policy",
+    "Backup frequency not explicitly stated",
+    "TLS version not specified (could be outdated)",
+    "No CDN for a product that includes a web-accessible component",
+    "No mention of any AI/ML-specific security controls despite being an AI product (model security, prompt injection protection, output validation, etc.)",
+    "No specific monitoring/APM/SIEM tools named - hard to verify monitoring claims",
+    "Cybersecurity insurance status not disclosed",
+    "Privacy trust criteria excluded despite handling user spreadsheet data",
+    "Very small leadership team (CEO, CTO, COO, Chief of Staff) - potential key-person risk for security operations"
+  ],
+
+  "green_flags": [
+    "Unqualified (clean) audit opinion from Accorp Partners",
+    "MFA enforced for administrative access to production and source code tools",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scanning with remediation plans",
+    "Branch protection with merge request approval required for production deployments",
+    "Quarterly user access reviews for all accounts including admin",
+    "Access revocation within one business day of termination",
+    "BCDR policy with annual testing of loss scenarios",
+    "Vendor management policy with SOC report reviews and quarterly risk assessments",
+    "Formal incident management process with root cause analysis",
+    "Endpoint protection on all systems including Mac workstations",
+    "Content filtering through proxy server",
+    "Data retention and disposal policy in place",
+    "Per-tenant data segregation confirmed (CC6.1.3)"
+  ],
+
+  "key_observations": [
+    "The extreme lack of technology specificity in this report is unusual even for a startup SOC 2 Type 1. Most reports name at least their primary database, source control platform, and monitoring tools. The absence of ALL technology names (beyond Azure) suggests either (a) the audit firm used a heavily templated approach, (b) Meridian intentionally minimized disclosure, or (c) the tech stack is extremely simple (single VM).",
+    "The network diagram showing a single Azure VM is concerning for an AI product that presumably needs GPU compute, model serving infrastructure, and API endpoints. This suggests the diagram may be incomplete or the actual architecture is minimal.",
+    "Processing Integrity being excluded from scope is a significant red flag for an AI agent that manipulates financial spreadsheet data. Users relying on Meridian for formula generation and model interpretation would reasonably expect processing integrity controls.",
+    "The macOS Firewall appearing in the network diagram between Azure VM and Client is unusual - this suggests the client-side macOS application communicates through its own firewall to reach Azure, which is standard but the inclusion in the network diagram implies a very thin server-side architecture.",
+    "The report identifies Azure as the only subservice organization, yet an AI product of this nature would typically depend on LLM providers (OpenAI, Anthropic, etc.), which are not mentioned anywhere. Either the AI is fully self-hosted on the Azure VM or a critical dependency is undisclosed.",
+    "Contact email (zach@meridian.ai) matches COO name (Zach Kirshner), suggesting COO is the primary compliance contact - common in early-stage startups."
+  ]
+}

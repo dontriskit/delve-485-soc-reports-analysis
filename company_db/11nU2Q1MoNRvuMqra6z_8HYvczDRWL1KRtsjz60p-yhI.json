@@ -1,0 +1,19 @@
+{
+  "doc_id": "11nU2Q1MoNRvuMqra6z_8HYvczDRWL1KRtsjz60p-yhI",
+  "link": "https://docs.google.com/document/d/11nU2Q1MoNRvuMqra6z_8HYvczDRWL1KRtsjz60p-yhI",
+  "timestamp": "10/7/2025 14:59:20",
+  "display_name": "Dockware",
+  "legal_name": "Dockware INC.",
+  "company_name": "Dockware",
+  "system_description": "Dockware is a logistics technology startup that creates a digital twin of every shipment, using hardware and advanced models to capture, validate, and update shipment data in real time.",
+  "audit_end_date": "September 29, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://dockware.ai",
+  "contact_email": "kendall@dockware.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "11nU2Q1MoNRvuMqra6z_8HYvczDRWL1KRtsjz60p-yhI.pdf",
+  "txt_file": "11nU2Q1MoNRvuMqra6z_8HYvczDRWL1KRtsjz60p-yhI.txt",
+  "has_report": true
+}

@@ -1,0 +1,213 @@
+{
+  "company": "Soolv AS",
+  "product": "Cloud-based talent intelligence service",
+  "report_type": "ISO 27001",
+  "audit_period": "8/18/2025 (Certification Agreement date; audit period not explicitly stated)",
+  "auditor": "Gradient Certification Inc.",
+  "opinion": "Not yet issued — this document is the Certification Agreement Form, not the final audit report/certificate",
+  "trust_criteria": ["Information Security (ISO 27001 ISMS)"],
+  "hq": "Grundingen 2, 0250 Oslo, Norway",
+  "signing_authority": "Fredrik Schjoldager, (title not specified)",
+
+  "system_description": {
+    "overview": "Soolv AS operates a cloud-based talent intelligence service that enables businesses to identify and engage top candidates. The platform securely collects, analyzes, and delivers actionable insights to improve talent acquisition and workforce planning.",
+    "products": {
+      "Talent Intelligence Platform": "Cloud-based service for talent acquisition and workforce planning that collects, analyzes, and delivers actionable insights on candidates"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Not disclosed (report states 'cloud-based' service only)",
+    "regions": null,
+    "physical_presence": "Grundingen 2, 0250 Oslo, Norway",
+    "availability_zones": null,
+    "additional_cloud": null,
+    "serverless": null,
+    "cdn": null
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": null,
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": null,
+    "ids_ips": null,
+    "vpn": null,
+    "tls": null,
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. This document is a certification agreement, not the full audit report."
+  },
+
+  "application_architecture": {
+    "pattern": null,
+    "languages": null,
+    "frameworks": null,
+    "compute": null,
+    "api_style": null,
+    "environments": null,
+    "branch_protection": null,
+    "code_review_required": null
+  },
+
+  "data_storage": {
+    "databases": null,
+    "caching": null,
+    "file_storage": null,
+    "data_warehouse": null,
+    "backup_frequency": null,
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null
+  },
+
+  "authentication_access_control": {
+    "identity_provider": null,
+    "mfa": null,
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": null,
+    "password_policy": null
+  },
+
+  "encryption": {
+    "in_transit": null,
+    "at_rest": null,
+    "key_management": null,
+    "end_to_end": null
+  },
+
+  "ci_cd_devops": {
+    "source_control": null,
+    "ci_cd_tool": null,
+    "branch_protection": null,
+    "iac": null,
+    "container_orchestration": null,
+    "patch_management": null,
+    "separate_environments": null,
+    "emergency_change_process": null
+  },
+
+  "monitoring_logging": {
+    "apm_tool": null,
+    "siem": null,
+    "log_aggregation": null,
+    "alerting": null,
+    "metrics": null,
+    "log_protection": null,
+    "ids": null
+  },
+
+  "third_party_services": [
+    {"vendor": "Gradient Certification Inc.", "purpose": "ISO 27001 certification body / auditor", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": null,
+    "endpoint_protection": null,
+    "vulnerability_scanning": null,
+    "penetration_testing": null,
+    "server_hardening": null,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": [
+      "Document is a Certification Agreement Form with Terms & Conditions, not the actual ISO 27001 audit report or Statement of Applicability (SoA). No individual controls are listed or tested in this document.",
+      "Statement of Applicability Version 1.0 is referenced but not included in this PDF.",
+      "Total audit mandays for the certification cycle: 9 (Stage-1: 2, Stage-2: 3, Surveillance-1: 2, Surveillance-2: 2)"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No infrastructure details disclosed. Only 'cloud-based' is mentioned with zero specifics on provider, regions, or architecture."
+    },
+    "application_architecture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No application architecture details disclosed. The scope mentions 'proprietary technology, data processing infrastructure, and analytics tools' but provides no specifics."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No data storage details disclosed. The scope mentions 'securely collect, analyze, and deliver actionable insights' but no database, backup, or data management details."
+    },
+    "security_posture": {
+      "score": 2,
+      "max": 10,
+      "rationale": "ISO 27001 certification pursuit indicates security commitment, but no specific security tools, practices, or controls are described in this document."
+    },
+    "devops_maturity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No DevOps practices disclosed whatsoever."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No BCDR information disclosed. No RTO/RPO, backup strategy, or disaster recovery plans mentioned."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No vendors disclosed beyond the certification body. Cannot assess vendor diversity or concentration risk."
+    },
+    "overall": {
+      "score": 1,
+      "max": 10,
+      "rationale": "This PDF is a Certification Agreement Form, not the actual ISO 27001 audit report. It contains essentially zero technical detail. The only useful information is the ISMS scope description confirming Soolv is a cloud-based talent intelligence platform. A proper tech due diligence assessment is not possible from this document alone."
+    }
+  },
+
+  "red_flags": [
+    "Document is only 7 pages — flagged as potentially incomplete report (below 10-page threshold)",
+    "This is a Certification Agreement Form, NOT the actual ISO 27001 audit report or certificate. No audit findings, controls, or technical details are present.",
+    "Auditor is Gradient Certification Inc. accredited by UAF (United Accreditation Foundation) — UAF is not an IAF MLA signatory, which raises questions about the international recognition of this certification",
+    "No Statement of Applicability (SoA) included despite being referenced as Version 1.0",
+    "Zero technical infrastructure details disclosed — impossible to assess security posture from this document"
+  ],
+
+  "yellow_flags": [
+    "ISO 27001 scope is very broadly defined, covering 'core business functions' including IT Infrastructure, HR, Physical Security, Legal & Compliance, and Administrative Operations — broad scope with only 9 total audit mandays may indicate shallow audit coverage",
+    "No website, system description, or infrastructure provider populated in metadata — limited public information available about the company",
+    "Certification date of 8/18/2025 is very recent; no prior certification history evident"
+  ],
+
+  "green_flags": [
+    "Company is pursuing ISO 27001 certification, indicating baseline security awareness and commitment",
+    "ISMS scope explicitly includes design, engineering, and maintenance of proprietary technology and data processing infrastructure",
+    "Scope covers critical support functions including IT Infrastructure Management, Human Resources, Physical Security, Legal & Compliance"
+  ],
+
+  "key_observations": [
+    "This document should NOT be treated as a completed ISO 27001 audit report. It is the pre-audit Certification Agreement Form between Soolv AS and Gradient Certification Inc.",
+    "The actual ISO 27001 certificate and audit report (including the SoA with Annex A control applicability) would need to be obtained separately for meaningful tech due diligence.",
+    "Gradient Certification Inc. (Sheridan, Wyoming / Houston, Texas) uses UAF accreditation. UAF is not a member of IAF MLA, meaning this certification may not be recognized by IAF-accredited bodies internationally. This is a significant consideration for enterprise customers requiring mainstream ISO 27001 certification.",
+    "Soolv AS appears to be an early-stage Norwegian company in the talent intelligence / HR tech space, based in central Oslo.",
+    "The 9 total audit mandays across the full 3-year certification cycle is relatively light, suggesting a small organization."
+  ]
+}

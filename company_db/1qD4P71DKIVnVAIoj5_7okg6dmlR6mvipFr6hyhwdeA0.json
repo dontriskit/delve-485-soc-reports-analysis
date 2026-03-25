@@ -1,0 +1,19 @@
+{
+  "doc_id": "1qD4P71DKIVnVAIoj5_7okg6dmlR6mvipFr6hyhwdeA0",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1qD4P71DKIVnVAIoj5_7okg6dmlR6mvipFr6hyhwdeA0",
+  "timestamp": "7/2/2025 21:26:53",
+  "display_name": "North Parks Labs, Inc.",
+  "legal_name": "Magic Patterns",
+  "company_name": "North Parks Labs, Inc.",
+  "system_description": "Magic Patterns is an design tool for product teams. We help product managers and designers create interactive prototypes.",
+  "audit_end_date": "June 22, 2025",
+  "observation_period": "",
+  "infra_provider": "Render",
+  "website": "https://www.magicpatterns.com",
+  "contact_email": "security@magicpatterns.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1qD4P71DKIVnVAIoj5_7okg6dmlR6mvipFr6hyhwdeA0.pdf",
+  "txt_file": "1qD4P71DKIVnVAIoj5_7okg6dmlR6mvipFr6hyhwdeA0.txt",
+  "has_report": true
+}

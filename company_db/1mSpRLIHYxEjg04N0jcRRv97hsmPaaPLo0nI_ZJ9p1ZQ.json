@@ -1,0 +1,19 @@
+{
+  "doc_id": "1mSpRLIHYxEjg04N0jcRRv97hsmPaaPLo0nI_ZJ9p1ZQ",
+  "link": "https://docs.google.com/document/d/1mSpRLIHYxEjg04N0jcRRv97hsmPaaPLo0nI_ZJ9p1ZQ",
+  "timestamp": "12/1/2025 16:04:23",
+  "display_name": "Slashy",
+  "legal_name": "Karvix Inc",
+  "company_name": "Slashy",
+  "system_description": "Slashy is an AI-native email client, designed to revolutionize how professionals get work done.",
+  "audit_end_date": "November 23, 2025",
+  "observation_period": "",
+  "infra_provider": "Supabase",
+  "website": "https://slashy.ai",
+  "contact_email": "founders@slashy.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1mSpRLIHYxEjg04N0jcRRv97hsmPaaPLo0nI_ZJ9p1ZQ.pdf",
+  "txt_file": "1mSpRLIHYxEjg04N0jcRRv97hsmPaaPLo0nI_ZJ9p1ZQ.txt",
+  "has_report": true
+}

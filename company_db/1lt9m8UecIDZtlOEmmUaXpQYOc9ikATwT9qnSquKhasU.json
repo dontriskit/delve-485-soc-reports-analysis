@@ -1,0 +1,19 @@
+{
+  "doc_id": "1lt9m8UecIDZtlOEmmUaXpQYOc9ikATwT9qnSquKhasU",
+  "link": "https://docs.google.com/document/d/1lt9m8UecIDZtlOEmmUaXpQYOc9ikATwT9qnSquKhasU",
+  "timestamp": "9/10/2025 19:30:35",
+  "display_name": "Arvo",
+  "legal_name": "Arvo AI, Inc.",
+  "company_name": "Arvo",
+  "system_description": "The first compliant AI meeting assistant for financial institutions.",
+  "audit_end_date": "September 6, 2025",
+  "observation_period": "",
+  "infra_provider": "Azure",
+  "website": "https://arvohq.com",
+  "contact_email": "security@arvohq.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1lt9m8UecIDZtlOEmmUaXpQYOc9ikATwT9qnSquKhasU.pdf",
+  "txt_file": "1lt9m8UecIDZtlOEmmUaXpQYOc9ikATwT9qnSquKhasU.txt",
+  "has_report": true
+}

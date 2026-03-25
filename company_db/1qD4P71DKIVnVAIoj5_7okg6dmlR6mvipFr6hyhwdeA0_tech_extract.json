@@ -1,0 +1,238 @@
+{
+  "company": "North Parks Labs, Inc.",
+  "product": "Magic Patterns",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "June 22, 2025 (point-in-time)",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "1111B S Governors Ave, PMB 6270, Dover, Delaware 19904, United States",
+  "signing_authority": "Alexander Danilowicz, CEO",
+
+  "system_description": {
+    "overview": "Magic Patterns is a web-based SaaS platform for teams to design, prototype, and communicate interface ideas visually and consistently. The platform generates React code from user prompts using Anthropic AI models and enables collaborative design workflows with shared component libraries and Figma integration.",
+    "products": {
+      "Component-Driven Interactive Prototyping": "Visual creation of React-style design components; reusable style presets for consistent theming; live rendering and interaction simulation in the browser.",
+      "Code-Centric Output and Flexible Previews": "Automatically generates React code; shares prototypes through live URLs hosted on Cloudflare at *.magicpatterns.app; exports to GitHub and syncs with Figma.",
+      "Collaborative Workflows": "Real-time multi-user editing with granular role-based permissions; embedded comment system; Figma integration.",
+      "Enterprise-Ready Security and Support": "Secure cloud infrastructure with continuous monitoring; tailored enterprise onboarding and implementation support."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Render (carve-out — Render is the sole subservice organization; has SOC 2 report; controls excluded from scope)",
+    "regions": ["Not explicitly named"],
+    "physical_presence": "No physical offices; no physical servers. All data processed on cloud services.",
+    "availability_zones": "Multi-AZ within Render (DR procedure spins up multiple servers across all availability zones in Render).",
+    "additional_cloud": ["Vercel (frontend hosting)"],
+    "serverless": [],
+    "cdn": "Cloudflare (hosts live prototype previews at *.magicpatterns.app; DNS and CDN)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "System hosted in Render in a VPC environment. Network topology includes segmented VPCs and access control lists (ACLs). System components configured such that company and customer access is segmented from other customer accounts.",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on the application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via Render. Firewalls and intrusion detection tools configured to prevent unauthorized access and detect external security threats.",
+    "vpn": "Remote access via bastion host with VPN (TLS-encrypted).",
+    "tls": "TLS with certificates from established third-party certificate authority.",
+    "content_filtering": "Content filtering system routed through proxy server; all systems restricted to internet via proxy.",
+    "multi_region": false,
+    "topology": "Client (hosted on Vercel) -> Server (hosted on Render) -> Database (MongoDB); AI Model (Anthropic) receives prompts from Server and returns React code."
+  },
+
+  "application_architecture": {
+    "pattern": "Monolith / Simple client-server (Client on Vercel, Server on Render, MongoDB database; single server component visible in diagram)",
+    "languages": ["Not disclosed"],
+    "frameworks": ["React (generated output); framework for backend not disclosed"],
+    "compute": ["Render (server)", "Vercel (frontend/client)"],
+    "api_style": "REST (implied from client-server architecture; API prompts sent to Anthropic)",
+    "environments": "Separate development/test and production environments; changes tested prior to promotion to production (CC8.1.4).",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["MongoDB (visible in network diagram as primary database, hosted on Render)"],
+    "caching": [],
+    "file_storage": ["Not explicitly named"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Backup policy exists; backup procedures defined and approved by business owners; backup and restoration logs maintained. Frequency not explicitly stated.",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not named (password policies via Render for infrastructure accounts; no named IdP for application layer)",
+    "mfa": "MFA enforced for all user accounts with administrative access to production platform (CC6.1.1). Source code tool access restricted to authorized users using MFA (CC8.1.3). Two-factor authentication required for email access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Password policy via Render including periodic forced changes, password expiry and complexity requirements. Accounts disabled after limited failed logon attempts. Guest and anonymous logins not allowed."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest (CC6.1.5)",
+    "key_management": "Render KMS (cloud provider key management service)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named explicitly (source code management tool referenced; MFA-protected; GitHub mentioned in product features for code export)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Code repository branch rules configured to ensure every merge request to production requires additional approval (CC8.1.2).",
+    "iac": "Configuration management tool used for baseline configuration implementation and rollback. Baseline configurations retained as code in infrastructure. Tool not named.",
+    "container_orchestration": "None explicitly mentioned",
+    "patch_management": "CTO sets up automatic patch management; monthly patch management reviews. Workstations configured for automatic updates and scanned daily for patch compliance.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named (monitoring tool with threshold-based alerting described — CC5.2.1)",
+    "siem": "Not named",
+    "log_aggregation": "Logging enabled for administrative activities, logon attempts, data deletions, function changes, security configurations, permissions, and roles. Log access is restricted.",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events. Issues resolved through incident management process. Ticketing system used for tracking.",
+    "metrics": ["Disk space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "predefined capacity thresholds"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Render", "purpose": "Cloud infrastructure and server hosting (subservice organization)", "criticality": "Critical"},
+    {"vendor": "Anthropic", "purpose": "AI model provider (Claude) for React code generation — visible in network diagram", "criticality": "Critical"},
+    {"vendor": "Vercel", "purpose": "Frontend/client hosting", "criticality": "High"},
+    {"vendor": "Cloudflare", "purpose": "CDN and DNS for live prototype previews (*.magicpatterns.app)", "criticality": "High"},
+    {"vendor": "GitHub", "purpose": "Code export destination and implied source code management", "criticality": "Medium"},
+    {"vendor": "Figma", "purpose": "Design tool integration for bridging design and engineering workflows", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed and configured on all production servers (continuous scanning; weekly definition updates) and Mac-based workstations and laptops. Email scanning for malicious scripts and viruses.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications. Internal IT Infrastructure team also performs periodic scans. Self-assessment scan performed prior to every production release or yearly.",
+    "penetration_testing": "Annual external penetration testing by independent third party. High/critical findings tracked to resolution.",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access: Render is responsible for physical security of its data centers; controls not in scope",
+      "A1.2 - Environmental protections: North Parks Labs does not have an office; managed by building management / Render",
+      "Processing Integrity and Privacy: Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "DR spins up multiple servers across all availability zones in Render on AZ failure",
+      "Self-assessment vulnerability scan performed prior to every production release (in addition to monthly automated scans)",
+      "Quarterly access reviews for all users including privileged accounts",
+      "Annual external penetration testing with tracked remediation",
+      "Note: Type 1 report — controls described for design suitability only, not tested for operating effectiveness"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Single cloud provider (Render) with multi-AZ failover. Cloudflare for CDN. Vercel for frontend. No multi-region, no named IaC tool (config-as-code referenced but unnamed). Render is a less mature hosting provider vs AWS/Azure/GCP. Very high Render concentration."
+    },
+    "application_architecture": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Simple client-server architecture (Vercel client + Render server + MongoDB). React code generation is the product output but the application's own server architecture is straightforward. Separate environments, branch protection enforced. Languages/backend frameworks not disclosed. No container orchestration."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "MongoDB identified as single database, multi-AZ within Render, data classification and retention policies exist. Backup policy exists but frequency not stated. No caching layer, no data warehouse, no named file storage service."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Annual external pen test, monthly automated vuln scans plus pre-release self-assessment, IDS/IPS via Render, firewalls, antivirus on servers and endpoints, MFA enforced, KMS encryption at rest, TLS in transit, quarterly access reviews. No WAF, no SIEM, no cybersecurity insurance mentioned."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Branch protection enforced, separate environments, emergency change process, config-as-code for baselines, automatic patch management. CI/CD tool and source control platform not named. No container orchestration mentioned."
+    },
+    "bcdr_readiness": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BCDR policy documented, reviewed and tested annually with multiple loss scenarios. Multi-AZ failover within Render. No stated RTO/RPO. No multi-region failover. Backup frequency not explicitly stated. Single-cloud dependency on Render is the primary risk."
+    },
+    "vendor_diversity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Render is the sole infrastructure subservice organization. Vercel for frontend and Cloudflare for CDN provide some diversification. Anthropic is a critical AI dependency. Very high Render concentration for server and database workloads."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Magic Patterns demonstrates adequate baseline security for an early-stage design SaaS: annual pen testing, monthly vuln scans, MFA, quarterly access reviews, BCDR testing. Key gaps are near-total Render concentration for compute and data, no named CI/CD tooling, no WAF or SIEM, no RTO/RPO disclosure, no cybersecurity insurance, and this is a Type 1 report only. The Anthropic dependency for core product functionality is a material AI provider concentration risk."
+    }
+  },
+
+  "red_flags": [
+    "SOC 2 Type 1 only — controls described for design suitability; operating effectiveness has not been audited",
+    "Extreme Render concentration — entire server and database infrastructure on single provider (Render); no named secondary provider",
+    "No RTO or RPO disclosed despite BCDR policy and testing existing",
+    "No WAF mentioned anywhere in the report",
+    "No SIEM or named log aggregation tool",
+    "Cybersecurity insurance not mentioned",
+    "Source control and CI/CD tools not named"
+  ],
+  "yellow_flags": [
+    "Render is a less mature infrastructure provider compared to AWS/Azure/GCP — smaller team, less enterprise track record",
+    "Anthropic is a single critical AI dependency for core product functionality (React code generation); Anthropic outage = product outage",
+    "MongoDB backup frequency not explicitly stated",
+    "No identity provider named for application layer authentication",
+    "No programming languages or backend frameworks disclosed"
+  ],
+  "green_flags": [
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scanning plus pre-release self-assessment scans — above-average scanning cadence",
+    "MFA enforced for all admin access and source code tool",
+    "Quarterly access reviews including privileged accounts",
+    "BCDR tested annually with multiple loss scenarios",
+    "Multi-AZ failover within Render",
+    "Cloudflare for CDN — global preview URL delivery via *.magicpatterns.app",
+    "Antivirus on production servers with weekly definition updates",
+    "IDS/IPS deployed via Render",
+    "Branch protection and emergency change process enforced",
+    "Separate development/test and production environments"
+  ],
+  "key_observations": [
+    "Magic Patterns uses Anthropic Claude as its core AI model (visible in network diagram as 'AI Model (Anthropic)') — the product literally runs on Claude for its primary feature (React code generation from prompts).",
+    "The product itself generates React code — meaning the output is structured, typed, and executable code rather than free-form text. This reduces hallucination risk compared to open-ended LLM applications.",
+    "Render as the sole infrastructure provider is an unusual choice — Render targets developer convenience over enterprise-grade availability. The multi-AZ DR claim within Render should be verified against Render's actual regional architecture.",
+    "Cloudflare is used for live prototype sharing (*.magicpatterns.app) which is a product-critical feature, not just a CDN for performance — Cloudflare outage would break the sharing feature for all users.",
+    "MongoDB as database aligns with the document-store model for storing design components, presets, and generated code snippets (schema-flexible storage suits design artifacts).",
+    "The report uses the same Accorp Partners template as other companies in this set — Section 4 controls are nearly identical boilerplate, limiting differentiation in control design assessment.",
+    "Type 1 report as of June 22, 2025 — buyer should request Type 2 report when available for operating effectiveness evidence."
+  ]
+}

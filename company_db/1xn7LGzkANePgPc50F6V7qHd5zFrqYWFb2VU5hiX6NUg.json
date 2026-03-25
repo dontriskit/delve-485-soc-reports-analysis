@@ -1,0 +1,19 @@
+{
+  "doc_id": "1xn7LGzkANePgPc50F6V7qHd5zFrqYWFb2VU5hiX6NUg",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1xn7LGzkANePgPc50F6V7qHd5zFrqYWFb2VU5hiX6NUg",
+  "timestamp": "7/30/2025 14:46:16",
+  "display_name": "Permut",
+  "legal_name": "Permut Inc",
+  "company_name": "Permut",
+  "system_description": "AI agents that engage customers in personalized, brand-aligned conversations, capturing real-time insights at scale. We help brands prevent poor experiences, boost retention and increase lifetime value.",
+  "audit_end_date": "July 22, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://permut.com",
+  "contact_email": "alex@permut.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1xn7LGzkANePgPc50F6V7qHd5zFrqYWFb2VU5hiX6NUg.pdf",
+  "txt_file": "1xn7LGzkANePgPc50F6V7qHd5zFrqYWFb2VU5hiX6NUg.txt",
+  "has_report": true
+}

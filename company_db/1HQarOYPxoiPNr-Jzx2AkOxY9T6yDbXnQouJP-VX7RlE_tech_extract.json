@@ -1,0 +1,249 @@
+{
+  "company": "Replexica, Inc",
+  "product": "Lingo.dev",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "May 6, 2025 - Aug 6, 2025",
+  "auditor": "Accorp Partners (PAC-FIRM-LIC-47383)",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "hq": "1209 Orange Street, Wilmington, New Castle, Delaware 19801",
+  "signing_authority": "Max Prilutskiy, CEO",
+
+  "system_description": {
+    "overview": "Lingo.dev is an AI-powered localization platform that automates internationalization (i18n) for web and mobile applications. It leverages Large Language Models (LLMs) to automate translation workflows, context-aware localization, and real-time content translation, supporting 20+ file formats via CLI tools, SDKs, and API integrations.",
+    "products": {
+      "Localization Translation API (Localization Engine)": "Advanced AI-powered translation engine utilizing multiple LLMs with content fingerprinting, context-aware processing, brand voice preferences, and configurable model parameters",
+      "Open-Source Developer Tools": "Lingo.dev CLI for command-line i18n (20+ file formats), Lingo.dev Compiler (React middleware via AST processing), CI/CD integrations for GitHub Actions/GitLab CI/CD/Bitbucket Pipelines, multi-platform SDKs (JavaScript, Python, PHP)",
+      "Platform Integrations with Human-in-the-Loop": "Third-party integrations for email marketing, CMS platforms, customer support tools with human review/approval workflows and batch processing capabilities"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out method - AWS data center controls excluded from scope)",
+    "regions": ["Not explicitly disclosed"],
+    "physical_presence": "None - fully cloud-based, no physical offices or servers",
+    "availability_zones": "Multi-AZ (confirmed in BCDR testing and network description)",
+    "additional_cloud": ["Cloudflare (Edge SSL/TLS + DDoS Protection)"],
+    "serverless": ["AWS Lambda (Similarity API)"],
+    "cdn": "Cloudflare Edge"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with access control lists (ACLs). Network segmentation implemented to separate systems and data based on sensitivity and criticality.",
+    "api_gateway": "Application gateway with firewall (visible in network diagram as 'API Engine Auto-Scaling 2-10')",
+    "waf": "Cloudflare Edge (SSL/TLS + DDoS Protection) - functions as edge WAF/CDN",
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management. Intrusion detection tools configured to prevent unauthorized access.",
+    "ids_ips": "IDS and IPS via AWS to identify and protect against threats in conjunction with security policy network settings. Intrusion detection system utilized to monitor and detect unauthorized access or anomalies.",
+    "vpn": "Remote access through bastion host with VPN",
+    "tls": "TLS using certificates from an established third-party certificate authority for all web-based systems",
+    "content_filtering": "Content filtering system routed through proxy server",
+    "multi_region": false,
+    "topology": "Internet Users -> Cloudflare Edge (SSL/TLS + DDoS) -> AWS Application Layer [ECR Container Registry -> Web App (Auto-Scaling) -> API Engine (Auto-Scaling 2-10) -> Lambda Similarity API] -> Database Layer [File Storage + PostgreSQL] + Security & Monitoring [AWS IAM, Turnstile, Env Config, CloudWatch, Better Stack] + External Integrations [Email, OAuth, Payment, LLM APIs]"
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid (containerized web app + API engine with auto-scaling + serverless Lambda)",
+    "languages": ["JavaScript", "Python", "PHP"],
+    "frameworks": ["React (Lingo.dev Compiler uses AST processing)"],
+    "compute": ["ECR (Container Registry)", "Web App (Auto-Scaling)", "API Engine (Auto-Scaling 2-10)", "Lambda (Similarity API)"],
+    "api_style": "REST (API integrations mentioned; Localization Translation API)",
+    "environments": "Separate development/test and production environments (CC8.1.4 confirms changes developed and tested in separate environment before implementation)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["PostgreSQL"],
+    "caching": ["Not explicitly mentioned"],
+    "file_storage": ["AWS File Storage (visible in network diagram)"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Daily (CC7.4.2 confirms backups taken daily with multi-AZ configured)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS IAM + Turnstile (visible in network diagram)",
+    "mfa": "MFA enforced for administrative access to production platform, source code management tool, and all remote access. Email access requires two-factor authentication.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day upon termination",
+    "password_policy": "Controlled through AWS password policy with periodic forced changes, password expiry, complexity requirements. Accounts disabled after limited unsuccessful logon attempts. Guest/anonymous logins not allowed. Desktops locked after inactivity timeout."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified) via third-party certificate authority",
+    "at_rest": "Cloud provider key management service (AWS KMS implied)",
+    "key_management": "AWS KMS (cloud provider key management service to encrypt data at rest and store/manage encryption keys. Access to access keys restricted to authorized individuals.)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool with MFA (specific tool not named; GitHub likely given CI/CD integrations for GitHub Actions)",
+    "ci_cd_tool": "GitHub Actions, GitLab CI/CD, Bitbucket Pipelines (for product CI/CD integrations; internal CI/CD tool not explicitly named)",
+    "branch_protection": "Code repository branch rules configured to ensure every merge request to move changes to production requires additional approval. Developers cannot make changes to production without additional approval.",
+    "iac": "Infrastructure as Code (baseline configurations retained within IaC, configuration management tool used for implementation and rollback capability)",
+    "container_orchestration": "ECR (Container Registry) with auto-scaling web app and API engine (auto-scaling 2-10 instances)",
+    "patch_management": "Automatic patch management with monthly reviews by CTO/Management. OS patches tested before production deployment. Workstations configured for automatic updates and scanned daily for patch compliance.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Better Stack (visible in network diagram)",
+    "siem": "Not explicitly named (automated alerts configured for high/critical risk events)",
+    "log_aggregation": "CloudWatch (visible in network diagram)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events via monitoring tools",
+    "metrics": ["CPU utilization", "disc space", "incoming/outgoing network traffic", "packet loss", "system capacity", "performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS", "purpose": "Primary cloud infrastructure provider (IaaS) - data center services, compute, storage, database, networking", "criticality": "Critical"},
+    {"vendor": "Cloudflare", "purpose": "Edge SSL/TLS termination, DDoS protection, CDN", "criticality": "Critical"},
+    {"vendor": "Better Stack", "purpose": "Application performance monitoring and logging", "criticality": "High"},
+    {"vendor": "LLM API providers", "purpose": "Multiple best-in-class Large Language Models for translation engine (specific providers not named)", "criticality": "Critical"},
+    {"vendor": "Turnstile (Cloudflare)", "purpose": "Bot protection / CAPTCHA for authentication", "criticality": "Medium"},
+    {"vendor": "OAuth provider(s)", "purpose": "OAuth authentication integrations", "criticality": "High"},
+    {"vendor": "Payment provider(s)", "purpose": "Payment processing integration", "criticality": "High"},
+    {"vendor": "Email service provider", "purpose": "Email integration for platform notifications and communications", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Endpoint Security Solution with antivirus, anti-malware, and Trojan protection. Installed on all production servers and Mac workstations/laptops. Auto-scan on continuous basis. Definitions updated weekly for production servers.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications using automated tool. Frequency adjusted as required. Remediation plan for critical/high vulnerabilities.",
+    "penetration_testing": "Annual external penetration testing by independent third-party. Results reviewed by IT management. High/critical findings remediated and added to risk register.",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed (time frames identified based on business impact analysis)",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 62,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 - Significant changes to people/roles could not be tested because no significant changes were made during the engagement period",
+      "CC3.2.1 - Cybersecurity insurance incidents could not be tested because no cyber incidents reported during the engagement period",
+      "CC6.5.2 - Customer data deletion upon termination could not be tested because no customer terminations during the engagement period",
+      "CC7.3.1 - Security incident response operating effectiveness could not be tested because no security incidents reported during the engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 - Physical access controls excluded; AWS responsible for data center physical security",
+      "A1.2 - Environmental protections excluded; no office, managed by building management / AWS",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "RGEC (Risk and Governance Executive Committee) meets semiannually to review internal controls, risk assessments, and compliance frameworks",
+      "IT Leadership Committee meets weekly to review activities and processes key to meeting security commitments",
+      "Quarterly user access reviews for all accounts including administrative privileges",
+      "Source code changes logged, time-stamped, and attributed to author with MFA-protected access",
+      "Configuration management tool with IaC for baseline configurations and rollback capability",
+      "Auto-scaling API Engine (2-10 instances) demonstrates capacity management",
+      "Content fingerprinting system for efficient versioning and tracking of translatable content"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "AWS with multi-AZ, Cloudflare edge, auto-scaling, and IaC are solid. However, single-region deployment (no multi-region mentioned), no specific regions disclosed, and relatively simple architecture for a platform handling enterprise localization. Container registry + auto-scaling web app + Lambda shows thoughtful compute design."
+    },
+    "application_architecture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Hybrid pattern with containerized services and serverless Lambda is reasonable. Multi-platform SDKs in JS/Python/PHP demonstrate breadth. React compiler with AST processing is sophisticated. However, no mention of automated testing frameworks, CI pipeline specifics, or code quality tools. Branch protection and code review enforced."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "PostgreSQL as primary database with file storage and daily backups with multi-AZ. Data classification and retention policies in place. Per-tenant segregation confirmed. However, no caching layer mentioned, no data warehouse, no mention of read replicas, and limited detail on database architecture for a platform processing large volumes of translation content."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong security posture: Cloudflare edge protection, IDS/IPS, firewalls, MFA enforcement, comprehensive endpoint protection, monthly vulnerability scanning, annual external pen testing, server hardening with IaC, cybersecurity insurance. Quarterly access reviews and 1-day access revocation SLA are excellent. Log protection and automated alerting in place. Points deducted for lack of named SIEM tool and no mentioned WAF rules beyond Cloudflare DDoS."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "IaC with configuration management tool and rollback capability is good. Branch protection with merge approval required. Separate dev/test/production environments. Emergency change process documented. Automatic patch management with daily compliance scanning. However, specific CI/CD tooling for internal development not named, no mention of automated testing in pipeline, and container orchestration details are light."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual testing of DR plans across different loss scenarios. Multi-AZ failover with spinning up servers across availability zones. Daily backups with multi-AZ configured. However, no stated RTO/RPO targets, no multi-region failover, and DR details are in Section 5 (not audited by the assessor)."
+    },
+    "vendor_diversity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Multiple vendors visible: AWS (infra), Cloudflare (edge/security), Better Stack (monitoring), multiple LLM providers (core translation), payment/email/OAuth providers. Vendor management policy with annual SOC report reviews and quarterly risk assessments for critical vendors. Some concentration risk with AWS as sole cloud provider, but Cloudflare provides edge independence."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Lingo.dev demonstrates solid security fundamentals for an early-stage company (3-month audit period, no significant changes, small team with CEO/COO/CPO structure). Clean audit opinion with zero exceptions across 62 controls. The network diagram reveals a well-structured AWS architecture with appropriate layering. However, the report shows characteristics of a young security program: short audit window, several controls untestable due to no events occurring, generic/templated language in many control descriptions, and limited technical specificity around database architecture, monitoring stack, and CI/CD pipeline."
+    }
+  },
+
+  "red_flags": [
+    "Very short audit period (3 months: May 6 - Aug 6, 2025) - first SOC 2 audit likely, minimal operational history demonstrated",
+    "Processing Integrity and Privacy trust criteria excluded from scope despite handling customer translation content that may contain sensitive data",
+    "Four controls could not be tested for operating effectiveness due to no events occurring during the short engagement period (incidents, personnel changes, customer terminations, cyber events)",
+    "No specific RTO/RPO targets disclosed despite having a BCDR policy",
+    "No multi-region failover for a platform serving international localization customers"
+  ],
+
+  "yellow_flags": [
+    "Many control descriptions use generic/templated language suggesting possible use of compliance automation platform rather than deeply customized controls",
+    "No named SIEM tool - alerts and log management appear to rely on CloudWatch and Better Stack rather than a dedicated SIEM",
+    "Single cloud provider (AWS) with no disclosed multi-region strategy creates concentration risk",
+    "No mention of automated testing in the CI/CD pipeline despite complex translation engine with LLM integrations",
+    "Specific LLM providers not disclosed - creates opacity around data processing subprocessors",
+    "No mention of SSO support for enterprise customers",
+    "Auditor firm (Accorp Partners) is not a Big 4 or well-known mid-tier audit firm"
+  ],
+
+  "green_flags": [
+    "Clean unqualified opinion with zero exceptions across all 62 tested controls",
+    "Network diagram shows thoughtful architecture: Cloudflare edge -> containerized web app with auto-scaling -> API engine (auto-scaling 2-10) -> Lambda -> PostgreSQL with clear security/monitoring layer",
+    "Strong access control: MFA enforced across production, source code, and remote access; 1 business day termination SLA; quarterly access reviews",
+    "Infrastructure as Code with configuration management and rollback capability demonstrates operational maturity",
+    "Annual external penetration testing with remediation tracking",
+    "Cybersecurity insurance maintained",
+    "BCDR plans tested annually with multiple loss scenarios",
+    "Daily backups with multi-AZ configuration and alerts for backup failures",
+    "Vendor management program with SOC report reviews and quarterly risk assessments for critical vendors without SOC reports",
+    "Content fingerprinting system and context-aware translation indicate sophisticated product engineering"
+  ],
+
+  "key_observations": [
+    "The network diagram (page 19) is the most revealing technical artifact - it shows a specific architecture with named components (ECR, Turnstile, Better Stack, CloudWatch) that the narrative text rarely mentions by name, suggesting the diagram is more authentic than the templated control descriptions",
+    "The org chart shows only 3 C-suite roles (CEO, COO, CPO) with no CTO or CISO despite CTO being referenced in controls - the CPO appears to fill the CTO function. The 'Chief Information Security Officer' role mentioned in CC7.4 controls may be a virtual/shared responsibility",
+    "The company builds CI/CD integrations for GitHub Actions, GitLab CI/CD, and Bitbucket Pipelines as a product feature, suggesting strong internal DevOps expertise, yet the report is notably vague about their own internal CI/CD practices",
+    "Auto-scaling range of 2-10 for the API Engine suggests current production load is relatively modest but architecture is prepared for growth",
+    "The use of multiple LLM providers is a deliberate architectural choice for a translation engine, providing both quality diversity and vendor resilience - but none are named, creating subprocessor transparency concerns",
+    "Cloudflare Turnstile (bot protection) in the security layer suggests the API is publicly accessible and sees automated traffic, consistent with a developer-facing CLI/API product",
+    "The company determined Processing Integrity is not relevant despite being a translation/localization service where output accuracy is the core value proposition - this is a notable scope limitation"
+  ]
+}

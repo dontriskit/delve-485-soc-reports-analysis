@@ -1,0 +1,19 @@
+{
+  "doc_id": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4",
+  "timestamp": "6/28/2025 15:26:10",
+  "display_name": "Sentra",
+  "legal_name": "Dynamis Labs, Inc.",
+  "company_name": "Sentra",
+  "system_description": "Sentra is an AI Alignment Officer who helps companies scale effectively.",
+  "audit_end_date": "June 27, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://www.sentra.app",
+  "contact_email": "andrey.starenky@sentra.app",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4.pdf",
+  "txt_file": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4.txt",
+  "has_report": true
+}

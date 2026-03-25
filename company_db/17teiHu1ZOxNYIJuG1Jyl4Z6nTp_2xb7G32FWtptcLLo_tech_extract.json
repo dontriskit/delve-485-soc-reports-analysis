@@ -1,0 +1,255 @@
+{
+  "company": "Domu Technology Inc.",
+  "product": "Domu",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "May 19, 2025 - August 19, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "hq": "2261 Market Street STE 86157, San Francisco, CA 94114",
+  "signing_authority": "Camila Sayuri Zancanella, Legal Representative",
+
+  "system_description": {
+    "overview": "Domu is a voice-AI technology company that provides an AI-powered servicing and collections platform helping financial institutions, lenders, and consumer-finance companies automate customer engagement across voice, SMS, WhatsApp, and email. The platform combines conversational AI with regulatory guardrails (FDCPA, TCPA, UDAAP, HIPAA, PCI) and integrates with loan management systems, CRMs, and payment processors.",
+    "products": {
+      "Domu Voice AI Platform": "Automated outbound and inbound campaigns via voice, text, email, and WhatsApp; call flows for collections, servicing, payment reminders, and account management; real-time integrations with LMS, CRMs, dialers, and payment processors; compliance-first design with TCPA, FDCPA, UDAAP, HIPAA, and PCI safeguards.",
+      "Domu Insights & Analytics": "Dashboards for liquidation rates, contact efficiency, and payment plan performance; conversation-level AI scoring for compliance, negotiation effectiveness, and customer sentiment; portfolio-level insights; data exports and APIs for client BI tools."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out method - AWS controls excluded from scope)",
+    "regions": ["us-east-1"],
+    "physical_presence": "No physical offices or servers; fully cloud-based. HQ address: 2261 Market Street STE 86157, San Francisco, CA 94114",
+    "availability_zones": "Multi-AZ (us-east-1a, us-east-1b, us-east-1c, us-east-1d, us-east-1e, us-east-1f visible in network diagram)",
+    "additional_cloud": ["Supabase"],
+    "serverless": ["AWS Lambda"],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with access control lists (ACLs). Network diagram shows DMZ zone, public subnets with NAT Gateways, and private subnets across multiple availability zones. Network segmentation implemented to separate systems and data based on sensitivity and criticality.",
+    "api_gateway": "Amazon API Gateway (with Internal Gateway visible in diagram)",
+    "waf": "AWS WAF",
+    "firewalls": "System firewalls configured on the application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via AWS employed to identify and protect against threats in conjunction with security policy network settings.",
+    "vpn": "Remote access via bastion host with VPN. Amazon Site-to-Site VPN visible in network diagram.",
+    "tls": "TLS using certificates from an established third-party certificate authority for all web-based systems.",
+    "content_filtering": "All systems restricted to internet with content filtering system routed through proxy server.",
+    "multi_region": false,
+    "topology": "External traffic (HTTPS) from Supabase, OpenAI, and Twilio enters through AWS WAF -> Amazon API Gateway -> VPC (VPC da Domu). DMZ zone present. Public subnets contain NAT Gateways. Traffic routes to private subnets containing EC2, ElastiCache, RDS, AWS Transfer Family, and Lambda functions across 6 availability zones. AWS regional API endpoints provide access to Secrets Manager, SQS, CloudWatch (implied), KMS, SNS, EventBridge, S3, and Site-to-Site VPN."
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid (EC2 + Lambda serverless)",
+    "languages": null,
+    "frameworks": null,
+    "compute": ["EC2", "Lambda"],
+    "api_style": "REST (implied by API Gateway)",
+    "environments": "Separate development/test and production environments. Changes tested in separate environment before production deployment (CC8.1.4).",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Amazon RDS", "Supabase"],
+    "caching": ["Amazon ElastiCache"],
+    "file_storage": ["Amazon S3"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Daily (CC7.4.2: Backups are taken daily, multi-availability zones are configured)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS Password Policy (passwords controlled through Password policy of AWS with periodic forced changes, password expiry and complexity requirements)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1). MFA required for source code tool access (CC8.1.3). Two-factor authentication required for employee email access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination of employment",
+    "password_policy": "AWS Password Policy with periodic forced changes, password expiry, and complexity requirements. User accounts disabled after limited number of unsuccessful logon attempts. Guest and anonymous logins not allowed. Unattended desktops locked within a time of inactivity."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service (AWS KMS implied by network diagram showing KMS endpoint)",
+    "key_management": "AWS KMS (visible in network diagram; CC6.1.5: organization uses cloud provider key management service to encrypt data at rest and store/manage encryption keys. Access to production environment access keys restricted to authorized individuals.)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (not specifically named; CC8.1.3: source code changes logged, time-stamped, attributed to author in source code management tool with MFA access)",
+    "ci_cd_tool": "Not specifically named",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to move change to production environment requires additional approval (CC8.1.2). Approval process followed prior to merging to master branch.",
+    "iac": "Infrastructure as code implied (CC7.1.1: baseline configurations retained within infrastructure as code, configuration management tool used for implementation and rollback capability)",
+    "container_orchestration": "None mentioned (EC2 + Lambda architecture)",
+    "patch_management": "Automatic patch management with monthly patch management reviews by CTO/Management. Workstations configured for automatic updates; scanned for patch compliance daily.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not specifically named (monitoring tool generates alerts when specific predefined thresholds are met)",
+    "siem": "Not specifically named",
+    "log_aggregation": "Not specifically named (logging enabled to monitor administrative activities, logon attempts, data deletions at application and infrastructure level, changes to functions, security configurations, permissions, and roles)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events",
+    "metrics": ["CPU utilization", "disc space", "incoming/outgoing network traffic", "packet loss", "availability", "efficiency", "reliability"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS", "purpose": "Primary cloud infrastructure and data center services (subservice organization)", "criticality": "Critical"},
+    {"vendor": "Supabase", "purpose": "Database/backend service (visible in network diagram receiving HTTPS traffic)", "criticality": "High"},
+    {"vendor": "OpenAI", "purpose": "AI/GenAI services for conversational AI (visible in network diagram)", "criticality": "Critical"},
+    {"vendor": "Twilio", "purpose": "Voice/SMS communications platform (visible in network diagram)", "criticality": "Critical"},
+    {"vendor": "Amazon SQS", "purpose": "Message queuing service", "criticality": "High"},
+    {"vendor": "Amazon SNS", "purpose": "Notification service", "criticality": "Medium"},
+    {"vendor": "AWS EventBridge", "purpose": "Event bus for application integration", "criticality": "Medium"},
+    {"vendor": "AWS Secrets Manager", "purpose": "Secrets and credentials management", "criticality": "High"},
+    {"vendor": "AWS KMS", "purpose": "Encryption key management", "criticality": "High"},
+    {"vendor": "AWS Transfer Family", "purpose": "Managed file transfer service", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed and configured on all production servers (continuous automatic scanning) and Mac-based workstations/laptops. Anti-virus definitions updated weekly for production servers.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications, with scan frequency adjusted as required. Self-assessment scan of vulnerabilities performed prior every release to production or yearly.",
+    "penetration_testing": "Annual external penetration testing by independent third-party. Results reviewed by IT management. High/critical findings remediated in timely manner and added to risk register.",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 71,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3: Operating effectiveness of control related to significant changes to people, roles and responsibilities could not be tested because there were no significant changes made during the engagement period",
+      "CC3.2.1 (cybersecurity insurance): Operating effectiveness could not be tested because there were no cyber incidents reported during the engagement period",
+      "CC6.5.2: Operating effectiveness of control related to customer data deletion upon termination could not be tested because there were no customer terminations during the engagement period",
+      "CC7.3.1: Operating effectiveness of control related to security incidents could not be tested because there were no security incidents reported during the engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4: Physical access to facilities excluded - Domu has no physical offices, all data processed on cloud services. AWS responsible for physical security.",
+      "A1.2: Environmental protections excluded - Domu does not have an office or operates from a working space; environmental security controls managed by building management / AWS.",
+      "Processing Integrity: Determined not relevant to the system",
+      "Privacy: Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC6.1.3: System components configured to segment company and customer access from other customer accounts (per-tenant segregation)",
+      "CC8.1.2: Developers cannot make changes to production without additional approval; repository branch rules enforce merge request approval",
+      "CC7.4.2: Daily backups with multi-AZ configuration and alerting for backup failures",
+      "CC4.1.1: Annual external penetration testing by independent third-party",
+      "CC7.1.2: Monthly automated vulnerability scans on infrastructure and applications",
+      "CC6.6.1: Firewalls and IDS tools configured to prevent unauthorized access and detect external security threats",
+      "Risk and Governance Executive Committee (RGEC) established with semiannual reviews of internal controls",
+      "IT Leadership Committee meets weekly to review security activities and processes"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong AWS foundation with Multi-AZ deployment across 6 availability zones in us-east-1. VPC with proper segmentation, DMZ, NAT Gateways, and API Gateway. IaC mentioned for baseline configurations. Deducted points for single-region deployment and no CDN mentioned."
+    },
+    "application_architecture": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Hybrid EC2+Lambda architecture with API Gateway indicates some modernization. Branch protection and code review enforced. However, no specific languages, frameworks, or CI/CD tools named. No containerization mentioned. Limited technical specificity in the report."
+    },
+    "data_layer": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Multiple database types (RDS, Supabase), caching layer (ElastiCache), S3 for file storage. Daily backups with multi-AZ. Data classification and retention policies in place. Per-tenant segregation confirmed. Deducted points for no data warehouse, no specific backup retention periods disclosed, and no mention of encryption specifics beyond KMS."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Comprehensive security stack: WAF, IDS/IPS, firewalls, endpoint protection, anti-malware, MFA, annual pen testing, monthly vulnerability scanning, server hardening. Cybersecurity insurance maintained. RGEC provides governance oversight. Deducted for no named SIEM tool, no named monitoring/APM tools, and generic descriptions of several security controls."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "IaC mentioned for baseline configurations with rollback capability. Branch protection and merge request approval enforced. Separate environments confirmed. Emergency change process documented. However, no specific CI/CD tool, source control platform, or container orchestration named. Patch management is automated with monthly reviews."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual testing of DR plans with different loss scenarios. Daily backups with multi-AZ. Multi-AZ failover across all availability zones. Deducted for no RTO/RPO disclosed, no multi-region failover, and the DR section in Section 5 is brief and not subject to audit procedures."
+    },
+    "vendor_diversity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Healthy vendor ecosystem with AWS (infra), Supabase (database), OpenAI (AI), Twilio (communications), plus multiple AWS managed services. Vendor management policy with annual SOC report reviews and quarterly risk assessments for critical vendors without SOC reports. However, heavy AWS concentration for infrastructure."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Domu demonstrates a solid security foundation for an early-stage AI company with a clean SOC 2 Type 2 opinion (0 exceptions). Network architecture is well-designed with proper segmentation and multi-AZ deployment. Key strengths include comprehensive security tooling, strong access controls, and good vendor management. Main weaknesses are single-region deployment, lack of named DevOps tooling, no disclosed RTO/RPO, and limited technical specificity throughout the report -- many controls are described generically without naming specific tools or configurations."
+    }
+  },
+
+  "red_flags": [
+    "Single-region deployment (us-east-1 only) for a platform serving financial institutions -- no multi-region failover",
+    "No RTO/RPO disclosed despite serving banks and handling debt collection for financial institutions",
+    "Processing Integrity and Privacy trust criteria excluded -- concerning given the platform handles sensitive consumer financial data and PII for debt collection",
+    "Very short audit period (3 months: May 19 - August 19, 2025) suggests this is likely their first SOC 2 report",
+    "No specific SIEM, APM, or log aggregation tools named -- raises questions about monitoring maturity"
+  ],
+
+  "yellow_flags": [
+    "No specific CI/CD tool, source control platform (e.g. GitHub), or programming languages disclosed -- limited technical transparency",
+    "Cybersecurity insurance control could not be tested because no incidents occurred (design exists but operating effectiveness unverified)",
+    "No CDN mentioned despite serving voice/communication workloads that may require low latency",
+    "Content filtering through proxy server mentioned but no specific tool named",
+    "Antivirus definitions updated weekly (not daily) for production servers",
+    "Section 5 (Other Information) is minimal -- only a brief disaster recovery note with no additional technical details",
+    "Very small team structure visible in org chart (CEO, CPO, COO, VP Revenue, Head of Engineering, VP Product & Growth) -- key-person risk"
+  ],
+
+  "green_flags": [
+    "Clean unqualified opinion with zero exceptions across all 71 controls tested",
+    "Well-architected AWS network with VPC, DMZ, multi-AZ across 6 availability zones, proper public/private subnet separation",
+    "AWS WAF + API Gateway + IDS/IPS + firewalls provide defense-in-depth at the network perimeter",
+    "MFA enforced for administrative access, source code access, and email access",
+    "Annual external penetration testing by independent third-party with remediation tracking",
+    "Monthly automated vulnerability scanning with frequency adjusted as needed",
+    "Branch protection with merge request approval required for production deployments -- developers cannot push directly to production",
+    "Daily backups with multi-AZ configuration and alerting for backup failures",
+    "Strong vendor management program with annual SOC report reviews and quarterly risk assessments",
+    "Risk and Governance Executive Committee (RGEC) established with documented charter",
+    "Compliance-first approach with built-in regulatory guardrails (FDCPA, TCPA, UDAAP, HIPAA, PCI) for the financial services use case",
+    "Per-tenant data segregation confirmed (CC6.1.3)",
+    "Data classification policy established, documented, and implemented (CC2.1.3)"
+  ],
+
+  "key_observations": [
+    "Domu is a GenAI-powered debt collection platform for banks -- a high-risk, heavily regulated use case (FDCPA, TCPA, UDAAP, HIPAA, PCI) that makes the exclusion of Processing Integrity and Privacy criteria notable",
+    "The network diagram reveals Supabase as an external dependency receiving HTTPS traffic alongside OpenAI and Twilio -- Supabase appears to serve as an additional database/backend layer outside the main AWS VPC",
+    "Despite being a voice-AI company, there is no mention of call recording storage, retention policies, or audio data handling -- a gap for due diligence follow-up",
+    "The 3-month audit period and first-time SOC 2 Type 2 nature means the control maturity has limited track record",
+    "The org chart shows a very lean team with no dedicated CISO or security team -- the CEO/COO appear to handle security oversight with IS Team support",
+    "Infrastructure as Code is mentioned for baseline configurations but no specific IaC tool (Terraform, CloudFormation, etc.) is named -- could indicate early-stage IaC adoption",
+    "AWS Transfer Family visible in the network diagram suggests SFTP/FTPS file transfer capabilities, likely for bank integration data exchange",
+    "The report uses the carve-out method for AWS, meaning AWS physical and environmental controls are excluded from the audit scope"
+  ]
+}

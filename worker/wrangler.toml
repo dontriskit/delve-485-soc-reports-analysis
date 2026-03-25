@@ -1,0 +1,26 @@
+name = "delve-vision-extract"
+main = "src/index.ts"
+compatibility_date = "2025-03-24"
+account_id = "YOUR_ACCOUNT_ID"
+
+[ai]
+binding = "AI"
+
+[[workflows]]
+name = "delve-pdf-extract"
+binding = "PDF_EXTRACT_WORKFLOW"
+class_name = "PDFExtractWorkflow"
+
+[[workflows]]
+name = "delve-report-gen"
+binding = "REPORT_WORKFLOW"
+class_name = "ReportGenWorkflow"
+
+[[r2_buckets]]
+binding = "PAGES"
+bucket_name = "delve-pages"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "delve-tech-dd"
+database_id = "YOUR_DATABASE_ID"

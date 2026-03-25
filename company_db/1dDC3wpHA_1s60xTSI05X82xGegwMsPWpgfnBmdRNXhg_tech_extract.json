@@ -1,0 +1,253 @@
+{
+  "company": "AutoInfra, Inc.",
+  "product": "Morph",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of July 30, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "[Company Address] — address placeholder in report; not disclosed",
+  "signing_authority": "Tejas Bhakta, CEO",
+
+  "system_description": {
+    "overview": "Morph (dba AutoInfra, Inc.) is an AI model provider for AI code generation companies, acting as a middleware layer between foundation models and engineering systems. Its flagship product Fast Apply enables safe, high-throughput deterministic code editing from LLM suggestions with ~98% accuracy and 4500+ token throughput. The platform also supports compliance automation across SOC 2, HIPAA, ISO 27001, GDPR, and PCI DSS frameworks.",
+    "products": {
+      "Fast Apply": "Deterministic code editing — high-precision application of LLM-generated edits directly into source files with syntax-aware, structured incremental changes.",
+      "Contextual Intelligence Layer": "High-recall embeddings for syntax-aware code search and retrieval; code-tuned reranker filters context for relevance to boost LLM accuracy.",
+      "Automated Compliance Management Platform": "End-to-end AI-powered compliance automation supporting multiple frameworks with automated evidence collection, continuous compliance monitoring, and CI/CD integrations.",
+      "AI-Powered Security and Compliance Features": "Automated code scanning, automated infrastructure scanning, access control monitoring, and security questionnaire automation.",
+      "White-Glove Support Services": "Expert onboarding, compliance implementation services, ongoing compliance support with real-time dashboards."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out — AWS SOC 2 report exists; AWS controls excluded from scope)",
+    "regions": ["Not explicitly specified — 'high availability data centers' referenced"],
+    "physical_presence": "None — report explicitly states no physical offices and no physical servers; all data processed on cloud services. CC6.4 and A1.2 excluded on this basis.",
+    "availability_zones": "Multi-AZ — 'high availability data centers with multiple availability zones'; DR plan spins up multiple servers across all availability zones in AWS",
+    "additional_cloud": ["Modal (LLM inference endpoints — primary and fallback)", "Vercel (Dashboard / NextJS frontend)", "Neon (PostgreSQL database)", "Upstash (Redis cache)"],
+    "serverless": ["AWS Lambda (API server — FastAPI on Modal or Lambda)", "Modal serverless endpoints", "vLLM Multi-node inference engine"],
+    "cdn": "Vercel (implied via NextJS/Vercel dashboard hosting)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Hosted in AWS VPC with segmented VPCs and access control lists (ACLs). System components configured so company and customer access is appropriately segmented from other customer accounts (CC6.1.3).",
+    "api_gateway": "Custom load balancer 'morph-api-proxy' with health monitoring, smart model routing, auto failover, and circuit breaker functionality",
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via AWS to identify and protect against threats in conjunction with security policy network settings.",
+    "vpn": "Bastion host with VPN for remote access to production systems.",
+    "tls": "TLS using certificates from an established third-party certificate authority for all user requests to web-based systems.",
+    "content_filtering": "Proxy server with content filtering system; all systems restricted to internet via proxy.",
+    "multi_region": false,
+    "topology": "Client App (API Client) and Dashboard (NextJS/Vercel) -> Load Balancer (morph-api-proxy: health monitoring, smart model routing, auto failover, circuit breaker) -> API Server (FastAPI on Modal or Lambda) + Clerk Auth -> Routing Decision Engine -> Modal Endpoints (primary/fallback/vLLM+Modal/serverless) or Self-Hosted Lambda Cloud (GH200 ARM, hardware-locked, encrypted models, vLLM+Docker, OpenAI API) -> LLM Inference Engine (vLLM Multi-node) -> PostgreSQL DB (neon); supporting services: Redis Cache (upstash), Authentication, Rate Limits, Stripe Integration, Metered Usage Logs."
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid (microservices-oriented with serverless compute; routing decision engine directing between Modal cloud endpoints and self-hosted Lambda cloud)",
+    "languages": ["Python (FastAPI)", "TypeScript/JavaScript (NextJS dashboard)"],
+    "frameworks": ["FastAPI", "Next.js", "vLLM", "Docker"],
+    "compute": ["AWS Lambda", "Modal (serverless and dedicated endpoints)", "Self-hosted Lambda Cloud on GH200 ARM GPUs"],
+    "api_style": "REST (FastAPI)",
+    "environments": "Separate development/test and production environments (CC8.1.4); changes tested in dev/test before promotion to production.",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["PostgreSQL via Neon (managed serverless Postgres)"],
+    "caching": ["Redis via Upstash"],
+    "file_storage": ["Not explicitly named — AWS S3 implied via AWS infrastructure"],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Formal backup policy exists; specific frequency not disclosed. DR plan references spinning up servers across all AZs in AWS.",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Clerk (Auth — shown explicitly in network diagram as 'Clerk Auth')",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1). MFA required for source code tool access (CC8.1.3). Two-factor authentication required for employee email access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination of employment",
+    "password_policy": "AWS password policy controls: periodic forced changes, password expiry, complexity requirements, account lockout after failed attempts; no guest or anonymous logins; inactivity lockout with password or biometric unlock required."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest (CC6.1.5)",
+    "key_management": "AWS KMS (cloud provider KMS — 'organization uses its cloud provider key management service')",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named explicitly — 'source code management tool' with MFA-gated access; branch protection rules configured (implies GitHub or GitLab)",
+    "ci_cd_tool": "Not named explicitly — changes tracked in 'internal tool' with ticketing/change-management application",
+    "branch_protection": "Code repository branch rules configured to require additional approval for every merge request moving changes to production environment (CC8.1.2).",
+    "iac": "Configuration management tool used for baseline configurations with rollback capability (CC7.1.1) — specific tool not named",
+    "container_orchestration": "Docker (vLLM+Docker on self-hosted Lambda Cloud); no Kubernetes mentioned",
+    "patch_management": "CTO/Management set up automatic patch management; monthly patch management reviews; workstations receive automatic updates and scanned for patch compliance daily; critical OS patches applied as available.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named — internal monitoring tools with predefined threshold alerting",
+    "siem": "Not named",
+    "log_aggregation": "Logging enabled at application and infrastructure level — specific tool not named (CloudWatch implied via AWS)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; resolved through incident management process.",
+    "metrics": ["disc space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "administrative activities", "logon attempts", "data deletions", "security configuration changes", "permissions and roles changes"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Primary cloud infrastructure — compute, networking, storage, KMS, IDS/IPS, VPC, Multi-AZ hosting", "criticality": "Critical"},
+    {"vendor": "Modal", "purpose": "LLM inference serverless endpoints (primary, fallback, vLLM+Modal, serverless)", "criticality": "Critical"},
+    {"vendor": "Neon", "purpose": "Managed serverless PostgreSQL database", "criticality": "Critical"},
+    {"vendor": "Upstash", "purpose": "Redis caching layer", "criticality": "High"},
+    {"vendor": "Vercel", "purpose": "Dashboard hosting (NextJS frontend)", "criticality": "High"},
+    {"vendor": "Clerk", "purpose": "Authentication / identity provider", "criticality": "Critical"},
+    {"vendor": "Stripe", "purpose": "Payment processing / metered usage billing integration", "criticality": "High"},
+    {"vendor": "OpenAI", "purpose": "AI API fallback (OpenAI API listed in self-hosted Lambda Cloud path)", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and malware protection on all production servers with continuous scanning; AV definitions updated weekly on servers, daily on workstations. Installed on Mac-based workstations and laptops. Email scanning for malicious scripts and viruses.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications (tool not named); additional scan prior to every production release or yearly. High/critical vulnerabilities tracked to remediation via incident response plan.",
+    "penetration_testing": "Annual external penetration testing by independent third party; high/critical findings tracked to resolution.",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — physical access to data center facilities: AWS is responsible for physical security; Morph has no physical offices or servers",
+      "A1.2 — environmental protections, data backup processes, recovery infrastructure: Morph has no office/working space; all environmental controls managed by building management / AWS",
+      "Processing Integrity trust service category — determined not relevant to the system",
+      "Privacy trust service category — determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC8.1.3 — Source code access restricted to authorized users using MFA; changes logged, time-stamped, and attributed to author",
+      "CC8.1.2 — Branch protection: every merge request to production requires additional approval; developers cannot directly change production code",
+      "CC6.1.1 — MFA enforced for all accounts with administrative access to production platform",
+      "CC6.1.4 — Access revocation within one business day of termination; termination checklist used",
+      "CC6.2.2 — Quarterly user access reviews for all accounts including privileged users",
+      "CC6.1.5 — Cloud provider KMS used for encryption keys at rest; production access keys restricted to authorized individuals",
+      "CC4.1 — Annual external penetration testing by independent third party",
+      "CC7.1.2 — Monthly automated vulnerability scans on infrastructure and applications",
+      "CC7.4.1 — BCDR policy documented and reviewed annually; loss scenarios tested at least annually",
+      "Self-hosted LLM inference on GH200 ARM GPUs with hardware-locked, encrypted models — notable for an early-stage AI company"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Multi-AZ AWS deployment with VPN, IDS/IPS, VPC segmentation, and ACLs. Strong: explicit multi-AZ failover, carve-out AWS SOC 2, multiple specialized cloud providers for different functions (Modal, Neon, Upstash, Vercel). Deductions: single region only, no CDN/WAF explicitly named, no explicit IaC tool named."
+    },
+    "application_architecture": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Sophisticated hybrid architecture visible in detailed network diagram: FastAPI backend, Next.js frontend, routing decision engine with smart model routing and circuit breaker, dual inference paths (Modal cloud + self-hosted GH200 ARM). vLLM multi-node inference engine shows ML engineering maturity. Specific languages and frameworks named. Minor deduction: no explicit test coverage mention."
+    },
+    "data_layer": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Postgres (Neon) + Redis (Upstash) is a reasonable stack; per-tenant segregation confirmed; KMS at-rest encryption. Deductions: no data warehouse, backup frequency not specified, file storage not explicitly named, Neon is a third-party managed DB introducing additional vendor dependency."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong: annual external pen test, monthly automated vuln scans, MFA on production/SCM, quarterly access reviews, IDS/IPS, firewalls, endpoint AV, TLS in transit, KMS at rest, log protection, 1-business-day access revocation. Gaps: no WAF explicitly named, no SIEM named, no named security tooling vendors, cybersecurity insurance not mentioned."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Solid practices: branch protection requiring approvals, separate environments, emergency change process, monthly patch management, source code logged with MFA access, config management tool for IaC with rollback. Deductions: CI/CD tool and SCM platform not named, IaC tool not named, no containerization orchestration beyond Docker."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and annually reviewed, loss scenarios tested annually, multi-AZ failover capability with automatic server spin-up. Deductions: no RTO/RPO disclosed, no multi-region failover, daily backup frequency not confirmed, DR detail sits in Section 5 (unaudited)."
+    },
+    "vendor_diversity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "8 distinct named vendors: AWS, Modal, Neon, Upstash, Vercel, Clerk, Stripe, OpenAI. Good functional separation. Concern: both primary cloud (AWS) and LLM inference (Modal) are single-vendor dependencies at their respective layers; loss of Modal would be critical. Vendor management policy with annual SOC reviews and quarterly assessments for non-SOC vendors is in place."
+    },
+    "overall": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Morph shows notable technical sophistication for an early-stage AI company (SOC 2 Type 1 with detailed architecture, explicit network diagram, hardware-locked GPU inference). Core security hygiene (MFA, quarterly access reviews, pen testing, vuln scanning, branch protection) is properly implemented. Main weaknesses: no named CI/CD or SIEM tools, no WAF, RTO/RPO undisclosed, single-region, and significant concentration in Modal for LLM inference."
+    }
+  },
+
+  "red_flags": [
+    "Modal is a critical single point of failure for LLM inference with no named fallback vendor SLA disclosed; Modal itself is a startup-stage infrastructure provider.",
+    "No WAF mentioned — the API is internet-facing and processes LLM inference requests at scale.",
+    "No SIEM or named log aggregation/alerting tool — monitoring described generically without vendor specificity.",
+    "RTO and RPO not disclosed — BCDR plan exists but recovery time commitments are unknown.",
+    "Org chart shows only 4 people total (CEO Tejas + 2 ML Engineers + 1 ML Intern) — extreme key-person dependency; entire engineering team is 2 people."
+  ],
+
+  "yellow_flags": [
+    "Single AWS region — no multi-region failover; AZ failure coverage exists but regional outage would impact service.",
+    "Neon (serverless Postgres) is itself a startup-stage managed database vendor — adds vendor risk at the DB layer.",
+    "CI/CD tool and source control platform not named in the report — cannot assess maturity of pipeline tooling.",
+    "IaC tool referenced generically as 'configuration management tool' — Terraform/Pulumi/CloudFormation not confirmed.",
+    "Backup frequency not specified — formal policy exists but recovery point window is unknown.",
+    "Processing Integrity and Privacy trust criteria explicitly excluded — acceptable for this use case but worth noting for enterprise buyers.",
+    "HQ address listed as '[Company Address]' placeholder — suggests report was finalized with incomplete metadata.",
+    "Self-hosted inference on GH200 ARM hardware-locked GPUs introduces physical hardware dependency not fully covered by carve-out."
+  ],
+
+  "green_flags": [
+    "Exceptionally detailed and transparent network diagram (page 19) showing full system topology including specific vendor names — rare for a Type 1 report.",
+    "Sophisticated routing architecture: morph-api-proxy with health monitoring, smart model routing, auto failover, and circuit breaker pattern — production-grade resilience design.",
+    "Dual inference paths (Modal cloud + self-hosted Lambda Cloud on GH200 ARM) provides inference-layer redundancy with model encryption at rest.",
+    "Annual external penetration testing by independent third party confirmed (CC4.1).",
+    "Monthly automated vulnerability scans with high/critical remediation tracked through incident management.",
+    "MFA enforced at production access, source code tool, and employee email — comprehensive MFA coverage.",
+    "Quarterly user access reviews including privileged accounts (CC6.2.2).",
+    "1-business-day access revocation SLA with termination checklist (CC6.1.4).",
+    "Branch protection requiring additional approval on every merge to production (CC8.1.2).",
+    "Vendor management policy with annual SOC report reviews and quarterly risk assessments for non-SOC vendors (CC9.2.1).",
+    "BCDR tested annually across different loss scenarios — not just documented but exercised.",
+    "Platform targets compliance automation (SOC 2, HIPAA, ISO 27001, GDPR, PCI DSS) — security is core to the product, creating alignment between internal practices and product offering."
+  ],
+
+  "key_observations": [
+    "Morph is an AI infrastructure company auditing itself against SOC 2 — the product itself generates compliance automation and evidence, creating an interesting alignment: Morph likely uses its own tooling for its compliance program.",
+    "The network diagram reveals Modal as the primary LLM inference provider, which is itself a venture-backed GPU cloud startup (not a hyperscaler). This is an unusual and notable vendor concentration risk for an AI API company.",
+    "Self-hosted GH200 ARM inference cluster with 'hardware-locked, encrypted models' suggests Morph may be running proprietary fine-tuned models they want to protect from extraction — not just routing to commodity APIs.",
+    "The org chart (page 21) shows a 4-person company at audit time: CEO (Tejas Bhakta) plus 2 ML Engineers (Dat, Suraj) and 1 ML Intern (Dhruv). This is an extremely early-stage company obtaining SOC 2 Type 1 proactively.",
+    "Clerk is used for authentication rather than AWS Cognito or a traditional enterprise IdP (Okta/Auth0) — Clerk is developer-focused and relatively new; worth noting for enterprise buyers requiring enterprise SSO.",
+    "The report's geographic scope table explicitly states 'No physical offices' — Morph is fully remote with no physical infrastructure, which simplifies the physical security scope but means all resilience depends on AWS and third-party SaaS vendors.",
+    "Stripe integration for metered usage billing is visible in the architecture diagram, confirming usage-based pricing model for the API product.",
+    "The report was signed on 8/7/2025 with a report date of July 30, 2025 — very recent audit, suggesting this is Morph's first SOC 2."
+  ]
+}

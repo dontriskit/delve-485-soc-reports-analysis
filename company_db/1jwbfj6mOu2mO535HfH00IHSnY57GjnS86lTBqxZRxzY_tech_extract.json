@@ -1,0 +1,232 @@
+{
+  "company": "CoPlane, Inc.",
+  "product": "CoPlane",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "July 9, 2025 - October 9, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "548 Market St., PMB 287851, San Francisco, CA",
+  "signing_authority": "Scott O'Leary, Co-Founder; Interim CISO",
+
+  "system_description": {
+    "overview": "CoPlane is the agentic process automation platform for the back-office. It provides an AI platform to develop and deploy intelligent workflows and applications for automating finance and accounting operations, and also provides forward-deployed engineering services.",
+    "products": {
+      "Planar SDK": "Developer tooling (the Planar SDK and supporting CLI tools) to rapidly develop and iterate custom workflows and solutions",
+      "Execution Engine": "A durable execution engine (Python framework called Planar) for reliable and auditable workflow execution. Can be deployed into customers' cloud/on-prem environments or hosted in a CoPlane-managed AWS account",
+      "Visual UI": "Visual user interfaces for reporting, debugging, auditing, and change-controlled development. Served from CoPlane's infrastructure, connects to customer-deployed Planar instances via browser-based authentication with customer IDP",
+      "Professional Services": "End-to-end solution development and delivery, customer enablement, and technical support"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out — AWS data center controls excluded from scope)",
+    "regions": ["Not specified"],
+    "physical_presence": "No physical offices; no physical servers. All data processed on cloud services.",
+    "availability_zones": "Multi-AZ (multiple availability zones in AWS; DR spins up multiple servers across all AZs)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "System hosted in AWS VPC environment. Segmented VPCs and ACLs. Network diagram shows: Customer IDP for SSO -> Users Browser -> app.coplane.com -> Customer Cloud Account VPC containing Application Load Balancer, Secrets Manager, Containerized Planar Application, Application Database, Object Storage. CI/CD Pipeline fed from Customer Git Repository.",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management. Firewall access restricted to authorized personnel.",
+    "ids_ips": "IDS and IPS via AWS employed to identify and protect against threats in conjunction with security policy network settings. Intrusion detection system utilized to monitor and detect unauthorized access or anomalies.",
+    "vpn": "Remote access done through a bastion host with a VPN",
+    "tls": "TLS using certificates from an established third-party certificate authority",
+    "content_filtering": "Content filtering system routed through proxy server; all systems restricted to internet with content filtering",
+    "multi_region": false,
+    "topology": "Customer IDP for SSO <-> User Browser <-> app.coplane.com; User requests flow into Customer Cloud Account VPC with Application Load Balancer, Secrets Manager, Containerized Planar Application, Application Database, Object Storage. External resources (ERP, SaaS) connect to Planar app. CI/CD Pipeline feeds from Customer Git Repository."
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid (containerized microservice deployed per-customer into customer or CoPlane-managed AWS; web UI served from CoPlane infra)",
+    "languages": ["Python (Planar framework confirmed)"],
+    "frameworks": ["Planar (internal Python framework)"],
+    "compute": ["Containerized application (Planar)", "Application Load Balancer"],
+    "api_style": "Not specified",
+    "environments": "Separate development/test/staging and production environments. Changes tested in Stage or Production-equivalent before promotion.",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Application Database (type not specified)"],
+    "caching": [],
+    "file_storage": ["Object Storage (type not specified, likely S3 based on AWS)"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Daily (backups taken daily, multi-AZ configured)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Customer IDP (browser-based authentication via integration with the customer's IDP for UI access); AWS IAM for infrastructure",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform; MFA enforced for all remote access; source code tool restricted to authorized users using MFA; email requires 2FA",
+    "rbac": true,
+    "sso": true,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day upon termination",
+    "password_policy": "Password policy via AWS; periodic forced changes; complexity requirements; account lockout after failed attempts; guest/anonymous logins not allowed"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service (AWS KMS implied)",
+    "key_management": "Cloud provider key management service (AWS KMS); access to encryption keys restricted to authorized individuals",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Git (Customer Git Repository shown in network diagram; MFA-protected source code tool)",
+    "ci_cd_tool": "CI/CD Pipeline (tool name not specified)",
+    "branch_protection": "Code repository branch rules configured so every merge request requires additional approval before moving to production",
+    "iac": "Configuration management tool used for baseline configurations and rollback capability",
+    "container_orchestration": "Containerized Planar Application (orchestration platform not specified)",
+    "patch_management": "CTO/Management set up automatic patch management; monthly patch management reviews; workstations receive automatic updates; workstations scanned daily for patch compliance; critical OS patches applied as available",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Monitoring tool (name not specified) — continuously monitors infrastructure performance, generates alerts on predefined thresholds",
+    "siem": "None mentioned",
+    "log_aggregation": "Logging enabled for administrative activities, logon attempts, data deletions, changes to functions, security configurations, permissions and roles. Log access and modification is restricted.",
+    "alerting": "Automated alerts notify IT management of high and critical risk events; incidents tracked in change-management/ticketing application",
+    "metrics": ["CPU", "disk space", "incoming/outgoing network traffic", "packet loss", "system capacity"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Cloud infrastructure, data center, IDS/IPS, KMS, VPC", "criticality": "Critical"},
+    {"vendor": "Customer IDP", "purpose": "Identity provider for SSO authentication to CoPlane UI", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software on all production servers (auto-scan continuous basis, definitions updated weekly); also on Mac workstations/laptops",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; self-assessment scans prior to every production release or annually",
+    "penetration_testing": "Annual external penetration testing by independent third party",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 47,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — No significant changes to key personnel roles/responsibilities during engagement period",
+      "CC3.2.1 — Cybersecurity insurance control could not be tested (no cyber incidents reported during engagement period)",
+      "CC7.3.1 — Security incident control could not be tested (no security incidents reported during engagement period)",
+      "CC6.5.2 — Customer data deletion upon termination could not be tested (no customer terminations during engagement period)"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — Physical access to data center facilities: AWS is responsible; physical security controls excluded from scope",
+      "A1.2 — Environmental protections, software/data backup and recovery infrastructure: CoPlane has no office; environmental controls managed by building management/AWS"
+    ],
+    "notable_controls": [
+      "Planar execution engine can be deployed into customer environments (cloud/on-prem) — no customer data or business logic exposed to CoPlane",
+      "Network diagram shows customer-managed VPC deployment model with CoPlane only controlling the containerized application",
+      "Quarterly user access reviews performed for all accounts including privileged accounts",
+      "Risk and Governance Executive Committee (RGEC) meets semiannually to review key internal control measures",
+      "IT Leadership Committee meets weekly to review security commitment activities",
+      "Vulnerability scans performed monthly with automated tool"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 7,
+      "max": 10,
+      "rationale": "AWS-hosted, Multi-AZ, VPC with segmentation, IDS/IPS, bastion+VPN for remote access. No multi-region, no CDN, no named IaC tool (just 'configuration management tool'). DR spins up servers across all AZs."
+    },
+    "application_architecture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Containerized Python (Planar framework), customer-VPC deployment model is architecturally sophisticated. Branch protection and code review enforced. No specific language breadth or test framework disclosed. CI/CD tool unnamed."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Daily backups, multi-AZ confirmed, object storage + application database. No caching layer, no data warehouse, no specific DB type disclosed. Data classification and retention policies exist."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Annual external pen test, monthly vuln scans, IDS/IPS, MFA enforced, anti-malware on servers and endpoints, server hardening, cybersecurity insurance, quarterly access reviews, firewall rules reviewed annually. No WAF named."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Branch protection enforced, separate environments, emergency change process, source code MFA-protected, automatic patch management. CI/CD tool not named, IaC tool not named, container orchestration platform not specified."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented, tested annually, daily backups, multi-AZ failover. DR strategy involves spinning up servers across all AZs. No RTO/RPO disclosed, no multi-region failover."
+    },
+    "vendor_diversity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Heavy AWS dependency for all infrastructure. Customer IDP is the only other named third-party integration. Vendor management policy exists with annual SOC report reviews, but very narrow vendor footprint disclosed."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "CoPlane has solid foundational security for an early-stage company: annual pen tests, monthly vuln scans, MFA everywhere, IDS/IPS, multi-AZ, and a thoughtful deployment architecture that keeps customer data in the customer's own cloud. Key gaps are the unnamed CI/CD and IaC tooling, no WAF, no multi-region, and no disclosed RTO/RPO."
+    }
+  },
+
+  "red_flags": [
+    "No RTO or RPO disclosed — business continuity SLAs unknown",
+    "No WAF mentioned despite web-facing application",
+    "CI/CD pipeline tool and IaC tool never named — tooling maturity unverifiable"
+  ],
+  "yellow_flags": [
+    "Heavy single-cloud dependency on AWS with carve-out method — AWS control failures could be undetected",
+    "No multi-region failover — single-region availability risk",
+    "Container orchestration platform not specified (ECS vs. EKS vs. other unknown)",
+    "Monitoring/APM tool not named — cannot assess sophistication of observability stack",
+    "No SIEM mentioned"
+  ],
+  "green_flags": [
+    "Unique deployment model: Planar engine runs in customer's own cloud account — customer data never reaches CoPlane infrastructure",
+    "Annual independent external penetration testing",
+    "Monthly automated vulnerability scanning",
+    "MFA enforced on all admin access, remote access, and source code tool",
+    "Quarterly user access reviews including privileged accounts",
+    "Cybersecurity insurance maintained",
+    "Daily backups with multi-AZ configuration and alerts on backup failure",
+    "BCDR tested annually with scenario-based testing",
+    "Risk and Governance Executive Committee (RGEC) provides formal oversight",
+    "Zero exceptions across all testable controls in audit period"
+  ],
+  "key_observations": [
+    "CoPlane's core security architecture advantage is the customer-VPC deployment model: the Planar execution engine runs in the customer's own cloud environment, so CoPlane never has access to customer business data or logic — a fundamentally stronger data isolation model than SaaS",
+    "The report is for CoPlane, Inc. — the company_db metadata labels this as 'Toffu AI' which appears to be a data entry error",
+    "Only Security trust criteria in scope — Availability, Processing Integrity, Confidentiality, and Privacy were all out of scope",
+    "The dual distribution model (hosted by CoPlane in CoPlane-managed AWS account vs. customer-deployed) creates two different risk profiles for different customers",
+    "Signing authority is Co-Founder / Interim CISO — no dedicated full-time CISO yet"
+  ]
+}

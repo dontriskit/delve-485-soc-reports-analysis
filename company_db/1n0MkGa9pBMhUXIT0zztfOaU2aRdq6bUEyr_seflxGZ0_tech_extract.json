@@ -1,0 +1,228 @@
+{
+  "company": "Parsed Systems, Inc.",
+  "product": "Custom Large Language Models (LLMs) for enterprise customers",
+  "report_type": "ISO 27001",
+  "audit_period": "8/26/2025 (certification agreement date; no observation period disclosed)",
+  "auditor": "Gradient Certification Inc.",
+  "opinion": "Not yet issued - this document is the Certification Agreement Form, not the final audit report or certificate",
+  "trust_criteria": ["Information Security (ISO 27001 ISMS)"],
+  "hq": "2261 Market Street STE 85861, San Francisco, CA 94114",
+  "signing_authority": "Mudith Jayasekara, (title not disclosed)",
+
+  "system_description": {
+    "overview": "Parsed Systems, Inc. researches, develops, deploys, and manages custom large language models (LLMs) designed to be more cost-efficient, faster, and more intelligent for enterprise customers. The scope includes the design, engineering, and maintenance of proprietary AI models, training pipelines, and supporting infrastructure that securely process and optimize data for building domain-specific, high-performance language models.",
+    "products": {
+      "Custom LLMs": "Domain-specific, high-performance large language models for enterprise customers",
+      "AI Training Pipelines": "Proprietary training pipelines and supporting infrastructure for building and optimizing LLMs"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": null,
+    "regions": [],
+    "physical_presence": "2261 Market Street STE 85861, San Francisco, CA 94114 (single site under scope)",
+    "availability_zones": null,
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": null,
+    "_note": "No infrastructure details disclosed in this certification agreement document"
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": null,
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": null,
+    "ids_ips": null,
+    "vpn": null,
+    "tls": null,
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. This certification agreement contains no network architecture details."
+  },
+
+  "application_architecture": {
+    "pattern": null,
+    "languages": [],
+    "frameworks": [],
+    "compute": [],
+    "api_style": null,
+    "environments": null,
+    "branch_protection": null,
+    "code_review_required": null,
+    "_note": "No application architecture details disclosed"
+  },
+
+  "data_storage": {
+    "databases": [],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": null,
+    "backup_frequency": null,
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null,
+    "_note": "No data storage details disclosed"
+  },
+
+  "authentication_access_control": {
+    "identity_provider": null,
+    "mfa": null,
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": null,
+    "password_policy": null,
+    "_note": "No authentication or access control details disclosed"
+  },
+
+  "encryption": {
+    "in_transit": null,
+    "at_rest": null,
+    "key_management": null,
+    "end_to_end": null,
+    "_note": "No encryption details disclosed"
+  },
+
+  "ci_cd_devops": {
+    "source_control": null,
+    "ci_cd_tool": null,
+    "branch_protection": null,
+    "iac": null,
+    "container_orchestration": null,
+    "patch_management": null,
+    "separate_environments": null,
+    "emergency_change_process": null,
+    "_note": "No CI/CD or DevOps details disclosed"
+  },
+
+  "monitoring_logging": {
+    "apm_tool": null,
+    "siem": null,
+    "log_aggregation": null,
+    "alerting": null,
+    "metrics": [],
+    "log_protection": null,
+    "ids": null,
+    "_note": "No monitoring or logging details disclosed"
+  },
+
+  "third_party_services": [
+    {"vendor": "Gradient Certification Inc.", "purpose": "ISO 27001 certification body / auditor", "criticality": "Low"},
+    {"vendor": "United Accreditation Foundation Inc. (UAF)", "purpose": "Accreditation body for the certification body", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": null,
+    "endpoint_protection": null,
+    "vulnerability_scanning": null,
+    "penetration_testing": null,
+    "server_hardening": null,
+    "cybersecurity_insurance": null,
+    "_note": "No security tooling details disclosed"
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed",
+    "_note": "No BCDR details disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": [
+      "Document is a Certification Agreement Form with UAF endorsement letter, not the full ISO 27001 audit report or Statement of Applicability (SoA)",
+      "Scope references SoA Version 1.0 but the SoA itself is not included",
+      "Certification scope covers: IT Infrastructure Management, Human Resources, Physical Security, Legal & Compliance, Administrative Operations",
+      "Total audit mandays for certification cycle: 9 (Stage-1: 2, Stage-2: 3, Surveillance-1: 2, Surveillance-2: 2)"
+    ],
+    "_note": "No control testing results are present in this document. The actual audit report with control findings was not provided."
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No infrastructure details disclosed whatsoever. The document is a certification agreement, not a technical audit report. Cannot assess cloud provider, regions, AZs, or any infrastructure component."
+    },
+    "application_architecture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No application architecture details disclosed. We know the company builds custom LLMs with training pipelines but no technical specifics (languages, frameworks, compute, environments) are provided."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No data layer details disclosed. For an AI/LLM company, data handling is critical, but nothing is revealed about databases, storage, backups, or data classification."
+    },
+    "security_posture": {
+      "score": 2,
+      "max": 10,
+      "rationale": "The company is pursuing ISO 27001 certification, which implies an ISMS exists. However, no security tools, practices, or controls are described in this document. The pursuit of certification is a positive signal but provides no verifiable technical detail."
+    },
+    "devops_maturity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No DevOps practices, CI/CD tools, IaC, or deployment processes disclosed."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No BCDR information disclosed. No RTO/RPO, backup strategy, or disaster recovery plans mentioned."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "Only the certification body (Gradient Certification Inc.) and accreditation body (UAF) are mentioned. No technology vendors, cloud providers, or service dependencies disclosed."
+    },
+    "overall": {
+      "score": 1,
+      "max": 10,
+      "rationale": "This document is an ISO 27001 Certification Agreement Form and UAF endorsement letter -- not an audit report. It contains virtually no technical or security control information. The only useful data is the company identity, scope of certification, and the fact that they are pursuing ISO 27001. A meaningful tech due diligence assessment is not possible from this document alone."
+    }
+  },
+
+  "red_flags": [
+    "Document provided is NOT the ISO 27001 audit report -- it is only the Certification Agreement Form between Parsed Systems and Gradient Certification Inc.",
+    "No Statement of Applicability (SoA) included despite being referenced as Version 1.0",
+    "No audit findings, control testing results, or nonconformity details present",
+    "Zero technical infrastructure details disclosed for an AI/LLM company that presumably requires significant compute and data infrastructure",
+    "Only 7 pages total -- flagged as potentially incomplete per skill guidelines (fewer than 10 pages)",
+    "Auditor is Gradient Certification Inc. (Sheridan, WY / Houston, TX) accredited by UAF -- not a well-known Big 4 or major certification body"
+  ],
+
+  "yellow_flags": [
+    "Total audit mandays of 9 for entire 3-year certification cycle seems low for an AI/LLM company with training pipelines and infrastructure",
+    "Single site under scope (San Francisco address only) with no temporary/additional sites",
+    "No observation period or audit end date specified beyond agreement signing date of 8/26/2025",
+    "Certification agreement was just signed -- certification may not yet be granted"
+  ],
+
+  "green_flags": [
+    "Company is actively pursuing ISO 27001 certification, indicating commitment to information security governance",
+    "Scope of certification is comprehensive, covering core business functions plus IT Infrastructure Management, HR, Physical Security, Legal & Compliance, and Administrative Operations",
+    "ISMS applies to the full lifecycle: research, development, deployment, and management of LLMs"
+  ],
+
+  "key_observations": [
+    "This is a pre-certification document, not a completed audit report. The actual ISO 27001 certificate and audit findings are not available in this PDF.",
+    "The company builds custom enterprise LLMs -- a domain with significant data security, IP protection, and infrastructure requirements -- yet none of these are addressed in the provided document.",
+    "To perform meaningful tech due diligence, the actual ISO 27001 audit report, Statement of Applicability (SoA), and ideally a SOC 2 Type 2 report would be needed.",
+    "Gradient Certification Inc. uses UAF accreditation. UAF is a smaller accreditation body; most enterprise customers expect ANAB, UKAS, or similar well-established accreditation bodies.",
+    "The contact email for complaints goes to info@intercert.com (InterCert), suggesting Gradient Certification Inc. may operate under or be related to InterCert."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "1W-ZWpEPfXhRP7UxxmM7IHa4LRrVQMMwp8gm7tKtULrU",
+  "link": "https://docs.google.com/document/d/1W-ZWpEPfXhRP7UxxmM7IHa4LRrVQMMwp8gm7tKtULrU",
+  "timestamp": "12/15/2025 18:13:48",
+  "display_name": "Olira",
+  "legal_name": "Olira Inc",
+  "company_name": "Olira",
+  "system_description": "Olira automates patient monitoring and navigates their care between visits, surfacing concerns early, guiding patients to the right resources, and reducing avoidable ER visits while freeing up your care team.",
+  "audit_end_date": "",
+  "observation_period": "September 8, 2025 - December 8, 2025",
+  "infra_provider": "AWS",
+  "website": "https://olira.ai",
+  "contact_email": "patrick@olira.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1W-ZWpEPfXhRP7UxxmM7IHa4LRrVQMMwp8gm7tKtULrU.pdf",
+  "txt_file": "1W-ZWpEPfXhRP7UxxmM7IHa4LRrVQMMwp8gm7tKtULrU.txt",
+  "has_report": true
+}

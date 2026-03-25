@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funding Signals — Delve Tech DD</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        bg: '#0f172a', bg2: '#1e293b', card: '#1a2332', border: '#334155',
+      }
+    }
+  }
+}
+</script>
+<style>
+body { background: #0f172a; }
+.prose { max-width: none; }
+.prose h1 { color: #e2e8f0; font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+.prose h2 { color: #e2e8f0; font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }
+.prose h3 { color: #3b82f6; font-size: 1.1rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+.prose p { color: #e2e8f0; line-height: 1.7; margin-bottom: 0.75rem; }
+.prose li { color: #e2e8f0; line-height: 1.6; }
+.prose strong { color: #e2e8f0; }
+.prose table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+.prose th { text-align: left; padding: 8px 12px; background: #1e293b; color: #94a3b8; font-size: 12px; text-transform: uppercase; border-bottom: 1px solid #334155; }
+.prose td { padding: 8px 12px; border-bottom: 1px solid #1a2332; color: #e2e8f0; font-size: 14px; }
+.prose tr:hover td { background: #1a2332; }
+.metric { background: #1a2332; border: 1px solid #334155; border-radius: 12px; padding: 20px; }
+.metric .value { font-size: 2rem; font-weight: 800; }
+.metric .label { color: #94a3b8; font-size: 0.75rem; margin-top: 4px; }
+.insight { background: #1a2332; border-left: 3px solid #3b82f6; padding: 16px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+.flag-red { background: rgba(239,68,68,0.1); border-left: 3px solid #ef4444; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.flag-yellow { background: rgba(245,158,11,0.1); border-left: 3px solid #f59e0b; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.flag-green { background: rgba(34,197,94,0.1); border-left: 3px solid #22c55e; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+</style>
+</head>
+<body class="min-h-screen">
+<div class="max-w-5xl mx-auto px-6 py-10">
+
+  <!-- Nav -->
+  <div class="mb-4">
+    <a href="../index.html" class="text-sm text-blue-400 hover:text-blue-300">← Back to Index</a>
+  </div>
+
+  <!-- Header -->
+  <div class="mb-8">
+    <div class="text-sm text-gray-400 mb-1">Delve Tech Due Diligence · Meta-Analysis</div>
+    <h1 class="text-3xl font-extrabold text-white">Funding Signals</h1>
+    <p class="text-gray-400 mt-1">Does more money mean better tech? Investor patterns across 27 researched companies</p>
+  </div>
+
+  <!-- Content -->
+  <div class="prose">
+    <div class="grid grid-cols-4 gap-4 mb-6"><div class="metric"><div class="value" style="color:#3b82f6">27</div><div class="label">Companies Researched</div></div><div class="metric"><div class="value" style="color:#ff9900">10</div><div class="label">YC-Backed</div></div><div class="metric"><div class="value" style="color:#a855f7">3</div><div class="label">a16z-Backed</div></div><div class="metric"><div class="value" style="color:#22c55e">$3400M</div><div class="label">Total Identifiable Funding</div></div></div><h2>Funding Does NOT Predict Tech Maturity</h2>
+
+<p>Perhaps the most counterintuitive finding of this analysis: <strong>there is no meaningful correlation
+between funding level and tech DD score.</strong></p>
+
+<div class="my-6"><img src="funding_vs_score.png" class="rounded-lg w-full" alt="funding_vs_score.png"><p class="text-sm text-gray-400 mt-2 text-center">Each dot is a company. Color = tech DD score. X-axis is log scale.</p></div>
+
+<div class="insight"><strong>The highest-scoring company (Scribeberry, 8/10) appears to be bootstrapped.</strong> The highest-funded company (11x AI, $75M+) scores 6/10. Money buys speed, marketing, and headcount — but it doesn't automatically buy infrastructure maturity or security depth.</div>
+
+<p>This has practical implications for diligence: a company's fundraising history tells you about
+market validation and investor confidence, but it tells you nothing about whether they have WAF,
+multi-region failover, or named monitoring tools. Tech DD and funding DD are orthogonal signals
+that must be evaluated independently.</p>
+<h2>Top Funded Companies</h2>
+
+<div class="my-6"><img src="top_funded.png" class="rounded-lg w-full" alt="top_funded.png"><p class="text-sm text-gray-400 mt-2 text-center">Bar color indicates tech DD score (green = 7+, yellow = 5-6, red = 3-4)</p></div>
+
+<table><thead><tr><th>Company</th><th>Funding</th><th>Score</th><th>Product</th></tr></thead><tbody><tr><td>Hyper GTM Limited</td><td>$592K</td><td>6/10</td><td>hyperGTM — AI account-based marketing</td></tr><tr><td>Anneal, Inc</td><td>~$500K+ (YC)</td><td>7/10</td><td>Dialtone — AI agent platform for enterpr</td></tr><tr><td>Promptless, Inc.</td><td>$500K</td><td>7/10</td><td>AI auto-updates customer-facing document</td></tr></tbody></table>
+<h2>Investor Landscape</h2>
+
+<p>Y Combinator dominates this cohort with 10 of 27 researched companies.
+a16z backs 3 companies (11x AI and Cluely). Kleiner Perkins backs 2
+(Conway and Antes AI).</p>
+
+<div class="my-6"><img src="investor_landscape.png" class="rounded-lg w-full" alt="investor_landscape.png"></div>
+
+<div class="my-6"><img src="stage_distribution.png" class="rounded-lg w-full" alt="stage_distribution.png"></div>
+
+<h3>Key Patterns</h3>
+<ul>
+<li><strong>YC is the common thread</strong> — 10/27 companies are YC alumni. The YC network effect is visible in both deal flow and compliance timing (many get SOC 2 within months of demo day).</li>
+<li><strong>a16z bets on GTM AI</strong> — both 11x (AI SDR) and Cluely (AI coaching) are sales/productivity tools</li>
+<li><strong>Kleiner Perkins goes vertical</strong> — Conway (risk ops) and Antes AI (manufacturing compliance) are vertical AI plays</li>
+<li><strong>Revenue-funded outliers</strong> — AfterQuery ($6.5M revenue on $500K funding) and Afterword (deliberately non-VC) show that some of the best-architected companies don't need venture capital</li>
+</ul>
+
+<div class="flag-yellow"><strong>For LPs and fund managers:</strong> When a portfolio company presents a clean SOC 2, ask what it actually contains. Our analysis shows that the highest-funded companies don't necessarily have the best compliance reports — they just get them faster. The compliance automation tools (Vanta, Drata, Delve) have made it possible to achieve SOC 2 in weeks, but speed doesn't equal depth.</div>
+
+    <div class="mt-6"><img src="funding_vs_score.png" class="rounded-lg w-full" alt="funding_vs_score.png"></div>
+<div class="mt-6"><img src="top_funded.png" class="rounded-lg w-full" alt="top_funded.png"></div>
+<div class="mt-6"><img src="investor_landscape.png" class="rounded-lg w-full" alt="investor_landscape.png"></div>
+<div class="mt-6"><img src="stage_distribution.png" class="rounded-lg w-full" alt="stage_distribution.png"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="mt-12 pt-6 border-t border-gray-700 text-gray-500 text-sm">
+    <p>Generated from funding signals module · 485 SOC 2 compliance reports · 2026-03-24</p>
+  </div>
+
+</div>
+</body>
+</html>

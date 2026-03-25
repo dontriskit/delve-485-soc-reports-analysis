@@ -1,0 +1,188 @@
+{
+  "company": "Doe Labs, Corp.",
+  "product": "Doe",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of July 25, 2025",
+  "auditor": "ACCORP Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability"],
+  "hq": null,
+  "signing_authority": null,
+
+  "system_description": {
+    "overview": "Doe is an AI-powered platform for dental groups that automates procurement management, provides operational intelligence, and optimizes supply chain and vendor relationships. The system ingests dental group data to surface actionable insights and automate ordering workflows.",
+    "products": {
+      "Automated Procurement Management": "AI platform for dental groups automating procurement workflows",
+      "AI-Powered Operational Intelligence": "Analytics and insights layer for dental operations",
+      "Supply Chain and Vendor Optimization": "Vendor relationship and supply chain management module"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out — AWS is a subservice organization)",
+    "regions": ["Not explicitly named; single region implied"],
+    "physical_presence": "Not disclosed",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with network ACLs; production environment isolated",
+    "api_gateway": null,
+    "waf": "AWS WAF",
+    "firewalls": "AWS security groups and network ACLs",
+    "ids_ips": "AWS GuardDuty",
+    "vpn": "Bastion host for administrative access",
+    "tls": "TLS for data in transit",
+    "content_filtering": null,
+    "multi_region": false,
+    "topology": "Internet → Route 53 → ALB → ECS Fargate (backend); AWS Amplify (frontend); Secrets Manager, S3, CloudWatch, WAF, GuardDuty, IAM Identity Center, AWS Backup all within VPC boundary"
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices",
+    "languages": [],
+    "frameworks": ["AWS Amplify (frontend)"],
+    "compute": ["ECS Fargate"],
+    "api_style": null,
+    "environments": "Separate environments (production isolated); specifics not detailed",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Not explicitly named beyond AWS managed services"],
+    "caching": [],
+    "file_storage": ["S3"],
+    "data_warehouse": null,
+    "backup_frequency": "Daily (via AWS Backup)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": null
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS IAM Identity Center",
+    "mfa": "MFA enforced for admin/privileged accounts and SCM access",
+    "rbac": true,
+    "sso": true,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day",
+    "password_policy": "Enforced via AWS IAM Identity Center"
+  },
+
+  "encryption": {
+    "in_transit": "TLS",
+    "at_rest": "AWS KMS (AES-256)",
+    "key_management": "AWS KMS",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "SCM (name not disclosed; MFA enforced)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Merge to main requires approval; branch protection rules enforced",
+    "iac": "Configuration management tool with baseline configs as code",
+    "container_orchestration": "ECS (Fargate)",
+    "patch_management": "Patch management policy; regular patching cycle",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "CloudWatch",
+    "siem": null,
+    "log_aggregation": "AWS CloudWatch",
+    "alerting": "CloudWatch automated alerts",
+    "metrics": ["CPU", "disk", "network", "application performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS", "purpose": "Cloud infrastructure (compute, storage, networking, security)", "criticality": "Critical"},
+    {"vendor": "ACCORP Partners", "purpose": "SOC 2 audit", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Antivirus installed on all servers and desktops; weekly AV definition updates",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scanning",
+    "penetration_testing": "Annual external third-party penetration testing",
+    "server_hardening": true,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 29,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — physical access controls delegated to AWS (subservice)",
+      "A1.2 — environmental protections delegated to AWS (subservice)",
+      "Processing Integrity criteria — not part of engagement scope",
+      "Privacy criteria — not part of engagement scope"
+    ],
+    "notable_controls": [
+      "COSO principles and CC1-CC9 trust services criteria tested",
+      "Carve-out method applied for AWS as subservice organization",
+      "Separate Availability trust criteria (A1.1, A1.3) included"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {"score": 7, "max": 10, "rationale": "Multi-AZ on AWS with WAF, GuardDuty, ECS Fargate, IaC baseline configs. Single region and no CDN or multi-region failover limit the score."},
+    "application_architecture": {"score": 5, "max": 10, "rationale": "ECS Fargate containerization and branch protection are positives. No named languages/frameworks beyond Amplify frontend; no mention of automated testing."},
+    "data_layer": {"score": 5, "max": 10, "rationale": "S3 and AWS Backup with daily backups and KMS encryption. No named database type, no caching layer, no data warehouse disclosed."},
+    "security_posture": {"score": 8, "max": 10, "rationale": "Strong posture: WAF + GuardDuty IDS + monthly vuln scans + annual external pen test + antivirus + KMS + MFA. Missing SIEM and cyber insurance disclosure."},
+    "devops_maturity": {"score": 6, "max": 10, "rationale": "IaC (baseline configs), branch protection, container orchestration (ECS), separate environments. CI/CD tool unnamed; no explicit automated testing pipeline mentioned."},
+    "bcdr_readiness": {"score": 7, "max": 10, "rationale": "BCDR policy exists, annual review and testing confirmed, daily backups, multi-AZ failover. No stated RTO/RPO and no multi-region failover."},
+    "vendor_diversity": {"score": 4, "max": 10, "rationale": "Heavily concentrated on AWS with no named secondary cloud or significant third-party services beyond AWS ecosystem. Single critical dependency risk."},
+    "overall": {"score": 6, "max": 10, "rationale": "Solid AWS-native SOC 2 Type 1 with good security controls and multi-AZ. Weaknesses are single-region, single-vendor concentration, undisclosed tech stack specifics, and no stated RTO/RPO."}
+  },
+
+  "red_flags": [
+    "No RTO/RPO disclosed — availability commitments unquantified",
+    "Single cloud provider (AWS) with no secondary cloud — concentration risk",
+    "No multi-region failover capability disclosed"
+  ],
+  "yellow_flags": [
+    "CI/CD tool unnamed — pipeline maturity unclear",
+    "Database technology not named — data layer opacity",
+    "No cybersecurity insurance disclosure",
+    "SOC 2 Type 1 only (point-in-time) — no operational evidence period"
+  ],
+  "green_flags": [
+    "AWS WAF + GuardDuty (IDS/IPS) combination",
+    "Monthly automated vulnerability scanning",
+    "Annual external penetration testing",
+    "Multi-AZ failover with daily AWS Backup",
+    "Quarterly access reviews with 1-business-day revocation SLA",
+    "MFA enforced on admin accounts and SCM",
+    "Unqualified audit opinion with zero exceptions"
+  ],
+  "key_observations": [
+    "Dental-industry vertical AI platform — PHI/HIPAA adjacency likely even if not in SOC 2 scope",
+    "AWS Amplify for frontend suggests modern managed hosting approach",
+    "Carve-out method for AWS means AWS physical/environmental controls not independently tested — reliance on AWS SOC 2 report required",
+    "ACCORP Partners template-based report — same structure as other ACCORP clients in this batch"
+  ]
+}

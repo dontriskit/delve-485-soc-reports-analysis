@@ -1,0 +1,248 @@
+{
+  "company": "Outraise Labs, Inc.",
+  "product": "DonorAtlas",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "May 3, 2025 - August 3, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "excluded_trust_criteria": ["Processing Integrity", "Privacy"],
+  "hq": "330 7th Ave, New York, NY 10001",
+  "signing_authority": "Aaron Berger, Chief Technology Officer",
+
+  "system_description": {
+    "overview": "DonorAtlas is an AI-powered research platform that helps nonprofits and mission-driven organizations find and retain donors. The platform automates prospect research by pulling data from across the internet to create comprehensive donor profiles with biographical and wealth information, giving history, relationship mapping, and trends.",
+    "products": {
+      "Intelligent Search Functionality": "Natural language search bar to query for specific types of donors or individual donors, with filtering and sorting capabilities",
+      "Smart Upload": "Upload CSV files of donors, contacts, attendees, or any list of people and see matched profiles in seconds with column auto-mapping",
+      "Data and Export Management": "Create, share, and manage lists of donors within the platform; export donors or lists in CSV, XLSX, and PDF format; real-time tailored insights on lists"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out - AWS controls excluded from scope)",
+    "regions": ["Not explicitly named; multi-AZ confirmed"],
+    "physical_presence": "No physical offices or servers - fully cloud-based. HQ address: 330 7th Ave, New York, NY 10001",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": ["Vercel (web hosting per network diagram)"],
+    "serverless": ["AWS Lambda (visible in network diagram)"],
+    "cdn": "Not explicitly mentioned; Vercel provides edge hosting"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with access control lists (ACLs). Network segmentation implemented to separate systems and data based on sensitivity and criticality (CC6.1.7).",
+    "api_gateway": "AWS API Gateway (visible in network diagram - labeled 'Gateway API' and 'Setup API')",
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management (CC6.6.1).",
+    "ids_ips": "AWS IDS and IPS employed to identify and protect against threats in conjunction with security policy network settings",
+    "vpn": "Remote access through bastion host with VPN",
+    "tls": "TLS using certificates from established third-party certificate authority for all web-based systems",
+    "content_filtering": "Content filtering system with proxy server - all systems restricted to internet through proxy",
+    "multi_region": false,
+    "topology": "Users connect via Vercel-hosted web app. Traffic flows through AWS API Gateway into VPC with segmented services (Import, Export, Search, Network, Entities, Registry, Users, Account Systems, Lists, Stripe). Backend uses Amazon OpenSearch for search, RDS Aurora for relational data, S3 for file storage, Lambda for serverless compute, and Main Cache layer. Logging subsystem with SIEM/named database. Stripe integration for payments. Channels integration for notifications. Email verification via LLM/OpenAI."
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices",
+    "languages": ["Not explicitly named in report"],
+    "frameworks": ["Not explicitly named; Vercel suggests Next.js/React frontend"],
+    "compute": ["AWS Lambda", "Virtual servers (EC2 implied)", "Vercel"],
+    "api_style": "REST (implied by API Gateway usage)",
+    "environments": "Separate development/test and production environments (Stage and Production mentioned in change management). Changes tested in separate environment before production deployment (CC8.1.4).",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Amazon RDS Aurora", "Amazon OpenSearch"],
+    "caching": ["Main Cache (Amazon S3-based per diagram)"],
+    "file_storage": ["Amazon S3 (multiple buckets visible: Upload/Amazon S3, Documents/Amazon S3B)"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS IAM / Password policy of AWS",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1). MFA enforced for all remote access (CC6.1.1 test). MFA required for source code management tool access (CC8.1.3). Two-factor authentication required for employee email access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Controlled through AWS Password policy - includes periodic forced changes, password expiry and complexity requirements. Account lockout after limited unsuccessful attempts."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service (AWS KMS implied - CC6.1.5)",
+    "key_management": "AWS cloud provider key management service. Access to encryption keys restricted to authorized personnel (CC6.1.9).",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (not named specifically; MFA required, changes logged/timestamped/attributed - CC8.1.3)",
+    "ci_cd_tool": "Not explicitly named",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to move change to production requires additional approval (CC8.1.2). Approval process followed prior to merging to master branch.",
+    "iac": "Infrastructure as code - baseline configurations retained within infrastructure as code, configuration management tool used for implementation and rollback (CC7.1.1)",
+    "container_orchestration": "None mentioned",
+    "patch_management": "Automatic patch management with monthly patch management reviews by CTO. Workstations configured for automatic updates and scanned for patch compliance daily (CC7.5.1).",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Monitoring tool (not named) - generates alerts when predefined thresholds are met (CC5.2.1)",
+    "siem": "Named Database / SIEM visible in network diagram logging subsystem",
+    "log_aggregation": "Logging subsystem visible in architecture diagram with Logging Table and Named Database. Logging enabled to monitor administrative activities, logon attempts, data deletions, changes to functions, security configurations, permissions, and roles (CC7.2.1).",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events",
+    "metrics": ["CPU utilization", "disc space", "incoming/outgoing network traffic", "packet loss", "availability", "efficiency", "reliability"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS", "purpose": "Primary cloud infrastructure / data center services (subservice organization)", "criticality": "Critical"},
+    {"vendor": "Vercel", "purpose": "Web application hosting / frontend deployment", "criticality": "Critical"},
+    {"vendor": "Stripe", "purpose": "Payment processing (Stripe Trigger / Product BankManager visible in diagram)", "criticality": "High"},
+    {"vendor": "OpenAI / LLM Provider", "purpose": "LLM/AI capabilities (LLM OpenAI visible in network diagram for email verification)", "criticality": "High"},
+    {"vendor": "Accorp Partners", "purpose": "SOC 2 audit firm", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers and Mac-based workstations/laptops. Auto-scan on continuous basis. Definitions updated weekly for production servers.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications, with frequency adjusted as required (CC7.1.2). Self-assessment scan prior to every production release or yearly.",
+    "penetration_testing": "Annual external penetration testing by independent third-party. Results reviewed by IT management. High/critical findings remediated per incident response plan (CC4.1.1).",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 55,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 - Significant changes to people, roles and responsibilities could not be tested because there were no significant changes made during the engagement period",
+      "CC3.2.1 - Cybersecurity insurance could not be tested because there were no cyber incidents reported during the engagement period",
+      "CC6.5.2 - Customer data deletion upon termination could not be tested because there were no customer terminations during the engagement period",
+      "CC7.3.1 - Incident response policies could not be tested because there were no security incidents reported during the engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities: AWS responsible for physical security of data centers; not in scope",
+      "A1.2 - Environmental protections: DonorAtlas operates from cloud/coworking space; building management/AWS responsible",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "RGEC (Risk and Governance Executive Committee) meets semiannually to review key internal control measures (CC2.1.2)",
+      "IT Leadership Committee meets weekly to review security activities and processes (CC3.1.1)",
+      "Branch rules enforce merge request approval for production deployments - developers cannot push directly to production (CC8.1.2/CC8.1.3)",
+      "Quarterly user access reviews for all accounts including those with administrative privileges (CC6.2.2)",
+      "Vendor management includes annual SOC report reviews and quarterly risk assessments for critical vendors without SOC reports (CC9.2.1)",
+      "Formal network diagram with boundary protection mechanisms maintained and reviewed annually (CC2.3.7)"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "AWS with multi-AZ, VPC segmentation, and IaC is solid. However single-region (no multi-region mentioned), no named CDN, and reliance on Vercel for frontend. No specific region named. Serverless (Lambda) is a plus."
+    },
+    "application_architecture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Microservices pattern visible in architecture diagram with clear service separation (Import, Export, Search, etc.). Branch protection and code review enforced. However, no languages/frameworks explicitly named, no testing methodology described, and API style not specified."
+    },
+    "data_layer": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Multiple database types (RDS Aurora for relational, OpenSearch for search), S3 for object storage, caching layer present. Daily backups with multi-AZ. Data classification and retention policies in place. Per-tenant segregation confirmed (CC6.1.3). Missing data warehouse and specific backup retention details."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong controls: IDS/IPS, firewalls, MFA everywhere, annual pen testing, monthly vuln scans, endpoint protection, anti-malware, server hardening, cybersecurity insurance, data encryption at rest and in transit. Missing WAF, no named SIEM tool, and no specific TLS version cited."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "IaC with configuration management and rollback, branch protection with merge request approval, separate environments, emergency change process, source code logging with timestamps. However, CI/CD tool not named, no container orchestration, and specific tools are largely unnamed."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Testing conducted annually with defined loss scenarios. Multi-AZ failover with procedures to spin up across all AZs. Daily backups. However, no RTO/RPO disclosed, no multi-region failover, and DR details in Section 5 are sparse."
+    },
+    "vendor_diversity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "5 identifiable vendors (AWS, Vercel, Stripe, OpenAI/LLM, Accorp). Vendor management program with annual SOC reviews and quarterly assessments. However heavy concentration on AWS as single cloud provider. Relatively few named third-party integrations for a SaaS product."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "DonorAtlas presents a solid early-stage SOC 2 Type 2 with unqualified opinion and zero exceptions. Infrastructure is AWS-based with reasonable segmentation and security controls. The report is somewhat generic in places - many specific tool names are omitted (CI/CD, monitoring, SIEM, languages). The 3-month audit period is notably short. Architecture diagram shows good microservices decomposition. Security fundamentals are all present but lack depth in disclosure."
+    }
+  },
+
+  "red_flags": [
+    "Very short audit period (3 months: May 3 - Aug 3, 2025) - typical SOC 2 Type 2 covers 6-12 months",
+    "4 controls untestable due to no events during the short engagement period (no incidents, no terminations, no significant personnel changes, no cyber incidents)",
+    "Processing Integrity and Privacy trust criteria excluded - concerning for a platform handling donor PII and financial giving data",
+    "No specific TLS version cited (should be TLS 1.2+ minimum)",
+    "No WAF mentioned despite being a web-facing SaaS application"
+  ],
+
+  "yellow_flags": [
+    "Many technology tools deliberately unnamed (CI/CD, monitoring/APM, SIEM, programming languages, frameworks) - limits transparency for due diligence",
+    "No RTO/RPO targets disclosed despite having a BCDR policy",
+    "Single cloud region apparent - no multi-region redundancy mentioned",
+    "Small organizational structure (CEO -> CTO -> Sales Team + Engineering Team) - potential key-person risk",
+    "Cybersecurity insurance control could not be tested since no incidents occurred - insurance existence verified but coverage adequacy unknown",
+    "Content filtering through proxy server mentioned but seems generic/boilerplate for a fully cloud-based company",
+    "Some control descriptions appear templated/repeated verbatim across multiple criteria (CC1.4.1 duplicated extensively)"
+  ],
+
+  "green_flags": [
+    "Unqualified opinion with zero exceptions across all tested controls",
+    "MFA enforced comprehensively: production admin access, remote access, source code management, email",
+    "Strong access management: quarterly access reviews, RBAC, one-business-day termination revocation",
+    "Annual pen testing by independent third party with formal remediation tracking",
+    "Monthly automated vulnerability scanning with adjustable frequency",
+    "IaC with configuration management and rollback capabilities",
+    "Branch protection with mandatory merge request approval for production deployments",
+    "IT Leadership Committee meets weekly; RGEC meets semiannually - active governance",
+    "Network diagram provided showing clear architecture with proper segmentation",
+    "Vendor management program with SOC report reviews and quarterly risk assessments",
+    "Daily backups with multi-AZ configuration and alerting on backup failures",
+    "Data classification policy established and implemented"
+  ],
+
+  "key_observations": [
+    "The network diagram (page 19) reveals more technology detail than the written report - shows OpenSearch, RDS Aurora, Lambda, Vercel, Stripe, LLM/OpenAI integration, API Gateway, and S3 storage that are not fully described in prose",
+    "DonorAtlas appears to be an early-stage startup (CEO + CTO + Sales + Engineering) pursuing SOC 2 compliance proactively - the 3-month audit window suggests this is likely their first SOC 2 Type 2",
+    "The use of AI/LLM (OpenAI visible in diagram) for email verification and potentially donor research is a notable architectural choice not discussed in the system description text",
+    "Despite excluding Processing Integrity and Privacy, the report covers Confidentiality - suggesting some data protection awareness but gaps in data accuracy/completeness assurance for a data-centric product",
+    "The report uses Accorp Partners as auditor with license PAC-FIRM-LIC-47383 - a less widely known audit firm which may be appropriate for an early-stage company but warrants consideration",
+    "Stripe integration visible in architecture suggests B2B SaaS billing is in place, though payment processing controls are not explicitly addressed",
+    "The combination of Vercel (frontend) + AWS (backend) suggests a modern JAMstack-style architecture with serverless components"
+  ]
+}

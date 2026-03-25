@@ -1,0 +1,19 @@
+{
+  "doc_id": "1YfbRvB4C-GH7YVNtGCYxG_AOtvD7VyX73HW6PKYl2RI",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1YfbRvB4C-GH7YVNtGCYxG_AOtvD7VyX73HW6PKYl2RI",
+  "timestamp": "8/1/2025 16:12:10",
+  "display_name": "Lilee AI Inc.",
+  "legal_name": "Lilee",
+  "company_name": "Lilee AI Inc.",
+  "system_description": "Lilee is the AI platform for health plans in the US to help streamline prior authorizations, claims and other payer related workflows.",
+  "audit_end_date": "July 22, 2025",
+  "observation_period": "",
+  "infra_provider": "Render",
+  "website": "https://valsoftcorp.com",
+  "contact_email": "o.trudeau@valsoftcorp.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1YfbRvB4C-GH7YVNtGCYxG_AOtvD7VyX73HW6PKYl2RI.pdf",
+  "txt_file": "1YfbRvB4C-GH7YVNtGCYxG_AOtvD7VyX73HW6PKYl2RI.txt",
+  "has_report": true
+}

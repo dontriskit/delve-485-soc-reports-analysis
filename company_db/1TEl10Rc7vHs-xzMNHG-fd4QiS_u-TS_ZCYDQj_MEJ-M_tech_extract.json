@@ -1,0 +1,259 @@
+{
+  "company": "Lumari, Inc.",
+  "product": "Lumari Platform",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "May 15, 2025 - August 15, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "hq": "San Francisco, CA",
+  "signing_authority": "Samarth Lamba, CTO",
+
+  "system_description": {
+    "overview": "Lumari is an AI-first platform that helps teams use AI to solve the most pressing company needs. The platform provides automated AI management, integrations with existing systems (CRMs, Slack, documents, databases), and compliance support services.",
+    "products": {
+      "AI Agent": "Custom, autonomous tools and workflows leveraging LLMs, AI, and agentic flows. Supports a wide range of AI-powered use cases across industries with built-in integration capabilities for third-party systems and tools.",
+      "Context-Aware Agents": "Agents that adapt and improve by learning from company workflows and data context.",
+      "Instant Deployment": "Launch fully functional internal apps and agentic workflows in minutes without backlog or ticketing delays.",
+      "Compliance Support Services": "Comprehensive white-glove onboarding, setup, framework implementation, and ongoing expert guidance."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Supabase (carve-out subservice organization for data center services)",
+    "regions": ["Not explicitly disclosed"],
+    "physical_presence": "None - no physical offices or servers; fully cloud-based",
+    "availability_zones": "Multi-AZ (production servers at Supabase maintain failover capabilities hosted in high availability data centers with multiple availability zones)",
+    "additional_cloud": ["Vercel", "Render"],
+    "serverless": ["Not explicitly mentioned"],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "System hosted in Supabase VPC environment with segmented VPCs and access control lists (ACLs). Network segmentation implemented to separate systems and data based on sensitivity and criticality.",
+    "api_gateway": "Application gateway with firewalls configured on it",
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS employed via Supabase in conjunction with security policy network settings. Intrusion detection system utilized to monitor and detect unauthorized access or anomalies within the network.",
+    "vpn": "Remote access done through a bastion host with a virtual private network (VPN)",
+    "tls": "TLS using certificates from established third-party certificate authority for web-based systems",
+    "content_filtering": "Systems restricted to internet with content filtering system routed through proxy server",
+    "multi_region": false,
+    "topology": "User requests -> TLS encryption -> Backend API (Service Boxes) -> Supabase (database) + AI Backend + Worker Service. Deployment via Vercel and GitHub. Monitoring via Sentry. AI via Google Gemini. Management via Google Workspace and Linear."
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid (Backend API + AI Backend + Worker Service as separate service boxes)",
+    "languages": ["Not explicitly disclosed"],
+    "frameworks": ["Not explicitly disclosed"],
+    "compute": ["Supabase-hosted servers", "Vercel (deployment)", "Render"],
+    "api_style": "Not explicitly disclosed",
+    "environments": "Separate development/test and production environments (changes developed and tested in separate environment before implementation - CC8.1.4)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Supabase (PostgreSQL-based)"],
+    "caching": ["Not mentioned"],
+    "file_storage": ["Not explicitly mentioned"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Supabase password policy / internal authentication",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform, for all remote access, and for source code tool access",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination of employment",
+    "password_policy": "Controlled through Supabase password policy with periodic forced changes, password expiry and complexity requirements. Accounts disabled after limited unsuccessful logon attempts."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified) using certificates from established third-party CA",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest",
+    "key_management": "Cloud provider key management service to store and manage encryption keys. Access to production environment access keys restricted to authorized individuals.",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "GitHub",
+    "ci_cd_tool": "GitHub (inferred from network diagram showing GitHub under Deployment Services)",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to move change to production environment requires additional approval. Developers do not make changes to application code in production without additional approval.",
+    "iac": "Infrastructure as code / configuration management tool used for baseline configurations and rollback capability (tool not named)",
+    "container_orchestration": "None mentioned",
+    "patch_management": "Automatic patch management set up by CTO with monthly patch management reviews. Workstations configured for automatic updates and scanned daily for patch compliance. Patches tested for stability/availability before production deployment.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Sentry (error/performance monitoring, visible in network diagram)",
+    "siem": "Not explicitly named",
+    "log_aggregation": "Logging enabled to monitor administrative activities, logon attempts, data deletions at application and infrastructure level, changes to functions, security configurations, permissions, and roles",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events. Monitoring tool generates alerts when specific predefined thresholds are met.",
+    "metrics": ["CPU utilization", "disc space", "incoming/outgoing network traffic", "packet loss", "availability", "efficiency", "reliability"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Supabase", "purpose": "Primary data center and database services (subservice organization)", "criticality": "Critical"},
+    {"vendor": "Vercel", "purpose": "Deployment services / frontend hosting", "criticality": "High"},
+    {"vendor": "GitHub", "purpose": "Source code management and deployment services", "criticality": "High"},
+    {"vendor": "Sentry", "purpose": "Application monitoring and error tracking", "criticality": "Medium"},
+    {"vendor": "Google Gemini", "purpose": "AI/LLM backend services", "criticality": "Critical"},
+    {"vendor": "Google Workspace", "purpose": "Business productivity and management services", "criticality": "Medium"},
+    {"vendor": "Linear", "purpose": "Project management and issue tracking", "criticality": "Medium"},
+    {"vendor": "Render", "purpose": "Cloud hosting / infrastructure provider", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed and configured on all production servers and Mac-based workstations/laptops. Auto-scan on continuous basis, definitions updated weekly for production servers.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications, with scan frequency adjusted as required. Performed by internal IT Infrastructure team.",
+    "penetration_testing": "Annual external penetration testing by independent third-party. Results reviewed by IT management. High/critical findings remediated in timely manner.",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 52,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 - Significant changes to people, roles and responsibilities could not be tested because there were no significant changes made during the engagement period",
+      "CC3.2.1 - Cybersecurity insurance could not be tested because there were no cyber incidents reported during the engagement period",
+      "CC6.5.2 - Customer data deletion upon termination could not be tested because there were no customer terminations during the engagement period",
+      "CC7.3.1 - Incident response policies could not be tested because there were no security incidents reported during the engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities: Supabase responsible for data center physical security, not in scope",
+      "A1.2 - Environmental protections: Lumari has no office/working space; managed by building management/Supabase",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC8.1.2 - Branch protection rules requiring approval for all production merges",
+      "CC8.1.3 - Source code changes logged, time-stamped, attributed to author with MFA-protected access",
+      "CC6.1.1 - MFA enforced for all administrative and remote access",
+      "CC7.4.1 - BCDR plans documented, reviewed annually, and tested with different loss scenarios",
+      "CC7.4.2 - Daily backups with multi-AZ configuration and alerting for backup failures",
+      "CC6.6.1 - Firewalls and IDS configured on application gateway to prevent unauthorized access",
+      "CC4.1.1 - Annual external penetration testing by independent third-party",
+      "CC9.2.1 - Vendor management with annual SOC report reviews and quarterly risk assessments for critical vendors without SOC reports"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Relies entirely on Supabase as subservice organization (carve-out). Multi-AZ via Supabase but no multi-region. No named IaC tool. No CDN mentioned. Render listed as infra provider in metadata but architecture diagram centers on Supabase. Very thin infrastructure disclosure - heavy vendor dependency with limited direct control."
+    },
+    "application_architecture": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Network diagram shows Backend API + AI Backend + Worker Service pattern suggesting some service separation, but no languages, frameworks, or API style disclosed. Vercel for deployment suggests a modern JS/TS stack but this is inference. Separate environments confirmed. Branch protection and code review in place."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Single database provider (Supabase/PostgreSQL). No caching layer, data warehouse, or file storage mentioned. Daily backups with multi-AZ confirmed. Data classification and retention policies exist. Per-tenant segregation confirmed (CC6.1.3). Missing specifics on backup encryption, retention periods, and point-in-time recovery."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Good coverage: MFA enforced, IDS/IPS via Supabase, annual pen testing, monthly vulnerability scans, endpoint protection, server hardening, cybersecurity insurance. Firewalls on application gateway. However, no WAF mentioned, no named SIEM, and vulnerability scanning is internal only. Content filtering through proxy server is a positive."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "GitHub for source control with branch protection rules requiring approval. IaC/configuration management tool used but not named. Separate environments confirmed. Emergency change process documented. Monthly patch reviews. No named CI/CD pipeline tool, no container orchestration mentioned."
+    },
+    "bcdr_readiness": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BCDR policy exists, documented and reviewed annually. Annual testing of DR plans with different loss scenarios. Daily backups with multi-AZ. Multi-AZ failover via Supabase. However, no RTO/RPO disclosed, no multi-region failover, and DR capability is heavily dependent on Supabase subservice organization."
+    },
+    "vendor_diversity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "8 vendors identified (Supabase, Vercel, GitHub, Sentry, Google Gemini, Google Workspace, Linear, Render). However, critical single-vendor dependency on Supabase for all database and data center services. Google Gemini as sole AI provider is another concentration risk. Vendor management program is solid with annual SOC reviews."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Lumari presents a reasonably mature security posture for an early-stage AI company with a clean (unqualified, zero exceptions) SOC 2 Type 2 report. However, the report is notably light on technical specifics - no programming languages, frameworks, specific database configurations, or detailed architecture disclosed. Heavy reliance on Supabase as carve-out subservice organization means much of the infrastructure security is delegated. The 3-month audit period (May-Aug 2025) is notably short. Strong on process controls and governance for company size."
+    }
+  },
+
+  "red_flags": [
+    "Very short audit period of only 3 months (May 15 - Aug 15, 2025) - minimum viable for Type 2",
+    "Heavy single-vendor dependency on Supabase for all data center and database services with carve-out method",
+    "No specific programming languages, frameworks, or database configurations disclosed anywhere in the report",
+    "No WAF (Web Application Firewall) mentioned despite being a web-based AI platform",
+    "Processing Integrity and Privacy trust criteria excluded as 'not relevant' despite handling customer data through AI agents",
+    "Extremely small org structure (only CEO and CTO shown in org chart) raises questions about segregation of duties"
+  ],
+
+  "yellow_flags": [
+    "No named SIEM tool for security event correlation and analysis",
+    "No multi-region failover capability - all dependent on Supabase availability zones",
+    "No RTO/RPO explicitly stated in the report",
+    "IaC/configuration management tool used but not named - unclear maturity level",
+    "CI/CD pipeline not explicitly described beyond GitHub branch rules",
+    "No SSO mentioned for customer authentication",
+    "Cybersecurity insurance control could not be tested (no incidents during period, but also very short period)",
+    "Several controls untestable due to no events occurring in the short audit window",
+    "No caching layer mentioned despite being an AI platform with likely high-throughput needs",
+    "Render listed as infrastructure provider in company metadata but barely appears in the SOC 2 report itself"
+  ],
+
+  "green_flags": [
+    "Clean unqualified opinion with zero exceptions across all tested controls",
+    "MFA enforced for administrative access, remote access, and source code access",
+    "Strong change management: branch protection, code review required, separate environments, emergency change process",
+    "Annual external penetration testing by independent third-party",
+    "Monthly vulnerability scanning with remediation tracking",
+    "Formal vendor management program with annual SOC report reviews and quarterly assessments",
+    "Daily backups with multi-AZ configuration and alerting",
+    "BCDR plans tested annually with different loss scenarios",
+    "Quarterly user access reviews for all accounts including administrative privileges",
+    "Access revoked within one business day upon termination",
+    "Data classification policy established and implemented",
+    "Board of Directors with Risk and Governance Executive Committee (RGEC) providing oversight",
+    "IT Leadership Committee meeting weekly to review security activities"
+  ],
+
+  "key_observations": [
+    "Network diagram reveals actual tech stack (Supabase, Vercel, GitHub, Sentry, Google Gemini, Linear) that is not described in text - the diagram is the most informative technical artifact in the entire report",
+    "The report lists Render as infrastructure provider in metadata but the architecture diagram shows Supabase as the primary backend; Vercel handles deployment. Render's role is unclear from the report itself.",
+    "For an 'AI-first platform,' there is remarkably little disclosure about AI/ML infrastructure, model hosting, prompt security, or AI-specific controls",
+    "The company appears to be very early stage - only CEO and CTO roles documented, with the CTO (Samarth Lamba) serving as signing authority",
+    "Google Gemini appears in the network diagram as the AI backend, creating a single-provider dependency for the company's core AI capabilities",
+    "The system description is almost entirely generic boilerplate language common to SOC 2 report templates - very little Lumari-specific technical detail",
+    "Despite excluding Privacy as a trust criteria, the report mentions data classification policies and data retention - suggesting some privacy controls exist but were not formally tested",
+    "The carve-out method for Supabase means a significant portion of the security controls relevant to a tech due diligence are not covered in this report and would need to be evaluated via Supabase's own SOC 2 report"
+  ]
+}

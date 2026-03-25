@@ -1,0 +1,19 @@
+{
+  "doc_id": "1_lBBhqf9oSuPi_NIZxgJSwFv3IlGoX7KJOPcUV61Izk",
+  "link": "https://docs.google.com/document/d/1_lBBhqf9oSuPi_NIZxgJSwFv3IlGoX7KJOPcUV61Izk",
+  "timestamp": "11/13/2025 12:22:51",
+  "display_name": "Accumatic",
+  "legal_name": "Accumatic, Inc",
+  "company_name": "Accumatic",
+  "system_description": "Accumatic is an automation platform built to help automotive dealerships streamline accounting by converting factory reports, F&I statements, payroll files, and banking data into clean, ready-to-post entries\u2014eliminating manual work and reducing errors.",
+  "audit_end_date": "November 6, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://accumatic.com",
+  "contact_email": "security@accumatic.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1_lBBhqf9oSuPi_NIZxgJSwFv3IlGoX7KJOPcUV61Izk.pdf",
+  "txt_file": "1_lBBhqf9oSuPi_NIZxgJSwFv3IlGoX7KJOPcUV61Izk.txt",
+  "has_report": true
+}

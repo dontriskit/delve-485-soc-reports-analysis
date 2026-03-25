@@ -1,0 +1,19 @@
+{
+  "doc_id": "1OBDWd4liqkryXGpmQ5uLfNfgZbzkylQwZu1YU6ByyZM",
+  "link": "https://docs.google.com/document/d/1OBDWd4liqkryXGpmQ5uLfNfgZbzkylQwZu1YU6ByyZM",
+  "timestamp": "11/25/2025 14:19:58",
+  "display_name": "Logto",
+  "legal_name": "Silverhand, Inc.",
+  "company_name": "Logto",
+  "system_description": "Silverhand, Inc. is the company behind Logto, a modern identity infrastructure for developers. Logto provides authentication, authorization, and user management for SaaS and AI applications through a secure, developer-friendly platform built on industry standards such as OpenID Connect (OIDC) and OAuth 2.1.",
+  "audit_end_date": "",
+  "observation_period": "May 20, 2025 - November 20, 2025",
+  "infra_provider": "Azure",
+  "website": "https://silverhand.io",
+  "contact_email": "contact@logto.io",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1OBDWd4liqkryXGpmQ5uLfNfgZbzkylQwZu1YU6ByyZM.pdf",
+  "txt_file": "1OBDWd4liqkryXGpmQ5uLfNfgZbzkylQwZu1YU6ByyZM.txt",
+  "has_report": true
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34",
+  "timestamp": "6/18/2025 16:12:45",
+  "display_name": "Roo Code",
+  "legal_name": "Roo Code, Inc.",
+  "company_name": "Roo Code",
+  "system_description": "Roo Code is a platform that enables high-leverage builders to orchestrate AI-driven product development.",
+  "audit_end_date": "June 10, 2025",
+  "observation_period": "",
+  "infra_provider": "Vercel",
+  "website": "https://roocode.com/",
+  "contact_email": "security@roocode.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34.pdf",
+  "txt_file": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34.txt",
+  "has_report": true
+}

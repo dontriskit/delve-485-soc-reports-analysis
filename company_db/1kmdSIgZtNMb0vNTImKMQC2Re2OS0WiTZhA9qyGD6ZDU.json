@@ -1,0 +1,19 @@
+{
+  "doc_id": "1kmdSIgZtNMb0vNTImKMQC2Re2OS0WiTZhA9qyGD6ZDU",
+  "link": "https://docs.google.com/document/d/1kmdSIgZtNMb0vNTImKMQC2Re2OS0WiTZhA9qyGD6ZDU",
+  "timestamp": "12/1/2025 15:21:57",
+  "display_name": "Parsed",
+  "legal_name": "Parsed Systems, Inc.",
+  "company_name": "Parsed",
+  "system_description": "AI lab building custom LLMs for companies that are cheaper, faster and more intelligent.",
+  "audit_end_date": "",
+  "observation_period": "August 25, 2025 - November 25, 2025",
+  "infra_provider": "Supabase",
+  "website": "https://parsed.com",
+  "contact_email": "mudith@parsed.com",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1kmdSIgZtNMb0vNTImKMQC2Re2OS0WiTZhA9qyGD6ZDU.pdf",
+  "txt_file": "1kmdSIgZtNMb0vNTImKMQC2Re2OS0WiTZhA9qyGD6ZDU.txt",
+  "has_report": true
+}

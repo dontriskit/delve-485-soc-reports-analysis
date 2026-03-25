@@ -1,0 +1,19 @@
+{
+  "doc_id": "1MS-mDaUopx--zqPfbsaGZxb41QHtNKieWR75ANmfbVA",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1MS-mDaUopx--zqPfbsaGZxb41QHtNKieWR75ANmfbVA",
+  "timestamp": "5/22/2025 22:45:35",
+  "display_name": "Kubera",
+  "legal_name": "Kubera Apps, Inc.",
+  "company_name": "Kubera",
+  "system_description": "Kubera Platform",
+  "audit_end_date": "May 21, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "www.kubera.com",
+  "contact_email": "hello@kubera.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1MS-mDaUopx--zqPfbsaGZxb41QHtNKieWR75ANmfbVA.pdf",
+  "txt_file": "1MS-mDaUopx--zqPfbsaGZxb41QHtNKieWR75ANmfbVA.txt",
+  "has_report": true
+}

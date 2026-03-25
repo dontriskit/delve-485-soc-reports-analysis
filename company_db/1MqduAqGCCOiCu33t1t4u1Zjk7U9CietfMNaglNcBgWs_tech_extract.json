@@ -1,0 +1,193 @@
+{
+  "company": "CentralAxis, Inc.",
+  "product": "CentralAxis Data Center Management Platform",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of April 30, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "1267 Page St, C, San Francisco, CA 94107",
+  "signing_authority": "CEO, CentralAxis, Inc.",
+
+  "system_description": {
+    "overview": "CentralAxis is a Data Center Infrastructure Management (DCIM) platform that provides monitoring, asset tracking, and compliance automation for data centers. It collects telemetry from on-premises data center devices via SNMP/IPMI polling and surfaces it through a web-based UI hosted on Vercel.",
+    "products": {
+      "CentralAxis Platform": "Web-based DCIM platform for monitoring, asset tracking, power/cooling management, and compliance automation across data center infrastructure"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out) + Vercel (primary hosting)",
+    "regions": ["us-east-1 (inferred)"],
+    "physical_presence": "1267 Page St, C, San Francisco, CA 94107",
+    "availability_zones": "Multi-AZ (AWS)",
+    "additional_cloud": ["Vercel", "Supabase"],
+    "serverless": null,
+    "cdn": "Vercel (built-in edge network)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with ACLs; separate network zones for Vercel edge, Supabase, and AWS EC2 instances",
+    "api_gateway": null,
+    "waf": "Vercel firewall (mentioned in system description)",
+    "firewalls": "Vercel built-in firewall; VPC security groups and ACLs on AWS",
+    "ids_ips": "AWS GuardDuty",
+    "vpn": "VPN bastion host for administrative access to production",
+    "tls": "TLS enforced for all data in transit",
+    "content_filtering": null,
+    "multi_region": false,
+    "topology": "End User Browser → Vercel (Next.js app, logging, firewall, observability) → Supabase (auth, RLS, PostgreSQL org data) + AWS EC2 (InfluxDB time-series); On-premises Utility Node (Node.js CLI, SNMP polling) ← Data Center Devices (SNMP, IPMI)"
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid (Vercel-hosted Next.js frontend + separate backend services on Supabase and AWS EC2)",
+    "languages": ["JavaScript", "Node.js"],
+    "frameworks": ["Next.js"],
+    "compute": ["Vercel (Linux containers)", "AWS EC2 (Amazon Linux / Ubuntu)"],
+    "api_style": "REST (inferred)",
+    "environments": "Separate development, staging, and production environments",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Supabase (PostgreSQL)", "InfluxDB (time-series)"],
+    "caching": null,
+    "file_storage": null,
+    "data_warehouse": null,
+    "backup_frequency": "Daily (Supabase automated backups)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Supabase Auth",
+    "mfa": "MFA enforced for all production system access",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day",
+    "password_policy": "Minimum length and complexity enforced; unique user IDs required"
+  },
+
+  "encryption": {
+    "in_transit": "TLS",
+    "at_rest": "Cloud provider KMS (AWS KMS / Supabase encryption)",
+    "key_management": "AWS KMS / Supabase (cloud-managed)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "GitHub",
+    "ci_cd_tool": "Vercel (GitHub-integrated CI/CD)",
+    "branch_protection": "Branch protection enforced; pull requests required for merges to main",
+    "iac": null,
+    "container_orchestration": "Vercel (managed Linux containers)",
+    "patch_management": "Automated patch management; regular OS and dependency updates",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Vercel observability (built-in)",
+    "siem": null,
+    "log_aggregation": "Vercel logging",
+    "alerting": "Automated alerts configured for system thresholds",
+    "metrics": ["CPU", "disk", "network", "system parameters"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Vercel", "purpose": "Application hosting, CI/CD, edge network, logging, observability, firewall", "criticality": "Critical"},
+    {"vendor": "Supabase", "purpose": "PostgreSQL database, authentication, row-level security, automated backups", "criticality": "Critical"},
+    {"vendor": "AWS", "purpose": "EC2 instances for InfluxDB time-series database, VPC networking, GuardDuty IDS", "criticality": "Critical"},
+    {"vendor": "GitHub", "purpose": "Source control and code collaboration", "criticality": "High"},
+    {"vendor": "InfluxDB", "purpose": "Time-series data storage for telemetry from data center devices", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Installed on all endpoints; continuous scanning with weekly definition updates",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scanning",
+    "penetration_testing": "Annual external penetration test",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 30,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — Physical access controls managed by AWS and Vercel as subservice organizations",
+      "A1.2 — Environmental controls managed by building management and cloud providers"
+    ],
+    "notable_controls": [
+      "Row-level security enforced at Supabase database layer for tenant data isolation",
+      "SNMP/IPMI polling from on-premises utility node introduces a hybrid cloud/on-premises boundary",
+      "Vercel firewall provides WAF capability at the edge",
+      "GuardDuty on AWS EC2 instances for anomaly/intrusion detection"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {"score": 6, "max": 10, "rationale": "Multi-AZ AWS for InfluxDB with Vercel edge hosting is solid for a small startup, but no IaC mentioned, no multi-region failover, and heavy reliance on Vercel managed infrastructure limits score."},
+    "application_architecture": {"score": 5, "max": 10, "rationale": "Next.js monolith on Vercel with separate Supabase and EC2 backends is functional but not clearly microservices. Branch protection and code review are enforced. No typed language or test suite mentioned."},
+    "data_layer": {"score": 6, "max": 10, "rationale": "Two database types (PostgreSQL + InfluxDB) appropriate for use case, daily backups, multi-AZ, per-tenant RLS segregation. No caching layer or data warehouse mentioned."},
+    "security_posture": {"score": 7, "max": 10, "rationale": "WAF (Vercel), IDS (GuardDuty), monthly vuln scanning, annual pen test, endpoint AV, MFA enforced, quarterly access reviews. Missing SIEM and cybersecurity insurance disclosure."},
+    "devops_maturity": {"score": 6, "max": 10, "rationale": "GitHub + Vercel CI/CD with branch protection and code review is solid. No IaC or container orchestration beyond Vercel managed containers. Separate environments present."},
+    "bcdr_readiness": {"score": 6, "max": 10, "rationale": "Policy documented, annually reviewed and tested, multi-AZ, daily backups. No RTO/RPO disclosed. No multi-region failover."},
+    "vendor_diversity": {"score": 6, "max": 10, "rationale": "5 named vendors (Vercel, Supabase, AWS, GitHub, InfluxDB) but Vercel is a single critical dependency for hosting and CI/CD. Heavy concentration risk if Vercel has an outage."},
+    "overall": {"score": 6, "max": 10, "rationale": "Competent startup security posture with appropriate controls for a SOC 2 Type 1. Hybrid cloud/on-premises architecture is well-suited to the DCIM use case. Key risks: no IaC, no multi-region, RTO/RPO not disclosed, heavy Vercel dependency."}
+  },
+
+  "red_flags": [
+    "No IaC tooling mentioned — infrastructure changes appear to be manual",
+    "RTO and RPO not disclosed despite BCDR policy existing",
+    "Hybrid on-premises component (Utility Node with SNMP polling) creates an attack surface not fully in scope of SOC 2 carve-out"
+  ],
+
+  "yellow_flags": [
+    "Heavy dependency on Vercel for hosting, CI/CD, WAF, and observability — single vendor concentration risk",
+    "No caching layer mentioned — potential performance/scalability concern at scale",
+    "No data warehouse or analytics infrastructure mentioned",
+    "No SIEM mentioned — log aggregation only via Vercel logging",
+    "Trust criteria limited to Security only (Availability, Processing Integrity, Privacy excluded)"
+  ],
+
+  "green_flags": [
+    "Two purpose-specific databases (PostgreSQL for organizational data, InfluxDB for time-series telemetry) — good architectural separation",
+    "Row-level security at database layer provides strong per-tenant data isolation",
+    "Monthly automated vulnerability scanning exceeds typical startup cadence",
+    "Annual external penetration test",
+    "MFA enforced for all production access",
+    "Quarterly access reviews with 1 business day revocation SLA",
+    "Zero exceptions in SOC 2 Type 1 report"
+  ],
+
+  "key_observations": [
+    "The hybrid cloud/on-premises architecture (Vercel + Supabase + AWS EC2 + on-premises Utility Node) is genuinely appropriate for a DCIM product that must interface with physical data center hardware — this is not just laziness but architectural necessity",
+    "Vercel serves as both the CDN/WAF and the CI/CD pipeline — this is an unusual but increasingly common pattern for early-stage startups; it simplifies operations but creates vendor concentration",
+    "InfluxDB running on AWS EC2 (rather than a managed time-series service) suggests the team made a deliberate choice, possibly for cost or feature reasons",
+    "Supabase RLS for tenant isolation is a strong pattern that goes beyond many peers at this stage",
+    "The on-premises Utility Node using Node.js CLI with SNMP polling represents a unique technical component not covered by cloud security controls — its security posture merits additional diligence"
+  ]
+}

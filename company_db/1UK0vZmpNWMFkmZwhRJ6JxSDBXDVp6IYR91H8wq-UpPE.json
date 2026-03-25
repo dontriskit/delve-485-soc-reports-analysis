@@ -1,0 +1,19 @@
+{
+  "doc_id": "1UK0vZmpNWMFkmZwhRJ6JxSDBXDVp6IYR91H8wq-UpPE",
+  "link": "https://docs.google.com/document/d/1UK0vZmpNWMFkmZwhRJ6JxSDBXDVp6IYR91H8wq-UpPE",
+  "timestamp": "12/19/2025 16:43:26",
+  "display_name": "Skej",
+  "legal_name": "3Gen Internet Corporation",
+  "company_name": "Skej",
+  "system_description": "An AI scheduling assistant.",
+  "audit_end_date": "",
+  "observation_period": "September 11, 2025 - December 11, 2025",
+  "infra_provider": "AWS",
+  "website": "https://skej.com",
+  "contact_email": "security@skej.com",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1UK0vZmpNWMFkmZwhRJ6JxSDBXDVp6IYR91H8wq-UpPE.pdf",
+  "txt_file": "1UK0vZmpNWMFkmZwhRJ6JxSDBXDVp6IYR91H8wq-UpPE.txt",
+  "has_report": true
+}

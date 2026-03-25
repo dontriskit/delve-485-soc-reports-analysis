@@ -1,0 +1,4041 @@
+[
+  {
+    "id": 1,
+    "doc_id": "1_PyyXoxY6B5ghi2FP28o8mZ4Z9xH8ErGB93W822Hhvk",
+    "vendor_name": "GCP (Google Cloud Platform)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 2,
+    "doc_id": "1_PyyXoxY6B5ghi2FP28o8mZ4Z9xH8ErGB93W822Hhvk",
+    "vendor_name": "GCP",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 3,
+    "doc_id": "1_PyyXoxY6B5ghi2FP28o8mZ4Z9xH8ErGB93W822Hhvk",
+    "vendor_name": "Google Cloud Platform",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 4,
+    "doc_id": "1_PyyXoxY6B5ghi2FP28o8mZ4Z9xH8ErGB93W822Hhvk",
+    "vendor_name": "Google Cloud Platform (GCP)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 5,
+    "doc_id": "1_PyyXoxY6B5ghi2FP28o8mZ4Z9xH8ErGB93W822Hhvk",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 6,
+    "doc_id": "1_PyyXoxY6B5ghi2FP28o8mZ4Z9xH8ErGB93W822Hhvk",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 7,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 8,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "Slack",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 9,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "Jira",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 10,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "Datadog",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 11,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "New Relic",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 12,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "Confluence",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 13,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 14,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "Amazon Web Services",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 15,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "Auth0",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 16,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "GitHub",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 17,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "OpenAI",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 18,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "Unstructured.io",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 19,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "AssemblyAI",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 20,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "ElevenLabs",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 21,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "PagerDuty",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 22,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "Google",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 23,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "Microsoft Teams",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 24,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "Notion",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 25,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "Zoom",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 26,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 27,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "Vibranium Labs",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 28,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "independent third-party (penetration testing)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 29,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 30,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "third-party service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 31,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 32,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "third parties",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 33,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "AICPA",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 34,
+    "doc_id": "16IFOoJ1mqdaBawLBfyJLYQEe6FwYMsjad4WFv9YyNgg",
+    "vendor_name": "Independent Auditor",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 35,
+    "doc_id": "1a_azj4-HdAHRdrQew-weopE5s15A5orzPCPpURSr92Y",
+    "vendor_name": "GCP (Google Cloud Platform)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 36,
+    "doc_id": "1a_azj4-HdAHRdrQew-weopE5s15A5orzPCPpURSr92Y",
+    "vendor_name": "Rollout",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 37,
+    "doc_id": "1a_azj4-HdAHRdrQew-weopE5s15A5orzPCPpURSr92Y",
+    "vendor_name": "GCP",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 38,
+    "doc_id": "1a_azj4-HdAHRdrQew-weopE5s15A5orzPCPpURSr92Y",
+    "vendor_name": "Google Cloud Platform (GCP)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 39,
+    "doc_id": "1a_azj4-HdAHRdrQew-weopE5s15A5orzPCPpURSr92Y",
+    "vendor_name": "MLS systems",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 40,
+    "doc_id": "1a_azj4-HdAHRdrQew-weopE5s15A5orzPCPpURSr92Y",
+    "vendor_name": "CRM platforms",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 41,
+    "doc_id": "1a_azj4-HdAHRdrQew-weopE5s15A5orzPCPpURSr92Y",
+    "vendor_name": "property management systems",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 42,
+    "doc_id": "1a_azj4-HdAHRdrQew-weopE5s15A5orzPCPpURSr92Y",
+    "vendor_name": "transaction management tools",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 43,
+    "doc_id": "1a_azj4-HdAHRdrQew-weopE5s15A5orzPCPpURSr92Y",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 44,
+    "doc_id": "1a_azj4-HdAHRdrQew-weopE5s15A5orzPCPpURSr92Y",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 45,
+    "doc_id": "1a_azj4-HdAHRdrQew-weopE5s15A5orzPCPpURSr92Y",
+    "vendor_name": "Building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 46,
+    "doc_id": "1a_azj4-HdAHRdrQew-weopE5s15A5orzPCPpURSr92Y",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 47,
+    "doc_id": "1a_azj4-HdAHRdrQew-weopE5s15A5orzPCPpURSr92Y",
+    "vendor_name": "third-party service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 48,
+    "doc_id": "1a_azj4-HdAHRdrQew-weopE5s15A5orzPCPpURSr92Y",
+    "vendor_name": "third parties",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 49,
+    "doc_id": "1VviheFpHhr_xII8c_nUFJp2MdzlLvU2rWu7Nb0-4D4A",
+    "vendor_name": "GCP (Google Cloud Platform)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 50,
+    "doc_id": "1VviheFpHhr_xII8c_nUFJp2MdzlLvU2rWu7Nb0-4D4A",
+    "vendor_name": "GCP",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 51,
+    "doc_id": "1VviheFpHhr_xII8c_nUFJp2MdzlLvU2rWu7Nb0-4D4A",
+    "vendor_name": "Google Cloud Platform (GCP)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 52,
+    "doc_id": "1VviheFpHhr_xII8c_nUFJp2MdzlLvU2rWu7Nb0-4D4A",
+    "vendor_name": "Google Cloud Platform",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 53,
+    "doc_id": "1VviheFpHhr_xII8c_nUFJp2MdzlLvU2rWu7Nb0-4D4A",
+    "vendor_name": "Firebase",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 54,
+    "doc_id": "1VviheFpHhr_xII8c_nUFJp2MdzlLvU2rWu7Nb0-4D4A",
+    "vendor_name": "Elastic",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 55,
+    "doc_id": "1VviheFpHhr_xII8c_nUFJp2MdzlLvU2rWu7Nb0-4D4A",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 56,
+    "doc_id": "1KVWc-ylLxLHZhahfeTxGaD_f_7mpQzyUvpmwwnLD_ik",
+    "vendor_name": "Accorp Partners",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 57,
+    "doc_id": "1KVWc-ylLxLHZhahfeTxGaD_f_7mpQzyUvpmwwnLD_ik",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 58,
+    "doc_id": "1KVWc-ylLxLHZhahfeTxGaD_f_7mpQzyUvpmwwnLD_ik",
+    "vendor_name": "Amazon Web Services",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 59,
+    "doc_id": "1KVWc-ylLxLHZhahfeTxGaD_f_7mpQzyUvpmwwnLD_ik",
+    "vendor_name": "SmartDraw",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 60,
+    "doc_id": "1KVWc-ylLxLHZhahfeTxGaD_f_7mpQzyUvpmwwnLD_ik",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 61,
+    "doc_id": "1xEoKpHc5eiUFbc2v0nU8aMcG1J6fcVZ7BovM9qz7cTc",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 62,
+    "doc_id": "1xEoKpHc5eiUFbc2v0nU8aMcG1J6fcVZ7BovM9qz7cTc",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 63,
+    "doc_id": "1xEoKpHc5eiUFbc2v0nU8aMcG1J6fcVZ7BovM9qz7cTc",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 64,
+    "doc_id": "1xEoKpHc5eiUFbc2v0nU8aMcG1J6fcVZ7BovM9qz7cTc",
+    "vendor_name": "Metabase",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 65,
+    "doc_id": "10zFgSt8i10YTbNnL3aBle-AgNNLmLJJo6dKZzHNLtnw",
+    "vendor_name": "Vercel",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 66,
+    "doc_id": "10zFgSt8i10YTbNnL3aBle-AgNNLmLJJo6dKZzHNLtnw",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 67,
+    "doc_id": "10zFgSt8i10YTbNnL3aBle-AgNNLmLJJo6dKZzHNLtnw",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 68,
+    "doc_id": "10zFgSt8i10YTbNnL3aBle-AgNNLmLJJo6dKZzHNLtnw",
+    "vendor_name": "Supabase",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 69,
+    "doc_id": "10zFgSt8i10YTbNnL3aBle-AgNNLmLJJo6dKZzHNLtnw",
+    "vendor_name": "HRMS Portal",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 70,
+    "doc_id": "10zFgSt8i10YTbNnL3aBle-AgNNLmLJJo6dKZzHNLtnw",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 71,
+    "doc_id": "10zFgSt8i10YTbNnL3aBle-AgNNLmLJJo6dKZzHNLtnw",
+    "vendor_name": "Sim Studio",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 72,
+    "doc_id": "10zFgSt8i10YTbNnL3aBle-AgNNLmLJJo6dKZzHNLtnw",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 73,
+    "doc_id": "10zFgSt8i10YTbNnL3aBle-AgNNLmLJJo6dKZzHNLtnw",
+    "vendor_name": "service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 74,
+    "doc_id": "10zFgSt8i10YTbNnL3aBle-AgNNLmLJJo6dKZzHNLtnw",
+    "vendor_name": "critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 75,
+    "doc_id": "11cug_K8rROnNEwQRGpeUxvka0SWXdMZaX6e2b0B0mgc",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 76,
+    "doc_id": "11cug_K8rROnNEwQRGpeUxvka0SWXdMZaX6e2b0B0mgc",
+    "vendor_name": "subservice organizations",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 77,
+    "doc_id": "11cug_K8rROnNEwQRGpeUxvka0SWXdMZaX6e2b0B0mgc",
+    "vendor_name": "vendor personnel",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 78,
+    "doc_id": "11cug_K8rROnNEwQRGpeUxvka0SWXdMZaX6e2b0B0mgc",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 79,
+    "doc_id": "11cug_K8rROnNEwQRGpeUxvka0SWXdMZaX6e2b0B0mgc",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 80,
+    "doc_id": "11cug_K8rROnNEwQRGpeUxvka0SWXdMZaX6e2b0B0mgc",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 81,
+    "doc_id": "11cug_K8rROnNEwQRGpeUxvka0SWXdMZaX6e2b0B0mgc",
+    "vendor_name": "cloud provider (key management service)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 82,
+    "doc_id": "11F6O6OKQ0B4sRz4ar7bv0NgrtJfmGM1UBPqEj9bfqWw",
+    "vendor_name": "Supabase",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 83,
+    "doc_id": "11F6O6OKQ0B4sRz4ar7bv0NgrtJfmGM1UBPqEj9bfqWw",
+    "vendor_name": "Vercel",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 84,
+    "doc_id": "11F6O6OKQ0B4sRz4ar7bv0NgrtJfmGM1UBPqEj9bfqWw",
+    "vendor_name": "WhatsApp (Third Party)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 85,
+    "doc_id": "11F6O6OKQ0B4sRz4ar7bv0NgrtJfmGM1UBPqEj9bfqWw",
+    "vendor_name": "GitHub",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 86,
+    "doc_id": "11F6O6OKQ0B4sRz4ar7bv0NgrtJfmGM1UBPqEj9bfqWw",
+    "vendor_name": "Established third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 87,
+    "doc_id": "11F6O6OKQ0B4sRz4ar7bv0NgrtJfmGM1UBPqEj9bfqWw",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 88,
+    "doc_id": "11F6O6OKQ0B4sRz4ar7bv0NgrtJfmGM1UBPqEj9bfqWw",
+    "vendor_name": "service providers/vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 89,
+    "doc_id": "11F6O6OKQ0B4sRz4ar7bv0NgrtJfmGM1UBPqEj9bfqWw",
+    "vendor_name": "critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 90,
+    "doc_id": "11F6O6OKQ0B4sRz4ar7bv0NgrtJfmGM1UBPqEj9bfqWw",
+    "vendor_name": "independent third-party",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 91,
+    "doc_id": "11F6O6OKQ0B4sRz4ar7bv0NgrtJfmGM1UBPqEj9bfqWw",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 92,
+    "doc_id": "11F6O6OKQ0B4sRz4ar7bv0NgrtJfmGM1UBPqEj9bfqWw",
+    "vendor_name": "AICPA",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 93,
+    "doc_id": "147XssLOlGO9haXEvvp-2hzmI0zNh3KZeQJzDsxkL3tU",
+    "vendor_name": "GCP",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 94,
+    "doc_id": "147XssLOlGO9haXEvvp-2hzmI0zNh3KZeQJzDsxkL3tU",
+    "vendor_name": "GCP (Google Cloud Platform)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 95,
+    "doc_id": "147XssLOlGO9haXEvvp-2hzmI0zNh3KZeQJzDsxkL3tU",
+    "vendor_name": "Google Cloud Platform (GCP)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 96,
+    "doc_id": "147XssLOlGO9haXEvvp-2hzmI0zNh3KZeQJzDsxkL3tU",
+    "vendor_name": "Google Cloud Platform",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 97,
+    "doc_id": "147XssLOlGO9haXEvvp-2hzmI0zNh3KZeQJzDsxkL3tU",
+    "vendor_name": "SmartDraw",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 98,
+    "doc_id": "147XssLOlGO9haXEvvp-2hzmI0zNh3KZeQJzDsxkL3tU",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 99,
+    "doc_id": "1aFbao2wx_tIGTS_vgtw5nps4f0srL7TPzxA4Q8eEUl0",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 100,
+    "doc_id": "1aFbao2wx_tIGTS_vgtw5nps4f0srL7TPzxA4Q8eEUl0",
+    "vendor_name": "subservice organizations",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 101,
+    "doc_id": "1aFbao2wx_tIGTS_vgtw5nps4f0srL7TPzxA4Q8eEUl0",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 102,
+    "doc_id": "1aFbao2wx_tIGTS_vgtw5nps4f0srL7TPzxA4Q8eEUl0",
+    "vendor_name": "BenefitHub",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 103,
+    "doc_id": "1aFbao2wx_tIGTS_vgtw5nps4f0srL7TPzxA4Q8eEUl0",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 104,
+    "doc_id": "1aFbao2wx_tIGTS_vgtw5nps4f0srL7TPzxA4Q8eEUl0",
+    "vendor_name": "service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 105,
+    "doc_id": "1aFbao2wx_tIGTS_vgtw5nps4f0srL7TPzxA4Q8eEUl0",
+    "vendor_name": "vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 106,
+    "doc_id": "1aFbao2wx_tIGTS_vgtw5nps4f0srL7TPzxA4Q8eEUl0",
+    "vendor_name": "critical third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 107,
+    "doc_id": "1aFbao2wx_tIGTS_vgtw5nps4f0srL7TPzxA4Q8eEUl0",
+    "vendor_name": "critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 108,
+    "doc_id": "1aFbao2wx_tIGTS_vgtw5nps4f0srL7TPzxA4Q8eEUl0",
+    "vendor_name": "AWS (Amazon Web Services)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 109,
+    "doc_id": "1ivhcF2LlD8MLHEjZGtwg-gLDzAJTe8LjkkrY3MihgEk",
+    "vendor_name": "Accorp Partners",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 110,
+    "doc_id": "1ivhcF2LlD8MLHEjZGtwg-gLDzAJTe8LjkkrY3MihgEk",
+    "vendor_name": "Vercel",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 111,
+    "doc_id": "1ivhcF2LlD8MLHEjZGtwg-gLDzAJTe8LjkkrY3MihgEk",
+    "vendor_name": "Figma",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 112,
+    "doc_id": "1ivhcF2LlD8MLHEjZGtwg-gLDzAJTe8LjkkrY3MihgEk",
+    "vendor_name": "Github",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 113,
+    "doc_id": "1ivhcF2LlD8MLHEjZGtwg-gLDzAJTe8LjkkrY3MihgEk",
+    "vendor_name": "Slack",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 114,
+    "doc_id": "1ivhcF2LlD8MLHEjZGtwg-gLDzAJTe8LjkkrY3MihgEk",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 115,
+    "doc_id": "1ivhcF2LlD8MLHEjZGtwg-gLDzAJTe8LjkkrY3MihgEk",
+    "vendor_name": "service providers/vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 116,
+    "doc_id": "1ivhcF2LlD8MLHEjZGtwg-gLDzAJTe8LjkkrY3MihgEk",
+    "vendor_name": "critical third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 117,
+    "doc_id": "1ivhcF2LlD8MLHEjZGtwg-gLDzAJTe8LjkkrY3MihgEk",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 118,
+    "doc_id": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34",
+    "vendor_name": "Vercel",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 119,
+    "doc_id": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34",
+    "vendor_name": "Cloudflare",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 120,
+    "doc_id": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34",
+    "vendor_name": "Supabase",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 121,
+    "doc_id": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34",
+    "vendor_name": "Clerk",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 122,
+    "doc_id": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34",
+    "vendor_name": "Sentry",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 123,
+    "doc_id": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 124,
+    "doc_id": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 125,
+    "doc_id": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34",
+    "vendor_name": "service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 126,
+    "doc_id": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34",
+    "vendor_name": "vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 127,
+    "doc_id": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 128,
+    "doc_id": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34",
+    "vendor_name": "critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 129,
+    "doc_id": "17Q0CClQeMQRGFY2kXlP0krjtHW5WtoED-sxx54E4y34",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 130,
+    "doc_id": "1mqZijqvLgOgDyHXFl6YeojQCbhxWWG3aZAxY-VABYsY",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 131,
+    "doc_id": "1mqZijqvLgOgDyHXFl6YeojQCbhxWWG3aZAxY-VABYsY",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 132,
+    "doc_id": "1mqZijqvLgOgDyHXFl6YeojQCbhxWWG3aZAxY-VABYsY",
+    "vendor_name": "Zoom",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 133,
+    "doc_id": "1mqZijqvLgOgDyHXFl6YeojQCbhxWWG3aZAxY-VABYsY",
+    "vendor_name": "Microsoft Teams",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 134,
+    "doc_id": "1mqZijqvLgOgDyHXFl6YeojQCbhxWWG3aZAxY-VABYsY",
+    "vendor_name": "Google Meet",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 135,
+    "doc_id": "1mqZijqvLgOgDyHXFl6YeojQCbhxWWG3aZAxY-VABYsY",
+    "vendor_name": "Slack",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 136,
+    "doc_id": "1mqZijqvLgOgDyHXFl6YeojQCbhxWWG3aZAxY-VABYsY",
+    "vendor_name": "Gmail",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 137,
+    "doc_id": "1mqZijqvLgOgDyHXFl6YeojQCbhxWWG3aZAxY-VABYsY",
+    "vendor_name": "HubSpot",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 138,
+    "doc_id": "1mqZijqvLgOgDyHXFl6YeojQCbhxWWG3aZAxY-VABYsY",
+    "vendor_name": "Salesforce",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 139,
+    "doc_id": "1mqZijqvLgOgDyHXFl6YeojQCbhxWWG3aZAxY-VABYsY",
+    "vendor_name": "Okta",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 140,
+    "doc_id": "1mqZijqvLgOgDyHXFl6YeojQCbhxWWG3aZAxY-VABYsY",
+    "vendor_name": "Webflow",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 141,
+    "doc_id": "1mqZijqvLgOgDyHXFl6YeojQCbhxWWG3aZAxY-VABYsY",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 142,
+    "doc_id": "1mqZijqvLgOgDyHXFl6YeojQCbhxWWG3aZAxY-VABYsY",
+    "vendor_name": "Apple (Mac)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 143,
+    "doc_id": "1yNhXTQ_uT4Bxiz7di6hEn48XlWt59gVtjuQHVHVYSIc",
+    "vendor_name": "AWS (Amazon Web Services)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 144,
+    "doc_id": "1yNhXTQ_uT4Bxiz7di6hEn48XlWt59gVtjuQHVHVYSIc",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 145,
+    "doc_id": "1yNhXTQ_uT4Bxiz7di6hEn48XlWt59gVtjuQHVHVYSIc",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 146,
+    "doc_id": "1yNhXTQ_uT4Bxiz7di6hEn48XlWt59gVtjuQHVHVYSIc",
+    "vendor_name": "Amazon Web Services",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 147,
+    "doc_id": "1yNhXTQ_uT4Bxiz7di6hEn48XlWt59gVtjuQHVHVYSIc",
+    "vendor_name": "Building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 148,
+    "doc_id": "1yNhXTQ_uT4Bxiz7di6hEn48XlWt59gVtjuQHVHVYSIc",
+    "vendor_name": "cloud provider",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 149,
+    "doc_id": "1yNhXTQ_uT4Bxiz7di6hEn48XlWt59gVtjuQHVHVYSIc",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 150,
+    "doc_id": "1U07tvDhloIJn1FiATwIb9rB-_ColUAmpVrruL2G5YWg",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 151,
+    "doc_id": "1U07tvDhloIJn1FiATwIb9rB-_ColUAmpVrruL2G5YWg",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 152,
+    "doc_id": "1U07tvDhloIJn1FiATwIb9rB-_ColUAmpVrruL2G5YWg",
+    "vendor_name": "Slack",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 153,
+    "doc_id": "1U07tvDhloIJn1FiATwIb9rB-_ColUAmpVrruL2G5YWg",
+    "vendor_name": "Gmail",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 154,
+    "doc_id": "1U07tvDhloIJn1FiATwIb9rB-_ColUAmpVrruL2G5YWg",
+    "vendor_name": "Amazon Web Services",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 155,
+    "doc_id": "1U07tvDhloIJn1FiATwIb9rB-_ColUAmpVrruL2G5YWg",
+    "vendor_name": "independent third-party",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 156,
+    "doc_id": "1U07tvDhloIJn1FiATwIb9rB-_ColUAmpVrruL2G5YWg",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 157,
+    "doc_id": "1U07tvDhloIJn1FiATwIb9rB-_ColUAmpVrruL2G5YWg",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 158,
+    "doc_id": "1U07tvDhloIJn1FiATwIb9rB-_ColUAmpVrruL2G5YWg",
+    "vendor_name": "service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 159,
+    "doc_id": "1U07tvDhloIJn1FiATwIb9rB-_ColUAmpVrruL2G5YWg",
+    "vendor_name": "critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 160,
+    "doc_id": "1U07tvDhloIJn1FiATwIb9rB-_ColUAmpVrruL2G5YWg",
+    "vendor_name": "vendors and business partners",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 161,
+    "doc_id": "1U07tvDhloIJn1FiATwIb9rB-_ColUAmpVrruL2G5YWg",
+    "vendor_name": "potential new vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 162,
+    "doc_id": "1aFfIUUSeNS60DRr3XLobcZQvb4gEo9gaTGgr6E2jQIg",
+    "vendor_name": "Azure",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 163,
+    "doc_id": "1aFfIUUSeNS60DRr3XLobcZQvb4gEo9gaTGgr6E2jQIg",
+    "vendor_name": "Microsoft Azure",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 164,
+    "doc_id": "1aFfIUUSeNS60DRr3XLobcZQvb4gEo9gaTGgr6E2jQIg",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 165,
+    "doc_id": "1aFfIUUSeNS60DRr3XLobcZQvb4gEo9gaTGgr6E2jQIg",
+    "vendor_name": "Vercel",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 166,
+    "doc_id": "1aFfIUUSeNS60DRr3XLobcZQvb4gEo9gaTGgr6E2jQIg",
+    "vendor_name": "Supabase",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 167,
+    "doc_id": "1aFfIUUSeNS60DRr3XLobcZQvb4gEo9gaTGgr6E2jQIg",
+    "vendor_name": "Claude (Anthropic)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 168,
+    "doc_id": "1aFfIUUSeNS60DRr3XLobcZQvb4gEo9gaTGgr6E2jQIg",
+    "vendor_name": "Pinecone",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 169,
+    "doc_id": "1aFfIUUSeNS60DRr3XLobcZQvb4gEo9gaTGgr6E2jQIg",
+    "vendor_name": "Cohere",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 170,
+    "doc_id": "1aFfIUUSeNS60DRr3XLobcZQvb4gEo9gaTGgr6E2jQIg",
+    "vendor_name": "OpenAI",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 171,
+    "doc_id": "1aFfIUUSeNS60DRr3XLobcZQvb4gEo9gaTGgr6E2jQIg",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 172,
+    "doc_id": "1aFfIUUSeNS60DRr3XLobcZQvb4gEo9gaTGgr6E2jQIg",
+    "vendor_name": "Microsoft",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 173,
+    "doc_id": "1aFfIUUSeNS60DRr3XLobcZQvb4gEo9gaTGgr6E2jQIg",
+    "vendor_name": "AICPA",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 174,
+    "doc_id": "1slQdpVl5Gd8ywX2csxSUDmmPMZK9uhaukuZ4Yby0LBE",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 175,
+    "doc_id": "1slQdpVl5Gd8ywX2csxSUDmmPMZK9uhaukuZ4Yby0LBE",
+    "vendor_name": "subservice organizations",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 176,
+    "doc_id": "1slQdpVl5Gd8ywX2csxSUDmmPMZK9uhaukuZ4Yby0LBE",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 177,
+    "doc_id": "1slQdpVl5Gd8ywX2csxSUDmmPMZK9uhaukuZ4Yby0LBE",
+    "vendor_name": "Endpoint Security Solution vendor",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 178,
+    "doc_id": "1slQdpVl5Gd8ywX2csxSUDmmPMZK9uhaukuZ4Yby0LBE",
+    "vendor_name": "Anti-virus software vendor",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 179,
+    "doc_id": "1slQdpVl5Gd8ywX2csxSUDmmPMZK9uhaukuZ4Yby0LBE",
+    "vendor_name": "HRMS Portal",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 180,
+    "doc_id": "1slQdpVl5Gd8ywX2csxSUDmmPMZK9uhaukuZ4Yby0LBE",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 181,
+    "doc_id": "13cxpL2dAIqTw0W9Wel0Ko-RrJ2J-1FK8S9-Cdr7LpB0",
+    "vendor_name": "Vercel",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 182,
+    "doc_id": "13cxpL2dAIqTw0W9Wel0Ko-RrJ2J-1FK8S9-Cdr7LpB0",
+    "vendor_name": "Microsoft",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 183,
+    "doc_id": "13cxpL2dAIqTw0W9Wel0Ko-RrJ2J-1FK8S9-Cdr7LpB0",
+    "vendor_name": "Supabase",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 184,
+    "doc_id": "13cxpL2dAIqTw0W9Wel0Ko-RrJ2J-1FK8S9-Cdr7LpB0",
+    "vendor_name": "Axiom",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 185,
+    "doc_id": "13cxpL2dAIqTw0W9Wel0Ko-RrJ2J-1FK8S9-Cdr7LpB0",
+    "vendor_name": "Sentry",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 186,
+    "doc_id": "13cxpL2dAIqTw0W9Wel0Ko-RrJ2J-1FK8S9-Cdr7LpB0",
+    "vendor_name": "OpenAI",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 187,
+    "doc_id": "13cxpL2dAIqTw0W9Wel0Ko-RrJ2J-1FK8S9-Cdr7LpB0",
+    "vendor_name": "Google",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 188,
+    "doc_id": "13cxpL2dAIqTw0W9Wel0Ko-RrJ2J-1FK8S9-Cdr7LpB0",
+    "vendor_name": "Anthropic",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 189,
+    "doc_id": "13cxpL2dAIqTw0W9Wel0Ko-RrJ2J-1FK8S9-Cdr7LpB0",
+    "vendor_name": "subservice organization (cloud hosting and physical security)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 190,
+    "doc_id": "1ywsycpDThTUK7v98B2mM4Dt7--WrkOmoeV68SgMAAgY",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 191,
+    "doc_id": "1ywsycpDThTUK7v98B2mM4Dt7--WrkOmoeV68SgMAAgY",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 192,
+    "doc_id": "1ywsycpDThTUK7v98B2mM4Dt7--WrkOmoeV68SgMAAgY",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 193,
+    "doc_id": "1ywsycpDThTUK7v98B2mM4Dt7--WrkOmoeV68SgMAAgY",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 194,
+    "doc_id": "1ywsycpDThTUK7v98B2mM4Dt7--WrkOmoeV68SgMAAgY",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 195,
+    "doc_id": "1ywsycpDThTUK7v98B2mM4Dt7--WrkOmoeV68SgMAAgY",
+    "vendor_name": "service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 196,
+    "doc_id": "1ywsycpDThTUK7v98B2mM4Dt7--WrkOmoeV68SgMAAgY",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 197,
+    "doc_id": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 198,
+    "doc_id": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4",
+    "vendor_name": "subservice organizations",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 199,
+    "doc_id": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 200,
+    "doc_id": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4",
+    "vendor_name": "Splunk",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 201,
+    "doc_id": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 202,
+    "doc_id": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 203,
+    "doc_id": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 204,
+    "doc_id": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4",
+    "vendor_name": "vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 205,
+    "doc_id": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4",
+    "vendor_name": "service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 206,
+    "doc_id": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4",
+    "vendor_name": "business partners",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 207,
+    "doc_id": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4",
+    "vendor_name": "critical third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 208,
+    "doc_id": "16jLPKVViAZcQstNVZ9l9JJv3IzN1azF5LNbSRDHHfP4",
+    "vendor_name": "critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 209,
+    "doc_id": "1rdkdOD10Ykvyl4k_UQD0dlk7uxI4MriWvzkNR3BKS8Y",
+    "vendor_name": "Accorp Partners",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 210,
+    "doc_id": "1rdkdOD10Ykvyl4k_UQD0dlk7uxI4MriWvzkNR3BKS8Y",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 211,
+    "doc_id": "1rdkdOD10Ykvyl4k_UQD0dlk7uxI4MriWvzkNR3BKS8Y",
+    "vendor_name": "subservice organizations",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 212,
+    "doc_id": "1rdkdOD10Ykvyl4k_UQD0dlk7uxI4MriWvzkNR3BKS8Y",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 213,
+    "doc_id": "1rdkdOD10Ykvyl4k_UQD0dlk7uxI4MriWvzkNR3BKS8Y",
+    "vendor_name": "SmartDraw",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 214,
+    "doc_id": "1rdkdOD10Ykvyl4k_UQD0dlk7uxI4MriWvzkNR3BKS8Y",
+    "vendor_name": "Google Drawings",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 215,
+    "doc_id": "1rdkdOD10Ykvyl4k_UQD0dlk7uxI4MriWvzkNR3BKS8Y",
+    "vendor_name": "LucidChart",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 216,
+    "doc_id": "1rdkdOD10Ykvyl4k_UQD0dlk7uxI4MriWvzkNR3BKS8Y",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 217,
+    "doc_id": "1rdkdOD10Ykvyl4k_UQD0dlk7uxI4MriWvzkNR3BKS8Y",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 218,
+    "doc_id": "1MS-mDaUopx--zqPfbsaGZxb41QHtNKieWR75ANmfbVA",
+    "vendor_name": "Accorp Partners",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 219,
+    "doc_id": "1MS-mDaUopx--zqPfbsaGZxb41QHtNKieWR75ANmfbVA",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 220,
+    "doc_id": "1MS-mDaUopx--zqPfbsaGZxb41QHtNKieWR75ANmfbVA",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 221,
+    "doc_id": "1MS-mDaUopx--zqPfbsaGZxb41QHtNKieWR75ANmfbVA",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 222,
+    "doc_id": "1MS-mDaUopx--zqPfbsaGZxb41QHtNKieWR75ANmfbVA",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 223,
+    "doc_id": "1I0WVwDXj0SlV0u4utwsn1hEGZZGck33z0bNm70Hj4XU",
+    "vendor_name": "Azure",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 224,
+    "doc_id": "1I0WVwDXj0SlV0u4utwsn1hEGZZGck33z0bNm70Hj4XU",
+    "vendor_name": "Microsoft Azure",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 225,
+    "doc_id": "1I0WVwDXj0SlV0u4utwsn1hEGZZGck33z0bNm70Hj4XU",
+    "vendor_name": "SmartDraw",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 226,
+    "doc_id": "1I0WVwDXj0SlV0u4utwsn1hEGZZGck33z0bNm70Hj4XU",
+    "vendor_name": "independent third-party",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 227,
+    "doc_id": "1I0WVwDXj0SlV0u4utwsn1hEGZZGck33z0bNm70Hj4XU",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 228,
+    "doc_id": "1I0WVwDXj0SlV0u4utwsn1hEGZZGck33z0bNm70Hj4XU",
+    "vendor_name": "critical third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 229,
+    "doc_id": "1I0WVwDXj0SlV0u4utwsn1hEGZZGck33z0bNm70Hj4XU",
+    "vendor_name": "service providers/vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 230,
+    "doc_id": "1I0WVwDXj0SlV0u4utwsn1hEGZZGck33z0bNm70Hj4XU",
+    "vendor_name": "potential new vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 231,
+    "doc_id": "1I0WVwDXj0SlV0u4utwsn1hEGZZGck33z0bNm70Hj4XU",
+    "vendor_name": "vendors and business partners",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 232,
+    "doc_id": "1hpmgx3_E_jyeafUWT14WlNZvwKdCPdZNgYM5evC13jM",
+    "vendor_name": "Vercel",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 233,
+    "doc_id": "1hpmgx3_E_jyeafUWT14WlNZvwKdCPdZNgYM5evC13jM",
+    "vendor_name": "Slack",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 234,
+    "doc_id": "1hpmgx3_E_jyeafUWT14WlNZvwKdCPdZNgYM5evC13jM",
+    "vendor_name": "Microsoft Teams",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 235,
+    "doc_id": "1hpmgx3_E_jyeafUWT14WlNZvwKdCPdZNgYM5evC13jM",
+    "vendor_name": "Teams",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 236,
+    "doc_id": "1hpmgx3_E_jyeafUWT14WlNZvwKdCPdZNgYM5evC13jM",
+    "vendor_name": "Railway.com",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 237,
+    "doc_id": "1hpmgx3_E_jyeafUWT14WlNZvwKdCPdZNgYM5evC13jM",
+    "vendor_name": "Temporal.io",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 238,
+    "doc_id": "1hpmgx3_E_jyeafUWT14WlNZvwKdCPdZNgYM5evC13jM",
+    "vendor_name": "Supabase.com",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 239,
+    "doc_id": "1hpmgx3_E_jyeafUWT14WlNZvwKdCPdZNgYM5evC13jM",
+    "vendor_name": "Modal.com",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 240,
+    "doc_id": "1hpmgx3_E_jyeafUWT14WlNZvwKdCPdZNgYM5evC13jM",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 241,
+    "doc_id": "1B6-d7zUZQOj16cvO7mgQ2DsKwHeys0y_7wEMf2OquOc",
+    "vendor_name": "Azure",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 242,
+    "doc_id": "1B6-d7zUZQOj16cvO7mgQ2DsKwHeys0y_7wEMf2OquOc",
+    "vendor_name": "Microsoft Azure",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 243,
+    "doc_id": "1B6-d7zUZQOj16cvO7mgQ2DsKwHeys0y_7wEMf2OquOc",
+    "vendor_name": "Third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 244,
+    "doc_id": "1B6-d7zUZQOj16cvO7mgQ2DsKwHeys0y_7wEMf2OquOc",
+    "vendor_name": "Voice Provider",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 245,
+    "doc_id": "1B6-d7zUZQOj16cvO7mgQ2DsKwHeys0y_7wEMf2OquOc",
+    "vendor_name": "Active Directory",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 246,
+    "doc_id": "1B6-d7zUZQOj16cvO7mgQ2DsKwHeys0y_7wEMf2OquOc",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 247,
+    "doc_id": "1B6-d7zUZQOj16cvO7mgQ2DsKwHeys0y_7wEMf2OquOc",
+    "vendor_name": "Third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 248,
+    "doc_id": "1B6-d7zUZQOj16cvO7mgQ2DsKwHeys0y_7wEMf2OquOc",
+    "vendor_name": "Service providers/vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 249,
+    "doc_id": "1B6-d7zUZQOj16cvO7mgQ2DsKwHeys0y_7wEMf2OquOc",
+    "vendor_name": "Critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 250,
+    "doc_id": "1B6-d7zUZQOj16cvO7mgQ2DsKwHeys0y_7wEMf2OquOc",
+    "vendor_name": "Potential new vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 251,
+    "doc_id": "1B6-d7zUZQOj16cvO7mgQ2DsKwHeys0y_7wEMf2OquOc",
+    "vendor_name": "AICPA",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 252,
+    "doc_id": "1cT-UUQgSHD_XGMnz13eHxTvkSHc_fAx5YscoVGCkf9M",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 253,
+    "doc_id": "1cT-UUQgSHD_XGMnz13eHxTvkSHc_fAx5YscoVGCkf9M",
+    "vendor_name": "Tableau",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 254,
+    "doc_id": "1cT-UUQgSHD_XGMnz13eHxTvkSHc_fAx5YscoVGCkf9M",
+    "vendor_name": "Microsoft",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 255,
+    "doc_id": "1cT-UUQgSHD_XGMnz13eHxTvkSHc_fAx5YscoVGCkf9M",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 256,
+    "doc_id": "1cT-UUQgSHD_XGMnz13eHxTvkSHc_fAx5YscoVGCkf9M",
+    "vendor_name": "Power BI",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 257,
+    "doc_id": "1cT-UUQgSHD_XGMnz13eHxTvkSHc_fAx5YscoVGCkf9M",
+    "vendor_name": "Microsoft Fabric",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 258,
+    "doc_id": "1cT-UUQgSHD_XGMnz13eHxTvkSHc_fAx5YscoVGCkf9M",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 259,
+    "doc_id": "1cT-UUQgSHD_XGMnz13eHxTvkSHc_fAx5YscoVGCkf9M",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 260,
+    "doc_id": "1cT-UUQgSHD_XGMnz13eHxTvkSHc_fAx5YscoVGCkf9M",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 261,
+    "doc_id": "1cT-UUQgSHD_XGMnz13eHxTvkSHc_fAx5YscoVGCkf9M",
+    "vendor_name": "AICPA",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 262,
+    "doc_id": "1yPj9xcxOHcPmqSrCnmXlMay1W7IZq782upmdE76yi1Y",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 263,
+    "doc_id": "1yPj9xcxOHcPmqSrCnmXlMay1W7IZq782upmdE76yi1Y",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 264,
+    "doc_id": "1yPj9xcxOHcPmqSrCnmXlMay1W7IZq782upmdE76yi1Y",
+    "vendor_name": "Amazon Web Services",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 265,
+    "doc_id": "1yPj9xcxOHcPmqSrCnmXlMay1W7IZq782upmdE76yi1Y",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 266,
+    "doc_id": "1yPj9xcxOHcPmqSrCnmXlMay1W7IZq782upmdE76yi1Y",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 267,
+    "doc_id": "1yPj9xcxOHcPmqSrCnmXlMay1W7IZq782upmdE76yi1Y",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 268,
+    "doc_id": "1f89xp_eTQ-rHHS04lD4D5CeNoicZicttu1EMAgJLtdY",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 269,
+    "doc_id": "1f89xp_eTQ-rHHS04lD4D5CeNoicZicttu1EMAgJLtdY",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 270,
+    "doc_id": "1U9suO96KgEb-NbhiayLdfgmcpd3k1dMpWa5oDGGir9E",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 271,
+    "doc_id": "1U9suO96KgEb-NbhiayLdfgmcpd3k1dMpWa5oDGGir9E",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 272,
+    "doc_id": "1U9suO96KgEb-NbhiayLdfgmcpd3k1dMpWa5oDGGir9E",
+    "vendor_name": "Amazon Web Services",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 273,
+    "doc_id": "1U9suO96KgEb-NbhiayLdfgmcpd3k1dMpWa5oDGGir9E",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 274,
+    "doc_id": "1U9suO96KgEb-NbhiayLdfgmcpd3k1dMpWa5oDGGir9E",
+    "vendor_name": "critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 275,
+    "doc_id": "1U9suO96KgEb-NbhiayLdfgmcpd3k1dMpWa5oDGGir9E",
+    "vendor_name": "service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 276,
+    "doc_id": "1U9suO96KgEb-NbhiayLdfgmcpd3k1dMpWa5oDGGir9E",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 277,
+    "doc_id": "1uZxBg0Pt8S9HTqHdDAdZVcYkCIzZlVak_3WYJ6g2KMg",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 278,
+    "doc_id": "1uZxBg0Pt8S9HTqHdDAdZVcYkCIzZlVak_3WYJ6g2KMg",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 279,
+    "doc_id": "1uZxBg0Pt8S9HTqHdDAdZVcYkCIzZlVak_3WYJ6g2KMg",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 280,
+    "doc_id": "1uZxBg0Pt8S9HTqHdDAdZVcYkCIzZlVak_3WYJ6g2KMg",
+    "vendor_name": "Route53",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 281,
+    "doc_id": "1uZxBg0Pt8S9HTqHdDAdZVcYkCIzZlVak_3WYJ6g2KMg",
+    "vendor_name": "ERP Systems",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 282,
+    "doc_id": "1uZxBg0Pt8S9HTqHdDAdZVcYkCIzZlVak_3WYJ6g2KMg",
+    "vendor_name": "Stitch Auth",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 283,
+    "doc_id": "1uZxBg0Pt8S9HTqHdDAdZVcYkCIzZlVak_3WYJ6g2KMg",
+    "vendor_name": "Grafana Cloud",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 284,
+    "doc_id": "1uZxBg0Pt8S9HTqHdDAdZVcYkCIzZlVak_3WYJ6g2KMg",
+    "vendor_name": "incident.io",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 285,
+    "doc_id": "1uZxBg0Pt8S9HTqHdDAdZVcYkCIzZlVak_3WYJ6g2KMg",
+    "vendor_name": "Neon DB",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 286,
+    "doc_id": "1uZxBg0Pt8S9HTqHdDAdZVcYkCIzZlVak_3WYJ6g2KMg",
+    "vendor_name": "Amazon Web Services",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 287,
+    "doc_id": "1uZxBg0Pt8S9HTqHdDAdZVcYkCIzZlVak_3WYJ6g2KMg",
+    "vendor_name": "cloud provider",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 288,
+    "doc_id": "1uZxBg0Pt8S9HTqHdDAdZVcYkCIzZlVak_3WYJ6g2KMg",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 289,
+    "doc_id": "13FNUVK6NJgGyR_rQKZJJWVh_XmV98D5Rx3-Zp-OSHBM",
+    "vendor_name": "Fly.io",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 290,
+    "doc_id": "13FNUVK6NJgGyR_rQKZJJWVh_XmV98D5Rx3-Zp-OSHBM",
+    "vendor_name": "BigQuery",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 291,
+    "doc_id": "13FNUVK6NJgGyR_rQKZJJWVh_XmV98D5Rx3-Zp-OSHBM",
+    "vendor_name": "Supabase",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 292,
+    "doc_id": "13FNUVK6NJgGyR_rQKZJJWVh_XmV98D5Rx3-Zp-OSHBM",
+    "vendor_name": "Xilinx",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 293,
+    "doc_id": "13FNUVK6NJgGyR_rQKZJJWVh_XmV98D5Rx3-Zp-OSHBM",
+    "vendor_name": "Snowflake",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 294,
+    "doc_id": "13FNUVK6NJgGyR_rQKZJJWVh_XmV98D5Rx3-Zp-OSHBM",
+    "vendor_name": "AWS S3",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 295,
+    "doc_id": "13FNUVK6NJgGyR_rQKZJJWVh_XmV98D5Rx3-Zp-OSHBM",
+    "vendor_name": "Microsoft Entra ID",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 296,
+    "doc_id": "13FNUVK6NJgGyR_rQKZJJWVh_XmV98D5Rx3-Zp-OSHBM",
+    "vendor_name": "Prometheus",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 297,
+    "doc_id": "13FNUVK6NJgGyR_rQKZJJWVh_XmV98D5Rx3-Zp-OSHBM",
+    "vendor_name": "Logflare",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 298,
+    "doc_id": "13FNUVK6NJgGyR_rQKZJJWVh_XmV98D5Rx3-Zp-OSHBM",
+    "vendor_name": "Loki",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 299,
+    "doc_id": "13FNUVK6NJgGyR_rQKZJJWVh_XmV98D5Rx3-Zp-OSHBM",
+    "vendor_name": "cloud provider",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 300,
+    "doc_id": "13FNUVK6NJgGyR_rQKZJJWVh_XmV98D5Rx3-Zp-OSHBM",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 301,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "Azure",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 302,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "Microsoft Azure",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 303,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "Render",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 304,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "Twilio",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 305,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "OpenAI",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 306,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "Anthropic",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 307,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "Datadog",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 308,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 309,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "third-party vendor",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 310,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 311,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "service providers/vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 312,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 313,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 314,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 315,
+    "doc_id": "19cQlNOuxI_XSPwgwMbhbTsCXy6hm9EkBjL_99_PCYCs",
+    "vendor_name": "vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 316,
+    "doc_id": "1AuuKVZJu8MB6GMr8jxQ8E_PFN3ZuxxwKPesk3obDW5k",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 317,
+    "doc_id": "1AuuKVZJu8MB6GMr8jxQ8E_PFN3ZuxxwKPesk3obDW5k",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 318,
+    "doc_id": "1AuuKVZJu8MB6GMr8jxQ8E_PFN3ZuxxwKPesk3obDW5k",
+    "vendor_name": "Employer of Record (EOR) services",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 319,
+    "doc_id": "1AuuKVZJu8MB6GMr8jxQ8E_PFN3ZuxxwKPesk3obDW5k",
+    "vendor_name": "Third-party EOR (Employer of Record) providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 320,
+    "doc_id": "1AuuKVZJu8MB6GMr8jxQ8E_PFN3ZuxxwKPesk3obDW5k",
+    "vendor_name": "Amazon Web Services",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 321,
+    "doc_id": "1AuuKVZJu8MB6GMr8jxQ8E_PFN3ZuxxwKPesk3obDW5k",
+    "vendor_name": "Cloudflare",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 322,
+    "doc_id": "1AuuKVZJu8MB6GMr8jxQ8E_PFN3ZuxxwKPesk3obDW5k",
+    "vendor_name": "Netbird",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 323,
+    "doc_id": "1AuuKVZJu8MB6GMr8jxQ8E_PFN3ZuxxwKPesk3obDW5k",
+    "vendor_name": "Supabase",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 324,
+    "doc_id": "1AuuKVZJu8MB6GMr8jxQ8E_PFN3ZuxxwKPesk3obDW5k",
+    "vendor_name": "EOR partners",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 325,
+    "doc_id": "1AuuKVZJu8MB6GMr8jxQ8E_PFN3ZuxxwKPesk3obDW5k",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 326,
+    "doc_id": "1AuuKVZJu8MB6GMr8jxQ8E_PFN3ZuxxwKPesk3obDW5k",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 327,
+    "doc_id": "1_53a47JcL-7WEgJzjTpGC3NF7SrNP284rBgEzkhPOEc",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 328,
+    "doc_id": "1_53a47JcL-7WEgJzjTpGC3NF7SrNP284rBgEzkhPOEc",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 329,
+    "doc_id": "1_53a47JcL-7WEgJzjTpGC3NF7SrNP284rBgEzkhPOEc",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 330,
+    "doc_id": "1_53a47JcL-7WEgJzjTpGC3NF7SrNP284rBgEzkhPOEc",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 331,
+    "doc_id": "1C5n2wgQsEAhmz0GtqCftY03pTQ6ICB9OEVWMYoyvF0c",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 332,
+    "doc_id": "1WH1SKN0cdMMa94wztkLE7-TLKp8KgGKg4fNvz-qvYb8",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 333,
+    "doc_id": "1C5n2wgQsEAhmz0GtqCftY03pTQ6ICB9OEVWMYoyvF0c",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 334,
+    "doc_id": "1C5n2wgQsEAhmz0GtqCftY03pTQ6ICB9OEVWMYoyvF0c",
+    "vendor_name": "Microsoft 365",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 335,
+    "doc_id": "1WH1SKN0cdMMa94wztkLE7-TLKp8KgGKg4fNvz-qvYb8",
+    "vendor_name": "Zotero",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 336,
+    "doc_id": "1C5n2wgQsEAhmz0GtqCftY03pTQ6ICB9OEVWMYoyvF0c",
+    "vendor_name": "Google Workspace",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 337,
+    "doc_id": "1WH1SKN0cdMMa94wztkLE7-TLKp8KgGKg4fNvz-qvYb8",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 338,
+    "doc_id": "1C5n2wgQsEAhmz0GtqCftY03pTQ6ICB9OEVWMYoyvF0c",
+    "vendor_name": "Splunk",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 339,
+    "doc_id": "1WH1SKN0cdMMa94wztkLE7-TLKp8KgGKg4fNvz-qvYb8",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 340,
+    "doc_id": "1WH1SKN0cdMMa94wztkLE7-TLKp8KgGKg4fNvz-qvYb8",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 341,
+    "doc_id": "1C5n2wgQsEAhmz0GtqCftY03pTQ6ICB9OEVWMYoyvF0c",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 342,
+    "doc_id": "1WH1SKN0cdMMa94wztkLE7-TLKp8KgGKg4fNvz-qvYb8",
+    "vendor_name": "service providers/vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 343,
+    "doc_id": "1C5n2wgQsEAhmz0GtqCftY03pTQ6ICB9OEVWMYoyvF0c",
+    "vendor_name": "Vercel",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 344,
+    "doc_id": "1j6Mi0-MdX5QX-LHAO8jBcVdcWuQB3012lFvG_kGTx1g",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 345,
+    "doc_id": "1WH1SKN0cdMMa94wztkLE7-TLKp8KgGKg4fNvz-qvYb8",
+    "vendor_name": "critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 346,
+    "doc_id": "1C5n2wgQsEAhmz0GtqCftY03pTQ6ICB9OEVWMYoyvF0c",
+    "vendor_name": "Supabase",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 347,
+    "doc_id": "1j6Mi0-MdX5QX-LHAO8jBcVdcWuQB3012lFvG_kGTx1g",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 348,
+    "doc_id": "1WH1SKN0cdMMa94wztkLE7-TLKp8KgGKg4fNvz-qvYb8",
+    "vendor_name": "cloud provider",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 349,
+    "doc_id": "1C5n2wgQsEAhmz0GtqCftY03pTQ6ICB9OEVWMYoyvF0c",
+    "vendor_name": "Pinecone",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 350,
+    "doc_id": "1j6Mi0-MdX5QX-LHAO8jBcVdcWuQB3012lFvG_kGTx1g",
+    "vendor_name": "Amazon Web Services",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 351,
+    "doc_id": "1C5n2wgQsEAhmz0GtqCftY03pTQ6ICB9OEVWMYoyvF0c",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 352,
+    "doc_id": "1WH1SKN0cdMMa94wztkLE7-TLKp8KgGKg4fNvz-qvYb8",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 353,
+    "doc_id": "1j6Mi0-MdX5QX-LHAO8jBcVdcWuQB3012lFvG_kGTx1g",
+    "vendor_name": "Twilio",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 354,
+    "doc_id": "1C5n2wgQsEAhmz0GtqCftY03pTQ6ICB9OEVWMYoyvF0c",
+    "vendor_name": "service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 355,
+    "doc_id": "1j6Mi0-MdX5QX-LHAO8jBcVdcWuQB3012lFvG_kGTx1g",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 356,
+    "doc_id": "1C5n2wgQsEAhmz0GtqCftY03pTQ6ICB9OEVWMYoyvF0c",
+    "vendor_name": "critical third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 357,
+    "doc_id": "1C5n2wgQsEAhmz0GtqCftY03pTQ6ICB9OEVWMYoyvF0c",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 358,
+    "doc_id": "1ZghTXvc1o7iIsIU5paxvpG0RlRsdUJGbVyYsSSL_xpE",
+    "vendor_name": "Azure",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 359,
+    "doc_id": "1ZghTXvc1o7iIsIU5paxvpG0RlRsdUJGbVyYsSSL_xpE",
+    "vendor_name": "Microsoft Azure",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 360,
+    "doc_id": "1ZghTXvc1o7iIsIU5paxvpG0RlRsdUJGbVyYsSSL_xpE",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 361,
+    "doc_id": "1ZghTXvc1o7iIsIU5paxvpG0RlRsdUJGbVyYsSSL_xpE",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 362,
+    "doc_id": "1ZghTXvc1o7iIsIU5paxvpG0RlRsdUJGbVyYsSSL_xpE",
+    "vendor_name": "Critical third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 363,
+    "doc_id": "1ZghTXvc1o7iIsIU5paxvpG0RlRsdUJGbVyYsSSL_xpE",
+    "vendor_name": "Service providers/vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 364,
+    "doc_id": "1ZghTXvc1o7iIsIU5paxvpG0RlRsdUJGbVyYsSSL_xpE",
+    "vendor_name": "Vendors and business partners",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 365,
+    "doc_id": "1ZghTXvc1o7iIsIU5paxvpG0RlRsdUJGbVyYsSSL_xpE",
+    "vendor_name": "Potential new vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 366,
+    "doc_id": "1l-p1fZsFLOYkxueZiwdYMJHboZUWZgYdYUyYNrlRKiQ",
+    "vendor_name": "GCP",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 367,
+    "doc_id": "1l-p1fZsFLOYkxueZiwdYMJHboZUWZgYdYUyYNrlRKiQ",
+    "vendor_name": "Google Cloud Platform (GCP)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 368,
+    "doc_id": "1l-p1fZsFLOYkxueZiwdYMJHboZUWZgYdYUyYNrlRKiQ",
+    "vendor_name": "cloud provider",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 369,
+    "doc_id": "1l-p1fZsFLOYkxueZiwdYMJHboZUWZgYdYUyYNrlRKiQ",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 370,
+    "doc_id": "16Ed1_6zGje9QilT1Ky8XMwN6UUNUe9lwsa-_zuLhhxI",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 371,
+    "doc_id": "16Ed1_6zGje9QilT1Ky8XMwN6UUNUe9lwsa-_zuLhhxI",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 372,
+    "doc_id": "16Ed1_6zGje9QilT1Ky8XMwN6UUNUe9lwsa-_zuLhhxI",
+    "vendor_name": "Cloudflare",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 373,
+    "doc_id": "16Ed1_6zGje9QilT1Ky8XMwN6UUNUe9lwsa-_zuLhhxI",
+    "vendor_name": "OpenAI",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 374,
+    "doc_id": "16Ed1_6zGje9QilT1Ky8XMwN6UUNUe9lwsa-_zuLhhxI",
+    "vendor_name": "Anthropic",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 375,
+    "doc_id": "16Ed1_6zGje9QilT1Ky8XMwN6UUNUe9lwsa-_zuLhhxI",
+    "vendor_name": "Supabase",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 376,
+    "doc_id": "16Ed1_6zGje9QilT1Ky8XMwN6UUNUe9lwsa-_zuLhhxI",
+    "vendor_name": "Google",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 377,
+    "doc_id": "16Ed1_6zGje9QilT1Ky8XMwN6UUNUe9lwsa-_zuLhhxI",
+    "vendor_name": "Github",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 378,
+    "doc_id": "16Ed1_6zGje9QilT1Ky8XMwN6UUNUe9lwsa-_zuLhhxI",
+    "vendor_name": "Mixpanel",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 379,
+    "doc_id": "16Ed1_6zGje9QilT1Ky8XMwN6UUNUe9lwsa-_zuLhhxI",
+    "vendor_name": "Google Cloud Platform (GCP)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 380,
+    "doc_id": "16Ed1_6zGje9QilT1Ky8XMwN6UUNUe9lwsa-_zuLhhxI",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 381,
+    "doc_id": "16Ed1_6zGje9QilT1Ky8XMwN6UUNUe9lwsa-_zuLhhxI",
+    "vendor_name": "cloud provider",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 382,
+    "doc_id": "16Ed1_6zGje9QilT1Ky8XMwN6UUNUe9lwsa-_zuLhhxI",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 383,
+    "doc_id": "1O52RDF5lJPRoxYx-sRr9J3AhGNabi1KRRBol6c6lfVU",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 384,
+    "doc_id": "1O52RDF5lJPRoxYx-sRr9J3AhGNabi1KRRBol6c6lfVU",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 385,
+    "doc_id": "1O52RDF5lJPRoxYx-sRr9J3AhGNabi1KRRBol6c6lfVU",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 386,
+    "doc_id": "1O52RDF5lJPRoxYx-sRr9J3AhGNabi1KRRBol6c6lfVU",
+    "vendor_name": "Vercel",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 387,
+    "doc_id": "1O52RDF5lJPRoxYx-sRr9J3AhGNabi1KRRBol6c6lfVU",
+    "vendor_name": "Google",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 388,
+    "doc_id": "1O52RDF5lJPRoxYx-sRr9J3AhGNabi1KRRBol6c6lfVU",
+    "vendor_name": "Slack",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 389,
+    "doc_id": "1O52RDF5lJPRoxYx-sRr9J3AhGNabi1KRRBol6c6lfVU",
+    "vendor_name": "Linear",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 390,
+    "doc_id": "1O52RDF5lJPRoxYx-sRr9J3AhGNabi1KRRBol6c6lfVU",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 391,
+    "doc_id": "1O52RDF5lJPRoxYx-sRr9J3AhGNabi1KRRBol6c6lfVU",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 392,
+    "doc_id": "1r3Wv355mZGYDvWFTH5sEYwx1VCYVl2JOw8ha6QXXMJk",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 393,
+    "doc_id": "1r3Wv355mZGYDvWFTH5sEYwx1VCYVl2JOw8ha6QXXMJk",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 394,
+    "doc_id": "1r3Wv355mZGYDvWFTH5sEYwx1VCYVl2JOw8ha6QXXMJk",
+    "vendor_name": "insurance clearing houses",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 395,
+    "doc_id": "1r3Wv355mZGYDvWFTH5sEYwx1VCYVl2JOw8ha6QXXMJk",
+    "vendor_name": "SmartDraw",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 396,
+    "doc_id": "1r3Wv355mZGYDvWFTH5sEYwx1VCYVl2JOw8ha6QXXMJk",
+    "vendor_name": "Google Drawings",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 397,
+    "doc_id": "1r3Wv355mZGYDvWFTH5sEYwx1VCYVl2JOw8ha6QXXMJk",
+    "vendor_name": "LucidChart",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 398,
+    "doc_id": "1r3Wv355mZGYDvWFTH5sEYwx1VCYVl2JOw8ha6QXXMJk",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 399,
+    "doc_id": "1r3Wv355mZGYDvWFTH5sEYwx1VCYVl2JOw8ha6QXXMJk",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 400,
+    "doc_id": "1r3Wv355mZGYDvWFTH5sEYwx1VCYVl2JOw8ha6QXXMJk",
+    "vendor_name": "service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 401,
+    "doc_id": "1r3Wv355mZGYDvWFTH5sEYwx1VCYVl2JOw8ha6QXXMJk",
+    "vendor_name": "critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 402,
+    "doc_id": "1r3Wv355mZGYDvWFTH5sEYwx1VCYVl2JOw8ha6QXXMJk",
+    "vendor_name": "new vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 403,
+    "doc_id": "1r3Wv355mZGYDvWFTH5sEYwx1VCYVl2JOw8ha6QXXMJk",
+    "vendor_name": "vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 404,
+    "doc_id": "1r3Wv355mZGYDvWFTH5sEYwx1VCYVl2JOw8ha6QXXMJk",
+    "vendor_name": "business partners",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 405,
+    "doc_id": "1-zwxUl3_XmF_wkLfgbmrT3Od1qn5GjBbZjlQYmHgqro",
+    "vendor_name": "Accorp Partners",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 406,
+    "doc_id": "1-zwxUl3_XmF_wkLfgbmrT3Od1qn5GjBbZjlQYmHgqro",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 407,
+    "doc_id": "1-zwxUl3_XmF_wkLfgbmrT3Od1qn5GjBbZjlQYmHgqro",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 408,
+    "doc_id": "1-zwxUl3_XmF_wkLfgbmrT3Od1qn5GjBbZjlQYmHgqro",
+    "vendor_name": "Amazon Web Services",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 409,
+    "doc_id": "1-zwxUl3_XmF_wkLfgbmrT3Od1qn5GjBbZjlQYmHgqro",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 410,
+    "doc_id": "1-zwxUl3_XmF_wkLfgbmrT3Od1qn5GjBbZjlQYmHgqro",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 411,
+    "doc_id": "1-zwxUl3_XmF_wkLfgbmrT3Od1qn5GjBbZjlQYmHgqro",
+    "vendor_name": "critical third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 412,
+    "doc_id": "1-zwxUl3_XmF_wkLfgbmrT3Od1qn5GjBbZjlQYmHgqro",
+    "vendor_name": "service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 413,
+    "doc_id": "1-zwxUl3_XmF_wkLfgbmrT3Od1qn5GjBbZjlQYmHgqro",
+    "vendor_name": "vendors and service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 414,
+    "doc_id": "1DN_kXc_jKEBCeqONsxqBYrvk7sqYQac1iGIxFIcgI78",
+    "vendor_name": "AWS (Amazon Web Services)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 415,
+    "doc_id": "1DN_kXc_jKEBCeqONsxqBYrvk7sqYQac1iGIxFIcgI78",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 416,
+    "doc_id": "1DN_kXc_jKEBCeqONsxqBYrvk7sqYQac1iGIxFIcgI78",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 417,
+    "doc_id": "1DN_kXc_jKEBCeqONsxqBYrvk7sqYQac1iGIxFIcgI78",
+    "vendor_name": "HubSpot",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 418,
+    "doc_id": "1DN_kXc_jKEBCeqONsxqBYrvk7sqYQac1iGIxFIcgI78",
+    "vendor_name": "Salesforce",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 419,
+    "doc_id": "1DN_kXc_jKEBCeqONsxqBYrvk7sqYQac1iGIxFIcgI78",
+    "vendor_name": "Slack",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 420,
+    "doc_id": "1DN_kXc_jKEBCeqONsxqBYrvk7sqYQac1iGIxFIcgI78",
+    "vendor_name": "Amazon Web Services",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 421,
+    "doc_id": "1DN_kXc_jKEBCeqONsxqBYrvk7sqYQac1iGIxFIcgI78",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 422,
+    "doc_id": "1DN_kXc_jKEBCeqONsxqBYrvk7sqYQac1iGIxFIcgI78",
+    "vendor_name": "independent third-party",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 423,
+    "doc_id": "1DN_kXc_jKEBCeqONsxqBYrvk7sqYQac1iGIxFIcgI78",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 424,
+    "doc_id": "174gKt7HjpomeI5MLdyOkuGy4YSbRkW0-e9Lv0divY0U",
+    "vendor_name": "Supabase",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 425,
+    "doc_id": "174gKt7HjpomeI5MLdyOkuGy4YSbRkW0-e9Lv0divY0U",
+    "vendor_name": "SmartDraw",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 426,
+    "doc_id": "174gKt7HjpomeI5MLdyOkuGy4YSbRkW0-e9Lv0divY0U",
+    "vendor_name": "Google Drawings",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 427,
+    "doc_id": "174gKt7HjpomeI5MLdyOkuGy4YSbRkW0-e9Lv0divY0U",
+    "vendor_name": "LucidChart",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 428,
+    "doc_id": "174gKt7HjpomeI5MLdyOkuGy4YSbRkW0-e9Lv0divY0U",
+    "vendor_name": "Tally Software, Inc.",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 429,
+    "doc_id": "174gKt7HjpomeI5MLdyOkuGy4YSbRkW0-e9Lv0divY0U",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 430,
+    "doc_id": "174gKt7HjpomeI5MLdyOkuGy4YSbRkW0-e9Lv0divY0U",
+    "vendor_name": "service providers/vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 431,
+    "doc_id": "174gKt7HjpomeI5MLdyOkuGy4YSbRkW0-e9Lv0divY0U",
+    "vendor_name": "critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 432,
+    "doc_id": "174gKt7HjpomeI5MLdyOkuGy4YSbRkW0-e9Lv0divY0U",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 433,
+    "doc_id": "174gKt7HjpomeI5MLdyOkuGy4YSbRkW0-e9Lv0divY0U",
+    "vendor_name": "cloud provider",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 434,
+    "doc_id": "1i_oTf455tiRixbdex_YUATqQWHwOfpPvFsh5u-Z3zgY",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 435,
+    "doc_id": "1i_oTf455tiRixbdex_YUATqQWHwOfpPvFsh5u-Z3zgY",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 436,
+    "doc_id": "1i_oTf455tiRixbdex_YUATqQWHwOfpPvFsh5u-Z3zgY",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 437,
+    "doc_id": "1i_oTf455tiRixbdex_YUATqQWHwOfpPvFsh5u-Z3zgY",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 438,
+    "doc_id": "1i_oTf455tiRixbdex_YUATqQWHwOfpPvFsh5u-Z3zgY",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 439,
+    "doc_id": "1WMM1ENk_lPFB72BibygtXeuxyXSxDFFWxBKTCr0CyDg",
+    "vendor_name": "GCP",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 440,
+    "doc_id": "1WMM1ENk_lPFB72BibygtXeuxyXSxDFFWxBKTCr0CyDg",
+    "vendor_name": "subservice organizations (generic)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 441,
+    "doc_id": "1WMM1ENk_lPFB72BibygtXeuxyXSxDFFWxBKTCr0CyDg",
+    "vendor_name": "Google Cloud Platform (GCP)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 442,
+    "doc_id": "1WMM1ENk_lPFB72BibygtXeuxyXSxDFFWxBKTCr0CyDg",
+    "vendor_name": "Google Cloud Platform",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 443,
+    "doc_id": "1WMM1ENk_lPFB72BibygtXeuxyXSxDFFWxBKTCr0CyDg",
+    "vendor_name": "Datadog",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 444,
+    "doc_id": "1WMM1ENk_lPFB72BibygtXeuxyXSxDFFWxBKTCr0CyDg",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 445,
+    "doc_id": "1WMM1ENk_lPFB72BibygtXeuxyXSxDFFWxBKTCr0CyDg",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 446,
+    "doc_id": "1WMM1ENk_lPFB72BibygtXeuxyXSxDFFWxBKTCr0CyDg",
+    "vendor_name": "service providers/vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 447,
+    "doc_id": "1WMM1ENk_lPFB72BibygtXeuxyXSxDFFWxBKTCr0CyDg",
+    "vendor_name": "critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 448,
+    "doc_id": "1WMM1ENk_lPFB72BibygtXeuxyXSxDFFWxBKTCr0CyDg",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 449,
+    "doc_id": "1WMM1ENk_lPFB72BibygtXeuxyXSxDFFWxBKTCr0CyDg",
+    "vendor_name": "AICPA",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 450,
+    "doc_id": "1wh1UNMitTQgb0RPpcTFowiiDWH1fa1VZ3VzqcOOlS9o",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 451,
+    "doc_id": "1wh1UNMitTQgb0RPpcTFowiiDWH1fa1VZ3VzqcOOlS9o",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 452,
+    "doc_id": "1wh1UNMitTQgb0RPpcTFowiiDWH1fa1VZ3VzqcOOlS9o",
+    "vendor_name": "Vercel",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 453,
+    "doc_id": "1wh1UNMitTQgb0RPpcTFowiiDWH1fa1VZ3VzqcOOlS9o",
+    "vendor_name": "Render",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 454,
+    "doc_id": "1wh1UNMitTQgb0RPpcTFowiiDWH1fa1VZ3VzqcOOlS9o",
+    "vendor_name": "Neon",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 455,
+    "doc_id": "1wh1UNMitTQgb0RPpcTFowiiDWH1fa1VZ3VzqcOOlS9o",
+    "vendor_name": "Redis",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 456,
+    "doc_id": "1wh1UNMitTQgb0RPpcTFowiiDWH1fa1VZ3VzqcOOlS9o",
+    "vendor_name": "Posthog",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 457,
+    "doc_id": "1wh1UNMitTQgb0RPpcTFowiiDWH1fa1VZ3VzqcOOlS9o",
+    "vendor_name": "Axiom",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 458,
+    "doc_id": "1wh1UNMitTQgb0RPpcTFowiiDWH1fa1VZ3VzqcOOlS9o",
+    "vendor_name": "OpenAI",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 459,
+    "doc_id": "1wh1UNMitTQgb0RPpcTFowiiDWH1fa1VZ3VzqcOOlS9o",
+    "vendor_name": "OpenRouter",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 460,
+    "doc_id": "1wh1UNMitTQgb0RPpcTFowiiDWH1fa1VZ3VzqcOOlS9o",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 461,
+    "doc_id": "1wh1UNMitTQgb0RPpcTFowiiDWH1fa1VZ3VzqcOOlS9o",
+    "vendor_name": "service providers/vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 462,
+    "doc_id": "1wh1UNMitTQgb0RPpcTFowiiDWH1fa1VZ3VzqcOOlS9o",
+    "vendor_name": "critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 463,
+    "doc_id": "1wh1UNMitTQgb0RPpcTFowiiDWH1fa1VZ3VzqcOOlS9o",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 464,
+    "doc_id": "1UlYwLdWKaFVvtV9EzwZxabwXe3AGCv67pVI6ojqiH8s",
+    "vendor_name": "GCP",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 465,
+    "doc_id": "1UlYwLdWKaFVvtV9EzwZxabwXe3AGCv67pVI6ojqiH8s",
+    "vendor_name": "Google Cloud Platform (GCP)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 466,
+    "doc_id": "1UlYwLdWKaFVvtV9EzwZxabwXe3AGCv67pVI6ojqiH8s",
+    "vendor_name": "Cloudflare",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 467,
+    "doc_id": "1UlYwLdWKaFVvtV9EzwZxabwXe3AGCv67pVI6ojqiH8s",
+    "vendor_name": "GCP (Google Cloud Platform)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 468,
+    "doc_id": "1UlYwLdWKaFVvtV9EzwZxabwXe3AGCv67pVI6ojqiH8s",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 469,
+    "doc_id": "1UlYwLdWKaFVvtV9EzwZxabwXe3AGCv67pVI6ojqiH8s",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 470,
+    "doc_id": "1UlYwLdWKaFVvtV9EzwZxabwXe3AGCv67pVI6ojqiH8s",
+    "vendor_name": "service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 471,
+    "doc_id": "1xWiFPjtqhrCGfqqxK28KmqkPR7jow9ZJ3EX1LwETMcI",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 472,
+    "doc_id": "1xWiFPjtqhrCGfqqxK28KmqkPR7jow9ZJ3EX1LwETMcI",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 473,
+    "doc_id": "1xWiFPjtqhrCGfqqxK28KmqkPR7jow9ZJ3EX1LwETMcI",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 474,
+    "doc_id": "1xWiFPjtqhrCGfqqxK28KmqkPR7jow9ZJ3EX1LwETMcI",
+    "vendor_name": "Cloudflare",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 475,
+    "doc_id": "1xWiFPjtqhrCGfqqxK28KmqkPR7jow9ZJ3EX1LwETMcI",
+    "vendor_name": "Anthropic",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 476,
+    "doc_id": "1xWiFPjtqhrCGfqqxK28KmqkPR7jow9ZJ3EX1LwETMcI",
+    "vendor_name": "OpenAI",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 477,
+    "doc_id": "1xWiFPjtqhrCGfqqxK28KmqkPR7jow9ZJ3EX1LwETMcI",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 478,
+    "doc_id": "1xWiFPjtqhrCGfqqxK28KmqkPR7jow9ZJ3EX1LwETMcI",
+    "vendor_name": "Composite",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 479,
+    "doc_id": "1xWiFPjtqhrCGfqqxK28KmqkPR7jow9ZJ3EX1LwETMcI",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 480,
+    "doc_id": "1Q_EpQ1f63t-u--LAQDKrb53YG3iHgQqCllTgZiUVnIM",
+    "vendor_name": "Digital Ocean",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 481,
+    "doc_id": "1Q_EpQ1f63t-u--LAQDKrb53YG3iHgQqCllTgZiUVnIM",
+    "vendor_name": "Azure (OpenAI)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 482,
+    "doc_id": "1Q_EpQ1f63t-u--LAQDKrb53YG3iHgQqCllTgZiUVnIM",
+    "vendor_name": "Google (Gemini)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 483,
+    "doc_id": "1Q_EpQ1f63t-u--LAQDKrb53YG3iHgQqCllTgZiUVnIM",
+    "vendor_name": "AWS (Anthropic)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 484,
+    "doc_id": "1Q_EpQ1f63t-u--LAQDKrb53YG3iHgQqCllTgZiUVnIM",
+    "vendor_name": "Third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 485,
+    "doc_id": "1Q_EpQ1f63t-u--LAQDKrb53YG3iHgQqCllTgZiUVnIM",
+    "vendor_name": "independent third-party",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 486,
+    "doc_id": "1Q_EpQ1f63t-u--LAQDKrb53YG3iHgQqCllTgZiUVnIM",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 487,
+    "doc_id": "1vSXvre6uB-JfgR68iUVeYhQi5N3dryRxWSJSX4m7hI0",
+    "vendor_name": "GCP",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 488,
+    "doc_id": "1vSXvre6uB-JfgR68iUVeYhQi5N3dryRxWSJSX4m7hI0",
+    "vendor_name": "GCP (Google Cloud Platform)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 489,
+    "doc_id": "1vSXvre6uB-JfgR68iUVeYhQi5N3dryRxWSJSX4m7hI0",
+    "vendor_name": "Google Cloud Platform (GCP)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 490,
+    "doc_id": "1vSXvre6uB-JfgR68iUVeYhQi5N3dryRxWSJSX4m7hI0",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 491,
+    "doc_id": "1vSXvre6uB-JfgR68iUVeYhQi5N3dryRxWSJSX4m7hI0",
+    "vendor_name": "Cloudflare",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 492,
+    "doc_id": "1vSXvre6uB-JfgR68iUVeYhQi5N3dryRxWSJSX4m7hI0",
+    "vendor_name": "Google Cloud Platform",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 493,
+    "doc_id": "1vSXvre6uB-JfgR68iUVeYhQi5N3dryRxWSJSX4m7hI0",
+    "vendor_name": "Kaltura",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 494,
+    "doc_id": "1vSXvre6uB-JfgR68iUVeYhQi5N3dryRxWSJSX4m7hI0",
+    "vendor_name": "YouTube",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 495,
+    "doc_id": "1vSXvre6uB-JfgR68iUVeYhQi5N3dryRxWSJSX4m7hI0",
+    "vendor_name": "Google Drive",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 496,
+    "doc_id": "1vSXvre6uB-JfgR68iUVeYhQi5N3dryRxWSJSX4m7hI0",
+    "vendor_name": "Google",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 497,
+    "doc_id": "1vSXvre6uB-JfgR68iUVeYhQi5N3dryRxWSJSX4m7hI0",
+    "vendor_name": "Firebase",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 498,
+    "doc_id": "1vSXvre6uB-JfgR68iUVeYhQi5N3dryRxWSJSX4m7hI0",
+    "vendor_name": "cloud provider",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 499,
+    "doc_id": "1vSXvre6uB-JfgR68iUVeYhQi5N3dryRxWSJSX4m7hI0",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 500,
+    "doc_id": "1AaqAm4q9_wCRm_zyi8FT4rwZUORehRsIpiOuOlGltP4",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 501,
+    "doc_id": "1AaqAm4q9_wCRm_zyi8FT4rwZUORehRsIpiOuOlGltP4",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 502,
+    "doc_id": "1AaqAm4q9_wCRm_zyi8FT4rwZUORehRsIpiOuOlGltP4",
+    "vendor_name": "independent third-party",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 503,
+    "doc_id": "1AaqAm4q9_wCRm_zyi8FT4rwZUORehRsIpiOuOlGltP4",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 504,
+    "doc_id": "1MXShBaCZnqSz8S9t5hureGWaaooYtd5iP985F-Ps06g",
+    "vendor_name": "ACCORP PARTNERS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 505,
+    "doc_id": "1MXShBaCZnqSz8S9t5hureGWaaooYtd5iP985F-Ps06g",
+    "vendor_name": "GCP (Google Cloud Platform)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 506,
+    "doc_id": "1MXShBaCZnqSz8S9t5hureGWaaooYtd5iP985F-Ps06g",
+    "vendor_name": "Google Cloud Platform",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 507,
+    "doc_id": "1MXShBaCZnqSz8S9t5hureGWaaooYtd5iP985F-Ps06g",
+    "vendor_name": "Google Cloud Platform (GCP)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 508,
+    "doc_id": "1MXShBaCZnqSz8S9t5hureGWaaooYtd5iP985F-Ps06g",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 509,
+    "doc_id": "1MXShBaCZnqSz8S9t5hureGWaaooYtd5iP985F-Ps06g",
+    "vendor_name": "SmartDraw",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 510,
+    "doc_id": "1MXShBaCZnqSz8S9t5hureGWaaooYtd5iP985F-Ps06g",
+    "vendor_name": "Google Drawings",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 511,
+    "doc_id": "1MXShBaCZnqSz8S9t5hureGWaaooYtd5iP985F-Ps06g",
+    "vendor_name": "LucidChart",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 512,
+    "doc_id": "1MXShBaCZnqSz8S9t5hureGWaaooYtd5iP985F-Ps06g",
+    "vendor_name": "GCP",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 513,
+    "doc_id": "1MXShBaCZnqSz8S9t5hureGWaaooYtd5iP985F-Ps06g",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 514,
+    "doc_id": "1MXShBaCZnqSz8S9t5hureGWaaooYtd5iP985F-Ps06g",
+    "vendor_name": "critical third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 515,
+    "doc_id": "1MXShBaCZnqSz8S9t5hureGWaaooYtd5iP985F-Ps06g",
+    "vendor_name": "service providers/vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 516,
+    "doc_id": "1MXShBaCZnqSz8S9t5hureGWaaooYtd5iP985F-Ps06g",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 517,
+    "doc_id": "1hw2MeCxGCd_IRz51P4L-EKbuip28EIV3fYl_fj-aSmg",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 518,
+    "doc_id": "1hw2MeCxGCd_IRz51P4L-EKbuip28EIV3fYl_fj-aSmg",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 519,
+    "doc_id": "1hw2MeCxGCd_IRz51P4L-EKbuip28EIV3fYl_fj-aSmg",
+    "vendor_name": "SmartDraw",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 520,
+    "doc_id": "1hw2MeCxGCd_IRz51P4L-EKbuip28EIV3fYl_fj-aSmg",
+    "vendor_name": "Google Drawings",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 521,
+    "doc_id": "1hw2MeCxGCd_IRz51P4L-EKbuip28EIV3fYl_fj-aSmg",
+    "vendor_name": "LucidChart",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 522,
+    "doc_id": "1hw2MeCxGCd_IRz51P4L-EKbuip28EIV3fYl_fj-aSmg",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 523,
+    "doc_id": "1hw2MeCxGCd_IRz51P4L-EKbuip28EIV3fYl_fj-aSmg",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 524,
+    "doc_id": "1hw2MeCxGCd_IRz51P4L-EKbuip28EIV3fYl_fj-aSmg",
+    "vendor_name": "AICPA",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 525,
+    "doc_id": "10wA1u1xUjY2-FUzGb-UqErNr2GCFC2K4cgH4BqU1nzI",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 526,
+    "doc_id": "10wA1u1xUjY2-FUzGb-UqErNr2GCFC2K4cgH4BqU1nzI",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 527,
+    "doc_id": "10wA1u1xUjY2-FUzGb-UqErNr2GCFC2K4cgH4BqU1nzI",
+    "vendor_name": "Practice Management Software (PMS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 528,
+    "doc_id": "10wA1u1xUjY2-FUzGb-UqErNr2GCFC2K4cgH4BqU1nzI",
+    "vendor_name": "ERP systems",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 529,
+    "doc_id": "10wA1u1xUjY2-FUzGb-UqErNr2GCFC2K4cgH4BqU1nzI",
+    "vendor_name": "Amazon Web Services",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 530,
+    "doc_id": "10wA1u1xUjY2-FUzGb-UqErNr2GCFC2K4cgH4BqU1nzI",
+    "vendor_name": "NameCheap",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 531,
+    "doc_id": "10wA1u1xUjY2-FUzGb-UqErNr2GCFC2K4cgH4BqU1nzI",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 532,
+    "doc_id": "10wA1u1xUjY2-FUzGb-UqErNr2GCFC2K4cgH4BqU1nzI",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 533,
+    "doc_id": "10wA1u1xUjY2-FUzGb-UqErNr2GCFC2K4cgH4BqU1nzI",
+    "vendor_name": "vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 534,
+    "doc_id": "10wA1u1xUjY2-FUzGb-UqErNr2GCFC2K4cgH4BqU1nzI",
+    "vendor_name": "service providers",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 535,
+    "doc_id": "10wA1u1xUjY2-FUzGb-UqErNr2GCFC2K4cgH4BqU1nzI",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 536,
+    "doc_id": "10wA1u1xUjY2-FUzGb-UqErNr2GCFC2K4cgH4BqU1nzI",
+    "vendor_name": "critical third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 537,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Accorp Partners",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 538,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "AWS",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 539,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Amazon Web Services (AWS)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 540,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "GitHub",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 541,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "US-CERT",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 542,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "CISA",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 543,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "NVD",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 544,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "MITRE",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 545,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "ISACA",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 546,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "NIST",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 547,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Datadog",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 548,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "SentinelOne",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 549,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Amazon Web Services",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 550,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Microsoft Azure",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 551,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Oracle Cloud Infrastructure",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 552,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Google Cloud Platform",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 553,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Azure",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 554,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Supabase",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 555,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Rippling",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 556,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "NordLayer",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 557,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Jamf",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 558,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Aikido Security",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 559,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "SvelteKit",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 560,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Lucide-icons",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 561,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "FastAPI",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 562,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Fontsource",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 563,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "Infisical",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 564,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 565,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "independent third-party",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 566,
+    "doc_id": "1qaIgoDZ6mGmouSYAYd1XmNQHNaPJ8Pom1sve7dUk-00",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 567,
+    "doc_id": "132EjoS0RWVJyI-pf2BGY311kGR5bPaUcdttNku6mBj8",
+    "vendor_name": "GCP",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 568,
+    "doc_id": "132EjoS0RWVJyI-pf2BGY311kGR5bPaUcdttNku6mBj8",
+    "vendor_name": "Google Cloud Platform (GCP)",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 569,
+    "doc_id": "132EjoS0RWVJyI-pf2BGY311kGR5bPaUcdttNku6mBj8",
+    "vendor_name": "third-party certificate authority",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 570,
+    "doc_id": "132EjoS0RWVJyI-pf2BGY311kGR5bPaUcdttNku6mBj8",
+    "vendor_name": "SmartDraw",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 571,
+    "doc_id": "132EjoS0RWVJyI-pf2BGY311kGR5bPaUcdttNku6mBj8",
+    "vendor_name": "Google Drawings",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 572,
+    "doc_id": "132EjoS0RWVJyI-pf2BGY311kGR5bPaUcdttNku6mBj8",
+    "vendor_name": "LucidChart",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 573,
+    "doc_id": "132EjoS0RWVJyI-pf2BGY311kGR5bPaUcdttNku6mBj8",
+    "vendor_name": "building management",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 574,
+    "doc_id": "132EjoS0RWVJyI-pf2BGY311kGR5bPaUcdttNku6mBj8",
+    "vendor_name": "third-party vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 575,
+    "doc_id": "132EjoS0RWVJyI-pf2BGY311kGR5bPaUcdttNku6mBj8",
+    "vendor_name": "service providers/vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 576,
+    "doc_id": "132EjoS0RWVJyI-pf2BGY311kGR5bPaUcdttNku6mBj8",
+    "vendor_name": "critical vendors",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  },
+  {
+    "id": 577,
+    "doc_id": "132EjoS0RWVJyI-pf2BGY311kGR5bPaUcdttNku6mBj8",
+    "vendor_name": "subservice organization",
+    "purpose": "Identified in report",
+    "criticality": "Unknown"
+  }
+]

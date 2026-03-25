@@ -1,0 +1,239 @@
+{
+  "company": "DekaBridge, Inc.",
+  "product": "DekaBridge",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of September 3, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+  "hq": "No physical office — cloud-only",
+  "signing_authority": "Skyler Place, Ph.D, CEO, DekaBridge",
+
+  "system_description": {
+    "overview": "DekaBridge provides a secure, cloud-based AI platform designed to augment strategic decision-making for enterprise product leaders. It uses proprietary AI agents including simulated stakeholders and a bias-aware Decision Coach to help users analyze proposals, plan roadmaps, and test strategies in a simulated environment.",
+    "products": {
+      "DekaBridge Application": "Primary web application (Next.js/React SPA) providing all client-facing features",
+      "Data Ingestion and Processing": "Securely uploads, processes, and indexes client-provided corporate data into a database with logical per-client segregation",
+      "DekaBridge Agent": "Central conversational AI for creating and refining strategic proposals",
+      "Simulation Room": "Environment for users to interact with multiple customizable AI persona agents (CEO, Head of Sales, Chief Legal Counsel, etc.) to test and validate strategies",
+      "Decision Coach": "AI-powered service that monitors conversations for cognitive bias and provides real-time, evidence-based feedback"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out — AWS controls excluded from scope)",
+    "regions": ["us-east-2"],
+    "physical_presence": "None — no physical offices or servers",
+    "availability_zones": "Multi-AZ (multiple availability zones referenced for failover)",
+    "additional_cloud": ["Vercel (frontend/www servers per network diagram)"],
+    "serverless": ["AWS App Runner (application servers per network diagram)"],
+    "cdn": "Vercel (hosts www servers and application servers per network diagram)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "AWS VPC with private subnets; ACLs in place; segmented VPCs; production network isolated",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services; firewall rules reviewed annually by IT management",
+    "ids_ips": "IDS and IPS via AWS to identify and protect against threats",
+    "vpn": "Bastion host with VPN for remote access",
+    "tls": "TLS using certificates from an established third-party certificate authority; HTTPS + auth on App Runner",
+    "content_filtering": "Content filtering system routes all internet traffic through a proxy server",
+    "multi_region": false,
+    "topology": "Internet → Firewall → Vercel (www + application servers) → AWS IAM + TLS → App Runner; AWS VPC in us-east-2 with private subnet containing Amazon RDS (PostgreSQL); S3, AWS Bedrock, and DynamoDB also in AWS infra"
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid (SPA frontend + serverless-style backend on App Runner + managed AI services)",
+    "languages": ["Not explicitly named"],
+    "frameworks": ["Next.js", "React"],
+    "compute": ["AWS App Runner"],
+    "api_style": "Not specified",
+    "environments": "Separate development/staging and production environments; changes tested in dev/stage before production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Amazon RDS (PostgreSQL)", "DynamoDB"],
+    "caching": null,
+    "file_storage": ["S3"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Backup policy exists; formal backup and recovery procedures defined; retention periods defined",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS IAM; passwordless systems mentioned for user auth",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform; MFA required for source code tool access",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day of termination",
+    "password_policy": "Passwords controlled through AWS password policy; periodic forced changes, expiry, complexity requirements; account lockout after failed attempts"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest",
+    "key_management": "AWS KMS (cloud provider key management service)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (specific name not disclosed — GitHub/GitLab inferred from MFA requirement)",
+    "ci_cd_tool": "Not explicitly named",
+    "branch_protection": "Code repository branch rules configured so every merge request requires additional approval before moving to production",
+    "iac": "Configuration management tool used for baseline management and rollback capability",
+    "container_orchestration": "AWS App Runner (managed container-like runtime; not Kubernetes)",
+    "patch_management": "CTO sets up automatic patch management; monthly patch management reviews; OS-critical patches applied as available; workstations scanned daily for patch compliance",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not explicitly named — monitoring tool generates alerts on predefined thresholds",
+    "siem": "Not explicitly named",
+    "log_aggregation": "Logging enabled at application and infrastructure level; access to modify logs is restricted",
+    "alerting": "Automated alerts to IT management for high and critical risk events; ticketing/change-management application tracks alerts",
+    "metrics": ["server disc space", "incoming/outgoing network traffic", "packet loss", "CPU utilization"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Primary cloud infrastructure — compute, storage, database, AI (Bedrock), networking", "criticality": "Critical"},
+    {"vendor": "Vercel", "purpose": "Frontend hosting / CDN for www and application servers", "criticality": "High"},
+    {"vendor": "AWS Bedrock", "purpose": "AI/LLM foundation model service", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Endpoint Security Solution installed on all desktops and laptops; anti-virus and malware protection on all production servers; definitions updated weekly on servers, daily on workstations",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; scan frequency adjusted as needed; internal IT team performs periodic vulnerability scans",
+    "penetration_testing": "Annual external penetration testing by independent third party",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 28,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — AWS responsible for physical security of data center; not in scope",
+      "A1.2 — DekaBridge does not have an office; environmental security managed by building/AWS",
+      "Processing Integrity — determined not relevant to the system",
+      "Privacy — scoped out"
+    ],
+    "notable_controls": [
+      "CC8.1.2 — Branch protection rules require additional approval for every merge to production",
+      "CC8.1.3 — Source code tool restricted to MFA-authenticated users",
+      "CC6.2.2 — Quarterly user access reviews for all accounts including privileged users",
+      "CC6.1.4 — Access revoked within one business day of termination",
+      "CC7.1.1 — Baseline configs retained as code with rollback capability (IaC-style)",
+      "CC7.4.1 — Annual BCDR testing across multiple loss scenarios",
+      "CC4.1.1 — Annual external penetration test by independent third party"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Single AWS region (us-east-2) with multi-AZ failover. Vercel for frontend CDN. App Runner for compute. No multi-region deployment. IaC-style baseline config management referenced but no named IaC tool (Terraform/CDK)."
+    },
+    "application_architecture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Modern SPA (Next.js/React) with App Runner backend and AWS Bedrock for AI. Multi-tenant with logical data segregation. Separate environments with branch protection and code review. Languages and CI/CD tool not named. Microservices vs. monolith architecture not clarified."
+    },
+    "data_layer": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Two database types (RDS PostgreSQL + DynamoDB) plus S3 object storage. Per-tenant data segregation explicitly implemented. Backup policy exists with retention periods. No caching layer named. No data warehouse. Backup frequency not specified as daily."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Annual external pen test, monthly vuln scans, IDS/IPS via AWS, firewalls, AV/EDR on all endpoints and production servers, MFA for admin/prod access, quarterly access reviews, 1-day access revocation SLA. No WAF explicitly named. No SIEM named."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Branch protection with merge approval required, separate environments, emergency change process, monthly patch management. IaC-style config management referenced but no named tool. CI/CD pipeline tool not named. Source control tool not named."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented, annual review and testing conducted across multiple loss scenarios. Multi-AZ failover via AWS. No multi-region DR. No RTO/RPO disclosed. Backup retention periods defined but daily backup frequency not confirmed."
+    },
+    "vendor_diversity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Heavy AWS concentration (compute, database, AI via Bedrock, networking). Vercel for frontend. AWS Bedrock is a critical dependency for core AI functionality — single vendor risk if Bedrock has issues. Only 3 named vendors total."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Solid early-stage SOC 2 Type 1 posture. Modern tech stack (Next.js, App Runner, RDS, DynamoDB, Bedrock), multi-tenant segregation, good access controls and annual pen testing. Key gaps: single region, unnamed CI/CD tooling, heavy Bedrock/AWS concentration, no RTO/RPO disclosure, no WAF or SIEM named."
+    }
+  },
+
+  "red_flags": [
+    "Single AWS region (us-east-2) only — no multi-region disaster recovery",
+    "Heavy dependency on AWS Bedrock for core AI functionality — no fallback LLM provider mentioned",
+    "No RTO or RPO disclosed despite BCDR policy existing",
+    "No WAF explicitly mentioned in controls"
+  ],
+
+  "yellow_flags": [
+    "CI/CD tool not named — pipeline maturity unclear",
+    "Source control system not named (only referenced as 'source code management tool')",
+    "IaC tool not specifically named — 'configuration management tool' referenced generically",
+    "Backup frequency not confirmed as daily — only 'suitable backups are taken'",
+    "No SIEM tool named — log aggregation approach unclear",
+    "Processing Integrity and Privacy criteria excluded — may be relevant for enterprise customers uploading sensitive corporate data"
+  ],
+
+  "green_flags": [
+    "Network diagram explicitly shows architecture: Vercel + App Runner + VPC with private subnets + RDS + DynamoDB + S3 + Bedrock",
+    "Multi-tenant data segregation with unique client identifier on all data — explicitly described",
+    "MFA enforced for admin and production access, and for source code tool",
+    "Quarterly access reviews for all accounts including privileged users",
+    "1-business-day access revocation SLA upon termination",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scanning",
+    "Branch protection with mandatory approval for all production merges",
+    "BCDR tested annually across multiple loss scenarios",
+    "AWS KMS for encryption at rest",
+    "Multi-AZ failover via AWS for production servers",
+    "Passwordless authentication for end-users (modern auth approach)"
+  ],
+
+  "key_observations": [
+    "AWS Bedrock is the AI backbone — this is a key architectural dependency that reviewers should probe for SLA, data residency, and model versioning commitments",
+    "The use of Vercel for the frontend (www + application servers) alongside AWS for backend creates a split-CDN/compute architecture — Vercel outages could impact user-facing availability independently of AWS health",
+    "The product ingests sensitive enterprise corporate data (strategy memos, product requirements, market analysis) — the per-tenant segregation claim is critical and should be validated technically",
+    "Trust criteria listed in auditor scope includes all 5 criteria (Security, Availability, Processing Integrity, Confidentiality, Privacy) but the company itself determined Processing Integrity and Privacy are not relevant — this is a mismatch worth flagging for enterprise buyers",
+    "App Runner as compute is a managed container service without Kubernetes complexity — lower DevOps overhead but less control over scaling and isolation"
+  ]
+}

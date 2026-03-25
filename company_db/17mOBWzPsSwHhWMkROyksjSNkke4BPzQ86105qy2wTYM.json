@@ -1,0 +1,19 @@
+{
+  "doc_id": "17mOBWzPsSwHhWMkROyksjSNkke4BPzQ86105qy2wTYM",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/17mOBWzPsSwHhWMkROyksjSNkke4BPzQ86105qy2wTYM",
+  "timestamp": "7/31/2025 14:10:11",
+  "display_name": "Parahelp",
+  "legal_name": "OWND ApS",
+  "company_name": "Parahelp",
+  "system_description": "Parahelp is a platform that enables companies to create their own AI support agent to automate their repetitive support tickets end-to-end.",
+  "audit_end_date": "July 31, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://parahelp.com",
+  "contact_email": "mads@parahelp.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "17mOBWzPsSwHhWMkROyksjSNkke4BPzQ86105qy2wTYM.pdf",
+  "txt_file": "17mOBWzPsSwHhWMkROyksjSNkke4BPzQ86105qy2wTYM.txt",
+  "has_report": true
+}

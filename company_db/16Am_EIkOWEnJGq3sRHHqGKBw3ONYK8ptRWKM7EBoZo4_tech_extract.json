@@ -1,0 +1,235 @@
+{
+  "company": "CoPlane, Inc.",
+  "product": "CoPlane",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of July 9, 2025",
+  "auditor": "ACCORP PARTNERS",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability"],
+  "hq": "Not disclosed",
+  "signing_authority": "Not completed — yellow placeholder 'Your Name Here' in management assertion",
+
+  "system_description": {
+    "overview": "CoPlane is a cloud-based platform (described as 'AI-powered' or similar — exact tagline not stated in system description section). Hosted entirely on AWS, it provides a SaaS application serving customers over the internet with no physical office presence.",
+    "products": {
+      "CoPlane": "Core SaaS platform hosted on AWS; exact product category not elaborated beyond the system description section"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out — physical security delegated to AWS as subservice organization)",
+    "regions": ["us-east-1 (VPC EAST)", "us-west-2 (VPC WEST)"],
+    "physical_presence": "None — no physical office; fully cloud-hosted",
+    "availability_zones": "Multi-AZ — 3 availability zones used per region",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Not mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "VPC WEST and VPC EAST with segmented subnets; ACLs used to control traffic between segments",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Network firewalls implemented, configured, and managed to control incoming/outgoing traffic based on predetermined security rules; firewall configurations reviewed regularly",
+    "ids_ips": "Intrusion detection system monitors and detects unauthorized access or anomalies within the network; confirmed tested",
+    "vpn": "Bastion host used for VPN/remote access to production environment",
+    "tls": "TLS used for data in transit; certificates from established CA",
+    "content_filtering": null,
+    "multi_region": true,
+    "topology": "Internet traffic enters VPC EAST and VPC WEST; network segmentation via subnets and ACLs; bastion host for admin access; IDS monitors network; firewalls control perimeter"
+  },
+
+  "application_architecture": {
+    "pattern": "Not explicitly stated — likely microservices or modular given multi-region AWS deployment",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["EC2 (implied — 'multiple servers across all AZs')"],
+    "api_style": null,
+    "environments": "Separate development/test and production environments maintained",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Not specified by name"],
+    "caching": [],
+    "file_storage": ["Not specified"],
+    "data_warehouse": "Not mentioned",
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": "Not disclosed"
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not named — generic access control described",
+    "mfa": "MFA enforced for all remote access to entity's information systems",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day of termination",
+    "password_policy": "Policy and procedures established, documented, and enforced for password strength and confidentiality"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Encryption at rest implemented (KMS implied from AWS cloud controls)",
+    "key_management": "Access to encryption keys restricted to authorized personnel; cloud KMS (AWS) implied",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Git-based (specific platform not named — 'source code management tool' referenced)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Approval process followed prior to merging to master branch; developers cannot push directly to production without additional approval",
+    "iac": "Configuration management / IaC used (specific tool not named)",
+    "container_orchestration": "Not mentioned",
+    "patch_management": "CTO/Management sets up automatic patch management; monthly patch management reviews; workstations scanned for patch compliance daily",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named — 'monitoring tool generates alerts when predefined thresholds are met'",
+    "siem": "Not named",
+    "log_aggregation": "Log management established; logging enabled for administrative activities, log-on attempts, data deletions, function changes, security configurations, permissions, roles",
+    "alerting": "Automated alerts to IT management for high and critical risk events",
+    "metrics": ["CPU", "disk", "network", "availability", "reliability"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS", "purpose": "Primary cloud infrastructure (IaaS) — subservice organization under carve-out method", "criticality": "Critical"},
+    {"vendor": "Subservice organization (unnamed)", "purpose": "Physical security and environmental controls", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-malware technology implemented, maintained, and regularly updated on production servers and workstations",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly vulnerability scans",
+    "penetration_testing": "Annual penetration test (external)",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": true,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — No significant changes to people/roles during period",
+      "CC3.2.1 — Cybersecurity insurance effectiveness could not be tested (no cyber incidents during period)",
+      "CC7.3.1 — Incident response could not be tested (no security incidents during period)",
+      "CC6.5.2 — Customer data deletion could not be tested (no customer terminations during period)"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — Physical facility access controls excluded (AWS responsibility as subservice org)",
+      "A1.2 — Environmental protections excluded (no physical office; AWS responsibility)"
+    ],
+    "notable_controls": [
+      "RGEC (Risk and Governance Executive Committee) meets semiannually to review key internal controls",
+      "IT Leadership Committee meets weekly on security and operations",
+      "Network diagram formally maintained and reviewed annually by IT management (CC2.3.7)",
+      "Asset inventory maintained and updated on as-needed basis",
+      "Source code changes are logged, time-stamped, and attributed to author (CC5.2.5)",
+      "DR plan identifies critical IT programs, OS, personnel, data files, and time frames via business impact analysis"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Multi-region (VPC EAST + VPC WEST), multi-AZ (3 AZs), IaC referenced. No CDN mentioned. Strong for an early-stage company."
+    },
+    "application_architecture": {
+      "score": 4,
+      "max": 10,
+      "rationale": "No languages, frameworks, or compute types named. Separate environments and branch protection confirmed. Architecture pattern undisclosed — limited visibility."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Daily backups and multi-AZ confirmed. Data classification and retention policies exist. No database names, caching, or data warehouse mentioned."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "IDS, antivirus, firewalls, monthly vuln scans, annual pen test, MFA, cybersecurity insurance all confirmed. No WAF named. No SIEM named. Solid controls breadth."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Branch protection, emergency change process, separate environments, IaC, and patch management all confirmed. No CI/CD tool named. No container orchestration mentioned."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy exists, tested annually, multi-AZ and multi-region failover. Daily backups confirmed. No RTO/RPO disclosed."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Only AWS named as a specific vendor. No other third-party tools, SaaS platforms, or subprocessors named. High concentration risk on single cloud provider."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "SOC 2 Type 1 (point-in-time design only, not operating effectiveness). Solid infrastructure foundation with multi-region AWS, proper controls framework. Key gap: near-zero technology specificity — no tool names, no language/framework disclosure, no named SaaS vendors. The report uses generic ACCORP template language throughout with minimal company-specific content."
+    }
+  },
+
+  "red_flags": [
+    "Management assertion signing authority field left blank ('Your Name Here' yellow placeholder) — report appears to not be fully finalized/signed",
+    "Network diagram on page 18 is a 'Sample network diagram' placeholder watermark — company has not replaced it with their actual architecture diagram",
+    "Zero specific technology names disclosed beyond AWS — no database, CI/CD tool, monitoring platform, or identity provider named",
+    "SOC 2 Type 1 only — no operating effectiveness evidence; controls have never been independently tested over time"
+  ],
+
+  "yellow_flags": [
+    "No RTO or RPO stated for disaster recovery — unclear recovery commitments to customers",
+    "No WAF mentioned despite being a multi-region web application",
+    "No CDN mentioned",
+    "Single cloud provider (AWS) with no secondary cloud or DR site outside AWS",
+    "No SSO mentioned — authentication provider not named",
+    "Vendor list extremely sparse — hard to assess third-party risk concentration"
+  ],
+
+  "green_flags": [
+    "Multi-region architecture (VPC EAST + VPC WEST) — strong for early-stage company",
+    "3-AZ deployment with automatic failover (spinning up multiple servers across all AZs)",
+    "Annual penetration testing confirmed",
+    "Monthly vulnerability scanning confirmed",
+    "Cybersecurity insurance in place",
+    "MFA enforced for all remote access",
+    "1-business-day access revocation SLA",
+    "Quarterly access reviews",
+    "Daily backups with multi-AZ configuration",
+    "Separate environments (dev/test vs production)",
+    "Branch protection with approval required before merging to master"
+  ],
+
+  "key_observations": [
+    "This is an ACCORP PARTNERS templated report — the controls language is near-identical boilerplate across all ACCORP clients; very little company-specific technical content was injected",
+    "The placeholder network diagram and unsigned management assertion suggest the report was produced quickly and may not reflect mature security practices",
+    "The multi-region architecture is notably sophisticated for the apparent company size — either the team has strong infra experience or this is aspirational",
+    "No mention of any AI-specific security controls despite being an AI platform company (model security, prompt injection, data poisoning)",
+    "The report covers Security and Availability criteria but excludes Processing Integrity and Confidentiality — notable gaps for an AI product handling customer data"
+  ]
+}

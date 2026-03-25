@@ -1,0 +1,19 @@
+{
+  "doc_id": "15_tdgMPoLcKlcqZaK_KbCCKFwAeEqzVU1rNUklWaXFo",
+  "link": "https://docs.google.com/document/d/15_tdgMPoLcKlcqZaK_KbCCKFwAeEqzVU1rNUklWaXFo",
+  "timestamp": "11/19/2025 15:35:56",
+  "display_name": "Vulcan Technologies",
+  "legal_name": "Vulcan Technologies, Inc.",
+  "company_name": "Vulcan Technologies",
+  "system_description": "Vulcan Technologies is an AI-powered legal tech company that maps every U.S. law, regulation, and court case, enabling government agencies and enterprises to draft, review, and comply with regulation in real time.",
+  "audit_end_date": "November 17, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://vulcan-tech.com",
+  "contact_email": "security@vulcan-tech.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "15_tdgMPoLcKlcqZaK_KbCCKFwAeEqzVU1rNUklWaXFo.pdf",
+  "txt_file": "15_tdgMPoLcKlcqZaK_KbCCKFwAeEqzVU1rNUklWaXFo.txt",
+  "has_report": true
+}

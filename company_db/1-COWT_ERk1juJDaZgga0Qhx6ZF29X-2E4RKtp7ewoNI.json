@@ -1,0 +1,19 @@
+{
+  "doc_id": "1-COWT_ERk1juJDaZgga0Qhx6ZF29X-2E4RKtp7ewoNI",
+  "link": "https://docs.google.com/document/d/1-COWT_ERk1juJDaZgga0Qhx6ZF29X-2E4RKtp7ewoNI",
+  "timestamp": "12/15/2025 16:56:48",
+  "display_name": "Macadamia Labs",
+  "legal_name": "Macadamia Labs Inc.",
+  "company_name": "Macadamia Labs",
+  "system_description": "Expert AI agents to automate engineering and business processes in industrial manufacturing and construction companies.",
+  "audit_end_date": "",
+  "observation_period": "September 7, 2025 - December 7, 2025",
+  "infra_provider": "Supabase",
+  "website": "https://macadamialabs.com",
+  "contact_email": "security@macadamialabs.com",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1-COWT_ERk1juJDaZgga0Qhx6ZF29X-2E4RKtp7ewoNI.pdf",
+  "txt_file": "1-COWT_ERk1juJDaZgga0Qhx6ZF29X-2E4RKtp7ewoNI.txt",
+  "has_report": true
+}

@@ -1,0 +1,251 @@
+{
+  "company": "Cyberdesk, Inc",
+  "product": "Cyberdesk AI Desktop Automation Platform",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of July 15, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "1395 22nd St, Apt 308, San Francisco, CA 94107",
+  "signing_authority": "Mahmoud Al-Madi, CEO (signed July 17, 2025)",
+
+  "system_description": {
+    "overview": "Cyberdesk is an AI-native desktop automation platform providing an SDK for developers to build and deploy desktop automations, cloud VM provisioning for running automations, and a monitoring dashboard for tracking automation status. The platform serves developers who need to automate desktop workflows at scale via cloud-hosted virtual machines.",
+    "products": {
+      "AI Desktop Automation SDK": "Developer SDK enabling programmatic desktop automation via API",
+      "Cloud VM Provisioning": "On-demand cloud virtual machine provisioning for running desktop automations",
+      "Automation Monitoring Dashboard": "Real-time monitoring and status tracking dashboard for active automations"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Temporal (carve-out subservice organization — sole named subservice org; handles workflow orchestration, VPC environment, and disaster recovery AZ spin-up)",
+    "regions": ["Not explicitly named — Temporal manages regions"],
+    "physical_presence": "1395 22nd St, Apt 308, San Francisco, CA 94107 (residential address — effectively remote/no dedicated office)",
+    "availability_zones": "Multi-AZ (disaster recovery spins up multiple servers across all availability zones in Temporal)",
+    "additional_cloud": ["Vercel (frontend hosting)", "Fly.io (LLM orchestration and compute)"],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Hosted in Temporal VPC environment with segmented VPCs and ACLs. Network segmentation implemented to separate systems and data based on sensitivity and criticality.",
+    "api_gateway": null,
+    "waf": "Vercel Firewall (API Key Authentication at Vercel frontend layer per network diagram)",
+    "firewalls": "Vercel Firewall at frontend layer (shown in network diagram). System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS employed via Temporal. Intrusion detection system monitors and detects unauthorized access or anomalies within the network.",
+    "vpn": "Remote access via bastion host with VPN. IP Sec VPN tunnel mentioned in network diagram.",
+    "tls": "TLS using certificates from established third-party certificate authority.",
+    "content_filtering": "All systems restricted to internet access with content filtering system routed through proxy server.",
+    "multi_region": false,
+    "topology": "User → Vercel Frontend (Firewall + API Key Auth) → Fly.io (LLM instructions + client data processing, long-running API requests dispatched to Temporal); Fly.io ↔ Supabase (saves logs/retrieves relevant data); Temporal handles workflow orchestration at top of stack receiving requests from Fly.io. Customer desktop receives automation instructions from Fly.io via Temporal-orchestrated workflows."
+  },
+
+  "application_architecture": {
+    "pattern": "Multi-tier with separate frontend (Vercel), compute/orchestration layer (Fly.io + Temporal), and data layer (Supabase)",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["Fly.io (LLM orchestration and compute)", "Temporal (workflow orchestration — subservice)"],
+    "api_style": "REST (API-based product; secure API endpoints for automation triggering; API key authentication)",
+    "environments": "Separate development, test/stage, and production environments. Changes tested in dev/test before production migration.",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Supabase (PostgreSQL-based — logs and relevant data storage)"],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Temporal (password policy managed through Temporal)",
+    "mfa": "2FA required for employee email access. MFA for production platform administrative access and source code tool access mentioned (CC6.1.1 / CC8.1.3 — as design controls in Type 1 report).",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Controlled through Temporal password policy; includes periodic forced changes, password expiry and complexity requirements; accounts disabled after limited unsuccessful logon attempts; guest/anonymous logins not allowed; API key authentication at Vercel frontend layer"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified) using certificates from established third-party certificate authority",
+    "at_rest": "Cloud provider key management service used",
+    "key_management": "Cloud provider KMS (Temporal); access to production environment access keys restricted to authorized individuals",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named (source code management tool with MFA; code repository branch rules configured)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Code repository branch rules configured to ensure every merge request to production requires additional approval. Developers cannot push to production without additional approval.",
+    "iac": "Configuration management tool used for baseline configuration implementation and rollback capability",
+    "container_orchestration": "Temporal (workflow orchestration); Fly.io (compute hosting)",
+    "patch_management": "Automatic patch management set up by CTO. Monthly patch management reviews. Workstations configured for automatic updates and scanned daily for patch compliance.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named (monitoring tool generates alerts on predefined thresholds; infrastructure continuously monitored)",
+    "siem": "Not named",
+    "log_aggregation": "Supabase (saves logs per network diagram); application and infrastructure-level logging enabled for administrative activities, logon attempts, data deletions, security configurations, permissions, roles",
+    "alerting": "Automated alerts configured for high and critical risk events; tracked in change-management/ticketing application",
+    "metrics": ["availability", "efficiency", "reliability", "predefined performance thresholds"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Temporal", "purpose": "Workflow orchestration, VPC environment, IDS/IPS, physical security, multi-AZ disaster recovery", "criticality": "Critical"},
+    {"vendor": "Vercel", "purpose": "Frontend hosting, firewall, API key authentication layer", "criticality": "High"},
+    {"vendor": "Fly.io", "purpose": "LLM orchestration and compute, client data processing, long-running automation execution", "criticality": "High"},
+    {"vendor": "Supabase", "purpose": "Data storage — logs and relevant data (PostgreSQL-based)", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers (continuous auto-scan) and Mac workstations/laptops. Anti-virus definitions updated daily (daily definition updates noted — more frequent than some peers).",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Periodic internal IT infrastructure scans per audit calendar. Self-assessment vulnerability scan performed prior to every production release — a notable continuous security practice.",
+    "penetration_testing": "Annual external penetration testing by independent third party. High/critical findings remediated; tracked via incident management process.",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": null,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — No significant changes to people/roles during engagement period",
+      "CC3.2.1 — Cybersecurity insurance control could not be tested (no cyber incidents during engagement period)",
+      "CC6.5.2 — Customer data deletion could not be tested (no customer terminations during engagement period)",
+      "CC7.3.1 — Incident response effectiveness could not be tested (no security incidents during engagement period)"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — Physical security excluded; Temporal is responsible for data center physical security",
+      "A1.2 — Environmental protections excluded; Cyberdesk has no dedicated office and all environmental controls managed by Temporal/building management",
+      "Processing Integrity — Management determined Processing Integrity trust services category is not relevant to the system",
+      "Privacy — Management determined Privacy trust services category is not relevant to the system"
+    ],
+    "notable_controls": [
+      "Note: SOC 2 Type 1 report — controls described by design only; no operating effectiveness testing period",
+      "CC6.1.1 — MFA enforced for all administrative and remote access (design control)",
+      "CC8.1.2 / CC8.1.3 — Branch protection with required additional approval; source code tool requires MFA (design control)",
+      "CC7.4.2 — Daily backups with multi-availability zones and backup failure alerts (design control)",
+      "CC4.1.1 — Annual external penetration testing by independent third party (design control)",
+      "CC6.2.2 — Quarterly user access reviews for all accounts including privileged users (design control)",
+      "CC7.1.1 — Infrastructure as code with configuration management tool for baseline/rollback (design control)",
+      "CC3.2.1 — Cybersecurity insurance maintained",
+      "Self-assessment vulnerability scan prior to every production release — notable continuous security design control"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Multi-vendor infrastructure: Vercel (frontend) + Fly.io (compute) + Supabase (data) + Temporal (workflow/subservice). Multi-AZ via Temporal. Real product-specific network diagram provided. No named regions, no CDN, no secondary cloud for failover. The multi-vendor architecture is meaningfully stronger than single-Supabase peers, but Temporal is the sole carve-out subservice org and the residential HQ address suggests early-stage operation."
+    },
+    "application_architecture": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Clear multi-tier separation: Vercel (frontend) → Fly.io (compute/LLM) → Supabase (data) + Temporal (workflow). API-based product with API key authentication at edge. Separate environments, branch protection confirmed. No languages or frameworks disclosed. Architecture pattern is clear from network diagram even without explicit disclosure."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Daily backups, multi-AZ, data classification and retention policies, per-tenant segregation, Supabase (PostgreSQL) named for logs and data. No caching or data warehouse layer disclosed. Supabase appears to serve a logging/retrieval function rather than being the primary application database — distinction not fully clarified in the report."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Vercel Firewall at edge layer (WAF-equivalent per diagram), IDS/IPS via Temporal, annual external pen testing, daily antivirus definition updates (more frequent than peers), periodic internal vulnerability scans + pre-release self-assessment scan, cybersecurity insurance, quarterly access reviews. SIEM tool unnamed. MFA for admin access described as design control only (Type 1). API key authentication at Vercel frontend is a meaningful security boundary."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Branch protection and code review enforced, separate environments, emergency change process, IaC with rollback, Temporal for workflow orchestration, Fly.io for compute. Pre-release self-assessment vulnerability scan is a meaningful DevSecOps signal. CI/CD tool and IaC tool not named by product. Source control tool not named. Type 1 report limits confidence — controls described by design only."
+    },
+    "bcdr_readiness": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BCDR policy documented, annually reviewed and tested across multiple loss scenarios, daily backups, multi-AZ failover via Temporal. No RTO/RPO stated. No multi-region failover. Type 1 report — BCDR effectiveness not tested over an operating period."
+    },
+    "vendor_diversity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Strongest vendor diversity of the batch: 4 named vendors (Vercel, Fly.io, Supabase, Temporal) each serving distinct architectural layers. No single vendor handles all critical functions. Temporal is the sole named subservice org, but Vercel, Fly.io, and Supabase are visible in the real network diagram. Concentration risk exists if Fly.io (LLM compute) is unavailable, but overall vendor spread is notably better than Supabase-only peers."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Cyberdesk's SOC 2 Type 1 report shows a genuinely multi-vendor architecture (Vercel + Fly.io + Supabase + Temporal) with a real product-specific network diagram — the most architecturally diverse tech stack in the batch. The pre-release self-assessment vulnerability scan and daily antivirus definition updates are notable continuous security practices. However, as a Type 1 report, no operating effectiveness is tested — all controls are described by design only. The residential HQ address signals very early-stage operations. Trust criteria limited to Security only; Processing Integrity and Privacy excluded despite the platform handling customer desktop automations and LLM inference on client data."
+    }
+  },
+
+  "red_flags": [
+    "SOC 2 Type 1 only — no operating effectiveness tested; all controls described by design only with no evidence of sustained performance",
+    "HQ address is a residential apartment (1395 22nd St, Apt 308) — indicates very early-stage company with no dedicated office",
+    "Complete dependency on Temporal as the sole named subservice organization — all physical security and data center controls carved out",
+    "Processing Integrity and Privacy excluded despite the platform executing LLM inference on client desktop automation data"
+  ],
+
+  "yellow_flags": [
+    "No CI/CD pipeline or IaC tool named by product name",
+    "RTO and RPO not disclosed",
+    "No multi-region failover capability disclosed",
+    "No CDN mentioned despite being a developer-facing SaaS platform",
+    "Fly.io as primary compute vendor — relatively niche provider vs. hyperscalers; own availability/SLA less well-known",
+    "SIEM tool unnamed — monitoring appears informal",
+    "Source control and CI/CD tools unnamed",
+    "Trust criteria limited to Security only — Availability and Confidentiality excluded",
+    "No explicit MFA confirmation for production platform (only 2FA for email clearly stated)"
+  ],
+
+  "green_flags": [
+    "Zero exceptions — clean Type 1 opinion",
+    "Report properly signed by Mahmoud Al-Madi (CEO) with real date — no placeholder text",
+    "Real product-specific network diagram provided showing Vercel → Fly.io → Supabase + Temporal architecture",
+    "Strongest vendor diversity of the batch: 4 distinct named vendors (Vercel, Fly.io, Supabase, Temporal) each serving separate architectural layers",
+    "Pre-release self-assessment vulnerability scan before every production deployment — notable continuous DevSecOps practice",
+    "Daily antivirus definition updates (more frequent than weekly updates seen in other companies)",
+    "Annual external penetration testing by independent third party",
+    "BCDR tested across multiple loss scenarios",
+    "Cybersecurity insurance maintained",
+    "API key authentication at Vercel frontend layer — meaningful edge security boundary",
+    "Branch protection and code review required prior to production deployment",
+    "Access revocation within one business day of termination",
+    "Quarterly user access reviews"
+  ],
+
+  "key_observations": [
+    "Cyberdesk has the most architecturally transparent and multi-vendor tech stack in the batch: the real network diagram explicitly names Vercel (frontend), Fly.io (LLM/compute), Supabase (data/logs), and Temporal (workflow orchestration) — four separate vendors each serving a distinct architectural layer",
+    "Despite Temporal being the named carve-out subservice org, Vercel and Fly.io are equally critical dependencies that are not carved out but also not directly audited under this report",
+    "The product involves executing LLM instructions on customer desktop environments — a high-trust, high-sensitivity use case — yet Processing Integrity and Privacy trust criteria are both excluded from scope",
+    "The residential apartment HQ address is unusual even for a startup and may indicate the company is at a very early stage; the SOC 2 Type 1 as of July 2025 is likely a first-ever compliance certification",
+    "Pre-release self-assessment vulnerability scanning before every production release is the strongest continuous security process in the batch — going beyond the monthly scans seen in other reports",
+    "Fly.io is an unconventional choice for enterprise LLM compute — it is a newer platform-as-a-service without the hyperscaler track record of AWS/GCP/Azure; this is both a flexibility signal and a concentration/maturity risk",
+    "The API-first architecture (developer SDK + API key auth at Vercel) suggests the platform's security perimeter is at the API layer — appropriate for a developer tooling product"
+  ]
+}

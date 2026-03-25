@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compliance Quality — Delve Tech DD</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        bg: '#0f172a', bg2: '#1e293b', card: '#1a2332', border: '#334155',
+      }
+    }
+  }
+}
+</script>
+<style>
+body { background: #0f172a; }
+.prose { max-width: none; }
+.prose h1 { color: #e2e8f0; font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+.prose h2 { color: #e2e8f0; font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }
+.prose h3 { color: #3b82f6; font-size: 1.1rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+.prose p { color: #e2e8f0; line-height: 1.7; margin-bottom: 0.75rem; }
+.prose li { color: #e2e8f0; line-height: 1.6; }
+.prose strong { color: #e2e8f0; }
+.prose table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+.prose th { text-align: left; padding: 8px 12px; background: #1e293b; color: #94a3b8; font-size: 12px; text-transform: uppercase; border-bottom: 1px solid #334155; }
+.prose td { padding: 8px 12px; border-bottom: 1px solid #1a2332; color: #e2e8f0; font-size: 14px; }
+.prose tr:hover td { background: #1a2332; }
+.metric { background: #1a2332; border: 1px solid #334155; border-radius: 12px; padding: 20px; }
+.metric .value { font-size: 2rem; font-weight: 800; }
+.metric .label { color: #94a3b8; font-size: 0.75rem; margin-top: 4px; }
+.insight { background: #1a2332; border-left: 3px solid #3b82f6; padding: 16px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+.flag-red { background: rgba(239,68,68,0.1); border-left: 3px solid #ef4444; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.flag-yellow { background: rgba(245,158,11,0.1); border-left: 3px solid #f59e0b; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.flag-green { background: rgba(34,197,94,0.1); border-left: 3px solid #22c55e; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+</style>
+</head>
+<body class="min-h-screen">
+<div class="max-w-5xl mx-auto px-6 py-10">
+
+  <!-- Nav -->
+  <div class="mb-4">
+    <a href="../index.html" class="text-sm text-blue-400 hover:text-blue-300">← Back to Index</a>
+  </div>
+
+  <!-- Header -->
+  <div class="mb-8">
+    <div class="text-sm text-gray-400 mb-1">Delve Tech Due Diligence · Meta-Analysis</div>
+    <h1 class="text-3xl font-extrabold text-white">Compliance Quality</h1>
+    <p class="text-gray-400 mt-1">Type 1 vs Type 2, auditor landscape, and template artifact detection</p>
+  </div>
+
+  <!-- Content -->
+  <div class="prose">
+    <div class="grid grid-cols-4 gap-4 mb-6"><div class="metric"><div class="value" style="color:#3b82f6">231</div><div class="label">Type 1 (Design Only)</div></div><div class="metric"><div class="value" style="color:#a855f7">254</div><div class="label">Type 2 (Operational)</div></div><div class="metric"><div class="value" style="color:#3b82f6">5.4</div><div class="label">Type 1 Avg Score</div></div><div class="metric"><div class="value" style="color:#a855f7">5.7</div><div class="label">Type 2 Avg Score</div></div></div><h2>Type 1 vs Type 2</h2>
+
+<p><strong>Type 1</strong> reports evaluate control design at a point in time.
+<strong>Type 2</strong> reports test operating effectiveness over a period (typically 3-12 months).
+Type 2 is significantly more valuable for due diligence.</p>
+
+<div class="my-6"><img src="type_comparison.png" class="rounded-lg w-full" alt="type_comparison.png"></div>
+
+<div class="insight"><strong>254 companies (52%)</strong> have Type 2 reports with operational evidence. The remaining 231 (48%) have only Type 1 — their controls may be well-designed but unproven in practice.</div>
+<h2>Auditor Landscape</h2>
+
+<p>The auditor ecosystem is highly concentrated. A single auditor dominates the portfolio.</p>
+
+<div class="my-6"><img src="auditor_landscape.png" class="rounded-lg w-full" alt="auditor_landscape.png"></div>
+
+<div class="flag-yellow"><strong>Concentration risk:</strong> When one auditor handles the majority of reports, template re-use is inevitable. This explains the striking similarity across reports — identical control descriptions, same structure, same boilerplate.</div>
+<h2>Template Artifact Detection</h2>
+
+<p>Many reports contain visible template artifacts — placeholder text, sample diagrams,
+'Your Name Here' in signing authority, or highlighted instructions that were never removed.</p>
+
+<div class="my-6"><img src="template_artifacts.png" class="rounded-lg w-full" alt="template_artifacts.png"></div>
+
+<div class="flag-red"><strong>What template artifacts mean:</strong> A published SOC 2 report with placeholder text suggests the company rushed through compliance without thorough review. It doesn't necessarily mean controls are absent — but it undermines confidence in the audit's rigor.</div>
+
+    <div class="mt-6"><img src="type_comparison.png" class="rounded-lg w-full" alt="type_comparison.png"></div>
+<div class="mt-6"><img src="auditor_landscape.png" class="rounded-lg w-full" alt="auditor_landscape.png"></div>
+<div class="mt-6"><img src="template_artifacts.png" class="rounded-lg w-full" alt="template_artifacts.png"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="mt-12 pt-6 border-t border-gray-700 text-gray-500 text-sm">
+    <p>Generated from compliance quality module · 485 SOC 2 compliance reports · 2026-03-24</p>
+  </div>
+
+</div>
+</body>
+</html>

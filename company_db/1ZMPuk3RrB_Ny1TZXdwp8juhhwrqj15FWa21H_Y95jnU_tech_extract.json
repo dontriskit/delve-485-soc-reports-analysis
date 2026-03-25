@@ -1,0 +1,253 @@
+{
+  "company": "AltiSales LLC",
+  "product": "AltiSales (Caddy Platform)",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "May 8, 2025 - August 8, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "excluded_trust_criteria": ["Processing Integrity", "Privacy"],
+  "hq": "2900 NE 7th Ave, unit 4401, Miami, FL 33137",
+  "signing_authority": "Tito Bohrt, CEO",
+
+  "system_description": {
+    "overview": "AltiSales is an AI-powered Analytics, Coaching, and Optimization platform called Caddy designed to help companies understand the root cause of their pipeline generation inefficiencies and deploy solutions that maximize performance. The platform leverages integration partners to gather anonymized data, uses Big Data analysis and statistical inference for continuous monitoring, and surfaces relevant insights to the right person at the right time.",
+    "products": {
+      "Automated GTM Data Analysis": "Integration and monitoring capabilities within client environments, alerts and task management in a Command Center, overview of static/timeline/trending data with multiple filters, deep insights into optimizing infrastructure like reducing bounce rates and optimizing phone numbers.",
+      "Coaching & Troubleshooting Capabilities": "Email and Phone Coaching Workflows for frontline managers, Slack and Teams integrations for closed loop feedback, flagging emerging problems to infrastructure owners via email or messaging platforms, visibility into lead bottlenecks or Account penetration, command center with task management and reminders.",
+      "Support Services & Optimization Features": "Comprehensive white-glove onboarding and implementation support, Power Dialer, CallerID technology, email validation solutions, access to dedicated GTM expertise and enablement documentation."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out - AWS controls excluded from scope, AltiSales responsibilities for applications and services on AWS are in scope)",
+    "regions": null,
+    "physical_presence": "No physical offices or servers; all data processed on cloud services. HQ address listed as 2900 NE 7th Ave, unit 4401, Miami, FL 33137",
+    "availability_zones": "Multi-AZ (production servers hosted in high availability data centers with multiple availability zones)",
+    "additional_cloud": [],
+    "serverless": ["AWS Lambda"],
+    "cdn": "CloudFront (visible in network diagram)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with access control lists (ACLs). Network segmentation implemented to separate systems and data based on sensitivity and criticality.",
+    "api_gateway": "Amazon API Gateway (visible in network diagram)",
+    "waf": "AWS WAF (CloudFront WAF/Shield visible in network diagram, described as application-level SOC 2, L4 DDoS via Compute Shield)",
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via AWS to identify and protect against threats in conjunction with security policy network settings",
+    "vpn": "Remote access done through a bastion host with a virtual private network (VPN)",
+    "tls": "TLS using certificates from established third-party certificate authority for all web-based system requests",
+    "content_filtering": "All systems restricted to internet with content filtering system routed through proxy server",
+    "multi_region": false,
+    "topology": "End User -> HTTPS/TLS -> CloudFront (WAF/Shield, Application-level SOC 2, L4 DDoS via Compute Shield) -> HTTPS/TLS (Auth) -> Amazon API Gateway -> VPC/SQL IAM -> AWS Lambda (in VPC) -> Inter-VPC Encrypted in Transit -> Amazon RDS (MySQL, Encrypted at Rest, Multi-AZ, No public access) -> AWS Secrets Manager. Also: RDS -> Encrypted in Transit, Secrets -> Amazon CloudWatch (Logging, Monitoring). External APIs: Outreach API, Guesscx API connected via HTTPS/TLS with OAuth2 and Token/Rate Limiting."
+  },
+
+  "application_architecture": {
+    "pattern": "Serverless-heavy (Lambda-based with API Gateway)",
+    "languages": null,
+    "frameworks": null,
+    "compute": ["AWS Lambda"],
+    "api_style": "REST (API Gateway pattern visible in diagram)",
+    "environments": "Separate development/test and production environments. Changes tested in separate environment before implementation (CC8.1.4).",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Amazon RDS (MySQL)"],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": null,
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS IAM / AWS Password Policy",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1). MFA enforced for all remote access (CC6.1.1 test). MFA required for source code tool access (CC8.1.3). Two-factor authentication required for employee email access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day upon termination of employment",
+    "password_policy": "Controlled through AWS Password policy with periodic forced changes, password expiry and complexity requirements. Accounts disabled after limited number of unsuccessful logon attempts."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified, using certificates from established third-party CA)",
+    "at_rest": "Cloud provider key management service (AWS KMS implied via CC6.1.5 - uses cloud provider KMS to encrypt data at rest and manage encryption keys)",
+    "key_management": "AWS KMS (cloud provider key management service). Access to encryption keys restricted to authorized personnel only (CC6.1.9).",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (not named; source code changes are logged, time-stamped, and attributed to author - CC8.1.3)",
+    "ci_cd_tool": null,
+    "branch_protection": "Repository branch rules configured to ensure every merge request to move change to production environment requires additional approval (CC8.1.2). Developers do not make changes to application code in production without additional approval.",
+    "iac": "Configuration management tool used for implementation and rollback capability (IaC implied via CC7.1.1 - baseline configurations retained within infrastructure as code)",
+    "container_orchestration": null,
+    "patch_management": "CTO/Management has set up automatic patch management and performs monthly patch management reviews. Workstations configured for automatic updates and scanned for patch compliance daily.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": null,
+    "siem": null,
+    "log_aggregation": "Amazon CloudWatch (Logging, Monitoring - visible in network diagram)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events. Monitoring tool generates alerts when specific predefined thresholds are met.",
+    "metrics": ["CPU utilization", "disc space", "incoming/outgoing network traffic", "packet loss", "availability", "efficiency", "reliability"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Primary cloud infrastructure / subservice organization for data center services", "criticality": "Critical"},
+    {"vendor": "Outreach", "purpose": "Sales engagement platform integration (external API)", "criticality": "High"},
+    {"vendor": "Salesloft", "purpose": "Sales engagement platform integration", "criticality": "High"},
+    {"vendor": "Gong", "purpose": "Sales engagement platform integration", "criticality": "High"},
+    {"vendor": "Slack", "purpose": "Internal communication and closed-loop feedback integrations", "criticality": "Medium"},
+    {"vendor": "Microsoft Teams", "purpose": "Internal communication and closed-loop feedback integrations", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers (continuous scanning) and Mac-based workstations/laptops. Definitions updated weekly for production servers.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications, with scan frequency adjusted as required. Performed by internal IT Infrastructure team. Self-assessment scan of vulnerabilities performed prior to every release or yearly.",
+    "penetration_testing": "Annual external penetration testing conducted by independent third-party. Results reviewed by IT management. High/critical findings remediated in timely manner and added to risk register.",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 55,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 - Could not be tested because there were no significant changes to people, roles, and responsibilities during the engagement period",
+      "CC3.2.1 - Cybersecurity insurance could not be tested because there were no cyber incidents reported during the engagement period",
+      "CC6.5.2 - Customer data deletion upon termination could not be tested because there were no customer terminations during the engagement period",
+      "CC7.3.1 - Incident response could not be tested because there were no security incidents reported during the engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities: AWS is responsible for physical security; no physical security controls in scope",
+      "A1.2 - Environmental protections: AltiSales does not have an office/operates from working space managed by building management; all environmental controls managed by building management/AWS",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC8.1.2 - Branch protection with merge request approval required for production deployments",
+      "CC8.1.3 - Source code changes logged, time-stamped, attributed to author; source code tool access restricted via MFA",
+      "CC7.1.1 - Infrastructure as code with baseline configurations and configuration management tool for rollback",
+      "CC6.1.7 - Network segmentation to separate systems by sensitivity and criticality",
+      "CC7.4.1 - BCDR plan documented, reviewed annually, tested annually with different loss scenarios",
+      "CC7.4.2 - Daily backups with multi-AZ configuration and alerting for backup failures",
+      "CC4.1.1 - Annual external penetration testing by independent third-party",
+      "CC2.1.2 - Risk and Governance Executive Committee (RGEC) meeting semiannually to review internal controls",
+      "CC3.1.1 - IT Leadership Committee meeting weekly to review security activities and processes"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "AWS-hosted with VPC, multi-AZ, API Gateway, WAF, and CloudFront CDN. However, single-region only (no multi-region mentioned), no specific regions disclosed, and limited detail on infrastructure diversity. IaC mentioned but tool not named."
+    },
+    "application_architecture": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Serverless Lambda-based architecture with API Gateway is a modern pattern. However, no programming languages, frameworks, or specific tooling disclosed. No mention of testing practices, CI/CD pipeline tooling, or containerization. Separate environments confirmed."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "RDS MySQL with multi-AZ and encryption at rest. Daily backups confirmed. Data classification and retention policies in place. Per-tenant segregation mentioned (CC6.1.3). However, single database type, no caching layer, no data warehouse, no file storage mentioned."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong security posture: WAF + IDS/IPS + annual pen testing + monthly vulnerability scanning + endpoint protection + MFA everywhere + network segmentation + firewalls + cybersecurity insurance. Content filtering via proxy. Log protection in place. Access reviews quarterly. Incident response plan documented. Missing: no SIEM tool named, no specific endpoint protection vendor named."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Branch protection with merge request approval, IaC for baseline configurations, separate environments, emergency change process documented. However, no CI/CD tool named, no source control platform named, no container orchestration, no specific deployment pipeline described. Monthly patch management reviews."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual testing with different loss scenarios. Daily backups with multi-AZ. Multi-AZ failover for production servers. However, no RTO/RPO disclosed, no multi-region failover, and DR plan in Section 5 was not audited."
+    },
+    "vendor_diversity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Heavily dependent on AWS as sole cloud provider (critical single-vendor dependency). Integration partners (Outreach, Salesloft, Gong) are customer-facing data sources rather than infrastructure vendors. Slack/Teams for communication. No named security vendors, monitoring vendors, or CI/CD vendors diversify the stack."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "AltiSales demonstrates a solid baseline security posture for a small/mid-size SaaS company with clean audit results (0 exceptions). The AWS serverless architecture is modern but details are sparse - many specific technologies, tools, and vendors are not named in the report. The report is heavily template-driven with significant control description repetition. Security fundamentals are covered but technology specificity is low, making deep technical assessment difficult."
+    }
+  },
+
+  "red_flags": [
+    "Very short audit period (3 months: May 8 - Aug 8, 2025) - this is the minimum for Type 2 and suggests this may be their first SOC 2 audit",
+    "Heavy single-vendor dependency on AWS with no multi-region failover",
+    "No RTO/RPO disclosed despite having a BCDR plan",
+    "Processing Integrity and Privacy trust criteria excluded - notable for a platform that handles sales engagement data",
+    "Multiple controls untestable due to no events during the 3-month period (no incidents, no terminations, no significant org changes) - suggests very small or new organization",
+    "No specific security tooling vendors named (no SIEM, no named endpoint protection, no named vulnerability scanner)"
+  ],
+
+  "yellow_flags": [
+    "No programming languages, frameworks, or CI/CD tools disclosed in the report",
+    "Source code management tool not named (just 'a source code management tool')",
+    "No APM or observability tooling named beyond CloudWatch",
+    "Single database type (RDS MySQL) with no caching or data warehouse layer",
+    "Report is heavily template-driven with significant repetition of control descriptions across criteria",
+    "Section 5 (BCDR details) explicitly noted as not audited",
+    "Cybersecurity insurance control untestable - no evidence of actual coverage reviewed",
+    "No mention of data residency, GDPR compliance, or geographic data handling"
+  ],
+
+  "green_flags": [
+    "Clean unqualified opinion with 0 exceptions across all tested controls",
+    "Modern serverless architecture (Lambda + API Gateway) reduces infrastructure management burden",
+    "MFA enforced across production, source code, remote access, and email",
+    "Network diagram provided showing clear traffic flow with encryption in transit throughout",
+    "Quarterly user access reviews for all accounts including administrative privileges",
+    "Annual external penetration testing by independent third-party",
+    "Monthly vulnerability scanning with remediation tracking",
+    "Infrastructure as code with rollback capability",
+    "Branch protection requiring merge request approval for production deployments",
+    "IT Leadership Committee meeting weekly; Risk and Governance Executive Committee meeting semiannually",
+    "Daily backups with multi-AZ configuration and alerting",
+    "Formal vendor management program with SOC report reviews and quarterly risk assessments for critical vendors without SOC reports"
+  ],
+
+  "key_observations": [
+    "The 3-month audit period (minimum for Type 2) combined with the number of untestable controls strongly suggests this is AltiSales' first SOC 2 report - likely obtained to satisfy customer security requirements for their sales engagement platform",
+    "The network diagram reveals more technical detail than the text: CloudFront with WAF/Shield, API Gateway with auth, Lambda in VPC, RDS MySQL (multi-AZ, encrypted, no public access), Secrets Manager, and CloudWatch - this is a fairly standard AWS serverless stack",
+    "External API connections to Outreach API and 'Guesscx API' (likely internal naming) use OAuth2 with token and rate limiting, showing awareness of API security",
+    "The report mentions both a CEO and CTO by role, plus a COO and VP of Revenue Operations - relatively lean executive structure for a company processing sales engagement data",
+    "Geographic scope explicitly states 'No physical offices and related physical and availability specific controls are included since AltiSales does not have any physical servers and all data is processed on cloud services' - fully remote/cloud-native organization",
+    "The company name inconsistency between altisales.com (website) and altisales.io (security email) suggests possible domain migration or dual-domain setup"
+  ]
+}

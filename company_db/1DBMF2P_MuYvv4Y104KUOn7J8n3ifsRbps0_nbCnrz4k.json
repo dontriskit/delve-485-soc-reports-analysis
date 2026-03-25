@@ -1,0 +1,19 @@
+{
+  "doc_id": "1DBMF2P_MuYvv4Y104KUOn7J8n3ifsRbps0_nbCnrz4k",
+  "link": "https://docs.google.com/document/d/1DBMF2P_MuYvv4Y104KUOn7J8n3ifsRbps0_nbCnrz4k",
+  "timestamp": "12/19/2025 16:34:26",
+  "display_name": "Pragma",
+  "legal_name": "Pragma Platform Inc.",
+  "company_name": "Pragma",
+  "system_description": "A platform that builds tools for game developers.",
+  "audit_end_date": "December 15, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://pragma.gg",
+  "contact_email": "security@pragma.gg",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1DBMF2P_MuYvv4Y104KUOn7J8n3ifsRbps0_nbCnrz4k.pdf",
+  "txt_file": "1DBMF2P_MuYvv4Y104KUOn7J8n3ifsRbps0_nbCnrz4k.txt",
+  "has_report": true
+}

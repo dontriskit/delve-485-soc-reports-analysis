@@ -1,0 +1,19 @@
+{
+  "doc_id": "1a_ruAE4SVHw78s1V6jJs6hi5NwCvI77qi74xcotu1aM",
+  "link": "https://docs.google.com/document/d/1a_ruAE4SVHw78s1V6jJs6hi5NwCvI77qi74xcotu1aM",
+  "timestamp": "11/17/2025 15:18:05",
+  "display_name": "Hey Archie",
+  "legal_name": "Hey Archie, Inc.",
+  "company_name": "Hey Archie",
+  "system_description": "An AI platform that automates repetitive accounting work for firms.",
+  "audit_end_date": "November 14, 2025",
+  "observation_period": "",
+  "infra_provider": "Azure",
+  "website": "https://heyarchie.ai",
+  "contact_email": "security@heyarchie.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1a_ruAE4SVHw78s1V6jJs6hi5NwCvI77qi74xcotu1aM.pdf",
+  "txt_file": "1a_ruAE4SVHw78s1V6jJs6hi5NwCvI77qi74xcotu1aM.txt",
+  "has_report": true
+}

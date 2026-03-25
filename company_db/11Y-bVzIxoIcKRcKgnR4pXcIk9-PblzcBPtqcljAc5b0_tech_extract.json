@@ -1,0 +1,244 @@
+{
+  "company": "Conway Enterprises, Inc.",
+  "product": "Conway",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of August 21, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "hq": "832 Sansome Street, San Francisco, California 94111",
+  "signing_authority": "Anne Matheson Brandes, Founder",
+
+  "system_description": {
+    "overview": "Conway automates data analysis end-to-end from pre-processing to root cause. The platform ingests data of any modality and scale, detects statistically anomalous signals, and performs autonomous data analysis outputting evidence-backed answers via natural language or statistical inputs.",
+    "products": {
+      "Data Pre-Processing": "Ingests data of any modality and any scale; outputs clean data by adjusting for skew, null values, etc.",
+      "Signal Detection": "Ingests clean data; outputs points or clusters of points that are statistically anomalous or otherwise relevant.",
+      "Autonomous Data Analysis": "Inputs points/clusters that are statistically relevant or natural language input; outputs answers backed by evidence."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Vercel (carve-out; subservice organization for data center services)",
+    "regions": ["Not explicitly named; hosted in high availability data centers with multiple availability zones"],
+    "physical_presence": "None - no physical offices or servers; all data processed on cloud services",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": ["AWS (ECS for autoscaling investigation service per network diagram)"],
+    "serverless": ["Vercel serverless functions (implied)", "Query Functions (per diagram)"],
+    "cdn": "Vercel Edge Network (implied via Vercel hosting)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Hosted in Vercel VPC environment with segmented VPCs and access control lists (ACLs). Network topology includes segmented VPCs to protect from unauthorized external access.",
+    "api_gateway": "API Gateway (explicitly shown in network diagram)",
+    "waf": "Firewalls configured on application gateway and production network (CC6.6.1)",
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management. Formal network diagram outlining boundary protection mechanisms (firewalls, IDS, etc.) maintained and reviewed annually (CC2.3.4).",
+    "ids_ips": "IDS and IPS employed via Vercel in conjunction with security policy network settings",
+    "vpn": "Remote access done through a bastion host with VPN",
+    "tls": "TLS encryption using certificates from established third-party certificate authority for all web-based systems",
+    "content_filtering": "All systems restricted to internet with content filtering system routed through proxy server",
+    "multi_region": false,
+    "topology": "Users -> TLS -> Vercel VPC -> API Gateway -> Query Functions / Feature Engineering -> Data Warehouse (e.g. Snowflake, Databricks) + Associated Compute Layer (e.g. Snowpark, Databricks Connect + UDFs) -> Client Data + Blob Storage (transformed data) -> Investigation Queue (via Kafka) -> Autoscaling Investigation Service (via AWS ECS). External: Cerebras (External API service) for SLM inference / unstructured analysis services."
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid (microservices with serverless and container components)",
+    "languages": ["Not explicitly named"],
+    "frameworks": ["Not explicitly named"],
+    "compute": ["Vercel (primary hosting)", "AWS ECS (autoscaling investigation service)", "Snowpark / Databricks Connect + UDFs (associated compute layer)"],
+    "api_style": "REST (API Gateway shown in diagram)",
+    "environments": "Separate development/test and production environments confirmed (CC8.1.4: changes developed and tested in separate development or test environment before implementation)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Data Warehouse (e.g. Snowflake, Databricks per diagram)", "Client Data store", "Active Directory (mentioned in CC6.1.2)"],
+    "caching": ["Not explicitly mentioned"],
+    "file_storage": ["Blob Storage (for transformed data, per diagram)"],
+    "data_warehouse": "Snowflake / Databricks (shown in network diagram as examples - can be on-premises or cloud per client preference)",
+    "backup_frequency": "Defined in Backup Policy; suitable backups taken and maintained (specific frequency not disclosed)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Vercel password policy / Active Directory (referenced in CC6.1.2)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1). Source code tool also requires MFA (CC8.1.3). Two-factor authentication required for email access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day of termination (CC6.1.4)",
+    "password_policy": "Controlled through Vercel password policy; includes periodic forced changes, password expiry, complexity requirements. Accounts disabled after limited unsuccessful logon attempts. Guest and anonymous logins not allowed. Unattended desktops locked after inactivity."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified) using certificates from established third-party CA",
+    "at_rest": "Cloud provider key management service (CC6.1.5)",
+    "key_management": "Cloud provider key management service used to encrypt data at rest and store/manage encryption keys. Access to production environment access keys restricted to authorized individuals.",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool with logging, timestamping, author attribution (name not specified; likely GitHub given Vercel ecosystem)",
+    "ci_cd_tool": "Internal tool for tracking changes from initiation through deployment and validation (name not specified)",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to move change to production requires additional approval (CC8.1.2)",
+    "iac": "Baseline configurations retained as infrastructure as code; configuration management tool used for implementation and rollback (CC7.1.1)",
+    "container_orchestration": "AWS ECS (for autoscaling investigation service per network diagram)",
+    "patch_management": "Automatic patch management with monthly patch management reviews by CTO. Workstations configured for automatic updates, scanned daily for patch compliance (CC7.5.1). Network devices OS patching managed automatically.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named; monitoring tools used to continuously monitor system capacity and performance (CC5.2.1)",
+    "siem": "Not explicitly named",
+    "log_aggregation": "Logging enabled to monitor administrative activities, logon attempts, data deletions at application and infrastructure level, changes to functions, security configurations, permissions, and roles (CC7.2.1)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events. Monitoring tool generates alerts when predefined thresholds are met (CC5.2.1, CC7.2.1)",
+    "metrics": ["CPU utilization", "disc space", "incoming/outgoing network traffic", "packet loss", "system capacity", "performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Vercel", "purpose": "Primary cloud hosting and data center services (subservice organization)", "criticality": "Critical"},
+    {"vendor": "AWS", "purpose": "ECS for autoscaling investigation service", "criticality": "High"},
+    {"vendor": "Cerebras", "purpose": "External API service for SLM inference / unstructured analysis services", "criticality": "High"},
+    {"vendor": "Snowflake / Databricks", "purpose": "Data warehouse and associated compute layer (per client preference)", "criticality": "High"},
+    {"vendor": "Kafka", "purpose": "Investigation queue / message broker", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers, desktops, and laptops. Auto-scan enabled continuously. Definitions updated weekly for production servers, daily from vendor for endpoints. Mac-based workstations and laptops also covered (CC6.8.1).",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications, with frequency adjusted as required. Self-assessment scan also performed prior to every release or yearly. Scans by internal IT Infrastructure team (CC7.1.2).",
+    "penetration_testing": "Annual external penetration testing by independent third-party. Results reviewed by IT management. High/critical findings remediated in timely manner and added to risk register (CC4.1.1).",
+    "server_hardening": true,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": null,
+    "rto": "Not disclosed (time frames identified based on business impact analysis)",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 58,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities: Vercel responsible for physical security of data center; not in scope",
+      "A1.2 - Environmental protections and recovery infrastructure: Conway has no office/working space; managed by building management/Vercel",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC8.1.2: Branch protection requiring additional approval for production merges",
+      "CC8.1.3: Source code changes logged, timestamped, attributed; MFA required for source code tool access",
+      "CC7.1.1: Infrastructure as code with configuration management tool and rollback capability",
+      "CC6.1.1: MFA enforced for administrative access to production",
+      "CC7.4.1: BCDR plans tested annually per defined testing schedule for different loss scenarios",
+      "CC4.1.1: Annual external penetration testing by independent third-party",
+      "CC7.1.2: Monthly automated vulnerability scanning with frequency adjustment",
+      "CC6.1.3: Per-tenant segregation - customer access appropriately segmented from other customer accounts",
+      "CC9.2.1: Vendor management policy with annual SOC report reviews and quarterly risk assessments for critical vendors without SOC reports"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Multi-AZ on Vercel with VPC segmentation and ACLs is solid. However, single-region implied (no multi-region mentioned), heavy reliance on Vercel as subservice with carve-out approach. Network diagram shows a reasonably complex architecture with API gateway, Kafka queues, and ECS autoscaling. No CDN explicitly named beyond Vercel defaults. IaC confirmed but tooling not named."
+    },
+    "application_architecture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Hybrid architecture with microservice-like components (API gateway, queue-based investigation service, separate compute layers). Branch protection and code review required. Separate environments confirmed. However, no languages, frameworks, or testing practices explicitly named. The architecture diagram shows thoughtful separation of concerns (data preprocessing, signal detection, autonomous analysis)."
+    },
+    "data_layer": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Data warehouse integration (Snowflake/Databricks), blob storage for transformed data, client data store, and Kafka message queue demonstrate a multi-tier data approach. Per-tenant segregation confirmed. Data classification and retention policies in place. Backup policy exists but frequency not disclosed. Caching layer not mentioned. Multi-AZ confirmed."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong showing: MFA for production admin and source code, annual pen testing by independent third-party, monthly vulnerability scanning, IDS/IPS via Vercel, firewalls on application gateway, endpoint protection with AV/malware on all systems, server hardening with baseline configurations, VPN with bastion host, content filtering via proxy, annual firewall rule reviews. Log protection and automated alerting in place. No SIEM explicitly named and no cybersecurity insurance mentioned."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "IaC with rollback capability, branch protection with merge approval requirements, source code management with MFA, formal change management policy covering regular and emergency changes, separate dev/test/prod environments. Monthly patch management reviews. However, specific CI/CD tool not named, container orchestration limited to ECS for one service. Emergency change process documented."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual testing of BCDR plans for different loss scenarios. Multi-AZ failover with procedure to spin up across availability zones. Disaster recovery plan based on business impact analysis. However, no multi-region failover, RTO/RPO not disclosed, backup frequency not specified. No specific backup technology or schedule named."
+    },
+    "vendor_diversity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Five distinct vendors identified: Vercel (hosting), AWS (compute), Cerebras (AI inference), Snowflake/Databricks (data warehouse), Kafka (messaging). Vendor management policy with annual SOC reviews and quarterly assessments for critical vendors without SOC reports. However, Vercel is a critical single dependency as the primary hosting subservice organization. The client-flexible data warehouse layer (Snowflake or Databricks) adds resilience."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Conway demonstrates a reasonably mature security and infrastructure posture for an early-stage company (4-person team: CEO + 3 founding engineers). The SOC 2 Type 1 with unqualified opinion and zero exceptions is a strong signal. Architecture shows thoughtful design with separation of concerns, queue-based async processing, and multi-cloud components. Key gaps include: Type 1 only (no operating effectiveness tested over time), no named specific tools for most categories (CI/CD, monitoring, SIEM, APM), no disclosed RTO/RPO, single-region implied, and very small team size creating key-person risk."
+    }
+  },
+
+  "red_flags": [
+    "Extremely small team (4 people total: 1 CEO + 3 founding engineers) creates severe key-person risk and limits segregation of duties",
+    "SOC 2 Type 1 only - no operating effectiveness tested over a period; controls only assessed at a point in time",
+    "No multi-region failover capability disclosed",
+    "RTO and RPO not disclosed despite BCDR policy existing",
+    "Backup frequency not specified despite backup policy existing"
+  ],
+
+  "yellow_flags": [
+    "Heavy reliance on Vercel as carve-out subservice organization - physical security and data center controls entirely delegated",
+    "Most technology tools not named by brand (CI/CD, monitoring, SIEM, APM, source control) making independent verification difficult",
+    "No cybersecurity insurance mentioned",
+    "Processing Integrity and Privacy trust criteria excluded as 'not relevant' - may be a concern for a data analysis platform",
+    "Password policy controlled through Vercel's policy rather than a dedicated identity provider like Okta or Auth0",
+    "Content filtering via proxy server and Windows/Network team references seem templated and potentially inconsistent with a cloud-native, Mac-based startup",
+    "No SSO mentioned for customer or internal authentication"
+  ],
+
+  "green_flags": [
+    "Unqualified opinion with zero exceptions across all tested controls",
+    "Annual external penetration testing by independent third-party with remediation tracking",
+    "Monthly automated vulnerability scanning with adjustable frequency",
+    "MFA enforced for production admin access and source code management",
+    "Branch protection requiring approval for production merges",
+    "Infrastructure as code with configuration management and rollback capability",
+    "Per-tenant data segregation confirmed (CC6.1.3)",
+    "Formal vendor management policy with annual SOC reviews and quarterly risk assessments",
+    "BCDR plans tested annually for different loss scenarios",
+    "Quarterly user access reviews for all accounts including administrative privileges",
+    "Multi-AZ infrastructure with failover capabilities at Vercel",
+    "Interesting multi-cloud architecture leveraging Vercel, AWS ECS, Cerebras AI, and flexible data warehouse layer"
+  ],
+
+  "key_observations": [
+    "Network diagram reveals a more sophisticated architecture than the narrative text suggests - includes Kafka message queues, AWS ECS autoscaling, Cerebras AI inference API, and client-flexible data warehouse (Snowflake or Databricks). This is a data-intensive AI platform, not a simple web app.",
+    "The 'on premises / VPC in preferred Cloud provider' label on the network diagram suggests Conway can deploy within client cloud environments, not just on Vercel - this is a significant architectural capability for enterprise sales.",
+    "Several control descriptions appear templated (references to 'Windows/Network team', 'proxy server', 'ID card activation') that seem inconsistent with a 4-person cloud-native startup, suggesting some boilerplate content from the auditor.",
+    "Conway excludes Processing Integrity as 'not relevant' which is unusual for a data analysis platform - this could be a deliberate strategy to limit audit scope or a genuine assessment that their data processing does not fall under PI criteria.",
+    "The company uses Cerebras (not OpenAI/Anthropic/Google) for SLM inference, suggesting a deliberate choice for specialized/high-performance AI inference rather than mainstream LLM providers.",
+    "Access revocation SLA of 1 business day is standard but notable given the 4-person team size - this is relatively easy to achieve with such a small headcount."
+  ]
+}

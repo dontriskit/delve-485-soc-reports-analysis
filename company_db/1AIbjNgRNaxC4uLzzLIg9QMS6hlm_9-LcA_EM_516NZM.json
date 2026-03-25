@@ -1,0 +1,19 @@
+{
+  "doc_id": "1AIbjNgRNaxC4uLzzLIg9QMS6hlm_9-LcA_EM_516NZM",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1AIbjNgRNaxC4uLzzLIg9QMS6hlm_9-LcA_EM_516NZM",
+  "timestamp": "7/29/2025 16:23:53",
+  "display_name": "Invoice Butler",
+  "legal_name": "Ldgr Systems, Inc.",
+  "company_name": "Invoice Butler",
+  "system_description": "Automating cash collections.",
+  "audit_end_date": "July 22, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://invoicebutler.ai",
+  "contact_email": "security@invoicebutler.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1AIbjNgRNaxC4uLzzLIg9QMS6hlm_9-LcA_EM_516NZM.pdf",
+  "txt_file": "1AIbjNgRNaxC4uLzzLIg9QMS6hlm_9-LcA_EM_516NZM.txt",
+  "has_report": true
+}

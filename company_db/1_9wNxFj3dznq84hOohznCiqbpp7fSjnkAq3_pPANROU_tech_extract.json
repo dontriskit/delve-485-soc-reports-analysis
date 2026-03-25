@@ -1,0 +1,241 @@
+{
+  "company": "Vocca Inc",
+  "product": "Vocca",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "May 1, 2025 - August 1, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "Not disclosed (address field left blank in report)",
+  "signing_authority": "Not completed — management assertion signature block left as placeholder ('Your Name Here') with yellow highlight",
+
+  "system_description": {
+    "overview": "Vocca is an AI receptionist platform for medical clinics and practices that handles inbound and outbound calls and automates admin tasks for healthcare centers. The 3-month audit period (May–August 2025) is unusually short for a Type 2 report.",
+    "products": {
+      "Vocca AI Receptionist": "AI-powered inbound/outbound call handling and admin automation for healthcare clinics and practices",
+      "NOTE_BOILERPLATE_CONTAMINATION": "The system description body (pages 13–15) was NOT customized — it describes a generic Accorp boilerplate 'AI-automated compliance platform' for SOC 2/HIPAA/ISO 27001/GDPR/PCI DSS with yellow-highlighted placeholder instructions still visible in the published PDF. The actual product description (AI receptionist for healthcare) only appears in the auditor scope and management assertion sections."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Supabase (carve-out subservice organization — Supabase has its own SOC 2)",
+    "regions": ["Not specified — 'VPC WEST' and 'VPC EAST' shown in sample/placeholder network diagram"],
+    "physical_presence": "None — 'Vocca does not have any physical servers and all data is processed on cloud services'",
+    "availability_zones": "Multi-AZ — 'high availability data centers with multiple availability zones'; DR plan covers 'spinning up multiple servers across all availability zones in Supabase'",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "VPC environment with segmented VPCs and access control lists (ACLs). Network segmentation implemented to separate systems and data based on sensitivity and criticality.",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls on application gateway and production network; firewall rules reviewed annually. Network firewalls implemented to control incoming/outgoing traffic based on predetermined security rules.",
+    "ids_ips": "IDS and IPS via Supabase to identify and protect against threats",
+    "vpn": "Remote access via bastion host with VPN (IPSec VPN tunnel shown in placeholder diagram)",
+    "tls": "TLS using certificates from established third-party certificate authority",
+    "content_filtering": "All systems restricted to internet with content filtering system routed through proxy server",
+    "multi_region": false,
+    "topology": "Internet -> VPC VPN Connection -> VPC WEST / VPC EAST (with Internet Gateways and multiple Availability Zones) -> private VPC subnets (Prod HA, Dev, Test, D.con) -> VPN Gateway -> IPSec VPN Tunnel -> Controllers. NOTE: diagram in report is an Accorp sample/placeholder, not Vocca's actual network diagram."
+  },
+
+  "application_architecture": {
+    "pattern": "Not disclosed",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["Supabase-hosted virtual servers"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development, test, staging, and production environments mentioned in change management controls",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Supabase (PostgreSQL-based)"],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Daily — 'Backups are taken daily, multi-availability zones are configured'",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Supabase (password policy managed through Supabase)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform; MFA required for source code repository access",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Managed via Supabase password policy — includes periodic forced changes, expiry, and complexity requirements. Accounts locked after limited unsuccessful logon attempts."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used",
+    "key_management": "Cloud provider KMS (Supabase) — 'organization uses its cloud provider key management service to encrypt data at rest and to store and manage encryption keys'",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named (generic 'source code management tool' referenced throughout)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Code repository branch rules configured to require additional approval for every merge request to production; developers cannot make production changes without additional approval",
+    "iac": "Baseline configurations retained as code with configuration management tool for implementation and rollback",
+    "container_orchestration": "Not mentioned",
+    "patch_management": "CTO/Management sets up automatic patch management; monthly patch management reviews; workstations auto-update and scanned daily for patch compliance; OS patches managed automatically on renewal for network devices",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named — generic 'monitoring tool' with threshold-based alerting",
+    "siem": "Not named",
+    "log_aggregation": "Logging enabled for administrative activities, logon attempts, data deletions, function changes, security configurations, permissions, roles. Access to modify logs is restricted.",
+    "alerting": "Automated alerts for high and critical risk events via incident management/ticketing system",
+    "metrics": ["CPU utilization", "disk space", "incoming/outgoing network traffic", "packet loss"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {
+      "vendor": "Supabase",
+      "purpose": "Primary cloud/data center subservice organization — database, networking, VPC, physical infrastructure, IDS/IPS",
+      "criticality": "Critical"
+    }
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and malware protection on all production servers (continuous auto-scan); definitions updated weekly on production servers, daily on workstations. Also installed on Mac workstations/laptops.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; internal IT team performs periodic scans per audit calendar",
+    "penetration_testing": "Annual external penetration testing by independent third party",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 57,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — No significant personnel/role changes during engagement period (control could not be tested)",
+      "CC3.2.1 — Cybersecurity insurance control untestable because no cyber incidents reported during engagement period",
+      "CC6.5.2 — Customer data deletion upon termination untestable because no customer terminations during engagement period",
+      "CC7.3.1 — Security incident response untestable because no security incidents reported during engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — Physical access to facilities excluded; Supabase is responsible for physical security of its data center",
+      "A1.2 — Availability environmental protections excluded; Vocca does not have an office and all environmental security controls managed by building management/Supabase"
+    ],
+    "notable_controls": [
+      "CC7.4.2 (CC7.2) — Control CC7.4.2 confirms backups are taken daily with multi-AZ configuration",
+      "CC8.1.2 — Branch protection rules enforced for all merges to master/production branch",
+      "CC6.2.2 — Quarterly user access reviews for all accounts including privileged users",
+      "CC4.1.1 — Annual external penetration testing by independent third party with high/critical findings tracked via incident management"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Multi-AZ on Supabase with VPC, IDS/IPS, VPN. However: single vendor (Supabase only, carve-out), no CDN, no named regions, no IaC beyond baseline config management. Entirely dependent on Supabase infrastructure which is carved out of scope."
+    },
+    "application_architecture": {
+      "score": 2,
+      "max": 10,
+      "rationale": "Near-zero disclosure. No languages, frameworks, compute type, or API style mentioned. Branch protection and separate environments confirmed but almost nothing else about the application stack is disclosed."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Daily backups, multi-AZ, data classification and retention policies confirmed, per-tenant segregation mentioned. However: only Supabase database mentioned, no caching layer, no data warehouse, no specifics on backup testing or restore validation."
+    },
+    "security_posture": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Annual external pen test, monthly vuln scans, IDS/IPS, MFA on admin/prod access, antivirus, cybersecurity insurance, firewall rules, server hardening — good baseline. Negatives: no WAF mentioned, no SIEM named, no named security tooling, 3 controls untestable due to no incidents (short audit window concern)."
+    },
+    "devops_maturity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Branch protection, separate environments, emergency change process, IaC for baseline configs, automatic patch management confirmed. However: no CI/CD tool named, no source control tool named, no container orchestration, no named deployment tooling."
+    },
+    "bcdr_readiness": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BCDR policy documented and annually reviewed, tested annually, daily backups with multi-AZ, DR plan covers AZ failover within Supabase. Negatives: no RTO/RPO disclosed, no multi-region failover, entirely dependent on Supabase AZ availability."
+    },
+    "vendor_diversity": {
+      "score": 2,
+      "max": 10,
+      "rationale": "Extreme single-vendor concentration: Supabase is the only named third-party vendor and is responsible for all infrastructure, database, networking, physical security, IDS/IPS, and password policy. No other cloud, CDN, or technology vendors named anywhere in the report."
+    },
+    "overall": {
+      "score": 3,
+      "max": 10,
+      "rationale": "This is a very early-stage SOC 2 with significant concerns: (1) system description section was not customized and still contains Accorp boilerplate placeholder text with visible instructions; (2) management assertion signature block left blank; (3) network diagram is a sample placeholder not replaced with actual architecture; (4) only 3-month audit window; (5) near-total infrastructure dependence on single carved-out vendor (Supabase); (6) no named tech stack, CI/CD, monitoring, or security tooling. Controls pass (0 exceptions) but the report quality and disclosure depth are very low."
+    }
+  },
+
+  "red_flags": [
+    "CRITICAL: System description (pages 13-15) contains Accorp boilerplate placeholder text that was NOT replaced — describes a generic 'AI-automated compliance platform for SOC 2/HIPAA/GDPR/PCI DSS' rather than Vocca's actual AI receptionist product. Yellow-highlighted instructions to modify the text are still visible in the published PDF.",
+    "CRITICAL: Management assertion signature block is blank — 'Your Name Here' placeholder with yellow highlight, no actual signing authority name or designation recorded.",
+    "Network diagram on page 19 is an Accorp sample placeholder with explicit instructions to replace it with actual network topology. Vocca never replaced it.",
+    "Only 3-month audit period (May 1 – August 1, 2025) — unusually short for SOC 2 Type 2; significantly limits value of operating effectiveness opinion.",
+    "Extreme single-vendor dependency: entire production infrastructure, database, networking, physical security, IDS/IPS, and password management all routed through Supabase (which is carved out of scope).",
+    "No RTO or RPO disclosed despite BCDR policy existing.",
+    "Processing Integrity and Privacy trust criteria explicitly excluded — significant gap for a healthcare-adjacent AI platform handling patient call data.",
+    "No WAF mentioned despite internet-facing application."
+  ],
+
+  "yellow_flags": [
+    "Trust criteria limited to Security only — Availability and Confidentiality are also not in scope, which is unusual for a platform handling healthcare call data.",
+    "No named CI/CD tooling, monitoring platform, SIEM, or APM tool — all described generically.",
+    "No named source control system (GitHub/GitLab etc.) despite controls referencing it extensively.",
+    "3 controls untestable due to no incidents in the period — partially attributable to the short 3-month window.",
+    "No cybersecurity insurance incident could be tested (no cyber incidents in period) — also attributable to short window.",
+    "HQ address field blank in the company metadata."
+  ],
+
+  "green_flags": [
+    "Unqualified opinion with 0 exceptions across all 57 controls tested.",
+    "Annual external penetration testing by independent third party with formal remediation tracking.",
+    "Monthly automated vulnerability scanning with remediation plans for high/critical findings.",
+    "Quarterly user access reviews including privileged accounts.",
+    "Daily backups with multi-AZ configuration and automated alerts.",
+    "Branch protection rules enforced — developers cannot push to production without additional approval.",
+    "MFA enforced for all administrative and remote access.",
+    "Access revocation within one business day of termination with formal checklist.",
+    "Cybersecurity insurance maintained.",
+    "Supabase holds its own SOC 2 report, which Vocca reviews annually."
+  ],
+
+  "key_observations": [
+    "This appears to be Vocca's first SOC 2 report — the Accorp template was largely not customized, strongly suggesting the report was assembled quickly with minimal company-specific content. The 3-month period reinforces this being an inaugural audit.",
+    "The system description mismatch (compliance platform vs. AI receptionist) is a material quality issue — it raises questions about how thoroughly management reviewed the report before signing (or in this case, not signing).",
+    "Supabase as the sole named vendor is interesting for a healthcare AI platform. Supabase is a relatively young open-source infrastructure company and may not have the enterprise security posture expected for HIPAA-adjacent workloads.",
+    "The absence of Availability and Confidentiality criteria is notable for a company that handles medical clinic call recordings and patient appointment data — these would typically be in scope for healthcare tech.",
+    "The report contains no mention of HIPAA compliance, BAA agreements, or PHI handling controls despite the company explicitly serving medical clinics — this is a significant gap for a healthcare-adjacent product.",
+    "The AI/ML stack (which would be core to an AI receptionist product) receives zero technical description — no LLM provider, no telephony platform (Twilio/Telnyx/etc.), no speech-to-text service mentioned anywhere in the report."
+  ]
+}

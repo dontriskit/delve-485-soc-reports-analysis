@@ -1,0 +1,215 @@
+{
+  "company": "The Human Chemical Company",
+  "product": "AI-powered platform for predictive toxicology in industrial chemicals",
+  "report_type": "ISO 27001",
+  "audit_period": "8/14/2025 (Stage-1 and Stage-2 audit dates not specified; certification agreement dated 8/14/2025)",
+  "auditor": "Gradient Certification Inc.",
+  "opinion": "Not yet issued — this document is the Certification Agreement Form, not the final audit report or certificate",
+  "trust_criteria": ["Information Security Management System (ISMS) per ISO 27001"],
+  "hq": "5758 Geary Blvd. 333, San Francisco, CA 94121",
+  "signing_authority": "Isaac Wilks (no title specified)",
+
+  "system_description": {
+    "overview": "The Human Chemical Company develops an AI-powered platform for predictive toxicology in industrial chemicals. The platform uses proprietary predictive toxicology models, data processing infrastructure, and analytical tools that securely collect, process, and interpret chemical, toxicological, and regulatory data to assess potential hazards of industrial chemicals.",
+    "products": {
+      "Predictive Toxicology Platform": "Proprietary AI models for predictive toxicology, data processing infrastructure, and analytical tools for assessing hazards of industrial chemicals. Encompasses secure handling of sensitive datasets, model training, and result generation."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Not disclosed",
+    "regions": [],
+    "physical_presence": "5758 Geary Blvd. 333, San Francisco, CA 94121 (single site under scope)",
+    "availability_zones": "Not disclosed",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Not disclosed"
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": "Not disclosed",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Not disclosed",
+    "ids_ips": "Not disclosed",
+    "vpn": "Not disclosed",
+    "tls": "Not disclosed",
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. This document is a certification agreement, not an audit report."
+  },
+
+  "application_architecture": {
+    "pattern": "Not disclosed",
+    "languages": [],
+    "frameworks": [],
+    "compute": [],
+    "api_style": "Not disclosed",
+    "environments": "Not disclosed",
+    "branch_protection": null,
+    "code_review_required": null
+  },
+
+  "data_storage": {
+    "databases": [],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Not disclosed",
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not disclosed",
+    "mfa": "Not disclosed",
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": "Not disclosed",
+    "password_policy": "Not disclosed"
+  },
+
+  "encryption": {
+    "in_transit": "Not disclosed",
+    "at_rest": "Not disclosed",
+    "key_management": "Not disclosed",
+    "end_to_end": null
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not disclosed",
+    "ci_cd_tool": "Not disclosed",
+    "branch_protection": "Not disclosed",
+    "iac": "Not disclosed",
+    "container_orchestration": "Not disclosed",
+    "patch_management": "Not disclosed",
+    "separate_environments": null,
+    "emergency_change_process": null
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not disclosed",
+    "siem": "Not disclosed",
+    "log_aggregation": "Not disclosed",
+    "alerting": "Not disclosed",
+    "metrics": [],
+    "log_protection": null,
+    "ids": null
+  },
+
+  "third_party_services": [
+    {"vendor": "Gradient Certification Inc.", "purpose": "ISO 27001 certification body / auditor", "criticality": "Medium"},
+    {"vendor": "United Accreditation Foundation Inc. (UAF)", "purpose": "Accreditation body for Gradient Certification Inc.", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": "Not disclosed",
+    "endpoint_protection": null,
+    "vulnerability_scanning": "Not disclosed",
+    "penetration_testing": "Not disclosed",
+    "server_hardening": null,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": [
+      "No controls are documented in this file. The document is a Certification Agreement Form and UAF endorsement letter — it does NOT contain audit findings, control testing results, or a Statement of Applicability."
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 1,
+      "max": 10,
+      "rationale": "Zero infrastructure details disclosed. The document is a certification agreement, not an audit report. No cloud provider, regions, AZ, or architecture information available."
+    },
+    "application_architecture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No application architecture details disclosed. We only know the product involves AI/ML predictive toxicology models and data processing, but no tech stack, languages, or patterns are described."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No data storage details disclosed. The scope mentions 'sensitive datasets' and 'model training' but no databases, backup strategies, or data classification specifics."
+    },
+    "security_posture": {
+      "score": 2,
+      "max": 10,
+      "rationale": "The company is pursuing ISO 27001 certification, which signals intent to formalize security. However, no security tools, controls, or practices are described in this document. The ISMS scope covers IT Infrastructure Management, HR, Physical Security, Legal & Compliance — but no specifics are provided."
+    },
+    "devops_maturity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No CI/CD, source control, IaC, or deployment details disclosed."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No BCDR information disclosed. No RTO/RPO, backup frequency, or DR testing mentioned."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No technology vendors disclosed beyond the certification body itself. Cannot assess vendor concentration or diversity."
+    },
+    "overall": {
+      "score": 1,
+      "max": 10,
+      "rationale": "This document is a Certification Agreement Form for ISO 27001 with Gradient Certification Inc., NOT the actual ISO 27001 audit report or certificate. It contains zero technical detail about the company's infrastructure, architecture, security controls, or operational practices. The only useful information is the ISMS scope description and company identity. A proper tech due diligence assessment is not possible from this document alone."
+    }
+  },
+
+  "red_flags": [
+    "CRITICAL: This PDF is a Certification Agreement Form, not an ISO 27001 audit report or certificate. It contains no audit findings, no control assessments, and no technical details.",
+    "No actual ISO 27001 certificate or audit report has been provided — only the pre-audit agreement to undergo certification.",
+    "The certification agreement is dated 8/14/2025 — indicating the certification process may not yet be complete.",
+    "The certifying body (Gradient Certification Inc.) is accredited by UAF (United Accreditation Foundation), which is not an IAF MLA signatory — this raises questions about the international recognition and credibility of the certification.",
+    "Total audit mandays for the entire 3-year certification cycle is only 9 days (2 Stage-1 + 3 Stage-2 + 2 Surveillance-1 + 2 Surveillance-2), which is minimal for an AI/ML platform handling sensitive chemical/toxicological data.",
+    "No temporary or additional sites listed — single-site scope only.",
+    "Zero technology stack information available for due diligence assessment."
+  ],
+
+  "yellow_flags": [
+    "The ISMS scope mentions 'secure handling of sensitive datasets, model training, and result generation' but provides no detail on how security is implemented.",
+    "Statement of Applicability (Version 1.0) is referenced but not included in the document.",
+    "No website, contact email, or company description beyond the scope statement is available in the metadata.",
+    "The document references compliance with 'applicable regulatory, ethical, and data protection requirements' but does not specify which regulations apply (e.g., GDPR, CCPA, TSCA, REACH)."
+  ],
+
+  "green_flags": [
+    "The company is actively pursuing ISO 27001 certification, demonstrating intent to formalize information security management.",
+    "The ISMS scope is comprehensive, covering core business functions as well as support functions (IT Infrastructure, HR, Physical Security, Legal & Compliance, Administrative Operations).",
+    "The scope description indicates awareness of data security needs for sensitive chemical/toxicological datasets."
+  ],
+
+  "key_observations": [
+    "This document is NOT an ISO 27001 audit report — it is a Certification Agreement Form between The Human Chemical Company and Gradient Certification Inc. The actual audit report or certificate must be obtained separately.",
+    "The Human Chemical Company appears to be an AI/ML company building predictive toxicology models for industrial chemicals, headquartered in San Francisco.",
+    "Gradient Certification Inc. has offices in Sheridan, WY (registered) and Houston, TX (corporate). They are accredited by UAF.",
+    "The entire PDF is 7 pages: 1 page UAF endorsement letter, 5+ pages of certification agreement terms and conditions, and a signature page. There is no technical content to extract.",
+    "To perform a meaningful tech due diligence, the actual ISO 27001 audit report (Stage-2 findings), Statement of Applicability, and/or the ISMS documentation itself would be needed."
+  ]
+}

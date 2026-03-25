@@ -1,0 +1,19 @@
+{
+  "doc_id": "1T2EZcajdxRfIqsAWrch1tRlHNT01mPijGXTZg0mq-d0",
+  "link": "https://docs.google.com/document/d/1T2EZcajdxRfIqsAWrch1tRlHNT01mPijGXTZg0mq-d0",
+  "timestamp": "11/10/2025 16:59:30",
+  "display_name": "Hud",
+  "legal_name": "Human Union Data, Inc.",
+  "company_name": "Hud",
+  "system_description": "hud is an evaluations platform for computer use and browser use AI models.",
+  "audit_end_date": "November 3, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://hud.so",
+  "contact_email": "security@hud.so",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1T2EZcajdxRfIqsAWrch1tRlHNT01mPijGXTZg0mq-d0.pdf",
+  "txt_file": "1T2EZcajdxRfIqsAWrch1tRlHNT01mPijGXTZg0mq-d0.txt",
+  "has_report": true
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "1EEu_RJF9q5gwijIkPEiuHamHIXQaJkTVjRQ3dzpPU9g",
+  "link": "https://docs.google.com/document/d/1EEu_RJF9q5gwijIkPEiuHamHIXQaJkTVjRQ3dzpPU9g",
+  "timestamp": "10/1/2025 16:32:44",
+  "display_name": "Athena Studio",
+  "legal_name": "athena studio SARL",
+  "company_name": "Athena Studio",
+  "system_description": "athena is your AI fashion product development assistant, built for fashion brands to launch the right products at the right time.",
+  "audit_end_date": "",
+  "observation_period": "June 25, 2025 - September 25, 2025",
+  "infra_provider": "Vercel",
+  "website": "https://athenastudio.io",
+  "contact_email": "security@athenastudio.io",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1EEu_RJF9q5gwijIkPEiuHamHIXQaJkTVjRQ3dzpPU9g.pdf",
+  "txt_file": "1EEu_RJF9q5gwijIkPEiuHamHIXQaJkTVjRQ3dzpPU9g.txt",
+  "has_report": true
+}

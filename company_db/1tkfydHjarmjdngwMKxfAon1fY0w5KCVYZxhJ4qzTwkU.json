@@ -1,0 +1,19 @@
+{
+  "doc_id": "1tkfydHjarmjdngwMKxfAon1fY0w5KCVYZxhJ4qzTwkU",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1tkfydHjarmjdngwMKxfAon1fY0w5KCVYZxhJ4qzTwkU",
+  "timestamp": "8/1/2025 16:48:32",
+  "display_name": "Portant",
+  "legal_name": "Portant PTY LTD",
+  "company_name": "Portant",
+  "system_description": "Portant is a document automation platform to generate documents such as contracts, proposals, invoices and more. Portant offers features such as approvals and eSignatures.",
+  "audit_end_date": "July 15, 2025",
+  "observation_period": "",
+  "infra_provider": "GCP",
+  "website": "https://portant.co",
+  "contact_email": "support@portant.co",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1tkfydHjarmjdngwMKxfAon1fY0w5KCVYZxhJ4qzTwkU.pdf",
+  "txt_file": "1tkfydHjarmjdngwMKxfAon1fY0w5KCVYZxhJ4qzTwkU.txt",
+  "has_report": true
+}

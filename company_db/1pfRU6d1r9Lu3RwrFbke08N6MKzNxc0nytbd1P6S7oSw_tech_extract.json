@@ -1,0 +1,207 @@
+{
+  "company": "The Human Chemical Company",
+  "product": "Human Chemical",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of July 25, 2025",
+  "auditor": "ACCORP Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "5758 Geary Blvd. 333, San Francisco, CA 94121",
+  "signing_authority": "Isaac Wilks, CEO and Co-Founder",
+
+  "system_description": {
+    "overview": "Human Chemical is an AI-powered predictive toxicology platform for industrial chemicals, pioneering the use of QSAR/bioactivity models to predict chemical toxicity. The platform provides an agentic AI framework for regulatory summaries, citation management, and a copilot interface for chemical safety workflows.",
+    "products": {
+      "Predictive Toxicology Models": "QSAR and bioactivity-based AI models for industrial chemical toxicity prediction",
+      "Agentic AI Framework": "Automated citations, regulatory summaries, and AI copilot for chemical safety analysis",
+      "Custom Modeling Support": "Bespoke modeling services for customer-specific chemical safety requirements"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "GCP (carve-out — GCP is a subservice organization)",
+    "regions": ["us-central-1 (primary, regional cluster)"],
+    "physical_presence": "No physical office — fully cloud-hosted",
+    "availability_zones": "Multi-AZ (GCP regional cluster)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with network ACLs; production and staging Kubernetes clusters fully separated",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls on application gateway and production network; firewall rules reviewed annually by IT management; GCP security groups and network ACLs",
+    "ids_ips": "IDS/IPS via GCP (intrusion detection and prevention tools configured)",
+    "vpn": "Bastion host for administrative/management access",
+    "tls": "TLS for all web traffic",
+    "content_filtering": "Content filtering system routed through proxy server",
+    "multi_region": false,
+    "topology": "Internet → GKE Load Balancer → Production Kubernetes Cluster (us-central-1, regional): prd frontend app → prd backend app → prd Postgres Cloud SQL + Google Key Manager. Staging Kubernetes Cluster (us-central-1, regional): stg frontend app → stg backend app → stg Postgres Cloud SQL + Google Key Manager. Management access via SSH bastion host."
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["GKE (Google Kubernetes Engine) — production and staging clusters"],
+    "api_style": null,
+    "environments": "Production and staging GKE clusters fully separated; development/test environments separate from production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Cloud SQL (PostgreSQL) — separate production and staging instances"],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": null,
+    "backup_frequency": "Regular (formal backup policy; specifics not stated beyond 'suitable backups taken and maintained')",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "GCP (Active Directory, server and database accounts; GCP password policy enforced)",
+    "mfa": "MFA enforced for all user accounts with administrative access to production platform; SCM access requires MFA",
+    "rbac": true,
+    "sso": null,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day",
+    "password_policy": "GCP password policy: periodic forced changes, password expiry, complexity requirements; lockout after failed login attempts; biometrics also supported for desktop unlock"
+  },
+
+  "encryption": {
+    "in_transit": "TLS",
+    "at_rest": "Cloud provider key management service (Google Key Manager implied)",
+    "key_management": "Google Key Manager (cloud provider KMS)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "SCM (name not disclosed; MFA enforced; source code changes logged, timestamped, attributed)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Merge to production requires additional approval; branch protection rules configured; developers cannot push directly to production",
+    "iac": "Baseline configurations retained as code; configuration management tool for implementation and rollback",
+    "container_orchestration": "GKE (Google Kubernetes Engine)",
+    "patch_management": "Automatic patch management; CTO performs monthly patch management reviews; workstations scanned daily for patch compliance",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Monitoring tool (name not disclosed) with predefined threshold alerts; continuous infrastructure performance monitoring",
+    "siem": null,
+    "log_aggregation": "Logging enabled at application and infrastructure level; log access restricted; logs retained per policy",
+    "alerting": "Automated alerts for high and critical risk events; alerts tracked in change-management/ticketing application",
+    "metrics": ["administrative activities", "logon attempts", "data deletions", "security configurations", "permissions and roles", "system capacity and performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "GCP", "purpose": "Cloud infrastructure — compute (GKE), database (Cloud SQL), key management (Google Key Manager), networking, security (IDS/IPS)", "criticality": "Critical"},
+    {"vendor": "ACCORP Partners", "purpose": "SOC 2 audit", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software on all production servers (continuous auto-scan; weekly AV definition updates) and Mac workstations/laptops",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scanning; self-assessment scan prior to every production release; annual scan",
+    "penetration_testing": "Annual external third-party penetration testing",
+    "server_hardening": true,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 29,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — physical access delegated to GCP (subservice); GCP responsible for data center security",
+      "A1.2 — environmental protections delegated to GCP and building management",
+      "Processing Integrity criteria — not relevant to system",
+      "Privacy criteria — not relevant to system"
+    ],
+    "notable_controls": [
+      "Chief Information Security Officer (CISO) role formally assigned for incident response oversight",
+      "Vendor management includes quarterly risk assessment for non-SOC vendors",
+      "BCDR tested annually across multiple loss scenarios",
+      "Multi-AZ DR by spinning up servers across all GCP availability zones in us-central-1",
+      "Formal Change Management policy with emergency change process",
+      "Monthly patch management reviews by CTO",
+      "Content filtering via proxy server",
+      "Per-customer data segregation confirmed"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {"score": 6, "max": 10, "rationale": "GCP regional Kubernetes cluster (GKE) in us-central-1, multi-AZ, separate production and staging clusters, IaC baseline configs, Google Key Manager. Single region only, no CDN, no WAF — limits score."},
+    "application_architecture": {"score": 6, "max": 10, "rationale": "GKE microservices with separate production and staging clusters, branch protection with required approvals, per-tenant segregation. No named languages/frameworks, no named CI/CD tool."},
+    "data_layer": {"score": 5, "max": 10, "rationale": "Cloud SQL PostgreSQL with separate production and staging instances, Google Key Manager encryption, multi-AZ. No caching layer, no file storage, no data warehouse. Backup policy exists but frequency not quantified."},
+    "security_posture": {"score": 7, "max": 10, "rationale": "IDS/IPS via GCP, monthly vuln scans + pre-release self-assessment + annual scan, annual external pen test, antivirus (weekly definitions), MFA for admin access, content filtering, CISO role defined, firewall rules reviewed annually. No WAF named, no SIEM, no cybersecurity insurance disclosed."},
+    "devops_maturity": {"score": 7, "max": 10, "rationale": "IaC with rollback capability, GKE orchestration, separate staging/production clusters, branch protection, emergency change process, monthly patch reviews, daily patch compliance scans. CI/CD tool not named."},
+    "bcdr_readiness": {"score": 6, "max": 10, "rationale": "BCDR policy, annual review and testing across multiple loss scenarios confirmed, multi-AZ failover by spinning up GCP servers across all AZs. No stated RTO/RPO, no multi-region DR, backup frequency not quantified beyond 'suitable backups'."},
+    "vendor_diversity": {"score": 3, "max": 10, "rationale": "GCP is the sole critical infrastructure provider — compute, database, networking, key management, and IDS/IPS all delegated to GCP. No secondary cloud provider or significant third-party services named beyond GCP."},
+    "overall": {"score": 6, "max": 10, "rationale": "Clean SOC 2 Type 1 with zero exceptions and solid GCP-native architecture. GKE microservices with production/staging separation, CISO role, quarterly access reviews, annual pen testing. Key gaps: no WAF, single cloud provider (GCP) and single region, no RTO/RPO, very small team (6 people), no cybersecurity insurance disclosed, backup frequency unquantified."}
+  },
+
+  "red_flags": [
+    "No WAF disclosed — application layer attack protection gap",
+    "No RTO/RPO stated — availability commitments unquantified",
+    "Heavy GCP concentration — compute, database, key management, IDS/IPS all dependent on single provider",
+    "Very small team (CEO, COO, CTO, CoS, 2 Senior Engineers + Chairman) — key person risk for security operations"
+  ],
+  "yellow_flags": [
+    "CI/CD tool and monitoring platform not named",
+    "No CDN mentioned — potential latency for distributed customers",
+    "No multi-region failover — DR limited to multi-AZ within us-central-1",
+    "Security criteria only — Availability, Confidentiality, Privacy, Processing Integrity not audited",
+    "Backup frequency not explicitly quantified ('suitable backups' only)",
+    "No cybersecurity insurance disclosure",
+    "No named file storage or caching layer — data architecture opacity"
+  ],
+  "green_flags": [
+    "SOC 2 Type 1 with zero exceptions across 29 controls",
+    "GKE microservices with fully separate production and staging Kubernetes clusters",
+    "Google Key Manager (KMS) for encryption at rest",
+    "CISO role formally assigned for incident response oversight",
+    "Monthly automated vulnerability scanning + pre-release self-assessment + annual scan (triple-layer)",
+    "Annual external penetration testing",
+    "Quarterly access reviews with 1-business-day revocation SLA",
+    "MFA enforced for all admin/production access and SCM",
+    "Content filtering via proxy server",
+    "IaC with rollback capability via configuration management tool",
+    "BCDR tested annually with multiple loss scenarios",
+    "Multi-AZ failover across all GCP availability zones in us-central-1",
+    "Vendor management with quarterly risk assessment for non-SOC vendors",
+    "Per-tenant data segregation confirmed"
+  ],
+  "key_observations": [
+    "Human Chemical operates in predictive toxicology for industrial chemicals — regulatory data (REACH, EPA Toxic Substances Control Act) likely handled, making data integrity and access controls high-stakes",
+    "Extremely small team of 6 people (CEO, COO, CTO, CoS, 2 Senior Engineers) — key person concentration risk; CTO personally owns patch management and security reviews",
+    "GCP regional Kubernetes cluster (not GKE Autopilot) shows direct infrastructure engineering capability",
+    "Triple-layer vulnerability scanning (monthly automated + pre-release self-assessment + annual) is stronger than typical for a company this size",
+    "CISO role formally documented (referenced in CC7.4/CC2.1.4) despite tiny team — suggests compliance-aware culture",
+    "No AI model providers (OpenAI, Anthropic, GCP Vertex) named — QSAR/bioactivity models appear to be proprietary rather than LLM-based",
+    "ACCORP Partners template — same structure as other ACCORP clients in this batch"
+  ]
+}

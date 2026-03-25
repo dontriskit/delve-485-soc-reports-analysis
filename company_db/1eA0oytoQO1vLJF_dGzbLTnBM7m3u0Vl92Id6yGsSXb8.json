@@ -1,0 +1,19 @@
+{
+  "doc_id": "1eA0oytoQO1vLJF_dGzbLTnBM7m3u0Vl92Id6yGsSXb8",
+  "link": "https://docs.google.com/document/d/1eA0oytoQO1vLJF_dGzbLTnBM7m3u0Vl92Id6yGsSXb8",
+  "timestamp": "8/11/2025 15:26:21",
+  "display_name": "Datamonk",
+  "legal_name": "Datamonk BV",
+  "company_name": "Datamonk",
+  "system_description": "Datamonk is building an agentic platform for healthcare data",
+  "audit_end_date": "",
+  "observation_period": "April 30, 2025 - July 30, 2025",
+  "infra_provider": "AWS",
+  "website": "https://datamonk.ai",
+  "contact_email": "security-disclosure@datamonk.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1eA0oytoQO1vLJF_dGzbLTnBM7m3u0Vl92Id6yGsSXb8.pdf",
+  "txt_file": "1eA0oytoQO1vLJF_dGzbLTnBM7m3u0Vl92Id6yGsSXb8.txt",
+  "has_report": true
+}

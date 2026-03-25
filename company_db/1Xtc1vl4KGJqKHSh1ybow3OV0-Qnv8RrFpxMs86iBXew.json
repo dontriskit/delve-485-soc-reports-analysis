@@ -1,0 +1,19 @@
+{
+  "doc_id": "1Xtc1vl4KGJqKHSh1ybow3OV0-Qnv8RrFpxMs86iBXew",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1Xtc1vl4KGJqKHSh1ybow3OV0-Qnv8RrFpxMs86iBXew",
+  "timestamp": "8/6/2025 16:24:11",
+  "display_name": "Doe",
+  "legal_name": "Doe Labs, Corp.",
+  "company_name": "Doe",
+  "system_description": "Doe is building the AI platform for dental groups",
+  "audit_end_date": "July 25, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://doe.so",
+  "contact_email": "ciso@doe.so",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1Xtc1vl4KGJqKHSh1ybow3OV0-Qnv8RrFpxMs86iBXew.pdf",
+  "txt_file": "1Xtc1vl4KGJqKHSh1ybow3OV0-Qnv8RrFpxMs86iBXew.txt",
+  "has_report": true
+}

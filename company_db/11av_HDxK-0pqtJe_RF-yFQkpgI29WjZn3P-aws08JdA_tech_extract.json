@@ -1,0 +1,236 @@
+{
+  "company": "Loggia AI, Inc.",
+  "product": "Shiplight AI",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of October 23, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "1825 South Grant Street, Suite 200, San Mateo, CA 94402",
+  "signing_authority": "Ziwei Zhao, Cofounder and CEO",
+
+  "system_description": {
+    "overview": "Shiplight is an autonomous AI-driven end-to-end testing and quality assurance platform that helps engineering teams ship software quickly and safely. AI agents navigate web applications like real users to generate, run, and maintain browser-based tests without requiring scripting or direct codebase access. The platform integrates into existing CI/CD pipelines to run tests in parallel at scale.",
+    "products": {
+      "Autonomous Testing Platform": "Cloud-based web application used to create, manage, and execute end-to-end browser tests using autonomous AI agents that generate, run, and maintain tests from product flows, documentation, support tickets, and other artifacts.",
+      "AI-Powered Test Generation and Maintenance": "Creates tests from product flows and documentation using multimodal UI understanding. Automatically updates and heals tests as the application changes.",
+      "Test Execution, Orchestration, and Quality Insights": "High-performance test execution infrastructure with parallel runs, detailed test reporting, and debugging views integrated into customer CI/CD pipelines.",
+      "Implementation and Onboarding Services": "Hands-on onboarding and rollout support including initial test strategy, test creation, and CI/CD workflow integration.",
+      "Ongoing Customer Success and Support": "Ongoing support via shared Slack channels and other communication methods."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out)",
+    "regions": ["Not specified — single region implied"],
+    "physical_presence": "No physical offices; no physical servers. All data processed on cloud services.",
+    "availability_zones": "Multi-AZ (DR plan spins up multiple servers across all availability zones in AWS; network diagram shows private subnet shared, prod, and staging)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with access control lists (ACLs). Three private subnets: shared, prod, and staging. ECS Fargate containers in each subnet behind Application Load Balancer. NAT gateway for outbound traffic.",
+    "api_gateway": "Application Load Balancer (ALB)",
+    "waf": null,
+    "firewalls": "System firewalls configured on the application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via AWS in conjunction with security policy network settings.",
+    "vpn": "Bastion host with VPN for remote access.",
+    "tls": "TLS with certificates from an established third-party certificate authority for all web-based system communications.",
+    "content_filtering": "All systems restricted to internet via content filtering system routed through proxy server.",
+    "multi_region": false,
+    "topology": "Internet -> VPC -> Application Load Balancer -> Private subnets (shared, prod, staging) -> ECS Fargate containers -> NAT Gateway -> Internet (outbound)"
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices (ECS Fargate containers, multiple environments visible in network diagram)",
+    "languages": ["Not disclosed"],
+    "frameworks": ["Not disclosed"],
+    "compute": ["ECS Fargate", "AWS Fargate"],
+    "api_style": "Not disclosed",
+    "environments": "At least 3: shared, prod, staging (visible in network diagram)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Not specifically named — uses cloud database services on AWS"],
+    "caching": ["Intelligent caching mentioned for test execution infrastructure"],
+    "file_storage": ["Not specifically named"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Not specifically disclosed — backup policy exists",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS (password policy via AWS; Active Directory mentioned)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform. MFA required for access to source code management tool.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day upon termination",
+    "password_policy": "Passwords controlled through AWS password policy including periodic forced changes, password expiry, and complexity requirements. Accounts disabled after limited failed logon attempts."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest",
+    "key_management": "Cloud provider KMS (AWS KMS implied)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named (source code management tool with MFA-restricted access, logged commits)",
+    "ci_cd_tool": "Not named (integrated into customer CI/CD pipelines; internal CI/CD implied)",
+    "branch_protection": "Code repository branch rules configured to ensure every merge request to production requires additional approval.",
+    "iac": "Configuration management tool used for baseline configs with rollback capability; infrastructure as code implied (\"baseline configurations are retained within the infrastructure as a code\")",
+    "container_orchestration": "ECS Fargate",
+    "patch_management": "CTO manages automatic patch management with monthly reviews. Critical/security patches applied as available. Workstations scanned daily for patch compliance. Vulnerability scans performed monthly.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named (monitoring tool with predefined threshold alerts)",
+    "siem": "Not named",
+    "log_aggregation": "Not named (logging enabled for admin activities, logon attempts, data deletions, config changes, permissions, and roles)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events.",
+    "metrics": ["CPU", "disk space", "network traffic (incoming/outgoing)", "packet loss"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Cloud infrastructure, data center services, compute (ECS Fargate), networking, storage", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection installed on all production servers (continuous scanning) and Mac-based workstations/laptops. Virus definitions updated weekly on production servers, daily on workstations.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications. Self-assessment scan prior to every production release.",
+    "penetration_testing": "Annual external penetration testing by independent third party.",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 29,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to data center facilities; AWS responsible for physical security",
+      "A1.2 - Environmental protections; Shiplight does not have an office, managed by building management/AWS",
+      "Processing Integrity criteria - determined not relevant to the system",
+      "Privacy criteria - determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC8.1.2 - Branch protection: code repository branch rules require additional approval for every merge to production",
+      "CC6.2.2 - Quarterly user access reviews for all accounts including privileged users",
+      "CC4.1.1 - Annual external penetration testing by independent third party",
+      "CC7.1.2 - Monthly automated vulnerability scans on infrastructure and applications",
+      "CC6.1.1 - MFA enforced for administrative access to production platform",
+      "CC6.1.5 - Cloud provider KMS used for at-rest encryption; production access keys restricted",
+      "CC7.4.1 - BCDR policy documented and reviewed annually with annual scenario testing"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Multi-AZ AWS deployment with ECS Fargate, segmented VPCs, ALB, NAT gateway — solid cloud-native setup. Three environments (shared, prod, staging) visible in network diagram. However, single region only and no CDN or multi-region failover. Region not disclosed."
+    },
+    "application_architecture": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Container-based microservices on ECS Fargate with multiple environments and branch protection. However, languages, frameworks, and API style not disclosed. Intelligent caching mentioned but database types unnamed."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Backup policy exists, multi-AZ storage implied, per-tenant segregation and data classification/retention policies stated. However, specific database technologies, backup frequency, and storage services not named."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong controls: IDS/IPS, annual external pen test, monthly vuln scans, MFA for admin access, quarterly access reviews, antivirus on all systems, firewalls, KMS encryption, log protection, server hardening. Weakness: WAF not mentioned, SIEM not named."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "ECS Fargate container orchestration, IaC-style baseline configs with rollback, branch protection with required approvals, separate environments, emergency change process, monthly patch reviews. CI/CD tooling and source control tool names not disclosed."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy exists with annual review and annual testing across different loss scenarios. Multi-AZ failover explicitly described (spinning up servers across all AZs). No RTO/RPO disclosed. No multi-region failover."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Only AWS named as a subservice organization. No other vendors explicitly named in the report. Single critical infrastructure dependency with no named diversification."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Well-designed AWS-native security posture for an early-stage company with strong access controls, annual pen testing, quarterly reviews, and BCDR. Significant gaps in disclosed specifics: no database names, no CI/CD tool names, no source control named, no CDN, single region, no WAF, high AWS concentration. Type 1 report means controls only designed, not yet operationally tested."
+    }
+  },
+
+  "red_flags": [
+    "SOC 2 Type 1 only — controls designed but not yet operationally tested over a period",
+    "Single cloud provider (AWS) with no named backup or diversification",
+    "No WAF mentioned despite web-facing application",
+    "Database technologies not disclosed",
+    "Source control and CI/CD tool names not disclosed",
+    "No multi-region failover"
+  ],
+  "yellow_flags": [
+    "No CDN mentioned for a globally-accessed testing platform",
+    "Backup frequency not specified",
+    "RTO and RPO not disclosed",
+    "Languages and frameworks not disclosed",
+    "SIEM tool not named — logging exists but no named SIEM"
+  ],
+  "green_flags": [
+    "Clean network architecture with network diagram showing VPC, segmented private subnets (shared/prod/staging), ALB, ECS Fargate, NAT Gateway",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scans",
+    "Quarterly user access reviews including privileged accounts",
+    "MFA enforced for admin access and source code repository",
+    "Branch protection with required approvals on every merge to production",
+    "IaC-style baseline configs with rollback capability",
+    "Access revoked within 1 business day on termination",
+    "BCDR tested annually across multiple scenarios",
+    "IDS/IPS deployed via AWS",
+    "Per-tenant data segregation implemented",
+    "KMS-based at-rest encryption",
+    "Anti-virus on production servers with weekly definition updates"
+  ],
+  "key_observations": [
+    "The network diagram explicitly shows 3 separate ECS Fargate environments (shared, prod, staging) within the same VPC — unusual to expose staging in the same diagram, suggests immature environment separation despite the controls language",
+    "The product is itself a test automation platform integrating into customer CI/CD pipelines — security of the CI/CD integration path and read access to customer applications is a unique supply-chain risk not addressed in the report",
+    "Auditor is Accorp Partners (PAC-FIRM-LIC-47383) — a small boutique SOC 2 firm, not a Big 4 or top-tier auditor",
+    "Processing Integrity and Privacy trust criteria explicitly excluded — notable for a platform that reads and generates test data from customer applications",
+    "The report is a Type 1 as of October 23, 2025 — very recently attained; Type 2 will be the meaningful milestone"
+  ]
+}

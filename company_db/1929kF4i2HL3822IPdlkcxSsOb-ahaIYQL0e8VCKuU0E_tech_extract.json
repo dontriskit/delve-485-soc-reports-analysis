@@ -1,0 +1,249 @@
+{
+  "company": "Disputifier, LLC",
+  "product": "Disputifier",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of August 10, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+  "hq": "No physical offices; fully remote / cloud-based",
+  "signing_authority": "Michelle Paredes, Director of Operations",
+
+  "system_description": {
+    "overview": "Disputifier is a chargeback prevention and recovery platform for ISOs and ecommerce merchants. It combines AI-powered automation, data integrations with card networks (RDR, Ethoca, CDRN), and human expertise to manage the full dispute lifecycle, reduce dispute rates, and maximize recovery.",
+    "products": {
+      "Automated Dispute Management": "Automated generation and submission of chargeback responses leveraging merchant data, network requirements, and processor rules to reduce dispute rates and maximize recovery.",
+      "Chargeback Alerts Integration": "Real-time integration with chargeback alert networks (RDR, CDRN, Ethoca) enabling proactive refunds before chargebacks are finalized.",
+      "Fraud and Risk Controls": "Rules-based blocking, velocity checks, and third-party fraud data integrations to detect and block suspicious transactions.",
+      "Operational Dashboards and Reporting": "Merchant-facing dashboards providing visibility into dispute volumes, refund coverage, and fraud trends with continuous monitoring and alerting.",
+      "Order Not Received (ONR) Prevention": "Specialized workflows for tracking verification, order data checks, and proactive resolution messaging against non-receipt claims."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out method; AWS SOC 2 relied upon as subservice organization)",
+    "regions": ["us-east-1"],
+    "physical_presence": "None - no physical offices, all data processed on cloud services",
+    "availability_zones": "Multi-AZ (hosted in high availability data centers with multiple availability zones)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with access control lists (ACLs). Network topology includes segmented VPCs and ACLs.",
+    "api_gateway": "Application gateway with firewalls configured (mentioned in CC6.6.1 control)",
+    "waf": null,
+    "firewalls": "System firewalls configured on the application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via AWS to identify and protect against threats in conjunction with security policy network settings.",
+    "vpn": "Remote access done through a bastion host with a virtual private network (VPN).",
+    "tls": "TLS using certificates from an established third-party certificate authority. SSL/TLS certificate provisioning shown in network diagram.",
+    "content_filtering": "Content filtering system routed through proxy server; all systems restricted to internet with content filtering.",
+    "multi_region": false,
+    "topology": "User requests -> Route 53 DNS -> VPC in N. Virginia (us-east-1) -> Port 80/443 through SSL/TLS certificate provisioning -> HTTPS traffic to M5a EC2 instance -> Amazon Aurora database for application data; gp3 EBS volumes for user uploaded files. GitHub webhook (push event) on port 9000 restricted to GitHub public IP. Log archival after 30 days to S3."
+  },
+
+  "application_architecture": {
+    "pattern": "Monolith (single M5a EC2 instance visible in network diagram)",
+    "languages": null,
+    "frameworks": null,
+    "compute": ["EC2 (M5a instance)"],
+    "api_style": null,
+    "environments": "Separate development/test and production environments (CC8.1.4: changes developed and tested in separate development or test environment before implementation)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Amazon Aurora"],
+    "caching": [],
+    "file_storage": ["EBS gp3 volumes (user uploaded files)", "S3 (log archival after 30 days)"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Not explicitly stated; formal backup policies and procedures in place per Backup Policy",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS IAM / Password policy of AWS",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1). Source code tool also requires MFA (CC8.1.3). Email requires two-factor authentication.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination of employment",
+    "password_policy": "Passwords controlled through AWS password policy with periodic forced changes, password expiry and complexity requirements. Accounts disabled after limited unsuccessful logon attempts."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified; certificates from established third-party CA)",
+    "at_rest": "Cloud provider key management service (CC6.1.5: uses cloud provider KMS to encrypt data at rest and manage encryption keys)",
+    "key_management": "AWS KMS (cloud provider key management service; access to production environment access keys restricted to authorized individuals)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "GitHub (GitHub webhook push event visible in network diagram; source code management tool with MFA per CC8.1.3)",
+    "ci_cd_tool": "GitHub Webhooks for deployment triggering (push event triggers deployment on port 9000). No named CI/CD pipeline tool beyond this.",
+    "branch_protection": "Code repository branch rules configured to ensure every merge request to production requires additional approval (CC8.1.2).",
+    "iac": "Configuration management tool used for implementation and rollback capability (CC7.1.1). Baseline configurations retained as infrastructure as code.",
+    "container_orchestration": "None mentioned (single EC2 instance architecture)",
+    "patch_management": "Automatic patch management with monthly patch management reviews by CTO. Workstations configured for automatic updates and scanned for patch compliance daily. OS patches managed and applied as they become available.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named; monitoring tools used to continuously monitor system capacity and performance (CC5.2.1)",
+    "siem": "Not named; automated alerts configured to notify IT management of high and critical risk events",
+    "log_aggregation": "Logging enabled to monitor administrative activities, logon attempts, data deletions at application and infrastructure level. Log archival after 30 days (to S3 per diagram).",
+    "alerting": "Automated alerts configured for predefined thresholds; incident management process invoked for confirmed events. Logs and alerts tracked in change-management/ticketing application.",
+    "metrics": ["disc space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "system capacity", "performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Primary cloud infrastructure provider (compute, database, storage, networking, KMS)", "criticality": "Critical"},
+    {"vendor": "RDR (Rapid Dispute Resolution)", "purpose": "Chargeback alert network integration for proactive refunds", "criticality": "High"},
+    {"vendor": "Ethoca", "purpose": "Chargeback alert network integration", "criticality": "High"},
+    {"vendor": "CDRN (Cardholder Dispute Resolution Network)", "purpose": "Chargeback alert network integration", "criticality": "High"},
+    {"vendor": "GitHub", "purpose": "Source code management and deployment triggering via webhooks", "criticality": "High"},
+    {"vendor": "Third-party certificate authority", "purpose": "SSL/TLS certificate provisioning", "criticality": "Medium"},
+    {"vendor": "Third-party fraud data sources", "purpose": "Fraud detection integrations", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers with continuous automatic scanning. Definitions updated weekly for production servers. Also installed on Mac-based workstations and laptops.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Automated monthly vulnerability scans on infrastructure and applications (CC7.1.2), with frequency adjusted as required. Self-assessment scans performed prior to every release or yearly.",
+    "penetration_testing": "Annual external penetration testing conducted by independent third-party (CC4.1.1). Results reviewed by IT management; high/critical findings remediated in timely manner.",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 55,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access controls excluded; AWS responsible for physical security of data centers, Disputifier has no physical offices",
+      "A1.2 - Environmental protections excluded; Disputifier operates from co-working space managed by building management, all environmental controls managed by building management / AWS",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC8.1.2: Branch protection rules requiring additional approval for merge requests to production",
+      "CC8.1.3: Source code changes logged, time-stamped, attributed to author with MFA-protected access",
+      "CC6.1.1: MFA enforced for all administrative access to production platform",
+      "CC6.1.3: Customer access appropriately segmented from other customer accounts (per-tenant segregation)",
+      "CC7.4.1: BCDR plans tested annually per defined testing schedule for different loss scenarios",
+      "CC4.1.1: Annual external penetration testing by independent third-party",
+      "CC7.1.2: Automated monthly vulnerability scanning with remediation plans for critical/high findings",
+      "CC9.2.1: Vendor management policy with annual SOC report reviews and quarterly risk assessments for vendors without SOC reports"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Single region (us-east-1) with multi-AZ. Single EC2 instance visible in diagram suggests limited horizontal scaling. AWS as cloud provider is solid, but no CDN, no multi-region, and no serverless or advanced compute. IaC mentioned generically but no named tool (Terraform, CloudFormation, etc.)."
+    },
+    "application_architecture": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Appears to be a monolith running on a single M5a EC2 instance. No languages, frameworks, or API style disclosed. Branch protection and code review are positives. No mention of testing practices, CI pipeline, or containerization. Very limited technical detail provided."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Amazon Aurora is a strong managed database choice with multi-AZ. EBS gp3 for file storage and S3 for log archival. Data classification and retention policies exist. Per-tenant segregation confirmed. However, no caching layer, no data warehouse, and backup frequency not explicitly stated."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "MFA on production and source code access. IDS/IPS via AWS. Annual pen testing by third-party. Monthly automated vulnerability scanning. Endpoint protection with AV on all servers and workstations. Server hardening with baseline configurations. Encryption at rest (KMS) and in transit (TLS). However, no named WAF, no named SIEM, no cybersecurity insurance, and specific tool names are consistently absent."
+    },
+    "devops_maturity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "GitHub for source control with branch protection and merge approval rules. GitHub webhooks for deployment triggering is basic. Generic mention of IaC/configuration management but no named tools. Separate environments confirmed. Emergency change process documented. However, no named CI/CD pipeline, no containers, and deployment approach appears manual/webhook-triggered rather than a mature pipeline."
+    },
+    "bcdr_readiness": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BCDR policy exists, documented and reviewed annually. Annual testing of DR plans for different loss scenarios. Multi-AZ failover capability (spinning up servers across AZs). However, no multi-region failover, no stated RTO/RPO, backup frequency not explicitly stated, and no specifics on recovery automation."
+    },
+    "vendor_diversity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Heavy single-vendor dependency on AWS for all infrastructure. GitHub for source control. Three chargeback alert network integrations (RDR, Ethoca, CDRN) show domain-specific diversity. Vendor management policy with annual reviews is a positive. But core infrastructure is entirely AWS-dependent with no secondary cloud or CDN provider."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Disputifier has foundational security controls in place for a Type 1 audit, with clean unqualified opinion. Core strengths include multi-AZ hosting, MFA enforcement, annual pen testing, branch protection, and BCDR testing. However, the report reveals a relatively simple single-instance architecture with minimal technology specifics disclosed. No named monitoring tools, no named CI/CD pipeline, no named SIEM, and limited infrastructure sophistication. Appropriate for an early-stage company achieving its first SOC 2, but significant room for maturation."
+    }
+  },
+
+  "red_flags": [
+    "Single EC2 instance (M5a) visible in network diagram suggests single point of failure at the application layer",
+    "No named WAF despite processing sensitive payment/chargeback data",
+    "No named SIEM or centralized log management platform despite handling financial transaction data",
+    "No cybersecurity insurance mentioned",
+    "GitHub webhook deployment on port 9000 restricted only to GitHub public IP - relatively basic deployment model",
+    "No RTO/RPO disclosed despite handling time-sensitive chargeback disputes with network deadlines"
+  ],
+
+  "yellow_flags": [
+    "Type 1 report only (point-in-time) - no operating effectiveness testing over a period",
+    "Very few technology specifics disclosed - no programming languages, frameworks, or named tools for monitoring, CI/CD, or SIEM",
+    "Single region (us-east-1) with no multi-region failover for a platform serving ecommerce merchants",
+    "Backup frequency not explicitly stated despite formal policy existence",
+    "No mention of data encryption key rotation practices",
+    "Content filtering via proxy server mentioned but no named product",
+    "Processing Integrity and Privacy trust criteria excluded despite processing merchant payment data"
+  ],
+
+  "green_flags": [
+    "Clean unqualified opinion with zero exceptions",
+    "MFA enforced across production, source code, and email access",
+    "Annual external penetration testing by independent third-party with remediation tracking",
+    "Monthly automated vulnerability scanning with defined remediation plans",
+    "Branch protection rules with mandatory code review for production merges",
+    "Formal BCDR plan with annual testing across different loss scenarios",
+    "Quarterly user access reviews for all accounts including admin privileges",
+    "One business day SLA for access revocation upon termination",
+    "Per-tenant data segregation (CC6.1.3)",
+    "Vendor management program with annual SOC report reviews and quarterly assessments for non-SOC vendors",
+    "Server hardening with baseline configurations maintained as code with rollback capability",
+    "Amazon Aurora (managed, multi-AZ capable database) rather than self-managed DB"
+  ],
+
+  "key_observations": [
+    "Network diagram reveals a surprisingly simple architecture for a payment-adjacent platform: single EC2 instance, single Aurora database, with GitHub webhook-triggered deployments. This suggests early-stage infrastructure maturity.",
+    "The report uses the carve-out method for AWS, meaning AWS controls are excluded from the audit scope. Physical and environmental security is entirely delegated to AWS.",
+    "Disputifier explicitly has no physical offices - operates from co-working spaces with no physical/environmental controls in scope. This is atypical but acceptable for a fully cloud-native company.",
+    "The org chart shows a flat structure with the Founder at top and 9 direct reports spanning operations, alerts, customer success, chargeback responses, and accounting. No dedicated CTO or CISO role visible in the chart, though a CTO is referenced in patch management controls.",
+    "Log archival after 30 days (to S3) suggests relatively short active log retention, which could limit forensic investigation capability.",
+    "The auditor is Accorp Partners (PAC-FIRM-LIC-47383) - a smaller audit firm. Not a Big 4 or well-known SOC 2 specialist.",
+    "Despite being AI-powered per their product description, no AI/ML infrastructure details are disclosed in the report (no model hosting, training infrastructure, or AI-specific controls)."
+  ]
+}

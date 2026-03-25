@@ -1,0 +1,19 @@
+{
+  "doc_id": "1NIoo8rjLd8lIvUS3z6Xn0RIGhkDeOef4gXKwdP3JxXA",
+  "link": "https://docs.google.com/document/d/1NIoo8rjLd8lIvUS3z6Xn0RIGhkDeOef4gXKwdP3JxXA",
+  "timestamp": "9/10/2025 15:57:46",
+  "display_name": "ProPay",
+  "legal_name": "ProPay AI, Inc",
+  "company_name": "ProPay",
+  "system_description": "ProPay is transforming the warranty claims process with an AI-first approach that streamlines submission, review, and payment.",
+  "audit_end_date": "September 2, 2025",
+  "observation_period": "",
+  "infra_provider": "Supabase",
+  "website": "https://pro-pay.ai",
+  "contact_email": "ops@pro-pay.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1NIoo8rjLd8lIvUS3z6Xn0RIGhkDeOef4gXKwdP3JxXA.pdf",
+  "txt_file": "1NIoo8rjLd8lIvUS3z6Xn0RIGhkDeOef4gXKwdP3JxXA.txt",
+  "has_report": true
+}

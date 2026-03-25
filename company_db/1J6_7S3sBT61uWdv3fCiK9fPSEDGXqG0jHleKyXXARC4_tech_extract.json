@@ -1,0 +1,247 @@
+{
+  "company": "Judgment, Inc",
+  "product": "Judgment / Judgeval",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "April 17, 2025 - July 17, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "No physical office — fully remote/cloud-based",
+  "signing_authority": "Joseph Camyre, CTO",
+
+  "system_description": {
+    "overview": "Judgment Labs is the 'Datadog for AI agents' — purpose-built to monitor, debug, and optimize agent behavior in production. The platform provides traces and evals to power agent post-training (RL, SFT), monitoring, and regression testing.",
+    "products": {
+      "Judgeval Python SDK": "Open-source SDK for integrating evaluation and telemetry into AI agent pipelines",
+      "Judgment Platform (Web Application)": "Web UI for viewing traces, evals, alerts, and feedback datasets",
+      "Judgment Backend Service": "API backend powering evaluation infrastructure, monitoring, and optimization services",
+      "Evaluation Infrastructure": "Flexible eval pipelines, structured feedback collection, regression testing for agents, customizable rubrics",
+      "Monitoring & Observability": "Telemetry SDK for LLM agents, session replay, drift and hallucination detection, anomaly alerts, feedback loop tracing",
+      "Optimization & Feedback Integration": "RL-compatible reward aggregation, evaluation-guided fine-tuning, offline feedback datasets"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out — AWS controls excluded from scope)",
+    "regions": ["us-east-1 (inferred from network diagram label 'AWS Cloud (us-east-1)')"],
+    "physical_presence": "None — no physical offices; all data processed on cloud services",
+    "availability_zones": "Multi-AZ (multiple availability zones explicitly referenced for failover)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with Access Control Lists (ACLs). Network diagram shows production environment in us-east-1 with separate staging and production pipelines, ALB load balancers, ECS service architecture, and a dedicated security group for RunCvelWorker Service",
+    "api_gateway": "AWS ALB (Application Load Balancer) — both judgment-server-alb (production) and judgment-server-staging ALB visible in network diagram",
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management. Network firewalls implemented, configured, and managed with predetermined security rules.",
+    "ids_ips": "IDS and IPS via AWS to identify and protect against threats in conjunction with security policy network settings. Intrusion detection system utilized to monitor and detect unauthorized access or anomalies.",
+    "vpn": "Remote access done through bastion host with VPN",
+    "tls": "TLS (Transport Layer Security) using certificates from an established third-party certificate authority for all web-based system requests",
+    "content_filtering": "Content filtering system routed through proxy server; all systems restricted to internet via content filtering",
+    "multi_region": false,
+    "topology": "SDK/platform requests hit judgment-server-alb (production ALB), traffic routed to ECS tasks (JudgmentBackendService, JudgmentPlatformService, ClaimPayerService, etc.). CI/CD pipelines (CodePipeline/CodeBuild/CodeDeploy) push Docker images to ECR and deploy to ECS. EventBridge, SQS (Amazon MQ, Kinesis), SNS for async messaging. ElastiCache for caching. CloudWatch for monitoring/alarms with auto-scaling policies. Staging environment mirrors production via separate ALB and ECS tasks."
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices",
+    "languages": ["Not explicitly named"],
+    "frameworks": ["Not explicitly named"],
+    "compute": ["ECS (Elastic Container Service)", "EC2 (inferred via ECS)", "Lambda (not confirmed)"],
+    "api_style": "REST (inferred from SDK/platform architecture)",
+    "environments": "At minimum production and staging environments; changes tested in staging before promotion to production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["RDS or similar (production database referenced; specific engine not named)", "ElastiCache (visible in network diagram as 'ClaimPayerServer' ElastiCache for rate limiting)"],
+    "caching": ["ElastiCache"],
+    "file_storage": ["S3 (inferred — ECR image storage, artifact storage via CodePipeline S3 artifacts visible in diagram)"],
+    "data_warehouse": "Not mentioned",
+    "backup_frequency": "Daily (CC7.4.2: 'Backups are taken daily, multi-availability zones are configured')",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS (password policy via AWS; Active Directory referenced for infrastructure accounts)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform; source code tool access requires MFA; email access requires 2FA",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Password policy via AWS: periodic forced changes, password expiry, complexity requirements, account lockout after limited failed attempts"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider KMS (AWS KMS implied — 'uses its cloud provider key management service to encrypt data at rest')",
+    "key_management": "AWS KMS (cloud provider key management service)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "GitHub (inferred — source code management tool with MFA, branch protection, merge approval; 'master branch' referenced in CC8.1.2)",
+    "ci_cd_tool": "AWS CodePipeline + CodeBuild + CodeDeploy (all visible in network diagram with named pipelines: Judgment CodePipeline, PortfolioWorker CodePipeline, Judgment Staging CodePipeline, RunEvalWorker Staging CodePipeline, DemoProxy/Server CodePipeline)",
+    "branch_protection": "Code repository branch rules configured to require additional approval for every merge request to move change to production environment (CC8.1.2)",
+    "iac": "Configuration management tool used for baseline configurations and rollback capability (specific tool not named — likely Terraform or CloudFormation given AWS-native CI/CD)",
+    "container_orchestration": "ECS (Elastic Container Service with ECR — Elastic Container Registry)",
+    "patch_management": "Automatic patch management set up by CTO; monthly patch management reviews; workstations scanned daily for patch compliance; OS patches applied automatically",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "CloudWatch (visible in network diagram with Metrics, Alarms, MessageCount thresholds)",
+    "siem": "Not mentioned",
+    "log_aggregation": "CloudWatch (logging enabled for administrative activities, logon attempts, data deletions, security configurations, permissions, roles)",
+    "alerting": "CloudWatch Alarms with automated alerts for high and critical risk events; incident management process invoked for confirmed events",
+    "metrics": ["CPU", "disk space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "MessageCount", "RequestCountPerTarget"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Primary cloud infrastructure — compute (ECS), networking (VPC, ALB), storage (S3, ECR), messaging (SQS/Kinesis/SNS/EventBridge), caching (ElastiCache), CI/CD (CodePipeline/CodeBuild/CodeDeploy), monitoring (CloudWatch), key management (KMS)", "criticality": "Critical"},
+    {"vendor": "GitHub (inferred)", "purpose": "Source code management with branch protection and MFA", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Endpoint Security Solution installed on all desktops and laptops; anti-virus definitions updated daily; installed and configured on Mac-based workstations and laptops; anti-virus on production servers with weekly definition updates and continuous scanning",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; self-assessment scans performed prior to every production release or annually; internal IT Infrastructure team conducts scans",
+    "penetration_testing": "Annual external penetration testing by independent third party; results reviewed by IT management; high/critical findings remediated and tracked",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 58,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — No significant changes to key personnel roles/responsibilities during engagement period (control could not be tested)",
+      "CC3.2.1 — Cybersecurity insurance control could not be tested because there were no cyber incidents reported during the engagement period",
+      "CC6.5.2 — Customer data deletion upon termination could not be tested because there were no customer terminations during the engagement period",
+      "CC7.3.1 — Incident response policy effectiveness could not be tested because there were no security incidents reported during the engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — Physical access to data center facilities: AWS is responsible for physical security; not in scope",
+      "A1.2 — Environmental protections: Judgment Labs has no office; managed by building management/AWS",
+      "Processing Integrity — Determined not relevant to the system",
+      "Privacy — Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC7.4.2: Daily backups confirmed with multi-AZ configuration and automated alerts",
+      "CC8.1.2: Branch protection enforced — merge to master requires additional approval",
+      "CC8.1.3: Source code changes logged, time-stamped, attributed to author; MFA required for SCM access",
+      "CC4.1.1: Annual external penetration testing by independent third party",
+      "CC6.2.2: Quarterly access reviews for all user accounts including privileged accounts",
+      "CC6.1.4: Access revoked within one business day of termination",
+      "CC7.1.2: Monthly automated vulnerability scans; remediation plan for critical/high findings",
+      "Risk and Governance Executive Committee (RGEC) with IT Leadership Committee meeting semiannually/weekly for security oversight"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Single region (us-east-1) with explicit multi-AZ failover. Full AWS-native stack with ECS, ECR, ALB, ElastiCache, EventBridge, SQS. CI/CD via CodePipeline/CodeBuild/CodeDeploy. IaC referenced (configuration management tool). No CDN or WAF mentioned. No multi-region deployment."
+    },
+    "application_architecture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Clear microservices architecture with named services (JudgmentBackendService, JudgmentPlatformService, ClaimPayerService, RunCvelWorker, DemoProxyServer). Containerized via ECS/ECR. Separate staging and production environments. Branch protection enforced. Specific programming languages not disclosed."
+    },
+    "data_layer": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Multi-AZ database with daily backups confirmed. ElastiCache for rate limiting/caching. S3 for artifact storage. Data classification and retention policies exist. Specific database engine not named. No data warehouse mentioned. Per-tenant segregation referenced."
+    },
+    "security_posture": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Strong security posture: IDS/IPS via AWS, firewalls with annual review, annual external pen test, monthly vuln scans, MFA enforced for admin access and SCM, endpoint protection on all devices with daily AV definitions, cybersecurity insurance, quarterly access reviews, access revocation within 1 business day, network diagram maintained. No WAF identified."
+    },
+    "devops_maturity": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Highly mature for a startup: named CI/CD pipelines in AWS CodePipeline (5+ distinct pipelines visible in network diagram), ECS container orchestration, branch protection enforced, emergency change process, configuration management with rollback, monthly patch management reviews, daily workstation patch compliance scans."
+    },
+    "bcdr_readiness": {
+      "score": 7,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual testing conducted. Daily backups confirmed (CC7.4.2). Multi-AZ failover by spinning up servers across availability zones. No multi-region failover. RTO/RPO not disclosed."
+    },
+    "vendor_diversity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Heavily AWS-concentrated — virtually all infrastructure components are AWS-native (ECS, ECR, ALB, ElastiCache, EventBridge, SQS, SNS, CloudWatch, KMS, CodePipeline). Only one additional inferred vendor (GitHub for SCM). Strong single-vendor dependency on AWS."
+    },
+    "overall": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Judgment Labs shows impressive technical maturity for a small AI infrastructure startup. Fully cloud-native on AWS with microservices, containerization, multi-AZ, mature CI/CD (5 CodePipelines), annual external pen testing, and zero exceptions across 58 controls in a 3-month Type 2 audit. Key risks are heavy AWS concentration, single-region deployment, undisclosed RTO/RPO, and no WAF. The detailed network diagram is a strong positive signal of architectural rigor."
+    }
+  },
+
+  "red_flags": [
+    "Single cloud provider (AWS) with no stated multi-cloud or backup cloud strategy — extreme concentration risk",
+    "Single region (us-east-1) deployment — no multi-region failover capability",
+    "RTO and RPO not disclosed",
+    "No WAF (Web Application Firewall) identified despite internet-facing services",
+    "Programming languages and specific framework stack not disclosed in report"
+  ],
+
+  "yellow_flags": [
+    "Auditor (Accorp Partners) is a lower-tier/newer SOC 2 audit firm — not a Big 4 or well-known mid-tier",
+    "3-month observation window is the minimum for Type 2 — limited operational history tested",
+    "No SIEM mentioned despite logging and monitoring controls",
+    "No SSO for customer authentication mentioned",
+    "DemoProxy/DemoPayerServer services suggest some demo/test infrastructure may be near production scope"
+  ],
+
+  "green_flags": [
+    "Zero exceptions across all 58 controls tested in Type 2 audit",
+    "Detailed AWS network diagram included showing production architecture (ECS, ALB, ECR, ElastiCache, EventBridge, CloudWatch) — rare level of transparency for a startup",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scans",
+    "Multi-AZ failover with daily backups confirmed and tested",
+    "5 distinct CI/CD pipelines (CodePipeline) visible — sophisticated deployment automation",
+    "MFA enforced on admin production access, email, and source code management",
+    "Quarterly access reviews and 1-business-day access revocation SLA",
+    "BCDR plan tested annually with scenarios",
+    "Cybersecurity insurance in place",
+    "Risk and Governance Executive Committee (RGEC) providing board-level security oversight",
+    "IT Leadership Committee meets weekly for security operations review"
+  ],
+
+  "key_observations": [
+    "Judgment Labs is positioning as AI infrastructure (observability/eval for LLM agents) — the product itself involves processing customer AI agent traces and evaluation data, which may contain sensitive customer IP and model outputs",
+    "The company has no physical offices — fully cloud-native from day one, which simplifies the control environment but increases AWS dependency",
+    "The network diagram reveals multiple distinct services (JudgmentBackendService, JudgmentPlatformService, ClaimPayerService, RunCvelWorker, DemoProxyServer) suggesting a more mature microservices decomposition than typical for a company at this stage",
+    "The ClaimPayer service name is unusual for an AI evaluation platform — may indicate a billing/payment processing component that handles financial data",
+    "The presence of a 'DemoProxy' server in the production network diagram could indicate demo traffic routing through the production VPC, which is a potential isolation concern",
+    "Joseph Camyre (CTO) is both the signing authority and the primary technical operator — key-person risk for a startup",
+    "The audit covers only the Security trust service criterion; Availability, Confidentiality, Processing Integrity, and Privacy criteria are not included"
+  ]
+}

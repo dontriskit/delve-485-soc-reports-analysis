@@ -1,0 +1,245 @@
+{
+  "company": "Dentin Inc.",
+  "product": "Dentin Platform",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of August 20, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "hq": "No physical office disclosed; fully remote / cloud-based",
+  "signing_authority": "Not disclosed (placeholder 'Your Name Here' in report)",
+
+  "system_description": {
+    "overview": "Dentin is an AI-automated compliance platform designed to help companies achieve and maintain compliance with frameworks such as SOC 2, HIPAA, GDPR, ISO 27001, and PCI DSS. The platform leverages AI to automate evidence gathering, perform continuous compliance monitoring, AI code scanning, infrastructure monitoring, automated security questionnaire completion, and access control management.",
+    "products": {
+      "Automated Compliance Management Platform": "End-to-end compliance automation for SOC 2, HIPAA, ISO 27001, GDPR, PCI DSS with integration capabilities, continuous monitoring, gap identification, and automated evidence collection",
+      "AI-Powered Security and Compliance Features": "Automated code scanning for security vulnerabilities, automated infrastructure scanning, access control monitoring and alerts, security questionnaire automation",
+      "Compliance Support Services": "White-glove onboarding and implementation support, ongoing compliance guidance, expert auditor coordination"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Google Cloud Platform (GCP) - carve-out method",
+    "regions": ["Not specifically named; report references VPE WEST and VPE EAST in network diagram"],
+    "physical_presence": "None - no physical offices; all data processed on cloud services",
+    "availability_zones": "Multi-AZ (infrastructure hosted in high availability data centers with multiple availability zones)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with access control lists (ACLs). Network diagram shows VPE WEST and VPE EAST regions with multiple availability zones, VPC subnets (private), and VPC VPN Gateways connected via IPSec VPN tunnel.",
+    "api_gateway": "Application gateway referenced in firewall controls (CC6.6.1)",
+    "waf": null,
+    "firewalls": "System firewalls configured on the application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via GCP to identify and protect against threats in conjunction with security policy network settings",
+    "vpn": "Remote access through bastion host with VPN. Network diagram shows VPC VPN Gateways with IPSec VPN Tunnel between regions.",
+    "tls": "TLS using certificates from established third-party certificate authority for web-based systems",
+    "content_filtering": "Content filtering system with proxy server restricting internet access",
+    "multi_region": true,
+    "topology": "Internet -> Internet Gateway -> VPE WEST / VPE EAST (each with multiple AZs and private VPC subnets) -> VPC VPN Gateways connected via IPSec VPN Tunnel -> Sub Power, IOS, Controller (main/backup). Production servers with failover capabilities hosted across multiple AZs."
+  },
+
+  "application_architecture": {
+    "pattern": "Not explicitly disclosed",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["Virtual servers on GCP"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development/test and production environments (CC8.1.4 confirms changes developed and tested in separate environment before implementation)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Databases on GCP (specific database services not named)"],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Not explicitly stated; formal backup policy exists with suitable backups taken and maintained",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "GCP Password Policy / Active Directory referenced (CC6.1.2 mentions Active Directory, server, and database accounts)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1). Also required for source code tool access (CC8.1.3) and email access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination of employment",
+    "password_policy": "Controlled through GCP Password Policy with periodic forced changes, password expiry, complexity requirements. Accounts disabled after limited unsuccessful logon attempts. Guest and anonymous logins not allowed. Desktops locked after inactivity."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service (CC6.1.5)",
+    "key_management": "GCP Cloud KMS (cloud provider key management service to encrypt data at rest and store/manage encryption keys; access to production encryption keys restricted to authorized individuals)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (not specifically named; CC8.1.3 references source code changes logged, time-stamped, attributed to author)",
+    "ci_cd_tool": "Not specifically named",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to production requires additional approval (CC8.1.2)",
+    "iac": "Infrastructure as code referenced - baseline configurations retained within the infrastructure as a code and configuration management tool used for implementation and rollback (CC7.1.1)",
+    "container_orchestration": "None mentioned",
+    "patch_management": "Automatic patch management with monthly patch management reviews by CTO. Workstations receive automatic updates and scanned for patch compliance daily. OS patches tested before deploying to production.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not specifically named; monitoring tools referenced for system capacity and performance monitoring (CC5.2.1)",
+    "siem": "Not specifically named",
+    "log_aggregation": "Not specifically named; logging enabled to monitor administrative activities, logon attempts, data deletions at application and infrastructure level (CC7.2.1)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events. Monitoring tool generates alerts when predefined thresholds are met.",
+    "metrics": ["disc space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "system capacity", "performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Google Cloud Platform (GCP)", "purpose": "Primary cloud infrastructure and data center services (subservice organization)", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers (continuous automatic scanning, weekly definition updates). Also installed on Mac-based workstations and laptops.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications (CC7.1.2). Self-assessment scan performed prior to every release or yearly.",
+    "penetration_testing": "Annual external penetration testing by independent third-party (CC4.1.1). Results reviewed by IT management; high/critical findings remediated in timely manner.",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": true,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 47,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access controls excluded; GCP responsible for physical security of data centers",
+      "A1.2 - Environmental protections excluded; managed by building management / GCP",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC6.1.3 - Customer access appropriately segmented from other customer accounts (per-tenant segregation)",
+      "CC8.1.2 - Branch rules require merge request approval for production changes (branch protection)",
+      "CC7.4.1 - BCDR plans tested annually per defined testing schedule for different loss scenarios",
+      "CC4.1.1 - Annual external penetration testing by independent third-party",
+      "CC7.1.2 - Monthly automated vulnerability scanning with frequency adjusted as required",
+      "CC6.1.5 - Cloud provider KMS used for encryption at rest with restricted key access",
+      "CC7.1.1 - Infrastructure as code with configuration management tool and rollback capability"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 5,
+      "max": 10,
+      "rationale": "GCP with multi-AZ and multi-region (VPE WEST/EAST), VPC segmentation, and failover capabilities are positive. However, no specific GCP services named (Compute Engine, GKE, etc.), no CDN, no serverless mentioned, and network diagram is a sample placeholder rather than their actual architecture."
+    },
+    "application_architecture": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Almost no application architecture detail disclosed. No languages, frameworks, API style, or architectural pattern mentioned. Branch protection and code review confirmed but no CI/CD tool named. Very low transparency on how the application is actually built."
+    },
+    "data_layer": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Databases referenced generically but no specific database services named. No caching, file storage, or data warehouse mentioned. Backup policy exists but frequency not stated. Per-tenant segregation and data classification/retention policies are positives."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Good fundamentals: MFA on production and source code, IDS/IPS via GCP, firewalls on application gateway, annual pen testing, monthly vuln scanning, endpoint protection with AV, TLS in transit, KMS at rest. Missing: no WAF mentioned, no SIEM named, no specific security tooling vendors identified."
+    },
+    "devops_maturity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "IaC referenced with configuration management tool and rollback capability. Branch protection and merge approval required. Separate environments confirmed. However, no CI/CD tool named, no source control platform named, no container orchestration. Emergency change process exists."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual testing of plans for different loss scenarios. Multi-AZ failover with multiple servers across availability zones in GCP. No RTO/RPO disclosed. Backup frequency not stated."
+    },
+    "vendor_diversity": {
+      "score": 2,
+      "max": 10,
+      "rationale": "Only one vendor disclosed: GCP as sole subservice organization. No other third-party services, tools, or vendors named anywhere in the report. Complete single-vendor concentration risk on GCP."
+    },
+    "overall": {
+      "score": 4,
+      "max": 10,
+      "rationale": "This is a heavily templatized SOC 2 Type 1 report with many placeholder/instruction artifacts still visible (yellow highlighted template instructions, sample network diagram, placeholder signing authority). While the control framework is reasonably comprehensive, the report discloses very little specific technology detail - no named databases, languages, frameworks, CI/CD tools, monitoring tools, or SIEM. The security fundamentals (MFA, IDS/IPS, encryption, pen testing) are adequate but generic. Single-vendor dependency on GCP with no other vendors disclosed."
+    }
+  },
+
+  "red_flags": [
+    "Report contains visible template instructions highlighted in yellow that were not removed before publication (pages 12, 14), indicating rushed or careless report preparation",
+    "Network diagram is explicitly labeled as a 'Sample network diagram' with instructions to 'replace this with your actual network diagram' - this is NOT their real architecture",
+    "Organization chart is also a sample placeholder with instructions to replace it",
+    "Signing authority name and designation are blank placeholders ('Your Name Here') - the assertion was not properly signed",
+    "Company address is listed as '[Company Address]' placeholder text - not filled in",
+    "Processing Integrity and Privacy trust criteria excluded as 'not relevant' despite handling customer data for compliance automation",
+    "Single vendor dependency on GCP with zero other third-party services disclosed"
+  ],
+
+  "yellow_flags": [
+    "No specific technology stack disclosed (no databases, languages, frameworks, monitoring tools named)",
+    "No WAF mentioned despite being a web-based SaaS platform",
+    "No SIEM or log aggregation platform named",
+    "No specific CI/CD tooling or source control platform named",
+    "Backup frequency not disclosed despite having a backup policy",
+    "RTO and RPO not disclosed",
+    "SOC 2 Type 1 only (point-in-time, no observation period) - no evidence of sustained operational effectiveness",
+    "No cybersecurity insurance mentioned",
+    "Report references 'Windows/Network team' for patch management which seems inconsistent with a cloud-native AI startup"
+  ],
+
+  "green_flags": [
+    "Unqualified opinion with no exceptions noted",
+    "MFA enforced on production platform, source code tool, and email",
+    "Annual external penetration testing by independent third-party",
+    "Monthly automated vulnerability scanning",
+    "Branch protection with merge request approval required for production",
+    "IDS/IPS deployed via GCP",
+    "Infrastructure as code with configuration management and rollback capability",
+    "BCDR plans documented, reviewed annually, and tested annually",
+    "Multi-AZ deployment with failover capabilities",
+    "Quarterly user access reviews for all accounts including admin",
+    "Per-tenant data segregation",
+    "Formal vendor management policy with annual SOC report reviews",
+    "Access revocation within one business day of termination",
+    "Endpoint protection with AV on both servers and workstations"
+  ],
+
+  "key_observations": [
+    "This report has significant template artifact issues - it appears to have been generated by a compliance automation tool (possibly their own product) with multiple placeholder elements not properly customized, which is ironic for a compliance automation company",
+    "The report claims trust criteria for Security, Availability, Confidentiality, and Privacy on the cover but then excludes Processing Integrity and Privacy inside the report, creating an inconsistency",
+    "The management assertion (page 8) references all five trust criteria including Processing Integrity and Privacy, while page 24 explicitly excludes them - internal contradiction",
+    "Despite being an AI company that does code scanning and infrastructure monitoring, the report discloses almost zero details about their own technology stack, which is unusual",
+    "The network diagram showing VPE WEST and VPE EAST with IPSec VPN tunnels is generic sample content, not their actual infrastructure - any conclusions about their real multi-region setup cannot be validated from this report",
+    "Control descriptions show heavy copy-paste reuse (e.g., CC1.4.1 and CC2.1.2 appear nearly verbatim across multiple criteria), suggesting templated control language rather than specific descriptions of actual practices",
+    "The audit firm (Accorp Partners) is relatively obscure with license PAC-FIRM-LIC-47383 - this should be verified"
+  ]
+}

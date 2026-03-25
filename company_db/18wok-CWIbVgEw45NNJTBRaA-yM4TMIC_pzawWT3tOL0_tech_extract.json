@@ -1,0 +1,211 @@
+{
+  "company": "Baba Care, Inc.",
+  "product": "Babacare",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of July 24, 2025",
+  "auditor": "ACCORP Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "133 NE 2nd Ave, Apt 1107, Miami, FL",
+  "signing_authority": "Connor Sweeney, CEO",
+
+  "report_type_anomaly": "Cover page badge reads 'SOC 2 TYPE I REPORT' and audit date is point-in-time 'as of July 24, 2025' (consistent with Type 1). However, every interior page header reads 'SSAE 21 – SOC 2 Type II Report'. The metadata record also lists report_type as 'SOC 2 Type 2'. This is treated as SOC 2 Type 1 based on the point-in-time audit date and cover badge.",
+
+  "system_description": {
+    "overview": "Babacare is an AI voice companion platform for seniors that provides outbound and inbound phone call services using AI agents, SMS reminders, and a B2B care management dashboard (Care Hub) for care facilities and family members to monitor senior engagement and usage patterns.",
+    "products": {
+      "Outbound/Inbound Phone Calls": "AI voice agent providing companionship calls to seniors up to 60 minutes; handles both outbound and inbound calls",
+      "Care Hub": "B2B dashboard for care workers and family members displaying senior usage patterns, engagement metrics, and care coordination tools",
+      "SMS Reminders": "Automated SMS reminder service for seniors"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out — AWS is a subservice organization)",
+    "regions": ["Not explicitly named; single region implied"],
+    "physical_presence": "No physical office — fully cloud-hosted",
+    "availability_zones": "Multi-AZ (AWS high availability data centers with multiple AZs)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Single VPC with segmented subnets; network ACLs and security groups enforced",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls on application gateway and production network; firewall rules reviewed annually by IT management; AWS security groups and network ACLs",
+    "ids_ips": "IDS/IPS via AWS (intrusion detection and prevention tools configured)",
+    "vpn": "Bastion host for administrative/management access",
+    "tls": "TLS (HTTPS via ACM certificates, TLS termination at Application Load Balancer)",
+    "content_filtering": "Content filtering system routed through proxy server",
+    "multi_region": false,
+    "topology": "Internet → Route 53 (DNS) → Application Load Balancer (HTTPS:443 via ACM, TLS Termination) → VPC: ECS Fargate (FastAPI backend + Celery Worker + Celery Beat) → Redis 7 (ElastiCache) + RDS Proxy → Amazon RDS. AWS Secrets Manager for environment variables/secrets. Management access via bastion host."
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices",
+    "languages": ["Python (implied by FastAPI)"],
+    "frameworks": ["FastAPI (Python backend/API)", "Celery Worker (async task queue)", "Celery Beat (scheduled tasks)"],
+    "compute": ["ECS Fargate"],
+    "api_style": "REST (FastAPI)",
+    "environments": "Separate production and staging environments; development/test environments separate from production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Amazon RDS (type not specified)"],
+    "caching": ["Redis 7 (Amazon ElastiCache)"],
+    "file_storage": [],
+    "data_warehouse": null,
+    "backup_frequency": "Regular (formal backup policy; specific frequency not quantified beyond 'suitable backups taken and maintained')",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS (Active Directory, server and database accounts; AWS password policy enforced)",
+    "mfa": "MFA enforced for all user accounts with administrative access to production platform; SCM access requires MFA",
+    "rbac": true,
+    "sso": null,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day",
+    "password_policy": "AWS password policy: periodic forced changes, password expiry, complexity requirements; lockout after failed login attempts; biometrics supported for desktop unlock"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (HTTPS via ACM certificates)",
+    "at_rest": "Cloud provider key management service (AWS KMS implied)",
+    "key_management": "AWS KMS (cloud provider KMS via CC6.1.5)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "SCM (name not disclosed; MFA enforced; source code changes logged, timestamped, attributed)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Merge to production requires additional approval; branch protection rules configured; developers cannot push directly to production",
+    "iac": "Baseline configurations retained as code; configuration management tool for implementation and rollback",
+    "container_orchestration": "ECS Fargate",
+    "patch_management": "Automatic patch management; CTO performs monthly patch management reviews; workstations scanned daily for patch compliance",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Monitoring tool (name not disclosed) with predefined threshold alerts; continuous capacity and performance monitoring",
+    "siem": null,
+    "log_aggregation": "Logging enabled at application and infrastructure level; log access restricted; logs retained per policy",
+    "alerting": "Automated alerts for high and critical risk events; alerts tracked in change-management/ticketing application",
+    "metrics": ["administrative activities", "logon attempts", "data deletions", "security configurations", "permissions and roles", "system capacity and performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS", "purpose": "Cloud infrastructure — compute (ECS Fargate), database (RDS), caching (ElastiCache/Redis), secrets (Secrets Manager), networking, security (IDS/IPS, KMS)", "criticality": "Critical"},
+    {"vendor": "ACCORP Partners", "purpose": "SOC 2 audit", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software on all desktops/laptops; continuous auto-scan; anti-virus definitions updated daily. For production servers, AV definitions updated weekly.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scanning; self-assessment scan prior to every production release or annually",
+    "penetration_testing": "Annual external third-party penetration testing",
+    "server_hardening": true,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 29,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — physical access delegated to AWS (subservice); AWS responsible for data center security",
+      "A1.2 — environmental protections delegated to AWS and building management",
+      "Processing Integrity criteria — not relevant to system",
+      "Privacy criteria — not relevant to system"
+    ],
+    "notable_controls": [
+      "CTO formally owns patch management with monthly reviews",
+      "CISO role formally assigned for incident response oversight (CC2.1.4)",
+      "Quarterly access reviews for all user accounts including privileged users",
+      "BCDR tested annually across multiple loss scenarios",
+      "Multi-AZ DR by spinning up servers across all AWS availability zones",
+      "Vendor management includes quarterly risk assessment for non-SOC vendors",
+      "Formal Change Management policy with emergency change process",
+      "AWS Secrets Manager for secrets/environment variable management",
+      "RDS Proxy for database connection management"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {"score": 6, "max": 10, "rationale": "AWS ECS Fargate, multi-AZ, RDS Proxy, ElastiCache Redis, AWS Secrets Manager, IaC baseline configs. Single region, no CDN, no WAF — limits score."},
+    "application_architecture": {"score": 6, "max": 10, "rationale": "Named tech stack (FastAPI, Celery Worker, Celery Beat) shows architectural maturity for an async AI voice system. ECS Fargate containerization. Branch protection and code review enforced. No named CI/CD tooling."},
+    "data_layer": {"score": 5, "max": 10, "rationale": "Amazon RDS (type unspecified) + Redis 7 ElastiCache + RDS Proxy. KMS encryption. Backup policy exists but frequency not quantified. No file storage named, no data warehouse."},
+    "security_posture": {"score": 7, "max": 10, "rationale": "IDS/IPS via AWS, monthly vuln scans + pre-release self-assessment, annual external pen test, antivirus (daily desktop / weekly server definitions), MFA for admin access, content filtering, CISO role defined, firewall rules reviewed annually. No WAF named, no SIEM."},
+    "devops_maturity": {"score": 6, "max": 10, "rationale": "IaC with rollback capability, ECS Fargate orchestration, separate environments, branch protection with required approvals, emergency change process, monthly patch reviews, daily patch compliance scans. CI/CD tool unnamed."},
+    "bcdr_readiness": {"score": 6, "max": 10, "rationale": "BCDR policy, annual review and testing confirmed, multi-AZ failover by spinning up AWS servers across all AZs. No stated RTO/RPO, no multi-region DR, backup frequency unquantified."},
+    "vendor_diversity": {"score": 3, "max": 10, "rationale": "AWS is the sole named critical infrastructure provider — compute, database, caching, secrets, networking, and IDS/IPS all delegated to AWS. No named LLM provider or secondary cloud provider despite being an AI voice platform."},
+    "overall": {"score": 5, "max": 10, "rationale": "SOC 2 Type 1 (despite confusing Type II header on interior pages) with zero exceptions. Solid AWS-native architecture with named Python/FastAPI/Celery stack. Gaps: no WAF, no RTO/RPO, single-region, AWS concentration, LLM provider not named despite being an AI voice product, backup frequency unquantified, no cybersecurity insurance."}
+  },
+
+  "red_flags": [
+    "Report header contradiction: cover badge says 'SOC 2 TYPE I REPORT' but interior pages say 'SSAE 21 – SOC 2 Type II Report' — creates ambiguity about report type",
+    "No WAF disclosed — application layer attack protection gap",
+    "No RTO/RPO disclosed — availability commitments unquantified",
+    "Heavy AWS concentration — compute, database, caching, networking, and IDS/IPS all single-vendor",
+    "LLM provider not named despite Babacare being an AI voice agent product — critical dependency opacity"
+  ],
+  "yellow_flags": [
+    "CI/CD tool and monitoring platform not named",
+    "No CDN mentioned — potential latency for seniors in distributed geographies",
+    "No multi-region failover — DR limited to multi-AZ within single AWS region",
+    "Security criteria only — Availability, Confidentiality, Privacy, Processing Integrity not audited",
+    "Backup frequency not explicitly quantified ('suitable backups' only)",
+    "No cybersecurity insurance disclosure",
+    "RDS database type not named — data store opacity",
+    "AV definitions updated weekly for production servers (vs. daily for desktops) — asymmetric update cadence"
+  ],
+  "green_flags": [
+    "Named, modern tech stack (FastAPI, Celery, Redis 7) shows engineering clarity for async AI workloads",
+    "RDS Proxy for database connection pooling — production engineering maturity signal",
+    "AWS Secrets Manager for secrets management (not hardcoded credentials)",
+    "Monthly automated vulnerability scanning + pre-release self-assessment",
+    "Annual external penetration testing",
+    "Quarterly access reviews with 1-business-day revocation SLA",
+    "MFA enforced for all admin/production access and SCM",
+    "CISO role formally assigned",
+    "BCDR tested annually with multiple loss scenarios",
+    "Multi-AZ failover across all AWS availability zones",
+    "Vendor management with quarterly risk assessment for non-SOC vendors",
+    "Unqualified audit opinion with zero exceptions"
+  ],
+  "key_observations": [
+    "Babacare is an AI voice companion for seniors — calls up to 60 minutes; this implies real-time audio processing which is architecturally demanding and creates specific latency and reliability requirements not reflected in the SOC 2 scope",
+    "The FastAPI + Celery Worker + Celery Beat architecture is well-suited for async AI voice task processing — more technically specific than most ACCORP-template companies in this batch",
+    "LLM provider is conspicuously absent from the network diagram and system description despite the product being AI-powered voice calls — the LLM API dependency (likely OpenAI, Anthropic, or similar) is not disclosed",
+    "Report type ambiguity is a material finding: cover says Type I, interior headers say Type II. The audit date 'as of July 24, 2025' is definitively point-in-time (Type 1 format), and the control descriptions match a Type 1 design assessment",
+    "Metadata record shows display_name='Unknown' and empty company fields — Babacare may have been a late submission with incomplete intake data",
+    "Redis 7 specifically noted — suggests deliberate version selection for latest Redis features (caching and potentially real-time pub/sub for voice session management)",
+    "RDS Proxy presence suggests connection pooling is needed — consistent with a high-concurrency AI voice call platform",
+    "ACCORP Partners template — same structure and control language as other companies in this batch"
+  ]
+}

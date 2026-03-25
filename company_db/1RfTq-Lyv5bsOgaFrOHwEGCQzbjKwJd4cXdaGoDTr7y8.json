@@ -1,0 +1,19 @@
+{
+  "doc_id": "1RfTq-Lyv5bsOgaFrOHwEGCQzbjKwJd4cXdaGoDTr7y8",
+  "link": "https://docs.google.com/document/d/1RfTq-Lyv5bsOgaFrOHwEGCQzbjKwJd4cXdaGoDTr7y8",
+  "timestamp": "10/15/2025 15:51:25",
+  "display_name": "Saha Health",
+  "legal_name": "Saha Health, Inc",
+  "company_name": "Saha Health",
+  "system_description": "A platform that eliminates referral bottlenecks, accelerates patient scheduling, boosts staff productivity, and recaptures lost revenue for leading healthcare providers.",
+  "audit_end_date": "October 8, 2025",
+  "observation_period": "",
+  "infra_provider": "GCP",
+  "website": "https://sahahealth.ai",
+  "contact_email": "security@sahahealth.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1RfTq-Lyv5bsOgaFrOHwEGCQzbjKwJd4cXdaGoDTr7y8.pdf",
+  "txt_file": "1RfTq-Lyv5bsOgaFrOHwEGCQzbjKwJd4cXdaGoDTr7y8.txt",
+  "has_report": true
+}

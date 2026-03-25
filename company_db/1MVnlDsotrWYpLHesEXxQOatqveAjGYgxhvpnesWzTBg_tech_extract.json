@@ -1,0 +1,209 @@
+{
+  "company": "GetCounsel, Inc.",
+  "product": "Counsel",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "April 21, 2025 - July 21, 2025",
+  "auditor": "ACCORP Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "No physical office — fully cloud-hosted",
+  "signing_authority": "Dillon Harindiran, CEO & Co-Founder",
+
+  "system_description": {
+    "overview": "Counsel is an AI-powered workflow management platform and operating system for law firms that captures emails, documents, and internal conversations to maximize billable hours and streamline legal operations. It uses LLM technology, RAG-powered document retrieval, and agentic workflow automation to transform law firm efficiency.",
+    "products": {
+      "Legal Workflow Management Platform": "Centralized system of record for law firms with email integration, document management, task tracking, client and project management",
+      "AI-Powered Legal Intelligence": "Automated workflow capture using LLMs, RAG-powered document and knowledge retrieval, agentic workflow automation with rich process data collection",
+      "Implementation and Onboarding Services": "Dedicated onboarding and platform setup for boutique law firms with custom workflow configuration",
+      "Strategic Partnership Support": "Embedded support via Microsoft Teams integration, workflow optimization consulting"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out — AWS is a subservice organization)",
+    "regions": ["us-east-1 (primary)", "us-west-2 (AWS Bedrock / Refining Service)"],
+    "physical_presence": "None — no physical office or servers",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Production VPC and Staging VPC separated; Vector DB + Indexing VPC separate; segmented VPCs with ACLs; network segmentation by sensitivity and criticality",
+    "api_gateway": "AWS Endpoint Service Core (inter-VPC communication)",
+    "waf": null,
+    "firewalls": "System firewalls on application gateway and production network; firewall rules reviewed annually; AWS security groups and network ACLs",
+    "ids_ips": "IDS/IPS via AWS (intrusion detection and prevention tools configured)",
+    "vpn": "Bastion host VPN for administrative/management access",
+    "tls": "TLS for all client HTTPS requests",
+    "content_filtering": "Content filtering system routed through proxy server; email scanning for malicious scripts",
+    "multi_region": true,
+    "topology": "Client HTTPS Request → Production VPC (ECS containers, AWS containers, Postgres RDS, Redis cache, S3, DocVPC containers) → AWS Endpoint Service Core → Vector DB + Indexing VPC (RAG Service, Vector DB EKS cluster) → Refining VPC (Refining Service) → us-west-2 (AWS Bedrock). Staging VPC mirrors production. Management connection via SSH bastion."
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["ECS containers", "EKS cluster (Vector DB)", "AWS containers"],
+    "api_style": "REST and/or gRPC (HTTP or gRPC noted in diagram for inter-service communication)",
+    "environments": "Production VPC and Staging VPC fully separated; development/test environments separate from production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Postgres RDS (primary database)", "Vector DB (embeddings/knowledge retrieval)"],
+    "caching": ["Redis cache"],
+    "file_storage": ["S3"],
+    "data_warehouse": null,
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS (Active Directory, server and database accounts; AWS password policy enforced)",
+    "mfa": "MFA enforced for all remote access and administrative accounts",
+    "rbac": true,
+    "sso": null,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day",
+    "password_policy": "AWS password policy: periodic forced changes, password expiry, complexity requirements; lockout after failed attempts"
+  },
+
+  "encryption": {
+    "in_transit": "TLS",
+    "at_rest": "Cloud provider KMS (AWS KMS implied)",
+    "key_management": "AWS KMS (cloud provider key management service)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "SCM (name not disclosed; MFA enforced; source code changes logged, timestamped, attributed)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Merge to master/main requires additional approval; branch rules configured; developers cannot push directly to production",
+    "iac": "Baseline configurations retained as code; configuration management tool for implementation and rollback",
+    "container_orchestration": "ECS (containers) + EKS (Vector DB cluster)",
+    "patch_management": "Automatic patch management; CTO performs monthly patch management reviews; workstations scanned daily for patch compliance",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Monitoring tool (name not disclosed) with predefined threshold alerts; continuous infrastructure performance monitoring",
+    "siem": null,
+    "log_aggregation": "Logging enabled at application and infrastructure level; log access restricted; logs retained per policy",
+    "alerting": "Automated alerts for high and critical risk events; alerts tracked in change-management/ticketing application",
+    "metrics": ["CPU", "disk space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "administrative activities", "logon attempts", "data deletions", "security configurations", "permissions and roles"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS", "purpose": "Cloud infrastructure — compute (ECS, EKS), database (RDS), storage (S3), networking, security (IDS/IPS), AI (Bedrock LLM)", "criticality": "Critical"},
+    {"vendor": "AWS Bedrock", "purpose": "LLM inference for AI-powered legal intelligence features", "criticality": "Critical"},
+    {"vendor": "Microsoft Teams", "purpose": "Client communication channel integration for Strategic Partnership Support", "criticality": "High"},
+    {"vendor": "ACCORP Partners", "purpose": "SOC 2 audit", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Endpoint Security Solution on all desktops/laptops and production servers; continuous auto-scan; weekly AV definition updates for production servers; anti-malware and Trojan protection; email scanning",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scanning; self-assessment scan prior to every production release",
+    "penetration_testing": "Annual external third-party penetration testing",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 65,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — significant personnel changes not made during engagement period (no events to sample)",
+      "CC6.5.2 — no customer terminations during engagement period",
+      "CC7.3.1 — no security incidents reported during engagement period",
+      "CC3.2.1 — cybersecurity insurance control untestable; no cyber incidents during engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — physical access delegated to AWS (subservice); AWS responsible for data center security",
+      "A1.2 — environmental protections delegated to AWS and building management",
+      "Processing Integrity criteria — not relevant to system",
+      "Privacy criteria — not relevant to system"
+    ],
+    "notable_controls": [
+      "Risk and Governance Executive Committee (RGEC) established with semiannual review cadence",
+      "IT Leadership Committee (ITLC) meets weekly on security operations",
+      "Vendor management includes quarterly risk assessment for non-SOC vendors",
+      "Cybersecurity insurance maintained",
+      "Content filtering via proxy server",
+      "Multi-AZ DR with failover by spinning up servers across all AZs in AWS",
+      "Separate staging VPC from production VPC"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {"score": 8, "max": 10, "rationale": "Multi-region (us-east-1 primary + us-west-2 for Bedrock), multi-AZ, IaC baseline configs, separate staging VPC, ECS+EKS containers, Postgres RDS, Redis, S3. No CDN and no stated WAF limit the score slightly."},
+    "application_architecture": {"score": 7, "max": 10, "rationale": "Microservices with ECS + EKS, separate production/staging environments, branch protection with required approvals, Vector DB + RAG service shows AI architecture maturity. Languages/frameworks not disclosed."},
+    "data_layer": {"score": 8, "max": 10, "rationale": "Postgres RDS + Vector DB + Redis cache + S3 — multi-tier data architecture. Daily backups with multi-AZ, KMS encryption, per-tenant data segmentation confirmed. No data warehouse."},
+    "security_posture": {"score": 8, "max": 10, "rationale": "IDS/IPS via AWS, monthly vuln scans + pre-release self-assessment, annual external pen test, antivirus, MFA for all remote access, cybersecurity insurance, content filtering, firewall reviews. No WAF named."},
+    "devops_maturity": {"score": 8, "max": 10, "rationale": "IaC with rollback capability, ECS+EKS orchestration, separate staging/production VPCs, branch protection, emergency change process, monthly patch reviews, weekly ITLC meetings, daily patch compliance scans. CI/CD tool not named."},
+    "bcdr_readiness": {"score": 7, "max": 10, "rationale": "BCDR policy, annual review and testing confirmed, daily backups, multi-AZ failover via spinning up servers across all AZs. No stated RTO/RPO and no multi-region DR."},
+    "vendor_diversity": {"score": 5, "max": 10, "rationale": "AWS is the dominant single provider (infrastructure + Bedrock LLM). Microsoft Teams is a significant integration. Vendor management program with quarterly reviews for non-SOC vendors shows maturity despite concentration."},
+    "overall": {"score": 7, "max": 10, "rationale": "Strong SOC 2 Type 2 with 3-month operational evidence and zero exceptions. Multi-region AWS, sophisticated AI architecture (RAG + Vector DB + Bedrock), robust governance (RGEC + ITLC). Gaps: no WAF, no stated RTO/RPO, AWS concentration risk, unnamed CI/CD tooling."}
+  },
+
+  "red_flags": [
+    "No WAF disclosed — application layer attack protection gap",
+    "No RTO/RPO stated — availability commitments unquantified",
+    "Heavy AWS concentration including LLM inference via AWS Bedrock — critical multi-layer dependency"
+  ],
+  "yellow_flags": [
+    "CI/CD tool and monitoring platform not named",
+    "No CDN mentioned — potential latency for geographically distributed law firms",
+    "No multi-region failover — DR limited to multi-AZ within us-east-1",
+    "Security criteria only — Availability, Confidentiality, Privacy not independently audited",
+    "3-month audit window (Apr-Jul 2025) is minimum — limited operational evidence period"
+  ],
+  "green_flags": [
+    "SOC 2 Type 2 with 3-month operational evidence — controls tested and verified operating",
+    "Multi-region AWS deployment (us-east-1 + us-west-2) for Bedrock services",
+    "Sophisticated AI architecture: EKS Vector DB + RAG Service + AWS Bedrock LLM",
+    "Risk and Governance Executive Committee (RGEC) with semiannual review",
+    "IT Leadership Committee (ITLC) meeting weekly on security operations",
+    "Cybersecurity insurance confirmed",
+    "Content filtering via proxy server",
+    "Monthly automated vulnerability scanning + pre-release self-assessment scans",
+    "Annual external penetration testing",
+    "Daily backups with multi-AZ and KMS encryption",
+    "Quarterly access reviews with 1-business-day revocation SLA",
+    "Zero exceptions across ~65 controls tested"
+  ],
+  "key_observations": [
+    "GetCounsel is a legal-vertical AI platform — handles attorney-client privileged communications and legal documents, making security posture critical for customer trust",
+    "AWS Bedrock integration in us-west-2 as a separate region shows deliberate cloud architecture for AI inference workloads",
+    "Vector DB on EKS cluster is a distinct architectural component enabling RAG — indicates substantial AI engineering investment",
+    "Staging VPC fully separate from Production VPC — stronger environment isolation than typical ACCORP-template companies in this batch",
+    "ACCORP Partners auditor — same firm as other companies in this batch but this is a Type 2 report with actual control testing",
+    "PAC-FIRM-LIC-47383 notation on page 7 appears to be an auditor license number",
+    "No physical office — fully remote/cloud-native operation reduces physical security risk surface"
+  ]
+}

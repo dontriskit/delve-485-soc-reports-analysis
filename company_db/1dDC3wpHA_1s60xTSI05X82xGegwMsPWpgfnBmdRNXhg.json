@@ -1,0 +1,19 @@
+{
+  "doc_id": "1dDC3wpHA_1s60xTSI05X82xGegwMsPWpgfnBmdRNXhg",
+  "link": "https://docs.google.com/document/d/1dDC3wpHA_1s60xTSI05X82xGegwMsPWpgfnBmdRNXhg",
+  "timestamp": "8/7/2025 16:32:32",
+  "display_name": "Morph",
+  "legal_name": "AutoInfra, Inc.",
+  "company_name": "Morph",
+  "system_description": "Morph is a AI model provider for AI code generation companies",
+  "audit_end_date": "July 30, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://morphllm.com",
+  "contact_email": "security@morphllm.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1dDC3wpHA_1s60xTSI05X82xGegwMsPWpgfnBmdRNXhg.pdf",
+  "txt_file": "1dDC3wpHA_1s60xTSI05X82xGegwMsPWpgfnBmdRNXhg.txt",
+  "has_report": true
+}

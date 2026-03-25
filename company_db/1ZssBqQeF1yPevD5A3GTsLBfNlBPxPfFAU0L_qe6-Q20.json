@@ -1,0 +1,19 @@
+{
+  "doc_id": "1ZssBqQeF1yPevD5A3GTsLBfNlBPxPfFAU0L_qe6-Q20",
+  "link": "https://docs.google.com/document/d/1ZssBqQeF1yPevD5A3GTsLBfNlBPxPfFAU0L_qe6-Q20",
+  "timestamp": "10/6/2025 15:33:52",
+  "display_name": "Anchor Browser",
+  "legal_name": "Anchor Forge LTD.",
+  "company_name": "Anchor Browser",
+  "system_description": "A cloud-based AI-powered browser automation platform that enables AI agents to interact with websites as if they were real users.",
+  "audit_end_date": "",
+  "observation_period": "July 2, 2025 - October 2, 2025",
+  "infra_provider": "AWS",
+  "website": "https://anchorbrowser.io",
+  "contact_email": "dor@anchorforge.io",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1ZssBqQeF1yPevD5A3GTsLBfNlBPxPfFAU0L_qe6-Q20.pdf",
+  "txt_file": "1ZssBqQeF1yPevD5A3GTsLBfNlBPxPfFAU0L_qe6-Q20.txt",
+  "has_report": true
+}

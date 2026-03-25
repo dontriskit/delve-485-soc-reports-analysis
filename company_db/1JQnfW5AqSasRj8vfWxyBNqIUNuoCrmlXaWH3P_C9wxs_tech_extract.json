@@ -1,0 +1,169 @@
+{
+  "company": "sd",
+  "product": "sd",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of ds [audit_end_date field contains 'ds']",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "[blank — address field empty]",
+  "signing_authority": "[not reviewed — junk entry, reading stopped at p.3]",
+
+  "_flag": "JUNK_TEST_ENTRY — Company name is 'sd', all metadata fields contain keyboard-mash test data (company_name: 'sd', system_description: 'sd', audit_end_date: 'ds', website: 'sd'). Cover page shows blank company name (empty string on cover — the 'sd' value may not have rendered to the cover template field). ToC shows 'Other Information Provided by' with blank company name. Infra provider metadata says Azure. Contact email is [redacted]@example.com — a personal Gmail address, suggesting an internal Delve team member testing the platform. legal_name field contains 'sdf' while company_name is 'sd'. Submitted 8/7/2025 13:45:38 — earliest timestamp in the junk cluster. DO NOT USE for any analysis.",
+
+  "system_description": {
+    "overview": "N/A — junk test entry. Company name 'sd' entered as test data. Cover page shows blank company name.",
+    "products": {}
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Azure (per company_db metadata — cover page shows blank company name, Azure cannot be confirmed from report text; not reviewed beyond p.3)",
+    "regions": ["Not reviewed"],
+    "physical_presence": "N/A — junk entry",
+    "availability_zones": "Not reviewed",
+    "additional_cloud": [],
+    "serverless": ["Not reviewed"],
+    "cdn": "Not reviewed"
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": "Not reviewed — junk entry",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Not reviewed",
+    "ids_ips": "Not reviewed",
+    "vpn": "Not reviewed",
+    "tls": "Not reviewed",
+    "content_filtering": "Not reviewed",
+    "multi_region": null,
+    "topology": "Not reviewed — junk entry, reading stopped at p.3"
+  },
+
+  "application_architecture": {
+    "pattern": "N/A",
+    "languages": ["N/A"],
+    "frameworks": ["N/A"],
+    "compute": ["N/A"],
+    "api_style": "N/A",
+    "environments": "N/A",
+    "branch_protection": null,
+    "code_review_required": null
+  },
+
+  "data_storage": {
+    "databases": ["N/A"],
+    "caching": ["N/A"],
+    "file_storage": ["N/A"],
+    "data_warehouse": "N/A",
+    "backup_frequency": "N/A",
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "N/A",
+    "mfa": "N/A",
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": "N/A",
+    "password_policy": "N/A"
+  },
+
+  "encryption": {
+    "in_transit": "N/A",
+    "at_rest": "N/A",
+    "key_management": "N/A",
+    "end_to_end": null
+  },
+
+  "ci_cd_devops": {
+    "source_control": "N/A",
+    "ci_cd_tool": "N/A",
+    "branch_protection": "N/A",
+    "iac": "N/A",
+    "container_orchestration": "N/A",
+    "patch_management": "N/A",
+    "separate_environments": null,
+    "emergency_change_process": null
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "N/A",
+    "siem": "N/A",
+    "log_aggregation": "N/A",
+    "alerting": "N/A",
+    "metrics": [],
+    "log_protection": null,
+    "ids": null
+  },
+
+  "third_party_services": [],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": "N/A",
+    "endpoint_protection": null,
+    "vulnerability_scanning": "N/A",
+    "penetration_testing": "N/A",
+    "server_hardening": null,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "N/A",
+    "rpo": "N/A"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "_note": "Junk entry — not reviewed beyond cover pages. SOC 2 Type 1 template structure (58 pages) identical to DOC 6 and DOC 10. Cover page company name field rendered as blank (empty string), not 'sd' — the 'sd' value may not map to the cover page company name field in the template.",
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": []
+  },
+
+  "scoring": {
+    "infrastructure": {"score": 0, "max": 10, "rationale": "Junk test entry — no real company or infrastructure."},
+    "application_architecture": {"score": 0, "max": 10, "rationale": "Junk test entry."},
+    "data_layer": {"score": 0, "max": 10, "rationale": "Junk test entry."},
+    "security_posture": {"score": 0, "max": 10, "rationale": "Junk test entry."},
+    "devops_maturity": {"score": 0, "max": 10, "rationale": "Junk test entry."},
+    "bcdr_readiness": {"score": 0, "max": 10, "rationale": "Junk test entry."},
+    "vendor_diversity": {"score": 0, "max": 10, "rationale": "Junk test entry."},
+    "overall": {"score": 0, "max": 10, "rationale": "Junk test entry — company name 'sd'/'sdf' (inconsistent between fields), cover page shows blank. Personal Gmail contact ([redacted]@example.com) suggests internal Delve tester. Azure listed as infra provider in metadata. Zero analytical value."}
+  },
+
+  "red_flags": [
+    "CRITICAL: Junk test entry — company name is 'sd', all company_db fields contain keyboard-mash test data.",
+    "CRITICAL: No real company, product, infrastructure, or business behind this report.",
+    "Cover page shows blank company name (empty string) — 'sd' value did not render to cover template field.",
+    "Section 5 ToC reads 'Other Information Provided by' with blank company name.",
+    "audit_end_date field contains 'ds' — not a real date.",
+    "legal_name field is 'sdf' while company_name is 'sd' — inconsistent junk data.",
+    "Contact email [redacted]@example.com is a personal Gmail address — suggests internal Delve team member testing."
+  ],
+  "yellow_flags": [],
+  "green_flags": [],
+  "key_observations": [
+    "This is a junk test submission — 'sd' used for company name, 'ds' for audit date, all fields contain keyboard-mash data.",
+    "Contact email [redacted]@example.com is a personal Gmail address, strongly suggesting this is an internal Delve team member (possibly a developer named 'Kalahasty' or similar) testing the platform's report generation.",
+    "Cover page renders company name as blank (empty string), not 'sd' — this reveals a template field mapping quirk where 'company_name' may not map to the cover page display_name field.",
+    "Azure as listed infrastructure provider — but cover page blank means Azure cannot be confirmed in the generated document.",
+    "Submitted 8/7/2025 13:45:38 — earliest timestamp in the entire dataset, 3 minutes before the 'g' entry and 7 minutes before the 'sdf' entry.",
+    "The three junk entries (DOC 7, 8, 9) were submitted in a 7-minute window (13:45-13:52) on 8/7/2025, confirming they are platform testing sessions, not real customer submissions.",
+    "Should be excluded from any analysis of real customers or compliance postures."
+  ]
+}

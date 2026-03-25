@@ -1,0 +1,19 @@
+{
+  "doc_id": "1s98b1lqKPy3db6Rr-MZswXpUAIhzjIm22lfoMAdfKeM",
+  "link": "https://docs.google.com/document/d/1s98b1lqKPy3db6Rr-MZswXpUAIhzjIm22lfoMAdfKeM",
+  "timestamp": "8/29/2025 14:12:56",
+  "display_name": "Filed",
+  "legal_name": "Filed, Inc.",
+  "company_name": "Filed",
+  "system_description": "Filed helps firms process more returns in less time by cutting prep, reducing review, and freeing teams for higher-value work.",
+  "audit_end_date": "",
+  "observation_period": "May 19, 2025 - August 19, 2025",
+  "infra_provider": "Azure",
+  "website": "https://www.filed.com/",
+  "contact_email": "security@filed.com",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1s98b1lqKPy3db6Rr-MZswXpUAIhzjIm22lfoMAdfKeM.pdf",
+  "txt_file": "1s98b1lqKPy3db6Rr-MZswXpUAIhzjIm22lfoMAdfKeM.txt",
+  "has_report": true
+}

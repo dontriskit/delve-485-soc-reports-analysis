@@ -1,0 +1,235 @@
+{
+  "company": "MPL Risk AI, Inc.",
+  "product": "MPLRisk.ai",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of December 1, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+  "hq": "11726 San Vicente Blvd, Suite 600, Los Angeles, CA 90049",
+  "signing_authority": "Charles Hernandez, Chief Executive Officer",
+
+  "system_description": {
+    "overview": "MPL Risk AI develops AI-powered compliance automation tools designed to streamline vendor risk management, insurance compliance workflows, and other operational processes. The platform reduces manual review burden through workflow automation and configurable rules engines, serving enterprise teams in regulated and compliance-sensitive industries.",
+    "products": {
+      "MPLRisk.ai platform": "Core web platform serving as the central interface for compliance advisory and automation-readiness services",
+      "Vendor Due Diligence Automation Module": "Planned - automates vendor onboarding through structured data collection, document ingest, and risk scoring",
+      "Third-Party Risk Monitoring Module": "Planned - continuously evaluates vendors for legal, financial, cybersecurity, and reputational risks",
+      "Policy & Controls Enforcement Engine": "Planned - allows customers to define and operationalize compliance rules (ESG, privacy, security)",
+      "Insurance Compliance Review Module": "Planned - automates COI validation and exception handling",
+      "Vendor Lifecycle Management Module": "Planned - manages end-to-end vendor interactions from onboarding through offboarding"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out)",
+    "regions": ["Not specified"],
+    "physical_presence": "No physical offices or servers; all data processed on cloud services",
+    "availability_zones": "Multi-AZ (production servers in AWS maintain failover across all availability zones)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Not mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Hosted in AWS VPC environment. Network topology includes segmented VPCs and access control lists (ACLs). System components configured to appropriately segment customer accounts.",
+    "api_gateway": null,
+    "waf": "AWS WAF (shown in network diagram: IAM -> WAF -> Web Application)",
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS employed via AWS to identify and protect against threats in conjunction with security policy network settings",
+    "vpn": "Remote access via bastion host with VPN",
+    "tls": "TLS (Transport Layer Security) using certificates from established third-party certificate authority",
+    "content_filtering": "Content filtering system routed through proxy server; all systems restricted to internet via this system",
+    "multi_region": false,
+    "topology": "User requests -> WAF -> Web Application -> Database; IAM controls access; Logging & Monitoring; External Integrations; all within AWS VPC environment"
+  },
+
+  "application_architecture": {
+    "pattern": "Monolith (single web application platform at early stage)",
+    "languages": ["Not disclosed"],
+    "frameworks": ["Not disclosed"],
+    "compute": ["AWS EC2/servers (not explicitly named)"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development/test and production environments (changes tested before deployment to Stage or Production)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Database (generic - AWS-hosted, not named specifically)"],
+    "caching": [],
+    "file_storage": ["Not disclosed"],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Backup policy exists; frequency not specified",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS (passwords controlled through AWS Password Policy; Active Directory mentioned for infrastructure)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform; MFA required to access source code repository; MFA required for employee email access",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day upon termination",
+    "password_policy": "AWS password policy enforced; includes periodic forced changes, password expiry, complexity requirements; accounts disabled after limited failed logon attempts; guest/anonymous logins not allowed"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest",
+    "key_management": "AWS KMS (cloud provider key management service)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (unnamed; MFA-protected, branch rules configured)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Code repository branch rules configured to require additional approval for every merge request moving to production",
+    "iac": "Configuration management tool used for baseline infrastructure as code (IaC) implementation and rollback capability",
+    "container_orchestration": "Not disclosed",
+    "patch_management": "Automatic patch management set up by CTO; monthly patch management reviews; workstations receive automatic updates and scanned daily for patch compliance; OS patches applied as critical/security patches become available",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Monitoring tool (unnamed) - continuously monitors system capacity and performance, generates alerts at predefined thresholds",
+    "siem": "Not named",
+    "log_aggregation": "Centralized logging (tool not named); logs cover administrative activities, logon attempts, data deletions, security configurations, permissions and roles",
+    "alerting": "Automated alerts configured for high and critical risk events; incidents managed via incident management process",
+    "metrics": ["CPU utilization", "disk space", "incoming/outgoing network traffic", "packet loss", "system capacity"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Primary cloud infrastructure / data center services", "criticality": "Critical"},
+    {"vendor": "Third-party certificate authority", "purpose": "TLS certificates for encrypted web traffic", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and malware protection software installed on all production servers (continuous auto-scan; definitions updated weekly for servers, daily for workstations) and Mac workstations/laptops",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; scan frequency adjustable; self-assessment scans prior to each production release or annually",
+    "penetration_testing": "Annual external penetration testing by independent third party",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to data center facilities (AWS responsibility as subservice org)",
+      "A1.2 - Environmental protections/data backup/recovery infrastructure (MPL Risk has no office; managed by building management/AWS)",
+      "Processing Integrity and Privacy trust service categories - determined not relevant to system"
+    ],
+    "notable_controls": [
+      "CC6.1.1 - MFA enforced for all accounts with administrative access to production",
+      "CC8.1.2 - Branch protection rules require additional approval on all merge requests to production",
+      "CC8.1.3 - Source code access restricted to MFA-authenticated authorized users",
+      "CC4.1.1 - Annual external penetration testing by independent third party",
+      "CC7.1.2 - Monthly automated vulnerability scanning on infrastructure and applications",
+      "CC6.2.2 - Quarterly user access reviews for all accounts including privileged users",
+      "CC6.1.4 - Access revoked within 1 business day of termination",
+      "CC7.4.1 - BCDR policy documented, reviewed annually, and tested annually per defined testing schedule"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 5,
+      "max": 10,
+      "rationale": "AWS with multi-AZ failover and VPC is solid. No multi-region, no CDN mentioned, no specific region disclosed. Early-stage company with all infrastructure on AWS (single provider). IaC used but no specific tooling named."
+    },
+    "application_architecture": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Appears to be an early-stage monolithic web platform. No programming languages, frameworks, or compute services named. Separate environments exist and branch protection is configured, but very limited technical disclosure."
+    },
+    "data_layer": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Database exists on AWS but type not named. No caching, no data warehouse, no file storage specifics disclosed. Backup policy exists but frequency not stated. Data classification and retention policies present."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong controls: WAF, IDS/IPS, monthly vuln scanning, annual external pen test, MFA on admin access, antivirus on all endpoints, quarterly access reviews, access revocation within 1 business day. Limited by lack of SIEM naming and no cybersecurity insurance disclosure."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Separate environments, branch protection, IaC, automatic patch management, emergency change process. CI/CD tool not named, source control tool not named, no container orchestration disclosed. Moderate maturity but low disclosure."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and tested annually with multiple scenarios. Multi-AZ failover in AWS. No RTO/RPO disclosed. No multi-region DR. Backup frequency not specified."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Heavy single-vendor concentration on AWS. Only AWS and a TLS certificate authority identified as third parties. Very limited vendor ecosystem disclosed - appropriate for early-stage company but represents concentration risk."
+    },
+    "overall": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Early-stage compliance-automation company with good governance foundations and solid security practices for its stage. However, most of the product modules are not yet in production (planned roadmap). The SOC 2 scope focuses primarily on the consulting/advisory platform and foundational controls rather than a mature SaaS product. Limited technical disclosure throughout."
+    }
+  },
+
+  "red_flags": [
+    "Most product modules are explicitly NOT in production - the SOC 2 covers a consulting/advisory platform, not the full planned SaaS product suite",
+    "No programming languages, frameworks, or compute services named - extremely limited technical disclosure",
+    "No CDN, no multi-region infrastructure",
+    "No specific cloud regions disclosed",
+    "Database type not named",
+    "CI/CD tool and source control platform not named"
+  ],
+  "yellow_flags": [
+    "Single cloud provider (AWS) with no documented secondary provider",
+    "Backup frequency not specified in the report",
+    "No RTO/RPO disclosed",
+    "No cybersecurity insurance mentioned",
+    "Processing Integrity and Privacy TSC criteria excluded as 'not relevant' - unusual for a compliance automation platform handling customer data"
+  ],
+  "green_flags": [
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scanning",
+    "MFA enforced on production admin access and source code repository",
+    "Quarterly user access reviews",
+    "Access revocation within 1 business day of termination",
+    "BCDR policy tested annually across multiple loss scenarios",
+    "Multi-AZ failover configured",
+    "Branch protection with mandatory code review approval for production",
+    "IaC with rollback capability",
+    "Comprehensive endpoint protection including AV on all production servers and workstations"
+  ],
+  "key_observations": [
+    "This is effectively a pre-product SOC 2 - the company secured certification for its consulting workflows and foundational controls before the actual software product is in production. This is strategically smart for enterprise sales but buyers should note the product roadmap items are not yet audited.",
+    "The network diagram shows a relatively simple architecture: IAM -> WAF -> Web Application -> Database, with logging/monitoring and external integrations as supporting components. No microservices complexity.",
+    "The CEO (Charles Hernandez) is also designated Head of Information Security, with two co-founders (Viet Dinh, Jonathan Choi) beneath. Very small team - key person risk for security oversight.",
+    "Content filtering via proxy server is noted for all systems - suggests a more traditional enterprise endpoint management approach rather than cloud-native zero trust.",
+    "The carve-out method for AWS means physical security, data center environmental controls, and availability zone infrastructure controls are explicitly out of scope."
+  ]
+}

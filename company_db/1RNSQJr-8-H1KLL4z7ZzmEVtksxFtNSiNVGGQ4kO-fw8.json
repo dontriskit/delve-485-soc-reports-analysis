@@ -1,0 +1,19 @@
+{
+  "doc_id": "1RNSQJr-8-H1KLL4z7ZzmEVtksxFtNSiNVGGQ4kO-fw8",
+  "link": "https://docs.google.com/document/d/1RNSQJr-8-H1KLL4z7ZzmEVtksxFtNSiNVGGQ4kO-fw8",
+  "timestamp": "10/6/2025 16:08:57",
+  "display_name": "Blng",
+  "legal_name": "BLNG CORPORATION",
+  "company_name": "Blng",
+  "system_description": "A Creative Suite for Jewelry and Luxury Accessories that leverages AI to create, refine, and present products.",
+  "audit_end_date": "October 3, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://blng.ai",
+  "contact_email": "security@blng.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1RNSQJr-8-H1KLL4z7ZzmEVtksxFtNSiNVGGQ4kO-fw8.pdf",
+  "txt_file": "1RNSQJr-8-H1KLL4z7ZzmEVtksxFtNSiNVGGQ4kO-fw8.txt",
+  "has_report": true
+}

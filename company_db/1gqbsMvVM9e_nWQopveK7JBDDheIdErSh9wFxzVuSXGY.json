@@ -1,0 +1,19 @@
+{
+  "doc_id": "1gqbsMvVM9e_nWQopveK7JBDDheIdErSh9wFxzVuSXGY",
+  "link": "https://docs.google.com/document/d/1gqbsMvVM9e_nWQopveK7JBDDheIdErSh9wFxzVuSXGY",
+  "timestamp": "11/12/2025 15:38:13",
+  "display_name": "Prediction Lab",
+  "legal_name": "Prediction Lab, LLC",
+  "company_name": "Prediction Lab",
+  "system_description": "Prediction Lab is an insurance modeling platform that amplifies your analytical impact. Build, test, and deploy models faster while AI automatically discovers the insights that matter most.",
+  "audit_end_date": "November 7, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://predictionlab.ai",
+  "contact_email": "security@predictionlab.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1gqbsMvVM9e_nWQopveK7JBDDheIdErSh9wFxzVuSXGY.pdf",
+  "txt_file": "1gqbsMvVM9e_nWQopveK7JBDDheIdErSh9wFxzVuSXGY.txt",
+  "has_report": true
+}

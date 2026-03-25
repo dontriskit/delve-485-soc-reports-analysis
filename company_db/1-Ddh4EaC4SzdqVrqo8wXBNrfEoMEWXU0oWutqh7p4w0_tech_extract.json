@@ -1,0 +1,251 @@
+{
+  "company": "KRC Focus Inc.",
+  "product": "Tier One AI Labs Platform",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "April 6, 2025 - July 6, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "hq": "447 Broadway #828, New York, NY 10023",
+  "signing_authority": "Cody Chang, President and Co-Founder (signed July 19, 2025)",
+
+  "system_description": {
+    "overview": "Tier One AI Labs (dba of KRC Focus Inc.) is an AI assurance platform for advisory firms. It provides AI-powered workflow automation, custom LLM solutions, data and systems integration, AI strategy and enablement, and ongoing support and optimization for enterprise clients in accounting, insurance, education, and nonprofit sectors.",
+    "products": {
+      "AI-Powered Workflow Automation": "Automated workflows for advisory firm processes",
+      "Custom LLM Solutions": "Custom large language model development and deployment",
+      "Data & Systems Integration": "Integration of client data and technology systems",
+      "AI Strategy & Enablement": "Strategic guidance and implementation support for AI adoption",
+      "Ongoing Support & Optimization": "Continuous support, monitoring, and improvement services"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Supabase (carve-out subservice organization — sole named cloud/data center provider)",
+    "regions": ["Not explicitly named — Supabase manages regions"],
+    "physical_presence": "No physical office; remote/cloud-only operation",
+    "availability_zones": "Multi-AZ (disaster recovery spins up multiple servers across all availability zones in Supabase; daily backups with multi-AZ per CC7.4.2)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Network segmentation implemented to separate systems and data based on sensitivity and criticality (CC6.1.7 tested, no exceptions). System components configured to appropriately segment customer access from other customer accounts (CC6.1.3).",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Firewalls and intrusion detection tools configured to prevent unauthorized access and detect external security threats. System firewalls on application gateway and production network limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management (CC6.6.1-6.6.3 all tested, no exceptions).",
+    "ids_ips": "Intrusion detection system utilized to monitor and detect unauthorized access or anomalies within the network (CC2.1.1 tested, no exceptions).",
+    "vpn": "Cloud VPN shown in network diagram (page 18). VPN connects internal network to Kubernetes environment.",
+    "tls": "Encryption technologies used to protect communication and transmission of data over public networks (CC6.1.6 tested, no exceptions). TLS version not specified.",
+    "content_filtering": null,
+    "multi_region": false,
+    "topology": "Network diagram (real, not a placeholder) shows: VPC Network containing Kubernetes Engine (with App, Database, AI Model components), Cloud Storage, Artifact Registry, and Cloud VPN at bottom. Internet connects to VPC; Cloud VPN provides internal connectivity. GCP services visible (Kubernetes Engine, Cloud Storage, Artifact Registry) hosted via Supabase."
+  },
+
+  "application_architecture": {
+    "pattern": "Not specified",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["Kubernetes Engine (Google Cloud-based, visible in network diagram)"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development, test/stage, and production environments. Changes tested in separate dev/test environment before production (CC8.1.4 tested, no exceptions). Environments are segregated.",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Supabase (PostgreSQL-based)", "Database component in Kubernetes Engine (per network diagram)"],
+    "caching": [],
+    "file_storage": ["Cloud Storage (visible in GCP network diagram via Supabase)"],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Supabase (password policy managed through Supabase; also references Active Directory for infrastructure accounts)",
+    "mfa": "MFA enforced for all user accounts with administrative access to the production platform (CC6.1.1). MFA required for source code tool access (CC8.1.3). MFA enforced for all remote access (CC6.1.1 tested, no exceptions).",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination (CC6.1.4 / CC6.1.8 tested, no exceptions)",
+    "password_policy": "Controlled through Supabase password policy; includes periodic forced changes, password expiry and complexity requirements; accounts disabled after limited unsuccessful logon attempts; guest/anonymous logins not allowed; unattended desktops locked on inactivity; biometric or password required to unlock"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used (CC6.1.5 / CC6.9 tested, no exceptions)",
+    "key_management": "Cloud provider KMS (Supabase); access to production environment access keys restricted to authorized individuals; encryption key access restricted to authorized personnel only (CC6.1.9 tested, no exceptions)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named (source code management tool with MFA; code repository branch rules to master branch require additional approval)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Code repository branch rules configured to ensure every merge request to master branch requires additional approval. Developers cannot push to production without additional approval (CC8.1.2 / CC8.1.3 tested, no exceptions).",
+    "iac": "Baseline configurations retained within infrastructure as code; configuration management tool used for implementation and rollback capability (CC7.1.1 tested, no exceptions)",
+    "container_orchestration": "Kubernetes Engine (visible in network diagram — GCP-based via Supabase)",
+    "patch_management": "Automatic patch management set up by CTO. Monthly patch management reviews via IT Leadership Committee (ITLC). Workstations configured for automatic updates and scanned daily for patch compliance (CC7.5.1 tested, no exceptions).",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named (monitoring tool generates alerts on predefined thresholds; infrastructure continuously monitored for availability, efficiency, reliability)",
+    "siem": "Not named",
+    "log_aggregation": "Not named (logging enabled for administrative activities, logon attempts, data deletions, security configurations, permissions, roles at application and infrastructure level; CC7.2.1 / CC7.1.3 / CC7.1.4 tested, no exceptions)",
+    "alerting": "Automated alerts configured for high and critical risk events; tracked in change-management/ticketing application",
+    "metrics": ["availability", "efficiency", "reliability", "predefined performance thresholds"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Supabase", "purpose": "Data center / cloud infrastructure services (database, networking, servers, VPC, IDS/IPS, physical security, multi-AZ availability)", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers (continuous auto-scan) and Mac workstations/laptops. Anti-virus definitions updated weekly for servers (CC6.8.1 tested, no exceptions).",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications. Scan frequency adjusted as required. High/critical findings remediated; follow incident response plan (CC7.1.2 / CC7.1.4 tested, no exceptions).",
+    "penetration_testing": "Annual external penetration testing by independent third party. High/critical findings remediated; tracked via incident management process (CC4.1.1 tested, no exceptions).",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 90,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — No significant changes to people/roles during engagement period",
+      "CC3.2.1 — Cybersecurity insurance control could not be tested (no cyber incidents during engagement period)",
+      "CC6.5.2 — Customer data deletion could not be tested (no customer terminations during engagement period)",
+      "CC7.3.1 — Incident response effectiveness could not be tested (no security incidents during engagement period)"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — Physical security excluded; Supabase is responsible for data center physical security",
+      "A1.2 — Environmental protections excluded; Tier One AI Labs has no office and all environmental controls managed by Supabase/building management",
+      "Processing Integrity — Management determined Processing Integrity trust services category is not relevant to the system",
+      "Privacy — Management determined Privacy trust services category is not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC2.1.1 — IDS deployed and tested for unauthorized access detection",
+      "CC4.1.1 — Annual external penetration testing by independent third party confirmed tested",
+      "CC6.1.1 — MFA enforced for all administrative and remote access confirmed tested",
+      "CC6.2.2 — Quarterly user access reviews for all accounts including privileged users confirmed tested",
+      "CC7.4.2 — Daily backups with multi-availability zones and backup failure alerts confirmed tested",
+      "CC8.1.2 / CC8.1.3 — Branch protection (master branch) with required additional approval; source code tool requires MFA",
+      "CC3.2.1 — Cybersecurity insurance maintained",
+      "CC3.1.1 / CC2.1.2 — IT Leadership Committee (ITLC) meets weekly; RGEC meets quarterly for oversight",
+      "CC7.3.3 — Incident response plan tested periodically including root cause evaluation",
+      "CC7.1.1 — Infrastructure as code with configuration management tool for baseline/rollback confirmed tested"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Single cloud provider (Supabase with underlying GCP services: Kubernetes Engine, Cloud Storage, Artifact Registry) with multi-AZ. Real network diagram provided (not a placeholder, unlike Company 1). Cloud VPN shown. No named regions, no CDN, no secondary cloud. Kubernetes container orchestration is a meaningful differentiator vs. Company 1. Heavy reliance on single subservice organization remains a concentration risk."
+    },
+    "application_architecture": {
+      "score": 4,
+      "max": 10,
+      "rationale": "No languages or frameworks disclosed. Kubernetes Engine visible in network diagram confirming containerized deployment — a positive signal. Separate environments confirmed, branch protection enforced to master branch. Pattern unspecified but containerization suggests more mature architecture than a bare VM deployment."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Daily backups, multi-AZ, data classification and retention policies in place, per-tenant segregation, Cloud Storage visible in diagram. Supabase (PostgreSQL) is primary database. No caching or data warehouse disclosed. Active Directory mentioned for infrastructure accounts suggests some additional directory services."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "MFA enforced (all admin/remote access), IDS/IPS, firewalls (application gateway and production network), annual external pen testing, monthly vulnerability scanning with automated tool, anti-malware on all systems, cybersecurity insurance, quarterly access reviews, log protection. WAF not mentioned despite web-based AI platform. SIEM tool unnamed. Network diagram reviewed annually by IT management."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Branch protection and code review enforced (master branch), separate environments, emergency change process, infrastructure-as-code with rollback, Kubernetes container orchestration, automatic patching with monthly ITLC review. CI/CD tool not named. Source control tool not named. Weekly ITLC meetings for operational oversight is a positive maturity indicator."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented, annually reviewed and tested across multiple loss scenarios, daily backups, multi-AZ failover by spinning up multiple servers across all AZs. Incident response plan tested periodically (CC7.3.3 tested). No RTO/RPO stated. No multi-region failover."
+    },
+    "vendor_diversity": {
+      "score": 2,
+      "max": 10,
+      "rationale": "Only one subservice organization (Supabase) named. GCP services (Kubernetes, Cloud Storage, Artifact Registry) are accessed via Supabase — further confirming Supabase as the sole critical dependency. No secondary cloud or CDN provider mentioned."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Tier One AI Labs passes SOC 2 Type 2 with zero exceptions across Security, Availability, and Confidentiality trust criteria. The report is properly signed, HQ address is real, and the network diagram is a genuine GCP/Kubernetes diagram (not a placeholder like Company 1). Kubernetes Engine visible in the diagram indicates a more mature, containerized infrastructure. However, the 3-month audit window is the minimum for Type 2, and the sole reliance on Supabase remains a single point of concentration. Processing Integrity and Privacy excluded. The Accorp Partners template structure is identical to Company 1 but appropriately customized."
+    }
+  },
+
+  "red_flags": [
+    "Complete dependency on a single subservice organization (Supabase) with carve-out treatment — all physical security and data center controls rely on Supabase",
+    "No WAF mentioned despite being a web-based AI platform serving enterprise clients",
+    "No SIEM tool named — monitoring appears informal despite being tested"
+  ],
+
+  "yellow_flags": [
+    "No CI/CD pipeline or IaC tool named by product name",
+    "RTO and RPO not disclosed",
+    "No multi-region failover capability disclosed",
+    "Audit period is only 3 months (April 6 - July 6, 2025) — relatively short observation window for Type 2",
+    "Processing Integrity and Privacy trust criteria excluded — relevant for an AI platform handling advisory firm data",
+    "No CDN mentioned despite being a SaaS platform",
+    "Source control and CI/CD tools unnamed"
+  ],
+
+  "green_flags": [
+    "Zero exceptions across all controls tested in the 3-month Type 2 period",
+    "Report properly signed by Cody Chang (President and Co-Founder) — no placeholder text unlike Company 1",
+    "Real network diagram provided showing GCP Kubernetes architecture (not a sample placeholder)",
+    "Kubernetes container orchestration visible — indicates containerized deployment maturity",
+    "Annual external penetration testing by independent third party confirmed tested",
+    "Monthly vulnerability scanning confirmed tested",
+    "MFA enforced for all administrative and remote access confirmed tested",
+    "Quarterly user access reviews including privileged accounts confirmed tested",
+    "Daily backups with multi-AZ configuration confirmed tested",
+    "Cybersecurity insurance maintained",
+    "BCDR plan documented, annually reviewed and tested across multiple loss scenarios",
+    "Branch protection and code review required prior to production deployment confirmed tested",
+    "Access revocation within one business day of termination confirmed tested",
+    "IT Leadership Committee (ITLC) meets weekly for operational oversight",
+    "Infrastructure-as-code with rollback capability confirmed tested",
+    "Incident response plan tested periodically (CC7.3.3) — stronger than many peers"
+  ],
+
+  "key_observations": [
+    "Tier One AI Labs uses GCP-based services (Kubernetes Engine, Cloud Storage, Artifact Registry, Cloud VPN) accessed via Supabase as the carve-out subservice organization — meaning GCP's underlying controls are inherently available but not directly named in scope",
+    "The network diagram is real and specific to this company, showing Kubernetes-based containerized deployment — a meaningfully stronger technical signal than a placeholder diagram",
+    "Accorp Partners same-template structure as other companies in this batch, but this report was properly customized and signed (HQ address filled in, management assertion signed, no highlighted placeholder text visible)",
+    "Processing Integrity and Privacy criteria are explicitly excluded by management — notable for an AI platform handling advisory firm clients' sensitive financial/business data; this scoping choice limits assurance coverage",
+    "The weekly IT Leadership Committee (ITLC) meetings and quarterly RGEC oversight indicate a more structured governance model than typical for a startup-stage AI company",
+    "BCDR tested across multiple loss scenarios per schedule — stronger than many peers who test only annual tabletop exercises",
+    "AI model is explicitly shown as a component in the Kubernetes network diagram alongside App and Database — the SOC 2 scope covers the AI inference layer"
+  ]
+}

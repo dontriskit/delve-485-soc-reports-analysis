@@ -1,0 +1,227 @@
+{
+  "company": "iollo, Inc.",
+  "product": "iollo metabolomics analytics SaaS platform",
+  "report_type": "ISO 27001",
+  "audit_period": "Stage-2 certification audit dated 8/14/2025 (certification cycle: 9 mandays total across Stage-1, Stage-2, and two surveillance audits)",
+  "auditor": "Gradient Certification Inc.",
+  "opinion": "Certification Agreement (pre-certification document; final certification opinion not included in this document)",
+  "trust_criteria": ["Information Security Management System (ISMS) per ISO/IEC 27001"],
+  "hq": "2261 Market Street, #4822 San Francisco, CA 94114",
+  "signing_authority": "Kai Reyes (signatory on UAF endorsement letter, dated 8/14/2025)",
+
+  "system_description": {
+    "overview": "iollo operates a cloud-hosted metabolomics analytics SaaS platform consisting of a web application, APIs, data processing pipelines, and model/inference services. The platform is delivered to customers via production infrastructure and information systems under iollo's control.",
+    "products": {
+      "iollo SaaS Platform": "Cloud-hosted metabolomics analytics platform including web app, APIs, data processing pipelines, and model/inference services"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Not disclosed in this document (scope references 'cloud-hosted' and 'external cloud and sub-processors managed as external providers')",
+    "regions": null,
+    "physical_presence": "2261 Market Street, #4822 San Francisco, CA 94114 (single site; no temporary/additional sites)",
+    "availability_zones": null,
+    "additional_cloud": null,
+    "serverless": null,
+    "cdn": null
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": null,
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": null,
+    "ids_ips": null,
+    "vpn": null,
+    "tls": null,
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. Scope mentions web app, APIs, data processing pipelines, and model/inference services with supporting production infrastructure."
+  },
+
+  "application_architecture": {
+    "pattern": "Not disclosed (scope implies multi-component: web app + APIs + data pipelines + model/inference services, suggesting microservices or hybrid)",
+    "languages": null,
+    "frameworks": null,
+    "compute": null,
+    "api_style": "REST implied (scope mentions 'APIs')",
+    "environments": "Scope mentions CI/CD and staging environments that can impact production, implying at least: development, staging, production",
+    "branch_protection": null,
+    "code_review_required": null
+  },
+
+  "data_storage": {
+    "databases": null,
+    "caching": null,
+    "file_storage": null,
+    "data_warehouse": null,
+    "backup_frequency": null,
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null
+  },
+
+  "authentication_access_control": {
+    "identity_provider": null,
+    "mfa": null,
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": null,
+    "password_policy": null
+  },
+
+  "encryption": {
+    "in_transit": null,
+    "at_rest": null,
+    "key_management": null,
+    "end_to_end": null
+  },
+
+  "ci_cd_devops": {
+    "source_control": null,
+    "ci_cd_tool": "Not named; scope confirms CI/CD exists and is in-scope for certification",
+    "branch_protection": null,
+    "iac": null,
+    "container_orchestration": null,
+    "patch_management": null,
+    "separate_environments": true,
+    "emergency_change_process": null
+  },
+
+  "monitoring_logging": {
+    "apm_tool": null,
+    "siem": null,
+    "log_aggregation": null,
+    "alerting": null,
+    "metrics": null,
+    "log_protection": null,
+    "ids": null
+  },
+
+  "third_party_services": [
+    {"vendor": "Gradient Certification Inc.", "purpose": "ISO 27001 certification body / auditor", "criticality": "Low"},
+    {"vendor": "United Accreditation Foundation Inc. (UAF)", "purpose": "Accreditation body for certification", "criticality": "Low"},
+    {"vendor": "External cloud provider(s)", "purpose": "Cloud hosting for production infrastructure (unnamed)", "criticality": "Critical"},
+    {"vendor": "Sub-processors", "purpose": "Referenced as 'external providers per ISO/IEC 27001 and the Statement of Applicability' (unnamed)", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": null,
+    "endpoint_protection": null,
+    "vulnerability_scanning": null,
+    "penetration_testing": null,
+    "server_hardening": null,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "Customer-managed environments excluded from scope",
+      "Corporate functions not required for service delivery excluded: HR, Legal/Compliance, Finance, Admin",
+      "Physical Security outside the defined service boundary excluded"
+    ],
+    "notable_controls": [
+      "ISMS scope covers design, development, deployment, and operation of the SaaS platform",
+      "CI/CD and staging environments explicitly in-scope as they can impact production",
+      "Corporate functions of Security, SRE/Platform, and limited IT for access control are in-scope",
+      "Interfaces with external cloud and sub-processors managed per ISO/IEC 27001 and Statement of Applicability",
+      "Internal audits and management reviews required at least once prior to each audit (Section 13.25)"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 2,
+      "max": 10,
+      "rationale": "Cloud-hosted confirmed but zero specifics disclosed. No cloud provider named, no regions, no AZ configuration, no CDN, no IaC mentioned. ISO 27001 certification agreement does not contain infrastructure detail."
+    },
+    "application_architecture": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Scope reveals a multi-component architecture (web app, APIs, data pipelines, model/inference services) suggesting reasonable separation of concerns. However, no languages, frameworks, or compute platforms are named. The presence of separate environments (CI/CD, staging) is positive."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No database, caching, file storage, backup, or data classification details disclosed. Metabolomics analytics implies significant data processing but nothing is specified."
+    },
+    "security_posture": {
+      "score": 3,
+      "max": 10,
+      "rationale": "The fact that iollo is pursuing ISO 27001 certification indicates a security commitment. Security and SRE/Platform teams are in-scope. However, zero specific security tools, controls, or practices are disclosed in this document."
+    },
+    "devops_maturity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "CI/CD and staging are confirmed to exist and are in-scope for ISMS certification. No specific tools (source control, CI/CD platform, IaC, containers) are named."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No BCDR information disclosed. No RTO/RPO, no backup strategy, no failover configuration mentioned."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "External cloud providers and sub-processors are referenced but entirely unnamed. Impossible to assess vendor concentration or diversity."
+    },
+    "overall": {
+      "score": 2,
+      "max": 10,
+      "rationale": "This document is an ISO 27001 Certification Agreement Form, not the actual audit report or Statement of Applicability. It contains almost no technical detail beyond the ISMS scope description. The score reflects the severe lack of extractable technical data, not necessarily the quality of iollo's infrastructure."
+    }
+  },
+
+  "red_flags": [
+    "This PDF is a certification agreement/contract, NOT the ISO 27001 audit report or certificate. It does not contain audit findings, the Statement of Applicability, or control testing results.",
+    "Zero specific technologies, vendors, or tools are named anywhere in the document.",
+    "No cloud provider identified despite being described as 'cloud-hosted'.",
+    "No Statement of Applicability (SoA) included -- the SoA is referenced but not present.",
+    "The document is only 7 pages, which is far below the expected length of an ISO 27001 audit report (typically 20-100+ pages).",
+    "Gradient Certification Inc. (the auditor) is a relatively lesser-known certification body -- not a Big 4 or major accredited CB."
+  ],
+
+  "yellow_flags": [
+    "Scope exclusions are broad: HR, Legal/Compliance, Finance, Admin, and Physical Security are all out of scope.",
+    "Sub-processors and external cloud providers are managed as 'external providers' but none are named, making supply chain risk unassessable.",
+    "No evidence of penetration testing, vulnerability scanning, or any specific security tooling.",
+    "Model/inference services are in-scope but no ML/AI governance or model security practices are described."
+  ],
+
+  "green_flags": [
+    "iollo is actively pursuing ISO 27001 certification, demonstrating commitment to information security governance.",
+    "ISMS scope is well-defined and appropriately scoped to production-impacting systems including CI/CD and staging.",
+    "Dedicated Security and SRE/Platform teams exist (mentioned as in-scope corporate functions).",
+    "Separate environments confirmed (CI/CD, staging, production).",
+    "Single-site operation simplifies scope management and audit coverage."
+  ],
+
+  "key_observations": [
+    "CRITICAL: This document is the certification agreement between iollo and Gradient Certification Inc., not the ISO 27001 audit report itself. The actual audit report, certificate, and Statement of Applicability would need to be obtained separately for meaningful tech due diligence.",
+    "iollo operates in the metabolomics analytics space, a niche biotech/health-tech domain that likely handles sensitive health-related data, making security particularly important.",
+    "The scope description reveals an architecture with web app, APIs, data processing pipelines, and model/inference services -- suggesting a data-intensive ML/analytics platform.",
+    "The certification date of 8/14/2025 suggests this is a new/initial certification (Stage-1 + Stage-2), not a recertification.",
+    "The 9 total mandays across the certification cycle (2+3+2+2) is on the lower end, suggesting a small organization or limited ISMS scope.",
+    "To complete tech due diligence, the following additional documents are needed: (1) the ISO 27001 certificate, (2) the Statement of Applicability, (3) the Stage-2 audit report, and (4) any available system/network architecture documentation."
+  ]
+}

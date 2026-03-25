@@ -1,0 +1,245 @@
+{
+  "company": "Reftab LLC",
+  "product": "Reftab",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "April 9, 2025 – July 9, 2025",
+  "auditor": "ACCORP PARTNERS",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability"],
+  "hq": "Not disclosed",
+  "signing_authority": "Not completed — yellow placeholder 'Your Name Here' in management assertion",
+
+  "system_description": {
+    "overview": "Reftab is asset management software designed for simplicity. It enables organizations to track and manage physical and digital assets. The platform includes automated compliance management and AI-powered security features.",
+    "products": {
+      "Reftab Asset Management": "Core SaaS platform for asset tracking and management",
+      "Automated Compliance Management": "Module for compliance tracking and reporting",
+      "AI Security Features": "AI-powered security capabilities (exact nature not detailed)",
+      "Compliance Support Services": "Professional services supporting compliance workflows"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out — physical security delegated to AWS as subservice organization)",
+    "regions": ["Not explicitly named — implied US regions based on context"],
+    "physical_presence": "None — no physical offices; fully cloud-hosted on AWS",
+    "availability_zones": "Multi-AZ — multiple availability zones configured for high availability",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Not mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with ACLs to control traffic between network segments; network segmentation separates systems and data based on sensitivity and criticality",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Network firewalls implemented, configured, and managed to control incoming/outgoing traffic based on predetermined security rules; firewall access restricted to authorized personnel; configurations reviewed regularly (CC6.6.1–CC6.6.3)",
+    "ids_ips": "Intrusion detection system monitors and detects unauthorized access or anomalies within the network (CC2.1.1); formal network diagram outlining boundary protection including IDS maintained and reviewed annually (CC2.3.7)",
+    "vpn": "Bastion host used for remote/VPN access to production environment",
+    "tls": "TLS used for data in transit; certificates from established CA",
+    "content_filtering": null,
+    "multi_region": false,
+    "topology": "Internet traffic enters segmented VPCs; ACLs control inter-segment traffic; bastion host for admin access; IDS monitors network; firewalls control perimeter; production access restricted to authorized personnel"
+  },
+
+  "application_architecture": {
+    "pattern": "Not explicitly stated",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["EC2 or equivalent (implied — 'multiple servers across all availability zones in AWS')"],
+    "api_style": null,
+    "environments": "Segregated environments — development/test separated from production; change management enforces segregation (CC8.1.2)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Not specified by name"],
+    "caching": [],
+    "file_storage": ["Not specified"],
+    "data_warehouse": "Not mentioned",
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": "Not disclosed"
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not named — generic access control described",
+    "mfa": "MFA enforced for all remote access to entity's information systems (CC6.1.1)",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Promptly upon termination — exact SLA not stated (CC6.1.8)",
+    "password_policy": "Policy and procedures established, documented, and enforced for password strength and confidentiality (CC6.1.5)"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Data encryption at rest implemented to protect sensitive information (CC6.1.10)",
+    "key_management": "Access to encryption keys restricted to authorized personnel only (CC6.1.9); cloud KMS (AWS) implied",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Git-based — 'source code management tool' referenced; source code changes logged, time-stamped, attributed to author (CC5.2.5)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Approval process required prior to merging to master branch; developers cannot make production code changes without additional approval (CC8.1.2, CC8.1.3)",
+    "iac": "Not named — configuration management referenced",
+    "container_orchestration": "Not mentioned",
+    "patch_management": "CTO/Management sets up automatic patch management; monthly patch management reviews; workstations scanned for patch compliance daily (CC7.5.1); vulnerability scans conducted regularly (CC7.1.4)",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named — 'monitoring tool generates alerts when specific predefined thresholds are met' (CC5.2.1)",
+    "siem": "Not named",
+    "log_aggregation": "Log management processes established; logging enabled for administrative activities, log-on attempts, data deletions, function changes, security configurations, permissions, roles (CC7.2.1)",
+    "alerting": "Automated alerts to IT management for high and critical risk events; incidents tracked in change-management/ticketing application",
+    "metrics": ["availability", "efficiency", "reliability", "CPU", "network"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS", "purpose": "Primary cloud infrastructure (IaaS) — subservice organization under carve-out method", "criticality": "Critical"},
+    {"vendor": "Vendor management program (unnamed vendors)", "purpose": "Third-party agreements established and reviewed for security compliance (CC9.2.1, CC9.2.2)", "criticality": "Unknown"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-malware technology implemented, maintained, and regularly updated on production servers and workstations (CC6.8.1)",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Regular vulnerability scans; workstations scanned daily for patch compliance",
+    "penetration_testing": "Not explicitly mentioned in controls tested — vulnerability and system monitoring procedures are established (CC7.1.2)",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 49,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — No significant changes to people/roles during engagement period",
+      "CC3.2.1 — Cybersecurity insurance effectiveness could not be tested (no cyber incidents during period)",
+      "CC7.3.1 — Incident response could not be tested (no security incidents during period)",
+      "CC6.5.2 — Customer data deletion could not be tested (no customer terminations during period)"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — Physical facility access controls excluded (AWS responsibility as subservice org); SOC 2 report of AWS reviewed annually",
+      "A1.2 — Environmental protections excluded (no physical office; AWS responsibility)"
+    ],
+    "notable_controls": [
+      "RGEC (Risk and Governance Executive Committee) oversees security governance; RGEC Charter reviewed and approved annually; committee meets quarterly",
+      "IT Leadership Committee (ITLC) governed by charter; meets weekly on security and operations",
+      "Risk assessments conducted periodically covering security, fraud, legal, regulatory, economic, competition, customer, vendor, technology, and information security",
+      "Formal network diagram with boundary protection (firewalls, IDS) maintained and reviewed annually (CC2.3.7)",
+      "Asset inventory maintained with details on asset ownership and location; reviewed on as-needed basis (CC2.1.4)",
+      "Data classification policy established and implemented (CC2.1.3)",
+      "Source code changes logged, time-stamped, attributed to author (CC5.2.5)",
+      "Production DB access restricted to authorized personnel based on roles (CC5.2.3)",
+      "DR plan covers roles/responsibilities, critical IT programs, OS, personnel, data files, time frames via BIA",
+      "Daily backups with multi-AZ configuration and alerts for backup failures (CC7.4.2)"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Multi-AZ with daily backups and failover confirmed. Single region (implied). VPC with segmentation. No CDN, no secondary cloud. Solid single-region setup but no multi-region redundancy confirmed."
+    },
+    "application_architecture": {
+      "score": 3,
+      "max": 10,
+      "rationale": "No languages, frameworks, compute types, or API style disclosed. Separate environments and branch protection confirmed. Very limited technical disclosure."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Daily backups with multi-AZ confirmed. Data classification and retention policies in place. No database names, caching layer, or data warehouse disclosed."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "IDS, antivirus/anti-malware, firewalls, regular vuln scans, MFA, cybersecurity insurance, access controls all confirmed. No WAF named. No pen test explicitly mentioned in tested controls. Solid controls breadth via ACCORP template."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Branch protection, emergency change process, separate environments, and patch management confirmed. No CI/CD tool named, no container orchestration, no IaC tool named. Monthly patch reviews plus automatic patch management is a positive."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy tested annually, multi-AZ failover, daily backups with alerts. DR plan includes BIA. No multi-region failover. No RTO/RPO disclosed. Reftab's DR explicitly covers AZ-level failures only."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Only AWS named as a specific vendor. Vendor management program exists but no other vendors named. High concentration on single cloud provider."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "SOC 2 Type 2 with zero exceptions across 49 controls is a meaningful positive — operating effectiveness tested over 3 months. However, this is an ACCORP PARTNERS template report with minimal company-specific technical disclosure. No tool names, no technology stack specifics. Asset management software with AI features described but no AI-specific security controls. Controls are adequate for the product stage."
+    }
+  },
+
+  "red_flags": [
+    "Management assertion signing authority field left blank ('Your Name Here' yellow placeholder) — report appears not fully finalized",
+    "Network diagram on page 19 is a 'Sample network diagram' placeholder watermark — actual Reftab architecture not shown",
+    "No penetration testing control explicitly listed in the tested controls section (unlike CoPlane) — notable gap for a Type 2 report",
+    "Zero specific technology names beyond AWS — no database, CI/CD, monitoring, or identity provider named"
+  ],
+
+  "yellow_flags": [
+    "Single-region architecture (AZ failover only, not multi-region) — DR is limited to AWS AZ-level failures",
+    "No RTO or RPO disclosed",
+    "No WAF mentioned for a web-facing SaaS application",
+    "No CDN mentioned",
+    "Access revocation SLA is 'promptly' — no specific timeframe stated (unlike CoPlane's 1 business day)",
+    "3-month Type 2 period (April 9 – July 9) is the minimum; longer periods provide more assurance",
+    "AI Security Features described but no AI-specific controls in scope"
+  ],
+
+  "green_flags": [
+    "SOC 2 Type 2 with zero exceptions across all 49 controls tested — operating effectiveness confirmed",
+    "Anti-malware on production servers and workstations confirmed and tested with sample evidence",
+    "Daily backups with multi-AZ configuration and automated alerts for failures",
+    "Cybersecurity insurance in place and tested",
+    "MFA enforced for all remote access",
+    "Quarterly access reviews (RGEC meets quarterly)",
+    "IT Leadership Committee meets weekly — active security governance",
+    "Risk assessments cover broad threat categories including vendor relationships and technology changes",
+    "Annual review of AWS SOC 2 report to assess subservice org controls",
+    "Data classification policy established and implemented",
+    "Separate environments with enforced change management controls",
+    "Branch protection with approval required before merging to master; emergency change process in place"
+  ],
+
+  "key_observations": [
+    "This is an ACCORP PARTNERS templated SOC 2 Type 2 report — the controls language is near-identical boilerplate shared with CoPlane (same auditor, same template); almost no company-specific technical detail was added",
+    "The placeholder network diagram and unsigned management assertion are significant quality issues for a completed report — suggests the document prep process was rushed",
+    "Reftab's DR is explicitly limited to AZ-level failures within AWS only — no multi-region DR capability described",
+    "The product is described as having AI Security Features but no AI-specific controls appear anywhere in the report — unclear what the AI capabilities actually are",
+    "Asset management software is typically used in enterprise environments; the lack of tenant data segregation disclosure is notable for a multi-tenant SaaS product",
+    "Vendor management program (CC9) is confirmed but no third-party vendor names are disclosed — cannot assess concentration risk beyond AWS"
+  ]
+}

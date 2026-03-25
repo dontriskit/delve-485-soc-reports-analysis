@@ -1,0 +1,19 @@
+{
+  "doc_id": "12aPD2oZlGn0_rWImPNo24hWeYVChQ4iNJKozdttpRq4",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/12aPD2oZlGn0_rWImPNo24hWeYVChQ4iNJKozdttpRq4",
+  "timestamp": "7/2/2025 21:32:56",
+  "display_name": "Dialtone",
+  "legal_name": "Anneal, Inc",
+  "company_name": "Dialtone",
+  "system_description": "AI Agents for enterprise workflow automation",
+  "audit_end_date": "June 23, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "http://usedialtone.com/",
+  "contact_email": "security@usedialtone.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "12aPD2oZlGn0_rWImPNo24hWeYVChQ4iNJKozdttpRq4.pdf",
+  "txt_file": "12aPD2oZlGn0_rWImPNo24hWeYVChQ4iNJKozdttpRq4.txt",
+  "has_report": true
+}

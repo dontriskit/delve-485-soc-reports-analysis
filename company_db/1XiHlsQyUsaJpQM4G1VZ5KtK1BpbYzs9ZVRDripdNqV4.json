@@ -1,0 +1,19 @@
+{
+  "doc_id": "1XiHlsQyUsaJpQM4G1VZ5KtK1BpbYzs9ZVRDripdNqV4",
+  "link": "https://docs.google.com/document/d/1XiHlsQyUsaJpQM4G1VZ5KtK1BpbYzs9ZVRDripdNqV4",
+  "timestamp": "11/3/2025 15:51:38",
+  "display_name": "Trusyft",
+  "legal_name": "Trusyft, Inc.",
+  "company_name": "Trusyft",
+  "system_description": "A visually accessible system of record to guide your client service.",
+  "audit_end_date": "October 23, 2025",
+  "observation_period": "",
+  "infra_provider": "Supabase",
+  "website": "https://trusyft.com",
+  "contact_email": "contact@trusyft.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1XiHlsQyUsaJpQM4G1VZ5KtK1BpbYzs9ZVRDripdNqV4.pdf",
+  "txt_file": "1XiHlsQyUsaJpQM4G1VZ5KtK1BpbYzs9ZVRDripdNqV4.txt",
+  "has_report": true
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "1oIh-ePUYXEm2LixguMaO8jbgjq5fcD3-BAv55uBszKE",
+  "link": "https://docs.google.com/document/d/1oIh-ePUYXEm2LixguMaO8jbgjq5fcD3-BAv55uBszKE",
+  "timestamp": "11/10/2025 15:33:02",
+  "display_name": "Syntra",
+  "legal_name": "Lightning Medical Corp.",
+  "company_name": "Syntra",
+  "system_description": "A real-time chart and charges auditing agent that automatically looks through your data for revenue opportunities and compliance risks.",
+  "audit_end_date": "",
+  "observation_period": "August 1, 2025 - November 1, 2025",
+  "infra_provider": "AWS",
+  "website": "https://syntra.com",
+  "contact_email": "founders@syntra.com",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1oIh-ePUYXEm2LixguMaO8jbgjq5fcD3-BAv55uBszKE.pdf",
+  "txt_file": "1oIh-ePUYXEm2LixguMaO8jbgjq5fcD3-BAv55uBszKE.txt",
+  "has_report": true
+}

@@ -1,0 +1,213 @@
+{
+  "company": "Spott BV",
+  "product": "AI-native Applicant Tracking System (ATS) and Customer Relationship Management (CRM) platform",
+  "report_type": "ISO 27001",
+  "audit_period": "8/29/2025 (certification agreement date; observation period not disclosed)",
+  "auditor": "Gradient Certification Inc.",
+  "opinion": "Certification agreement signed; certificate issuance pending Stage 1 and Stage 2 audits",
+  "trust_criteria": ["ISO/IEC 27001:2022 — Information Security Management System (ISMS)"],
+  "hq": "Frederik Lintsstraat 57, Leuven 3000, Belgium",
+  "signing_authority": "Lander Degreve, (title not disclosed)",
+
+  "system_description": {
+    "overview": "Spott BV operates an AI-native Applicant Tracking System (ATS) and Customer Relationship Management (CRM) platform designed for recruitment firms. The ISO 27001 scope covers all systems, infrastructure, and personnel involved in the design, development, deployment, and maintenance of these services.",
+    "products": {
+      "ATS": "AI-native Applicant Tracking System for recruitment firms",
+      "CRM": "Customer Relationship Management platform for recruitment firms"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Not disclosed",
+    "regions": null,
+    "physical_presence": "Frederik Lintsstraat 57, Leuven 3000, Belgium (single site; no additional/temporary sites)",
+    "availability_zones": "Not disclosed",
+    "additional_cloud": null,
+    "serverless": null,
+    "cdn": "Not disclosed"
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": "Not disclosed",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Not disclosed",
+    "ids_ips": "Not disclosed",
+    "vpn": "Not disclosed",
+    "tls": "Not disclosed",
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. This document is a certification agreement form only, not the full audit report."
+  },
+
+  "application_architecture": {
+    "pattern": "Not disclosed",
+    "languages": null,
+    "frameworks": null,
+    "compute": null,
+    "api_style": "Not disclosed",
+    "environments": "Not disclosed",
+    "branch_protection": null,
+    "code_review_required": null
+  },
+
+  "data_storage": {
+    "databases": null,
+    "caching": null,
+    "file_storage": null,
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Not disclosed",
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not disclosed",
+    "mfa": "Not disclosed",
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": "Not disclosed",
+    "password_policy": "Not disclosed"
+  },
+
+  "encryption": {
+    "in_transit": "Not disclosed",
+    "at_rest": "Not disclosed",
+    "key_management": "Not disclosed",
+    "end_to_end": null
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not disclosed",
+    "ci_cd_tool": "Not disclosed",
+    "branch_protection": "Not disclosed",
+    "iac": "Not disclosed",
+    "container_orchestration": "Not disclosed",
+    "patch_management": "Not disclosed",
+    "separate_environments": null,
+    "emergency_change_process": null
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not disclosed",
+    "siem": "Not disclosed",
+    "log_aggregation": "Not disclosed",
+    "alerting": "Not disclosed",
+    "metrics": null,
+    "log_protection": null,
+    "ids": null
+  },
+
+  "third_party_services": [
+    {"vendor": "Gradient Certification Inc.", "purpose": "ISO 27001 certification body (auditor)", "criticality": "Medium"},
+    {"vendor": "United Accreditation Foundation Inc. (UAF)", "purpose": "Accreditation body for the certification body", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": "Not disclosed",
+    "endpoint_protection": null,
+    "vulnerability_scanning": "Not disclosed",
+    "penetration_testing": "Not disclosed",
+    "server_hardening": null,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": [
+      "Document is a Certification Agreement Form only — not a full audit report or Statement of Applicability (SoA). No individual controls are described or tested in this document. The SoA (version 1.0) is referenced but not included."
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No infrastructure details disclosed whatsoever. The document is only a certification agreement, not an audit report."
+    },
+    "application_architecture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "Only the product category (AI-native ATS/CRM) is mentioned. No languages, frameworks, compute, or architecture patterns disclosed."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No database, caching, storage, backup, or data classification details disclosed."
+    },
+    "security_posture": {
+      "score": 2,
+      "max": 10,
+      "rationale": "The company is pursuing ISO 27001:2022 certification, which implies an ISMS exists, but no specific security tools, controls, or practices are described in this document."
+    },
+    "devops_maturity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No CI/CD, source control, IaC, or deployment practices disclosed."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No BCDR policies, RTO/RPO, backup, or failover information disclosed."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No technology vendors or third-party services disclosed beyond the certification body itself."
+    },
+    "overall": {
+      "score": 1,
+      "max": 10,
+      "rationale": "This document is a certification agreement form, not a completed audit report. It contains virtually no technical or security detail. The only useful data is the scope description identifying Spott BV as an AI-native ATS/CRM provider for recruitment firms. A proper assessment requires the actual ISO 27001 audit report and/or Statement of Applicability."
+    }
+  },
+
+  "red_flags": [
+    "Document is only a Certification Agreement Form (6 pages), not a completed ISO 27001 audit report — no controls, findings, or technical details are present",
+    "The audit appears to be newly initiated (dated 8/29/2025) with Stage 1 and Stage 2 audits still pending — certification has not yet been granted",
+    "Gradient Certification Inc. (the auditor) is a relatively obscure certification body; accreditation is via UAF which is not an IAF MLA signatory",
+    "Total audit mandays of 9 across the full certification cycle is very low, raising questions about audit rigor",
+    "No Statement of Applicability (SoA) is included despite being referenced"
+  ],
+
+  "yellow_flags": [
+    "Single-site certification only (no temporary/additional sites), which may not cover all operational infrastructure if cloud-hosted",
+    "No technical specifics about the 'AI-native' capabilities or how AI/ML models are secured",
+    "The scope mentions 'all systems, infrastructure, and personnel' but provides zero detail about what those systems and infrastructure are"
+  ],
+
+  "green_flags": [
+    "Company is pursuing ISO/IEC 27001:2022 (the latest version of the standard), indicating awareness of current security requirements",
+    "Scope explicitly includes design, development, deployment, and maintenance — covering the full SDLC",
+    "ISMS scope covers all systems and personnel, suggesting a comprehensive (not cherry-picked) certification scope"
+  ],
+
+  "key_observations": [
+    "This is NOT a completed ISO 27001 audit report — it is a pre-audit Certification Agreement Form between Spott BV and Gradient Certification Inc. The actual audit has likely not been completed yet.",
+    "Spott BV describes itself as building an 'AI-native' ATS and CRM — the AI component could present unique security considerations (model training data, inference endpoints, bias) that a standard ISO 27001 audit may not deeply cover.",
+    "The certification body (Gradient Certification Inc.) is based in Sheridan, Wyoming / Houston, Texas. UAF accreditation is used but UAF is not part of the IAF Multilateral Recognition Arrangement, which may limit the international recognition of this certification.",
+    "With only 9 total audit mandays across the full certification cycle, the depth of technical assessment will be limited.",
+    "For a meaningful tech due diligence assessment, the actual completed audit report, Statement of Applicability (SoA v1.0), and any nonconformity reports should be requested."
+  ]
+}

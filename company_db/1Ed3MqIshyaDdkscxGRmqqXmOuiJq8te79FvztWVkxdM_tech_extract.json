@@ -1,0 +1,239 @@
+{
+  "company": "MinusX, Inc.",
+  "product": "MinusX",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "June 29, 2025 - September 29, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "360 S Baywood Ave, San Jose, CA 95128",
+  "signing_authority": "Vivek Aithal Karkada Ramesh, CEO",
+
+  "system_description": {
+    "overview": "MinusX builds AI-powered data agents that help users operate analytics applications (Metabase, Jupyter Notebooks, Grafana, etc.) using natural language. The agents convert business questions into queries and help users model data for downstream analytics. Deployed as a browser extension, embedded agent, or Slack/messaging bot.",
+    "products": {
+      "Browser Extension Agent": "Installed in users' browsers; captures business context and metadata; operates analytics apps via natural language",
+      "Embedded Agent": "Embedded into external web applications or dashboards; powers in-app self-serve analytics via JS snippet or SDK",
+      "MinusX Slack / Message Platform Agent": "Deployed in Slack; delivers proactive insights, answers queries, and routes alerts",
+      "Data Modeling Services": "AI-powered data modeling and semantic layer implementation integrating with dbt and BigQuery"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "DigitalOcean (carve-out subservice organization)",
+    "regions": ["Not specified - DigitalOcean data centers"],
+    "physical_presence": "No physical offices; all data processed on cloud services",
+    "availability_zones": "Multi-AZ (multiple availability zones in DigitalOcean; DR plan spins up multiple servers across all availability zones)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Hosted in DigitalOcean VPC with segmented VPCs and access control lists (ACLs). Network segmentation separates systems and data based on sensitivity and criticality.",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "DigitalOcean Firewall on application gateway and production network; system firewalls configured to limit unnecessary ports, protocols, and services; firewall rules reviewed annually by IT management",
+    "ids_ips": "IDS and IPS via DigitalOcean to identify and protect against threats in conjunction with security policy network settings",
+    "vpn": "DigitalOcean VPN for remote access; bastion host with VPN for remote administration; whitelisted SSH key access",
+    "tls": "TLS using certificates from an established third-party certificate authority for web-based systems",
+    "content_filtering": "Content filtering system routed through proxy server; all systems restricted to internet via proxy",
+    "multi_region": false,
+    "topology": "Internet -> DigitalOcean Firewall -> VPC containing Main Production Server, MinusX Backend Services Container, MinusX Web Server Container, Activity Monitoring Service/Container, Uptime Monitoring Server/Container. Employee remote access via DigitalOcean VPN with whitelisted SSH key. Employee OAuth for internal access."
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid (containerized services on cloud VMs)",
+    "languages": ["Not disclosed"],
+    "frameworks": ["Not disclosed"],
+    "compute": ["DigitalOcean virtual servers / containers (Backend Services Container, Web Server Container)"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development/test and production environments; changes tested before deployment to Stage or Production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["DigitalOcean-hosted database (specific engine not named)"],
+    "caching": [],
+    "file_storage": ["Not specifically disclosed"],
+    "data_warehouse": "None mentioned (product integrates with customer BigQuery/dbt)",
+    "backup_frequency": "Daily (backups taken daily; multi-AZ configured)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not named (DigitalOcean password policy referenced; Employee OAuth for internal access)",
+    "mfa": "MFA enforced for all user accounts with administrative access to the production platform; MFA required to access source code repository; MFA required for employee email access",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Controlled through DigitalOcean password policy; includes periodic forced changes, password expiry and complexity requirements; accounts disabled after limited unsuccessful logon attempts"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest",
+    "key_management": "Cloud provider (DigitalOcean) KMS; access to production environment access keys restricted to authorized individuals",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Git-based SCM (specific platform not named - 'source code management tool' referenced; branch rules configured)",
+    "ci_cd_tool": "Not explicitly named",
+    "branch_protection": "Code repository branch rules configured to require approval for every merge request before moving to production; developers cannot push to production without additional approval",
+    "iac": "Configuration management tool used for baseline configuration management and rollback capability",
+    "container_orchestration": "Containers on DigitalOcean (specific orchestration not named)",
+    "patch_management": "CTO/Management set up automatic patch management; monthly patch management reviews; workstations scanned for patch compliance daily; OS patches applied as they become available",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Uptime Monitoring Server/Container (internal; specific tool not named)",
+    "siem": "Not disclosed",
+    "log_aggregation": "Activity Monitoring Service and Container (DigitalOcean-hosted; specific tool not named); logging enabled for admin activities, logon attempts, data deletions, security configurations, permissions changes",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; monitoring tool generates alerts at predefined thresholds",
+    "metrics": ["CPU utilization", "disk space", "incoming/outgoing network traffic", "packet loss"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "DigitalOcean", "purpose": "Cloud infrastructure / data center services (VPC, servers, firewall, VPN, IDS/IPS, KMS)", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and malware protection installed on all production servers and Mac-based workstations/laptops; definitions updated weekly on production servers; continuous automated scanning",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; periodic scans per audit calendar; self-assessment scan before every production release",
+    "penetration_testing": "Annual external penetration testing by independent third party",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 48,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 - No significant personnel changes during the engagement period",
+      "CC3.2.1 - Cybersecurity insurance could not be tested because there were no cyber incidents during engagement period",
+      "CC6.5.2 - Customer data deletion could not be tested because there were no customer terminations during engagement period",
+      "CC7.3.1 - Security incidents could not be tested because there were no security incidents during engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 - Physical security of data center is DigitalOcean's responsibility (carve-out)",
+      "A1.2 - Environmental protections and data backup recovery infrastructure managed by building management/DigitalOcean",
+      "Processing Integrity and Privacy criteria deemed not relevant to the system"
+    ],
+    "notable_controls": [
+      "Quarterly user access reviews for all accounts including privileged accounts",
+      "Monthly vulnerability scanning via automated tool",
+      "Annual external penetration testing",
+      "Daily backup with multi-AZ configuration",
+      "Risk and Governance Executive Committee (RGEC) with semiannual key control reviews",
+      "IT Leadership Committee meets weekly"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Single cloud provider (DigitalOcean) with multi-AZ failover. No multi-region. No CDN. DR plan exists with AZ-level failover. Basic containerization but no named orchestration platform. Significant concentration risk on DigitalOcean."
+    },
+    "application_architecture": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Containerized architecture on DigitalOcean VMs with separate environments. Branch protection and code review enforced. However, specific languages, frameworks, and CI/CD tools are not disclosed. No mention of testing frameworks."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Daily backups with multi-AZ confirmed, data classification and retention policies exist, per-tenant segregation confirmed. However, specific database engines, caching, and data warehouse details not disclosed."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong: annual external pen test, monthly automated vuln scans, IDS/IPS via DigitalOcean, MFA enforced, endpoint protection, antivirus, cybersecurity insurance, firewall with annual review, quarterly access reviews. Missing: named WAF, named SIEM."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Branch protection enforced, separate environments, emergency change process, automatic patch management. However, CI/CD tool, IaC tool, and source control platform not explicitly named. Container orchestration unnamed."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented, annually reviewed and tested, daily backups with multi-AZ. Continuity plan provides AZ-level failover via DigitalOcean. No multi-region. RTO/RPO not disclosed."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Extreme concentration on DigitalOcean as the sole named subservice organization/cloud provider. No other cloud or infrastructure vendors explicitly listed. Very low diversity."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "MinusX is a small AI analytics startup with a lean but functional security posture. Good process hygiene (pen testing, vuln scanning, MFA, BCDR testing) but heavy DigitalOcean dependency, limited tech stack disclosure, single-region, and minimal vendor diversity limit the score."
+    }
+  },
+
+  "red_flags": [
+    "Extreme infrastructure concentration: DigitalOcean is the sole cloud provider and sole named subservice organization with no redundancy across cloud providers",
+    "No multi-region failover; single region with multi-AZ only",
+    "No WAF mentioned for web application protection",
+    "No SIEM named for security event correlation",
+    "Specific CI/CD tooling, source control platform, programming languages and frameworks not disclosed - limits technical assessment",
+    "Very small team (only CEO and CTO shown in org chart) - key person risk"
+  ],
+
+  "yellow_flags": [
+    "RTO and RPO not disclosed despite having a DR plan",
+    "Content filtering via proxy server mentioned but no specific tool named",
+    "No CDN mentioned - potential availability and performance risk",
+    "Auditor firm (Accorp Partners) is not a Big 4 or nationally recognized SOC firm",
+    "3-month audit period only (June 29 - Sept 29, 2025) is the minimum for Type 2"
+  ],
+
+  "green_flags": [
+    "Clean opinion with zero exceptions across all tested controls",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scanning",
+    "MFA enforced on all production admin access, source code repository, and email",
+    "Quarterly access reviews for all accounts including privileged",
+    "Daily backups with multi-AZ configuration verified by auditor",
+    "BCDR annually reviewed and tested with scenario-based testing",
+    "Cybersecurity insurance in place",
+    "Branch protection and mandatory code review enforced",
+    "Network diagram published and annually reviewed",
+    "Data classification and retention policies documented"
+  ],
+
+  "key_observations": [
+    "DigitalOcean is an unusual choice for a B2B SaaS company targeting enterprise analytics buyers; most peers use AWS or GCP which have more extensive compliance certifications",
+    "The product integrates with customer data environments (Metabase, Jupyter, BigQuery, dbt) - the actual customer data security posture depends heavily on complementary user-entity controls not audited here",
+    "The network diagram reveals a simple flat architecture: main production server with backend and web containers, activity monitoring, and uptime monitoring - suggesting a monolith or early-stage microservices approach",
+    "Source code is managed in a repository with branch protection requiring approvals, suggesting GitHub or similar, but the platform is never named",
+    "The report explicitly excludes Processing Integrity and Privacy trust criteria as 'not relevant' - notable for an AI company processing business data queries"
+  ]
+}

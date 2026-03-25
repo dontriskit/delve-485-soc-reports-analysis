@@ -1,0 +1,229 @@
+{
+  "company": "13139026 Canada Inc.",
+  "product": "Regy",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "September 9, 2025",
+  "auditor": "ACCORP Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+  "hq": "264 Queens Quay West, Suite 328, Toronto ON M5J 1B5, Canada",
+  "signing_authority": "Michael Cain, CEO (signed September 15, 2025)",
+
+  "system_description": {
+    "overview": "Regy (branded as LienFluent) is a legal registry search platform that automates lien and registry searches across Canadian and US jurisdictions. It provides instant search results, AI-generated summaries, and a search API for legal and financial professionals.",
+    "products": {
+      "Registry Searches": "Automated searches across multiple registries (PPSA, UCC, corporate registries)",
+      "Search Summaries and Exports": "AI-generated summaries and exportable search results",
+      "Registry Search API": "Programmatic access to registry search functionality for integration with third-party systems"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out subservice organization)",
+    "regions": ["Not explicitly named"],
+    "physical_presence": "None (no physical office; registered address is a virtual office)",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Not mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with network ACLs; production environment isolated from development and test",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Application gateway firewall and production network firewall; firewall rules restrict unauthorized access",
+    "ids_ips": "IDS/IPS provided via AWS infrastructure controls",
+    "vpn": "Bastion host used for secure administrative access",
+    "tls": "TLS in transit for all communications",
+    "content_filtering": null,
+    "multi_region": false,
+    "topology": "Internet → AWS VPC (segmented) → Regy Application → AWS Database; external search registries and Summary Generator accessed via API; bastion host for admin access; AWS manages underlying physical infrastructure (carve-out)"
+  },
+
+  "application_architecture": {
+    "pattern": "Not explicitly disclosed; cloud-native on AWS",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["AWS EC2 or equivalent (not explicitly named)"],
+    "api_style": "REST (Registry Search API offered to customers)",
+    "environments": "Separate development, test, and production environments",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["AWS RDS or equivalent (not explicitly named)"],
+    "caching": [],
+    "file_storage": ["S3 or equivalent (not explicitly named)"],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Not explicitly stated",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": false
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS IAM",
+    "mfa": "MFA enforced for source code access and administrative accounts",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "1 business day",
+    "password_policy": "Password complexity and expiry enforced via AWS IAM policies"
+  },
+
+  "encryption": {
+    "in_transit": "TLS",
+    "at_rest": "AES-256 via AWS managed encryption",
+    "key_management": "AWS managed keys (KMS implied)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Git-based with MFA (specific platform not named)",
+    "ci_cd_tool": "Not explicitly named",
+    "branch_protection": "Merge approval required before merging to main branch; branch protection rules enforced",
+    "iac": "Not explicitly confirmed",
+    "container_orchestration": "Not disclosed",
+    "patch_management": "Automatic patch management; CTO responsible for overseeing patch process",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not disclosed",
+    "siem": "Not disclosed",
+    "log_aggregation": "AWS CloudWatch (implied from AWS infrastructure)",
+    "alerting": "Not explicitly named",
+    "metrics": ["System availability", "Performance metrics"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS (Amazon Web Services)", "purpose": "Primary cloud infrastructure (carve-out subservice organization)", "criticality": "Critical"},
+    {"vendor": "Registry Search APIs", "purpose": "External registry data sources (PPSA, UCC, corporate registries)", "criticality": "Critical"},
+    {"vendor": "Summary Generator", "purpose": "AI-powered search result summarization", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Antivirus deployed on endpoints; weekly definition updates",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans",
+    "penetration_testing": "Annual external penetration test",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access controls delegated to AWS (carve-out)",
+      "A1.2 - No physical office; physical environmental controls not applicable"
+    ],
+    "notable_controls": [
+      "Segmented VPCs with network ACLs for production isolation",
+      "1 business day access revocation SLA — explicit and enforceable",
+      "Annual BC/DR testing covering multiple loss scenarios",
+      "Quarterly logical access reviews",
+      "Branch protection with required merge approvals",
+      "Formal change management process with emergency change procedure",
+      "Registry Search API offered externally — additional attack surface managed via separate network controls"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Multi-AZ on AWS with segmented VPCs and network ACLs. No multi-region, no CDN mentioned, IaC not confirmed. Standard AWS carve-out deployment."
+    },
+    "application_architecture": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Limited disclosure. Separate environments and branch protection confirmed. Registry Search API is a notable product capability. No language, framework, or architecture pattern disclosed."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "AWS-based database (specific service not named). Data classification and retention policies in place. Multi-AZ. No caching, no data warehouse, backup frequency not stated."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Monthly vuln scans + annual pen test + antivirus + IDS/IPS + server hardening + MFA. Application gateway and network firewalls in place. No WAF explicitly mentioned. No SIEM named."
+    },
+    "devops_maturity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Branch protection, separate environments, formal change management, and patch management confirmed. No CI/CD tool named, IaC not confirmed, no container orchestration disclosed."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy with annual review and testing across multiple scenarios, multi-AZ failover. RTO/RPO not disclosed. No multi-region failover. Daily backups implied."
+    },
+    "vendor_diversity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Primary dependency on AWS plus external registry APIs and a summary generator. Core business depends on third-party registry data availability. Manageable but registry API uptime is outside Regy's control."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Solid foundational SOC 2 posture with full five trust criteria scope — impressive for a Type 1. Multi-AZ, quarterly access reviews, annual pen test, segmented VPCs, and 1-day revocation SLA are positives. Significant gaps in technical disclosure (no named tech stack) and heavy dependency on external registry APIs that are outside their control."
+    }
+  },
+
+  "red_flags": [
+    "Core product functionality (registry searches) depends on third-party external APIs outside Regy's control",
+    "RTO and RPO not disclosed",
+    "No WAF explicitly mentioned despite external-facing API product",
+    "Database and storage services not named — cannot assess specific AWS service configuration"
+  ],
+  "yellow_flags": [
+    "Limited application architecture disclosure — no languages, frameworks, or architecture pattern named",
+    "No SIEM tool named",
+    "CI/CD tool not identified",
+    "IaC not confirmed",
+    "SOC 2 Type 1 only — no operational effectiveness demonstrated over time",
+    "Company legal name (13139026 Canada Inc.) is a numbered company — minimal public corporate presence"
+  ],
+  "green_flags": [
+    "Full five-criteria SOC 2 scope (Security, Availability, Processing Integrity, Confidentiality, Privacy) — unusually broad for a Type 1",
+    "Annual external penetration testing",
+    "Monthly automated vulnerability scanning",
+    "Quarterly access reviews",
+    "Explicit 1 business day access revocation SLA",
+    "Segmented VPCs with network ACLs for production isolation",
+    "Branch protection with required merge approvals",
+    "Annual BC/DR testing covering multiple loss scenarios",
+    "Formal emergency change procedure in place"
+  ],
+  "key_observations": [
+    "The 5-criteria SOC 2 Type 1 scope is notable — most early-stage companies only cover Security. This signals intentional compliance investment.",
+    "Business model critically depends on external registry API availability — PPSA, UCC, and corporate registry downtime would directly break the product",
+    "Registry Search API as an external product offering expands the attack surface beyond typical SaaS; network segmentation appears designed to address this",
+    "The company legal entity is a numbered Canadian corporation — Regy/LienFluent may be in an early rebranding phase (website is lienfluent.com)",
+    "Signed personally by CEO Michael Cain — indicates founder-level accountability for security posture, common for early-stage companies"
+  ]
+}

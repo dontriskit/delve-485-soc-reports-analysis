@@ -1,0 +1,19 @@
+{
+  "doc_id": "1DmnrwAQCyr7dfEQGDijhWUtpGfn8AWGJTk8Bikt7Mrw",
+  "link": "https://docs.google.com/document/d/1DmnrwAQCyr7dfEQGDijhWUtpGfn8AWGJTk8Bikt7Mrw",
+  "timestamp": "10/15/2025 16:25:41",
+  "display_name": "Mesa",
+  "legal_name": "Carmel Computing Company",
+  "company_name": "Mesa",
+  "system_description": "An AI-powered code repository that enables engineers to review, ship, and fix code faster.",
+  "audit_end_date": "",
+  "observation_period": "July 9, 2025 - October 9, 2025",
+  "infra_provider": "AWS",
+  "website": "security@withmesa.com",
+  "contact_email": "https://mesa.dev",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1DmnrwAQCyr7dfEQGDijhWUtpGfn8AWGJTk8Bikt7Mrw.pdf",
+  "txt_file": "1DmnrwAQCyr7dfEQGDijhWUtpGfn8AWGJTk8Bikt7Mrw.txt",
+  "has_report": true
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "1vz6MS1fT0GE7xi5sWEWtAzcrSCNrLFdnOz89XvdDoh8",
+  "link": "https://docs.google.com/document/d/1vz6MS1fT0GE7xi5sWEWtAzcrSCNrLFdnOz89XvdDoh8",
+  "timestamp": "9/15/2025 15:18:03",
+  "display_name": "Timeglass",
+  "legal_name": "Timeglass, Inc.",
+  "company_name": "Timeglass",
+  "system_description": "Fully automated AI powered time tracking and work productivity app.",
+  "audit_end_date": "September 8, 2025",
+  "observation_period": "",
+  "infra_provider": "GCP",
+  "website": "https://timeglass.ai",
+  "contact_email": "security@timeglass.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1vz6MS1fT0GE7xi5sWEWtAzcrSCNrLFdnOz89XvdDoh8.pdf",
+  "txt_file": "1vz6MS1fT0GE7xi5sWEWtAzcrSCNrLFdnOz89XvdDoh8.txt",
+  "has_report": true
+}

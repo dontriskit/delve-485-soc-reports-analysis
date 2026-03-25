@@ -1,0 +1,239 @@
+{
+  "company": "Xerpa AI INC",
+  "product": "Xerpa",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of November 13, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "2679 N Geranium Drive, Saratoga Springs, UT 84045",
+  "signing_authority": "Skyler Taylor, CEO",
+
+  "system_description": {
+    "overview": "Xerpa is a real-time AI sales copilot (AI CRO) that supports revenue teams before, during, and after every customer interaction. It provides live in-call guidance, automated follow-up, post-call summaries, and CRM sync to improve rep productivity and ensure consistent sales execution.",
+    "products": {
+      "Real-Time AI Sales Copilot": "Provides live, in-call AI guidance during sales meetings; detects objections, buying signals, and recommends responses in real time",
+      "Pre-Call Intelligence Engine": "Automatically analyzes CRM, email, meeting notes, and past interactions; generates recommended talking points and risk alerts",
+      "Post-Call Automation Suite": "Creates structured call summaries, action items, MEDDICC insights; syncs notes into CRM",
+      "Sales Enablement & Playbook Enforcement Module": "Reinforces internal methodology with real-time prompts; highlights missed opportunities",
+      "Integrations Layer": "Connects to Salesforce, HubSpot, Zoom, Google Meet, Gmail, Outlook for bi-directional sync and workflow automation"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out)",
+    "regions": ["Not specified"],
+    "physical_presence": "No physical offices; no physical servers — all cloud",
+    "availability_zones": "Multi-AZ (report states 'spinning up multiple servers across all availability zones in AWS')",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Not mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Hosted in AWS VPC with segmented VPCs and access control lists (ACLs). System components configured so company and customer access is appropriately segmented from other customer accounts.",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on the application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS deployed via AWS to identify and protect against threats in conjunction with security policy network settings.",
+    "vpn": "Remote access via bastion host with VPN.",
+    "tls": "TLS with certificates from established third-party certificate authority",
+    "content_filtering": "Content filtering system routed through proxy server; all systems restricted to internet through this proxy",
+    "multi_region": false,
+    "topology": "User requests arrive encrypted via TLS; traffic passes through AWS VPC with segmented subnets and ACLs; IDS/IPS monitors threats; remote admin access via bastion host/VPN; production servers managed and protected by AWS with multi-AZ failover"
+  },
+
+  "application_architecture": {
+    "pattern": "Not disclosed",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["AWS (virtual servers hosted/managed by AWS)"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development/test and production environments (CC8.1.4: changes developed and tested in separate dev/test environment before production)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Not specifically named — AWS-hosted databases mentioned generically"],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Defined in Backup Policy (frequency not explicitly stated)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS IAM / Active Directory (passwords controlled through AWS password policy; AD mentioned for server/database accounts)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform; MFA required for source code tool access; 2FA required for employee email",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "AWS password policy — periodic forced changes, password expiry, complexity requirements; accounts disabled after limited failed logon attempts"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest",
+    "key_management": "AWS KMS (cloud provider key management service)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named (source code management tool mentioned generically)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Code repository branch rules configured — every merge request to move change to production requires additional approval (CC8.1.2)",
+    "iac": "Configuration management tool used for baseline configs, implementation, and rollback (not named)",
+    "container_orchestration": "Not disclosed",
+    "patch_management": "Automated patch management set up by CTO/Management; monthly patch management reviews; workstations receive automatic updates and scanned daily for patch compliance; critical/security OS patches applied as available",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Monitoring tool (not named) — continuously monitors system capacity and performance; generates threshold alerts",
+    "siem": "Not disclosed",
+    "log_aggregation": "Not named (logging enabled for admin activities, logon attempts, data deletions at application and infrastructure level)",
+    "alerting": "Automated alerts to IT management for high and critical risk events",
+    "metrics": ["CPU utilization", "disk space", "network traffic", "packet loss"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS", "purpose": "Cloud infrastructure / data center services (subservice org)", "criticality": "Critical"},
+    {"vendor": "Salesforce", "purpose": "CRM integration for bi-directional data sync", "criticality": "High"},
+    {"vendor": "HubSpot", "purpose": "CRM integration for bi-directional data sync", "criticality": "High"},
+    {"vendor": "Zoom", "purpose": "Conferencing integration for real-time call support", "criticality": "High"},
+    {"vendor": "Google Meet", "purpose": "Conferencing integration for real-time call support", "criticality": "High"},
+    {"vendor": "Gmail", "purpose": "Email integration for follow-up automation", "criticality": "Medium"},
+    {"vendor": "Outlook", "purpose": "Email integration for follow-up automation", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and malware protection software installed on all production servers (auto-scan continuous basis; definitions updated weekly); also on Mac workstations/laptops",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; scan frequency adjustable; management remediates high/critical findings",
+    "penetration_testing": "Annual external penetration testing by independent third party",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 28,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — Physical access to data center facilities: AWS is responsible; out of scope",
+      "A1.2 — Environmental protections / backup processes: Xerpa has no office; AWS manages environmental controls"
+    ],
+    "notable_controls": [
+      "CC8.1.2: Branch protection enforced — every merge request to production requires additional approval",
+      "CC8.1.3: Source code changes logged, time-stamped, attributed to author; source code tool access restricted to authorized users with MFA",
+      "CC6.2.2: Quarterly user access reviews for all accounts including privileged users",
+      "CC6.1.4: Access revocation within one business day of termination",
+      "CC7.1.2: Automated monthly vulnerability scans on infra and applications",
+      "CC4.1.1: Annual external penetration testing by independent third party",
+      "CC7.4.1: BCDR plan documented, reviewed annually, tested annually with scenario-based testing"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 5,
+      "max": 10,
+      "rationale": "AWS multi-AZ with VPC, IDS/IPS, and VPN. No CDN mentioned, no multi-region, specific regions undisclosed. No IaC tool named explicitly though configuration-as-code approach described."
+    },
+    "application_architecture": {
+      "score": 3,
+      "max": 10,
+      "rationale": "No languages, frameworks, or compute services named. Separate environments confirmed, branch protection confirmed, but architecture pattern undisclosed. Very limited technical disclosure."
+    },
+    "data_layer": {
+      "score": 3,
+      "max": 10,
+      "rationale": "No specific databases, caching, or storage services named. Multi-AZ confirmed, backup policy exists, data classification policy in place, per-tenant segregation confirmed. No retention period or RPO specified."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Monthly vuln scans, annual external pen test, IDS/IPS, endpoint protection, MFA on admin and source code, quarterly access reviews, 1-day revocation SLA, antivirus on all systems. No WAF, no SIEM named."
+    },
+    "devops_maturity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Branch protection, separate environments, emergency change process, automated patch management confirmed. But CI/CD tool, IaC tool, and source control platform not named — significant disclosure gap for a 2025 report."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy exists, reviewed and tested annually with scenario-based testing, multi-AZ failover capability. No RTO/RPO disclosed, no multi-region failover, backup frequency not stated."
+    },
+    "vendor_diversity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "AWS is single critical cloud dependency (carve-out). Multiple SaaS integrations (Salesforce, HubSpot, Zoom, Google Meet) are critical for product function. Manageable concentration but heavy AWS reliance."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Solid foundational security posture with multi-AZ AWS, MFA enforcement, IDS/IPS, quarterly access reviews, annual pen test, and tested BCDR. Major gap is extremely limited technical disclosure — no named CI/CD tool, no specific databases, no IaC tool, no cloud regions, no languages/frameworks. Early-stage company with appropriate controls for its stage."
+    }
+  },
+
+  "red_flags": [
+    "No specific databases, storage services, or caching technologies disclosed — cannot assess data layer depth",
+    "No CI/CD tool, IaC tool, or source control platform named — unusually opaque for a modern cloud product",
+    "No RTO or RPO disclosed in BCDR section",
+    "Single cloud provider (AWS) with carve-out method — no multi-region failover capability",
+    "Backup frequency not specified anywhere in the report"
+  ],
+
+  "yellow_flags": [
+    "No WAF mentioned despite being a web-based application",
+    "No SIEM named — logging and alerting appear to be basic AWS-native tooling",
+    "Trust criteria scope is Security-only — Availability and Confidentiality not covered despite cloud SaaS product",
+    "No CDN mentioned despite serving real-time features to distributed sales teams",
+    "Processing Integrity and Privacy explicitly excluded by management as 'not relevant' — notable for a product that processes CRM data and call recordings"
+  ],
+
+  "green_flags": [
+    "Multi-AZ AWS deployment with documented failover capability across availability zones",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scanning with remediation tracking",
+    "Quarterly user access reviews including privileged accounts",
+    "1-business-day access revocation SLA upon termination",
+    "MFA enforced on production admin access and source code tool",
+    "Branch protection requiring additional approval for all production merges",
+    "BCDR plan tested annually with scenario-based testing",
+    "Endpoint protection including antivirus on all production servers and employee devices",
+    "Network diagram included showing production AWS architecture"
+  ],
+
+  "key_observations": [
+    "Xerpa is a very early-stage company (SOC 2 Type 1 only) with a surprisingly thin technical disclosure — the report reads as a governance/policy document rather than a technical architecture document, which limits due diligence value",
+    "The product handles CRM data, email content, and live call recordings from enterprise sales teams — the Privacy and Processing Integrity trust criteria exclusions are a deliberate management decision that warrants scrutiny given the sensitive nature of the data",
+    "The desktop application component (led by Founding Engineer Tom Hester) suggests a client-side software component in addition to the cloud backend — security of the desktop app is not well covered",
+    "Content filtering through a proxy server is mentioned for employee systems, an unusually explicit control for a company of this size — suggests deliberate attention to insider threat",
+    "Accorp Partners (PAC-FIRM-LIC-47383) is the auditor — a smaller regional firm, which is typical for early-stage SOC 2 Type 1 reports"
+  ]
+}

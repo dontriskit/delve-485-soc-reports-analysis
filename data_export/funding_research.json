@@ -1,0 +1,454 @@
+[
+  {
+    "company": "11x AI Inc.",
+    "tech_score": 6,
+    "total_funding": "$75M+",
+    "last_round": "Series B ($50M, Nov 2024)",
+    "valuation": "$350M",
+    "investors": [
+      "Andreessen Horowitz",
+      "Benchmark",
+      "Quiet Capital",
+      "SV Angel",
+      "Abstract Ventures",
+      "Lux Capital",
+      "Activant"
+    ],
+    "angels": [
+      "Amjad Masad (Replit CEO)",
+      "Aaron Levie (Box CEO)",
+      "Suhail Doshi"
+    ],
+    "founded": 2023,
+    "hq": "San Francisco, CA",
+    "traction": "$25M ARR, 150% growth in 3 months, 30+ languages",
+    "product": "AI SDR (Alice) and AI Phone Agent (Julian)"
+  },
+  {
+    "company": "Judgment, Inc",
+    "tech_score": 7,
+    "total_funding": "$30M+",
+    "last_round": "Undisclosed (2 rounds in ~5 months)",
+    "valuation": null,
+    "investors": [
+      "Lightspeed",
+      "SV Angel",
+      "Valor Equity Partners",
+      "Nova Global"
+    ],
+    "angels": [
+      "Chris Manning",
+      "Michael Ovitz",
+      "Michael Abbott",
+      "Cory Levy",
+      "Kevin Hartz"
+    ],
+    "founded": 2025,
+    "hq": "Carmichael, CA",
+    "traction": "Open-source judgeval library, real-time AI agent monitoring",
+    "product": "Datadog for AI agents"
+  },
+  {
+    "company": "Ziina Payment LLC",
+    "tech_score": 7,
+    "total_funding": "$30M+",
+    "last_round": "Series A ($22M, Sep 2024, led by Altos Ventures)",
+    "valuation": null,
+    "investors": [
+      "Altos Ventures",
+      "Fintech Collective",
+      "Avenir Growth",
+      "Activant Capital",
+      "Y Combinator (W21)",
+      "FJ Labs",
+      "MEVP",
+      "Jabbar Internet Group"
+    ],
+    "angels": [],
+    "founded": 2020,
+    "hq": "Dubai, UAE",
+    "traction": "50K+ active users, 34% MoM growth, 10x revenue YoY, CBUAE licensed",
+    "product": "Digital wallet and payments platform (UAE)"
+  },
+  {
+    "company": "OWND ApS dba Parahelp",
+    "tech_score": 7,
+    "total_funding": "$21.2M",
+    "last_round": "Series A ($18M, led by Alt Capital / Jack Altman)",
+    "valuation": null,
+    "investors": [
+      "Alt Capital",
+      "Hidden Capital",
+      "Hanabi (Bryan Offutt)",
+      "Y Combinator",
+      "Perplexity Fund",
+      "ByFounders",
+      "Skyfall Ventures"
+    ],
+    "angels": [],
+    "founded": 2024,
+    "hq": "Denmark",
+    "traction": "Live with Perplexity, Replit, HeyGen, Framer, Bolt.new, Photoroom. 0% churn, 1-day setup",
+    "product": "AI customer support automation"
+  },
+  {
+    "company": "Cluely, Inc.",
+    "tech_score": 6,
+    "total_funding": "$20.3M",
+    "last_round": "Series A ($15M, Jun 2025, led by a16z, $120M valuation)",
+    "valuation": "$120M",
+    "investors": [
+      "Andreessen Horowitz",
+      "Abstract Ventures",
+      "Susa Ventures",
+      "Anti Fund",
+      "Karman Ventures",
+      "Soma Capital"
+    ],
+    "angels": [],
+    "founded": 2025,
+    "hq": "San Francisco, CA",
+    "traction": "70K signups in first week, controversial 'cheat on everything' positioning",
+    "product": "AI real-time coaching overlay"
+  },
+  {
+    "company": "AutoInfra, Inc.",
+    "tech_score": 7,
+    "total_funding": "~$19M",
+    "last_round": "Pre-Seed (participation from Mistral AI)",
+    "valuation": null,
+    "investors": [
+      "Y Combinator",
+      "Mistral AI"
+    ],
+    "angels": [],
+    "founded": 2025,
+    "hq": "San Francisco, CA",
+    "traction": "AI-generated code edits at 10,500+ tokens/sec, featured as AWS case study",
+    "product": "Morph \u2014 AI code generation middleware"
+  },
+  {
+    "company": "Anypoint, Inc.",
+    "tech_score": 7,
+    "total_funding": "$5.6M",
+    "last_round": "Undisclosed",
+    "valuation": null,
+    "investors": [
+      "Undisclosed"
+    ],
+    "angels": [],
+    "founded": 2025,
+    "hq": "San Francisco, CA",
+    "traction": "AI-based second cursor for user assistance",
+    "product": "Pointer \u2014 AI user assistance platform"
+  },
+  {
+    "company": "Scribeberry Ltd.",
+    "tech_score": 8,
+    "total_funding": "Undisclosed/Bootstrapped",
+    "last_round": null,
+    "valuation": null,
+    "investors": [],
+    "angels": [],
+    "founded": 2023,
+    "hq": "Toronto, Canada",
+    "traction": "30K+ providers, dual HIPAA/PIPEDA, top 3 AI scribe in Canadian family medicine",
+    "product": "AI medical scribe platform"
+  },
+  {
+    "company": "Anneal, Inc",
+    "tech_score": 7,
+    "total_funding": "~$500K+ (YC)",
+    "last_round": "Seed (YC + Amino Capital)",
+    "valuation": null,
+    "investors": [
+      "Y Combinator",
+      "Amino Capital"
+    ],
+    "angels": [],
+    "founded": 2023,
+    "hq": "San Francisco, CA",
+    "traction": "AI agents for enterprises",
+    "product": "Dialtone \u2014 AI agent platform for enterprise automation"
+  },
+  {
+    "company": "Toffu AI, Inc.",
+    "tech_score": 7,
+    "total_funding": "Undisclosed",
+    "last_round": null,
+    "valuation": null,
+    "investors": [],
+    "angels": [],
+    "founded": 2024,
+    "hq": "New York, NY",
+    "traction": "AI marketing automation for B2B SaaS",
+    "product": "AI-powered B2B marketing automation"
+  },
+  {
+    "company": "Promptless, Inc.",
+    "tech_score": 7,
+    "total_funding": "$500K",
+    "last_round": "Pre-Seed (led by Scale Asia Ventures)",
+    "valuation": null,
+    "investors": [
+      "Y Combinator",
+      "Scale Asia Ventures"
+    ],
+    "angels": [],
+    "founded": 2024,
+    "hq": "San Francisco, CA",
+    "traction": "Used by startups and Fortune 500, auto-drafts doc updates from PRs/tickets/Slack",
+    "product": "AI auto-updates customer-facing documentation"
+  },
+  {
+    "company": "Lucidic AI, Inc.",
+    "tech_score": 7,
+    "total_funding": "$500K",
+    "last_round": "Seed (Feb 2025, via YC)",
+    "valuation": null,
+    "investors": [
+      "Y Combinator",
+      "ODDBIRD VC",
+      "Vijay Krishnan"
+    ],
+    "angels": [],
+    "founded": 2024,
+    "hq": "San Francisco, CA",
+    "traction": "AI observability \u2014 simulation, RL, Bayesian optimization for agent dev",
+    "product": "AI agent observability and debugging platform"
+  },
+  {
+    "company": "Vimes INC",
+    "tech_score": 7,
+    "total_funding": "$2.2M",
+    "last_round": "Pre-Seed (backed by Pear VC)",
+    "valuation": null,
+    "investors": [
+      "Pear VC"
+    ],
+    "angels": [],
+    "founded": 2024,
+    "hq": "San Francisco, CA",
+    "traction": "New national standard for child risk assessment, reduced response time 40 days to 12 hours",
+    "product": "Crisis intervention software for law enforcement/child welfare"
+  },
+  {
+    "company": "Grantable, Inc.",
+    "tech_score": 7,
+    "total_funding": "~$20K (grants)",
+    "last_round": "Grant round (Jul 2021)",
+    "valuation": null,
+    "investors": [
+      "Lighthouse Labs",
+      "757 Accelerate"
+    ],
+    "angels": [],
+    "founded": 2020,
+    "hq": "Richmond, VA",
+    "traction": "5,000+ mission-driven teams using the platform, largely bootstrapped",
+    "product": "AI-powered grant writing platform"
+  },
+  {
+    "company": "Antes AI, Inc",
+    "tech_score": 7,
+    "total_funding": "Undisclosed Pre-Seed",
+    "last_round": "Pre-Seed (led by NFX and Kleiner Perkins)",
+    "valuation": null,
+    "investors": [
+      "NFX",
+      "Kleiner Perkins",
+      "ODDBIRD VC"
+    ],
+    "angels": [],
+    "founded": 2024,
+    "hq": "San Francisco, CA",
+    "traction": "Stealth, targeting automotive and aerospace compliance automation",
+    "product": "AI compliance platform for manufacturers"
+  },
+  {
+    "company": "Tutor Intelligence, Inc.",
+    "tech_score": 6,
+    "total_funding": "$42M",
+    "last_round": "Series A ($34M, Dec 2025)",
+    "valuation": null,
+    "investors": [
+      "Union Square Ventures",
+      "Fundomo",
+      "Neo"
+    ],
+    "founded": 2021,
+    "hq": "Boston, MA (MIT spinout)",
+    "traction": "Warehouse robotics RaaS, MIT CSAIL spinout",
+    "product": "AI-powered warehouse robots"
+  },
+  {
+    "company": "Explore Interfaces, Inc. (dba Context)",
+    "tech_score": 6,
+    "total_funding": "$15.75M",
+    "last_round": "Seed ($11M, May 2025, $70M val)",
+    "valuation": "$70M",
+    "investors": [
+      "Lux Capital",
+      "General Catalyst",
+      "Qualcomm Ventures"
+    ],
+    "founded": 2024,
+    "hq": "San Francisco, CA",
+    "traction": "Thiel Fellow founder, AI office suite",
+    "product": "Context \u2014 AI-powered office suite"
+  },
+  {
+    "company": "Conway Enterprises, Inc.",
+    "tech_score": 6,
+    "total_funding": "$7M",
+    "last_round": "Seed ($7M)",
+    "valuation": null,
+    "investors": [
+      "Kleiner Perkins",
+      "First Round Capital",
+      "BoxGroup"
+    ],
+    "founded": 2025,
+    "hq": "San Francisco, CA",
+    "traction": "Fraud detection, AML, content moderation",
+    "product": "AI risk operations / data analysis"
+  },
+  {
+    "company": "Craniometrix, Inc.",
+    "tech_score": 6,
+    "total_funding": "$6.5M",
+    "last_round": "Seed ($500K, Mar 2022)",
+    "valuation": null,
+    "investors": [
+      "Y Combinator",
+      "Defy Partners",
+      "Quiet Capital"
+    ],
+    "founded": 2022,
+    "hq": "San Francisco, CA",
+    "traction": "$1.9M revenue (2024), dementia care",
+    "product": "AI dementia platform"
+  },
+  {
+    "company": "Replexica, Inc",
+    "tech_score": 6,
+    "total_funding": "$4.7M",
+    "last_round": "Seed ($4.2M, Feb 2025)",
+    "valuation": null,
+    "investors": [
+      "Initialized Capital",
+      "Y Combinator"
+    ],
+    "founded": 2023,
+    "hq": "San Francisco, CA",
+    "traction": "Customers include Mistral AI, Cal.com. 83 languages",
+    "product": "Lingo.dev \u2014 AI localization CLI"
+  },
+  {
+    "company": "Outraise Labs, Inc.",
+    "tech_score": 6,
+    "total_funding": "$2.75M",
+    "last_round": "Seed ($2.75M)",
+    "valuation": null,
+    "investors": [
+      "1984 Ventures",
+      "Audacious Ventures",
+      "Soma Capital"
+    ],
+    "founded": 2024,
+    "hq": "Cambridge, MA",
+    "traction": "Harvard founders, doubling monthly since launch",
+    "product": "DonorAtlas \u2014 AI donor finding for nonprofits"
+  },
+  {
+    "company": "Redsnack Technologies Inc.",
+    "tech_score": 6,
+    "total_funding": "$2.35M",
+    "last_round": "Seed (Mar 2025)",
+    "valuation": null,
+    "investors": [
+      "Undisclosed"
+    ],
+    "founded": 2023,
+    "hq": "San Francisco, CA",
+    "traction": "AI voice screening for hiring",
+    "product": "HeyMilo \u2014 AI voice candidate screening"
+  },
+  {
+    "company": "Afterword Inc",
+    "tech_score": 6,
+    "total_funding": "$2.5M",
+    "last_round": "Friends & family",
+    "valuation": null,
+    "investors": [
+      "First Round",
+      "Uncork",
+      "Felicis (early)"
+    ],
+    "founded": 2020,
+    "hq": "San Francisco, CA",
+    "traction": "Deliberately NOT pursuing VC, revenue-focused",
+    "product": "Funeral home tech platform"
+  },
+  {
+    "company": "EverCurrent Inc",
+    "tech_score": 6,
+    "total_funding": "~$1M + $5M credits",
+    "last_round": "a16z Speedrun",
+    "valuation": null,
+    "investors": [
+      "Andreessen Horowitz (Speedrun)"
+    ],
+    "founded": 2025,
+    "hq": "San Francisco, CA",
+    "traction": "Ex-Autodesk Research, MIT",
+    "product": "Hardware development platform"
+  },
+  {
+    "company": "Hyper GTM Limited",
+    "tech_score": 6,
+    "total_funding": "$592K",
+    "last_round": "Seed",
+    "valuation": null,
+    "investors": [
+      "Haatch",
+      "Houghton Street Ventures"
+    ],
+    "founded": 2024,
+    "hq": "London, UK",
+    "traction": "AI ABM for financial services",
+    "product": "hyperGTM \u2014 AI account-based marketing"
+  },
+  {
+    "company": "Domu Technology Inc.",
+    "tech_score": 6,
+    "total_funding": "~$500K",
+    "last_round": "Seed (YC)",
+    "valuation": null,
+    "investors": [
+      "Y Combinator",
+      "Pioneer",
+      "CoreNest Capital"
+    ],
+    "founded": 2023,
+    "hq": "San Francisco, CA",
+    "traction": "AI debt collection calls for banks",
+    "product": "AI voice agent for debt collection"
+  },
+  {
+    "company": "Cronus Technologies Inc.",
+    "tech_score": 6,
+    "total_funding": "$500K",
+    "last_round": "Seed (YC)",
+    "valuation": null,
+    "investors": [
+      "Y Combinator",
+      "BoxGroup",
+      "Failup Ventures"
+    ],
+    "founded": 2024,
+    "hq": "San Francisco, CA",
+    "traction": "$6.5M revenue, 59 employees (revenue-funded)",
+    "product": "AfterQuery \u2014 AI research lab"
+  }
+]

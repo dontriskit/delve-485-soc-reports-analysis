@@ -1,0 +1,19 @@
+{
+  "doc_id": "1YAJhZ_jg7Aio9kmMKhM4n0oUgp19Bv4A0D5v3B0HeaM",
+  "link": "https://docs.google.com/document/d/1YAJhZ_jg7Aio9kmMKhM4n0oUgp19Bv4A0D5v3B0HeaM",
+  "timestamp": "11/5/2025 15:56:28",
+  "display_name": "Ambral",
+  "legal_name": "Helium Ai, Corp.",
+  "company_name": "Ambral",
+  "system_description": "AI-powered Account Management platform.",
+  "audit_end_date": "October 29, 2025",
+  "observation_period": "",
+  "infra_provider": "Supabase",
+  "website": "https://ambral.com",
+  "contact_email": "security@ambral.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1YAJhZ_jg7Aio9kmMKhM4n0oUgp19Bv4A0D5v3B0HeaM.pdf",
+  "txt_file": "1YAJhZ_jg7Aio9kmMKhM4n0oUgp19Bv4A0D5v3B0HeaM.txt",
+  "has_report": true
+}

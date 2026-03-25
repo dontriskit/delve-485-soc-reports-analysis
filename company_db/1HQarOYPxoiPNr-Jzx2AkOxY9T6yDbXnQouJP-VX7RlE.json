@@ -1,0 +1,19 @@
+{
+  "doc_id": "1HQarOYPxoiPNr-Jzx2AkOxY9T6yDbXnQouJP-VX7RlE",
+  "link": "https://docs.google.com/document/d/1HQarOYPxoiPNr-Jzx2AkOxY9T6yDbXnQouJP-VX7RlE",
+  "timestamp": "8/29/2025 15:12:31",
+  "display_name": "Lingo.dev",
+  "legal_name": "Replexica, Inc",
+  "company_name": "Lingo.dev",
+  "system_description": "Lingo.dev is an AI-powered CLI for app localization. It generates pull requests with translations when developers commit UI code changes, avoiding the typical back-and-forth with translation agencies. This helps teams do localization 100x faster, ship to production more often, without bottlenecks.",
+  "audit_end_date": "",
+  "observation_period": "May 6, 2025 - Aug 6, 2025",
+  "infra_provider": "AWS",
+  "website": "https://lingo.dev",
+  "contact_email": "veronica@lingo.dev",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1HQarOYPxoiPNr-Jzx2AkOxY9T6yDbXnQouJP-VX7RlE.pdf",
+  "txt_file": "1HQarOYPxoiPNr-Jzx2AkOxY9T6yDbXnQouJP-VX7RlE.txt",
+  "has_report": true
+}

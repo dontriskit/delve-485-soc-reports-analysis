@@ -1,0 +1,19 @@
+{
+  "doc_id": "1s-JusRgYrTUScHQMwfkp-WOV5It4YUSCoc3tPOrUVpM",
+  "link": "https://docs.google.com/document/d/1s-JusRgYrTUScHQMwfkp-WOV5It4YUSCoc3tPOrUVpM",
+  "timestamp": "11/21/2025 14:59:30",
+  "display_name": "August Innovations",
+  "legal_name": "August Innovations Corporation",
+  "company_name": "August Innovations",
+  "system_description": "August Innovations (august-innovations.ai) is a health-tech AI company that builds intelligent automation and analytics tools to help healthcare organizations streamline operations, improve patient workflows, and make faster, data-driven clinical and administrative decisions.",
+  "audit_end_date": "",
+  "observation_period": "August 14, 2025 - November 14, 2025",
+  "infra_provider": "AWS",
+  "website": "https://august-innovations.ai/",
+  "contact_email": "security@august-innovations.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1s-JusRgYrTUScHQMwfkp-WOV5It4YUSCoc3tPOrUVpM.pdf",
+  "txt_file": "1s-JusRgYrTUScHQMwfkp-WOV5It4YUSCoc3tPOrUVpM.txt",
+  "has_report": true
+}

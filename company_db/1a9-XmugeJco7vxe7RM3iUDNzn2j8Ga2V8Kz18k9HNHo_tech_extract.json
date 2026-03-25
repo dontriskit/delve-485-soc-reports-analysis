@@ -1,0 +1,234 @@
+{
+  "company": "Velostics Inc",
+  "product": "Velostics Logistics SaaS Platform",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of October 3, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+  "hq": "No physical office — fully remote/cloud",
+  "signing_authority": "Gaurav Khandelwal, CEO",
+
+  "system_description": {
+    "overview": "Velostics Inc is a logistics SaaS platform automating inbound/outbound processes for shippers, ranging from managed transportation to yard management leveraging AI. The platform includes appointment scheduling, dock management, yard management, network visibility, and AI agent services.",
+    "products": {
+      "Slot": "Appointment scheduling portal for shippers to allow brokers/carriers to book slots",
+      "Dock": "Slot plus gate check-in (Pass) and advanced dock scheduling for plants and warehouses",
+      "Yard": "Dock plus full Google Maps-based yard management system, jockey task management, trailer management",
+      "Network": "Appointment dashboard for brokers/carriers/schedulers; shared calendars for suppliers and consignees",
+      "AI Agents": "Suite of AI Agent services including Voice AI, Vision AI, and Answers AI"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Oracle Cloud (carve-out — Oracle provides data center services; Velostics controls application/service layer)",
+    "regions": ["Not specified — Oracle high-availability data centers with multiple availability zones"],
+    "physical_presence": "None — no physical offices or servers; all cloud",
+    "availability_zones": "Multi-AZ (Oracle high-availability data centers with multiple availability zones)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Cloudflare (visible in network diagram as first layer before Auth0)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Hosted in Oracle VPC with segmented VPCs and ACLs. Public network contains Kubernetes Cluster; private networks contain PostgreSQL DB and Redis (each behind NAT gateways). Production servers maintain failover capabilities.",
+    "api_gateway": null,
+    "waf": "Cloudflare (implied — sits in front of Auth0 and application)",
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via Oracle (employed through Oracle VPC security policy network settings)",
+    "vpn": "VPN via bastion host for remote access",
+    "tls": "TLS (Transport Layer Security) using third-party CA certificates for all web-based traffic",
+    "content_filtering": "Content filtering system routed through proxy server; systems restricted to internet via content filtering",
+    "multi_region": false,
+    "topology": "User -> Cloudflare -> Auth0 -> Internet Gateway -> Oracle Cloud VPC (Kubernetes Cluster in public network) -> NAT Gateway DB -> PostgreSQL (private) / NAT Gateway Redis -> Redis (private). GitHub CI/CD feeds Oracle Container Registry -> Kubernetes."
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices (Kubernetes-orchestrated with separate services: Clockwork, Sidekiq, Web visible in diagram)",
+    "languages": ["Not disclosed"],
+    "frameworks": ["Not disclosed"],
+    "compute": ["Oracle Kubernetes Engine (OKE) / Kubernetes Cluster", "Oracle Container Registry"],
+    "api_style": "Not disclosed",
+    "environments": "Separate Stage and Production environments; changes tested in Stage before Production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["PostgreSQL (private network, via NAT gateway)"],
+    "caching": ["Redis (private network, via NAT gateway)"],
+    "file_storage": ["Not disclosed"],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Formal backup policy in place; frequency not specified",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Auth0 (visible in network diagram between Cloudflare and Oracle Cloud)",
+    "mfa": "MFA enforced for all user accounts with administrative access to production platform; MFA required for source code tool access",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day upon termination",
+    "password_policy": "Passwords controlled through Oracle policy — periodic forced changes, expiry, complexity requirements; accounts locked after failed attempts; guest/anonymous logins not allowed"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service (Oracle KMS) — 'organization uses its cloud provider key management service to encrypt data at rest'",
+    "key_management": "Oracle KMS — 'access to production environment's access keys is restricted to authorized individuals'",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "GitHub",
+    "ci_cd_tool": "GitHub CI/CD (visible in network diagram)",
+    "branch_protection": "Code repository branch rules configured — every merge request to move change to production requires additional approval. Developers cannot make changes to production without additional approval.",
+    "iac": "Configuration management tool used for baseline configurations with rollback capability (specific tool not named)",
+    "container_orchestration": "Kubernetes (Oracle Kubernetes Engine)",
+    "patch_management": "CTO/Management set up automatic patch management; monthly patch management reviews; workstations receive automatic updates and scanned daily for patch compliance; critical/security OS patches applied as available",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Internal monitoring tool (specific product not named); IT team monitors system capacity and performance, generates alerts at predefined thresholds",
+    "siem": "Not disclosed",
+    "log_aggregation": "Logging enabled for administrative activities, logon attempts, data deletions, security configurations, permissions, roles at application and infrastructure level",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; incident management process invoked for confirmed events",
+    "metrics": ["disk space", "incoming/outgoing network traffic", "packet loss", "CPU utilization"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Oracle Cloud", "purpose": "Primary cloud infrastructure — data center, VPC, compute, storage, KMS", "criticality": "Critical"},
+    {"vendor": "Cloudflare", "purpose": "CDN / edge security / WAF (first hop in network diagram)", "criticality": "Critical"},
+    {"vendor": "Auth0", "purpose": "Authentication and identity management", "criticality": "Critical"},
+    {"vendor": "GitHub", "purpose": "Source code management and CI/CD", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software on all production servers (continuous scanning, weekly definition updates) and Mac workstations/laptops",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; self-assessment scan before every production release",
+    "penetration_testing": "Annual external penetration testing by independent third party",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 29,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — Physical access to data center facilities delegated to Oracle (carve-out); Oracle responsible for physical security",
+      "A1.2 — Availability/environmental controls managed by Oracle/building management; Velostics has no physical office",
+      "Processing Integrity — determined not relevant to system",
+      "Privacy — determined not relevant to system"
+    ],
+    "notable_controls": [
+      "CC6.2.2 — Quarterly user access reviews for all accounts including privileged users",
+      "CC6.1.4 — Access revoked within 1 business day upon termination",
+      "CC8.1.2 — Branch protection: every merge to production requires additional approval",
+      "CC7.1.2 — Monthly automated vulnerability scanning",
+      "CC4.1.1 — Annual external penetration testing by independent third party",
+      "CC7.4.1 — BCDR plan documented, reviewed annually and tested annually across loss scenarios"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Oracle Cloud with Kubernetes, multi-AZ failover, Cloudflare CDN, VPC with network segmentation. However single cloud provider (Oracle, unusual choice), no IaC tool named, no multi-region. Solid mid-tier."
+    },
+    "application_architecture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Microservices on Kubernetes with separate components (Clockwork/Sidekiq/Web), branch protection, code review required, separate environments. Languages/frameworks not disclosed."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "PostgreSQL + Redis is a clean stack, multi-AZ, per-tenant segregation, data classification policy, retention policy. No data warehouse mentioned, backup frequency unspecified, file storage not disclosed."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong: Cloudflare WAF, IDS/IPS via Oracle, quarterly access reviews, 1-day access revocation, monthly vuln scans, annual external pen test, MFA on admin/source code, antivirus on all systems. Missing: SIEM named, no cyber insurance confirmed."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "GitHub + GitHub CI/CD, Kubernetes orchestration, separate environments, branch protection with approval gates, monthly patch reviews, automated workstation patching. IaC tool unnamed, no named monitoring product."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented, annual review and annual testing, multi-AZ failover in Oracle. No RTO/RPO disclosed, no multi-region DR, backup frequency unspecified."
+    },
+    "vendor_diversity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "4 identifiable vendors: Oracle Cloud (critical), Cloudflare, Auth0, GitHub. Heavy Oracle dependency is unusual and creates concentration risk — Oracle is not mainstream AWS/Azure/GCP with the same breadth of managed services."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Solid logistics SaaS with a well-architected Oracle Cloud deployment, Kubernetes microservices, strong access controls, and annual pen testing. Main concerns: Oracle Cloud concentration risk (non-mainstream provider), no RTO/RPO disclosed, IaC and monitoring tools unnamed, and no multi-region DR."
+    }
+  },
+
+  "red_flags": [
+    "Oracle Cloud is an unconventional primary cloud provider — limited ecosystem, smaller talent pool, potential migration risk",
+    "No RTO or RPO disclosed for business continuity",
+    "No cybersecurity insurance mentioned"
+  ],
+  "yellow_flags": [
+    "IaC tool not named — 'configuration management tool' is vague",
+    "Backup frequency not specified despite formal backup policy",
+    "No named APM/SIEM tool — monitoring described generically",
+    "No multi-region failover — single-region with multi-AZ only",
+    "File storage solution not disclosed",
+    "Processing Integrity and Privacy trust criteria excluded — may be expected for logistics platform but worth noting"
+  ],
+  "green_flags": [
+    "Network diagram clearly shows Cloudflare + Auth0 + Kubernetes architecture — unusually detailed and transparent",
+    "Annual external penetration testing by independent third party",
+    "Quarterly user access reviews including privileged accounts",
+    "1-business-day access revocation SLA — strong offboarding control",
+    "Branch protection with mandatory approval for all production merges",
+    "Monthly vulnerability scanning on infrastructure and applications",
+    "Multi-AZ Oracle infrastructure with failover capabilities",
+    "BCDR plan tested annually across multiple loss scenarios",
+    "MFA enforced for admin access and source code repository access"
+  ],
+  "key_observations": [
+    "Velostics is unusual in using Oracle Cloud as primary infrastructure — likely chosen for Oracle's logistics/database heritage, but creates vendor concentration risk that AWS/GCP/Azure customers would not face",
+    "The network diagram (p.18) is exceptionally detailed for a SOC 2 report, clearly showing Cloudflare -> Auth0 -> Kubernetes flow with PostgreSQL and Redis in private subnets — indicates mature architecture thinking",
+    "Sidekiq in the architecture suggests Ruby/Rails background stack (Sidekiq is a Ruby background job processor), though languages are not explicitly disclosed",
+    "Clockwork in the architecture is a Ruby scheduling library — reinforces Ruby/Rails inference",
+    "The AI Agents product line (Voice AI, Vision AI, Answers AI) is not architecturally detailed — likely newer additions with unclear infrastructure",
+    "Oracle is listed as the sole subservice organization with a SOC 2 report of its own — carve-out method used cleanly",
+    "CC6.4 (physical access) and A1.2 (environmental) are explicitly excluded as Oracle's responsibility — appropriate carve-out"
+  ]
+}

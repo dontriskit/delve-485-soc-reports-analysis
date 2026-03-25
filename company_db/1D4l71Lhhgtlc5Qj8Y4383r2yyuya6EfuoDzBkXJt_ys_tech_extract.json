@@ -1,0 +1,230 @@
+{
+  "company": "Delve Technologies Inc.",
+  "product": "Delve",
+  "report_type": "ISO 27001",
+  "audit_period": "Certification agreement dated 8/29/2025; audit period not yet established",
+  "auditor": "Gradient Certification Inc.",
+  "opinion": "Not yet issued - this is a pre-certification agreement, not a completed audit report",
+  "trust_criteria": ["Information Security (ISO 27001 ISMS)"],
+  "hq": "301 Howard St, San Francisco, CA 94105",
+  "signing_authority": "Not named - signature field shows placeholder 'Your Name Here'",
+
+  "_flags": {
+    "incomplete_report": true,
+    "page_count": 7,
+    "document_type": "ISO 27001 Certification Agreement Form (pre-audit), NOT a completed audit report or certificate",
+    "note": "This document contains only a UAF endorsement letter, certification agreement terms & conditions with Gradient Certification Inc., and an unsigned signature page. No audit has been completed. No technical controls, findings, or system details are documented beyond the scope statement."
+  },
+
+  "system_description": {
+    "overview": "Delve Technologies Inc. operates an AI-powered compliance platform that simplifies and automates security and regulatory compliance for businesses. The platform securely guides organizations through frameworks such as SOC 2, HIPAA, GDPR, and ISO 27001, making compliance faster, easier, and more cost-efficient.",
+    "products": {
+      "Delve Compliance Platform": "AI-powered platform for automating security and regulatory compliance across SOC 2, HIPAA, GDPR, and ISO 27001 frameworks"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": null,
+    "regions": null,
+    "physical_presence": "301 Howard St, San Francisco, CA 94105 (single site under scope)",
+    "availability_zones": null,
+    "additional_cloud": null,
+    "serverless": null,
+    "cdn": null,
+    "_note": "No infrastructure details disclosed in this document"
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": null,
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": null,
+    "ids_ips": null,
+    "vpn": null,
+    "tls": null,
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. Document is a pre-certification agreement with no technical content."
+  },
+
+  "application_architecture": {
+    "pattern": null,
+    "languages": null,
+    "frameworks": null,
+    "compute": null,
+    "api_style": null,
+    "environments": null,
+    "branch_protection": null,
+    "code_review_required": null,
+    "_note": "No application architecture details disclosed. Scope statement mentions 'design, engineering, and maintenance of proprietary technology, data processing infrastructure, and automation tools' but provides no specifics."
+  },
+
+  "data_storage": {
+    "databases": null,
+    "caching": null,
+    "file_storage": null,
+    "data_warehouse": null,
+    "backup_frequency": null,
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null,
+    "_note": "No data storage details disclosed in this document"
+  },
+
+  "authentication_access_control": {
+    "identity_provider": null,
+    "mfa": null,
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": null,
+    "password_policy": null,
+    "_note": "No authentication or access control details disclosed"
+  },
+
+  "encryption": {
+    "in_transit": null,
+    "at_rest": null,
+    "key_management": null,
+    "end_to_end": null,
+    "_note": "No encryption details disclosed"
+  },
+
+  "ci_cd_devops": {
+    "source_control": null,
+    "ci_cd_tool": null,
+    "branch_protection": null,
+    "iac": null,
+    "container_orchestration": null,
+    "patch_management": null,
+    "separate_environments": null,
+    "emergency_change_process": null,
+    "_note": "No CI/CD or DevOps details disclosed"
+  },
+
+  "monitoring_logging": {
+    "apm_tool": null,
+    "siem": null,
+    "log_aggregation": null,
+    "alerting": null,
+    "metrics": null,
+    "log_protection": null,
+    "ids": null,
+    "_note": "No monitoring or logging details disclosed"
+  },
+
+  "third_party_services": [
+    {"vendor": "Gradient Certification Inc.", "purpose": "ISO 27001 certification body / auditor", "criticality": "Medium"},
+    {"vendor": "United Accreditation Foundation Inc. (UAF)", "purpose": "Accreditation body for the certification body", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": null,
+    "endpoint_protection": null,
+    "vulnerability_scanning": null,
+    "penetration_testing": null,
+    "server_hardening": null,
+    "cybersecurity_insurance": null,
+    "_note": "No security tooling details disclosed"
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed",
+    "_note": "No BCDR details disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": [
+      "No controls have been tested yet - this is a pre-certification agreement document, not an audit report"
+    ],
+    "_note": "The scope references a Statement of Applicability Version 1.0 but it is not included in this document. The certification cycle calls for 9 total audit mandays across Stage-1 (2), Stage-2/Recertification (3), Surveillance-1 (2), and Surveillance-2 (2)."
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No infrastructure details disclosed whatsoever. Cannot assess."
+    },
+    "application_architecture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No application architecture details disclosed. Only know it is an 'AI-powered compliance platform' from the scope statement."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No data storage or processing details disclosed. Scope mentions 'data processing infrastructure' but provides zero specifics."
+    },
+    "security_posture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No security controls, tools, or practices disclosed. The ISO 27001 certification has not yet been completed."
+    },
+    "devops_maturity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No DevOps practices or tooling disclosed in the document."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No BCDR information disclosed. No RTO/RPO, no backup strategy, no failover details."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No vendor ecosystem disclosed beyond the certification body itself."
+    },
+    "overall": {
+      "score": 1,
+      "max": 10,
+      "rationale": "This document is a pre-certification agreement form, not an audit report. It contains no technical content, no control testing results, and no system architecture details. It is unsuitable for tech due diligence assessment. All scores are 1 (minimum) due to complete absence of disclosable information."
+    }
+  },
+
+  "red_flags": [
+    "Document is a pre-certification AGREEMENT form, not a completed ISO 27001 audit report or certificate -- no audit has been conducted yet",
+    "Only 7 pages total; contains no technical substance beyond a scope statement",
+    "Signature fields contain placeholder text ('Your Name Here') suggesting the agreement may not have been formally executed",
+    "Zero technology, infrastructure, or security control information is available for due diligence",
+    "The certification body (Gradient Certification Inc.) is accredited by UAF, which is a lesser-known accreditation body compared to ANAB, UKAS, or other IAF MLA signatories -- warrants verification of accreditation legitimacy",
+    "No Statement of Applicability (SoA) is included despite being referenced as Version 1.0"
+  ],
+
+  "yellow_flags": [
+    "ISO 27001 scope is broadly defined covering 'core business functions' -- actual control applicability cannot be assessed without the SoA",
+    "Single-site certification only (San Francisco office); no mention of remote workforce or cloud infrastructure in scope",
+    "Total audit mandays of 9 across the full certification cycle is on the lower end, suggesting a small organization"
+  ],
+
+  "green_flags": [
+    "Company is pursuing ISO 27001 certification, indicating intent to formalize information security practices",
+    "Scope statement covers development, deployment, and management of the platform plus critical support functions (IT, HR, Physical Security, Legal & Compliance)",
+    "Company operates in the compliance/security space (GRC tooling), suggesting security awareness is core to the business"
+  ],
+
+  "key_observations": [
+    "This document should NOT be treated as evidence of ISO 27001 certification -- it is merely the contractual agreement to undergo the certification process",
+    "The actual ISO 27001 certificate and Stage-2 audit report would be needed for meaningful tech due diligence",
+    "Delve Technologies appears to be a GRC (Governance, Risk, Compliance) platform vendor that helps other companies achieve SOC 2, HIPAA, GDPR, and ISO 27001 compliance",
+    "The company is certifying itself under the same standard (ISO 27001) that it helps its customers achieve -- this is a positive signal for credibility but the certification is not yet complete",
+    "Gradient Certification Inc. has offices in Sheridan, Wyoming (registered) and Houston, Texas (corporate) -- worth verifying their accreditation status with UAF and cross-checking against IAF MLA membership"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "1FfRFggXhe_vnJ9TeGgkP7Q27f0M8oXA_Z6oqKV2cotw",
+  "link": "https://docs.google.com/document/d/1FfRFggXhe_vnJ9TeGgkP7Q27f0M8oXA_Z6oqKV2cotw",
+  "timestamp": "11/10/2025 15:56:29",
+  "display_name": "Dokai",
+  "legal_name": "raii, inc",
+  "company_name": "Dokai",
+  "system_description": "The AI sales whisperer that maximizes rep output.",
+  "audit_end_date": "",
+  "observation_period": "August 4, 2025 - November 4, 2025",
+  "infra_provider": "Heroku",
+  "website": "https://dokai.ai",
+  "contact_email": "security@dokai.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1FfRFggXhe_vnJ9TeGgkP7Q27f0M8oXA_Z6oqKV2cotw.pdf",
+  "txt_file": "1FfRFggXhe_vnJ9TeGgkP7Q27f0M8oXA_Z6oqKV2cotw.txt",
+  "has_report": true
+}

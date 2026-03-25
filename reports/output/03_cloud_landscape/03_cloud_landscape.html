@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Infrastructure Landscape — Delve Tech DD</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        bg: '#0f172a', bg2: '#1e293b', card: '#1a2332', border: '#334155',
+      }
+    }
+  }
+}
+</script>
+<style>
+body { background: #0f172a; }
+.prose { max-width: none; }
+.prose h1 { color: #e2e8f0; font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+.prose h2 { color: #e2e8f0; font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }
+.prose h3 { color: #3b82f6; font-size: 1.1rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+.prose p { color: #e2e8f0; line-height: 1.7; margin-bottom: 0.75rem; }
+.prose li { color: #e2e8f0; line-height: 1.6; }
+.prose strong { color: #e2e8f0; }
+.prose table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+.prose th { text-align: left; padding: 8px 12px; background: #1e293b; color: #94a3b8; font-size: 12px; text-transform: uppercase; border-bottom: 1px solid #334155; }
+.prose td { padding: 8px 12px; border-bottom: 1px solid #1a2332; color: #e2e8f0; font-size: 14px; }
+.prose tr:hover td { background: #1a2332; }
+.metric { background: #1a2332; border: 1px solid #334155; border-radius: 12px; padding: 20px; }
+.metric .value { font-size: 2rem; font-weight: 800; }
+.metric .label { color: #94a3b8; font-size: 0.75rem; margin-top: 4px; }
+.insight { background: #1a2332; border-left: 3px solid #3b82f6; padding: 16px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+.flag-red { background: rgba(239,68,68,0.1); border-left: 3px solid #ef4444; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.flag-yellow { background: rgba(245,158,11,0.1); border-left: 3px solid #f59e0b; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.flag-green { background: rgba(34,197,94,0.1); border-left: 3px solid #22c55e; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+</style>
+</head>
+<body class="min-h-screen">
+<div class="max-w-5xl mx-auto px-6 py-10">
+
+  <!-- Nav -->
+  <div class="mb-4">
+    <a href="../index.html" class="text-sm text-blue-400 hover:text-blue-300">← Back to Index</a>
+  </div>
+
+  <!-- Header -->
+  <div class="mb-8">
+    <div class="text-sm text-gray-400 mb-1">Delve Tech Due Diligence · Meta-Analysis</div>
+    <h1 class="text-3xl font-extrabold text-white">Cloud Infrastructure Landscape</h1>
+    <p class="text-gray-400 mt-1">AWS dominance, PaaS-first patterns, and platform concentration risk</p>
+  </div>
+
+  <!-- Content -->
+  <div class="prose">
+    <div class="grid grid-cols-4 gap-4 mb-6"><div class="metric"><div class="value" style="color:#ff9900">287</div><div class="label">AWS (59%)</div></div><div class="metric"><div class="value" style="color:#3b82f6">74</div><div class="label">GCP (15%)</div></div><div class="metric"><div class="value" style="color:#22c55e">39</div><div class="label">Supabase</div></div><div class="metric"><div class="value" style="color:#e2e8f0">23</div><div class="label">Vercel</div></div></div><h2>Market Share</h2>
+
+<div class="my-6"><img src="cloud_share.png" class="rounded-lg w-full" alt="cloud_share.png"></div>
+
+<table><thead><tr><th>Provider</th><th>Companies</th><th>Share</th></tr></thead><tbody><tr><td>AWS</td><td>287</td><td>59.2%</td></tr><tr><td>GCP</td><td>74</td><td>15.3%</td></tr><tr><td>Supabase</td><td>39</td><td>8.0%</td></tr><tr><td>Azure</td><td>33</td><td>6.8%</td></tr><tr><td>Vercel</td><td>23</td><td>4.7%</td></tr><tr><td>DigitalOcean</td><td>9</td><td>1.9%</td></tr><tr><td>Render</td><td>5</td><td>1.0%</td></tr><tr><td>Other</td><td>5</td><td>1.0%</td></tr><tr><td>Fly.io</td><td>5</td><td>1.0%</td></tr><tr><td>Railway</td><td>2</td><td>0.4%</td></tr></tbody></table>
+
+<div class="flag-red"><strong>Systemic risk:</strong> 59% of the portfolio runs on AWS. A major AWS regional outage would simultaneously impact 287 companies.</div>
+<h2>Cloud Provider vs Score</h2>
+
+<p>Does cloud provider choice predict tech maturity?</p>
+<div class="my-6"><img src="cloud_vs_score.png" class="rounded-lg w-full" alt="cloud_vs_score.png"></div>
+<div class="insight">Cloud choice alone doesn't determine score — architecture decisions matter more than which cloud you're on. But PaaS-first companies tend to have simpler architectures with fewer disclosed features.</div>
+<h2>Enterprise vs PaaS-First</h2>
+
+<p>A clear divide exists between companies built on enterprise hyperscalers (AWS/GCP/Azure)
+and those using PaaS platforms (Supabase, Vercel, Render) as their primary infrastructure.</p>
+
+<div class="my-6"><img src="enterprise_vs_paas.png" class="rounded-lg w-full" alt="enterprise_vs_paas.png"></div>
+
+<h3>PaaS-First Implications</h3>
+<ul>
+<li><strong>Speed advantage:</strong> PaaS companies deploy faster with less ops overhead</li>
+<li><strong>Control trade-off:</strong> Many controls are delegated via carve-out (not audited directly)</li>
+<li><strong>Migration risk:</strong> Moving off Supabase/Vercel is harder than migrating between hyperscalers</li>
+<li><strong>Scaling ceiling:</strong> PaaS platforms may not scale to enterprise workloads</li>
+</ul>
+
+    <div class="mt-6"><img src="cloud_share.png" class="rounded-lg w-full" alt="cloud_share.png"></div>
+<div class="mt-6"><img src="cloud_vs_score.png" class="rounded-lg w-full" alt="cloud_vs_score.png"></div>
+<div class="mt-6"><img src="enterprise_vs_paas.png" class="rounded-lg w-full" alt="enterprise_vs_paas.png"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="mt-12 pt-6 border-t border-gray-700 text-gray-500 text-sm">
+    <p>Generated from cloud infrastructure landscape module · 485 SOC 2 compliance reports · 2026-03-24</p>
+  </div>
+
+</div>
+</body>
+</html>

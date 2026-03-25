@@ -1,0 +1,220 @@
+{
+  "company": "NYA Labs, LLC and Controlled Affiliates (Operator Labs, Inc.; Pretty Good AI, Inc.; KYA Lab, Inc.)",
+  "product": "AI-powered voice agent solutions (appointment booking, sales processing, customer support, outbound campaigns)",
+  "report_type": "ISO 27001",
+  "audit_period": "8/14/2025 (Certification Agreement date; audit period not separately stated)",
+  "auditor": "Gradient Certification Inc.",
+  "opinion": "Not yet issued — this document is the Certification Agreement Form, not the final audit report or certificate",
+  "trust_criteria": ["Information Security (ISO 27001 ISMS)"],
+  "hq": "382 NE 191st St, Suite: 34452, Miami, FL 33179",
+  "signing_authority": "Not disclosed (signature field shows placeholder 'Your Name Here')",
+
+  "system_description": {
+    "overview": "NYA Labs and its controlled affiliates design, develop, deploy, and manage AI-powered voice agent solutions that book appointments, process sales, provide customer support, and conduct outbound campaigns for clients across multiple industries. The scope includes proprietary AI voice technology, telephony integrations, and supporting infrastructure that securely process customer communications, manage booking and sales transactions, and handle sensitive client and end-user information in real time.",
+    "products": {
+      "AI Voice Agents": "Inbound and outbound conversational AI services delivered through phone and other supported channels for appointment booking, sales processing, customer support, and outbound campaigns",
+      "Data Processing & Analytics": "Associated data processing, storage, and analytics systems supporting the voice agent platform"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Not disclosed in this document",
+    "regions": [],
+    "physical_presence": "382 NE 191st St, Suite: 34452, Miami, FL 33179 (single location under scope)",
+    "availability_zones": "Not disclosed",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Not disclosed"
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": "Not disclosed — report mentions telephony integrations and supporting infrastructure but provides no network architecture details",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Not disclosed",
+    "ids_ips": "Not disclosed",
+    "vpn": "Not disclosed",
+    "tls": "Not disclosed",
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. Scope mentions phone-based conversational AI with telephony integrations but no topology details provided."
+  },
+
+  "application_architecture": {
+    "pattern": "Not disclosed",
+    "languages": [],
+    "frameworks": [],
+    "compute": [],
+    "api_style": "Not disclosed",
+    "environments": "Not disclosed",
+    "branch_protection": null,
+    "code_review_required": null
+  },
+
+  "data_storage": {
+    "databases": [],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Not disclosed",
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not disclosed",
+    "mfa": "Not disclosed",
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": "Not disclosed",
+    "password_policy": "Not disclosed"
+  },
+
+  "encryption": {
+    "in_transit": "Not disclosed",
+    "at_rest": "Not disclosed",
+    "key_management": "Not disclosed",
+    "end_to_end": null
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not disclosed",
+    "ci_cd_tool": "Not disclosed",
+    "branch_protection": "Not disclosed",
+    "iac": "Not disclosed",
+    "container_orchestration": "Not disclosed",
+    "patch_management": "Not disclosed",
+    "separate_environments": null,
+    "emergency_change_process": null
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not disclosed",
+    "siem": "Not disclosed",
+    "log_aggregation": "Not disclosed",
+    "alerting": "Not disclosed",
+    "metrics": [],
+    "log_protection": null,
+    "ids": null
+  },
+
+  "third_party_services": [
+    {"vendor": "Gradient Certification Inc.", "purpose": "ISO 27001 certification body / auditor", "criticality": "Medium"},
+    {"vendor": "United Accreditation Foundation Inc (UAF)", "purpose": "Accreditation body for the certification", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": "Not disclosed",
+    "endpoint_protection": null,
+    "vulnerability_scanning": "Not disclosed",
+    "penetration_testing": "Not disclosed",
+    "server_hardening": null,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": [
+      "Document is a Certification Agreement Form, not the audit report — no individual controls are listed or tested in this document",
+      "Scope references a Statement of Applicability, Version 1.0, which was not included in this PDF",
+      "ISMS scope covers: IT Infrastructure Management, Human Resources, Physical Security, Legal & Compliance, and Administrative Operations",
+      "Total audit mandays for full certification cycle: 9 (Stage-1: 2, Stage-2: 3, Surveillance-1: 2, Surveillance-2: 2)"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 1,
+      "max": 10,
+      "rationale": "Zero infrastructure details disclosed. No cloud provider, regions, AZs, CDN, or serverless information provided. The document is a certification agreement, not a technical audit report."
+    },
+    "application_architecture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No application architecture details disclosed. We know the product involves AI voice agents with telephony integrations but no languages, frameworks, compute, or architecture patterns are mentioned."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No data layer details disclosed. Scope mentions 'data processing, storage, and analytics systems' but no specific databases, caching, backup, or retention policies are described."
+    },
+    "security_posture": {
+      "score": 2,
+      "max": 10,
+      "rationale": "The pursuit of ISO 27001 certification indicates intent to formalize security practices. However, no specific security tools, controls, or testing practices are described in this document. A Statement of Applicability exists (Version 1.0) but was not included."
+    },
+    "devops_maturity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No DevOps or CI/CD information disclosed. No source control, IaC, container orchestration, or deployment pipeline information provided."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No BCDR information disclosed. No backup frequency, RTO/RPO, disaster recovery, or failover details provided."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No technology vendors disclosed beyond the certification body itself. Cannot assess vendor diversity or concentration risk from this document."
+    },
+    "overall": {
+      "score": 1,
+      "max": 10,
+      "rationale": "This document is an ISO 27001 Certification Agreement Form — essentially a contract between NYA Labs and Gradient Certification Inc. It contains the scope of certification and terms & conditions but zero technical implementation details. The actual audit report, Statement of Applicability, and certificate were not included in this PDF. Scoring reflects the near-total absence of evaluable technical data."
+    }
+  },
+
+  "red_flags": [
+    "Document provided is NOT an ISO 27001 audit report or certificate — it is only the Certification Agreement Form (contract with the auditor)",
+    "Signature fields contain placeholder text ('Your Name Here') suggesting the agreement may not have been finalized or was improperly exported",
+    "No actual ISO 27001 certificate, Statement of Applicability, or audit findings were included — cannot verify certification was actually granted",
+    "Certification body is Gradient Certification Inc. (Sheridan, WY / Houston, TX) — this should be verified as a UAF-accredited CAB; smaller/less-known certification bodies warrant additional scrutiny",
+    "Only 7 pages total — extremely short for any compliance documentation package; a complete ISO 27001 package would typically include the certificate, SoA, and audit summary at minimum",
+    "Zero technical or security controls described anywhere in the document",
+    "The company handles sensitive client and end-user information in real time via phone (PII, payment data) but no data protection measures are documented here"
+  ],
+
+  "yellow_flags": [
+    "ISO 27001 scope is broad (covers design through deployment plus support functions) but no evidence of implementation is provided in this document",
+    "Total of 9 audit mandays across the full certification cycle is on the lower end for an organization with multiple controlled affiliates",
+    "Three controlled affiliates (Operator Labs, Inc.; Pretty Good AI, Inc.; KYA Lab, Inc.) are covered under one certification — unclear how distinct their operations are",
+    "Single physical location listed (Miami, FL) — no indication of where infrastructure is actually hosted",
+    "Audit date of 8/14/2025 is recent — this may represent initial certification with no track record"
+  ],
+
+  "green_flags": [
+    "Organization is pursuing ISO 27001 certification, demonstrating intent to formalize information security management",
+    "ISMS scope appropriately covers core business functions including engineering, telephony, data processing, and support functions (HR, physical security, legal, IT infrastructure)",
+    "Scope explicitly acknowledges handling of sensitive client and end-user information, suggesting awareness of data sensitivity"
+  ],
+
+  "key_observations": [
+    "This PDF is a certification agreement/contract, NOT the ISO 27001 audit report. For a proper tech due diligence assessment, the actual certificate, Statement of Applicability (SoA) Version 1.0, and audit summary report should be requested.",
+    "NYA Labs operates through multiple affiliated entities (Operator Labs, Pretty Good AI, KYA Lab) — the corporate structure and which entity owns what technology should be clarified.",
+    "The product involves real-time AI voice agents handling phone calls with telephony integrations — this implies significant infrastructure (telephony providers, low-latency compute, real-time data processing) that is completely undocumented here.",
+    "Gradient Certification Inc. accredited by UAF — the accreditation chain (Gradient -> UAF) should be independently verified as UAF is a relatively new accreditation body.",
+    "The document references a 'Statement of Applicability, Version 1.0' which would contain the actual list of ISO 27001 controls selected/excluded — this document must be obtained for meaningful technical assessment."
+  ]
+}

@@ -1,0 +1,50 @@
+# Large files / data
+page_images/
+pdf_reports/
+txt_reports/
+docx_reports/
+docx_reports.zip
+pdf_reports.zip
+txt_reports.zip
+overview_docs.zip
+overview_docs/
+
+# Generated diagrams (too large for git)
+reports/d2_diagrams/
+site/diagrams/d2_diagrams/
+
+# Environment
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+.wrangler/
+
+# Temp
+*.output
+/tmp/
+
+# UV
+.python-version
+
+# OS
+.DS_Store
+
+# Old generated files (redundant with modules)
+reports/tech_dd_viewer.html
+reports/11x_infra_diagram*.png
+reports/agentmail_infra_diagram*.png
+reports/11x_infra.d2
+reports/agentmail_infra.d2
+reports/icons/
+
+# Site with embedded images (deployed separately to CF Pages)
+site/
+
+# Seed SQL (can regenerate)
+worker/seed_*.sql
+
+# Old chart directories (superseded by modules)
+reports/charts/
+reports/quantitative/
+reports/analysis/*.png

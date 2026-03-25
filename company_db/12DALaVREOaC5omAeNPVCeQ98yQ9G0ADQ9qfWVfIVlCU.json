@@ -1,0 +1,19 @@
+{
+  "doc_id": "12DALaVREOaC5omAeNPVCeQ98yQ9G0ADQ9qfWVfIVlCU",
+  "link": "https://docs.google.com/document/d/12DALaVREOaC5omAeNPVCeQ98yQ9G0ADQ9qfWVfIVlCU",
+  "timestamp": "9/15/2025 15:24:33",
+  "display_name": "Regy",
+  "legal_name": "13139026 Canada Inc.",
+  "company_name": "Regy",
+  "system_description": "Regy is a national public registry platform for law firms in Canada.",
+  "audit_end_date": "September 9, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://lienfluent.com",
+  "contact_email": "michael@regy.ca",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "12DALaVREOaC5omAeNPVCeQ98yQ9G0ADQ9qfWVfIVlCU.pdf",
+  "txt_file": "12DALaVREOaC5omAeNPVCeQ98yQ9G0ADQ9qfWVfIVlCU.txt",
+  "has_report": true
+}

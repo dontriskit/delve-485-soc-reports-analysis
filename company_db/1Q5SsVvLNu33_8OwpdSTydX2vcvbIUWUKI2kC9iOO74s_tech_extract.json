@@ -1,0 +1,253 @@
+{
+  "company": "Perspectives Health, Inc",
+  "product": "Perspective Health",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "May 15, 2025 - August 15, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "hq": "989 Market Street, FL #2, San Francisco, CA, 94103",
+  "signing_authority": "Nicholas Kovalsky, Co-founder/COO",
+
+  "system_description": {
+    "overview": "Perspectives Health provides an AI-powered administrative automation platform that assists behavioral health providers in reducing the burden of clinical documentation and administrative tasks. The system operates as a HIPAA-compliant browser extension that overlays onto existing web-based electronic health record (EHR) systems, enabling automation of documentation workflows without requiring APIs, system migrations, or changes to a clinic's existing infrastructure.",
+    "products": {
+      "AI Clinical Assistant": "Automates behavioral health workflows; completes session notes directly in the EMR based on recordings of the session started by the clinician. Supports ASAM assessments, biopsychosocial evaluations, intake forms, progress notes, and group therapy notes.",
+      "Clinical Director Dashboard": "Allows for oversight and management functionality.",
+      "HIPAA-Compliant Browser Extension": "Integrates with any web-based EMR; no APIs or system migrations required; instant deployment within client environment.",
+      "Implementation and Ongoing Support": "Comprehensive onboarding, training, and configuration for clinical teams with dedicated customer success support."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "DigitalOcean (carve-out)",
+    "regions": ["Not explicitly named; DigitalOcean high availability data centers"],
+    "physical_presence": "None - no physical offices; all data processed on cloud services",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": ["Render (listed in metadata as infra_provider but not mentioned in report body)"],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with access control lists (ACLs). Network segmentation implemented to separate systems and data based on sensitivity and criticality.",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on the application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management. Firewall access restricted to authorized personnel.",
+    "ids_ips": "IDS and IPS via DigitalOcean, used to identify and protect against threats in conjunction with security policy network settings.",
+    "vpn": "Remote access done through a bastion host with a virtual private network (VPN).",
+    "tls": "TLS using certificates from an established third-party certificate authority for all web-based systems.",
+    "content_filtering": "All systems restricted to internet with content filtering system routed through proxy server.",
+    "multi_region": false,
+    "topology": "Chrome Extension / Web Dashboards -> Firewall -> Nginx (443) -> FastAPI (5001) -> PostgreSQL (Docker). Production and UAT droplets each follow this pattern. Both connect to DigitalOcean Spaces S3 Storage. Separate production and UAT environments within DigitalOcean."
+  },
+
+  "application_architecture": {
+    "pattern": "Monolith",
+    "languages": ["Python"],
+    "frameworks": ["FastAPI"],
+    "compute": ["DigitalOcean Droplets (virtual servers)", "Docker"],
+    "api_style": "REST",
+    "environments": "Two: Production and UAT (Stage), separated within DigitalOcean",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["PostgreSQL (Docker-hosted)"],
+    "caching": [],
+    "file_storage": ["DigitalOcean Spaces (S3-compatible)"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "DigitalOcean password policy / internal authentication",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform. MFA enforced for all remote access. MFA required for source code tool access. Two-factor authentication required for email access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination of employment",
+    "password_policy": "Controlled through DigitalOcean password policy; includes periodic forced changes, password expiry and complexity requirements. Accounts disabled after limited unsuccessful logon attempts. Guest and anonymous logins not allowed."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest",
+    "key_management": "Cloud provider (DigitalOcean) key management service; access to encryption keys restricted to authorized personnel",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (name not specified; likely GitHub based on MFA + branch protection references)",
+    "ci_cd_tool": "Not explicitly named",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to move changes to production requires additional approval. Developers cannot make changes to application code in production without additional approval.",
+    "iac": "Configuration management tool used for infrastructure as code; baseline configurations retained within the infrastructure as a code",
+    "container_orchestration": "Docker (no orchestration platform like K8s/ECS mentioned)",
+    "patch_management": "Automatic patch management set up by CTO; monthly patch management reviews. Workstations configured for automatic updates and scanned for patch compliance daily.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not explicitly named; monitoring tool generates alerts when predefined thresholds are met",
+    "siem": "Not explicitly named",
+    "log_aggregation": "Not explicitly named; logging enabled to monitor administrative activities, logon attempts, data deletions at application and infrastructure level",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events",
+    "metrics": ["disc space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "system capacity", "availability", "efficiency", "reliability"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "DigitalOcean", "purpose": "Primary cloud infrastructure provider (data center services, compute, storage, networking)", "criticality": "Critical"},
+    {"vendor": "Render", "purpose": "Listed as infrastructure provider in metadata (possibly for auxiliary services)", "criticality": "Medium"},
+    {"vendor": "Nginx", "purpose": "Web server / reverse proxy (port 443)", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers and Mac-based workstations/laptops. Auto-scan on continuous basis. Virus definitions updated weekly for production servers, daily from vendor for endpoints.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; frequency adjusted as required. Performed by internal IT Infrastructure team.",
+    "penetration_testing": "Annually by independent third-party. Results reviewed by IT management. High/critical findings remediated in timely manner.",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 52,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 - Significant changes to people, roles and responsibilities could not be tested because there were no significant changes made during the engagement period",
+      "CC3.2.1 (Cybersecurity insurance) - Could not be tested because there were no cyber incidents reported during the engagement period",
+      "CC6.5.2 (Customer data deletion upon termination) - Could not be tested because there were no customer terminations during the engagement period",
+      "CC7.3.1 (Incident response) - Could not be tested because there were no security incidents reported during the engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 - Physical access controls excluded; DigitalOcean responsible for physical security of data center",
+      "A1.2 - Environmental protections excluded; no physical office, managed by building management / DigitalOcean",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC6.1.1 - MFA enforced for administrative access to production",
+      "CC8.1.2 - Branch protection rules require merge request approval before production deployment",
+      "CC8.1.3 - Source code changes logged, time-stamped, attributed; MFA required for source code tool access",
+      "CC7.4.1 - BCDR policy documented and reviewed annually with annual testing of loss scenarios",
+      "CC7.4.2 - Backups taken daily, multi-AZ configured, alerts for backup failure",
+      "CC4.1.1 - Annual external penetration testing by independent third party",
+      "CC6.1.7 - Network segmentation based on sensitivity and criticality",
+      "CC9.2.1 - Vendor management policy with annual SOC report reviews and quarterly risk assessments for critical vendors without SOC reports"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Single cloud provider (DigitalOcean) with multi-AZ but no multi-region. No CDN. No serverless capabilities. Infrastructure is basic Droplets with Docker. Metadata lists Render but report only references DigitalOcean. Very small, simple infrastructure footprint suitable for an early-stage startup but lacks redundancy depth."
+    },
+    "application_architecture": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Monolithic architecture with FastAPI + PostgreSQL in Docker on Droplets. Only Python mentioned. Browser extension as primary delivery mechanism is novel but architecturally simple. Two environments (prod/UAT) is adequate. No mention of automated testing, typed languages, or microservices."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Single database type (PostgreSQL) with S3-compatible object storage (DO Spaces). Daily backups with multi-AZ. Data classification and retention policies exist. No caching layer, no data warehouse, no mention of read replicas. Per-tenant segregation mentioned in controls (CC6.1.3). Basic but functional."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Solid security fundamentals: MFA enforced, IDS/IPS via DigitalOcean, annual pen testing, monthly vulnerability scans, endpoint protection, firewalls, VPN for remote access, content filtering. Missing: no named WAF, no named SIEM, no specific TLS version stated. Cybersecurity insurance maintained. Good for company size."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "IaC mentioned (baseline configurations as code, configuration management tool). Branch protection with merge approval required. Emergency change process documented. Separate environments. However, no named CI/CD tool, no container orchestration platform, no named source control provider. Docker used but no ECS/K8s."
+    },
+    "bcdr_readiness": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BCDR policy exists, documented and reviewed annually. Annual testing of loss scenarios with each scenario tested. Daily backups with multi-AZ. Failover by spinning up servers across AZs. However, no RTO/RPO disclosed, no multi-region failover, and DR procedures are in Section 5 (not audited)."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Extremely heavy concentration on a single vendor (DigitalOcean) for compute, storage, networking, IDS/IPS, key management, and password policy. No named monitoring, SIEM, or CI/CD vendors. Render mentioned in metadata but not in report. Critical single-vendor dependency creates significant risk."
+    },
+    "overall": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Early-stage startup with a simple but functional tech stack. Clean audit with zero exceptions (4 untestable due to no events during short 3-month period). Security fundamentals are in place. Main concerns: heavy DigitalOcean vendor concentration, short audit period (3 months), no named tooling for monitoring/SIEM/CI-CD, basic monolithic architecture, no multi-region capability. The 3-month audit window and lack of operational events (no incidents, no terminations, no significant changes) mean many controls were not truly battle-tested."
+    }
+  },
+
+  "red_flags": [
+    "Extremely short audit period (3 months: May 15 - Aug 15, 2025) - minimal operational history tested",
+    "4 controls could not be tested due to no events occurring during the engagement period (no incidents, no customer terminations, no significant personnel changes, no cyber incidents) - controls are untested in practice",
+    "Critical single-vendor dependency on DigitalOcean for all infrastructure, networking, IDS/IPS, key management, and password policies",
+    "No RTO/RPO disclosed despite BCDR policy existing",
+    "Processing Integrity and Privacy trust criteria excluded - concerning for a healthcare AI company handling clinical documentation",
+    "Metadata lists Render as infra_provider but report only mentions DigitalOcean - inconsistency suggests undisclosed infrastructure or metadata error"
+  ],
+
+  "yellow_flags": [
+    "No specific monitoring/APM, SIEM, or log aggregation tools named - raises question about actual tooling maturity",
+    "No named CI/CD pipeline tool - change management described procedurally but tooling unclear",
+    "No WAF mentioned despite being a web-facing application handling healthcare data",
+    "TLS version not specified - could be outdated",
+    "No caching layer for a production application",
+    "No multi-region failover capability",
+    "Very small team (CEO, COO, CTO with Growth Team and Product Team) - key person risk is high",
+    "DR procedures presented in Section 5 (not audited by independent auditor)",
+    "No mention of HIPAA-specific compliance controls despite being a healthcare company (beyond browser extension being HIPAA-compliant)"
+  ],
+
+  "green_flags": [
+    "Clean unqualified opinion with zero exceptions across all tested controls",
+    "MFA enforced across production access, remote access, source code, and email",
+    "Annual external penetration testing by independent third party",
+    "Branch protection with merge request approval required before production deployment",
+    "Monthly automated vulnerability scanning",
+    "Daily backups with multi-AZ configuration and alerting",
+    "Data classification policy established and implemented",
+    "Quarterly user access reviews",
+    "Access revoked within one business day of termination",
+    "Annual BCDR testing with documented scenarios",
+    "Vendor management program with SOC report reviews and quarterly risk assessments",
+    "IDS/IPS deployed via DigitalOcean",
+    "Network segmentation with VPCs and ACLs",
+    "Formal change management with emergency change process"
+  ],
+
+  "key_observations": [
+    "The company metadata lists 'Render' as infrastructure provider but the SOC 2 report exclusively references DigitalOcean as the subservice organization - this discrepancy should be investigated",
+    "The network diagram reveals a simple two-tier architecture: Nginx reverse proxy -> FastAPI -> PostgreSQL (all Dockerized), which is straightforward but indicates early-stage architecture",
+    "Despite being an AI company automating clinical documentation from session recordings, there is zero mention of AI/ML infrastructure, model hosting, GPU compute, or audio processing pipelines in the SOC 2 report - these components may be out of scope or handled differently",
+    "The 3-month audit window is unusually short for a Type 2 report and resulted in 4 untestable controls - a 12-month period would provide substantially more assurance",
+    "The company has only 3 named executives (CEO, COO, CTO) suggesting a very early-stage startup where key person risk and separation of duties are inherent concerns",
+    "Password management is delegated to DigitalOcean's password policy rather than an enterprise identity provider, indicating limited IAM maturity",
+    "The browser extension delivery model (overlaying on existing EMR systems) means Perspective Health processes data within the client's environment, which has interesting security boundary implications not deeply explored in the report"
+  ]
+}

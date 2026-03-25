@@ -1,0 +1,19 @@
+{
+  "doc_id": "1jiiqljGiZakCpTiPYJUzsW1UnkYK-gB1W22gEaN_DlY",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1jiiqljGiZakCpTiPYJUzsW1UnkYK-gB1W22gEaN_DlY",
+  "timestamp": "7/19/2025 19:05:38",
+  "display_name": "Coplane",
+  "legal_name": "CoPlane, Inc.",
+  "company_name": "Coplane",
+  "system_description": "CoPlane is the agentic process automation platform for the back-office.",
+  "audit_end_date": "July 9, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://coplane.com",
+  "contact_email": "scott@coplane.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1jiiqljGiZakCpTiPYJUzsW1UnkYK-gB1W22gEaN_DlY.pdf",
+  "txt_file": "1jiiqljGiZakCpTiPYJUzsW1UnkYK-gB1W22gEaN_DlY.txt",
+  "has_report": true
+}

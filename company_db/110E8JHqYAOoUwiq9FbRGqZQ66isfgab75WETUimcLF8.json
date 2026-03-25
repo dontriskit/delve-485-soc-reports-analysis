@@ -1,0 +1,19 @@
+{
+  "doc_id": "110E8JHqYAOoUwiq9FbRGqZQ66isfgab75WETUimcLF8",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/110E8JHqYAOoUwiq9FbRGqZQ66isfgab75WETUimcLF8",
+  "timestamp": "7/19/2025 18:35:47",
+  "display_name": "Toffu AI",
+  "legal_name": "Toffu AI, Inc.",
+  "company_name": "Toffu AI",
+  "system_description": "AI marketing agent",
+  "audit_end_date": "July 8, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://toffu.ai",
+  "contact_email": "security@toffu.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "110E8JHqYAOoUwiq9FbRGqZQ66isfgab75WETUimcLF8.pdf",
+  "txt_file": "110E8JHqYAOoUwiq9FbRGqZQ66isfgab75WETUimcLF8.txt",
+  "has_report": true
+}

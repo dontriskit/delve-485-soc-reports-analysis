@@ -1,0 +1,224 @@
+{
+  "company": "Specter Inc",
+  "product": "Specter Platform",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of November 20, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "721 Brannan St, San Francisco CA 94103",
+  "signing_authority": "Xerxes Libsch, CEO",
+
+  "system_description": {
+    "overview": "Specter Inc provides a real-time physical intelligence platform combining long-range wireless sensors (rugged EO/IR sensors, solar power modules, encrypted wireless comms, optional Starlink backhaul) with an AI-driven command-and-control system. The platform delivers autonomous detection of threats, hazards, and operational events; real-time alerts; semantic video search; and customizable natural-language detection rules.",
+    "products": {
+      "Autonomous Physical Security Monitoring": "Real-time detection of threats, hazards, and operational events across large outdoor environments. Includes customizable detection rules, customizable workflows via integrations and effectors, and integrated analytics on detections across regions and sites.",
+      "Operational Security & Incident Response Support": "Unified dashboard for live monitoring, alerting, and event investigation. Remote fleet management, system health monitoring, and automated failover for continuous coverage."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out)",
+    "regions": ["us-west-2"],
+    "physical_presence": "No physical offices; no physical servers — all data processed on cloud services",
+    "availability_zones": "Multi-AZ (diagram shows Availability Zone A per customer VPC; DR plan spins up across all availability zones)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs per customer with access control lists (ACLs). Each customer has an isolated Customer VPC in us-west-2. System components segmented so company and customer access is appropriately isolated from other customer accounts.",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via AWS to identify and protect against threats in conjunction with security policy network settings.",
+    "vpn": "Remote access via bastion host with VPN (Specter VPN shown in network diagram connecting to Specter Allowed Devices).",
+    "tls": "TLS using certificates from established third-party certificate authority; encryption used to protect communication and transmission of data over public networks.",
+    "content_filtering": "All systems restricted to internet with content filtering system routed through proxy server.",
+    "multi_region": false,
+    "topology": "Internet -> S3 -> per-customer VPC (us-west-2, Availability Zone A) containing EC2, Amazon RDS, Docker containers, and S3 bucket. Specter VPN connects allowed devices to customer VPC. Multiple customer VPCs deployed with same pattern."
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid (hardware IoT + cloud backend)",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["EC2", "Docker"],
+    "api_style": null,
+    "environments": "Separate development/test and production environments (CC8.1.4: changes developed and tested in separate dev/test environment before implementation)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Amazon RDS"],
+    "caching": [],
+    "file_storage": ["S3"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Formal backup policy exists; backup procedures defined in Backup Policy; frequency not explicitly stated",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS (passwords controlled through AWS Password Policy including periodic forced changes, password expiry and complexity requirements; Active Directory referenced)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform. MFA required for source code tool access. Two-factor authentication required for employee email access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day upon termination",
+    "password_policy": "AWS Password Policy: periodic forced changes, password expiry, complexity requirements. Account lockout after limited unsuccessful login attempts. No guest/anonymous logins. Unattended desktops auto-lock."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest",
+    "key_management": "AWS KMS (cloud provider key management service)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not explicitly named (source code management tool referenced; MFA required for access)",
+    "ci_cd_tool": "Not explicitly named",
+    "branch_protection": "Code repository branch rules configured to require additional approval for every merge request moving to production (CC8.1.2).",
+    "iac": "Configuration management tool used for baseline configuration implementation and rollback (CC7.1.1); baseline configurations stored as code in infrastructure.",
+    "container_orchestration": "Docker (containers visible in network diagram; no Kubernetes mentioned)",
+    "patch_management": "CTO sets up automatic patch management with monthly reviews. Critical/security patches applied as they become available. Workstations auto-update and scanned daily for patch compliance.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named (monitoring tool generates alerts at predefined thresholds; IT team uses monitoring tools to identify anomalies)",
+    "siem": "None mentioned",
+    "log_aggregation": "Logging enabled at application and infrastructure level; access to modify logs restricted",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; tracked via change-management/ticketing application",
+    "metrics": ["disk space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "administrative activities", "logon attempts", "data deletions", "security configuration changes"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Data center / cloud infrastructure (carve-out subservice organization)", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers (continuous auto-scan; definitions updated weekly). Also on Mac workstations and laptops. Email scanning for malicious scripts/viruses.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications (frequency adjustable). Management reviews and remediates high/critical findings.",
+    "penetration_testing": "Annual external penetration testing by independent third party. High/critical findings tracked to remediation.",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities: AWS responsible for data center physical security; Specter has no physical servers",
+      "A1.2 - Environmental protections: Specter has no office/operates from working space managed by building management; environmental controls managed by building management/AWS",
+      "Processing Integrity - determined not relevant to the system",
+      "Privacy - determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "Per-customer VPC isolation in us-west-2 with dedicated EC2, RDS, and S3 per customer",
+      "Source code access restricted to authorized users with MFA",
+      "Quarterly user access reviews for all accounts including privileged",
+      "BCDR tested annually against multiple loss scenarios; availability zone failover documented",
+      "Vendor management includes quarterly risk assessments for critical vendors without SOC reports"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "AWS-hosted with per-customer VPC isolation and multi-AZ failover capability in us-west-2. No multi-region deployment. IaC for baseline configs. No CDN mentioned. Single region is a moderate concern for a physical security platform requiring high availability."
+    },
+    "application_architecture": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Docker containers on EC2 with RDS backend. No programming languages or frameworks disclosed. Branch protection and separate environments confirmed. Architecture is appropriate for an IoT/edge + cloud hybrid but disclosure is minimal."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "RDS + S3 per customer. Per-tenant data segregation at VPC level is strong. No caching layer or data warehouse mentioned. Backup policy exists but frequency unspecified."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong: IDS/IPS via AWS, firewalls, VPN, MFA on admin/production access, monthly vulnerability scanning, annual third-party pen testing, antivirus on all endpoints, content filtering, log protection. No WAF explicitly named. No SIEM named."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Branch protection with required approvals for PRs, separate dev/test/prod environments, emergency change process, IaC for baseline configs, monthly patch reviews with auto-patching. CI/CD tool and source control platform not explicitly named — limits scoring."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual testing across multiple loss scenarios. Multi-AZ failover by spinning up servers across all AZs. No RTO/RPO disclosed. No multi-region failover."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "AWS is the sole named cloud/infrastructure vendor with no other vendors named in the report. Very high concentration on a single cloud provider. Hardware vendors (EO/IR sensors, Starlink) not named as subservice orgs."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Solid foundational security posture for an early-stage physical security AI company. Per-customer VPC isolation is notable. Gaps include: no multi-region, RTO/RPO not disclosed, CI/CD tooling unnamed, single cloud provider dependency, and minimal application architecture disclosure. Type 1 report limits confidence in control effectiveness."
+    }
+  },
+
+  "red_flags": [
+    "SOC 2 Type 1 only — no operational effectiveness testing period",
+    "No RTO/RPO disclosed despite physical security customers likely having strict uptime requirements",
+    "Single cloud provider (AWS) with no multi-region failover for a critical physical security platform",
+    "CI/CD pipeline tools and source control platform not named in report"
+  ],
+  "yellow_flags": [
+    "No CDN mentioned — potential latency for geographically distributed physical security deployments",
+    "No WAF explicitly named despite web-based customer dashboard",
+    "Backup frequency not specified",
+    "No SSO for customer identity management mentioned",
+    "Only Security trust criteria in scope — Availability, Confidentiality, Processing Integrity and Privacy excluded or deemed not relevant"
+  ],
+  "green_flags": [
+    "Per-customer VPC isolation in AWS — strong multi-tenant data segregation",
+    "MFA enforced for admin access to production platform and source code",
+    "Quarterly user access reviews",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scanning",
+    "BCDR tested annually with multi-AZ failover capability",
+    "Hardware-agnostic design (EO/IR sensors, Starlink backhaul) enabling deployments without trenching or cabling",
+    "Vendor management includes quarterly risk assessments for vendors without SOC reports"
+  ],
+  "key_observations": [
+    "Specter is a hardware+software company: the platform includes physical sensors deployed at customer sites plus a cloud backend — the SOC 2 scope covers only the cloud/software layer",
+    "Per-customer VPC architecture means each customer gets dedicated EC2, RDS, and S3 resources — unusually strong isolation for a startup",
+    "Starlink backhaul option enables deployments in remote/hard-to-wire environments — relevant for critical infrastructure customers",
+    "Org chart shows Manufacturing as a department alongside Engineering — indicating in-house hardware manufacturing, not just software",
+    "Report prepared by Accorp Partners (PAC-FIRM-LIC-47383) — a smaller regional audit firm, not Big 4"
+  ]
+}

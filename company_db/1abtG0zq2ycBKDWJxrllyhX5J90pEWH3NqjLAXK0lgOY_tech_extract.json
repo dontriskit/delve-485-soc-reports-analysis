@@ -1,0 +1,256 @@
+{
+  "company": "Reftab LLC",
+  "product": "Reftab (reftab.com)",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "April 9, 2025 - July 9, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "Not disclosed (website: reftab.com, email: info@reftab.com)",
+  "signing_authority": "Michael Caslowitz, Partner (November 5, 2025)",
+
+  "system_description": {
+    "overview": "Reftab is an asset management software platform designed for simplicity. The platform enables organizations to track hardware assets, software licenses, and maintenance schedules, with integrations for MDM systems (Microsoft Intune, Jamf) and ITSM/ticketing tools.",
+    "products": {
+      "Hardware Asset Management": "Track and manage physical hardware assets including check-in/check-out, lifecycle tracking, and audits",
+      "Software Asset Management": "Track software licenses and subscriptions; integrations with MDM systems (Microsoft Intune, Jamf) for device/software inventory",
+      "Maintenance Management": "Schedule and track maintenance tasks and work orders for physical assets"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Digital Ocean (carve-out — Digital Ocean controls excluded from scope)",
+    "regions": ["Not explicitly named — Digital Ocean datacenter(s) implied"],
+    "physical_presence": "None — no owned/leased office mentioned; operates remotely",
+    "availability_zones": "Multi-AZ (daily backups with multi-AZ configured per CC7.4.2)",
+    "additional_cloud": ["AWS (partial — S3 for file storage, SES for email)"],
+    "serverless": [],
+    "cdn": "Cloudflare (confirmed in network diagram — CDN and dual firewall layer)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Digital Ocean VPC. Network diagram shows: End User → HTTPS → Cloudflare (2 firewalls) → Proxy Server + API Servers → MySQL (AES-256 Encrypted) + AWS S3 (AES-256 Encrypted) + Digital Ocean Backups + AWS SES Emails + MongoDB + Offsite Backups (Dropbox). Cloudflare provides both CDN and dual-firewall protection at the perimeter.",
+    "api_gateway": "None explicitly named — Proxy Server layer inferred from network diagram",
+    "waf": "Cloudflare (WAF functionality inferred from Cloudflare's dual-firewall position in network diagram)",
+    "firewalls": "Two Cloudflare firewalls at perimeter (network diagram confirmed). System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management (CC6.6.1).",
+    "ids_ips": "IDS/IPS via Digital Ocean — intrusion detection system monitors for unauthorized access and anomalies (CC2.1.1 confirmed in test results)",
+    "vpn": "Remote access via bastion host with VPN",
+    "tls": "TLS via established third-party certificate authority for all web-based system requests (HTTPS confirmed in network diagram)",
+    "content_filtering": "Content filtering system routed through proxy server; all systems restricted to internet via content filtering",
+    "multi_region": false,
+    "topology": "End users connect via HTTPS through Cloudflare (CDN + dual firewall), traffic routed to Proxy Server then API Servers. API Servers connect to MySQL (AES-256 encrypted primary database), MongoDB (secondary/document store), AWS S3 (file storage, AES-256), AWS SES (email delivery), Digital Ocean Backups, and Dropbox Offsite Backups. Only non-AWS company in observed cohort — Digital Ocean as primary cloud with AWS used selectively for S3 and SES."
+  },
+
+  "application_architecture": {
+    "pattern": "Modular (Proxy + API Server pattern; not explicitly microservices)",
+    "languages": ["Not explicitly named"],
+    "frameworks": ["Not explicitly named"],
+    "compute": ["Digital Ocean Droplets (inferred — Digital Ocean cloud compute equivalent to EC2)"],
+    "api_style": "REST (inferred from API server architecture and web-based SaaS nature)",
+    "environments": "Separate development/test environment confirmed (CC8.1.4: changes developed and tested in separate dev/test environment before implementation)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["MySQL (explicitly shown in network diagram — AES-256 encrypted)", "MongoDB (explicitly shown in network diagram)"],
+    "caching": ["Not mentioned"],
+    "file_storage": ["AWS S3 (explicitly shown in network diagram — AES-256 encrypted)"],
+    "data_warehouse": "Not mentioned",
+    "backup_frequency": "Daily (CC7.4.2: 'Backups are taken daily, multi-availability zones are configured')",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not explicitly named — Digital Ocean-based password policy inferred; Active Directory referenced for infrastructure accounts",
+    "mfa": "MFA enforced for all remote access to production platform (CC6.1.1 confirmed: 'MFA is enabled for all remote access'); source code management tool access requires MFA; email access requires 2FA",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Password policy: periodic forced changes, password expiry, complexity requirements, account lockout after limited failed attempts; guest/anonymous logins not allowed; unattended desktops locked on inactivity"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified; HTTPS confirmed in network diagram)",
+    "at_rest": "AES-256 for MySQL database and AWS S3 (both explicitly labeled in network diagram); cloud provider KMS referenced for key management",
+    "key_management": "Cloud provider key management service referenced (Digital Ocean / AWS KMS); access to production environment access keys restricted to authorized individuals",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "GitHub (inferred — source code management tool with MFA requirement, branch protection, and merge approval per CC8.1.2, CC8.1.3; 'master branch' referenced)",
+    "ci_cd_tool": "Not explicitly named",
+    "branch_protection": "Code repository branch rules configured to require additional approval for every merge request to move change to production environment — approval required before merging to master branch (CC8.1.2 confirmed)",
+    "iac": "Configuration management tool used for baseline configurations and rollback capability (specific tool not named)",
+    "container_orchestration": "None confirmed — no ECS/EKS/Kubernetes mentioned; Digital Ocean Droplets architecture",
+    "patch_management": "Automatic patch management set up by CTO; monthly patch management reviews; workstations scanned daily for patch compliance; OS patches applied automatically (CC7.5.1 confirmed)",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not explicitly named — automated monitoring tool generates alerts when predefined thresholds are met",
+    "siem": "Not mentioned",
+    "log_aggregation": "Logging enabled for administrative activities, logon attempts, data deletions, changes to functions, security configurations, permissions, and roles (CC7.2.1 confirmed)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; incident management process invoked for confirmed events (CC7.2.1 confirmed)",
+    "metrics": ["CPU utilization", "Disk space", "Incoming/outgoing network traffic", "Packet loss", "Predefined threshold triggers"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Digital Ocean", "purpose": "Primary cloud infrastructure — compute (Droplets), networking (VPC), backups, multi-AZ deployment", "criticality": "Critical"},
+    {"vendor": "Cloudflare", "purpose": "CDN and dual-firewall perimeter protection — all user traffic passes through Cloudflare before reaching application servers", "criticality": "Critical"},
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Selective services only — S3 for file storage (AES-256 encrypted) and SES for email delivery", "criticality": "High"},
+    {"vendor": "Dropbox", "purpose": "Offsite backups — explicitly shown in network diagram as backup destination outside primary cloud", "criticality": "Medium"},
+    {"vendor": "GitHub (inferred)", "purpose": "Source code management with branch protection and MFA", "criticality": "Critical"},
+    {"vendor": "Microsoft Intune", "purpose": "MDM integration for software asset management — device and software inventory data source", "criticality": "Medium"},
+    {"vendor": "Jamf", "purpose": "MDM integration for software asset management — Apple device management data source", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed and configured on all production servers; continuous scanning; weekly AV definition updates for production servers; installed and configured for Mac-based workstations and laptops (CC6.8.1 confirmed)",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Automated vulnerability scans conducted by external security team (third-party, not internal IT) — confirmed in test results. Monthly scans on infrastructure and applications; self-assessment scans prior to every production release or annually. Management reviews and takes action on high/critical vulnerabilities.",
+    "penetration_testing": "Annual external penetration testing by independent third party; high/critical findings remediated and tracked (CC4.1.1 confirmed)",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 58,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — No significant changes to key personnel roles/responsibilities during engagement period",
+      "CC3.2.1 — Cybersecurity insurance control could not be tested because there were no cyber incidents during the engagement period (insurance confirmed but untestable)",
+      "CC6.5.2 — Customer data deletion upon termination could not be tested because there were no customer terminations during the engagement period",
+      "CC7.3.1 — Incident response policy effectiveness could not be tested because there were no security incidents during the engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — Physical access to data center facilities: Digital Ocean is responsible for physical security; not in scope",
+      "A1.2 — Environmental protections: Reftab has no office; environmental controls managed by building management / Digital Ocean",
+      "Processing Integrity — Determined not relevant to the system",
+      "Privacy — Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC7.4.2: Daily backups confirmed with multi-AZ configuration and automated alerts",
+      "CC8.1.2: Branch protection enforced — approval required before merging to master branch",
+      "CC8.1.3: Source code changes logged, time-stamped, attributed to author; MFA required for SCM access",
+      "CC4.1.1: Annual external penetration testing by independent third party",
+      "CC6.2.2: Quarterly access reviews for all user accounts including privileged accounts",
+      "CC6.1.4: Access revoked within one business day of termination",
+      "CC7.1.2: Vulnerability scanning conducted by external security team (not internal IT)",
+      "CC3.1.1: Risk and Governance Executive Committee (RGEC) meets quarterly; IT Leadership Committee meets weekly",
+      "CC6.1.1: MFA enforced for ALL remote access (broader than other cohort companies which only require MFA for admin accounts)",
+      "CC6.6 (confirmed): Cloudflare dual-firewall perimeter — two distinct firewall layers shown in network diagram"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Digital Ocean as primary cloud with multi-AZ, Cloudflare CDN/WAF at perimeter, AWS S3 and SES as selective services. Multi-vendor by design (not concentration). No multi-region deployment. Dropbox offsite backups add meaningful data redundancy. Cloudflare CDN is a genuine differentiator — no other company in this cohort has CDN coverage. The Proxy + API Server architecture is clean but less sophisticated than ECS/EKS."
+    },
+    "application_architecture": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Proxy + API Server pattern with MySQL + MongoDB dual-database backend. Branch protection confirmed, separate dev/test environment confirmed. No container orchestration. No CDN-accelerated app delivery described beyond Cloudflare at perimeter. Programming languages and frameworks not disclosed. Simpler than containerized competitors but functional for an asset management SaaS."
+    },
+    "data_layer": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Two named databases (MySQL AES-256 and MongoDB) — most specific database disclosure in cohort. AWS S3 for file storage with AES-256 encryption. Daily backups with multi-AZ confirmed. Dropbox offsite backups provide additional data redundancy beyond primary cloud. No caching layer mentioned. No data warehouse. Data classification and retention policies referenced."
+    },
+    "security_posture": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Strongest security perimeter in cohort: Cloudflare dual-WAF at entry point, IDS/IPS via Digital Ocean, annual external pen test, monthly vulnerability scans by external security team (not internal — higher independence), MFA for ALL remote access (not just admin), quarterly access reviews, 1-business-day access revocation, antivirus on all servers and workstations, cybersecurity insurance confirmed. Unique: external third-party conducts vulnerability scanning (more independent than internal IT scanning). No SIEM identified."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Branch protection, emergency change process, IaC referenced, separate dev/test environments, automatic patch management. CI/CD tool not named. No container orchestration. No explicitly named CI/CD pipeline tool. Managing Partners governance structure (LLC vs. Corp) is different from technical peers. Patch management confirmed via CC7.5.1."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and tested annually. Daily backups confirmed with multi-AZ. Dropbox offsite backups provide additional resilience. No multi-region failover. RTO/RPO not disclosed. Digital Ocean's backup infrastructure is less mature than AWS multi-region. Offsite Dropbox backup is a unique and practical touch for a small company."
+    },
+    "vendor_diversity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Highest vendor diversity in cohort: Digital Ocean (primary compute), Cloudflare (CDN/WAF), AWS (S3 + SES), Dropbox (offsite backups), GitHub (SCM), Microsoft Intune and Jamf (MDM integrations). No single-cloud concentration risk — if Digital Ocean had an outage, S3/SES remain functional. Cloudflare dependency is the single point of concern (all traffic routes through it). Four distinct non-GitHub infrastructure vendors is exceptional for a company this size."
+    },
+    "overall": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Reftab is architecturally distinctive in this cohort — the only non-AWS company, with multi-vendor infrastructure spanning Digital Ocean, Cloudflare, AWS (S3/SES), and Dropbox. Cloudflare WAF at the perimeter and MFA for all remote access (not just admins) represent genuine security differentiation. The explicit naming of MySQL + MongoDB in the network diagram provides rare data layer transparency. Key risks: no container orchestration, no named CI/CD tool, no SIEM, no multi-region failover, and LLC governance structure (Managing Partners) differs from VC-backed Corp peers. Zero exceptions across 58 controls in 3-month Type 2 audit."
+    }
+  },
+
+  "red_flags": [
+    "Single-region deployment — no multi-region failover capability (Digital Ocean single region)",
+    "No container orchestration (no Kubernetes/ECS/EKS) — traditional VPS-style deployment",
+    "CI/CD tool not named — reduces confidence in deployment automation maturity",
+    "No SIEM despite logging and monitoring controls",
+    "RTO and RPO not disclosed",
+    "Dropbox as offsite backup provider — consumer-grade backup solution for production data is architecturally unusual"
+  ],
+
+  "yellow_flags": [
+    "Auditor (Accorp Partners) is a lower-tier/newer SOC 2 audit firm — not Big 4 or well-known mid-tier",
+    "3-month observation window is minimum for Type 2 — limited operational history tested",
+    "LLC governance structure (Managing Partners, not CEO/CTO) — less common for funded SaaS companies; signing authority is 'Partner' not 'CEO'",
+    "Digital Ocean as primary cloud has less enterprise adoption and fewer native security services compared to AWS",
+    "No SSO for customer authentication mentioned",
+    "MongoDB used alongside MySQL — dual database without stated rationale raises questions about data architecture consistency",
+    "Signing date (November 5, 2025) is significantly later than audit period end (July 9, 2025) — 4-month gap between audit close and report signing is unusual"
+  ],
+
+  "green_flags": [
+    "Cloudflare dual-WAF at perimeter — only company in cohort with a WAF (Web Application Firewall); all traffic routes through Cloudflare before reaching application",
+    "MFA enforced for ALL remote access (not just admin accounts) — stronger MFA stance than other cohort companies",
+    "Explicit database naming (MySQL + MongoDB) in network diagram — highest data layer transparency in cohort",
+    "Multi-vendor infrastructure (Digital Ocean + Cloudflare + AWS S3/SES + Dropbox) — no single-cloud concentration risk",
+    "Vulnerability scanning conducted by external security team (third-party) — higher independence than internal IT scanning",
+    "Annual external penetration testing by independent third party",
+    "Daily backups with multi-AZ confirmed (CC7.4.2)",
+    "Dropbox offsite backups as additional data redundancy beyond primary cloud",
+    "Cybersecurity insurance confirmed",
+    "Zero exceptions across all 58 controls tested in Type 2 audit",
+    "Quarterly access reviews and 1-business-day access revocation SLA",
+    "BCDR plan tested annually"
+  ],
+
+  "key_observations": [
+    "Reftab is the only non-AWS company in the observed cohort — Digital Ocean as primary cloud with Cloudflare CDN/WAF represents a genuine architectural divergence from the AWS-monoculture of peers",
+    "Cloudflare is explicitly shown in the network diagram as a dual-firewall entry point — this is the only company in the cohort with a WAF, which is a meaningful security differentiator for an internet-facing SaaS",
+    "The network diagram names both MySQL (AES-256) and MongoDB — two distinct database engines suggests the application uses relational storage for structured asset data and document storage for flexible metadata or MDM integration payloads",
+    "Dropbox appears as 'Offsite Backups' in the network diagram — using a consumer/prosumer cloud storage service for production data backup is architecturally unusual and raises questions about backup security, access controls, and data residency",
+    "The signing authority is 'Michael Caslowitz, Partner' — Reftab is an LLC with a Managing Partners governance structure, distinct from the CEO/CTO-signed reports of other cohort companies. This suggests a bootstrapped or partnership-owned business rather than VC-backed",
+    "Vulnerability scanning is performed by an external security team (not internal IT) — this was specifically noted in test results and represents higher independence than self-scanning, though the external team name is not disclosed",
+    "The RGEC meets quarterly (confirmed in test results page 61) — other cohort companies with RGEC governance meet semiannually; quarterly cadence indicates more frequent risk oversight",
+    "AWS SES for email delivery while using Digital Ocean for primary compute suggests a deliberate multi-cloud approach — the company chose best-of-breed services rather than staying within a single provider ecosystem",
+    "MDM integrations (Microsoft Intune, Jamf) mean Reftab receives device and software inventory data from customer MDM systems — this is sensitive enterprise data about installed software, device compliance status, and potentially user behavior"
+  ]
+}

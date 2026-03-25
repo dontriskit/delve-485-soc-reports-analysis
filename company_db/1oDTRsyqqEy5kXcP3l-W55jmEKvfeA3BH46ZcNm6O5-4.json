@@ -1,0 +1,19 @@
+{
+  "doc_id": "1oDTRsyqqEy5kXcP3l-W55jmEKvfeA3BH46ZcNm6O5-4",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1oDTRsyqqEy5kXcP3l-W55jmEKvfeA3BH46ZcNm6O5-4",
+  "timestamp": "5/8/2025 15:28:45",
+  "display_name": "Pointer",
+  "legal_name": "Anypoint, Inc.",
+  "company_name": "Pointer",
+  "system_description": "Pointer",
+  "audit_end_date": "April 29th",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://pointer.so/",
+  "contact_email": "neal@pointer.so",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1oDTRsyqqEy5kXcP3l-W55jmEKvfeA3BH46ZcNm6O5-4.pdf",
+  "txt_file": "1oDTRsyqqEy5kXcP3l-W55jmEKvfeA3BH46ZcNm6O5-4.txt",
+  "has_report": true
+}

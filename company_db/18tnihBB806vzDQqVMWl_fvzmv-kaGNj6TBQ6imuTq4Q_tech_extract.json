@@ -1,0 +1,249 @@
+{
+  "company": "Flair Labs, Inc.",
+  "product": "Flair Labs Platform",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of August 2, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "hq": "1522 Western Ave STE 24177, Seattle, WA 98101",
+  "signing_authority": "Samir Sen, CEO",
+
+  "system_description": {
+    "overview": "Flair Labs builds digital assistants for lending and real estate teams. The company provides software services to manage and scale business communication with prospective home buyers, sellers, investors, and loan applicants, combining AI-driven technology with brokerage services to maximize pipeline revenue and reach.",
+    "products": {
+      "Lead Management Platform": "Automated lead nurturing and communication sequencing, Voice + SMS support, live transfer and conferencing, CRM + Calendar integration, automated lead data enrichment",
+      "Fully-Managed Telephony": "TCPA + A2P 10DLC continuous compliance, phone number reputation management with direct carrier-level relations, area code matching, branding",
+      "AI-Driven Prospecting": "Speed-to-lead, live transfers, appointment setting and callback scheduling",
+      "Long-Term Nurturing": "Buyer/seller lead activation, lead data enrichment (motivation identification)",
+      "Inbound Telephony Support": "Ensure no missed customer calls",
+      "White-Glove Onboarding": "Comprehensive onboarding and implementation support"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Google Cloud Platform (GCP) - carve-out method",
+    "regions": ["Not specifically named in report"],
+    "physical_presence": "None - no physical offices or servers; all data processed on cloud services",
+    "availability_zones": "Multi-AZ (report states 'high availability data centers with multiple availability zones')",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "System hosted in GCP VPC environment. Network topology includes segmented VPCs and access control lists (ACLs).",
+    "api_gateway": "Application gateway mentioned in firewall rules context (CC6.6.1)",
+    "waf": null,
+    "firewalls": "System firewalls configured on the application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management. Formal network diagram outlining boundary protection mechanisms (firewalls, IDS, etc.) maintained.",
+    "ids_ips": "IDS and IPS via GCP to identify and protect against threats in conjunction with security policy network settings",
+    "vpn": "Remote access done through a bastion host with a virtual private network (VPN)",
+    "tls": "TLS using certificates from third-party certificate authority for web-based systems",
+    "content_filtering": "Content filtering system with proxy server for all internet-bound traffic",
+    "multi_region": false,
+    "topology": "User requests -> TLS encryption -> GCP VPC -> segmented VPCs with ACLs -> application gateway with firewalls -> production servers. Remote access via bastion host + VPN. Infrastructure diagram shows: PostgreSQL databases, Firebase, Redis topics, pub/sub network, message listener, call processing service, dispatch service, telephony handling. Features include live transfer, callback scheduling, communication guardian, call/SMS sequencing, CRM integration, calendar scheduling."
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices (infrastructure diagram shows separate services: call processing service, dispatch service, telephony handling, message listener, pub/sub architecture)",
+    "languages": ["Not specifically named in report"],
+    "frameworks": ["Not specifically named in report"],
+    "compute": ["GCP virtual servers"],
+    "api_style": "REST (Flair API shown in infrastructure diagram)",
+    "environments": "Separate development/test and production environments (CC8.1.4 confirms changes developed and tested in separate environment before implementation)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["PostgreSQL (multiple instances shown in diagram)"],
+    "caching": ["Redis (redis topics for message_id shown in diagram)"],
+    "file_storage": ["Firebase"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Formal backup policies and procedures in place; specific frequency not disclosed",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "GCP Password Policy / not specifically named beyond GCP IAM",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1). Two-factor authentication required for email access. MFA required for source code tool access (CC8.1.3).",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination of employment",
+    "password_policy": "Controlled through GCP password policy; includes periodic forced changes, password expiry and complexity requirements. Accounts disabled after limited unsuccessful logon attempts. Guest and anonymous logins not allowed. Desktops locked after inactivity."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified) using third-party certificate authority certificates",
+    "at_rest": "Cloud provider key management service (CC6.1.5)",
+    "key_management": "GCP Cloud KMS (cloud provider key management service to encrypt data at rest and manage encryption keys; access to production environment access keys restricted to authorized individuals)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (not specifically named; changes logged, time-stamped, attributed to author - CC8.1.3)",
+    "ci_cd_tool": "Not specifically named; internal tool tracks changes from initiation through deployment and validation",
+    "branch_protection": "Code repository branch rules configured to ensure every merge request to production environment requires additional approval (CC8.1.2)",
+    "iac": "Infrastructure as code - baseline configurations retained within infrastructure as code and configuration management tool used for implementation and rollback (CC7.1.1)",
+    "container_orchestration": "None mentioned",
+    "patch_management": "Automatic patch management with monthly patch management reviews by CTO. Workstations configured for automatic updates. Workstations scanned for patch compliance daily. Critical and security patches applied as they become available.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not specifically named; monitoring tools used for system capacity and performance (CC5.2.1)",
+    "siem": "Not specifically named",
+    "log_aggregation": "Not specifically named; logging enabled to monitor administrative activities, logon attempts, data deletions at application and infrastructure level (CC7.2.1)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events (CC7.2.1). Monitoring tool generates alerts when predefined thresholds are met.",
+    "metrics": ["disc space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "system capacity", "performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Google Cloud Platform (GCP)", "purpose": "Cloud infrastructure and data center services (subservice organization)", "criticality": "Critical"},
+    {"vendor": "Twilio", "purpose": "Phone number availability pool (~1000 numbers shown in infrastructure diagram)", "criticality": "Critical"},
+    {"vendor": "Firebase", "purpose": "Data storage / real-time database", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and malware protection software installed on all production servers (continuous scan), definitions updated weekly for production servers. Anti-virus and malware protection also installed on Mac workstations and laptops.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications, frequency adjusted as required (CC7.1.2). Self-assessment vulnerability scans performed prior to every release or yearly.",
+    "penetration_testing": "Annual external penetration testing by independent third-party (CC4.1.1). High/critical findings remediated in a timely manner.",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 54,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities; GCP responsible for physical security of data center. Flair Labs has no physical office.",
+      "A1.2 - Environmental protections; managed by building management / GCP.",
+      "Processing Integrity - Determined not relevant to the system.",
+      "Privacy - Determined not relevant to the system."
+    ],
+    "notable_controls": [
+      "CC8.1.2 - Branch protection rules enforced requiring additional approval for production merges",
+      "CC8.1.3 - Source code changes logged, time-stamped, attributed to author with MFA-protected access",
+      "CC7.1.1 - Infrastructure as code with configuration management tool for rollback capability",
+      "CC6.1.3 - Customer access appropriately segmented from other customer accounts (per-tenant segregation)",
+      "CC4.1.1 - Annual external penetration testing by independent third-party",
+      "CC7.1.2 - Monthly automated vulnerability scanning with remediation plan",
+      "CC7.4.1 - BCDR plan documented, reviewed annually, tested annually per defined schedule",
+      "CC9.2.1-CC9.2.3 - Comprehensive vendor management lifecycle including onboarding risk assessment, SOC report reviews, and termination procedures"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "GCP with Multi-AZ deployment and VPC segmentation is solid. However, single-region (no multi-region mentioned), no CDN, no WAF, and no named serverless or additional cloud providers. Infrastructure diagram shows a reasonably mature architecture with pub/sub messaging and service separation."
+    },
+    "application_architecture": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Microservices pattern visible in infrastructure diagram (separate call processing, dispatch, message listener services). Branch protection and code review enforced. However, no programming languages, frameworks, or specific compute services named. API style only inferred from diagram."
+    },
+    "data_layer": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Multiple PostgreSQL instances, Redis for pub/sub messaging, Firebase for storage. Data classification and retention policies in place. Per-tenant segregation confirmed. Multi-AZ. However, no data warehouse, backup frequency not specified, and no caching layer beyond Redis messaging."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "IDS/IPS via GCP, firewalls on application gateway, MFA on admin and source code access, endpoint protection with antivirus, monthly vulnerability scans, annual pen testing by third party. However, no WAF, no SIEM named, no named endpoint protection vendor, and no cybersecurity insurance mentioned."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Infrastructure as code with configuration management tool and rollback capability. Branch protection rules enforced. Separate dev/test/prod environments. Emergency change process documented. However, no CI/CD tool, source control platform, or container orchestration named. Tool abstraction reduces confidence."
+    },
+    "bcdr_readiness": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BCDR policy exists, reviewed annually, and tested annually per defined schedule across multiple loss scenarios. Multi-AZ failover capability. However, no RTO/RPO disclosed, no multi-region failover, backup frequency not specified. DR section in Section 5 is brief and unaudited."
+    },
+    "vendor_diversity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Heavy concentration on GCP as the sole cloud provider (carve-out). Only 3 third-party vendors identifiable from the report (GCP, Twilio, Firebase - and Firebase is itself a GCP product). High single-vendor dependency risk."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Flair Labs demonstrates a reasonable baseline security posture for a startup-stage company with SOC 2 Type 1. Core security controls are in place (MFA, encryption, IDS/IPS, pen testing, vulnerability scanning, BCDR). The microservices architecture with pub/sub messaging is a positive sign. However, the report is notably generic in many areas - few specific tool names, no RTO/RPO, no WAF, no SIEM, heavy GCP concentration, and Type 1 only verifies design not operating effectiveness."
+    }
+  },
+
+  "red_flags": [
+    "No WAF (Web Application Firewall) mentioned despite being a web-facing SaaS platform handling sensitive real estate and lending data",
+    "No SIEM tool named despite logging being described - unclear how security events are correlated and analyzed",
+    "RTO and RPO not disclosed, making it impossible to assess recovery capability",
+    "SOC 2 Type 1 only (point-in-time design review) - no operating effectiveness tested yet",
+    "Very high vendor concentration on GCP with Firebase also being a GCP product - single cloud provider failure would be catastrophic",
+    "Processing Integrity and Privacy trust criteria excluded as 'not relevant' despite handling sensitive personal/financial data for lending and real estate"
+  ],
+
+  "yellow_flags": [
+    "No specific tool names for CI/CD, source control, monitoring/APM, SIEM, or log aggregation - report is unusually generic on technology specifics",
+    "No multi-region deployment mentioned - all infrastructure appears to be in a single GCP region",
+    "Backup frequency not disclosed beyond 'formal policies and procedures'",
+    "No CDN mentioned for a customer-facing platform",
+    "No container orchestration mentioned - unclear how services are deployed and scaled",
+    "No SSO mentioned for customer-facing authentication",
+    "Small leadership team (CEO, CTO, COO) - key person risk",
+    "Cybersecurity insurance not mentioned",
+    "Content filtering via proxy server is an outdated approach for a cloud-native company"
+  ],
+
+  "green_flags": [
+    "Unqualified opinion with zero exceptions on all tested controls",
+    "MFA enforced on administrative access, email, and source code tools",
+    "Branch protection with required approval for production merges",
+    "Infrastructure as code with rollback capability",
+    "Annual external penetration testing by independent third-party",
+    "Monthly automated vulnerability scanning with remediation plan for critical/high findings",
+    "BCDR policy documented, reviewed annually, and tested annually across multiple loss scenarios",
+    "Per-tenant data segregation confirmed (CC6.1.3)",
+    "Comprehensive vendor management lifecycle with onboarding risk assessment, annual SOC reviews, and termination procedures",
+    "Quarterly user access reviews for all accounts including administrative",
+    "Access revocation within one business day upon termination",
+    "Encryption at rest via cloud KMS and in transit via TLS",
+    "Infrastructure diagram provided showing actual production architecture with reasonable service separation"
+  ],
+
+  "key_observations": [
+    "The infrastructure diagram reveals a telephony-heavy architecture (Twilio phone number pool of ~1000 numbers, call processing service, dispatch service, telephony handling) that is more complex than the system description suggests - this is essentially a real-time communications platform, not just a 'digital assistant'",
+    "The pub/sub messaging architecture with Redis topics and message listener suggests event-driven design, which is architecturally mature for a startup",
+    "Flair Labs excludes Processing Integrity and Privacy trust criteria despite handling sensitive lending and real estate data - this is a gap that customers in regulated financial services should scrutinize",
+    "The report uses GCP as a carve-out subservice organization, meaning GCP's own controls are NOT tested here - the actual security posture depends heavily on GCP's separate SOC 2 report",
+    "The company has no physical office or presence (fully remote), which simplifies physical security but introduces different risks around endpoint management and data handling",
+    "The generic nature of the technology descriptions (no named tools) combined with the relatively small team (3 executives) and the choice of Accorp Partners (a less well-known audit firm) as auditor suggests this is likely a first SOC 2 engagement for a young company",
+    "Twilio dependency is critical but not explicitly listed as a subservice organization - only GCP is carved out. Twilio outages would directly impact core telephony functionality"
+  ]
+}

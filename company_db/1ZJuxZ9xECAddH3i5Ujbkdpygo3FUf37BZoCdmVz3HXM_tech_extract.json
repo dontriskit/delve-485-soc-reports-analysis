@@ -1,0 +1,230 @@
+{
+  "company": "Elev4te, Inc.",
+  "product": "Elevate",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "August 25, 2025 - November 25, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+  "hq": "210 Warren St. Apt 24C, New York, NY 10282",
+  "signing_authority": "Scott Cara, CEO",
+
+  "system_description": {
+    "overview": "Elevate is an AI-powered data management platform for private-equity-backed roll-ups and multi-location operators. It centralizes, cleans, and analyzes data across disparate legacy systems using large-scale data pipelines, AI-driven transformations, and automated quality checks to unify operational and financial data.",
+    "products": {
+      "Data Warehousing & Reporting Infrastructure": "Centralized cloud-based data warehouse with pre-modeled operational and financial tables, KPI dashboards, drill-down analytics, and optional SQL access.",
+      "Migration Services for Acquired Companies": "End-to-end data extraction, mapping, cleaning, de-duplication, AI-powered transformation, and load-ready file delivery with 30-day post-migration QA.",
+      "Ongoing Data Maintenance & Support": "Continuous refresh of recurring data feeds (financials, invoices, wages, etc.), onboarding new subsidiaries, data quality maintenance, and ad-hoc support."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out)",
+    "regions": ["Not explicitly named; described as high-availability data centers with multiple AZs"],
+    "physical_presence": "No physical office/servers; fully cloud-based",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": [],
+    "serverless": ["Lambda (referenced in network diagram as 'Health Lambda' and 'Cron/Worker Lambdas')"],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with ACLs; private and public subnets. VPC endpoints for S3 bucket access. Network diagram shows API Gateway, ECS Fargate services, RDS PostgreSQL, Lambda functions, and Secrets Manager all within VPC.",
+    "api_gateway": "API Gateway (AWS) visible in network diagram",
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually.",
+    "ids_ips": "IDS and IPS via AWS employed to identify and protect against threats",
+    "vpn": "Bastion host with VPN for remote access",
+    "tls": "TLS for all web-based communication; certificates from established third-party CA",
+    "content_filtering": "Content filtering system routed through proxy server for internet access",
+    "multi_region": false,
+    "topology": "Internet -> API Gateway -> VPC (private subnets with Lambda, ECS Fargate, RDS PostgreSQL multi-AZ) + public subnets (ALB). S3 buckets accessed via VPC endpoints. Secrets Manager, Cron/Worker Lambdas also in VPC."
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid (Lambda functions + ECS Fargate microservices + RDS)",
+    "languages": ["Not explicitly disclosed"],
+    "frameworks": ["Not explicitly disclosed"],
+    "compute": ["AWS Lambda", "ECS Fargate"],
+    "api_style": "REST (API Gateway visible in diagram)",
+    "environments": "Separate development/test and production environments; changes tested before promotion",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["RDS PostgreSQL (Multi-AZ, visible in network diagram)"],
+    "caching": ["Not mentioned"],
+    "file_storage": ["S3 (S3 bucket exports and uploads referenced in network diagram)"],
+    "data_warehouse": "Centralized cloud-based warehouse (technology not named specifically; likely Redshift or S3-based given AWS)",
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS (Active Directory referenced; passwords controlled through AWS Password Policy)",
+    "mfa": "MFA enforced for all user accounts with administrative access to production platform; also for source code tool access and email (2FA required)",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day",
+    "password_policy": "AWS password policy with periodic forced changes, expiry, complexity requirements; accounts locked after failed attempts"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service (AWS KMS implied)",
+    "key_management": "AWS KMS (cloud provider key management service)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named (referred to as 'source code management tool' with MFA-protected access)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Code repository branch rules configured; merge requests require additional approval before production merge",
+    "iac": "Configuration management tool used; baseline configs retained as code with rollback capability",
+    "container_orchestration": "ECS (Fargate)",
+    "patch_management": "Automatic patch management set up by CTO; monthly patch management reviews; workstations scanned for patch compliance daily; critical patches applied as available",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named (monitoring tool that generates alerts at predefined thresholds)",
+    "siem": "Not named",
+    "log_aggregation": "Logging enabled for admin activities, logon attempts, data deletions, function changes, security configs, permissions and roles; logs protected (access to modify logs is restricted)",
+    "alerting": "Automated alerts for high and critical risk events; tracked in change-management/ticketing application",
+    "metrics": ["CPU", "disk space", "incoming/outgoing network traffic", "packet loss"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS", "purpose": "Cloud infrastructure, compute, storage, networking (subservice organization)", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and malware protection on all production servers (auto-scan, weekly definitions update) and Mac workstations/laptops",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; frequency adjusted as needed",
+    "penetration_testing": "Annual external penetration testing by independent third party",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 49,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 - No significant personnel changes during engagement period",
+      "CC3.2.1 - Cybersecurity insurance could not be tested (no cyber incidents reported during engagement period)",
+      "CC6.5.2 - Customer data deletion could not be tested (no customer terminations during engagement period)",
+      "CC7.3.1 - Incident response could not be tested (no security incidents reported during engagement period)"
+    ],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to data centers handled by AWS (subservice org)",
+      "A1.2 - Environmental controls managed by building management/AWS"
+    ],
+    "notable_controls": [
+      "Quarterly user access reviews including admin-privileged accounts",
+      "Bastion host with VPN for all remote access",
+      "IDS/IPS via AWS in conjunction with security policy network settings",
+      "Content filtering via proxy server for all internet-bound traffic",
+      "Anti-virus definitions updated weekly on production servers",
+      "Board has empowered Risk and Governance Executive Committee (RGEC) that meets semiannually"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Multi-AZ AWS deployment with VPC, segmented subnets, Lambda and ECS Fargate. No multi-region. No CDN mentioned. IaC-like baseline configs. Single cloud provider."
+    },
+    "application_architecture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Modern hybrid Lambda+ECS Fargate pattern with API Gateway, RDS PostgreSQL, and S3. Separate environments, branch protection, code review enforced. Specific languages/frameworks not disclosed."
+    },
+    "data_layer": {
+      "score": 6,
+      "max": 10,
+      "rationale": "RDS PostgreSQL multi-AZ, S3 for file storage, daily backups with alerts. Data classification and retention policies in place. Per-tenant segregation confirmed. No named caching layer or data warehouse technology."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "IDS/IPS, firewalls, annual external pen test, monthly vuln scans, anti-malware, MFA enforced, content filtering, quarterly access reviews, cybersecurity insurance. No WAF specifically named."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Branch protection, separate environments, emergency change process, IaC-like config management, monthly patch management, ECS Fargate container orchestration. CI/CD tool name not disclosed."
+    },
+    "bcdr_readiness": {
+      "score": 7,
+      "max": 10,
+      "rationale": "BCDR policy documented, annual review and testing, daily backups with multi-AZ, alerts on backup failures. RTO/RPO not disclosed. No multi-region failover."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Only AWS mentioned as a subservice/vendor. No other named vendors. Very high single-cloud concentration."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Solid SOC 2 Type 2 pass with no exceptions. Modern AWS architecture with good security practices for an early-stage company. Key weaknesses: single-cloud concentration, no multi-region, RTO/RPO not disclosed, limited vendor transparency."
+    }
+  },
+
+  "red_flags": [
+    "Extreme single-vendor concentration: AWS is the only named subservice/technology vendor",
+    "RTO and RPO not disclosed",
+    "No multi-region failover capability mentioned",
+    "Source control, CI/CD tool, and monitoring/APM tools not named - limited transparency"
+  ],
+  "yellow_flags": [
+    "No CDN mentioned for a data platform serving multiple customers",
+    "No SSO mentioned for customer-facing access",
+    "WAF not explicitly mentioned despite API Gateway usage",
+    "Cybersecurity insurance could not be tested during the audit period (no incidents to verify)"
+  ],
+  "green_flags": [
+    "Clean SOC 2 Type 2 with zero exceptions across all tested controls",
+    "Multi-AZ RDS PostgreSQL with daily backups and failure alerts",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scanning",
+    "IDS/IPS deployed via AWS",
+    "MFA enforced for administrative and production access",
+    "Quarterly access reviews including privileged accounts",
+    "Access revocation within 1 business day",
+    "Content filtering via proxy for all internet-bound traffic",
+    "BCDR plan tested annually"
+  ],
+  "key_observations": [
+    "Network diagram reveals a mature AWS architecture: API Gateway -> VPC with private/public subnets -> ECS Fargate + Lambda + RDS PostgreSQL multi-AZ + S3 via VPC endpoints + Secrets Manager",
+    "Elevate processes sensitive M&A financial data for PE-backed roll-ups - high data sensitivity context with per-tenant segregation confirmed",
+    "The report is notable for its transparency in showing the network diagram with specific AWS service names",
+    "Processing Integrity and Privacy trust criteria were explicitly determined not relevant to the system by management",
+    "Company operates with no physical office and all-cloud infrastructure - lean, cloud-native operational model"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "1hCp72_xNX8lWUmMLcGYBTXdNcirP3ioQD4XH_wcI5oI",
+  "link": "https://docs.google.com/document/d/1hCp72_xNX8lWUmMLcGYBTXdNcirP3ioQD4XH_wcI5oI",
+  "timestamp": "9/15/2025 15:39:48",
+  "display_name": "Avina",
+  "legal_name": "Mesh Labs, Inc.",
+  "company_name": "Avina",
+  "system_description": "Avina is a signals-based selling platform for B2B teams that uses AI to discover and qualify the best target customers, and helps sellers close deals with AI assisted tools.",
+  "audit_end_date": "September 9, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://avina.io",
+  "contact_email": "security@avina.io",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1hCp72_xNX8lWUmMLcGYBTXdNcirP3ioQD4XH_wcI5oI.pdf",
+  "txt_file": "1hCp72_xNX8lWUmMLcGYBTXdNcirP3ioQD4XH_wcI5oI.txt",
+  "has_report": true
+}

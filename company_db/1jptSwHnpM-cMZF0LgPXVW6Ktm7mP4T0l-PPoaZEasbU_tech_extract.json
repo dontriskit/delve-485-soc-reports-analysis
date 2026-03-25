@@ -1,0 +1,221 @@
+{
+  "company": "Garage Tech, Inc. DBA foam",
+  "product": "foam",
+  "report_type": "ISO 27001",
+  "audit_period": "8/29/2025 (certification date; no observation period disclosed)",
+  "auditor": "Gradient Certification Inc.",
+  "opinion": "Certified (ISO 27001 certification granted)",
+  "trust_criteria": ["Information Security Management System (ISMS)"],
+  "hq": "156 2nd St. Suite 507 San Francisco, CA 94105",
+  "signing_authority": "Perla Gamez (no title disclosed)",
+
+  "system_description": {
+    "overview": "Foam is a platform that provides instant fixes for production code errors. The ISMS scope covers the development, deployment, and management of this platform, including design, engineering, and maintenance of Foam's proprietary technology, data processing infrastructure, and associated tools that enable secure, reliable, and efficient identification and remediation of code errors in production environments.",
+    "products": {
+      "foam": "Platform providing instant fixes for production code errors, including identification and remediation tooling"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Not disclosed",
+    "regions": null,
+    "physical_presence": "156 2nd St. Suite 507 San Francisco, CA 94105",
+    "availability_zones": "Not disclosed",
+    "additional_cloud": null,
+    "serverless": null,
+    "cdn": "Not disclosed"
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": "Not disclosed",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Not disclosed",
+    "ids_ips": "Not disclosed",
+    "vpn": "Not disclosed",
+    "tls": "Not disclosed",
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. This document is a certification agreement, not a detailed audit report."
+  },
+
+  "application_architecture": {
+    "pattern": "Not disclosed",
+    "languages": null,
+    "frameworks": null,
+    "compute": null,
+    "api_style": "Not disclosed",
+    "environments": "Not disclosed",
+    "branch_protection": null,
+    "code_review_required": null
+  },
+
+  "data_storage": {
+    "databases": null,
+    "caching": null,
+    "file_storage": null,
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Not disclosed",
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not disclosed",
+    "mfa": "Not disclosed",
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": "Not disclosed",
+    "password_policy": "Not disclosed"
+  },
+
+  "encryption": {
+    "in_transit": "Not disclosed",
+    "at_rest": "Not disclosed",
+    "key_management": "Not disclosed",
+    "end_to_end": null
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not disclosed",
+    "ci_cd_tool": "Not disclosed",
+    "branch_protection": "Not disclosed",
+    "iac": "Not disclosed",
+    "container_orchestration": "Not disclosed",
+    "patch_management": "Not disclosed",
+    "separate_environments": null,
+    "emergency_change_process": null
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not disclosed",
+    "siem": "Not disclosed",
+    "log_aggregation": "Not disclosed",
+    "alerting": "Not disclosed",
+    "metrics": null,
+    "log_protection": null,
+    "ids": null
+  },
+
+  "third_party_services": [
+    {
+      "vendor": "Gradient Certification Inc.",
+      "purpose": "ISO 27001 certification body / auditor",
+      "criticality": "Medium"
+    },
+    {
+      "vendor": "United Accreditation Foundation Inc. (UAF)",
+      "purpose": "Accreditation body for the certification body",
+      "criticality": "Low"
+    }
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": "Not disclosed",
+    "endpoint_protection": null,
+    "vulnerability_scanning": "Not disclosed",
+    "penetration_testing": "Not disclosed",
+    "server_hardening": null,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": [
+      "This document is an ISO 27001 Certification Agreement Form, not a detailed audit report or Statement of Applicability. It confirms ISO 27001 certification was granted but does not enumerate individual controls tested or their results.",
+      "The scope references a Statement of Applicability, Version 1.0, but the SoA itself is not included in this document.",
+      "Stage-1 audit required 2 mandays; Stage-2 / Recertification required 3 mandays; Surveillance Audits require 2 mandays each; 9 total mandays for the certification cycle."
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 1,
+      "max": 10,
+      "rationale": "Zero infrastructure details disclosed. The report is a certification agreement form, not a technical audit report. No cloud provider, regions, AZs, or architecture are mentioned."
+    },
+    "application_architecture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No application architecture details disclosed. We only know the product provides 'instant fixes for production code errors' but no tech stack, languages, or patterns are described."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No database, caching, storage, backup, or data classification details disclosed."
+    },
+    "security_posture": {
+      "score": 2,
+      "max": 10,
+      "rationale": "ISO 27001 certification itself implies an ISMS is in place, which is a positive signal. However, zero specific security tools, controls, or practices are described in this document. The scope mentions 'Physical Security, Legal & Compliance' functions are covered but no details are provided."
+    },
+    "devops_maturity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No CI/CD, source control, IaC, or deployment details disclosed."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No BCDR details disclosed. No RTO/RPO, backup strategy, or disaster recovery testing mentioned."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No technology vendors disclosed. Only the certification body (Gradient Certification Inc.) is identified."
+    },
+    "overall": {
+      "score": 1,
+      "max": 10,
+      "rationale": "This document is an ISO 27001 Certification Agreement Form -- essentially a contract between Foam and its certification body. It confirms ISO 27001 certification was granted on 8/29/2025 but contains virtually no technical details about Foam's infrastructure, architecture, security tooling, or operational practices. This is insufficient for meaningful tech due diligence. A proper assessment would require the full ISO 27001 audit report, the Statement of Applicability (SoA), or a SOC 2 report."
+    }
+  },
+
+  "red_flags": [
+    "Report is only 7 pages -- this is a Certification Agreement Form, not a full ISO 27001 audit report or certificate. It is potentially an incomplete submission.",
+    "No technical details whatsoever: no cloud provider, no architecture, no security tools, no databases, no CI/CD -- nothing to evaluate.",
+    "The auditor is Gradient Certification Inc., a relatively lesser-known certification body (compared to Big 4 or established CB firms). Accredited by UAF.",
+    "Only 9 total audit mandays for the entire 3-year certification cycle, which is very low and may indicate a superficial audit scope.",
+    "The Statement of Applicability (SoA, Version 1.0) is referenced but not included -- the SoA would show which ISO 27001 controls were included or excluded."
+  ],
+
+  "yellow_flags": [
+    "ISO 27001 certification was just granted on 8/29/2025 -- this is a brand-new certification with no surveillance audit history yet.",
+    "Single-site certification only (no multi-site); temporary/additional sites listed as N/A.",
+    "No company website, system description, or infrastructure provider listed in the company metadata, suggesting incomplete intake data."
+  ],
+
+  "green_flags": [
+    "Company has pursued and obtained ISO 27001 certification, indicating commitment to information security governance.",
+    "ISMS scope covers core business functions including development, deployment, IT infrastructure management, HR, physical security, legal and compliance, and administrative operations -- a comprehensive scope definition.",
+    "The scope explicitly mentions 'data processing infrastructure' and 'production environments,' suggesting the company operates production systems with formal security governance."
+  ],
+
+  "key_observations": [
+    "This is NOT a compliance audit report -- it is a certification agreement/contract form. For tech due diligence, the actual ISO 27001 audit report, certificate, and Statement of Applicability (SoA) should be requested.",
+    "Foam's product provides 'instant fixes for production code errors,' which implies deep integration with customers' production codebases -- a high-trust, high-risk product category that warrants thorough security scrutiny.",
+    "The certification body (Gradient Certification Inc.) is based in Sheridan, WY (registered office) and Houston, TX (corporate office), accredited by UAF. Due diligence on the CB itself may be warranted.",
+    "With only 2-3 mandays per audit stage, the audit depth may be limited, particularly for a company handling production code remediation."
+  ]
+}

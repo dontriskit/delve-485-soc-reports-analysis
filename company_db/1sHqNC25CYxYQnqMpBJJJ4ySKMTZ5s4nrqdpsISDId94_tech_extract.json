@@ -1,0 +1,235 @@
+{
+  "company": "Coframe Inc.",
+  "product": "Coframe",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "July 15, 2025 - October 15, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+  "hq": "380 Alabama Street, San Francisco, CA 94110",
+  "signing_authority": "Josh Payne, CEO & Founder",
+
+  "system_description": {
+    "overview": "Coframe is an AI-powered website optimization and personalization platform that uses advanced ML algorithms to generate, test, and refine website variations for conversion rate improvement. It offers A/B and multivariate testing, ML-based experimentation, continuous performance monitoring, and statistical analysis.",
+    "products": {
+      "AI-Powered Website Optimization Platform": "Automated generation and testing of website variations using advanced AI algorithms; ML-based testing and personalization engine; A/B split testing and multivariate testing; AI-driven content generation for headlines, body copy, CTAs, and images",
+      "Experiment Management Services": "Full-service experiment design, deployment, and QA; integration with client analytics platforms",
+      "Analytics and Insights": "Continuous performance monitoring, statistical analysis, competitive benchmarking"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out)",
+    "regions": ["Not specified"],
+    "physical_presence": "No physical offices; all data processed on cloud services",
+    "availability_zones": "Multi-AZ (production servers at AWS maintain failover capabilities; hosted in high availability data centers with multiple availability zones)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Not mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Hosted in AWS VPC; segmented VPCs and ACLs; customers' access appropriately segmented from other customer accounts",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services; firewall rules reviewed annually by IT management",
+    "ids_ips": "IDS and IPS via AWS; intrusion detection system utilized to monitor and detect unauthorized access or anomalies",
+    "vpn": "Remote access done through a bastion host with a VPN",
+    "tls": "TLS (Transport Layer Security) with certificates from an established third-party CA",
+    "content_filtering": "Content filtering system routed through proxy server; internet access restricted",
+    "multi_region": false,
+    "topology": "User requests encrypted via TLS; AWS VPC with segmented subnets and ACLs; remote admin access via VPN/bastion host; IDS/IPS at network layer; firewalls on application gateway and production network"
+  },
+
+  "application_architecture": {
+    "pattern": "Not explicitly stated",
+    "languages": ["Not disclosed"],
+    "frameworks": ["Not disclosed"],
+    "compute": ["AWS (virtual servers)"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development/test and production environments; changes tested in dev/test before promotion to production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Not specifically named; Active Directory mentioned for user accounts"],
+    "caching": ["Not mentioned"],
+    "file_storage": ["Not mentioned"],
+    "data_warehouse": "Not mentioned",
+    "backup_frequency": "Not specifically stated; backup policy exists with defined retention periods",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS (password policy controlled through AWS; Active Directory mentioned)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform; MFA required for source code repository access",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Controlled through AWS password policy; periodic forced changes; password expiry and complexity requirements; accounts locked after limited failed login attempts"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest",
+    "key_management": "AWS KMS (cloud provider key management service)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named (source code management tool with MFA access)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Code repository branch rules configured; every merge request to production requires additional approval",
+    "iac": "Baseline configurations retained as code; configuration management tool used for implementation and rollback",
+    "container_orchestration": "Not mentioned",
+    "patch_management": "CTO manages automatic patch management; monthly patch management reviews; workstations receive automatic updates and scanned daily for compliance; critical/security OS patches applied as available",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named (monitoring tools used to detect anomalies)",
+    "siem": "Not mentioned",
+    "log_aggregation": "Not named (logging enabled at application and infrastructure level)",
+    "alerting": "Automated alerts for high and critical risk events; incidents resolved via incident management process",
+    "metrics": ["CPU utilization", "disk space", "network traffic (incoming/outgoing)", "packet loss", "logon attempts", "admin activities", "security configurations", "data deletions"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Primary cloud infrastructure / data center subservice organization", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Endpoint security solution installed on all desktops and laptops; anti-virus installed on all production servers; daily automatic updates of virus definitions; continuous scanning",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; self-assessment scan prior to every production release or annually",
+    "penetration_testing": "Annual external penetration testing by independent third party",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to data centers: AWS is responsible for physical security",
+      "A1.2 - Environmental protections: Coframe does not manage its own office/environmental controls; managed by building management/AWS",
+      "Processing Integrity criteria - determined not relevant to the system",
+      "Privacy criteria - determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "Quarterly user access reviews for all accounts including privileged users",
+      "Access revocation within one business day of termination",
+      "MFA enforced for production platform admin access and source code repo",
+      "Annual external penetration testing by independent third party",
+      "Monthly automated vulnerability scans",
+      "IaC-based configuration management with rollback capability",
+      "BCDR plans tested at least annually across multiple loss scenarios",
+      "Risk and Governance Executive Committee (RGEC) meets semiannually to review internal controls",
+      "Source code changes logged, time-stamped, attributed to author with MFA-protected access"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "AWS-hosted with VPC, multi-AZ failover, and IaC-based config management. No CDN mentioned, no multi-region, specific region not disclosed. Solid but not exceptional."
+    },
+    "application_architecture": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Separate environments, branch protection, code review enforced. No languages, frameworks, or architecture patterns disclosed. Very limited tech transparency."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Multi-AZ, data classification policy, retention policy, and per-tenant segregation confirmed. However, no specific database technologies, caching, or backup frequency disclosed."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Annual external pen test, monthly vuln scans, IDS/IPS, firewalls, MFA, endpoint protection, antivirus, quarterly access reviews. WAF not explicitly mentioned. No SIEM named."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "IaC confirmed, branch protection and code review enforced, separate environments, emergency change process, monthly patch reviews. However, CI/CD tool and source control platform not named."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy exists, annually reviewed and tested across multiple loss scenarios, multi-AZ failover. No RTO/RPO disclosed, no multi-region failover mentioned."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Only AWS named as a subservice organization. No other third-party vendors explicitly identified in the report. High concentration risk on AWS."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Solid security governance and access control for an early-stage company. SOC 2 Type 2 with clean opinion is a positive signal. Major gaps are lack of technology transparency (no named CI/CD, source control, databases, or monitoring tools) and single cloud provider concentration."
+    }
+  },
+
+  "red_flags": [
+    "No specific database technologies disclosed - opaque data layer",
+    "No CI/CD pipeline or source control platform named (only 'source code management tool' referenced)",
+    "No monitoring/alerting tools named (APM, SIEM, log aggregation all unnamed)",
+    "Only one subservice organization (AWS) disclosed - high single-cloud concentration",
+    "No CDN mentioned despite operating a web optimization platform"
+  ],
+  "yellow_flags": [
+    "Specific AWS regions not disclosed",
+    "Backup frequency not explicitly stated",
+    "RTO and RPO not disclosed",
+    "No multi-region DR capability mentioned",
+    "WAF not explicitly mentioned despite web-facing product",
+    "Application architecture pattern and tech stack completely undisclosed"
+  ],
+  "green_flags": [
+    "SOC 2 Type 2 with unqualified opinion - controls operated effectively over full period",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scanning",
+    "Quarterly user access reviews including privileged accounts",
+    "Access revoked within one business day of termination",
+    "MFA enforced for admin access to production and source code",
+    "IaC-based configuration management with rollback capability",
+    "BCDR tested annually across multiple scenarios",
+    "Multi-AZ production infrastructure with failover capabilities",
+    "Formal emergency change process with required approval and documentation"
+  ],
+  "key_observations": [
+    "Report covers Security, Availability, Processing Integrity, Confidentiality, and Privacy trust criteria - broad scope for a startup",
+    "Processing Integrity and Privacy were scoped as not relevant to the system, narrowing actual tested criteria to Security, Availability, and Confidentiality",
+    "Network diagram present in report (page 19) showing multiple AWS accounts/VPCs suggesting multi-account architecture",
+    "Risk and Governance Executive Committee (RGEC) is a governance body that meets semiannually - unusual governance formality for an early-stage company",
+    "The report explicitly excludes CC6.4 (physical access) and A1.2 (environmental) from scope due to full reliance on AWS - this is standard but worth noting",
+    "Source code access restricted to authorized users with MFA, suggesting GitHub or similar platform but not named",
+    "Company has no physical office and all infrastructure is cloud-native - reduces physical security risk but increases cloud concentration risk"
+  ]
+}

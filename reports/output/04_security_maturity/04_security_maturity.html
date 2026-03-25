@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Maturity — Delve Tech DD</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        bg: '#0f172a', bg2: '#1e293b', card: '#1a2332', border: '#334155',
+      }
+    }
+  }
+}
+</script>
+<style>
+body { background: #0f172a; }
+.prose { max-width: none; }
+.prose h1 { color: #e2e8f0; font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+.prose h2 { color: #e2e8f0; font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }
+.prose h3 { color: #3b82f6; font-size: 1.1rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+.prose p { color: #e2e8f0; line-height: 1.7; margin-bottom: 0.75rem; }
+.prose li { color: #e2e8f0; line-height: 1.6; }
+.prose strong { color: #e2e8f0; }
+.prose table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+.prose th { text-align: left; padding: 8px 12px; background: #1e293b; color: #94a3b8; font-size: 12px; text-transform: uppercase; border-bottom: 1px solid #334155; }
+.prose td { padding: 8px 12px; border-bottom: 1px solid #1a2332; color: #e2e8f0; font-size: 14px; }
+.prose tr:hover td { background: #1a2332; }
+.metric { background: #1a2332; border: 1px solid #334155; border-radius: 12px; padding: 20px; }
+.metric .value { font-size: 2rem; font-weight: 800; }
+.metric .label { color: #94a3b8; font-size: 0.75rem; margin-top: 4px; }
+.insight { background: #1a2332; border-left: 3px solid #3b82f6; padding: 16px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+.flag-red { background: rgba(239,68,68,0.1); border-left: 3px solid #ef4444; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.flag-yellow { background: rgba(245,158,11,0.1); border-left: 3px solid #f59e0b; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.flag-green { background: rgba(34,197,94,0.1); border-left: 3px solid #22c55e; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+</style>
+</head>
+<body class="min-h-screen">
+<div class="max-w-5xl mx-auto px-6 py-10">
+
+  <!-- Nav -->
+  <div class="mb-4">
+    <a href="../index.html" class="text-sm text-blue-400 hover:text-blue-300">← Back to Index</a>
+  </div>
+
+  <!-- Header -->
+  <div class="mb-8">
+    <div class="text-sm text-gray-400 mb-1">Delve Tech Due Diligence · Meta-Analysis</div>
+    <h1 class="text-3xl font-extrabold text-white">Security Maturity</h1>
+    <p class="text-gray-400 mt-1">Three-tier security ladder across 485 SOC 2 companies</p>
+  </div>
+
+  <!-- Content -->
+  <div class="prose">
+    <h2>The Security Maturity Ladder</h2>
+
+<p>Security maturity across 485 companies follows a clear three-tier pattern.
+The gap between tiers defines investment risk and opportunity.</p>
+
+<div class="my-6"><img src="security_ladder.png" class="rounded-lg w-full" alt="security_ladder.png"><p class="text-sm text-gray-400 mt-2 text-center">Green = table stakes (80%+), Yellow = differentiator (50%+), Red = rare (<50%)</p></div>
+
+<h3>Tier 1 — Table Stakes (80%+ adoption)</h3>
+<p>These features are near-universal and provide no competitive differentiation:</p>
+<ul>
+<li><strong>MFA</strong> (99%) — multi-factor authentication is baseline</li>
+<li><strong>RBAC</strong> (99%) — role-based access control</li>
+<li><strong>VPC</strong> (97%) — network isolation</li>
+<li><strong>Multi-AZ</strong> (88%) — availability zone redundancy</li>
+</ul>
+
+<h3>Tier 2 — Differentiators (40-80%)</h3>
+<p>These features separate the middle of the pack from the top:</p>
+<ul>
+<li><strong>Branch Protection</strong> (69%) — prevents direct pushes to production</li>
+<li><strong>Pen Testing</strong> (63%) — annual external penetration testing</li>
+<li><strong>Daily Backups</strong> (54%) — regular data protection</li>
+<li><strong>WAF</strong> (44%) — web application firewall</li>
+</ul>
+
+<h3>Tier 3 — Advanced (Under 40%)</h3>
+<p>These features predict the highest scores and indicate genuine security investment:</p>
+<ul>
+<li><strong>Multi-Region</strong> (28%) — geographic redundancy</li>
+<li><strong>Cyber Insurance</strong> (22%) — financial risk transfer</li>
+<li><strong>Quarterly Reviews</strong> (43%) — regular access audits</li>
+</ul>
+<h2>Feature Impact on Score</h2>
+
+<p>Companies <strong>with</strong> advanced features consistently score higher than those without.
+The biggest score differential comes from multi-region deployment and WAF.</p>
+
+<div class="my-6"><img src="feature_impact.png" class="rounded-lg w-full" alt="feature_impact.png"><p class="text-sm text-gray-400 mt-2 text-center">Green = with feature, Red = without</p></div>
+
+<div class="insight"><strong>Investment signal:</strong> When evaluating a company, check for Tier 2 and Tier 3 features. A company with WAF + multi-region + quarterly reviews is in the top 5% of the portfolio.</div>
+<h2>Feature Count Predicts Score</h2>
+
+<p>There is a clear positive correlation between the number of security features
+adopted and the overall tech DD score.</p>
+
+<div class="my-6"><img src="feature_count_vs_score.png" class="rounded-lg w-full" alt="feature_count_vs_score.png"></div>
+
+<div class="flag-green"><strong>For PE value creation:</strong> The cheapest way to move a portfolio company up a tier is to add WAF (one-day implementation via Cloudflare/AWS) and establish quarterly access reviews (process change, no cost).</div>
+
+    <div class="mt-6"><img src="security_ladder.png" class="rounded-lg w-full" alt="security_ladder.png"></div>
+<div class="mt-6"><img src="feature_impact.png" class="rounded-lg w-full" alt="feature_impact.png"></div>
+<div class="mt-6"><img src="feature_count_vs_score.png" class="rounded-lg w-full" alt="feature_count_vs_score.png"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="mt-12 pt-6 border-t border-gray-700 text-gray-500 text-sm">
+    <p>Generated from security maturity module · 485 SOC 2 compliance reports · 2026-03-24</p>
+  </div>
+
+</div>
+</body>
+</html>

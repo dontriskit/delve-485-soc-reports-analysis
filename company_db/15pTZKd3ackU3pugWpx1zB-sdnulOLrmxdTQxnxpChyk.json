@@ -1,0 +1,19 @@
+{
+  "doc_id": "15pTZKd3ackU3pugWpx1zB-sdnulOLrmxdTQxnxpChyk",
+  "link": "https://docs.google.com/document/d/15pTZKd3ackU3pugWpx1zB-sdnulOLrmxdTQxnxpChyk",
+  "timestamp": "9/25/2025 15:58:21",
+  "display_name": "Aerovy",
+  "legal_name": "Aerovy Mobility, Inc.",
+  "company_name": "Aerovy",
+  "system_description": "Aerovy is an AI native hardware intelligence platform to automate data unification, hardware operations, aftermarket services, and optimization at scale.",
+  "audit_end_date": "September 23, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://aerovy.com",
+  "contact_email": "security@aerovy.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "15pTZKd3ackU3pugWpx1zB-sdnulOLrmxdTQxnxpChyk.pdf",
+  "txt_file": "15pTZKd3ackU3pugWpx1zB-sdnulOLrmxdTQxnxpChyk.txt",
+  "has_report": true
+}

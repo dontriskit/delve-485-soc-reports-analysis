@@ -1,0 +1,248 @@
+{
+  "company": "AgentMail, Inc.",
+  "product": "Agentmail",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of August 7, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "excluded_trust_criteria": ["Processing Integrity", "Privacy"],
+  "hq": "2261 Market Street, STE 85434, San Francisco, CA 94114",
+  "signing_authority": "Vikramaditya Singh, COO",
+
+  "system_description": {
+    "overview": "AgentMail provides an API-first email infrastructure platform designed to give AI agents their own dedicated inboxes at scale. The platform enables developers to programmatically create thousands of ephemeral inboxes, send and receive emails, and stream structured JSON events in real time. It solves limitations of traditional email providers by eliminating per-inbox costs, API rate limits, and domain reputation risks.",
+    "products": {
+      "Automated Email Infrastructure Management": "Programmatic provisioning of dedicated email inboxes at scale with per-domain and per-inbox isolation, automated domain warm-up, SPF/DKIM/DMARC configuration, and deliverability monitoring across multiple sending environments.",
+      "Real-Time Messaging and Event Processing": "Structured JSON events for every inbound and outbound message for traceability, replay, and compliance reporting. Webhooks and API endpoints for secure, auditable message ingestion, storage, and retrieval with defined retention policies.",
+      "Security and Compliance Controls": "Encryption of all data in transit and at rest, access control policies for customer data, per-tenant data segregation, configurable data retention and deletion settings with logging and audit trails.",
+      "Operational Monitoring and Incident Response": "Real-time monitoring of message flow, system health, and deliverability metrics. Documented incident response procedures, security alerting, and breach notification workflows.",
+      "Integration and Support Services": "API-based integrations for customer applications and ML workflows with structured data export capabilities. Dedicated onboarding, support, and security reviews for enterprise customers."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out method - AWS controls excluded from scope)",
+    "regions": ["us-west-1", "us-east-1"],
+    "physical_presence": "No physical offices or servers; fully cloud-based. HQ is a registered address at 2261 Market Street, STE 85434, San Francisco, CA 94114.",
+    "availability_zones": "Multi-AZ (multiple availability zones mentioned in network diagram and DR section)",
+    "additional_cloud": [],
+    "serverless": ["AWS Lambda (visible in network diagram)"],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with access control lists (ACLs). Network topology includes segmented VPCs across us-west-1 and us-east-1 regions.",
+    "api_gateway": "Application gateway mentioned (firewalls configured on it), likely AWS API Gateway (visible in network diagram)",
+    "waf": null,
+    "firewalls": "System firewalls configured on the application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via AWS to identify and protect against threats in conjunction with security policy network settings.",
+    "vpn": "Remote access done through a bastion host with a virtual private network (VPN).",
+    "tls": "TLS encryption for all web-based systems using certificates from an established third-party certificate authority.",
+    "content_filtering": "All systems restricted to the internet with content filtering system routed through a proxy server.",
+    "multi_region": true,
+    "topology": "User requests -> TLS encryption -> Application gateway/firewall -> Two regions (us-west-1 and us-east-1) each containing compute (API/code), Lambda functions, and database -> Shared database layer at bottom. Remote admin access via bastion host + VPN."
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid (API services + Lambda serverless visible in architecture diagram)",
+    "languages": null,
+    "frameworks": null,
+    "compute": ["AWS compute (EC2 or similar - visible in diagram as code/API icons)", "AWS Lambda"],
+    "api_style": "REST (API-first platform with webhooks and API endpoints)",
+    "environments": "Separate development/test and production environments (CC8.1.4 confirms changes developed and tested in separate environment before implementation)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["AWS managed database (visible in network diagram, specific service not named)"],
+    "caching": null,
+    "file_storage": null,
+    "data_warehouse": null,
+    "backup_frequency": "Not explicitly stated; formal backup policy exists with backup and restoration logs maintained for retention periods.",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS IAM / Password policy of AWS (no third-party IdP named)",
+    "mfa": "MFA enforced for administrative access to production platform (CC6.1.1, CC6.6). Two-factor authentication required for employee email access. MFA required for source code management tool access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination of employment",
+    "password_policy": "Controlled through AWS password policy; includes periodic forced changes, password expiry, and complexity requirements. Accounts disabled after limited unsuccessful logon attempts."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service (CC6.1.5 - uses cloud provider KMS to encrypt data at rest)",
+    "key_management": "AWS KMS (cloud provider key management service; access to encryption keys restricted to authorized individuals)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool with MFA access (specific tool not named, likely GitHub based on MFA + branch protection references)",
+    "ci_cd_tool": "Not explicitly named; internal tool used for tracking changes from initiation through deployment and validation",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to move changes to production requires additional approval (CC8.1.2).",
+    "iac": "Configuration management tool used for implementation and rollback capability; baseline configurations retained as infrastructure as code (CC7.1.1).",
+    "container_orchestration": "None mentioned",
+    "patch_management": "Automatic patch management with monthly patch management reviews by CTO. Workstations configured for automatic updates and scanned for patch compliance daily. OS patches tested before production deployment.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named; monitoring tools used for continuous system capacity and performance monitoring (CC5.2.1).",
+    "siem": "Not named; automated alerts configured to notify IT management of high and critical risk events.",
+    "log_aggregation": "Logging enabled to monitor administrative activities, logon attempts, data deletions at application and infrastructure level, changes to functions, security configurations, permissions, and roles (CC7.2.1).",
+    "alerting": "Automated alerts configured for predefined thresholds; incident management process invoked for confirmed events. Logs and alerts tracked in change-management/ticketing application.",
+    "metrics": ["system capacity", "performance", "disc space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "message flow", "system health", "deliverability metrics"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS", "purpose": "Cloud infrastructure provider - data center services, compute, networking, storage, KMS, Lambda", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers, desktops, and laptops. Auto-scan on continuous basis, definitions updated weekly for production servers. Mac-based workstations also covered.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications (CC7.1.2). Self-assessment scan of vulnerabilities performed prior to every release or yearly. Scans done by internal IT Infrastructure team.",
+    "penetration_testing": "Annual external penetration testing by independent third-party. Results reviewed by IT management. High/critical findings remediated in timely manner and added to risk register.",
+    "server_hardening": true,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": true,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 48,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities: AWS is responsible for physical security of data center; physical security controls not in scope.",
+      "A1.2 - Environmental protections: Agentmail operates from a working space managed by building management; all environmental security controls managed by building management / AWS.",
+      "Processing Integrity - Determined not relevant to the system.",
+      "Privacy - Determined not relevant to the system."
+    ],
+    "notable_controls": [
+      "CC6.1.1: MFA enforced for all administrative access to production platform",
+      "CC6.1.3: System components configured for per-tenant data segregation",
+      "CC8.1.2: Branch protection rules requiring approval for production merges",
+      "CC8.1.3: Source code changes logged, time-stamped, attributed to author with MFA access to source code tool",
+      "CC7.1.1: Infrastructure as code with configuration management tool and rollback capability",
+      "CC7.4.1: BCDR policy with annual testing of loss scenarios",
+      "CC4.1.1: Annual external penetration testing by independent third-party",
+      "CC7.1.2: Monthly automated vulnerability scanning with remediation plans",
+      "CC6.6.1: Firewalls and intrusion detection tools configured on application gateway and production network"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Multi-region (us-west-1 + us-east-1) multi-AZ AWS deployment with Lambda serverless. IaC with configuration management and rollback. No CDN mentioned. Only one cloud provider. Network diagram shows solid two-region architecture with shared database layer."
+    },
+    "application_architecture": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Hybrid pattern with API services and Lambda visible in diagram. Branch protection and code review required. However, no specific languages, frameworks, or testing practices are named. API-first design is positive but tech stack details are undisclosed."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Per-tenant data segregation is strong. Data classification and retention policies exist. Multi-AZ confirmed. However, no specific database technologies named, no caching layer mentioned, no data warehouse, and backup frequency not explicitly stated."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "IDS/IPS via AWS, firewalls on application gateway, annual external pen testing, monthly vulnerability scanning, endpoint protection with antivirus on all servers/workstations, MFA for admin and source code access. No WAF explicitly mentioned. No SIEM tool named. Content filtering via proxy server is a plus."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "IaC with configuration management and rollback. Branch protection with merge approval. Separate dev/test and production environments. Emergency change process documented. However, no specific CI/CD tool, source control platform, or container orchestration named. Tools are referenced generically."
+    },
+    "bcdr_readiness": {
+      "score": 7,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual testing of loss scenarios with results reviewed. Multi-AZ and multi-region failover capability. Formal backup policy exists. However, no specific RTO/RPO disclosed, and backup frequency not quantified."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Single critical vendor dependency on AWS for all infrastructure. No additional cloud providers, CDN, or named third-party services beyond AWS. This creates significant concentration risk."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "AgentMail demonstrates solid foundational security controls for a SOC 2 Type 1 with multi-region AWS deployment, IaC, MFA enforcement, annual pen testing, and monthly vulnerability scanning. The report is notably light on technology specifics - no named databases, languages, frameworks, CI/CD tools, monitoring tools, or SIEM. This is common for early-stage companies obtaining their first SOC 2 but limits due diligence visibility. The single-vendor AWS dependency and lack of technology specificity are the primary concerns."
+    }
+  },
+
+  "red_flags": [
+    "Complete single-vendor dependency on AWS with no secondary cloud provider or CDN",
+    "No specific database technology named anywhere in the report - unclear what data layer looks like",
+    "No named monitoring/APM/SIEM tools despite monitoring controls being described",
+    "No specific CI/CD tool or source control platform named despite DevOps controls being described",
+    "No programming languages or frameworks disclosed - full tech stack is opaque",
+    "SOC 2 Type 1 only (point-in-time design assessment, not Type 2 operating effectiveness over a period)"
+  ],
+
+  "yellow_flags": [
+    "No WAF explicitly mentioned despite having firewalls and IDS/IPS",
+    "No RTO/RPO targets disclosed despite BCDR policy and testing",
+    "Backup frequency not quantified despite formal backup policy",
+    "No SSO capability mentioned for enterprise customers",
+    "TLS version not specified (could be outdated)",
+    "No container orchestration or specific compute details beyond Lambda",
+    "Report has significant control description repetition (same controls mapped to multiple criteria) suggesting template-driven approach",
+    "Cybersecurity insurance status unknown"
+  ],
+
+  "green_flags": [
+    "Multi-region AWS deployment (us-west-1 + us-east-1) with multi-AZ for a startup-stage company",
+    "MFA enforced across production admin, email, and source code access",
+    "Per-tenant data segregation built into the platform",
+    "Annual external penetration testing by independent third-party",
+    "Monthly automated vulnerability scanning with remediation tracking",
+    "Infrastructure as code with configuration management and rollback capability",
+    "Branch protection with merge approval required for production deployments",
+    "Formal BCDR policy with annual testing of multiple loss scenarios",
+    "Quarterly user access reviews including administrative accounts",
+    "One business day access revocation SLA upon termination",
+    "IDS/IPS deployed via AWS",
+    "Endpoint protection on all production servers and workstations",
+    "Data encryption in transit (TLS) and at rest (KMS)",
+    "Unqualified auditor opinion with zero exceptions"
+  ],
+
+  "key_observations": [
+    "Network diagram shows a clean two-region architecture with application gateway, compute, Lambda, and database layers in each region, plus a shared database at the bottom - suggesting a replicated architecture with a primary data store.",
+    "The report explicitly excludes Processing Integrity and Privacy trust criteria, which is notable for an email infrastructure platform that handles message content.",
+    "AgentMail operates with no physical office (working space managed by building management) - this is a fully remote, cloud-native company.",
+    "The C-suite is only 3 people (CEO, CTO, COO) suggesting a very early-stage company, yet they obtained SOC 2 Type 1 - indicates compliance-forward positioning for enterprise sales.",
+    "The report was signed on 8/19/2025, only 12 days after the audit date of 8/7/2025, suggesting a streamlined audit process possibly facilitated by a compliance automation platform.",
+    "Content filtering via proxy server is mentioned, which is an uncommon control for a small cloud-native startup and suggests either mature security thinking or boilerplate language.",
+    "Significant control description duplication across trust criteria (e.g., CC1.4.1, CC2.1.2, CC2.3.3 text repeated verbatim across multiple criteria) suggests the report may have been prepared with a template tool like Vanta, Drata, or Secureframe."
+  ]
+}

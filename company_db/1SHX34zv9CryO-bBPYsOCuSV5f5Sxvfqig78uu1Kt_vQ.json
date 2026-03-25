@@ -1,0 +1,19 @@
+{
+  "doc_id": "1SHX34zv9CryO-bBPYsOCuSV5f5Sxvfqig78uu1Kt_vQ",
+  "link": "https://docs.google.com/document/d/1SHX34zv9CryO-bBPYsOCuSV5f5Sxvfqig78uu1Kt_vQ",
+  "timestamp": "10/6/2025 15:27:19",
+  "display_name": "Sentra",
+  "legal_name": "Dynamis Labs, Inc.",
+  "company_name": "Sentra",
+  "system_description": "Sentra is an AI Alignment Officer who helps companies scale effectively. It builds a unique company memory by sitting in on meetings, workspace communication channels, and documents, stitching people, projects, and decisions together across time. It automates busywork for everyone, proactively detects misalignments across the organization, and aligns everyone to the leadership's vision and objectives.",
+  "audit_end_date": "",
+  "observation_period": "June 27, 2025 September 27, 2025",
+  "infra_provider": "AWS",
+  "website": "https://sentra.app",
+  "contact_email": "andrey.starenky@sentra.app",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1SHX34zv9CryO-bBPYsOCuSV5f5Sxvfqig78uu1Kt_vQ.pdf",
+  "txt_file": "1SHX34zv9CryO-bBPYsOCuSV5f5Sxvfqig78uu1Kt_vQ.txt",
+  "has_report": true
+}

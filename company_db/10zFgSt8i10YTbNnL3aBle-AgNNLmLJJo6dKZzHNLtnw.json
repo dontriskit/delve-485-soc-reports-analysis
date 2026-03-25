@@ -1,0 +1,19 @@
+{
+  "doc_id": "10zFgSt8i10YTbNnL3aBle-AgNNLmLJJo6dKZzHNLtnw",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/10zFgSt8i10YTbNnL3aBle-AgNNLmLJJo6dKZzHNLtnw",
+  "timestamp": "6/11/2025 16:09:56",
+  "display_name": "Sim Studio",
+  "legal_name": "Sim Studio, Inc",
+  "company_name": "Sim Studio",
+  "system_description": "Sim Studio is an open source, drag-and-drop AI Agent builder.",
+  "audit_end_date": "June 10, 2025",
+  "observation_period": "",
+  "infra_provider": "Vercel",
+  "website": "https://www.simstudio.ai/",
+  "contact_email": "security@simstudio.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "10zFgSt8i10YTbNnL3aBle-AgNNLmLJJo6dKZzHNLtnw.pdf",
+  "txt_file": "10zFgSt8i10YTbNnL3aBle-AgNNLmLJJo6dKZzHNLtnw.txt",
+  "has_report": true
+}

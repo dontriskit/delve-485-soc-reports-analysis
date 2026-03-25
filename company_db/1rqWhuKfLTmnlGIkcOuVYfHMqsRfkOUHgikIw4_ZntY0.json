@@ -1,0 +1,19 @@
+{
+  "doc_id": "1rqWhuKfLTmnlGIkcOuVYfHMqsRfkOUHgikIw4_ZntY0",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1rqWhuKfLTmnlGIkcOuVYfHMqsRfkOUHgikIw4_ZntY0",
+  "timestamp": "5/22/2025 22:38:09",
+  "display_name": "Wamy",
+  "legal_name": "Wamy AI Inc.",
+  "company_name": "Wamy",
+  "system_description": "Wamy Claim Intelligence Platform",
+  "audit_end_date": "May 14th, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "www.wamy.com",
+  "contact_email": "info@wamy.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": null,
+  "txt_file": null,
+  "has_report": false
+}

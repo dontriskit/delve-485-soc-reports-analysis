@@ -1,0 +1,189 @@
+{
+  "company": "Janet AI Inc.",
+  "product": "Janet",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of July 24, 2025",
+  "auditor": "ACCORP Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+  "hq": "20015 Orchard Meadow Dr",
+  "signing_authority": "Adhit Sankaran, CEO",
+
+  "system_description": {
+    "overview": "Janet is an AI-powered support ticket and customer service platform that automates ticket triage, provides intelligent chat assistance, and integrates with project management tools like Jira. It uses AI agents to route, prioritize, and resolve customer support workflows.",
+    "products": {
+      "Ticket Kanban Board with Automated Ticket Triage": "AI-driven ticket management and routing interface",
+      "Intelligent Chat Assistant": "AI chatbot for customer support interactions",
+      "Jira Actions": "Integration layer for Jira project management workflows"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Supabase (carve-out — Supabase is a subservice organization providing database and infrastructure)",
+    "regions": ["Not explicitly named"],
+    "physical_presence": "20015 Orchard Meadow Dr",
+    "availability_zones": "Multi-AZ (via Supabase)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Single VPC with segmented subnets; network ACLs enforced",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Network ACLs and security groups within VPC",
+    "ids_ips": "IDS/IPS provided by Supabase (subservice)",
+    "vpn": "Bastion host for administrative access",
+    "tls": "TLS / HTTPS for all ingress traffic",
+    "content_filtering": null,
+    "multi_region": false,
+    "topology": "Internet → HTTPS Ingress → Janet AI API (Next.js) → Agent Engine (Worker/Celery) → Prisma Client (ORM) → Supabase (DATABASE_URL, external subservice)"
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices",
+    "languages": [],
+    "frameworks": ["Next.js (API layer)", "Celery/Worker (Agent Engine)", "Prisma ORM (database client)"],
+    "compute": ["Not named — likely containerized or serverless given stack"],
+    "api_style": "REST (Next.js API)",
+    "environments": "Separate environments (production isolated); specifics not detailed",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Supabase (PostgreSQL)"],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": null,
+    "backup_frequency": "Daily (via Supabase)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": null
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Supabase (authentication service)",
+    "mfa": "MFA enforced for admin/privileged accounts and SCM access",
+    "rbac": true,
+    "sso": null,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day",
+    "password_policy": "Controlled through Supabase password policy"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (HTTPS)",
+    "at_rest": "AWS KMS (AES-256) — Supabase uses KMS",
+    "key_management": "AWS KMS (via Supabase infrastructure)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "SCM (name not disclosed; MFA enforced)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Merge to main requires approval; branch protection rules enforced",
+    "iac": "Configuration management tool with baseline configs as code",
+    "container_orchestration": "Not named",
+    "patch_management": "Patch management policy; regular patching cycle",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named (Supabase monitoring implied)",
+    "siem": null,
+    "log_aggregation": "Not explicitly named",
+    "alerting": "Automated alerts configured",
+    "metrics": ["CPU", "disk", "network", "application performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Supabase", "purpose": "Database, authentication, infrastructure (critical subservice)", "criticality": "Critical"},
+    {"vendor": "Jira / Atlassian", "purpose": "Project management integration (product feature)", "criticality": "High"},
+    {"vendor": "ACCORP Partners", "purpose": "SOC 2 audit", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Antivirus installed on all servers and desktops; weekly AV definition updates",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scanning",
+    "penetration_testing": "Annual external third-party penetration testing",
+    "server_hardening": true,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 29,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — physical access controls delegated to Supabase (subservice)",
+      "A1.2 — environmental protections delegated to Supabase and building management (subservice)"
+    ],
+    "notable_controls": [
+      "All 5 trust criteria in scope (Security, Availability, Processing Integrity, Confidentiality, Privacy) — broader than typical Type 1",
+      "Carve-out method applied for Supabase as subservice organization",
+      "COSO principles and CC1-CC9 tested"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {"score": 5, "max": 10, "rationale": "Single VPC, multi-AZ via Supabase. No named cloud provider directly controlled by Janet. Heavy delegation to Supabase subservice. No CDN, no multi-region."},
+    "application_architecture": {"score": 6, "max": 10, "rationale": "Named tech stack (Next.js, Celery, Prisma) shows maturity. Branch protection and code review enforced. No named compute platform or testing framework."},
+    "data_layer": {"score": 5, "max": 10, "rationale": "Supabase PostgreSQL with daily backups and KMS encryption. No caching layer, no data warehouse, no named file storage. Data layer entirely delegated to subservice."},
+    "security_posture": {"score": 7, "max": 10, "rationale": "Monthly vuln scans, annual external pen test, antivirus, MFA, IDS/IPS via Supabase. No WAF directly controlled by Janet; security partially delegated to subservice."},
+    "devops_maturity": {"score": 6, "max": 10, "rationale": "IaC baseline configs, branch protection, named frameworks (Next.js, Celery, Prisma). CI/CD tool and container orchestration not named."},
+    "bcdr_readiness": {"score": 6, "max": 10, "rationale": "BCDR policy, annual review and testing, daily backups, multi-AZ via Supabase. No RTO/RPO stated. DR capability depends on Supabase SLAs."},
+    "vendor_diversity": {"score": 3, "max": 10, "rationale": "Critical single-vendor dependency on Supabase for database, authentication, IDS/IPS, and infrastructure. Supabase failure would be existential. Only other named vendor is Jira integration."},
+    "overall": {"score": 5, "max": 10, "rationale": "SOC 2 Type 1 with all 5 trust criteria and clean opinion is positive. However, critical concentration on Supabase, no WAF, undisclosed RTO/RPO, and limited direct infrastructure control create meaningful risk."}
+  },
+
+  "red_flags": [
+    "Critical single-vendor dependency on Supabase for database, auth, IDS/IPS, and infrastructure — existential concentration risk",
+    "No WAF directly controlled by Janet",
+    "No RTO/RPO disclosed",
+    "company_db metadata lists 'Render' as infra_provider — contradicts report which clearly shows Supabase as primary infrastructure"
+  ],
+  "yellow_flags": [
+    "CI/CD tool and container orchestration not named",
+    "No named monitoring/APM tool",
+    "No cybersecurity insurance disclosure",
+    "SOC 2 Type 1 only (point-in-time snapshot)",
+    "No named file storage service"
+  ],
+  "green_flags": [
+    "All 5 trust criteria in scope — most comprehensive SOC 2 engagement",
+    "Named, modern tech stack (Next.js, Celery, Prisma) shows engineering sophistication",
+    "Monthly automated vulnerability scanning",
+    "Annual external penetration testing",
+    "Quarterly access reviews with 1-business-day revocation SLA",
+    "Unqualified opinion with zero exceptions"
+  ],
+  "key_observations": [
+    "Supabase as subservice means Janet does not directly control its own database infrastructure — carve-out method requires reliance on Supabase's own SOC 2 report",
+    "All 5 trust criteria included in a Type 1 report is unusual and suggests a mature compliance posture or customer-driven requirement",
+    "Celery/Worker agent engine suggests async AI task processing architecture",
+    "Prisma ORM suggests TypeScript/Node.js backend despite Next.js being listed as 'API' — full-stack JS architecture likely",
+    "ACCORP Partners template — same structure as Doe Labs in this batch"
+  ]
+}

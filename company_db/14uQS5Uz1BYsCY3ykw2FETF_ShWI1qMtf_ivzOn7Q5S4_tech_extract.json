@@ -1,0 +1,232 @@
+{
+  "company": "Pensieve Inc.",
+  "product": "Pensieve AI Grading and Tutoring Platform",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "February 15, 2015 - May 15, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+  "hq": "1 Brady St #A-725, San Francisco CA",
+  "signing_authority": "Yoonseok Yang, CEO",
+
+  "system_description": {
+    "overview": "Pensieve Inc. is an AI grading and tutoring platform for educational institutions. It leverages AI to automate grading, rubric generation, and provide personalized feedback to students. The platform also provides real-time AI tutoring based on course materials.",
+    "products": {
+      "AI Grading Platform": "AI-driven autograding for assignments (MCQ, short answer, drawing), AI rubric and solution generation, AI-based automatic code review for programming questions",
+      "AI Tutoring Platform": "AI tutoring based on course AI policy with personalized tutoring, interactive group worksheet for collaborative problem-solving with AI tutor"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Google Cloud Platform (GCP) - carve-out method",
+    "regions": ["Not specified - GCP regions not named"],
+    "physical_presence": "No physical offices; no physical servers. All data processed on cloud services.",
+    "availability_zones": "Multi-AZ (multiple availability zones referenced for DR; backups taken with multi-availability zones configured)",
+    "additional_cloud": [],
+    "serverless": ["Cloud Functions (visible in network diagram - Cloud Functions Svc)"],
+    "cdn": "Cloud CDN (visible in GCP network diagram - Cloud CDN with Cloud Load Balancer with DDoS Armor)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with ACLs. Network diagram shows GCP Project Security Perimeter with Security Services layer (Cloud Audit Logs, SIM, Security Command Centre), Serverless Services - Public zone (Cloud Run Services), VPS Network with private IP subnets (multiple VM instances with private IPs), Storage & Functions zone, Firebase Services zone. Network segmented by sensitivity.",
+    "api_gateway": "Identity-Aware Proxy (visible in network diagram as Identity-Aware Proxy under Edge Services)",
+    "waf": "Cloud Armor / DDoS Armor (Cloud Load Balancer with DDoS Armor visible in diagram)",
+    "firewalls": "System firewalls on application gateway and production network. Firewall rules reviewed annually by IT management. Firewall access restricted to authorized personnel.",
+    "ids_ips": "IDS and IPS via GCP to identify and protect against threats. Intrusion detection system utilized to monitor and detect unauthorized access or anomalies.",
+    "vpn": "Remote access via bastion host with VPN",
+    "tls": "TLS (Transport Layer Security) using certificates from established third-party certificate authority",
+    "content_filtering": "All systems restricted to internet with content filtering system routed through proxy server",
+    "multi_region": false,
+    "topology": "External traffic -> Cloud Load Balancer with DDoS Armor / Cloud CDN -> Identity-Aware Proxy -> GCP Project Security Perimeter -> Security Services (Audit Logs, SCC) -> Serverless Services Public (Cloud Run) -> VPS Network with private subnet VMs -> Storage/Functions (Cloud Storage, Cloud Functions) + Firebase Services (Firebase Hosting, Firebase Realtime DB)"
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid (Cloud Run serverless + VM instances + Firebase)",
+    "languages": ["Not explicitly named"],
+    "frameworks": ["Not explicitly named"],
+    "compute": ["Cloud Run", "VM instances (private IP)", "Cloud Functions", "Firebase Hosting"],
+    "api_style": "Not specified",
+    "environments": "Separate development/test and production environments; changes tested before migration to production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Cloud SQL / GCP database (referenced as database in infrastructure)", "Firebase Realtime DB (visible in network diagram)"],
+    "caching": ["Not mentioned"],
+    "file_storage": ["Cloud Storage (GCP - visible in network diagram as Cloud Storage CMEK Encrypted)"],
+    "data_warehouse": "Not mentioned",
+    "backup_frequency": "Daily (backups taken daily per CC7.4.2 test evidence)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "GCP / Active Directory (password policy controlled through GCP)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform; MFA required for source code tool access; 2FA required for employee email",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Password policy via GCP; includes periodic forced changes, password expiry and complexity requirements; accounts disabled after limited failed logon attempts"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service (CMEK - Customer-Managed Encryption Keys visible in diagram: Cloud Storage CMEK Encrypted)",
+    "key_management": "GCP Cloud KMS (cloud provider key management service); access to production environment access keys restricted to authorized individuals",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (name not specified; MFA required for access; source code changes logged, time-stamped, attributed to author)",
+    "ci_cd_tool": "Not named explicitly",
+    "branch_protection": "Code repository branch rules configured so every merge request to move change to production requires additional approval; approval process followed prior to merging to master branch",
+    "iac": "Configuration as code - baseline configurations retained within infrastructure as code; configuration management tool used for implementation and rollback",
+    "container_orchestration": "Cloud Run (GCP managed serverless containers)",
+    "patch_management": "Automatic patch management set up by CTO; monthly patch management reviews; workstations configured for automatic updates; workstations scanned for patch compliance daily",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named; monitoring tool generates alerts when predefined thresholds met",
+    "siem": "Security Command Centre (GCP SCC visible in network diagram)",
+    "log_aggregation": "Cloud Audit Logs (GCP - visible in network diagram); logging enabled for administrative activities, logon attempts, data deletions, security configurations, permissions, roles",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; incident management process invoked for confirmed events",
+    "metrics": ["CPU", "disk space", "incoming/outgoing network traffic", "packet loss", "availability"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Google Cloud Platform (GCP)", "purpose": "Primary cloud infrastructure, data center services, compute, storage, networking, security services", "criticality": "Critical"},
+    {"vendor": "Firebase (Google)", "purpose": "Firebase Hosting and Firebase Realtime DB", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers and Mac workstations/laptops; definitions updated weekly on production servers; continuous automatic scanning",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; internal IT Infrastructure team performs periodic scans per audit calendar",
+    "penetration_testing": "Annual external penetration testing by independent third-party; high/critical findings tracked to resolution",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 52,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 - No significant changes to people/roles during engagement period (control could not be tested)",
+      "CC3.2.1 - Cybersecurity insurance: no cyber incidents reported during engagement period",
+      "CC6.5.2 - Customer data deletion: no customer terminations during engagement period",
+      "CC7.3.1 - Security incident response: no security incidents reported during engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 - Physical security delegated to GCP as subservice organization",
+      "A1.2 - Environmental protections delegated to GCP / building management"
+    ],
+    "notable_controls": [
+      "Risk and Governance Executive Committee (RGEC) meets semiannually to oversee internal controls",
+      "IT Leadership Committee meets weekly to review security-related activities",
+      "Quarterly user access reviews for all accounts including privileged",
+      "IDS deployed via GCP with network segmentation",
+      "Cloud Armor DDoS protection and Identity-Aware Proxy in front of services",
+      "CMEK (customer-managed encryption keys) for Cloud Storage",
+      "Vendor management: quarterly risk assessments for critical vendors without SOC reports"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 7,
+      "max": 10,
+      "rationale": "GCP with multi-AZ, CDN (Cloud CDN), DDoS protection (Cloud Armor), VPC segmentation, IaC. Single cloud provider, regions not specified, no explicit multi-region setup. Firebase adds some vendor diversity within GCP ecosystem."
+    },
+    "application_architecture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Cloud Run + VM + Firebase hybrid architecture. Separate environments confirmed. Branch protection and code review enforced. Languages/frameworks not disclosed. Appears modern but tech stack details sparse."
+    },
+    "data_layer": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Firebase Realtime DB + GCP Cloud Storage with CMEK encryption. Daily backups with multi-AZ. Data classification and retention policies confirmed. No caching layer or data warehouse mentioned. Per-tenant segregation referenced."
+    },
+    "security_posture": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Strong: WAF/DDoS (Cloud Armor), IDS/IPS (GCP), annual external pen testing, monthly vuln scans, MFA enforced, endpoint protection, SIEM (GCP SCC), cybersecurity insurance, quarterly access reviews. Content filtering via proxy. Good breadth of controls."
+    },
+    "devops_maturity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "IaC confirmed, branch protection with required approvals, separate environments, emergency change process, automatic patch management, monthly patch reviews. CI/CD tool not named, languages/frameworks undisclosed."
+    },
+    "bcdr_readiness": {
+      "score": 7,
+      "max": 10,
+      "rationale": "BCDR policy documented and annually tested. Daily backups with multi-AZ. DR spins up multiple servers across all availability zones in GCP. No RTO/RPO disclosed. No multi-region failover."
+    },
+    "vendor_diversity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Heavily GCP-dependent (compute, storage, security services, CDN, DDoS, logging). Firebase is also Google. Only two subservice vendors identified, both Google. High single-vendor concentration risk."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Solid GCP-native security posture with good control coverage, annual pen testing, multi-AZ DR, and strong access controls. Main concerns: deep GCP/Google concentration risk, no RTO/RPO disclosed, no multi-region DR, tech stack details (languages, CI/CD tool) not named."
+    }
+  },
+
+  "red_flags": [
+    "Near-total dependency on Google (GCP + Firebase) with no disclosed multi-cloud or multi-region DR strategy",
+    "RTO and RPO not disclosed despite annual BCDR testing",
+    "CI/CD tooling and programming languages not named in report"
+  ],
+  "yellow_flags": [
+    "No multi-region failover; DR relies on multi-AZ within GCP only",
+    "No caching layer or data warehouse mentioned",
+    "SSO not mentioned for customer-facing access",
+    "Audit period dates appear anomalous: 'February 15, 2015 - May 15, 2025' (10-year span) - likely a typo for 2025 start date"
+  ],
+  "green_flags": [
+    "Annual external penetration testing by independent third-party",
+    "Monthly automated vulnerability scans",
+    "Cybersecurity insurance maintained",
+    "MFA enforced for all admin/production access and source code tool",
+    "Quarterly user access reviews including privileged accounts",
+    "Access revocation within one business day of termination",
+    "CMEK encryption for cloud storage",
+    "Cloud Armor DDoS protection + Identity-Aware Proxy",
+    "GCP SCC (SIEM equivalent) deployed",
+    "BCDR tested annually with multi-AZ failover capability",
+    "Risk and Governance Executive Committee with semiannual oversight meetings",
+    "Zero exceptions across all tested controls"
+  ],
+  "key_observations": [
+    "The network diagram reveals a sophisticated GCP architecture: Cloud CDN + Load Balancer with DDoS Armor -> Identity-Aware Proxy -> Security Services layer (Audit Logs, SCC) -> Cloud Run (public) -> private VMs -> Cloud Storage (CMEK) + Firebase. This is a well-layered defense-in-depth design.",
+    "Pensieve explicitly excludes CC6.4 (physical security) and A1.2 (environmental protections) as GCP/building management responsibilities - clean carve-out approach.",
+    "The product serves educational institutions handling student data (assignments, grades) - the AI/ML infrastructure (Cloud Run + AI services) is architecturally appropriate for this workload.",
+    "Despite being a small company (CEO/CTO/COO org structure), the governance structure includes an RGEC meeting semiannually and ITLC meeting weekly - unusually mature for a startup.",
+    "The 'February 15, 2015' start date in the audit period is almost certainly a typo (should likely be February 15, 2025), making this effectively a point-in-time report for May 2025."
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "company": "athena studio SARL",
+  "product": "Athena Studio",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "June 25, 2025 - September 25, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "No physical office; all infrastructure on cloud",
+  "signing_authority": "Arnaud Hillen, Co-Founder and CTO",
+
+  "system_description": {
+    "overview": "Athena Studio is an AI-native GTM (Go-To-Market) operating system for fashion brands. The flagship product 'athena' is a 24/7 AI fashion product development assistant that unifies fragmented data into a single real-time collection view, providing proactive alerts and automation to reduce costs and accelerate time-to-market.",
+    "products": {
+      "Athena Studio AI-Native GTM Operating System": "Automated orchestration and maintenance of GTM workflows; continuous system integration from files, platforms, and conversations; dynamic self-updating workflows that adapt to evolving data and conditions.",
+      "Actionable Insights and User Interfaces": "Centralized dashboard providing real-time insights, proactive alerts, and compliance monitoring; secure interactive text-based chat assistant; automated proactive alerts and notifications."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Vercel (carve-out — Vercel SOC 2 reviewed annually; Vercel is responsible for physical/data-center controls)",
+    "regions": ["Not specified — Vercel multi-AZ mentioned"],
+    "physical_presence": "None — no physical offices or servers; all data processed on cloud services",
+    "availability_zones": "Multi-AZ (Vercel high-availability data centers with multiple availability zones)",
+    "additional_cloud": [],
+    "serverless": ["Vercel serverless/edge functions implied"],
+    "cdn": "Vercel (CDN built-in to Vercel platform)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Hosted in Vercel VPC environment with segmented VPCs and ACLs. Network segmentation implemented to separate systems and data based on sensitivity and criticality. Customer access appropriately segmented from other customer accounts.",
+    "api_gateway": null,
+    "waf": "Vercel (WAF/firewall via Vercel platform)",
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS implemented via Vercel to identify and protect against threats in conjunction with security policy network settings.",
+    "vpn": "Remote access done through a bastion host with VPN",
+    "tls": "TLS (Transport Layer Security) using certificates from an established third-party certificate authority",
+    "content_filtering": "All systems restricted to internet with content filtering system routed through proxy server",
+    "multi_region": false,
+    "topology": "End users connect via HTTPS/TLS to Vercel-hosted application. High-availability Vercel network with VPC, segmented VPCs/ACLs, IDS/IPS, firewalls. Remote admin access via bastion host + VPN. Dev/Test/Prod environments separated. Audit logs maintained separately."
+  },
+
+  "application_architecture": {
+    "pattern": "Serverless-heavy (Vercel-based deployment)",
+    "languages": ["Not disclosed"],
+    "frameworks": ["Not disclosed — Vercel platform implies Next.js likely"],
+    "compute": ["Vercel (serverless/edge)"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development, test, and production environments. Changes tested before migration to production.",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Database hosted on Vercel/cloud infrastructure — specific engine not named"],
+    "caching": ["Not disclosed"],
+    "file_storage": ["Not disclosed"],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Daily (backups taken daily; multi-availability zones configured; alerts in place for backup failures)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not explicitly named — passwords controlled through Vercel password policy; MFA enforced for production/admin access",
+    "mfa": "MFA enforced for all user accounts with administrative access to production platform and for all remote access. Source code tool access restricted to authorized users using MFA.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Passwords controlled through Vercel password policy including periodic forced changes, password expiry and complexity requirements. User accounts disabled after limited failed logon attempts. Guest and anonymous logins not allowed."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest",
+    "key_management": "Cloud provider KMS (Vercel/underlying cloud); access to encryption keys restricted to authorized personnel",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named — source code management tool with MFA-protected access; code changes logged, time-stamped, and attributed to author",
+    "ci_cd_tool": "Not explicitly named",
+    "branch_protection": "Code repository branch rules configured — every merge request to move change to production requires additional approval. Developers cannot make changes to production code without additional approval.",
+    "iac": "Baseline configurations retained as code; configuration management tool used for implementation and rollback",
+    "container_orchestration": "Not disclosed — Vercel serverless implied",
+    "patch_management": "CTO has set up automatic patch management; monthly patch management reviews; workstations configured for automatic updates; daily compliance scans; critical/security OS patches applied as available",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named — monitoring tool generates alerts when predefined thresholds are met",
+    "siem": "Not named",
+    "log_aggregation": "Logging enabled at application and infrastructure level for administrative activities, logon attempts, data deletions, security configurations changes, permissions, and roles. Log access and modification restricted.",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events",
+    "metrics": ["CPU/disk/network/packet loss (server performance reports reviewed periodically)", "Availability", "Capacity"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Vercel", "purpose": "Primary cloud/hosting platform — data center, CDN, VPC, IDS/IPS, serverless compute", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Endpoint Security Solution installed on all desktops and laptops; anti-virus with continuous automatic scanning; definitions updated daily from vendor. Anti-virus and Malware protection installed on all production servers (definitions updated weekly) and Mac workstations/laptops.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; scan frequency adjustable; management remediates high and critical findings",
+    "penetration_testing": "Annual external penetration testing by independent third party; high/critical findings remediated and tracked",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 56,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.3 — significant changes to people/roles could not be tested (no significant changes during engagement period)",
+      "CC3.2.1 — cybersecurity insurance could not be tested (no cyber incidents reported during engagement period)",
+      "CC7.3.1 — incident response could not be tested (no security incidents reported during engagement period)",
+      "CC6.5.2 — customer data deletion upon termination could not be tested (no customer terminations during engagement period)"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — physical access to data center facilities excluded; Vercel is responsible for physical security",
+      "A1.2 — environmental protections excluded; Athena Studio has no office/working space; all managed by Vercel",
+      "Processing Integrity and Privacy trust service categories — determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "Risk and Governance Executive Committee (RGEC) established with charter, meets semiannually (quarterly per test evidence)",
+      "IT Leadership Committee meets weekly to review security commitments",
+      "Quarterly user access reviews for all accounts including privileged accounts",
+      "Annual external penetration testing by independent third party",
+      "Monthly automated vulnerability scanning",
+      "Configuration as code with rollback capability",
+      "Branch protection requiring additional approval for all merges to master",
+      "MFA enforced for all admin/remote access and source code tool"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Single cloud provider (Vercel) with multi-AZ failover and CDN. No multi-region. No IaC explicitly beyond config-as-code. Heavy dependency on Vercel as a carve-out subservice org limits visibility. Vercel is a PaaS/serverless platform — reasonable for an early-stage AI company but single-vendor concentration."
+    },
+    "application_architecture": {
+      "score": 4,
+      "max": 10,
+      "rationale": "No programming languages, frameworks, or API style disclosed. Architecture appears serverless-heavy on Vercel. Separate environments confirmed; branch protection and code review confirmed. Significant technology opacity limits scoring."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Daily backups and multi-AZ confirmed. Data classification and retention policies in place. Per-tenant segregation confirmed. However, no specific database technology, caching layer, or data warehouse disclosed."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong controls: annual external pen test, monthly vuln scanning, IDS/IPS via Vercel, firewalls, MFA on all admin/remote access, endpoint protection, cybersecurity insurance, quarterly access reviews, 1-business-day access revocation. Gap: no named SIEM or APM tool."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Branch protection and code review confirmed. Config-as-code with rollback. Emergency change process exists. Separate environments. However, CI/CD tool unnamed, IaC tool unnamed, no container orchestration disclosed. Monthly patch management reviews."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented, reviewed and tested annually. Daily backups with multi-AZ. Vercel multi-AZ failover. No multi-region failover. RTO/RPO not disclosed. Section 5 confirms spinning multiple servers across all AZs on failure."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Extreme single-vendor concentration on Vercel for essentially all infrastructure (hosting, CDN, networking, IDS/IPS, physical security). No other named cloud or SaaS vendors besides Vercel. This is a significant concentration risk."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Athena Studio is a very early-stage company (SOC 2 Type 2 in first audit period Jun-Sep 2025, only 3 months). Controls are largely well-designed with no exceptions noted. Strong security governance (RGEC, ITLC, pen testing, vuln scanning). Primary concerns are extreme Vercel dependency, limited technology disclosure, and the nascent nature of the compliance program."
+    }
+  },
+
+  "red_flags": [
+    "Extreme single-vendor dependency on Vercel for all infrastructure — hosting, CDN, IDS/IPS, networking, and physical security all delegated to Vercel as a carve-out subservice organization",
+    "No programming languages, frameworks, databases, or APM/SIEM tools named — extremely low technology transparency",
+    "No multi-region failover capability disclosed",
+    "RTO and RPO not disclosed",
+    "Only 3-month audit period (Jun–Sep 2025) — very short observation window for a Type 2 report"
+  ],
+
+  "yellow_flags": [
+    "No SSO mentioned for customer-facing access",
+    "CI/CD tooling and IaC tooling not named — configuration management maturity difficult to assess",
+    "No data warehouse or analytics infrastructure disclosed — unclear how data is processed at scale",
+    "Vercel is an unusual primary infrastructure choice for an enterprise SaaS; Vercel SOC 2 reviewed but Vercel controls are entirely carved out",
+    "No caching layer disclosed — potential scalability/performance risk"
+  ],
+
+  "green_flags": [
+    "Unqualified opinion with zero exceptions across all tested controls",
+    "Annual external penetration testing by independent third party — confirmed tested",
+    "Monthly automated vulnerability scanning",
+    "Quarterly user access reviews including privileged accounts",
+    "MFA enforced on all admin and remote access",
+    "Access revoked within 1 business day of termination",
+    "BCDR tested annually with multiple loss scenarios",
+    "Daily backups with multi-AZ configuration",
+    "Risk and Governance Executive Committee (RGEC) with semiannual oversight meetings",
+    "IT Leadership Committee meets weekly",
+    "Cybersecurity insurance maintained",
+    "Separate dev/test/prod environments with branch protection"
+  ],
+
+  "key_observations": [
+    "Athena Studio built its compliance program extremely quickly — achieving SOC 2 Type 2 in what appears to be its first 3-month window (June–September 2025). This is likely Vanta/Drata-assisted given the Accorp Partners auditor and template-heavy control descriptions.",
+    "The company uses Vercel as its entire infrastructure stack — this is atypical for enterprise SaaS and means all physical security, network infrastructure, and availability controls are entirely dependent on a single PaaS vendor. Vercel's SOC 2 is reviewed annually.",
+    "The network diagram (page 19) shows a Vercel-hosted multi-environment topology with Development, Test, and Production environments, each with Static Assets, CDN Cache, Serverless Functions, and Audit Logs, plus external Database connection — consistent with a Next.js/Vercel architecture.",
+    "No AI/ML infrastructure vendors mentioned (e.g., OpenAI, Anthropic, AWS Bedrock) despite the product being an AI assistant — this is a notable gap in vendor disclosure for an AI company.",
+    "CC2.3 (significant personnel changes) and CC7.3.1 (incident response) were untestable due to no events during the short 3-month period — these are expected for a new program but worth monitoring in subsequent audits.",
+    "The company structure shows CEO overseeing Marketing/Customer Success/Growth teams and CTO overseeing Engineering/AI-ML/Security teams — a lean early-stage team with security embedded under CTO."
+  ]
+}

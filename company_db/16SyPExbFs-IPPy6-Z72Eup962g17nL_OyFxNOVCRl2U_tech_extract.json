@@ -1,0 +1,217 @@
+{
+  "company": "Swifty AI Limited",
+  "product": "Swifty AI Voice AI Platform",
+  "report_type": "ISO 27001",
+  "audit_period": "8/22/2025 (certification date; no observation period specified)",
+  "auditor": "Gradient Certification Inc.",
+  "opinion": "Certified (ISO/IEC 27001:2022)",
+  "trust_criteria": ["Information Security Management System (ISMS)"],
+  "hq": "34 Downshall Avenue, Ilford, England, IG3 8NB",
+  "signing_authority": "Yaniv Aspis, Swifty AI Limited",
+
+  "system_description": {
+    "overview": "Swifty AI Limited operates a voice AI platform for the automotive sector. The platform automates call centres and messaging systems for dealerships and service centres, covering customer inquiries, service scheduling, and sales follow-ups. It also includes supporting analytics and reporting functions.",
+    "products": {
+      "Voice AI Platform": "Automates call centres and messaging systems for automotive dealerships and service centres, handling customer inquiries, service scheduling, sales follow-ups, analytics, and reporting"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Not disclosed in report",
+    "regions": [],
+    "physical_presence": "34 Downshall Avenue, Ilford, England, IG3 8NB (single site)",
+    "availability_zones": "Not disclosed",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Not disclosed"
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": "Not disclosed",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Not disclosed",
+    "ids_ips": "Not disclosed",
+    "vpn": "Not disclosed",
+    "tls": "Not disclosed",
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. Document is a certification agreement only, not the full audit report."
+  },
+
+  "application_architecture": {
+    "pattern": "Not disclosed",
+    "languages": [],
+    "frameworks": [],
+    "compute": [],
+    "api_style": "Not disclosed",
+    "environments": "Not disclosed",
+    "branch_protection": null,
+    "code_review_required": null
+  },
+
+  "data_storage": {
+    "databases": [],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Not disclosed",
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not disclosed",
+    "mfa": "Not disclosed",
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": "Not disclosed",
+    "password_policy": "Not disclosed"
+  },
+
+  "encryption": {
+    "in_transit": "Not disclosed",
+    "at_rest": "Not disclosed",
+    "key_management": "Not disclosed",
+    "end_to_end": null
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not disclosed",
+    "ci_cd_tool": "Not disclosed",
+    "branch_protection": "Not disclosed",
+    "iac": "Not disclosed",
+    "container_orchestration": "Not disclosed",
+    "patch_management": "Not disclosed",
+    "separate_environments": null,
+    "emergency_change_process": null
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not disclosed",
+    "siem": "Not disclosed",
+    "log_aggregation": "Not disclosed",
+    "alerting": "Not disclosed",
+    "metrics": [],
+    "log_protection": null,
+    "ids": null
+  },
+
+  "third_party_services": [
+    {"vendor": "Gradient Certification Inc.", "purpose": "ISO 27001 certification body", "criticality": "Low"},
+    {"vendor": "United Accreditation Foundation Inc. (UAF)", "purpose": "Accreditation body endorsing the certification", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": "Not disclosed",
+    "endpoint_protection": null,
+    "vulnerability_scanning": "Not disclosed",
+    "penetration_testing": "Not disclosed",
+    "server_hardening": null,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": [
+      "Document is a certification agreement form, not the full ISO 27001 audit report. No individual control testing results are included.",
+      "Statement of Applicability (version 1.0) is referenced but not included in this document.",
+      "Audit involved Stage-1 (2 mandays) and Stage-2 (3 mandays) with 2 surveillance audits planned (2 mandays each), totaling 9 mandays for the certification cycle."
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No infrastructure details disclosed. The document is a certification agreement, not a technical audit report. Zero visibility into cloud, compute, or hosting setup."
+    },
+    "application_architecture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No application architecture details disclosed. We only know it is a 'voice AI platform' for automotive. No languages, frameworks, or patterns mentioned."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No data storage, backup, or data management details disclosed anywhere in the document."
+    },
+    "security_posture": {
+      "score": 2,
+      "max": 10,
+      "rationale": "The ISO 27001:2022 certification itself implies an ISMS exists and was audited, which provides some baseline assurance. However, no specific security tools, controls, or practices are described in this document."
+    },
+    "devops_maturity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No CI/CD, source control, IaC, or deployment practices disclosed."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No business continuity or disaster recovery details disclosed. No RTO/RPO, no backup strategy mentioned."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "Only the certification body (Gradient Certification Inc.) and accreditation body (UAF) are named. No technology vendors disclosed."
+    },
+    "overall": {
+      "score": 1,
+      "max": 10,
+      "rationale": "This document is a certification agreement form for ISO 27001, not the actual audit report or Statement of Applicability. It provides virtually no technical or operational detail about Swifty AI's infrastructure, architecture, or security controls. The only value is confirming ISO 27001:2022 certification scope and the certifying body."
+    }
+  },
+
+  "red_flags": [
+    "Document provided is a certification agreement form, NOT the full ISO 27001 audit report or certificate -- almost no technical substance.",
+    "Only 7 pages total; flagged as potentially incomplete report (fewer than 10 pages).",
+    "No Statement of Applicability (SoA) included despite being referenced as version 1.0.",
+    "No evidence of specific security controls, technical architecture, or operational practices.",
+    "Certification body is Gradient Certification Inc. (Sheridan, Wyoming / Houston, TX) -- not a widely recognized top-tier certification body; accredited by UAF which is a less established accreditation body.",
+    "Total audit effort of only 9 mandays across the entire 3-year certification cycle is very low for a voice AI platform handling automotive customer data.",
+    "Certification date 8/22/2025 is very recent with no prior certification history evident.",
+    "No website, system description, or infrastructure provider recorded in company metadata."
+  ],
+
+  "yellow_flags": [
+    "Single-site certification only (34 Downshall Avenue, Ilford, England) -- no additional sites or cloud infrastructure locations in scope.",
+    "No disclosure of whether the platform handles PII, call recordings, or payment data for automotive customers.",
+    "The scope mentions 'all systems, infrastructure, and personnel' but the agreement provides zero specifics about what those systems are."
+  ],
+
+  "green_flags": [
+    "Has pursued ISO/IEC 27001:2022 certification (latest version of the standard).",
+    "Scope is well-defined: covers ISMS for the voice AI platform including design, development, deployment, and maintenance.",
+    "Includes analytics and reporting functions within certification scope."
+  ],
+
+  "key_observations": [
+    "This document is a Gradient Certification Inc. certification agreement form, not the actual ISO 27001 audit report, certificate, or Statement of Applicability. A proper tech due diligence would require requesting the actual certificate, the SoA, and ideally the Stage 2 audit report.",
+    "Swifty AI Limited is a UK-registered company (Ilford, England) obtaining ISO 27001 certification through a US-based certification body (Wyoming/Texas), which is an unusual geographic arrangement.",
+    "The voice AI platform for automotive (call centre automation, messaging, scheduling, sales follow-ups) likely processes significant volumes of customer PII and potentially call recordings, but no data handling practices are described.",
+    "The accreditation chain (UAF -> Gradient Certification Inc.) is not part of the IAF MLA signatory network commonly expected for ISO 27001 certifications, which may affect the certification's recognition by enterprise customers.",
+    "Stage-1 audit of 2 mandays and Stage-2 of 3 mandays is minimal, suggesting a small organization or limited scope implementation."
+  ]
+}

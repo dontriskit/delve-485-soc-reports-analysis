@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delve — Tech Due Diligence Dashboard</title>
+<style>
+:root {
+  --bg: #0f172a; --bg2: #1e293b; --card: #1a2332; --border: #334155;
+  --text: #e2e8f0; --muted: #94a3b8; --blue: #3b82f6; --green: #22c55e;
+  --yellow: #f59e0b; --red: #ef4444; --purple: #a855f7;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Inter',-apple-system,sans-serif; font-size:14px; }
+a { color:var(--blue); text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:var(--bg2); border-right:1px solid var(--border); padding:16px; overflow-y:auto; position:fixed; height:100vh; }
+.main { margin-left:280px; padding:24px; flex:1; min-width:0; }
+
+.sidebar h1 { font-size:18px; margin-bottom:4px; }
+.sidebar .sub { color:var(--muted); font-size:12px; margin-bottom:16px; }
+.sidebar input { width:100%; padding:8px; background:var(--bg); border:1px solid var(--border); border-radius:6px; color:var(--text); margin-bottom:12px; font-size:13px; }
+.sidebar .nav-item { padding:8px; border-radius:6px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; margin-bottom:2px; font-size:13px; }
+.sidebar .nav-item:hover { background:var(--card); }
+.sidebar .nav-item.active { background:var(--blue); color:white; }
+.badge { padding:2px 8px; border-radius:10px; font-size:11px; font-weight:600; }
+.badge-red { background:#7f1d1d; color:#fca5a5; }
+.badge-yellow { background:#78350f; color:#fde68a; }
+.badge-green { background:#14532d; color:#86efac; }
+.badge-blue { background:#1e3a5f; color:#93c5fd; }
+
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px; margin-bottom:24px; }
+.stat-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; }
+.stat-card .value { font-size:32px; font-weight:700; }
+.stat-card .label { color:var(--muted); font-size:12px; margin-top:4px; }
+
+table { width:100%; border-collapse:collapse; }
+th { text-align:left; padding:10px 12px; background:var(--bg2); color:var(--muted); font-size:12px; text-transform:uppercase; cursor:pointer; border-bottom:1px solid var(--border); }
+th:hover { color:var(--text); }
+td { padding:10px 12px; border-bottom:1px solid var(--border); font-size:13px; }
+tr:hover { background:var(--card); }
+
+.score-bar { display:inline-block; height:8px; border-radius:4px; }
+.detail-section { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:16px; }
+.detail-section h3 { margin-bottom:12px; font-size:16px; }
+.detail-section h2 { margin-bottom:16px; }
+.flag { padding:8px 12px; border-radius:8px; margin-bottom:6px; font-size:13px; }
+.flag-red { background:#7f1d1d30; border-left:3px solid var(--red); }
+.flag-yellow { background:#78350f30; border-left:3px solid var(--yellow); }
+.flag-green { background:#14532d30; border-left:3px solid var(--green); }
+.tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; margin:2px; background:var(--bg2); border:1px solid var(--border); }
+.back-btn { background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:8px 16px; border-radius:6px; cursor:pointer; margin-bottom:16px; }
+.back-btn:hover { background:var(--card); }
+.loading { text-align:center; padding:40px; color:var(--muted); }
+#refreshBtn { background:var(--blue); color:white; border:none; padding:6px 12px; border-radius:6px; cursor:pointer; font-size:12px; }
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <h1>Delve Tech DD</h1>
+  <div class="sub">Portfolio Analysis Dashboard</div>
+  <input type="text" id="search" placeholder="Search companies...">
+  <div class="nav-item active" onclick="showOverview()">Overview</div>
+  <div id="companyList"></div>
+</aside>
+<main class="main" id="content">
+  <div class="loading">Loading...</div>
+</main>
+</div>
+
+<script>
+const API = 'https://delve-vision-extract.whitecontext.workers.dev';
+let allCompanies = [];
+let currentView = 'overview';
+
+function scoreBadge(score) {
+  if (!score) return '<span class="badge badge-blue">—</span>';
+  const cls = score >= 7 ? 'badge-green' : score >= 4 ? 'badge-yellow' : 'badge-red';
+  return `<span class="badge ${cls}">${score}/10</span>`;
+}
+
+function scoreBar(score, max=10) {
+  if (!score) return '';
+  const pct = (score/max)*100;
+  const color = score >= 7 ? 'var(--green)' : score >= 4 ? 'var(--yellow)' : 'var(--red)';
+  return `<div class="score-bar" style="width:${pct}%;background:${color}"></div>`;
+}
+
+async function fetchJSON(path) {
+  const r = await fetch(API + path, {headers:{'User-Agent':'DelveViewer/1.0'}});
+  return r.json();
+}
+
+async function loadStats() {
+  return fetchJSON('/api/stats');
+}
+
+async function loadCompanies() {
+  const d = await fetchJSON('/api/companies');
+  allCompanies = d.companies || [];
+  renderCompanyList(allCompanies);
+  return allCompanies;
+}
+
+async function loadCompanyDetail(docId) {
+  return fetchJSON('/api/company/' + docId);
+}
+
+function renderCompanyList(companies) {
+  const list = document.getElementById('companyList');
+  const sorted = companies.filter(c => c.score_overall || c.display_name !== 'Unknown')
+    .sort((a,b) => (b.score_overall||0) - (a.score_overall||0));
+  list.innerHTML = sorted.map(c => `
+    <div class="nav-item" onclick="showCompany('${c.doc_id}')" title="${c.display_name || c.company || 'Unknown'}">
+      <span>${(c.display_name || c.company || 'Unknown').substring(0,25)}</span>
+      ${scoreBadge(c.score_overall)}
+    </div>
+  `).join('');
+}
+
+async function showOverview() {
+  currentView = 'overview';
+  document.getElementById('content').innerHTML = '<div class="loading">Loading stats...</div>';
+
+  const [stats, companies] = await Promise.all([loadStats(), loadCompanies()]);
+  const s = stats.stats;
+
+  document.getElementById('content').innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <h2>Portfolio Overview</h2>
+      <button id="refreshBtn" onclick="showOverview()">Refresh</button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card"><div class="value">${s.total_companies}</div><div class="label">Total Companies</div></div>
+      <div class="stat-card"><div class="value">${s.total_extracted}</div><div class="label">Extracted</div></div>
+      <div class="stat-card"><div class="value">${s.pipeline_complete}</div><div class="label">Vision Pipeline Done</div></div>
+      <div class="stat-card"><div class="value">${s.avg_score || '—'}/10</div><div class="label">Avg Score</div></div>
+      <div class="stat-card"><div class="value">${s.high_scorers}</div><div class="label">High Scorers (7+)</div></div>
+      <div class="stat-card"><div class="value">${s.unique_vendors}</div><div class="label">Unique Vendors</div></div>
+    </div>
+
+    <div class="detail-section">
+      <h3>Score Distribution</h3>
+      ${(stats.score_distribution||[]).map(r => `
+        <div style="display:flex;align-items:center;margin-bottom:4px">
+          <span style="width:50px;color:var(--muted)">${r.score}/10</span>
+          <div style="flex:1;background:var(--bg);border-radius:4px;height:20px;overflow:hidden">
+            <div style="height:100%;width:${r.count*2}%;background:${r.score>=7?'var(--green)':r.score>=4?'var(--yellow)':'var(--red)'};border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:11px;min-width:30px">${r.count}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="detail-section">
+      <h3>Cloud Provider Distribution</h3>
+      ${(stats.cloud_distribution||[]).map(r => `
+        <div style="display:flex;align-items:center;margin-bottom:4px">
+          <span style="width:100px;color:var(--muted)">${r.infra_provider}</span>
+          <div style="flex:1;background:var(--bg);border-radius:4px;height:20px;overflow:hidden">
+            <div style="height:100%;width:${r.count/3}%;background:var(--blue);border-radius:4px;display:flex;align-items:center;padding-left:6px;font-size:11px;min-width:30px">${r.count}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="detail-section">
+      <h3>All Companies</h3>
+      <table>
+        <tr><th onclick="sortTable(0)">Company</th><th onclick="sortTable(1)">Score</th><th onclick="sortTable(2)">Cloud</th><th onclick="sortTable(3)">Type</th><th>Infra</th><th>Sec</th><th>DevOps</th></tr>
+        ${allCompanies.filter(c=>c.score_overall).sort((a,b)=>(b.score_overall||0)-(a.score_overall||0)).map(c => `
+          <tr onclick="showCompany('${c.doc_id}')" style="cursor:pointer">
+            <td>${c.display_name||c.company||'Unknown'}</td>
+            <td>${scoreBadge(c.score_overall)}</td>
+            <td><span class="tag">${c.infra_provider||'—'}</span></td>
+            <td style="color:var(--muted)">${(c.report_type||'').replace('SOC 2 ','')}</td>
+            <td>${scoreBadge(c.score_infrastructure)}</td>
+            <td>${scoreBadge(c.score_security)}</td>
+            <td>${scoreBadge(c.score_devops)}</td>
+          </tr>
+        `).join('')}
+      </table>
+    </div>
+  `;
+}
+
+async function showCompany(docId) {
+  currentView = docId;
+  document.getElementById('content').innerHTML = '<div class="loading">Loading company...</div>';
+
+  const data = await loadCompanyDetail(docId);
+  if (!data.company) {
+    document.getElementById('content').innerHTML = '<div class="loading">Not extracted yet</div>';
+    return;
+  }
+  const c = data.company;
+
+  const parse = (field) => { try { return JSON.parse(field) } catch { return field } };
+  const sys = parse(c.system_description) || {};
+  const infra = parse(c.infrastructure) || {};
+  const net = parse(c.network_architecture) || {};
+  const app = parse(c.application_architecture) || {};
+  const storage = parse(c.data_storage) || {};
+  const auth = parse(c.authentication) || {};
+  const enc = parse(c.encryption) || {};
+  const cicd = parse(c.ci_cd_devops) || {};
+  const mon = parse(c.monitoring_logging) || {};
+  const sec = parse(c.security_tools) || {};
+  const bcdr = parse(c.bcdr) || {};
+  const vendors = parse(c.third_party_services) || [];
+  const reds = parse(c.red_flags) || [];
+  const yellows = parse(c.yellow_flags) || [];
+  const greens = parse(c.green_flags) || [];
+  const observations = parse(c.key_observations) || [];
+  const scoring = parse(c.scoring_detail) || {};
+
+  document.getElementById('content').innerHTML = `
+    <button class="back-btn" onclick="showOverview()">← Back to Overview</button>
+
+    <div class="detail-section">
+      <h2>${c.company || 'Unknown'} ${scoreBadge(c.score_overall)}</h2>
+      <div style="color:var(--muted);margin-bottom:12px">
+        ${c.report_type || ''} · ${c.auditor || ''} · ${c.audit_period || ''}<br>
+        ${c.hq || ''} ${c.signing_authority ? '· ' + c.signing_authority : ''}
+      </div>
+      <p>${sys.overview || c.product || ''}</p>
+    </div>
+
+    <div class="detail-section">
+      <h3>Scores</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+        ${['infrastructure','application_architecture','data_layer','security_posture','devops_maturity','bcdr_readiness','vendor_diversity'].map(dim => {
+          const s = scoring[dim] || {};
+          const label = dim.replace(/_/g,' ').replace(/\b\w/g,l=>l.toUpperCase());
+          return `<div style="background:var(--bg);padding:12px;border-radius:8px">
+            <div style="font-size:12px;color:var(--muted)">${label}</div>
+            <div style="font-size:24px;font-weight:700">${s.score || '—'}<span style="font-size:14px;color:var(--muted)">/10</span></div>
+            ${s.rationale ? `<div style="font-size:11px;color:var(--muted);margin-top:4px">${s.rationale?.substring(0,100)}...</div>` : ''}
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+
+    ${reds.length ? `<div class="detail-section"><h3 style="color:var(--red)">Red Flags</h3>${reds.map(f => `<div class="flag flag-red">${f}</div>`).join('')}</div>` : ''}
+    ${yellows.length ? `<div class="detail-section"><h3 style="color:var(--yellow)">Yellow Flags</h3>${yellows.map(f => `<div class="flag flag-yellow">${f}</div>`).join('')}</div>` : ''}
+    ${greens.length ? `<div class="detail-section"><h3 style="color:var(--green)">Green Flags</h3>${greens.map(f => `<div class="flag flag-green">${f}</div>`).join('')}</div>` : ''}
+
+    <div class="detail-section">
+      <h3>Infrastructure</h3>
+      <p><strong>Cloud:</strong> ${infra.cloud_provider || '—'}</p>
+      <p><strong>Regions:</strong> ${(infra.regions||[]).join(', ') || '—'}</p>
+      <p><strong>AZ:</strong> ${infra.availability_zones || '—'}</p>
+      ${net.topology ? `<p><strong>Topology:</strong> ${net.topology}</p>` : ''}
+    </div>
+
+    ${vendors.length ? `
+    <div class="detail-section">
+      <h3>Vendors (${vendors.length})</h3>
+      <table>
+        <tr><th>Vendor</th><th>Purpose</th><th>Criticality</th></tr>
+        ${vendors.map(v => `<tr><td>${v.vendor}</td><td>${v.purpose||'—'}</td><td>${v.criticality||'—'}</td></tr>`).join('')}
+      </table>
+    </div>` : ''}
+
+    ${observations.length ? `
+    <div class="detail-section">
+      <h3>Key Observations</h3>
+      ${observations.map(o => `<p style="margin-bottom:8px;padding-left:12px;border-left:2px solid var(--border)">• ${o}</p>`).join('')}
+    </div>` : ''}
+  `;
+}
+
+// Search
+document.getElementById('search').addEventListener('input', (e) => {
+  const q = e.target.value.toLowerCase();
+  const filtered = allCompanies.filter(c =>
+    (c.display_name||'').toLowerCase().includes(q) ||
+    (c.company||'').toLowerCase().includes(q) ||
+    (c.infra_provider||'').toLowerCase().includes(q)
+  );
+  renderCompanyList(filtered);
+});
+
+// Init
+showOverview();
+</script>
+</body>
+</html>

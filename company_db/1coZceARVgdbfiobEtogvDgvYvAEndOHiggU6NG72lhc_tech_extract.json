@@ -1,0 +1,234 @@
+{
+  "company": "Antes AI, Inc",
+  "product": "Antes AI Platform",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "August 22, 2025 - November 22, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "350 Brannan Street, San Francisco, CA",
+  "signing_authority": "Nicholas Goodson, CTO",
+
+  "system_description": {
+    "overview": "Antes AI is an AI-powered compliance platform for manufacturers in regulated industries (automotive, marine, construction machinery). It automates technical compliance by mapping regulatory requirements to product systems, providing design harmonization recommendations, and tracking regulatory changes globally.",
+    "products": {
+      "AI-Enabled Product Compliance & Design Management Platform": "Cloud-hosted platform with centralized regulatory/standards library, AI-assisted requirements ingestion and mapping, design harmonization recommendations, verification/test evidence management, dashboards, and optional PLM/ALM integrations.",
+      "AI-Powered Engineering Compliance Features": "AI-assisted requirements parsing, system allocation recommendations, harmonization opportunity identification, and test-evidence evaluation; all outputs require user review and approval.",
+      "Compliance Implementation Services": "White-glove onboarding, tenant/workspace setup, requirements and artifact import, workflow configuration, user training.",
+      "Ongoing Compliance Support": "Dedicated engineering compliance expertise and standard customer support with escalation."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Google Cloud Platform (GCP) — carve-out",
+    "regions": ["europe-west1"],
+    "physical_presence": "None — no physical servers; all data processed on cloud services",
+    "availability_zones": "Multi-AZ (europe-west1-a/b/c noted in network diagram; customer cloud tenant spans AZ 1 and AZ 2)",
+    "additional_cloud": [],
+    "serverless": ["Cloud Run API Service (Regional)"],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "GCP VPC environment with private VPC subnets; segmented VPCs with access control lists (ACLs); system components segmented so company and customer access is appropriately isolated from other customer accounts",
+    "api_gateway": "Cloud Run API Service Regional",
+    "waf": null,
+    "firewalls": "System firewalls configured on the application gateway and production network to limit unnecessary ports, protocols, and services; firewall rules reviewed annually by IT management",
+    "ids_ips": "IDS and IPS via GCP; intrusion detection system implemented to monitor and detect unauthorized access or anomalies within the network",
+    "vpn": "Bastion host with VPN for remote access",
+    "tls": "TLS 1.3 for all client traffic and internal interconnect; certificates from established third-party certificate authority",
+    "content_filtering": "Content filtering system routed through proxy server for all systems",
+    "multi_region": false,
+    "topology": "Client -> TLS 1.3 -> Public HTTPS Ingress -> HTTPS Internal -> Cloud Run API Service Regional (within VPC private subnet) -> Antes AI Software / Kubernetes Regional Cluster / Redis Queue (Zonal) / Antes Blob Storage / Antes PostgreSQL; WorkOS SSO Auth provider connects via TLS 1.3; Model APIs (GCP Vertex AI, Antes + 3rd party) for AI inference; Encrypted Cloud Interconnect to Customer Cloud Tenant with AZ 1 and AZ 2 each containing Bucket storage and PostgreSQL"
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["Cloud Run", "Kubernetes (GKE Regional Cluster)"],
+    "api_style": "REST (inferred from Cloud Run API Service)",
+    "environments": "Separate development/test and production environments; changes tested before deployment to Stage or Production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["PostgreSQL (multi-AZ: AZ 1 and AZ 2 in customer cloud tenant)", "Antes PostgreSQL (internal data)"],
+    "caching": ["Redis Queue (Zonal)"],
+    "file_storage": ["GCS Bucket Storage (Antes Blob Storage)", "GCS Bucket Storage (Customer Cloud Tenant — AZ 1 and AZ 2)"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Daily (backups taken daily per CC7.4.2; multi-availability zones configured)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "WorkOS SSO Auth provider",
+    "mfa": "MFA enforced for all user accounts with administrative access to production platform; required for source code tool access; required for employee email access",
+    "rbac": true,
+    "sso": true,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Password policy via GCP; periodic forced changes, expiry, complexity requirements; accounts locked after limited unsuccessful logon attempts; guest/anonymous logins not allowed"
+  },
+
+  "encryption": {
+    "in_transit": "TLS 1.3",
+    "at_rest": "Cloud provider key management service (GCP KMS) used to encrypt data at rest",
+    "key_management": "GCP KMS; access to production environment access keys restricted to authorized individuals",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Git (source code management tool with branch rules; likely GitHub based on branch protection description)",
+    "ci_cd_tool": "Not explicitly named",
+    "branch_protection": "Code repository branch rules configured; every merge request to move change to production requires additional approval; developers cannot make changes to production code without additional approval",
+    "iac": "Configuration management tool used for baseline configurations; baseline retained as code within infrastructure for implementation and rollback",
+    "container_orchestration": "Kubernetes (GKE Regional Cluster)",
+    "patch_management": "CTO/Management set up automatic patch management; monthly patch management reviews; workstations scanned for patch compliance daily; automatic OS updates on workstations",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named; monitoring tool generates alerts when predefined thresholds are met",
+    "siem": "Not named",
+    "log_aggregation": "Logging enabled to monitor administrative activities, logon attempts, data deletions at application and infrastructure level, changes to functions, security configurations, permissions, and roles; access to modify logs is restricted",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; incident management/ticketing application for tracking",
+    "metrics": ["CPU", "disk space", "incoming/outgoing network traffic", "packet loss"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Google Cloud Platform (GCP)", "purpose": "Primary cloud infrastructure, data center services, IDS/IPS, KMS, Kubernetes, Cloud Run, GCS, PostgreSQL", "criticality": "Critical"},
+    {"vendor": "WorkOS", "purpose": "SSO / Auth provider", "criticality": "Critical"},
+    {"vendor": "GCP Vertex AI", "purpose": "Model APIs for AI inference (no storage or training of customer data)", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and malware protection software installed on all production servers (continuous auto-scan; weekly definition updates) and Mac-based workstations/laptops",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; self-assessment scan prior to every production release or annually",
+    "penetration_testing": "Annual external penetration testing by independent third party",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 56,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — no significant personnel changes during engagement period",
+      "CC3.2.1 — cybersecurity insurance could not be tested because no cyber incidents reported during engagement period",
+      "CC6.5.2 — customer data deletion upon termination could not be tested because no customer terminations during engagement period",
+      "CC7.3.1 — security incident response could not be tested because no security incidents reported during engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — GCP is responsible for physical security of data center; Antes AI has no physical offices or servers",
+      "A1.2 — Antes AI does not have an office; all environmental security controls managed by building management/GCP"
+    ],
+    "notable_controls": [
+      "Risk and Governance Executive Committee (RGEC) empowered by Board of Directors with semiannual review of internal controls",
+      "IT Leadership Committee meets weekly and reviews security commitments",
+      "Quarterly user access reviews including privileged accounts",
+      "Bastion host + VPN required for remote production access",
+      "Per-tenant data segmentation enforced at system component level",
+      "Vulnerability scans performed monthly plus before every production release",
+      "BCDR plan tested at least annually per defined loss scenarios"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 7,
+      "max": 10,
+      "rationale": "GCP multi-AZ deployment (europe-west1 a/b/c) with Kubernetes and Cloud Run, VPC with ACLs, IaC baselines, per-tenant segregation. Single region only (no multi-region failover), CDN not mentioned, no Terraform named explicitly."
+    },
+    "application_architecture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Microservices on Kubernetes with Cloud Run, separate environments, branch protection and code review enforced. No programming languages or frameworks disclosed. CI/CD tool unnamed."
+    },
+    "data_layer": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Multi-AZ PostgreSQL, Redis caching, GCS blob storage, per-tenant segregation, daily backups with multi-AZ, data classification and retention policies. No data warehouse disclosed. Redis is zonal (single AZ)."
+    },
+    "security_posture": {
+      "score": 8,
+      "max": 10,
+      "rationale": "IDS/IPS via GCP, firewalls, MFA, monthly vulnerability scans plus pre-release scans, annual external pen test, anti-malware on servers and endpoints, endpoint protection, cybersecurity insurance, content filtering via proxy, TLS 1.3. WAF not explicitly mentioned."
+    },
+    "devops_maturity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "IaC baselines in code, Kubernetes orchestration, branch protection with required approvals, separate environments, emergency change process, monthly patch reviews with automated patching. CI/CD tool unnamed."
+    },
+    "bcdr_readiness": {
+      "score": 7,
+      "max": 10,
+      "rationale": "BCDR policy documented, tested annually per defined loss scenarios, daily backups, multi-AZ failover, DR plan covering AZ failure scenarios. No RTO/RPO disclosed, no multi-region failover."
+    },
+    "vendor_diversity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Heavy concentration on GCP for all core infrastructure. WorkOS for SSO and GCP Vertex AI for model APIs are additional. Very few named vendors overall; high GCP dependency is a concentration risk."
+    },
+    "overall": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Solid GCP-native security posture for an early-stage AI compliance SaaS: multi-AZ, Kubernetes, MFA, quarterly access reviews, annual pen tests, BCDR tested. Key gaps: single region, unnamed CI/CD tooling, no WAF disclosed, no RTO/RPO, high GCP concentration."
+    }
+  },
+
+  "red_flags": [
+    "Single-region deployment (europe-west1 only) — no multi-region failover capability",
+    "RTO and RPO not disclosed in the report",
+    "CI/CD tooling not named — makes it difficult to assess pipeline security posture"
+  ],
+  "yellow_flags": [
+    "Redis caching is zonal (single AZ), creating a potential caching availability risk",
+    "Heavy GCP concentration — GCP is subservice org for data center, IDS/IPS, KMS, compute, storage, and database",
+    "WAF not explicitly mentioned despite public HTTPS ingress exposure",
+    "No data warehouse disclosed — may limit analytics maturity",
+    "CDN not mentioned despite serving regulated-industry global customers"
+  ],
+  "green_flags": [
+    "Detailed network architecture diagram published in SOC 2 report showing per-tenant encrypted interconnect",
+    "WorkOS SSO enforced with MFA for all admin/production access",
+    "Monthly automated vulnerability scans plus pre-release scans — above-average cadence",
+    "Annual external penetration testing by independent third party",
+    "Quarterly user access reviews including privileged accounts",
+    "Per-tenant data segregation with encrypted interconnect between Antes production and customer cloud tenants",
+    "BCDR tested annually with defined loss scenarios; plans updated post-testing",
+    "Cybersecurity insurance in place",
+    "Bastion host + VPN required for all remote production access",
+    "IaC baseline configurations with rollback capability"
+  ],
+  "key_observations": [
+    "Antes AI uniquely runs a dual-cloud architecture: their own GCP production environment plus per-customer GCP cloud tenant connected via encrypted Cloud Interconnect — this is a sophisticated per-tenant isolation model uncommon at this company size",
+    "The GCP Vertex AI integration is explicitly scoped as inference-only with no customer data storage or training, which is a meaningful AI privacy commitment documented in the SOC 2",
+    "The Risk and Governance Executive Committee (RGEC) structure — with a separate charter reviewed annually and semiannual internal control reviews — suggests governance maturity beyond typical early-stage startups",
+    "Vulnerability scans are monthly AND before every production release, which is notably more rigorous than the typical 'quarterly' posture seen in early-stage SOC 2 reports",
+    "The report covers Security criteria only; Availability, Confidentiality, Processing Integrity, and Privacy are explicitly excluded — relevant for customers with strict availability or privacy SLA requirements"
+  ]
+}

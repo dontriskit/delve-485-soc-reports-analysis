@@ -1,0 +1,19 @@
+{
+  "doc_id": "1_9wNxFj3dznq84hOohznCiqbpp7fSjnkAq3_pPANROU",
+  "link": "https://docs.google.com/document/d/1_9wNxFj3dznq84hOohznCiqbpp7fSjnkAq3_pPANROU",
+  "timestamp": "8/12/2025 18:01:11",
+  "display_name": "Vocca",
+  "legal_name": "Vocca Inc",
+  "company_name": "Vocca",
+  "system_description": "Vocca is an AI receptionist platform for medical clinics and practices. We handle inbound and outbound calls. Vocca automates calls and admin tasks for healthcare centers with an AI receptionist.",
+  "audit_end_date": "",
+  "observation_period": "May 1, 2025 - August 1, 2025",
+  "infra_provider": "Render",
+  "website": "https://vocca.ai",
+  "contact_email": "security@vocca.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1_9wNxFj3dznq84hOohznCiqbpp7fSjnkAq3_pPANROU.pdf",
+  "txt_file": "1_9wNxFj3dznq84hOohznCiqbpp7fSjnkAq3_pPANROU.txt",
+  "has_report": true
+}

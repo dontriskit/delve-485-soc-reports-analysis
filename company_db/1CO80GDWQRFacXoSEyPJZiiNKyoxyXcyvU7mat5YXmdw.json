@@ -1,0 +1,19 @@
+{
+  "doc_id": "1CO80GDWQRFacXoSEyPJZiiNKyoxyXcyvU7mat5YXmdw",
+  "link": "https://docs.google.com/document/d/1CO80GDWQRFacXoSEyPJZiiNKyoxyXcyvU7mat5YXmdw",
+  "timestamp": "8/19/2025 19:48:17",
+  "display_name": "Agentmail",
+  "legal_name": "AgentMail, Inc.",
+  "company_name": "Agentmail",
+  "system_description": "AgentMail is a developer-first email provider built for AI Agents. Instantly provision unlimited inboxes on your own domains, integrate across any stack, and skip the limitations of Gmail\u2019s legacy API.",
+  "audit_end_date": "August 7, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://agentmail.cc",
+  "contact_email": "founders@agentmail.cc",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1CO80GDWQRFacXoSEyPJZiiNKyoxyXcyvU7mat5YXmdw.pdf",
+  "txt_file": "1CO80GDWQRFacXoSEyPJZiiNKyoxyXcyvU7mat5YXmdw.txt",
+  "has_report": true
+}

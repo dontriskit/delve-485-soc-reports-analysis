@@ -1,0 +1,19 @@
+{
+  "doc_id": "1tT5r9xjP5dYjB7LTtRIn-QnLQ9OUu2Fgp2390VpG-aI",
+  "link": "https://docs.google.com/document/d/1tT5r9xjP5dYjB7LTtRIn-QnLQ9OUu2Fgp2390VpG-aI",
+  "timestamp": "9/10/2025 16:29:39",
+  "display_name": "SupervizeAI",
+  "legal_name": "Supervize AI LLC",
+  "company_name": "SupervizeAI",
+  "system_description": "SupervizeAI is a secure, cloud-native AI platform that provides automated QA, coaching, and analytics for contact centers. It ingests call transcripts and audio, applies redaction, multilingual sentiment/emotion analysis, and LLM-driven tagging to deliver insights and performance improvement. Deployed on AWS with encryption, RBAC, and monitoring, it integrates with CCaaS, CRM, and BI tools. The system is built with microservices, containerized, and managed via Kubernetes. Access and data are controlled under SOC 2-aligned policies.",
+  "audit_end_date": "",
+  "observation_period": "June 3, 2025 - September 3, 2025",
+  "infra_provider": "AWS",
+  "website": "https://supervizeai.com",
+  "contact_email": "hello@supervizeai.com",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1tT5r9xjP5dYjB7LTtRIn-QnLQ9OUu2Fgp2390VpG-aI.pdf",
+  "txt_file": "1tT5r9xjP5dYjB7LTtRIn-QnLQ9OUu2Fgp2390VpG-aI.txt",
+  "has_report": true
+}

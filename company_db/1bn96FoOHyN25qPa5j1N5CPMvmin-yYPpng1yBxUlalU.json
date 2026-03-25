@@ -1,0 +1,19 @@
+{
+  "doc_id": "1bn96FoOHyN25qPa5j1N5CPMvmin-yYPpng1yBxUlalU",
+  "link": "https://docs.google.com/document/d/1bn96FoOHyN25qPa5j1N5CPMvmin-yYPpng1yBxUlalU",
+  "timestamp": "12/3/2025 15:18:19",
+  "display_name": "Gleap",
+  "legal_name": "Gleap GmbH",
+  "company_name": "Gleap",
+  "system_description": "Gleap is an AI-powered customer feedback and bug reporting platform designed to help developers and product teams improve their apps and websites.",
+  "audit_end_date": "",
+  "observation_period": "August 27, 2025 - November 27, 2025",
+  "infra_provider": "AWS",
+  "website": "https://gleap.io",
+  "contact_email": "hello@gleap.io",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1bn96FoOHyN25qPa5j1N5CPMvmin-yYPpng1yBxUlalU.pdf",
+  "txt_file": "1bn96FoOHyN25qPa5j1N5CPMvmin-yYPpng1yBxUlalU.txt",
+  "has_report": true
+}

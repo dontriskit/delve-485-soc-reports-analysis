@@ -1,0 +1,262 @@
+{
+  "company": "Redsnack Technologies Inc.",
+  "product": "HeyMilo AI Recruitment Automation Platform",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "April 6, 2025 - July 6, 2025 (auditor scope); Management Assertion references March 4, 2025 - June 4, 2025 — period discrepancy noted",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "hq": "Not disclosed (no physical office; fully cloud-based); website: https://heymilo.ai/ | trust@heymilo.ai",
+  "signing_authority": "Ramie Raufdeen, CTO (signed July 16, 2025 — signature fields highlighted yellow but filled in)",
+
+  "system_description": {
+    "overview": "HeyMilo AI (dba of Redsnack Technologies Inc.) is an AI-powered recruitment automation platform that helps businesses streamline hiring through automated candidate engagement, AI-driven screening and voice agents. It enables companies to scale hiring operations and identify top candidates faster via multichannel communication, AI voice/video interviews, form-based screening, and ATS sync.",
+    "products": {
+      "Candidate Engagement Platform": "Multichannel (email, SMS, WhatsApp) automatic candidate engagement when candidates apply or are shortlisted",
+      "Candidate Form/Text Screening": "Role-specific knockout question screening with instant response evaluation",
+      "Voice AI/Video Interviews": "Asynchronous two-way AI voice interviews in multiple languages on mobile or browser; predefined evaluation criteria for content relevance, tone, and clarity",
+      "ATS Sync": "Automatic push of candidate data (interview summaries, ratings, screening outcomes) back into the customer's ATS"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (Amazon Web Services) — carve-out subservice organization; sole named cloud/data center provider",
+    "regions": ["Not explicitly named — AWS manages regions"],
+    "physical_presence": "None — no physical offices; all data processed on cloud services",
+    "availability_zones": "Multi-AZ (disaster recovery spins up multiple servers across all availability zones in AWS per Section 5 DR narrative)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Hosted in AWS VPC environment with segmented VPCs and access control lists (ACLs). Network segmentation implemented to separate systems and data based on sensitivity and criticality (CC6.1.7 tested, no exceptions).",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management (CC6.6.1-CC6.6.3 all tested, no exceptions).",
+    "ids_ips": "IDS and IPS employed via AWS. Intrusion detection system monitors and detects unauthorized access or anomalies within the network (CC2.1.1 tested, no exceptions).",
+    "vpn": "Remote access via bastion host with virtual private network (VPN). IP Sec VPN tunnel shown in network diagram.",
+    "tls": "TLS using certificates from established third-party certificate authority (CC6.1.6 tested, no exceptions).",
+    "content_filtering": "All systems restricted to internet access with content filtering system routed through proxy server.",
+    "multi_region": false,
+    "topology": "AWS Cloud VPC with Availability Zone containing Public Subnet (Nginx load balancer, Frontend1 service) and Private Subnet (Docker containers). CI/CD pipeline shown: Developer → code editor → GitHub → Blue Ocean (Jenkins) → SonarQube code quality scan → Docker build → Amazon ECR (container registry) → Task Definition (ECS/EKS deployment). Client connects through Nginx. Email notification component present. Production servers maintain failover capabilities via AWS multi-AZ."
+  },
+
+  "application_architecture": {
+    "pattern": "Containerized microservices (Docker containers in private subnet, ECS/EKS via Amazon ECR Task Definition)",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["Docker (containerized)", "Amazon ECS or EKS (inferred from ECR + Task Definition in network diagram)", "AWS EC2 (inferred from server references)"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development, test/stage, and production environments. Changes tested in dev/test before production migration (CC8.1.4 tested, no exceptions). Environments segregated.",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["AWS (RDS or similar — not explicitly named; password policy managed through AWS)"],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS (password policy managed through AWS; Active Directory mentioned for infrastructure accounts)",
+    "mfa": "MFA enforced for all user accounts with administrative access to the production platform (CC6.1.1 tested, no exceptions). MFA required for source code tool (GitHub) access (CC8.1.3 tested, no exceptions). MFA enforced for all remote access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination (CC6.1.4 / CC6.1.8 tested, no exceptions)",
+    "password_policy": "Controlled through AWS password policy; includes periodic forced changes, password expiry and complexity requirements; accounts disabled after limited unsuccessful logon attempts; guest/anonymous logins not allowed; unattended desktops locked on inactivity; biometric or password required to unlock"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified) using certificates from established third-party CA",
+    "at_rest": "AWS KMS (cloud provider key management service) used (CC6.1.5 / CC6.1.10 tested, no exceptions)",
+    "key_management": "AWS KMS; access to production environment access keys restricted to authorized individuals; encryption key access restricted to authorized personnel only (CC6.1.9 tested, no exceptions)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "GitHub (visible in network diagram; CC8.1.3: source code tool access requires MFA — tested, no exceptions)",
+    "ci_cd_tool": "Jenkins (Blue Ocean) — visible in network diagram showing CI/CD pipeline flow",
+    "branch_protection": "Code repository branch rules configured to ensure every merge request to master branch requires additional approval. Developers cannot push to production without additional approval (CC8.1.2 / CC8.1.3 tested, no exceptions).",
+    "iac": "Baseline configurations retained within infrastructure as code; configuration management tool used for implementation and rollback capability (CC7.1.1 tested, no exceptions)",
+    "container_orchestration": "Docker containers (visible in private subnet of network diagram); Amazon ECR (container registry) + Task Definition (ECS/EKS deployment) visible in CI/CD pipeline",
+    "patch_management": "Automatic patch management set up by CTO. Monthly patch management reviews via IT Leadership Committee (ITLC). Workstations configured for automatic updates and scanned daily for patch compliance (CC7.5.1 tested, no exceptions).",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named (monitoring tool generates alerts on predefined thresholds; infrastructure continuously monitored for availability, efficiency, reliability)",
+    "siem": "Not named",
+    "log_aggregation": "Not named (logging enabled for administrative activities, logon attempts, data deletions, security configurations, permissions, roles at application and infrastructure level; CC7.2.1 tested, no exceptions)",
+    "alerting": "Automated alerts configured for high and critical risk events; tracked in change-management/ticketing application (CC5.2.1 tested, no exceptions)",
+    "metrics": ["availability", "efficiency", "reliability", "predefined performance thresholds", "disk space", "incoming/outgoing network traffic", "packet loss", "CPU utilization"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS (Amazon Web Services)", "purpose": "Data center / cloud infrastructure services (VPC, compute, database, networking, servers, IDS/IPS, physical security, multi-AZ availability, ECR container registry)", "criticality": "Critical"},
+    {"vendor": "GitHub", "purpose": "Source code management — visible in CI/CD network diagram; MFA required", "criticality": "High"},
+    {"vendor": "Jenkins (Blue Ocean)", "purpose": "CI/CD pipeline orchestration — visible in network diagram", "criticality": "High"},
+    {"vendor": "SonarQube", "purpose": "Code quality and security scanning integrated in CI/CD pipeline", "criticality": "Medium"},
+    {"vendor": "Amazon ECR", "purpose": "Container registry for Docker images in deployment pipeline", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed and configured on all production servers (continuous auto-scan) and Mac workstations/laptops. Anti-virus definitions updated weekly for production servers. Endpoint security solution with daily definition download from vendor website (CC6.8.1 tested, no exceptions).",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications. Scan frequency adjusted as required. High/critical findings remediated. Self-assessment vulnerability scan performed prior to every production release — confirmed in Monitoring section (CC7.1.2 / CC7.1.4 tested, no exceptions).",
+    "penetration_testing": "Annual external penetration testing by independent third party. High/critical findings remediated; tracked via incident management process (CC4.1.1 tested, no exceptions).",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 95,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — No significant changes to people/roles during engagement period",
+      "CC3.2.1 — Cybersecurity insurance control could not be tested (no cyber incidents during engagement period)",
+      "CC6.5.2 — Customer data deletion could not be tested (no customer terminations during engagement period)",
+      "CC7.3.1 — Incident response effectiveness could not be tested (no security incidents during engagement period)"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — Physical security excluded; AWS is responsible for data center physical security",
+      "A1.2 — Environmental protections excluded; HeyMilo AI does not have a physical office and all environmental controls managed by building management / AWS",
+      "Processing Integrity — Management determined Processing Integrity trust services category is not relevant to the system",
+      "Privacy — Management determined Privacy trust services category is not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC2.1.1 — IDS deployed and tested for unauthorized access detection (confirmed)",
+      "CC3.1.1 — IT Leadership Committee (ITLC) meets WEEKLY; RGEC meets quarterly for oversight (confirmed tested with meeting minutes)",
+      "CC4.1.1 — Annual external penetration testing by independent third party (confirmed tested)",
+      "CC6.1.1 — MFA enforced for all administrative and remote access (confirmed tested)",
+      "CC6.2.2 — Quarterly user access reviews for all accounts including privileged users (confirmed tested)",
+      "CC7.4.2 — Daily backups with multi-availability zones and backup failure alerts (confirmed tested)",
+      "CC8.1.2 / CC8.1.3 — Branch protection (master branch) with required additional approval; GitHub requires MFA (confirmed tested)",
+      "CC7.1.1 — Infrastructure as code with configuration management tool for baseline/rollback (confirmed tested)",
+      "CC7.3.3 — Incident response plan tested periodically including root cause evaluation (confirmed tested)",
+      "CC8.1.3 — Source code changes logged, time-stamped, attributed to author in GitHub; access requires MFA",
+      "CC5.2.1 — Monitoring tool generates alerts on predefined thresholds; logs tracked in ticketing application (confirmed tested)",
+      "Self-assessment vulnerability scan prior to every production release — notable continuous DevSecOps practice"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "AWS VPC with multi-AZ, real product-specific network diagram showing containerized deployment (Docker, ECR, ECS/EKS). CI/CD pipeline with Jenkins, SonarQube, GitHub, and Amazon ECR all named in diagram. Bastion host + VPN for remote access. No named AWS regions, no CDN, no WAF, no secondary cloud. AWS is the sole subservice org with carve-out treatment. Container orchestration via ECS/EKS (inferred) is a positive maturity signal."
+    },
+    "application_architecture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Containerized Docker deployment in private AWS subnet with Amazon ECR and Task Definition (ECS/EKS) visible in real network diagram. Nginx as load balancer/ingress. Separate environments confirmed, branch protection on master enforced. No languages or frameworks explicitly disclosed. SonarQube integrated in CI/CD pipeline is a meaningful code quality signal. Architecture inference from real diagram is stronger than purely text-based disclosure."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Daily backups, multi-AZ, data classification and retention policies, per-tenant segregation. Database type not named (AWS-managed, likely RDS). No caching or data warehouse layer disclosed. Backup processes confirmed tested (CC7.4.2)."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "MFA enforced (all admin/remote access and GitHub), IDS/IPS via AWS, firewalls (application gateway and production network), annual external pen testing, monthly automated vulnerability scans with pre-release self-assessment scans, anti-malware on all systems, cybersecurity insurance, quarterly access reviews, log protection, SonarQube code scanning in CI/CD pipeline. No WAF mentioned despite web-based AI platform. SIEM tool unnamed. The combination of monthly scans plus per-release scans is the strongest vulnerability management practice in the batch."
+    },
+    "devops_maturity": {
+      "score": 8,
+      "max": 10,
+      "rationale": "This is the most mature DevOps stack in the batch: GitHub (named), Jenkins/Blue Ocean (named CI/CD), SonarQube (code quality/security scanning), Docker (containerization), Amazon ECR (container registry), ECS/EKS (orchestration) — all visible in the real network diagram. Branch protection and code review enforced on master branch. IaC with rollback. Separate environments. Emergency change process. Pre-release vulnerability scans. Monthly ITLC reviews. Weekly ITLC operational meetings. The only gap is the CI/CD tool was not named in the text (only visible in diagram)."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented, annually reviewed and tested across multiple loss scenarios (each scenario tested at least annually), daily backups with multi-AZ failover in AWS (DR spins up multiple servers across all AZs). Incident response plan tested periodically (CC7.3.3 tested). No RTO/RPO stated. No multi-region failover."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "AWS is the sole named subservice organization with carve-out treatment. However, GitHub, Jenkins, SonarQube, and ECR are named in the network diagram as distinct tool dependencies. The core infrastructure remains single-vendor (AWS). No secondary cloud, CDN, or database provider named outside AWS."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Redsnack Technologies (HeyMilo AI) has the most technically mature and transparent DevOps stack in the batch: a real AWS network diagram showing named tools (GitHub, Jenkins/Blue Ocean, SonarQube, Docker, Amazon ECR) with containerized deployment. Trust criteria cover Security, Availability, and Confidentiality — broader than some peers. Zero exceptions across all controls in the 3-month Type 2 period. The pre-release self-assessment vulnerability scan is the strongest continuous security practice in the batch. The report is signed with real data (though signature fields were highlighted yellow, they are filled in). Notable governance: ITLC meets weekly and RGEC meets quarterly. The main weakness is a 3-month audit window and a date discrepancy between the auditor scope (April 6 - July 6) and the management assertion (March 4 - June 4, 2025) — an unusual inconsistency."
+    }
+  },
+
+  "red_flags": [
+    "Date discrepancy between auditor scope (April 6 - July 6, 2025) and management assertion (March 4 - June 4, 2025) — the assertion period predates and partially overlaps the auditor examination period; unusual and potentially indicating a template error or scope confusion",
+    "No WAF mentioned despite being a web-based AI platform (Nginx as load balancer, but no WAF layer)",
+    "No SIEM tool named — monitoring appears informal despite being tested"
+  ],
+
+  "yellow_flags": [
+    "No explicit database name (AWS RDS or equivalent not named in text)",
+    "RTO and RPO not disclosed",
+    "No multi-region failover capability disclosed",
+    "Audit period is only 3 months — relatively short observation window for Type 2",
+    "Processing Integrity and Privacy trust criteria excluded — notable for an AI platform that conducts voice AI interviews and processes candidate data on behalf of enterprise hiring clients",
+    "No CDN mentioned despite being a SaaS platform with voice AI interview capabilities",
+    "Signature fields were highlighted yellow (same template artifact as other companies in batch, but fields are filled in)",
+    "HQ address not disclosed"
+  ],
+
+  "green_flags": [
+    "Zero exceptions across all controls tested in the 3-month Type 2 period",
+    "Report signed by Ramie Raufdeen (CTO) with real date — fields filled in (highlighted yellow but not blank)",
+    "Real product-specific AWS network diagram showing complete containerized architecture: Nginx, Frontend, Docker, GitHub, Jenkins/Blue Ocean, SonarQube, Amazon ECR, Task Definition",
+    "GitHub named as source control — one of the few in batch to name the SCM tool",
+    "Jenkins (Blue Ocean) named as CI/CD tool — most specific CI/CD disclosure in the batch",
+    "SonarQube integrated in CI/CD pipeline for code quality and security scanning",
+    "Docker container + Amazon ECR + ECS/EKS deployment — most mature container stack in the batch",
+    "Pre-release self-assessment vulnerability scan before every production deployment — strongest vulnerability management practice in the batch",
+    "Monthly automated vulnerability scans confirmed tested",
+    "Annual external penetration testing by independent third party confirmed tested",
+    "MFA enforced for all administrative, remote access, and GitHub access confirmed tested",
+    "Quarterly user access reviews including privileged accounts confirmed tested",
+    "Daily backups with multi-AZ configuration confirmed tested",
+    "Cybersecurity insurance maintained",
+    "BCDR tested across multiple loss scenarios (each tested at least annually)",
+    "IT Leadership Committee meets WEEKLY for operational oversight — strongest governance cadence in the batch",
+    "RGEC meets quarterly for security and governance oversight",
+    "Branch protection and code review required prior to production deployment confirmed tested",
+    "Access revocation within one business day of termination confirmed tested",
+    "Infrastructure-as-code with rollback capability confirmed tested",
+    "Trust criteria cover Security, Availability, and Confidentiality — broader than Security-only peers"
+  ],
+
+  "key_observations": [
+    "HeyMilo AI has the most explicitly named and technically specific DevOps stack in the batch: GitHub + Jenkins (Blue Ocean) + SonarQube + Docker + Amazon ECR + ECS/EKS are all visible in the real network diagram — a level of CI/CD transparency not seen in other reports",
+    "The management assertion references March 4 - June 4, 2025 while the auditor's examination covers April 6 - July 6, 2025 — a period inconsistency that is unusual; this could indicate a template error by Accorp Partners or a genuine scope misalignment and warrants clarification",
+    "HeyMilo AI conducts AI voice interviews with candidate audio, evaluates candidates on tone, clarity, and content, and handles data for hiring decisions — yet Privacy and Processing Integrity trust criteria are both excluded; this is a meaningful scoping gap for an HR AI platform processing sensitive candidate assessment data",
+    "SonarQube in the CI/CD pipeline is the only named SAST/code quality tool in the entire batch — this is a genuine DevSecOps differentiator vs. peers who only conduct periodic manual reviews",
+    "The pre-release self-assessment vulnerability scan (mentioned in Monitoring section, page 16) combined with monthly automated scans provides the most layered vulnerability management posture in the batch",
+    "Weekly ITLC meetings (confirmed with meeting minutes as test evidence) indicate operational maturity significantly above average for this stage; most peers have monthly or quarterly meetings",
+    "The network diagram shows Nginx as the frontend ingress — not a CDN or WAF — meaning there is no edge security layer beyond the AWS VPC boundary for web traffic; this is a notable gap for a platform serving enterprise clients"
+  ]
+}

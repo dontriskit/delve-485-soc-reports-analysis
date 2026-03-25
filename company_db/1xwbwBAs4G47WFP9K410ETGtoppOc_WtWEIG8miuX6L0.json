@@ -1,0 +1,19 @@
+{
+  "doc_id": "1xwbwBAs4G47WFP9K410ETGtoppOc_WtWEIG8miuX6L0",
+  "link": "https://docs.google.com/document/d/1xwbwBAs4G47WFP9K410ETGtoppOc_WtWEIG8miuX6L0",
+  "timestamp": "9/10/2025 16:12:51",
+  "display_name": "Aion",
+  "legal_name": "AION Technologies Inc",
+  "company_name": "Aion",
+  "system_description": "Aion is the Everyday AI Platform: a full-stack solution for building, fine-tuning, and deploying AI at scale. By abstracting away infrastructure complexity, AION unifies compute orchestration, training workflows, and deployment tools into one seamless platform, making high performance AI accessible and practical for everyone.",
+  "audit_end_date": "September 3, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://aion.xyz",
+  "contact_email": "ayush.goyal@aion.xyz",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1xwbwBAs4G47WFP9K410ETGtoppOc_WtWEIG8miuX6L0.pdf",
+  "txt_file": "1xwbwBAs4G47WFP9K410ETGtoppOc_WtWEIG8miuX6L0.txt",
+  "has_report": true
+}

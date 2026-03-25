@@ -1,0 +1,208 @@
+{
+  "company": "BootLoop Inc.",
+  "product": "BootLoop",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of August 6, 2025",
+  "auditor": "ACCORP Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "1517 Lake St, San Francisco, CA 94118",
+  "signing_authority": "Noah Pacik-Nelson, CEO",
+
+  "system_description": {
+    "overview": "BootLoop is an AI agent platform for writing and testing firmware on real embedded hardware. The agent ingests datasheets, schematics, and other design files to generate firmware code and automatically validates it using test equipment such as oscilloscopes, hardware debuggers, simulation frameworks, and the target hardware itself.",
+    "products": {
+      "AI Agent for Embedded Software": "Rigorous AI-driven firmware code generation from hardware descriptions (schematics, datasheets, system diagrams, design notes) with automated debugging and validation on real hardware and test equipment"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Microsoft Azure (carve-out — Azure is a subservice organization)",
+    "regions": ["Not explicitly named; single region implied"],
+    "physical_presence": "No physical office — fully cloud-hosted",
+    "availability_zones": "Multi-AZ (Azure high availability data centers with multiple AZs)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with network ACLs; production environment isolated",
+    "api_gateway": "Azure API Gateway",
+    "waf": null,
+    "firewalls": "System firewalls on application gateway and production network; firewall rules reviewed annually by IT management; Azure security groups and network ACLs",
+    "ids_ips": "IDS/IPS via Azure (intrusion detection and prevention tools configured)",
+    "vpn": "Bastion host with VPN for administrative/management access",
+    "tls": "TLS 1.3 for all client HTTPS requests",
+    "content_filtering": "Content filtering system routed through proxy server; email scanning for malicious scripts",
+    "multi_region": false,
+    "topology": "Client laptop → TLS 1.3 → Azure API Gateway → VPC (Telemetry service → Azure managed services → database); WorkOS SSO + JWT Auth for authentication; Anthropic (external LLM API) called over TLS 1.3; Azure Key Vault for key management. Management access via bastion host VPN."
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["Azure managed containers/services (specific compute type not named)"],
+    "api_style": "REST (implied from Azure API Gateway)",
+    "environments": "Separate production and staging environments; development/test environments separate from production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Not explicitly named — Azure managed database (type not disclosed)"],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": null,
+    "backup_frequency": "Regular (formal backup policy; specific frequency not quantified beyond 'suitable backups taken and maintained')",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "WorkOS (SSO provider); Azure (Active Directory, server and database accounts; Azure password policy enforced)",
+    "mfa": "MFA enforced for all user accounts with administrative access to production platform; SCM access requires MFA; 2FA required for email access",
+    "rbac": true,
+    "sso": true,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day",
+    "password_policy": "Azure password policy: periodic forced changes, password expiry, complexity requirements; lockout after failed login attempts; biometrics supported for desktop unlock"
+  },
+
+  "encryption": {
+    "in_transit": "TLS 1.3",
+    "at_rest": "Cloud provider key management service (Azure Key Vault)",
+    "key_management": "Azure Key Vault",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "SCM (name not disclosed; MFA enforced; source code changes logged, timestamped, attributed)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Merge to production requires additional approval; branch protection rules configured; developers cannot push directly to production",
+    "iac": "Baseline configurations retained as code; configuration management tool for implementation and rollback",
+    "container_orchestration": "Azure managed containers (specific orchestration not named)",
+    "patch_management": "Automatic patch management; CTO performs monthly patch management reviews; workstations scanned daily for patch compliance; Windows patch management system + automatic network device patching",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Monitoring tool (name not disclosed) with predefined threshold alerts; capacity management controls for system performance",
+    "siem": null,
+    "log_aggregation": "Logging enabled at application and infrastructure level; log access restricted; logs retained per policy",
+    "alerting": "Automated alerts for high and critical risk events; alerts tracked in change-management/ticketing application",
+    "metrics": ["disk space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "administrative activities", "logon attempts", "data deletions", "security configurations", "permissions and roles"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Microsoft Azure", "purpose": "Cloud infrastructure — compute, database, networking, security (IDS/IPS), key management (Key Vault), API Gateway", "criticality": "Critical"},
+    {"vendor": "Anthropic", "purpose": "LLM inference for AI firmware generation agent (external API)", "criticality": "Critical"},
+    {"vendor": "WorkOS", "purpose": "SSO / identity provider for user authentication", "criticality": "High"},
+    {"vendor": "ACCORP Partners", "purpose": "SOC 2 audit", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Endpoint Security Solution on all desktops/laptops and production servers; continuous auto-scan; anti-virus definitions updated daily from vendor; anti-malware and Trojan protection; email scanning",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scanning; self-assessment scan prior to every production release",
+    "penetration_testing": "Annual external third-party penetration testing",
+    "server_hardening": true,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 29,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — physical access delegated to Azure (subservice); Azure responsible for data center security",
+      "A1.2 — environmental protections delegated to Azure and building management",
+      "Processing Integrity criteria — not relevant to system",
+      "Privacy criteria — not relevant to system"
+    ],
+    "notable_controls": [
+      "WorkOS SSO integration for all user authentication",
+      "Anthropic LLM API explicitly named in network diagram as external AI provider",
+      "Azure Key Vault for encryption key management",
+      "TLS 1.3 explicitly specified (not just 'TLS')",
+      "JWT authentication for API access",
+      "BCDR tested annually across multiple loss scenarios",
+      "Multi-AZ DR by spinning up servers across all Azure AZs",
+      "Vendor management includes quarterly risk assessment for non-SOC vendors",
+      "CISO role formally assigned"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {"score": 6, "max": 10, "rationale": "Azure VPC with multi-AZ, Azure API Gateway, Azure Key Vault, IaC baseline configs, segmented VPCs. Single region, no CDN, no WAF explicitly named — limits score."},
+    "application_architecture": {"score": 5, "max": 10, "rationale": "Microservices on Azure with branch protection and required approvals. No named languages, frameworks, or compute type. WorkOS SSO integration is a maturity signal. Database type undisclosed."},
+    "data_layer": {"score": 4, "max": 10, "rationale": "Azure managed database (type not named), Azure Key Vault encryption, multi-AZ. No caching layer, no file storage named, no data warehouse, backup frequency unquantified. High opacity."},
+    "security_posture": {"score": 7, "max": 10, "rationale": "IDS/IPS via Azure, monthly vuln scans + pre-release self-assessment, annual external pen test, antivirus (daily definitions), MFA for admin access, TLS 1.3, Azure Key Vault, content filtering, CISO role defined. No WAF named."},
+    "devops_maturity": {"score": 6, "max": 10, "rationale": "IaC with rollback, branch protection with required approvals, separate environments, emergency change process, monthly patch reviews, daily compliance scans. CI/CD tool unnamed, compute type unnamed."},
+    "bcdr_readiness": {"score": 6, "max": 10, "rationale": "BCDR policy, annual review and testing confirmed, multi-AZ failover via Azure AZ spinup. No stated RTO/RPO, no multi-region DR, backup frequency unquantified."},
+    "vendor_diversity": {"score": 4, "max": 10, "rationale": "Azure is dominant single infrastructure provider. Anthropic is a critical LLM dependency for core product function. WorkOS is the SSO/auth provider. Three named vendors but two are critical single-vendor dependencies."},
+    "overall": {"score": 5, "max": 10, "rationale": "SOC 2 Type 1 with zero exceptions. Notable for Anthropic LLM dependency made explicit in network diagram, WorkOS SSO, TLS 1.3, and Azure Key Vault. Significant gaps: 2-person team (CEO + CTO only), no WAF, database type undisclosed, no RTO/RPO, no cybersecurity insurance, Azure and Anthropic concentration risk."}
+  },
+
+  "red_flags": [
+    "2-person team (CEO + CTO only) — extreme key person risk for all security and engineering functions",
+    "No WAF explicitly named — application layer attack protection gap",
+    "No RTO/RPO disclosed — availability commitments unquantified",
+    "Dual critical dependency on Azure (infrastructure) AND Anthropic (LLM) — two existential single-vendor risks",
+    "Database type not named — complete opacity on primary data store"
+  ],
+  "yellow_flags": [
+    "CI/CD tool and compute type not named",
+    "No CDN mentioned",
+    "No multi-region failover — DR limited to multi-AZ within single Azure region",
+    "Security criteria only — Availability, Confidentiality, Privacy not audited",
+    "Backup frequency not explicitly quantified",
+    "No cybersecurity insurance disclosure",
+    "Anthropic dependency creates AI model provider risk (rate limits, terms changes, model deprecation)"
+  ],
+  "green_flags": [
+    "TLS 1.3 explicitly specified — stronger than the generic 'TLS' standard in most peer reports",
+    "WorkOS SSO integration — enterprise-grade identity provider",
+    "Anthropic LLM dependency transparently disclosed in network diagram",
+    "Azure Key Vault for encryption key management",
+    "Azure API Gateway for controlled ingress",
+    "Monthly automated vulnerability scanning + pre-release self-assessment",
+    "Annual external penetration testing",
+    "Quarterly access reviews with 1-business-day revocation SLA",
+    "MFA enforced for all admin access, SCM access, and email access",
+    "BCDR tested annually with multiple loss scenarios",
+    "Per-tenant data segmentation confirmed",
+    "CISO role formally assigned",
+    "Unqualified audit opinion with zero exceptions"
+  ],
+  "key_observations": [
+    "BootLoop is unique in this batch for building an AI agent that interacts with physical hardware (oscilloscopes, debuggers) — the system boundary includes both cloud software AND physical test equipment, which is atypical for a cloud-hosted SaaS",
+    "Anthropic explicitly named as external AI provider in the network diagram (rare for ACCORP reports) — creates a direct dependency on Anthropic's API availability and terms of service",
+    "WorkOS for SSO shows deliberate use of a dedicated identity provider rather than rolling custom auth",
+    "Only 2 named roles (CEO + CTO) in the org chart — most extreme key-person concentration in this batch",
+    "TLS 1.3 specifically noted — most peers say 'TLS' generically; BootLoop specifying 1.3 suggests deliberate protocol choice",
+    "No database type or file storage named — embedded/firmware data (datasheets, schematics, hardware configs) stored in unspecified Azure managed service",
+    "Contact email (chris@bootloop.ai) differs from CEO name (Noah Pacik-Nelson) — suggests Chris is a technical/operational contact"
+  ]
+}

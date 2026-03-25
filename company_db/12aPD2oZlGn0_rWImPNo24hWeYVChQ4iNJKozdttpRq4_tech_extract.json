@@ -1,0 +1,252 @@
+{
+  "company": "Anneal, Inc",
+  "product": "Dialtone",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "June 23, 2025 (point-in-time)",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "236 Castro St Suite 1, Mountain View, CA 94041",
+  "signing_authority": "Petr Gazarov, CTO",
+
+  "system_description": {
+    "overview": "Dialtone is an AI agent platform for enterprise automation, offering SaaS and managed VPC deployment options. The platform provides AI agent development, governance, observability, and a library of pre-built agents with a no-code workflow studio, plus white-glove implementation and support.",
+    "products": {
+      "Dialtone AI Agent Platform": "SaaS and managed VPC deployment; core AI agent runtime environment for enterprise automation.",
+      "Dialtone Secure Data Connectors": "Pre-built integrations with Salesforce, ServiceNow, Jira, Snowflake, and Google Workspace.",
+      "Dialtone Governance & Observability Suite": "Tools for monitoring, governance, and observability of deployed AI agents.",
+      "Dialtone Agent Library & Workflow Studio": "Library of pre-built agents and a no-code workflow creation tool.",
+      "White-Glove Implementation & Support": "Onboarding, setup, and ongoing technical support services."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Multi-cloud: AWS + Fly.io + Azure (all carve-out — all three are subservice organizations with SOC 2 reports; controls excluded from scope)",
+    "regions": ["Not explicitly named"],
+    "physical_presence": "No physical office; operates from co-working space managed by building management. No physical servers.",
+    "availability_zones": "Multi-AZ across all three clouds: AWS, Fly, and Azure. DR procedure spins up multiple servers across all availability zones.",
+    "additional_cloud": ["Fly.io (primary compute cluster)", "Microsoft Azure"],
+    "serverless": [],
+    "cdn": "Cloudflare (DNS, CDN, DDoS protection listed in software table)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "System components configured such that Anneal and customer access is appropriately segmented from other customer accounts (CC6.1.3). Network diagram shows formal boundary protection mechanisms including firewalls and IDS.",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on the application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "Firewalls and intrusion detection tools configured to prevent unauthorized access and detect external security threats (CC6.6.1).",
+    "vpn": "Not explicitly mentioned (no bastion host referenced; multi-cloud architecture implies direct cloud access controls).",
+    "tls": "Encryption technologies used to protect communication and transmission of data over public networks (CC6.1.6). TLS version not specified.",
+    "content_filtering": null,
+    "multi_region": false,
+    "topology": "Vercel (frontend) -> HTTP -> Fly.io cluster (big-smart-agent, mcp-app-test-builds, User Apps, big-smart-memory-generator, mcp-app-builder) -> PostgreSQL + Tigris Storage + Langfuse Observability; Clerk Auth + AWS SQS on right side of diagram."
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices (multiple named Fly.io apps visible in network diagram: big-smart-agent, mcp-app-builder, mcp-app-test-builds, big-smart-memory-generator, User Apps)",
+    "languages": ["Not disclosed"],
+    "frameworks": ["Not disclosed"],
+    "compute": ["Fly.io (primary compute cluster — multiple named apps)", "AWS (SQS messaging)", "Azure"],
+    "api_style": "REST (agents deployed as APIs; MCP — Model Context Protocol — referenced in app names)",
+    "environments": "Separate development/test and production environments; changes tested prior to migration to production (CC8.1.4).",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["PostgreSQL (visible in network diagram as primary database)"],
+    "caching": [],
+    "file_storage": ["Tigris (object storage — visible in network diagram)"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Backup policy exists; backup procedures defined and approved by business owners; backup and restoration logs maintained (page 25). Frequency not explicitly stated.",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Clerk (identity management — listed in software table and visible in network diagram). AWS IAM, Fly, and Azure password policies for infrastructure accounts (Active Directory implied).",
+    "mfa": "MFA enforced for all user accounts with administrative access to production platform (CC6.1.1). Source code tool access restricted to authorized users using MFA (CC8.1.3).",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Password policies of AWS, Fly, and Azure enforced including periodic forced changes, password expiry and complexity requirements. Accounts disabled after limited failed logon attempts. Guest and anonymous logins not allowed."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest (CC6.1.5)",
+    "key_management": "Cloud provider KMS (AWS KMS / Fly / Azure key management — specific service not distinguished)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named explicitly (source code management tool referenced throughout; MFA-protected; GitHub inferred from 'GitHub' listed in software table on p.14)",
+    "ci_cd_tool": "Depot (Docker image build service — listed in software table); full CI/CD pipeline tool not named separately",
+    "branch_protection": "Code repository branch rules configured to ensure every merge request to production requires additional approval before merging (CC8.1.2).",
+    "iac": "Configuration management tool used for baseline configuration implementation and rollback. Baseline configurations retained as code in infrastructure. Tool not named.",
+    "container_orchestration": "None explicitly mentioned (Docker builds via Depot; Fly.io manages containerized app deployment)",
+    "patch_management": "CTO sets up automatic patch management; monthly patch management reviews. Workstations configured for automatic updates and scanned daily for patch compliance (CC7.5.1).",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Sentry (listed in software table — APM and error tracking)",
+    "siem": "Not named",
+    "log_aggregation": "Langfuse (LLM observability — visible in network diagram). General logging enabled for administrative activities, logon attempts, data deletions, function changes, security configurations, permissions, and roles (CC7.2.1).",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events. Issues resolved through incident management process. Ticketing system used for tracking (CC5.2.1).",
+    "metrics": ["System capacity", "performance anomalies", "predefined threshold-based alerts"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Cloud infrastructure and SQS messaging (subservice organization)", "criticality": "Critical"},
+    {"vendor": "Fly.io", "purpose": "Primary compute cluster hosting AI agent workloads (subservice organization)", "criticality": "Critical"},
+    {"vendor": "Microsoft Azure", "purpose": "Cloud infrastructure (subservice organization)", "criticality": "Critical"},
+    {"vendor": "Clerk", "purpose": "Identity and authentication management", "criticality": "High"},
+    {"vendor": "Vercel", "purpose": "Frontend hosting and deployment", "criticality": "High"},
+    {"vendor": "Cloudflare", "purpose": "DNS, CDN, and DDoS protection", "criticality": "High"},
+    {"vendor": "Tigris", "purpose": "Object storage", "criticality": "High"},
+    {"vendor": "Langfuse", "purpose": "LLM observability and monitoring", "criticality": "Medium"},
+    {"vendor": "GitHub", "purpose": "Source code management (MFA-protected)", "criticality": "High"},
+    {"vendor": "Sentry", "purpose": "Application performance monitoring and error tracking", "criticality": "Medium"},
+    {"vendor": "Doppler", "purpose": "Secrets management", "criticality": "High"},
+    {"vendor": "Depot", "purpose": "Docker image build acceleration", "criticality": "Medium"},
+    {"vendor": "OpenAI", "purpose": "LLM inference provider", "criticality": "High"},
+    {"vendor": "Linear", "purpose": "Issue tracking and incident management", "criticality": "Low"},
+    {"vendor": "Notion", "purpose": "Documentation and knowledge base", "criticality": "Low"},
+    {"vendor": "Slack", "purpose": "Internal communication", "criticality": "Low"},
+    {"vendor": "Delve", "purpose": "Security compliance platform", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed and configured on all production servers (continuous scanning; weekly definition updates) and Mac-based workstations and laptops (CC6.8.1).",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications. High and critical vulnerabilities remediated per incident response plan (CC7.1.2).",
+    "penetration_testing": "Annual external penetration testing by independent third party. High/critical findings tracked to resolution (CC4.1.1).",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": true,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities: AWS, Fly, and Azure are responsible for physical security of their data centers; controls not in scope",
+      "A1.2 - Environmental protections: Anneal does not have an office; managed by building management / AWS / Fly / Azure",
+      "Processing Integrity and Privacy: Anneal has determined these trust service categories are not relevant to the system"
+    ],
+    "notable_controls": [
+      "Three-cloud multi-AZ disaster recovery: DR spins up multiple servers across all AZs in AWS, Fly, and Azure",
+      "Quarterly access reviews for all users including privileged accounts",
+      "Annual external penetration testing with tracked remediation",
+      "Source code tool MFA-protected with immutable change logs",
+      "Vendor management: annual SOC report reviews + quarterly risk assessments for critical vendors lacking SOC reports",
+      "Configuration management tool used for IaC baseline and rollback capability",
+      "Note: Type 1 report — controls described for design suitability only, not tested for operating effectiveness"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Genuinely multi-cloud (AWS + Fly.io + Azure) with multi-AZ DR across all three clouds. Cloudflare for CDN/DDoS. Fly.io cluster with multiple named apps suggests well-distributed compute. No named regions. IaC referenced but tool unnamed."
+    },
+    "application_architecture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Clear microservices pattern visible in network diagram (5+ named Fly.io apps). Separate environments, branch protection enforced. MCP (Model Context Protocol) usage suggests modern agentic architecture. Languages/frameworks not disclosed. No container orchestration tool named beyond Fly.io."
+    },
+    "data_layer": {
+      "score": 6,
+      "max": 10,
+      "rationale": "PostgreSQL identified as primary DB, Tigris for object storage, Langfuse for LLM observability data. Multi-AZ, data classification and retention policies exist, per-tenant segregation confirmed. Backup frequency not explicitly stated. No caching layer or data warehouse named."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Annual external pen test, monthly vuln scans, IDS/IPS + firewalls, antivirus on servers and endpoints, MFA enforced, KMS encryption at rest, TLS in transit, quarterly access reviews. No WAF named, no SIEM, no cybersecurity insurance mentioned."
+    },
+    "devops_maturity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "GitHub for SCM (inferred), Depot for Docker builds, branch protection enforced, separate environments, emergency change process, IaC for baseline configs. Doppler for secrets management is a mature DevSecOps practice. Full CI/CD tool unnamed. No container orchestration platform named beyond Fly.io."
+    },
+    "bcdr_readiness": {
+      "score": 7,
+      "max": 10,
+      "rationale": "BCDR policy documented and tested annually with multiple loss scenarios. Multi-AZ DR across all three clouds (AWS, Fly, Azure) — genuinely multi-cloud failover capability. No stated RTO/RPO. Backup frequency not explicitly stated."
+    },
+    "vendor_diversity": {
+      "score": 9,
+      "max": 10,
+      "rationale": "Exceptionally diverse vendor stack: 3 cloud providers (AWS, Fly.io, Azure), Cloudflare, Vercel, Clerk, Tigris, Langfuse, GitHub, Sentry, Doppler, OpenAI, Linear, Notion, Slack, Delve. Best-in-class vendor diversity among peers reviewed. No single critical cloud concentration."
+    },
+    "overall": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Dialtone shows a technically sophisticated and unusually diverse infrastructure stack for an early-stage AI agent company: genuine multi-cloud across AWS + Fly.io + Azure, Cloudflare CDN, Clerk for auth, Doppler for secrets, Langfuse for LLM observability, and Tigris for storage. Annual pen testing, monthly vuln scans, and MFA are in place. Key gaps are no named RTO/RPO, no WAF, no SIEM, no cybersecurity insurance mentioned, and this is a Type 1 report (design only, no operating effectiveness tested)."
+    }
+  },
+
+  "red_flags": [
+    "SOC 2 Type 1 only — controls described for design suitability; operating effectiveness has not been audited. This is a first-year attestation.",
+    "No RTO or RPO disclosed despite BCDR policy and testing existing",
+    "No WAF mentioned anywhere in the report despite Cloudflare being listed (Cloudflare WAF may be in use but not stated)",
+    "No SIEM or named log aggregation tool beyond Langfuse (which is LLM-specific, not general SIEM)",
+    "Cybersecurity insurance not mentioned in the report"
+  ],
+  "yellow_flags": [
+    "Source control tool unnamed in report (GitHub inferred from software table listing but not confirmed in controls narrative)",
+    "Backup frequency not explicitly stated — backup policy exists but daily/hourly cadence not confirmed",
+    "OpenAI is a critical dependency for LLM inference but is listed as a vendor without SOC 2 coverage details",
+    "No programming languages or frameworks disclosed — limits code security assessment",
+    "Fly.io is the primary compute platform but is a less mature cloud provider compared to AWS/Azure/GCP — concentration risk at application layer",
+    "MCP (Model Context Protocol) in app names suggests bleeding-edge architecture; security maturity of MCP tooling is unproven"
+  ],
+  "green_flags": [
+    "Genuine multi-cloud architecture across AWS + Fly.io + Azure with multi-AZ DR failover across all three providers",
+    "Exceptionally rich and modern vendor stack: Clerk (auth), Doppler (secrets), Langfuse (LLM observability), Tigris (object storage), Cloudflare (CDN/DDoS)",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scanning",
+    "MFA enforced for all admin access and source code tool",
+    "Quarterly access reviews including privileged accounts",
+    "BCDR tested annually with multiple loss scenarios across all three cloud providers",
+    "Depot for Docker builds — dedicated build infrastructure separate from runtime",
+    "Doppler for secrets management — proactive DevSecOps practice vs. environment variable sprawl",
+    "Langfuse for LLM observability — purpose-built AI safety monitoring rarely seen in early-stage companies",
+    "Branch protection and emergency change process enforced"
+  ],
+  "key_observations": [
+    "Dialtone has the most diverse vendor stack of any company reviewed: 3 cloud providers + 13+ named SaaS tools. This significantly reduces single-vendor concentration risk.",
+    "Fly.io is the primary compute runtime for AI agent workloads — unusual choice vs. AWS ECS/EKS or Azure AKS. Fly.io offers faster cold starts and global edge deployment but is less enterprise-mature.",
+    "MCP (Model Context Protocol) appears in Fly.io app names (mcp-app-builder, mcp-app-test-builds) — Dialtone is building on Anthropic's open agent communication protocol, indicating close alignment with frontier AI tooling.",
+    "Doppler for secrets management is a security-forward choice that prevents secret sprawl across environments — rare at this company stage.",
+    "Langfuse for LLM observability is a specialized tool for monitoring AI model inputs/outputs — critical for preventing hallucinations and detecting prompt injection in agentic systems.",
+    "Type 1 report as of June 23, 2025 — expect Type 2 audit to begin and cover a 6-12 month period starting from this date. Buyers should request Type 2 when available.",
+    "Clerk as identity provider (not AWS IAM or Okta) suggests a developer-first authentication approach with modern session management.",
+    "Tigris as object storage (vs. S3) is a newer S3-compatible distributed storage service — suggests willingness to adopt emerging infrastructure primitives."
+  ]
+}

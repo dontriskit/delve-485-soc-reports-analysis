@@ -1,0 +1,231 @@
+{
+  "company": "Openwealth, Inc",
+  "product": "AI-powered compliance co-pilot (regulatory mapping automation)",
+  "report_type": "ISO 27001",
+  "audit_period": "8/13/2025 (Stage-1 and Stage-2 certification cycle; no observation period disclosed)",
+  "auditor": "Gradient Certification Inc (UAF-accredited CAB)",
+  "opinion": "Not yet issued — document is a Certification Agreement Form, not a completed audit report or certificate",
+  "trust_criteria": ["Information Security (ISO 27001 ISMS)"],
+  "hq": "169 Madison Ave STE 15050, New York, New York, NY, 10016, United States of America",
+  "signing_authority": "Areg Nzsdejan (signatory on behalf of Openwealth, Inc)",
+
+  "_flags": {
+    "incomplete_report": true,
+    "page_count": 7,
+    "note": "PDF contains only a UAF endorsement letter and a Certification Agreement Form with Gradient Certification Inc. This is NOT a completed ISO 27001 audit report, certificate, or Statement of Applicability. No technical controls, ISMS implementation details, or audit findings are present. All tech fields are set to null due to absence of audit evidence."
+  },
+
+  "system_description": {
+    "overview": "Openwealth, Inc develops an AI-powered compliance co-pilot that automates regulatory mapping, enabling organizations to move from regulation to product in minutes instead of months. The scope includes design, engineering, and maintenance of proprietary AI technology, data processing infrastructure, and automation tools that securely analyze regulations, map requirements, and generate actionable compliance outputs for product teams.",
+    "products": {
+      "AI Compliance Co-Pilot": "Automates regulatory mapping; analyzes regulations, maps requirements, and generates actionable compliance outputs for product teams"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": null,
+    "regions": null,
+    "physical_presence": "169 Madison Ave STE 15050, New York, NY 10016 (registered address; no additional sites disclosed)",
+    "availability_zones": null,
+    "additional_cloud": null,
+    "serverless": null,
+    "cdn": null,
+    "_note": "No infrastructure details disclosed in this document"
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": null,
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": null,
+    "ids_ips": null,
+    "vpn": null,
+    "tls": null,
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. Document is a certification agreement, not an audit report."
+  },
+
+  "application_architecture": {
+    "pattern": null,
+    "languages": null,
+    "frameworks": null,
+    "compute": null,
+    "api_style": null,
+    "environments": null,
+    "branch_protection": null,
+    "code_review_required": null,
+    "_note": "No application architecture details disclosed"
+  },
+
+  "data_storage": {
+    "databases": null,
+    "caching": null,
+    "file_storage": null,
+    "data_warehouse": null,
+    "backup_frequency": null,
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null,
+    "_note": "No data storage details disclosed"
+  },
+
+  "authentication_access_control": {
+    "identity_provider": null,
+    "mfa": null,
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": null,
+    "password_policy": null,
+    "_note": "No authentication or access control details disclosed"
+  },
+
+  "encryption": {
+    "in_transit": null,
+    "at_rest": null,
+    "key_management": null,
+    "end_to_end": null,
+    "_note": "Scope mentions tools that 'securely analyze regulations' but no encryption specifics provided"
+  },
+
+  "ci_cd_devops": {
+    "source_control": null,
+    "ci_cd_tool": null,
+    "branch_protection": null,
+    "iac": null,
+    "container_orchestration": null,
+    "patch_management": null,
+    "separate_environments": null,
+    "emergency_change_process": null,
+    "_note": "No CI/CD or DevOps details disclosed"
+  },
+
+  "monitoring_logging": {
+    "apm_tool": null,
+    "siem": null,
+    "log_aggregation": null,
+    "alerting": null,
+    "metrics": null,
+    "log_protection": null,
+    "ids": null,
+    "_note": "No monitoring or logging details disclosed"
+  },
+
+  "third_party_services": [
+    {"vendor": "Gradient Certification Inc", "purpose": "ISO 27001 certification body (CAB)", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": null,
+    "endpoint_protection": null,
+    "vulnerability_scanning": null,
+    "penetration_testing": null,
+    "server_hardening": null,
+    "cybersecurity_insurance": null,
+    "_note": "No security tooling details disclosed"
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed",
+    "_note": "No BCDR details disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": [
+      "Document references Statement of Applicability Version 1.0 but the SOA is not included in the PDF",
+      "Certification cycle: 9 total man-days (2 Stage-1, 3 Stage-2, 2+2 Surveillance)",
+      "Scope covers: IT Infrastructure Management, Human Resources, Physical Security, Legal & Compliance, Administrative Operations"
+    ],
+    "_note": "No controls were tested or reported in this document. This is a pre-certification agreement, not an audit report."
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 1,
+      "max": 10,
+      "rationale": "Zero infrastructure details disclosed. No cloud provider, regions, or architecture information available from this document."
+    },
+    "application_architecture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "Zero application architecture details disclosed. We only know the product involves AI and data processing from the scope description."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "Zero data layer details disclosed. Scope mentions 'data processing infrastructure' but no specifics."
+    },
+    "security_posture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No security controls, tools, or practices disclosed. ISO 27001 certification is being pursued but not yet achieved based on this document."
+    },
+    "devops_maturity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No DevOps practices, CI/CD, IaC, or deployment information disclosed."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No BCDR information disclosed. No RTO/RPO, backup, or disaster recovery details."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No technology vendors disclosed. Cannot assess vendor concentration or diversity."
+    },
+    "overall": {
+      "score": 1,
+      "max": 10,
+      "rationale": "This document is a certification agreement form, not an audit report. It contains zero technical due diligence information. The score reflects the complete absence of disclosable data, not necessarily the company's actual posture."
+    }
+  },
+
+  "red_flags": [
+    "Document is NOT an ISO 27001 audit report or certificate — it is only a Certification Agreement Form (pre-audit contract) with Gradient Certification Inc",
+    "Only 7 pages; contains no audit findings, control testing, or ISMS implementation details",
+    "No Statement of Applicability (SOA) included despite being referenced as Version 1.0",
+    "Certification body (Gradient Certification Inc) is accredited by UAF (United Accreditation Foundation), which is a lesser-known accreditation body — not IAF/ANAB/UKAS. This may indicate a less rigorous certification process",
+    "Zero technical or security details disclosed — no cloud, no architecture, no encryption, no access controls",
+    "Audit date (8/13/2025) is in the future relative to typical report availability, suggesting this is an in-process certification"
+  ],
+
+  "yellow_flags": [
+    "ISO 27001 reports typically contain less technical detail than SOC 2, but this document contains none at all because it is not an audit report",
+    "Cannot assess actual ISMS maturity without the completed audit report and SOA",
+    "Single-site certification (no additional sites), which is appropriate for a startup but limits assurance scope",
+    "Total audit man-days of 9 across the full 3-year cycle is on the low end, suggesting a small organization"
+  ],
+
+  "green_flags": [
+    "Company is pursuing ISO 27001 certification, indicating awareness of information security standards",
+    "ISMS scope is comprehensive in description: covers core product development, AI technology, data processing, IT infrastructure, HR, physical security, legal & compliance",
+    "Product addresses compliance/regulatory space, suggesting organizational familiarity with compliance frameworks"
+  ],
+
+  "key_observations": [
+    "This PDF is a certification agreement/contract, not an audit report. To perform meaningful tech due diligence, the actual ISO 27001 audit report (Stage-2 findings), the certificate itself, and the Statement of Applicability (SOA) would be needed.",
+    "Openwealth builds an AI-powered regulatory mapping tool — the product itself is in the compliance space, which may indicate above-average internal security awareness.",
+    "The certification body Gradient Certification Inc is based in Sheridan, WY (registered) and Houston, TX (corporate). UAF accreditation should be verified for legitimacy.",
+    "Areg Nzsdejan appears to be a key decision-maker (signed both the UAF endorsement and the certification agreement).",
+    "The 9 total man-days for the full certification cycle suggests a small company (likely under 25-50 employees based on ISO 27006 guidelines)."
+  ]
+}

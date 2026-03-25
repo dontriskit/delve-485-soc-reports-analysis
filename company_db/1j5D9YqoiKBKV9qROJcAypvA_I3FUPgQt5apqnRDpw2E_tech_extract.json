@@ -1,0 +1,252 @@
+{
+  "company": "Grantable, Inc.",
+  "product": "Grantable",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "April 9, 2025 – July 9, 2025",
+  "auditor": "ACCORP PARTNERS",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability"],
+  "hq": "1717 E Cary St, Richmond, VA 23223",
+  "signing_authority": "Robert Lee, CTO — signed July 29, 2025",
+
+  "system_description": {
+    "overview": "Grantable is an AI-powered grant writing platform that helps organizations discover, write, and manage grant applications. The platform uses AI to assist with grant content generation, matching organizations to funding opportunities, and managing the full grant lifecycle.",
+    "products": {
+      "Grantable Platform": "Core AI-assisted grant writing and management SaaS application",
+      "Grant Discovery": "AI-powered matching to identify relevant funding opportunities",
+      "Grant Writing Assistant": "AI-driven content generation and editing for grant applications",
+      "Compliance Support Services": "Professional services supporting grant management workflows"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Supabase (subservice organization — CC6.4 delegated to Supabase); underlying infrastructure on Vercel (Next.js) and Cloudflare (CDN + DDoS protection)",
+    "regions": ["Not explicitly named — Supabase multi-AZ implied"],
+    "physical_presence": "1717 E Cary St, Richmond, VA 23223 (office address on management assertion)",
+    "availability_zones": "Multi-AZ — failover via spinning up multiple servers across all availability zones in Supabase",
+    "additional_cloud": ["Vercel (Next.js hosting on AWS infrastructure)", "Cloudflare (CDN + DDoS protection)"],
+    "serverless": ["Vercel (serverless Next.js functions)"],
+    "cdn": "Cloudflare (explicitly shown in network diagram as first layer; DDoS protection included)"
+  },
+
+  "network_architecture": {
+    "vpc": false,
+    "network_segmentation": "No VPC or direct cloud configuration — all infrastructure managed by service providers (Cloudflare, Vercel, Supabase). Network segmentation delegated to subservice organizations.",
+    "api_gateway": "Vercel (Next.js API routes / serverless functions)",
+    "waf": "Cloudflare (WAF + DDoS protection as first layer in network diagram)",
+    "firewalls": "Firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services; firewall rules reviewed annually by IT management",
+    "ids_ips": "IDS and IPS implemented; intrusion detection system monitors and detects unauthorized access or anomalies within the network",
+    "vpn": "Bastion host referenced for remote/VPN access; Systems Manager used for secure tunneling",
+    "tls": "TLS used for all data in transit; certificates from established third-party CA",
+    "content_filtering": null,
+    "multi_region": false,
+    "topology": "Internet → Cloudflare (CDN + DDoS) → Vercel (Next.js app on AWS) → Supabase (PostgreSQL database, Auth, Realtime, Storage) + Typesense (Search). No VPC managed directly by Grantable — all infrastructure delegated to service providers."
+  },
+
+  "application_architecture": {
+    "pattern": "Fully managed services / serverless — Next.js on Vercel, Supabase for all backend data services, Typesense for search; 'No VPC or cloud configuration required'",
+    "languages": [],
+    "frameworks": ["Next.js (explicitly named in network diagram on Vercel)"],
+    "compute": ["Vercel (Next.js serverless functions)", "Supabase (managed PostgreSQL + Auth + Realtime + Storage)", "Typesense (managed search)"],
+    "api_style": "REST (implied from Next.js API routes pattern)",
+    "environments": "Separate development/test and production environments; changes tested in separate dev/test environment before production deployment",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["PostgreSQL (via Supabase — explicitly named in network diagram)"],
+    "caching": [],
+    "file_storage": ["Supabase Storage (explicitly named in network diagram)"],
+    "data_warehouse": "Not mentioned",
+    "backup_frequency": "Daily — 'Backups are taken daily, multi-availability zones are configured' (CC7.4.2 test result)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": "Not disclosed explicitly — Supabase-managed isolation implied"
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Supabase Auth (explicitly named in network diagram); password policy controlled through Supabase",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform; MFA required for source code tool access (CC8.1.3); 2FA required for employee email access",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day of termination (CC6.1.4, CC6.1.8)",
+    "password_policy": "Via Supabase password policy; complexity requirements, expiry, account lockout after failed attempts; no guest/anonymous logins; unattended desktop lockout"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified) with certificates from established third-party CA",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest (CC6.1.5) — Supabase/AWS KMS implied",
+    "key_management": "Cloud KMS (Supabase/AWS) — 'cloud provider key management service to encrypt data at rest and to store and manage encryption keys'; access to production access keys restricted to authorized individuals",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Git-based SCM tool — 'source code management tool' referenced; code repository branch rules configured (CC8.1.2); access restricted via MFA (CC8.1.3)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Code repository branch rules configured to ensure every merge request to production requires additional approval; developers cannot make production code changes without approval (CC8.1.2)",
+    "iac": "Configuration management tool used for baseline configuration implementation and rollback capability (CC7.1.1) — 'baseline configurations are retained within the infrastructure as a code'",
+    "container_orchestration": "Not applicable — serverless/managed services stack; no container orchestration required",
+    "patch_management": "CTO/Management sets up automatic patch management; monthly patch management reviews; workstations configured for automatic updates; workstations scanned for patch compliance daily; patches tested for stability/availability before production deployment",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named — monitoring tool with predefined thresholds; performance monitoring covers disc space, incoming/outgoing network traffic, packet loss, CPU utilization",
+    "siem": "Not named",
+    "log_aggregation": "Logging enabled for administrative activities, logon attempts, data deletions at application and infrastructure level, changes to functions, security configurations, permissions, and roles (CC7.2.1); access to log configuration and modification is restricted",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; issues resolved via incident management process",
+    "metrics": ["CPU utilization", "disc space", "incoming/outgoing network traffic", "packet loss"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Cloudflare", "purpose": "CDN + DDoS protection — first layer in network architecture; explicitly shown in network diagram", "criticality": "Critical"},
+    {"vendor": "Vercel", "purpose": "Next.js application hosting (serverless functions on AWS infrastructure) — explicitly shown in network diagram", "criticality": "Critical"},
+    {"vendor": "Supabase", "purpose": "Subservice organization — PostgreSQL database, Auth, Realtime, Storage; CC6.4 physical security delegated to Supabase", "criticality": "Critical"},
+    {"vendor": "Typesense", "purpose": "Search infrastructure — explicitly shown in network diagram alongside Supabase", "criticality": "High"},
+    {"vendor": "Third-party certificate authority (unnamed)", "purpose": "TLS certificates for production endpoints", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and malware protection installed on all production servers (continuous auto-scan; definitions updated weekly); also on Mac workstations/laptops; endpoint security solution with log review by IT Head",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; high/critical vulnerabilities remediated per incident response plan",
+    "penetration_testing": "Annual external penetration test by independent third party; high/critical findings remediated and tracked to resolution (CC4.1.1)",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 65,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — No significant changes to people/roles during engagement period",
+      "CC3.2.1 — Cybersecurity insurance effectiveness could not be tested (no cyber incidents during period)",
+      "CC7.3.1 — Incident response could not be tested (no security incidents during period)",
+      "CC6.5.2 — Customer data deletion could not be tested (no customer terminations during period)"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — Physical facility access controls excluded (Supabase responsibility as subservice org)",
+      "A1.2 — Environmental protections excluded (no physical servers; Supabase/Vercel/Cloudflare responsibility)"
+    ],
+    "notable_controls": [
+      "CC8.1.3 — Source code tool access restricted to authorized users via MFA (explicitly named control)",
+      "CC6.1.4 — 1-business-day access revocation SLA explicitly stated in control",
+      "CC6.2.2 — Quarterly user access reviews for ALL user accounts including those with admin privileges",
+      "CC4.1.1 — Annual external penetration test; high/critical findings tracked to resolution",
+      "CC7.1.1 — Infrastructure as Code (IaC) for baseline configuration with rollback capability",
+      "CC9.2.1 — Quarterly vendor risk assessments for critical vendors lacking SOC reports; annual SOC report review for vendors that have them",
+      "CC7.4.1 — BCDR tested annually against multiple defined loss scenarios; results reviewed and plans updated",
+      "CC7.4.2 — Daily backups with multi-AZ configuration confirmed in test results: 'Backups are taken daily, multi-availability zones are configured'",
+      "RGEC (Risk and Governance Executive Committee) meets quarterly to oversee security governance",
+      "IT Leadership Committee (ITLC) governed by charter; meets weekly on security and operations",
+      "Supabase as named subservice organization — unique in this batch vs AWS carve-out peers"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Fully managed services stack — Cloudflare CDN, Vercel (Next.js), Supabase (PostgreSQL + Auth + Storage + Realtime), Typesense. Cloudflare WAF/DDoS is a strong positive. However, 'No VPC or cloud configuration required' means Grantable has no direct cloud infrastructure control — entirely dependent on subservice organizations. Multi-AZ via Supabase. Single region implied. No direct IaC for cloud resources."
+    },
+    "application_architecture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Best named-technology application architecture in this batch: Next.js framework on Vercel, PostgreSQL + Auth + Realtime + Storage via Supabase, Typesense for search — all explicitly named in network diagram. Separate environments, branch protection, MFA for source code access. No languages explicitly named. Fully serverless/managed removes operational complexity but also reduces architectural control."
+    },
+    "data_layer": {
+      "score": 7,
+      "max": 10,
+      "rationale": "PostgreSQL via Supabase confirmed, Supabase Storage for files, Typesense for search — multi-service data layer. Daily backups confirmed in test results (CC7.4.2). Data classification and retention policies in place. Multi-AZ via Supabase. No caching layer named, no data warehouse. Tenant data segregation not explicitly addressed."
+    },
+    "security_posture": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Annual external pen test, monthly automated vuln scans, IDS/IPS, anti-virus on production servers (weekly definitions), endpoint protection on workstations, MFA on admin access and source code, Cloudflare WAF + DDoS protection, quarterly access reviews, 1-day revocation SLA, cybersecurity insurance. Best security posture in the batch due to Cloudflare WAF being explicit."
+    },
+    "devops_maturity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "IaC confirmed (baseline configs as code with rollback), branch protection with MFA for SCM access, emergency change process, separate environments, monthly patch reviews with automatic patch management, daily workstation compliance scanning. CI/CD tool not named. Container orchestration not applicable (serverless stack). Fully managed services reduce DevOps operational burden."
+    },
+    "bcdr_readiness": {
+      "score": 7,
+      "max": 10,
+      "rationale": "BCDR policy exists, tested annually against multiple loss scenarios, daily backups confirmed (CC7.4.2 test result), multi-AZ via Supabase. DR plan covers roles, critical IT programs, OS, personnel, data files, time frames via BIA. No multi-region failover. No RTO/RPO disclosed. Fully managed services (Supabase/Vercel/Cloudflare) provide inherent resilience not possible to fully audit."
+    },
+    "vendor_diversity": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Best named-vendor disclosure in this batch: Cloudflare (CDN + DDoS + WAF), Vercel (Next.js hosting), Supabase (database + auth + storage + realtime), Typesense (search) — 4 named critical vendors beyond AWS. Supabase as subservice org (not AWS) is unique. Vendor management program with quarterly assessments for non-SOC vendors. Concentration risk: Supabase outage would affect PostgreSQL + Auth + Storage + Realtime simultaneously."
+    },
+    "overall": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Grantable stands out in this batch for vendor transparency: Cloudflare, Vercel, Next.js, Supabase, Typesense all named explicitly in the network diagram. SOC 2 Type 2 with zero exceptions across ~65 controls, signed by CTO (Robert Lee, July 29, 2025). The fully managed services architecture ('No VPC or cloud configuration required') is novel — Grantable has essentially outsourced all cloud infrastructure to four managed platforms. Cloudflare WAF is the only company in this batch with explicit WAF coverage. Key risk: entire data layer depends on Supabase; a Supabase outage or security incident would simultaneously affect database, auth, storage, and realtime."
+    }
+  },
+
+  "red_flags": [
+    "No VPC or direct cloud configuration — Grantable has zero direct cloud infrastructure control; entirely dependent on Cloudflare, Vercel, Supabase, and Typesense",
+    "Single region implied — no multi-region failover capability described",
+    "No RTO or RPO disclosed despite availability criteria in scope",
+    "Supabase concentration risk: PostgreSQL + Auth + Realtime + Storage all on single subservice org — cascading failure risk"
+  ],
+
+  "yellow_flags": [
+    "No CI/CD pipeline named — deployment process relies on Vercel but tooling unspecified",
+    "No tenant data segregation disclosure for a multi-tenant SaaS platform",
+    "3-month Type 2 audit period (April 9 – July 9) is the minimum; longer periods provide more assurance",
+    "No languages explicitly named in system description",
+    "Backup frequency confirmed as daily but RTO/RPO not disclosed",
+    "Fully managed services stack limits ability to independently verify infrastructure controls"
+  ],
+
+  "green_flags": [
+    "Cloudflare WAF + DDoS protection explicitly in network diagram — only company in batch with explicit WAF coverage",
+    "Network diagram is genuine and names all four infrastructure vendors: Cloudflare → Vercel → Supabase + Typesense",
+    "Management assertion actually signed (Robert Lee, CTO, July 29, 2025)",
+    "SOC 2 Type 2 with zero exceptions across ~65 controls tested — operating effectiveness confirmed",
+    "Daily backups explicitly confirmed in CC7.4.2 test result",
+    "Supabase as named subservice organization — more transparent than 'unnamed subservice org' at peers",
+    "Annual external penetration test by independent third party",
+    "Monthly automated vulnerability scans with remediation tracking",
+    "MFA required for source code tool access (CC8.1.3)",
+    "IaC with rollback capability for all baseline configurations",
+    "1-business-day access revocation SLA explicitly stated",
+    "Quarterly user access reviews including admin-privileged accounts",
+    "Cybersecurity insurance confirmed (CC3.2.1 — untestable but control present)",
+    "BCDR tested annually against multiple defined loss scenarios",
+    "RGEC meets quarterly; ITLC meets weekly — active governance structure"
+  ],
+
+  "key_observations": [
+    "Grantable is the only company in this batch with a named CDN and WAF — Cloudflare explicitly appears in the network diagram as the first layer, providing DDoS mitigation and WAF before traffic reaches the application",
+    "The fully managed services architecture ('No VPC or cloud configuration required') is unique in this batch — Grantable has essentially delegated all cloud infrastructure decisions to Cloudflare, Vercel, Supabase, and Typesense. This reduces operational complexity but also means Grantable cannot independently verify or configure network-level controls",
+    "Supabase as subservice organization (instead of AWS directly) is architecturally significant — Supabase itself runs on AWS, so there is an indirect AWS dependency, but Grantable's SOC 2 perimeter only goes to the Supabase layer",
+    "Typesense for search is the most unexpected technology disclosure — suggests the platform has non-trivial grant discovery/matching functionality requiring a dedicated search engine",
+    "Next.js on Vercel is the most common modern SaaS stack — this is a strong positive for developer productivity and deployment reliability, though Vercel's SOC 2 report would be important to review for a complete security picture",
+    "The grant writing AI use case creates data sensitivity concerns: grant applications often contain organizational financial data, program descriptions, and beneficiary information. No Privacy or Confidentiality criteria in scope despite this data sensitivity",
+    "Vendor concentration risk is the primary architectural concern: a Supabase outage simultaneously affects PostgreSQL (data), Auth (login), Storage (files), and Realtime (live features) — four critical services from one provider"
+  ]
+}

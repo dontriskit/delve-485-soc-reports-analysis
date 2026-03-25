@@ -1,0 +1,19 @@
+{
+  "doc_id": "1UUzRxy_a7DfCYQXE3roO2rsgYgxG9OvBn-h9ZTX1Vzc",
+  "link": "https://docs.google.com/document/d/1UUzRxy_a7DfCYQXE3roO2rsgYgxG9OvBn-h9ZTX1Vzc",
+  "timestamp": "10/8/2025 14:30:11",
+  "display_name": "TrustBuilder Corp",
+  "legal_name": "TrustBuilder Corp",
+  "company_name": "TrustBuilder Corp",
+  "system_description": "A platform that empowers families and financial professionals to securely manage wills, trusts, and wealth transfer strategies.",
+  "audit_end_date": "",
+  "observation_period": "July 3, 2025 - October 3, 2025",
+  "infra_provider": "AWS",
+  "website": "https://trustbuilder.law",
+  "contact_email": "chris@trustbuilder.law",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1UUzRxy_a7DfCYQXE3roO2rsgYgxG9OvBn-h9ZTX1Vzc.pdf",
+  "txt_file": "1UUzRxy_a7DfCYQXE3roO2rsgYgxG9OvBn-h9ZTX1Vzc.txt",
+  "has_report": true
+}

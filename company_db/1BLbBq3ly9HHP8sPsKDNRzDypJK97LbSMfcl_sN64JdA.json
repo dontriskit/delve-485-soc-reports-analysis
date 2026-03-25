@@ -1,0 +1,19 @@
+{
+  "doc_id": "1BLbBq3ly9HHP8sPsKDNRzDypJK97LbSMfcl_sN64JdA",
+  "link": "https://docs.google.com/document/d/1BLbBq3ly9HHP8sPsKDNRzDypJK97LbSMfcl_sN64JdA",
+  "timestamp": "10/31/2025 15:24:30",
+  "display_name": "Locata AI",
+  "legal_name": "Locata AI Inc.",
+  "company_name": "Locata AI",
+  "system_description": "A platform to manage outbound referrals for primary care practices, giving providers visibility into the exact state of a referral.",
+  "audit_end_date": "",
+  "observation_period": "July 21, 2025 - October 21, 2025",
+  "infra_provider": "AWS",
+  "website": "https://locata.ai",
+  "contact_email": "alejandro@locata.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1BLbBq3ly9HHP8sPsKDNRzDypJK97LbSMfcl_sN64JdA.pdf",
+  "txt_file": "1BLbBq3ly9HHP8sPsKDNRzDypJK97LbSMfcl_sN64JdA.txt",
+  "has_report": true
+}

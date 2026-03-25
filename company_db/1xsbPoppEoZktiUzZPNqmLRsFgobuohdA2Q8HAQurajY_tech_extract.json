@@ -1,0 +1,214 @@
+{
+  "company": "SAMMY Labs, Inc.",
+  "product": "SAMMY (AI-powered real-time insights, automation, and intelligent web interactions)",
+  "report_type": "ISO 27001",
+  "audit_period": "8/19/2025 (certification date; no observation period disclosed)",
+  "auditor": "Gradient Certification Inc.",
+  "opinion": "Certification agreement signed — actual certification status not confirmed in this document",
+  "trust_criteria": ["Information Security (ISO 27001)"],
+  "hq": "1111B S Governors Ave #28327 Dover, DE 19904",
+  "signing_authority": "Joe Savidge (no title disclosed)",
+
+  "system_description": {
+    "overview": "SAMMY Labs develops AI-powered real-time insights, automation, and intelligent web interactions. The scope includes proprietary AI systems, data processing infrastructure, and automation frameworks that enable secure and efficient support experiences across customer-facing platforms.",
+    "products": {
+      "SAMMY AI Platform": "AI-powered real-time insights, automation, and intelligent web interactions for customer-facing platforms"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Not disclosed",
+    "regions": [],
+    "physical_presence": "1111B S Governors Ave #28327 Dover, DE 19904 (registered address; no physical office/datacenter confirmed)",
+    "availability_zones": "Not disclosed",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Not disclosed"
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": "Not disclosed",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Not disclosed",
+    "ids_ips": "Not disclosed",
+    "vpn": "Not disclosed",
+    "tls": "Not disclosed",
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. This document is a certification agreement form, not a full audit report."
+  },
+
+  "application_architecture": {
+    "pattern": "Not disclosed",
+    "languages": [],
+    "frameworks": [],
+    "compute": [],
+    "api_style": "Not disclosed",
+    "environments": "Not disclosed",
+    "branch_protection": null,
+    "code_review_required": null
+  },
+
+  "data_storage": {
+    "databases": [],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Not disclosed",
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not disclosed",
+    "mfa": "Not disclosed",
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": "Not disclosed",
+    "password_policy": "Not disclosed"
+  },
+
+  "encryption": {
+    "in_transit": "Not disclosed",
+    "at_rest": "Not disclosed",
+    "key_management": "Not disclosed",
+    "end_to_end": null
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not disclosed",
+    "ci_cd_tool": "Not disclosed",
+    "branch_protection": "Not disclosed",
+    "iac": "Not disclosed",
+    "container_orchestration": "Not disclosed",
+    "patch_management": "Not disclosed",
+    "separate_environments": null,
+    "emergency_change_process": null
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not disclosed",
+    "siem": "Not disclosed",
+    "log_aggregation": "Not disclosed",
+    "alerting": "Not disclosed",
+    "metrics": [],
+    "log_protection": null,
+    "ids": null
+  },
+
+  "third_party_services": [
+    {"vendor": "Gradient Certification Inc.", "purpose": "ISO 27001 certification body", "criticality": "Medium"},
+    {"vendor": "United Accreditation Foundation Inc. (UAF)", "purpose": "Accreditation body for conformity assessment", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": "Not disclosed",
+    "endpoint_protection": null,
+    "vulnerability_scanning": "Not disclosed",
+    "penetration_testing": "Not disclosed",
+    "server_hardening": null,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": [
+      "Document is a certification agreement form only — no control testing results are included. The Statement of Applicability (Version 1.0) is referenced but not provided in this document."
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 1,
+      "max": 10,
+      "rationale": "Zero infrastructure details disclosed. No cloud provider, regions, or architecture information available."
+    },
+    "application_architecture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No application architecture details disclosed. Only high-level mention of 'AI systems' and 'data processing infrastructure' in scope description."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No database, caching, storage, or backup details disclosed."
+    },
+    "security_posture": {
+      "score": 2,
+      "max": 10,
+      "rationale": "ISO 27001 certification implies an ISMS exists, but no specific security tools, controls, or practices are described in this document. Scope mentions IT Infrastructure Management, Physical Security, and Legal & Compliance functions."
+    },
+    "devops_maturity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No CI/CD, source control, IaC, or deployment information disclosed."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No BCDR information disclosed. No RTO/RPO, backup strategy, or disaster recovery details."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No technology vendors disclosed. Only certification-related vendors identified."
+    },
+    "overall": {
+      "score": 1,
+      "max": 10,
+      "rationale": "This document is an ISO 27001 certification agreement form, not an audit report. It contains virtually no technical detail. The only substantive information is the scope of certification describing SAMMY's AI-powered products. A full tech due diligence assessment is not possible from this document alone."
+    }
+  },
+
+  "red_flags": [
+    "Document is only a certification agreement form (7 pages), not an actual ISO 27001 audit report or Statement of Applicability — no control testing results included",
+    "Zero technical infrastructure details disclosed — no cloud provider, databases, security tools, or architecture information",
+    "Registered address is a virtual mailbox (1111B S Governors Ave #28327 Dover, DE 19904) — typical of shell company registrations",
+    "Auditor is Gradient Certification Inc., accredited by UAF — UAF is not an IAF (International Accreditation Forum) signatory member, raising questions about accreditation legitimacy",
+    "Total audit mandays of only 9 across the full certification cycle (Stage 1: 2, Stage 2: 3, Surveillance 1: 2, Surveillance 2: 2) — extremely low for an organization with AI systems and data processing infrastructure",
+    "No Statement of Applicability provided despite being referenced",
+    "No evidence of actual audit completion — document is the pre-audit agreement only"
+  ],
+
+  "yellow_flags": [
+    "ISO 27001 scope mentions 'proprietary AI systems' and 'data processing infrastructure' but provides no technical specifics",
+    "No website, system description, or contact email in metadata — limited public footprint",
+    "Company name field empty in metadata, suggesting incomplete intake",
+    "Certification date of 8/19/2025 is very recent"
+  ],
+
+  "green_flags": [
+    "Organization is pursuing ISO 27001 certification, indicating awareness of information security management",
+    "ISMS scope covers core business functions including development, deployment, IT infrastructure, HR, physical security, legal, and administrative operations — comprehensive scope definition"
+  ],
+
+  "key_observations": [
+    "This is NOT an audit report — it is a certification agreement between SAMMY Labs and Gradient Certification Inc. No audit findings, control test results, or technical details are present.",
+    "The actual ISO 27001 certificate, Statement of Applicability, and audit report should be requested separately to perform meaningful tech due diligence.",
+    "Gradient Certification Inc. (Sheridan, WY / Houston, TX) is accredited by UAF, which is not recognized by IAF — the international body that governs ISO certification accreditation. This is a significant concern for the legitimacy of the certification.",
+    "The extremely low audit manday count (9 total for the full cycle) suggests either a very small organization or a superficial audit scope.",
+    "The document references a 'Statement of Applicability, Version 1.0' which would contain the actual control selections — this document must be obtained for any meaningful assessment."
+  ]
+}

@@ -1,0 +1,248 @@
+{
+  "company": "Polymet AI, Inc.",
+  "product": "Polymet AI Design Tool",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "May 8, 2025 - August 8, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "hq": "251 Little Falls Drive, Wilmington, DE 19808",
+  "signing_authority": "Kadir Inip, COO, Polymet AI Inc.",
+
+  "system_description": {
+    "overview": "Polymet is an AI-powered product design platform that helps startups and product teams rapidly create high-quality user interfaces and frontend code through natural language prompts. The platform streamlines the product development workflow by enabling teams to generate production-ready screens, share prototypes for feedback, and export clean code without starting from scratch.",
+    "products": {
+      "Polymet AI Design Tool": "AI-powered generation of user interfaces and frontend code from natural language prompts, with design system integration, theming support, interactive prototyping, and clean production-ready code export (React, Tailwind, etc.)",
+      "Research & Exploration Tools": "Conversational Research Mode for exploring design alternatives and making product decisions with rapid iteration capabilities"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out method - AWS SOC 2 controls excluded from scope)",
+    "regions": ["Not explicitly named in report"],
+    "physical_presence": "No physical offices or servers - fully cloud-based (251 Little Falls Drive, Wilmington, DE 19808 is registered address only)",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "System hosted in AWS VPC with segmented VPCs and access control lists (ACLs). Network segmentation implemented to separate systems and data based on sensitivity and criticality (CC6.1.7).",
+    "api_gateway": "Application gateway mentioned - firewalls configured on application gateway and production network (CC6.6.1)",
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management. Firewall access restricted to authorized personnel (CC6.6.1, CC6.6.2, CC6.6.3).",
+    "ids_ips": "IDS and IPS via AWS employed to identify and protect against threats in conjunction with security policy network settings. Intrusion detection system utilized to monitor and detect unauthorized access or anomalies within the network (CC2.1.1).",
+    "vpn": "Remote access done through a bastion host with a virtual private network (VPN)",
+    "tls": "User requests encrypted using Transport Layer Security (TLS) using certificates from an established third-party certificate authority",
+    "content_filtering": "All systems restricted to the internet with content filtering system routed through proxy server",
+    "multi_region": false,
+    "topology": "Traffic flows through AWS VPC with segmented VPCs and ACLs. User requests encrypted via TLS. Remote access through bastion host with VPN. Firewalls on application gateway and production network. IDS/IPS for threat detection. Content filtering via proxy server."
+  },
+
+  "application_architecture": {
+    "pattern": "Not explicitly disclosed - web application",
+    "languages": ["Not explicitly named - frontend code export supports React, Tailwind"],
+    "frameworks": ["React", "Tailwind"],
+    "compute": ["AWS servers (virtual servers mentioned)"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development/test and production environments (CC8.1.4 - changes developed and tested in separate development or test environment before implementation)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Database mentioned generically - production database with unique authentication mechanisms (CC6.1.6)"],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS Password Policy / Active Directory mentioned (CC6.1.2 references Active Directory, server, and database accounts)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1). MFA enforced for all remote access (CC6.1.1 test). Source code tool access restricted with MFA (CC8.1.3). Two-factor authentication required for email access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination of employment (CC6.1.4, CC6.1.8)",
+    "password_policy": "Passwords controlled through Password policy of AWS with periodic forced changes, password expiry and complexity requirements. Accounts disabled after limited unsuccessful logon attempts. Guest and anonymous logins not allowed. Desktops locked on inactivity."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified) using certificates from established third-party CA",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest (CC6.1.5)",
+    "key_management": "Cloud provider (AWS) key management service used to store and manage encryption keys. Access to production environment access keys restricted to authorized individuals (CC6.1.5, CC6.1.9).",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (not named) - changes logged, time-stamped, attributed to author. Access restricted with MFA (CC8.1.3).",
+    "ci_cd_tool": "Not explicitly named",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to move change to production environment requires additional approval (CC8.1.2). Approval process followed prior to merging to master branch.",
+    "iac": "Infrastructure as code mentioned - baseline configurations retained within infrastructure as a code and configuration management tool used for implementation and rollback capability (CC7.1.1)",
+    "container_orchestration": "None mentioned",
+    "patch_management": "Automatic patch management set up by CTO/Management with monthly patch management reviews. Workstations configured for automatic updates. Workstations scanned daily for patch compliance. OS patches managed and applied as they become available (CC7.5.1).",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Monitoring tool (not named) - continuously monitors system capacity and performance, generates alerts when predefined thresholds are met (CC5.2.1)",
+    "siem": "Not explicitly named",
+    "log_aggregation": "Logging enabled to monitor administrative activities, logon attempts, data deletions at application and infrastructure level, changes to functions, security configurations, permissions, and roles (CC7.2.1)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events. Change-management/ticketing application used for tracking (CC7.2.1, CC5.2.1).",
+    "metrics": ["CPU utilization", "disc space", "incoming/outgoing network traffic", "packet loss", "system capacity", "performance", "availability"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS", "purpose": "Primary cloud infrastructure and data center services (subservice organization)", "criticality": "Critical"},
+    {"vendor": "Accorp Partners", "purpose": "Independent SOC 2 audit firm", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers (continuous automatic scanning) and Mac-based workstations/laptops. Virus definitions updated weekly for production servers, daily from vendor for endpoints (CC6.8.1).",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications, frequency adjusted as required. Internal IT Infrastructure team performs periodic scans (CC7.1.2).",
+    "penetration_testing": "Annual external penetration testing by independent third-party. Results reviewed by IT management. High/critical findings remediated per risk treatment plan (CC4.1.1).",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed (DR plan identifies time frames needed based on business impact analysis)",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 57,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 - Significant changes to people, roles and responsibilities could not be tested because there were no significant changes during the engagement period",
+      "CC3.2.1 (Cybersecurity insurance) - Could not be tested because there were no cyber incidents reported during the engagement period",
+      "CC6.5.2 (Customer data deletion upon termination) - Could not be tested because there were no customer terminations during the engagement period",
+      "CC7.3.1 (Incident response) - Could not be tested because there were no security incidents reported during the engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities: AWS is responsible for physical security of data center; not in scope",
+      "A1.2 - Environmental protections: Polymet does not have an office/working space; managed by building management/AWS",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "RGEC (Risk and Governance Executive Committee) empowered by Board of Directors for security/governance oversight, meets semiannually (CC2.1.2)",
+      "IT Leadership Committee governed by charter, meets weekly to review security activities and processes (CC3.1.1)",
+      "Infrastructure as code with configuration management tool for rollback capability (CC7.1.1)",
+      "Branch protection rules requiring additional approval for production merges (CC8.1.2)",
+      "Quarterly user access reviews for all accounts including administrative privileges (CC6.2.2)",
+      "Vendor management policy with annual SOC report reviews and quarterly risk assessments for vendors without SOC reports (CC9.2.1)",
+      "Data classification policy implemented to categorize data based on sensitivity and criticality (CC2.1.3)",
+      "Daily backups with multi-availability zone configuration and backup failure alerts (CC7.4.2)"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 5,
+      "max": 10,
+      "rationale": "AWS single-region (implied) with multi-AZ. VPC with segmented networks and ACLs. IaC for baseline configurations. No CDN, no named regions, no multi-region capability disclosed. Production servers at AWS with failover capabilities. Content filtering via proxy. Solid for a startup but lacks specificity on regions and advanced infra."
+    },
+    "application_architecture": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Very little disclosed about application architecture. Web application generating React/Tailwind code. Separate environments confirmed. Branch protection and code review enforced. No named languages, frameworks for backend, or architecture pattern. No API style disclosed. Minimal technical detail for an AI-heavy product."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Daily backups with multi-AZ confirmed. Data classification policy and retention policy in place. Per-tenant segregation indicated (CC6.1.3). No specific database technologies named. No caching, file storage, or data warehouse disclosed. Encryption at rest via AWS KMS."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong security controls: MFA for admin/production/remote/source code access. IDS/IPS deployed. Annual external pen testing. Monthly vulnerability scanning. Endpoint protection and anti-malware on all servers and workstations. Server hardening with baseline configurations. Cybersecurity insurance maintained. Firewall rules reviewed annually. Quarterly access reviews. Missing explicit WAF and SIEM tool naming."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "IaC with configuration management and rollback capability. Source code management with MFA. Branch protection requiring approval for production merges. Separate dev/test and production environments. Emergency change process documented. Automatic patch management with monthly reviews. No specific CI/CD tool, container orchestration, or source control platform named."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. DR plans tested annually per defined testing schedule. Daily backups with multi-AZ. Multi-server failover across availability zones. DR plan identifies roles, responsibilities, and time frames based on business impact analysis. However, no explicit RTO/RPO disclosed, and no multi-region failover."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Heavy single-vendor dependency on AWS for all infrastructure. No additional cloud providers or named third-party services beyond AWS disclosed in the report. Vendor management policy exists with annual reviews, but the actual vendor ecosystem is opaque from this report."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Polymet demonstrates solid baseline security controls and governance for a startup obtaining its first SOC 2 Type 2. Unqualified opinion with zero exceptions. Strong access control, encryption, and monitoring fundamentals. However, the report is notably light on technology specifics - no named databases, programming languages, CI/CD tools, monitoring platforms, or specific AWS services. The 3-month audit period is short. Heavy AWS dependency with no disclosed diversification."
+    }
+  },
+
+  "red_flags": [
+    "Very short audit period (3 months: May 8 - August 8, 2025) which is the minimum for a Type 2 - suggests this is their first SOC 2",
+    "Almost no specific technology named throughout the entire report (no database names, no CI/CD tools, no monitoring tools, no programming languages for their AI product)",
+    "Single cloud vendor dependency (AWS only) with no disclosed diversification strategy",
+    "No WAF (Web Application Firewall) explicitly mentioned despite being a web-based SaaS product",
+    "Processing Integrity and Privacy trust criteria explicitly excluded despite being an AI product that processes user content",
+    "4 controls untestable due to no events during engagement period (no incidents, no terminations, no personnel changes) - suggests very early-stage company with minimal operational history"
+  ],
+
+  "yellow_flags": [
+    "No specific RTO/RPO disclosed despite DR plan existing",
+    "No SIEM tool named - only generic 'automated alerts' and 'logging enabled'",
+    "No named monitoring/APM tool despite claims of continuous monitoring",
+    "AI-powered product with no mention of AI/ML-specific security controls, model governance, or data handling practices",
+    "No multi-region failover capability disclosed",
+    "Auditor (Accorp Partners with PAC-FIRM-LIC-47383) is not a widely recognized audit firm",
+    "No CDN mentioned for a web-based SaaS product",
+    "No specific AWS services named (no EC2, RDS, S3, Lambda, etc.)"
+  ],
+
+  "green_flags": [
+    "Unqualified (clean) opinion with zero exceptions across all tested controls",
+    "MFA enforced across multiple layers: admin access, remote access, source code, email",
+    "IaC with configuration management and rollback capability demonstrates infrastructure maturity",
+    "Branch protection with mandatory approval for production merges",
+    "Quarterly user access reviews including administrative privilege accounts",
+    "Annual external penetration testing by independent third party with remediation tracking",
+    "BCDR plans documented, reviewed annually, and tested annually with defined scenarios",
+    "Data classification policy implemented based on sensitivity and criticality",
+    "Vendor management program with SOC report reviews and quarterly risk assessments for critical vendors",
+    "Cybersecurity insurance maintained",
+    "Daily backups with multi-AZ configuration and alerting on backup failures",
+    "Formal incident response process with root cause analysis and lessons learned"
+  ],
+
+  "key_observations": [
+    "This appears to be Polymet's first SOC 2 report given the minimum 3-month Type 2 observation period, suggesting the company is in early compliance maturity",
+    "The report is unusually generic on technology details for a company building an AI product - the system description reads more like a template than a specific technology disclosure",
+    "Org chart shows only CEO, CTO, COO, and Engineering Team - extremely flat/small organization",
+    "CC6.4 (physical access) and A1.2 (environmental protections) explicitly carved out because Polymet has no physical office - fully remote company",
+    "The report mentions Windows patch management and Active Directory alongside Mac workstations, suggesting a mixed OS environment",
+    "Despite being an AI product company, there is zero mention of AI/ML infrastructure, GPU compute, model training, LLM providers, or AI-specific security considerations",
+    "The carve-out approach for AWS means AWS controls are not validated in this report - users should independently verify AWS SOC 2 compliance",
+    "Content filtering via proxy server is an unusually traditional control for a cloud-native startup - may indicate template-driven control descriptions rather than actual implementation"
+  ]
+}

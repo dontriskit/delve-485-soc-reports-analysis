@@ -1,0 +1,19 @@
+{
+  "doc_id": "1irHWBBYTUW0dLgl_uWLdgDka9gB8R1LbVPYGZx3-wVo",
+  "link": "https://docs.google.com/document/d/1irHWBBYTUW0dLgl_uWLdgDka9gB8R1LbVPYGZx3-wVo",
+  "timestamp": "10/1/2025 15:30:31",
+  "display_name": "Rippleshot",
+  "legal_name": "Rippleshot Inc",
+  "company_name": "Rippleshot",
+  "system_description": "Rippleshot helps financial institutions with fraud detection by identifying data breaches, high-risk merchants, and compromised cards.",
+  "audit_end_date": "September 21, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://www.rippleshot.com/",
+  "contact_email": "info@rippleshot.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1irHWBBYTUW0dLgl_uWLdgDka9gB8R1LbVPYGZx3-wVo.pdf",
+  "txt_file": "1irHWBBYTUW0dLgl_uWLdgDka9gB8R1LbVPYGZx3-wVo.txt",
+  "has_report": true
+}

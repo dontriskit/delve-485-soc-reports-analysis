@@ -1,0 +1,19 @@
+{
+  "doc_id": "1z7XaF9xvLMGjytoPPHAur5RANaBMrJwQPM-pu_NqEHw",
+  "link": "https://docs.google.com/document/d/1z7XaF9xvLMGjytoPPHAur5RANaBMrJwQPM-pu_NqEHw",
+  "timestamp": "9/17/2025 15:49:39",
+  "display_name": "Tracelight",
+  "legal_name": "Tracelight Ltd",
+  "company_name": "Tracelight",
+  "system_description": "Tracelight is the world's most advanced spreadsheet reasoning AI. It helps customers build models faster and with less errors, and automate spreadsheet based workflows.",
+  "audit_end_date": "",
+  "observation_period": "May 29, 2025 - August 29, 2025",
+  "infra_provider": "Supabase",
+  "website": "https://tracelight.ai",
+  "contact_email": "security@tracelight.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1z7XaF9xvLMGjytoPPHAur5RANaBMrJwQPM-pu_NqEHw.pdf",
+  "txt_file": "1z7XaF9xvLMGjytoPPHAur5RANaBMrJwQPM-pu_NqEHw.txt",
+  "has_report": true
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "1STrXHn1a6Ni64FS0UpYTpt9zD0PUEKlv3GB-TU4gY8k",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1STrXHn1a6Ni64FS0UpYTpt9zD0PUEKlv3GB-TU4gY8k",
+  "timestamp": "8/6/2025 16:19:52",
+  "display_name": "Janet",
+  "legal_name": "Janet AI Inc",
+  "company_name": "Janet",
+  "system_description": "Janet AI is the AI-native ticket triage and management layer for Jira.",
+  "audit_end_date": "July 24, 2025",
+  "observation_period": "",
+  "infra_provider": "Render",
+  "website": "https://tryjanet.ai",
+  "contact_email": "support@tryjanet.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1STrXHn1a6Ni64FS0UpYTpt9zD0PUEKlv3GB-TU4gY8k.pdf",
+  "txt_file": "1STrXHn1a6Ni64FS0UpYTpt9zD0PUEKlv3GB-TU4gY8k.txt",
+  "has_report": true
+}

@@ -1,0 +1,253 @@
+{
+  "company": "Scribeberry Ltd.",
+  "product": "Scribeberry (AI Solutions for Healthcare)",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "March 27, 2025 - June 27, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+  "hq": "2500-10220 103 Ave NW, Edmonton, Alberta, Canada T5J 0K4 (additional presence in Toronto)",
+  "signing_authority": "Dr Zaahir Moloo, Co-Founder (CEO/Co-Founder), July 9, 2025",
+
+  "system_description": {
+    "overview": "Scribeberry Ltd. is a Canadian health-technology company (founded 2023) operating an AI-powered medical scribe platform that listens to clinician-patient encounters in real time, transcribes speech to text, and auto-generates structured notes for direct insertion into electronic medical records (EMR). The platform meets HIPAA, PIPEDA, and every Canadian provincial health-information statute.",
+    "products": {
+      "Ambient Scribing (Live and Virtual)": "AI listens to clinician-patient dialogue (in-clinic or telehealth), converts speech to text, drafts structured clinical notes for single-click EMR commit",
+      "Dictation and Transcription": "Medical-grade speech model for point-and-talk dictation inside any EMR field; batch transcription with speaker separation and PHI redaction",
+      "Clinical Template and Macro Builder": "No-code workspace for reusable note templates and personalized macros; smart functions pull vitals, diagnoses, medications from chart",
+      "Form-Filling and Coding Agents": "AI agents extract encounter data and pre-populate referral letters, insurance forms, billing codes (CPT/ICD-10)",
+      "History-Taking Agents": "Conversational bots engage patient pre-visit (mobile/kiosk) to collect chief complaints and history, return structured summary to clinician",
+      "Interoperability Layer": "FHIR/HL7 APIs, browser extensions, and middleware connectors for bi-directional data exchange with leading EMRs and billing solutions",
+      "Multilingual Support": "Speech recognition, UI, and knowledge base in 40+ languages with locale-aware medical terminology"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "GCP (Google Cloud Platform) - subservice organization (carve-out); GCP has its own SOC 2 report",
+    "regions": ["Not specified by name; multi-availability zone deployment confirmed; data stored in regional data centres to ensure residency"],
+    "physical_presence": "No physical offices and no physical servers; all data processed on cloud services. HQ is a commercial address (Edmonton, AB).",
+    "availability_zones": "Multi-AZ (production servers at GCP maintain failover capabilities; high-availability data centers with multiple availability zones)",
+    "additional_cloud": ["Vercel (managed) - frontend hosting for Next.js application", "Firebase (managed by Google) - authentication and database"],
+    "serverless": [],
+    "cdn": "Vercel CDN (implied - Vercel provides global CDN for Next.js applications)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Hosted in GCP in a VPC environment with segmented VPCs and access control lists (ACLs). IDS and IPS deployed via GCP.",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway (NGINX LB with firewall shown in network diagram). Firewall rules reviewed annually by IT management. Firewalls and intrusion detection tools configured to prevent unauthorized access.",
+    "ids_ips": "IDS and IPS deployed via GCP to identify and protect against threats in conjunction with security policy network settings.",
+    "vpn": "Remote access via VPN and bastion host (SSH over VPN shown in network diagram as the remote admin access path into the GCP private subnet)",
+    "tls": "TLS with certificates from third-party certificate authority (SSL/HTTPS traffic shown in network diagram legend; WSS/HTTPS + Bearer id_token shown for client connections)",
+    "content_filtering": "Content filtering system routed through proxy server; endpoint protection includes e-mail scanning",
+    "multi_region": false,
+    "topology": "Client Phone/Desktop connects via WSS/HTTPS + Bearer id_token to Scribeberry Client App. Frontend traffic routes to Vercel (managed) running Next.js App via HTTPS + Bearer id_token. Backend traffic routes to GCP: Public Subnet (VPC, Pub ACL) → Firewall → NGINX LB → HTTP → Transcription Service (private subnet). Firebase (managed by Google): Firebase Auth validates tokens (Admin SDK/Admin SDK); Firestore database. Remote admin access via SSH over VPN bastion. No raw audio stored after processing."
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices / Multi-provider (GCP backend + Vercel frontend + Firebase auth/db - three distinct managed providers)",
+    "languages": [],
+    "frameworks": ["Next.js (React framework - running on Vercel, shown in network diagram)"],
+    "compute": ["GCP VMs/virtual servers (Transcription Service in private subnet)", "Vercel (managed Next.js hosting)", "NGINX load balancer (shown in network diagram)"],
+    "api_style": "REST/WebSocket (WSS/HTTPS + Bearer token authentication shown in network diagram)",
+    "environments": "At minimum: Production, Development/Test, Stage (change management requires testing in Stage before Production per system description)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Firestore (Google Cloud Firestore / Firebase - NoSQL document database; shown in network diagram as the production database)"],
+    "caching": [],
+    "file_storage": ["No permanent audio files stored - explicitly stated: 'no permanent audio files are kept' and 'never stores raw audio once processed'"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Backup policy documented; suitable backups taken and maintained (frequency not explicitly stated)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Firebase Authentication (Firebase Auth shown in network diagram; validates Admin SDK tokens); GCP password policy for infrastructure accounts",
+    "mfa": "MFA enforced for all user accounts with administrative access to production platform; MFA required for source code tool access; two-factor authentication required for email access",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "GCP password policy: periodic forced changes, password expiry and complexity requirements, account lockout after limited failed attempts. Bearer token authentication for API access (shown in network diagram)."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (third-party CA certificates; WSS/HTTPS in network diagram); data encrypted in transit",
+    "at_rest": "Cloud provider key management service (GCP KMS); data encrypted at rest - 'data are encrypted in transit and at rest' per system description",
+    "key_management": "GCP KMS (cloud provider key management service); access to production environment access keys restricted to authorized individuals",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Git-based source code management tool (MFA required for access; changes logged, time-stamped, attributed to author). Chief Software Architect Benjamin Ripka 'maintains automated testing and CI/CD pipelines'.",
+    "ci_cd_tool": "Named: CI/CD pipelines maintained by Chief Software Architect (tool name not disclosed, but explicitly confirmed as existing)",
+    "branch_protection": "Code repository branch rules require additional approval for every merge request moving change to production environment",
+    "iac": "Configuration management tool used for baseline configurations, implementation, and rollback capability (tool not named)",
+    "container_orchestration": "Not explicitly mentioned (NGINX LB + virtual servers suggest containerized or VM-based deployment; no Kubernetes mentioned)",
+    "patch_management": "Automatic patch management set up by CTO; monthly patch management reviews; workstations scanned for patch compliance daily; automatic OS updates configured",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named (monitoring tool generates alerts at predefined thresholds; IT team monitors system capacity and performance; server parameters: disc space, incoming/outgoing network traffic, packet loss, CPU utilization)",
+    "siem": "Not named (logging at application and infrastructure level; automated alerts to IT management for high/critical risk events)",
+    "log_aggregation": "Logging enabled for admin activities, logon attempts, data deletions, function changes, security configurations, permissions, and roles. Access to modify logs is restricted.",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; incident management process via ticketing system",
+    "metrics": ["disc space", "incoming/outgoing network traffic", "packet loss", "CPU utilization"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Google Cloud Platform (GCP)", "purpose": "Cloud infrastructure subservice organization - VPC, physical security of data center, virtual servers, IDS/IPS (carve-out)", "criticality": "Critical"},
+    {"vendor": "Vercel", "purpose": "Frontend hosting - managed Next.js application deployment and CDN", "criticality": "High"},
+    {"vendor": "Firebase (Google)", "purpose": "Authentication (Firebase Auth) and NoSQL database (Firestore)", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers (continuous scanning, weekly AV definition updates) and Mac workstations/laptops. Endpoint Security Solution installed with automatic scanning; daily AV definition updates from vendor website.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; self-assessment scan performed prior to every production release; management reviews high/critical findings",
+    "penetration_testing": "Annual external penetration testing by independent third party; high/critical findings remediated and tracked via incident management process",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access controls: GCP responsible for physical security of data center; excluded from scope",
+      "A1.2 - Environmental protections/backup/recovery: Scribeberry does not have an office/operates from working space managed by building management; all environmental security managed by building management / GCP"
+    ],
+    "notable_controls": [
+      "Three-provider architecture: GCP (backend compute/infra) + Vercel (frontend) + Firebase (auth/database) - most complex vendor stack in cohort",
+      "Next.js confirmed as the frontend framework (shown in network diagram on Vercel)",
+      "Bearer token authentication with WSS/HTTPS (WebSocket Secure) - suggests real-time audio streaming architecture",
+      "No raw audio permanently stored - 'never stores raw audio once processed' - critical privacy control for healthcare",
+      "Data stored in regional data centres to ensure residency (HIPAA/PIPEDA compliance for Canadian healthcare data)",
+      "Chief Software Architect (Benjamin Ripka) explicitly maintains CI/CD pipelines and automated testing",
+      "Security & Privacy Steering Committee chaired by CTO (Amaan Rattansi)",
+      "HIPAA, PIPEDA, and every Canadian provincial health-information statute compliance claimed",
+      "Annual external pen test + pre-release self-assessment vulnerability scan (more frequent than monthly)",
+      "Board of Directors meets at least annually; regularly briefed on information security program",
+      "Content filtering via proxy server (email scanning included)",
+      "Quarterly user access reviews including privileged accounts"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Three-provider architecture explicitly named in network diagram: GCP (VPC + Firewall + NGINX LB + Transcription Service), Vercel (Next.js managed hosting), Firebase (Auth + Firestore). Regional data residency for Canadian healthcare compliance. Multi-AZ GCP failover. NGINX load balancer visible. No multi-region failover. No explicit CDN named (Vercel implied). Most technically specific infrastructure disclosure in the cohort."
+    },
+    "application_architecture": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Next.js framework specifically named (running on Vercel). Three-component architecture with clear separation: Vercel frontend, GCP backend (Transcription Service), Firebase auth/database. WSS/HTTPS bearer token API pattern visible. CI/CD pipelines explicitly confirmed (maintained by Chief Software Architect). Branch protection and code review enforced. Separate environments. No backend language named. No container orchestration named."
+    },
+    "data_layer": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Firestore (NoSQL) specifically named as production database. Explicit no-raw-audio storage policy is a strong and unique data governance control. Data encrypted at rest confirmed. Regional data residency confirmed. Backup policy documented but frequency not stated. No caching layer named. No data warehouse. Single named database."
+    },
+    "security_posture": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Annual external pen test + pre-release self-assessment scans, monthly automated vulnerability scans, IDS/IPS via GCP, firewalls, antivirus on all endpoints, MFA across all access, GCP KMS at rest, TLS in transit, cybersecurity insurance, quarterly access reviews, content filtering with proxy server and email scanning, BCDR tested annually. No WAF explicitly named. No named SIEM. Live Trust Center for compliance monitoring noted. Strongest healthcare-specific security posture in cohort."
+    },
+    "devops_maturity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "CI/CD pipelines explicitly confirmed and maintained by Chief Software Architect. Next.js on Vercel is a production-grade managed deployment. Branch protection, separate environments (Prod/Stage/Dev), emergency change process, automatic patch management, monthly patch reviews, BCDR tested annually. Three-provider architecture requires coordinated deployment across GCP + Vercel + Firebase. IaC tool not named. Container orchestration not explicitly stated."
+    },
+    "bcdr_readiness": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual testing with multiple loss scenarios. Multi-AZ GCP failover confirmed. No RTO/RPO disclosed. No explicit backup frequency stated. No multi-region failover. Business impact analysis referenced."
+    },
+    "vendor_diversity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Three named providers: GCP (infrastructure), Vercel (frontend), Firebase/Google (auth/database). Highest vendor diversity transparency in the cohort. GCP confirmed to have its own SOC 2. However, Vercel and Firebase are both ultimately Google-ecosystem (Firebase is Google-owned), creating concentration risk. No backup/failover cloud provider named."
+    },
+    "overall": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Scribeberry has the highest overall score in the cohort. Unique multi-provider architecture (GCP + Vercel + Firebase) explicitly named in a real network diagram. Next.js framework named. CI/CD pipelines confirmed. Healthcare-grade security posture (HIPAA/PIPEDA, no raw audio retention, data residency, live Trust Center). SOC 2 Type 2 with all 5 trust criteria (Security, Availability, Processing Integrity, Confidentiality, Privacy) - the broadest scope in the cohort. Clean opinion, no exceptions. Signed assertion. The 3-month audit period is likely the first Type 2. Key gaps: no WAF named, no SIEM named, no RTO/RPO, backup frequency not stated. Healthcare context (PHI processing) raises bar for security expectations."
+    }
+  },
+
+  "red_flags": [
+    "No WAF explicitly named despite operating a web-based healthcare SaaS processing PHI - this is a meaningful gap for a HIPAA/PIPEDA platform",
+    "Backup frequency not explicitly stated (all other companies in cohort state daily backups)",
+    "RTO and RPO not disclosed"
+  ],
+  "yellow_flags": [
+    "Firebase and Vercel are not listed as named subservice organizations (only GCP is listed) despite being clearly visible in the network diagram as critical providers - vendor risk concentration underdisclosed",
+    "No SIEM named despite healthcare PHI processing and 5-criteria trust scope",
+    "No multi-region failover despite data residency requirements for Canadian provinces",
+    "3-month audit period (March 27 - June 27, 2025) is minimum for Type 2 - likely first Type 2",
+    "Content filtering via proxy mentioned for endpoints but no CDN/WAF for web application layer"
+  ],
+  "green_flags": [
+    "Most technically specific network diagram in cohort: GCP VPC (Firewall, NGINX LB, Transcription Service), Vercel (Next.js), Firebase (Auth + Firestore) all named",
+    "Next.js named as the frontend framework - only company in cohort to name a specific application framework",
+    "CI/CD pipelines explicitly confirmed as maintained by Chief Software Architect",
+    "Three named third-party providers (GCP, Vercel, Firebase) - highest vendor transparency in cohort",
+    "No permanent audio storage: 'never stores raw audio once processed' - critical PHI control for healthcare",
+    "Data stored in regional data centres for Canadian provincial residency compliance (HIPAA, PIPEDA)",
+    "Live compliance Trust Center referenced at scribeberry.com",
+    "Annual external penetration testing plus pre-release self-assessment scans",
+    "Monthly automated vulnerability scanning",
+    "MFA enforced across production platform, source code tools, and email",
+    "Quarterly user access reviews including privileged accounts",
+    "Access revocation within one business day of termination",
+    "BCDR tested annually with multiple loss scenarios",
+    "Cybersecurity insurance in place",
+    "SOC 2 Type 2 with all 5 trust service criteria - broadest scope in the cohort",
+    "Clean opinion, no exceptions noted",
+    "Signed management assertion by Dr Zaahir Moloo",
+    "Security & Privacy Steering Committee chaired by CTO",
+    "Board of Directors regularly briefed on information security program",
+    "GCP SOC 2 report reviewed annually",
+    "Bearer token + WSS/HTTPS suggests secure real-time audio streaming architecture",
+    "Content filtering via proxy with email scanning",
+    "Per-tenant data segregation implemented"
+  ],
+  "key_observations": [
+    "Scribeberry has the most technically specific and architecturally rich report in the cohort. The actual network diagram names three distinct managed providers: GCP (private subnet with Firewall + NGINX LB + Transcription Service), Vercel (Next.js frontend), and Firebase (Auth + Firestore). This three-provider architecture is unique and reflects a modern cloud-native approach for a healthcare AI startup.",
+    "Next.js on Vercel is the first specifically named application framework in any report in this cohort. The Chief Software Architect role (Benjamin Ripka) maintaining CI/CD pipelines and automated testing is the most specific devops disclosure observed.",
+    "The WSS/HTTPS + Bearer id_token pattern shown in the network diagram indicates the platform uses WebSocket Secure connections for real-time audio streaming - consistent with an ambient scribing product that must stream live audio from clinic to backend.",
+    "The 'no permanent audio storage' policy is architecturally enforced (not just a policy commitment) and is uniquely disclosed in the system description. For a HIPAA/PIPEDA product processing clinician-patient conversations, this is the most significant privacy-by-design control in the cohort.",
+    "The 5-criteria SOC 2 Type 2 scope (Security + Availability + Processing Integrity + Confidentiality + Privacy) is the broadest in the cohort and is appropriate for a healthcare platform handling PHI. Other companies excluded Processing Integrity and Privacy as 'not relevant'.",
+    "Firebase is technically a Google-owned service and Vercel is a separate company. Neither is listed as a formal subservice organization (only GCP is), even though both are visible in the network diagram as critical production components. This is an underdisclosure of vendor dependencies.",
+    "Regional data residency is explicitly confirmed: 'stored in regional data centres to ensure residency' - critical for Canadian healthcare customers subject to provincial health information statutes (Alberta FOIP, Ontario PHIPA, etc.).",
+    "The founding team structure (CTO/Co-Founder Amaan Rattansi, CEO/Co-Founder Zaahir Moloo, Chief Software Architect Benjamin Ripka) is the most technically detailed org chart in the cohort. The CTO chairs the Security & Privacy Steering Committee, showing security is embedded at the technical leadership level."
+  ]
+}

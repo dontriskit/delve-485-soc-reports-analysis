@@ -1,0 +1,19 @@
+{
+  "doc_id": "1tSzNbQgB8GTpDydEQvd4tAP5RG8cnMtkAWt9agAph08",
+  "link": "https://docs.google.com/document/d/1tSzNbQgB8GTpDydEQvd4tAP5RG8cnMtkAWt9agAph08",
+  "timestamp": "9/5/2025 15:26:22",
+  "display_name": "ULedger",
+  "legal_name": "ULedger, Inc.",
+  "company_name": "ULedger",
+  "system_description": "ULedger is a proprietary Layer 1 blockchain platform built for the enterprise with scalable, easy to integrate security that enhances and guarantees the authenticity of data transactions for companies.",
+  "audit_end_date": "August 28, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://uledger.io",
+  "contact_email": "compliance@uledger.io",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1tSzNbQgB8GTpDydEQvd4tAP5RG8cnMtkAWt9agAph08.pdf",
+  "txt_file": "1tSzNbQgB8GTpDydEQvd4tAP5RG8cnMtkAWt9agAph08.txt",
+  "has_report": true
+}

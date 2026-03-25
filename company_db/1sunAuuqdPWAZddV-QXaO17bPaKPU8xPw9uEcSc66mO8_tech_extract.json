@@ -1,0 +1,247 @@
+{
+  "company": "Sim Studio, Inc",
+  "product": "Sim Studio",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "May 5, 2025 - August 5, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "hq": "80 Langton St, San Francisco, California",
+  "signing_authority": "Emir Karabeg, Co-Founder and CEO",
+
+  "system_description": {
+    "overview": "Sim Studio is an open-source, drag-and-drop AI Agent builder platform that enables teams to build, deploy, and automate AI agent workflows. The platform allows developers to visually create, test, and orchestrate multi-agent systems with enterprise tools supporting workflow automation, secure API integrations, and real-time data synchronization.",
+    "products": {
+      "AI Agent Workflow Builder": "Visual drag-and-drop platform for designing, testing, and deploying AI-powered workflows with custom logic, API/database integrations, and real-time monitoring and orchestration.",
+      "Collaboration & Sharing": "Team-based workspaces, secure access management for collaborative workflow development, and reusable agent templates.",
+      "Version Control, Tracing & Logging": "Built-in versioning, detailed workflow execution tracing, and compliance-grade audit logs for transparency and governance.",
+      "Knowledge Bases": "Tools to create and manage custom organizational knowledge bases with granular permissions and instant content updates, enabling AI agents to reference internal documentation."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Vercel (carve-out) - hosted on AWS",
+    "regions": ["us-west", "us-east"],
+    "physical_presence": "No physical offices or servers; all data processed on cloud services. HQ address: 80 Langton St, San Francisco, CA.",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": ["Supabase (hosted on AWS)"],
+    "serverless": ["Vercel Serverless Functions (Next.js)"],
+    "cdn": "Vercel Edge Network (implied via Vercel hosting)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with access control lists (ACLs). Network segmentation implemented to separate systems and data based on sensitivity and criticality.",
+    "api_gateway": "Vercel application gateway with firewall rules configured",
+    "waf": "Firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services",
+    "firewalls": "System firewalls configured on application gateway and production network. Firewall rules reviewed annually by IT management. Firewall access restricted to authorized personnel.",
+    "ids_ips": "IDS and IPS employed via Vercel to identify and protect against threats in conjunction with security policy network settings",
+    "vpn": "Remote access via bastion host with VPN",
+    "tls": "TLS encryption using certificates from established third-party certificate authority",
+    "content_filtering": "Content filtering system in place; all systems restricted to internet with content filtering routed through proxy server",
+    "multi_region": true,
+    "topology": "Internet -> AWS Cloud -> Vercel US West (Next.js frontend) + Vercel US East (Next.js frontend) -> Secure API Calls / Database Queries -> Supabase (PostgreSQL + Auth on AWS). Admin access via role-based secured DevOps & Deployment interfaces."
+  },
+
+  "application_architecture": {
+    "pattern": "Serverless-heavy",
+    "languages": ["TypeScript/JavaScript (implied by Next.js)"],
+    "frameworks": ["Next.js"],
+    "compute": ["Vercel Serverless Functions"],
+    "api_style": "REST (Secure API Calls shown in network diagram)",
+    "environments": "Separate development/test and production environments. Changes tested in separate environment before production deployment (CC8.1.4).",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Supabase (PostgreSQL)"],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Supabase Auth",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform. MFA enforced for all remote access. MFA required for source code tool access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day upon termination",
+    "password_policy": "Controlled through Vercel password policy; includes periodic forced changes, password expiry, and complexity requirements. Accounts disabled after limited unsuccessful logon attempts."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service (encryption at rest via cloud KMS)",
+    "key_management": "Cloud provider key management service. Access to encryption keys restricted to authorized personnel only.",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool with MFA access (name not specified, likely GitHub based on Next.js/Vercel ecosystem)",
+    "ci_cd_tool": "Vercel deployment pipeline (implied). Source code changes logged, time-stamped, and attributed to author.",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to move change to production requires additional approval. Developers cannot make changes to production without approval.",
+    "iac": "Configuration management tool used for baseline configurations retained as infrastructure-as-code with rollback capability",
+    "container_orchestration": "None mentioned (serverless-based architecture)",
+    "patch_management": "Automatic patch management with monthly patch management reviews by CTO. Workstations configured for automatic updates and scanned daily for patch compliance.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Monitoring tool (not named) that continuously monitors system capacity, performance, availability, efficiency, and reliability",
+    "siem": "Not specifically named; automated alerts configured for high and critical risk events",
+    "log_aggregation": "Logging enabled to monitor administrative activities, logon attempts, data deletions at application and infrastructure level, changes to functions, security configurations, permissions, and roles",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events. Incident management process invoked for confirmed events.",
+    "metrics": ["CPU", "disk space", "network traffic (incoming/outgoing)", "packet loss", "CPU utilization"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Vercel", "purpose": "Primary cloud hosting and deployment platform (Next.js hosting, serverless functions, edge network, CDN)", "criticality": "Critical"},
+    {"vendor": "Supabase", "purpose": "Database (PostgreSQL) and authentication services, hosted on AWS", "criticality": "Critical"},
+    {"vendor": "AWS", "purpose": "Underlying cloud infrastructure provider for Vercel and Supabase", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers and Mac-based workstations/laptops. Auto-scanning on continuous basis. Definitions updated weekly for production servers.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications, with scan frequency adjusted as required. Internal IT Infrastructure team performs periodic scans.",
+    "penetration_testing": "Annual external penetration testing by independent third-party. Results reviewed by IT management. High/critical findings remediated and added to risk register.",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": true,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 55,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 - Significant changes to people, roles and responsibilities could not be tested because there were no significant changes during the engagement period",
+      "CC3.2.1 - Cybersecurity insurance control could not be tested because there were no cyber incidents reported during the engagement period",
+      "CC6.5.2 - Customer data deletion upon termination could not be tested because there were no customer terminations during the engagement period",
+      "CC7.3.1 - Incident response control could not be tested because there were no security incidents reported during the engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities and data centers: Vercel responsible for physical security of data center; not in scope",
+      "A1.2 - Environmental protections: Sim does not have office/physical workspace; managed by building management/Vercel",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC8.1.2 - Branch protection rules requiring additional approval for all production merges",
+      "CC8.1.3 - Source code changes logged, time-stamped, attributed; MFA required for source code tool access",
+      "CC6.1.7 - Network segmentation implemented to separate systems based on sensitivity/criticality",
+      "CC7.4.2 - Backups taken daily with multi-AZ configuration and failure alerting",
+      "CC4.1.1 - Annual external penetration testing by independent third-party",
+      "CC7.1.2 - Monthly automated vulnerability scanning with remediation plans for critical/high findings",
+      "CC6.1.1 - MFA enforced for all remote access and administrative access to production"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Multi-region (US West + US East) on Vercel/AWS with multi-AZ failover is solid. However, Vercel is carve-out (subservice org) so Sim has limited direct infrastructure control. No IaC tool specifically named, though configuration management with rollback is mentioned. CDN via Vercel Edge Network is implicit but not explicitly detailed."
+    },
+    "application_architecture": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Serverless Next.js architecture is modern and appropriate for the product. However, only one framework and one language mentioned. No testing frameworks, no CI/CD pipeline specifics. The architecture is relatively simple (two Next.js frontends + Supabase backend). Branch protection and code review are in place."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Single database type (Supabase/PostgreSQL) with daily backups and multi-AZ configuration. Data classification and retention policies in place. Per-tenant segregation confirmed. However, no caching layer, no data warehouse, no file storage mentioned. Limited database diversity."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong security controls: MFA enforced broadly, IDS/IPS via Vercel, firewalls, annual pen testing, monthly vulnerability scanning, endpoint protection, antivirus, content filtering, VPN for remote access. Cybersecurity insurance in place. Encryption at rest and in transit. However, specific tool names are not disclosed for most security products (no named SIEM, no named WAF product, no named IDS tool)."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Source code management with MFA, branch protection rules, separate environments, change management process with approvals, emergency change process documented. However, no specific CI/CD tool named, no container orchestration, IaC tool unnamed. Deployment relies on Vercel platform. Patch management is automated with monthly reviews."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual testing of DR plans across multiple loss scenarios. Multi-AZ and multi-region failover via Vercel. Daily backups with alerts. However, RTO and RPO are not disclosed, which is a significant gap for due diligence."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Heavy concentration on just two vendors: Vercel (hosting, compute, CDN, networking) and Supabase (database, auth), both running on AWS. This creates significant single-cloud (AWS) dependency. Only 3 vendors identified. No diversity in database, authentication, or monitoring providers."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Sim Studio is an early-stage startup (5 employees in org chart) that has achieved a clean SOC 2 Type 2 opinion, which is commendable. The security controls framework is reasonably mature for the company size. However, the report reveals limited technology specificity -- many tool names are undisclosed. The architecture is simple (serverless Next.js + Supabase), which is appropriate for scale but represents concentration risk. The carve-out approach for Vercel means significant infrastructure controls are outside Sim's direct purview."
+    }
+  },
+
+  "red_flags": [
+    "Extremely small team (5 people in org chart: CEO, CTO, 3 engineers) creates key-person dependency risk across all functions",
+    "Heavy vendor concentration: entire stack runs on Vercel + Supabase, both on AWS -- single cloud provider failure could take down everything",
+    "Carve-out approach for Vercel means many infrastructure controls (physical security, environmental, network hardware) are outside audit scope and reliant on Vercel's own SOC 2",
+    "RTO and RPO not disclosed despite having BCDR plans -- critical gap for assessing recovery capabilities",
+    "No specific monitoring, SIEM, or APM tool names disclosed -- makes it difficult to assess observability maturity"
+  ],
+
+  "yellow_flags": [
+    "Processing Integrity and Privacy trust criteria excluded -- for an AI agent platform handling customer data and workflows, Privacy criteria exclusion is notable",
+    "Several controls could not be tested due to no events occurring during the short 3-month audit period (no incidents, no terminations, no significant role changes)",
+    "Short audit period (3 months: May-Aug 2025) limits the depth of operating effectiveness assessment",
+    "No caching layer, data warehouse, or file storage mentioned -- may indicate early-stage data infrastructure",
+    "No SSO mentioned for customer authentication",
+    "Cybersecurity insurance control untestable (no incidents) -- existence verified but effectiveness unproven",
+    "Generic/template-like language in some control descriptions suggests possible compliance automation tool usage"
+  ],
+
+  "green_flags": [
+    "Clean, unqualified opinion with zero exceptions across all tested controls",
+    "Open-source product increases transparency and community security review",
+    "MFA enforced comprehensively: production access, remote access, source code management",
+    "Annual external penetration testing with remediation tracking",
+    "Monthly automated vulnerability scanning with remediation plans for critical/high findings",
+    "Branch protection rules requiring approval for all production merges -- no direct production pushes",
+    "Data classification policy established and implemented",
+    "Quarterly user access reviews including administrative privilege holders",
+    "Formal vendor management program with annual SOC report reviews and quarterly risk assessments for non-SOC vendors",
+    "Daily backups with multi-AZ configuration and alerting",
+    "Multi-region deployment (US West + US East) for availability",
+    "Per-tenant data segregation confirmed",
+    "Board of Directors with Risk and Governance Executive Committee (RGEC) providing oversight -- mature governance for a startup"
+  ],
+
+  "key_observations": [
+    "The org chart shows only 5 people (2 co-founders + 3 engineers), yet the report describes governance structures (Board of Directors, RGEC, IT Leadership Committee) that seem unusually elaborate for a team this small -- likely reflects compliance framework requirements rather than actual organizational complexity",
+    "Supabase serves as both the database AND the authentication provider, creating a single point of failure for two critical functions",
+    "The network diagram shows a surprisingly simple architecture for a compliance-audited platform: just Next.js frontends on Vercel connecting to Supabase -- no middleware, no message queues, no caching, no separate API service",
+    "The report mentions 'Windows/Network team' for patch management (p.20) which seems inconsistent with a cloud-native startup using Vercel/Supabase -- may indicate template language from the auditor",
+    "First SOC 2 engagement implied (3-month observation period is typical for first Type 2 reports)",
+    "The report covers Security, Availability, and Confidentiality criteria but excludes Processing Integrity -- this is notable for an AI agent platform where processing accuracy could be critical to customer use cases"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "1hYFN08zF4E1yLHazBQqMD6Ts5xcqx413NBlIcllHkwU",
+  "link": "https://docs.google.com/document/d/1hYFN08zF4E1yLHazBQqMD6Ts5xcqx413NBlIcllHkwU",
+  "timestamp": "11/26/2025 19:03:22",
+  "display_name": "S2",
+  "legal_name": "Bandar Systems Inc.",
+  "company_name": "S2",
+  "system_description": "Streams as a cloud storage primitive",
+  "audit_end_date": "",
+  "observation_period": "Aug 4, 2025 - Nov 4, 2025",
+  "infra_provider": "AWS",
+  "website": "https://s2.dev",
+  "contact_email": "security@s2.dev",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1hYFN08zF4E1yLHazBQqMD6Ts5xcqx413NBlIcllHkwU.pdf",
+  "txt_file": "1hYFN08zF4E1yLHazBQqMD6Ts5xcqx413NBlIcllHkwU.txt",
+  "has_report": true
+}

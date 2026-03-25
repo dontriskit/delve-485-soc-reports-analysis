@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architecture Patterns — Delve Tech DD</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        bg: '#0f172a', bg2: '#1e293b', card: '#1a2332', border: '#334155',
+      }
+    }
+  }
+}
+</script>
+<style>
+body { background: #0f172a; }
+.prose { max-width: none; }
+.prose h1 { color: #e2e8f0; font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+.prose h2 { color: #e2e8f0; font-size: 1.5rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.75rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }
+.prose h3 { color: #3b82f6; font-size: 1.1rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+.prose p { color: #e2e8f0; line-height: 1.7; margin-bottom: 0.75rem; }
+.prose li { color: #e2e8f0; line-height: 1.6; }
+.prose strong { color: #e2e8f0; }
+.prose table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+.prose th { text-align: left; padding: 8px 12px; background: #1e293b; color: #94a3b8; font-size: 12px; text-transform: uppercase; border-bottom: 1px solid #334155; }
+.prose td { padding: 8px 12px; border-bottom: 1px solid #1a2332; color: #e2e8f0; font-size: 14px; }
+.prose tr:hover td { background: #1a2332; }
+.metric { background: #1a2332; border: 1px solid #334155; border-radius: 12px; padding: 20px; }
+.metric .value { font-size: 2rem; font-weight: 800; }
+.metric .label { color: #94a3b8; font-size: 0.75rem; margin-top: 4px; }
+.insight { background: #1a2332; border-left: 3px solid #3b82f6; padding: 16px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+.flag-red { background: rgba(239,68,68,0.1); border-left: 3px solid #ef4444; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.flag-yellow { background: rgba(245,158,11,0.1); border-left: 3px solid #f59e0b; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.flag-green { background: rgba(34,197,94,0.1); border-left: 3px solid #22c55e; padding: 12px; border-radius: 0 8px 8px 0; margin: 8px 0; }
+</style>
+</head>
+<body class="min-h-screen">
+<div class="max-w-5xl mx-auto px-6 py-10">
+
+  <!-- Nav -->
+  <div class="mb-4">
+    <a href="../index.html" class="text-sm text-blue-400 hover:text-blue-300">← Back to Index</a>
+  </div>
+
+  <!-- Header -->
+  <div class="mb-8">
+    <div class="text-sm text-gray-400 mb-1">Delve Tech Due Diligence · Meta-Analysis</div>
+    <h1 class="text-3xl font-extrabold text-white">Architecture Patterns</h1>
+    <p class="text-gray-400 mt-1">Monolith, microservices, serverless — what patterns dominate and which score highest</p>
+  </div>
+
+  <!-- Content -->
+  <div class="prose">
+    <h2>Architecture Pattern Distribution</h2>
+
+<p>How companies structure their applications reveals their engineering maturity and scaling strategy.</p>
+
+<div class="my-6"><img src="pattern_dist.png" class="rounded-lg w-full" alt="pattern_dist.png"></div>
+
+<table><thead><tr><th>Pattern</th><th>Companies</th><th>Share</th></tr></thead><tbody><tr><td>Cloud-native SaaS platform</td><td>18</td><td>3.7%</td></tr><tr><td>Microservices</td><td>15</td><td>3.1%</td></tr><tr><td>Not disclosed</td><td>9</td><td>1.9%</td></tr><tr><td>Cloud-native microservices</td><td>9</td><td>1.9%</td></tr><tr><td>Cloud-native SaaS</td><td>9</td><td>1.9%</td></tr><tr><td>Serverless-heavy</td><td>6</td><td>1.2%</td></tr><tr><td>Cloud-native microservices architecture</td><td>6</td><td>1.2%</td></tr><tr><td>Microservices/Serverless</td><td>6</td><td>1.2%</td></tr></tbody></table>
+<h2>Pattern vs Score</h2>
+
+<p>Architecture pattern correlates with tech DD score — more sophisticated patterns tend to score higher.</p>
+<div class="my-6"><img src="pattern_vs_score.png" class="rounded-lg w-full" alt="pattern_vs_score.png"></div>
+<div class="insight">Microservices and API-first patterns score highest because they require more deliberate infrastructure decisions — VPCs, load balancers, service mesh, etc. — which naturally produce better compliance reports.</div>
+<h2>Database Technology Landscape</h2>
+
+<p>PostgreSQL dominates, often via managed services (Supabase, AWS RDS, Neon).</p>
+<div class="my-6"><img src="databases.png" class="rounded-lg w-full" alt="databases.png"></div>
+<div class="flag-green"><strong>For CTOs:</strong> PostgreSQL is the safe default. Redis for caching, DynamoDB for serverless, and Elasticsearch for search are the most common secondary databases.</div>
+
+    <div class="mt-6"><img src="pattern_dist.png" class="rounded-lg w-full" alt="pattern_dist.png"></div>
+<div class="mt-6"><img src="pattern_vs_score.png" class="rounded-lg w-full" alt="pattern_vs_score.png"></div>
+<div class="mt-6"><img src="databases.png" class="rounded-lg w-full" alt="databases.png"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="mt-12 pt-6 border-t border-gray-700 text-gray-500 text-sm">
+    <p>Generated from architecture patterns module · 485 SOC 2 compliance reports · 2026-03-24</p>
+  </div>
+
+</div>
+</body>
+</html>

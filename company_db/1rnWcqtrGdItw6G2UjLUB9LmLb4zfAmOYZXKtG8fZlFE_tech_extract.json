@@ -1,0 +1,246 @@
+{
+  "company": "Ziina Payment LLC",
+  "product": "Ziina",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of August 13, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality", "Privacy"],
+  "hq": "UAE (no physical offices in scope; fully cloud-based)",
+  "signing_authority": "Faisal Toukan, CEO",
+
+  "system_description": {
+    "overview": "Ziina is a UAE-headquartered fintech company building a digital wallet and payments platform in the Middle East. Licensed by the Central Bank of the UAE under its Stored Value Facilities framework, it enables peer-to-peer transfers, merchant payment solutions, and card issuance for individuals and businesses.",
+    "products": {
+      "Open Banking": "Bank account connectivity for secure top-ups and withdrawals via partners (Lean, Aani), integration with user bank accounts, reconciliation and settlement processes",
+      "Card Issuance": "Ziina-branded Visa cards for consumer and business users, end-to-end card lifecycle management including activation, transaction authorisation, fraud monitoring, and integration with issuer processor (Paymentology)",
+      "Card Acceptance": "Acceptance of domestic and international card payments via payment links, merchant APIs, and mobile app; transaction routing and authorisation through acquiring banks and card schemes; chargeback and dispute management"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out method - AWS controls excluded from scope)",
+    "regions": ["Not explicitly named; single region implied from network diagram"],
+    "physical_presence": "None - no physical offices or servers; fully cloud-based",
+    "availability_zones": "Multi-AZ (network diagram shows 3 subnets, 1 per AZ for both public and private)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with access control lists (ACLs). Main VPC has public subnets (3 subnets, 1 per AZ) containing NAT Gateway and Network Load Balancer, and private subnets (3 subnets, 1 per AZ) containing ECS Fargate, Kafka, RDS Database, ElastiCache, OpenSearch, and EKS Nodes. Developer access via Twingate.",
+    "api_gateway": "Network Load Balancer (NLB) shown in architecture; application gateway referenced in firewall controls",
+    "waf": "Firewalls configured on application gateway and production network (CC6.6.1)",
+    "firewalls": "System firewalls configured on the application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via AWS, used to identify and protect against threats in conjunction with security policy network settings",
+    "vpn": "Remote access through bastion host with VPN. Developer access over Twingate (zero-trust network access)",
+    "tls": "TLS using certificates from established third-party certificate authority for all web-based systems",
+    "content_filtering": "Content filtering system routed through proxy server for all systems",
+    "multi_region": false,
+    "topology": "Internet -> Internet Gateway -> Public Subnets (NAT Gateway + NLB) -> Private Subnets (ECS Fargate with Twingate, Kafka, RDS, ElastiCache, OpenSearch, EKS Nodes). Developer access over Twingate to private subnets."
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices (EKS + ECS Fargate visible in architecture diagram)",
+    "languages": ["Not explicitly named"],
+    "frameworks": ["Not explicitly named"],
+    "compute": ["ECS Fargate", "EKS (Kubernetes)"],
+    "api_style": "REST (merchant APIs referenced; specific style not stated)",
+    "environments": "Separate development/test and production environments (CC8.1.4 confirms changes developed and tested in separate environment before implementation)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["RDS"],
+    "caching": ["ElastiCache"],
+    "file_storage": ["Not explicitly mentioned"],
+    "data_warehouse": "None mentioned (OpenSearch present for search/analytics)",
+    "backup_frequency": "Formal backup policy in place; specific frequency not disclosed",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS IAM / Password policy of AWS (passwords controlled through Password policy of AWS with periodic forced changes, expiry, and complexity requirements)",
+    "mfa": "MFA enforced for user accounts with administrative access to the production platform (CC6.1.1, CC6.6). Also required for email access and source code tool access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day of termination",
+    "password_policy": "Controlled through AWS Password policy; includes periodic forced changes, password expiry, complexity requirements. Accounts disabled after limited number of unsuccessful logon attempts. Guest/anonymous logins not allowed. Desktops locked after inactivity."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified) using certificates from established third-party CA",
+    "at_rest": "Cloud provider key management service (CC6.1.5)",
+    "key_management": "AWS KMS (cloud provider key management service used to encrypt data at rest and manage encryption keys; access to production environment keys restricted to authorized individuals)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool with MFA access (specific tool not named, but CC8.1.3 references source code management tool with logging, timestamping, and author attribution)",
+    "ci_cd_tool": "Not explicitly named (formal change management process with internal tool tracking from initiation through deployment and validation)",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to production requires additional approval (CC8.1.2)",
+    "iac": "Infrastructure as code implied (baseline configurations retained within infrastructure as a code, configuration management tool used for implementation and rollback - CC7.1.1)",
+    "container_orchestration": "EKS (Kubernetes) and ECS Fargate",
+    "patch_management": "Regular and event-driven patching; CTO/Management performs monthly patch management reviews; automatic patch management for OS; workstations configured for automatic updates with daily patch compliance scanning",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not explicitly named (monitoring tools referenced for continuous system capacity and performance monitoring - CC5.2.1)",
+    "siem": "Not explicitly named (automated alerts configured for high and critical risk events)",
+    "log_aggregation": "Not explicitly named (logging enabled at application and infrastructure level for administrative activities, logon attempts, data deletions, security configurations, permissions, and roles - CC7.2.1)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; monitoring tool generates alerts when predefined thresholds are met",
+    "metrics": ["CPU utilization", "disk space", "incoming/outgoing network traffic", "packet loss", "system capacity", "performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "AWS", "purpose": "Cloud infrastructure and data center services (subservice organization)", "criticality": "Critical"},
+    {"vendor": "Lean", "purpose": "Open banking partner for bank account connectivity and wallet funding", "criticality": "High"},
+    {"vendor": "Aani", "purpose": "Open banking partner for bank account connectivity and wallet funding", "criticality": "High"},
+    {"vendor": "Paymentology", "purpose": "Issuer processor for Visa card settlement and reporting", "criticality": "Critical"},
+    {"vendor": "Visa", "purpose": "Card scheme for Ziina-branded card issuance", "criticality": "Critical"},
+    {"vendor": "Twingate", "purpose": "Zero-trust network access for developer access to private subnets", "criticality": "High"},
+    {"vendor": "Apache Kafka (MSK)", "purpose": "Event streaming / message broker (visible in architecture diagram)", "criticality": "High"},
+    {"vendor": "OpenSearch", "purpose": "Search and analytics engine (visible in architecture diagram)", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers (continuous automatic scanning, weekly definition updates) and Mac-based workstations/laptops. Email scanning for malicious scripts and viruses.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications (CC7.1.2); also self-assessment scan prior to every release or yearly",
+    "penetration_testing": "Annual external penetration testing by independent third-party; results reviewed by IT management; high/critical findings remediated per incident response plan",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 55,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities: AWS responsible for physical security of data centers; Ziina has no physical offices/servers",
+      "A1.2 - Environmental protections: Ziina operates from co-working space; environmental controls managed by building management / AWS",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC6.1.1: MFA enforced for all admin access to production",
+      "CC8.1.2: Branch protection rules require additional approval for all merges to production",
+      "CC8.1.3: Source code changes logged, time-stamped, attributed; MFA required for source code tool access",
+      "CC7.1.1: Infrastructure as code with baseline configurations and configuration management tool with rollback capability",
+      "CC7.1.2: Monthly automated vulnerability scans with remediation plans for critical/high findings",
+      "CC4.1.1: Annual external penetration testing by independent third-party",
+      "CC7.4.1: BCDR plans tested annually per defined schedule for different loss scenarios",
+      "CC6.2.2: Quarterly user access reviews for all accounts including admin-privileged users",
+      "CC9.2.1: Vendor management with annual SOC report reviews and quarterly risk assessments for critical vendors without SOC"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong AWS foundation with Multi-AZ deployment (3 AZs), VPC with proper public/private subnet segmentation, NLB, NAT Gateway, and IaC for baseline configs. Loses points for single-region deployment, no CDN mentioned, and no specific region named."
+    },
+    "application_architecture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Microservices pattern using both EKS and ECS Fargate demonstrates mature containerized architecture. Kafka for event streaming and OpenSearch for analytics indicate well-decomposed services. Branch protection and code review enforced. Deducted for not naming specific languages, frameworks, or CI/CD tools."
+    },
+    "data_layer": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Multiple data store types (RDS, ElastiCache, OpenSearch, Kafka) show appropriate technology selection. Multi-AZ deployment, data classification policy, retention policy, and per-tenant segregation in place. Backup policy exists. Loses points for not specifying backup frequency, no data warehouse, and no mention of S3 or file storage specifics."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Solid security stack: firewalls, IDS/IPS, MFA on admin and source code, endpoint protection with AV on servers and workstations, monthly vulnerability scans, annual pen testing, content filtering via proxy. Quarterly access reviews and one-business-day termination SLA. No SIEM tool named, no WAF product named, no cybersecurity insurance mentioned."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "IaC with baseline configs and rollback capability, branch protection requiring approval, separate dev/test/prod environments, formal change management with emergency process, container orchestration (EKS + ECS Fargate). Loses points for not naming source control, CI/CD pipeline tool, or specific IaC tool (Terraform, etc.)."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Plans tested annually for different loss scenarios. Multi-AZ failover with multiple servers across AZs. Backup policy in place. Loses points for no disclosed RTO/RPO, no multi-region failover, and backup frequency not specified."
+    },
+    "vendor_diversity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Good vendor diversity: AWS for infra, Lean and Aani for open banking, Paymentology for card processing, Visa for card scheme, Twingate for network access, Kafka and OpenSearch for data. Heavy AWS dependency is the main concentration risk but reasonable for a fintech at this stage."
+    },
+    "overall": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Ziina demonstrates a well-architected cloud-native fintech platform with strong fundamentals: microservices on EKS/Fargate, Multi-AZ, proper network segmentation, MFA, IaC, branch protection, annual pen testing, and tested BCDR plans. The main gaps are the lack of specificity in tool naming (CI/CD, SIEM, source control, APM), single-region deployment for a payments company, and no disclosed RTO/RPO. For a SOC 2 Type 1 (design-only, no operating effectiveness tested), the controls are comprehensive and well-structured."
+    }
+  },
+
+  "red_flags": [
+    "Single-region AWS deployment for a payment processing company handling financial transactions in the UAE - no multi-region failover disclosed",
+    "No RTO/RPO targets disclosed despite being a financial services company where downtime directly impacts money movement",
+    "SOC 2 Type 1 only (point-in-time design assessment) - no operating effectiveness tested; this is their first SOC 2 report",
+    "Processing Integrity and Privacy trust criteria excluded as 'not relevant' despite handling financial transactions and personal data - unusual for a payments company"
+  ],
+
+  "yellow_flags": [
+    "Many specific tools and technologies are unnamed (CI/CD tool, SIEM, APM, source control, IaC tool) - makes it harder to assess actual implementation maturity",
+    "No CDN mentioned for a consumer-facing mobile payments application",
+    "Cybersecurity insurance not mentioned despite being a licensed financial institution",
+    "Vulnerability scans are internal ('done by the internal IT Infrastructure team') rather than using a named third-party scanning tool",
+    "No explicit mention of database encryption specifics (just 'cloud provider key management service')",
+    "Password policy relies on AWS Password policy rather than a dedicated identity provider for internal staff"
+  ],
+
+  "green_flags": [
+    "Licensed by Central Bank of UAE - regulatory oversight provides additional assurance",
+    "Clean unqualified opinion with zero exceptions on all tested controls",
+    "Network architecture diagram shows proper VPC segmentation with public/private subnets across 3 AZs",
+    "Twingate zero-trust network access for developer access instead of traditional VPN-only approach",
+    "Both EKS and ECS Fargate indicate mature container orchestration strategy",
+    "Kafka for event streaming suggests event-driven architecture appropriate for payment processing",
+    "Annual external penetration testing by independent third-party with remediation tracking",
+    "Quarterly user access reviews including admin-privileged accounts",
+    "One business day access revocation SLA upon employee termination",
+    "Formal vendor management with SOC report reviews and quarterly risk assessments for critical vendors",
+    "Branch protection enforced with mandatory approval for production merges",
+    "BCDR plans tested annually with different loss scenarios"
+  ],
+
+  "key_observations": [
+    "Ziina uses Twingate (zero-trust network access) rather than a traditional VPN for developer access to production infrastructure - this is a modern security choice that indicates security-conscious engineering culture",
+    "The architecture includes both EKS and ECS Fargate, suggesting a deliberate dual-compute strategy possibly for different workload types (long-running services on EKS, batch/event processing on Fargate)",
+    "Kafka presence in the private subnet indicates event-driven architecture for transaction processing - important for a payments company needing real-time processing and audit trails",
+    "The report excludes Processing Integrity criteria despite being a payments platform - this may be intentional to limit scope for a first-time SOC 2, or may indicate the payment processing logic is handled by partners (Paymentology, acquiring banks)",
+    "OpenSearch in the architecture suggests centralized logging/search capability that may serve as their SIEM-like solution even though no SIEM is explicitly named",
+    "The org chart shows the Head of Engineering also serves as CISO - dual-hatting these roles is common in startups but creates a potential conflict of interest between development velocity and security oversight",
+    "No mention of any mobile app security specifics (certificate pinning, app hardening, jailbreak detection) despite Ziina being primarily a mobile payments app"
+  ]
+}

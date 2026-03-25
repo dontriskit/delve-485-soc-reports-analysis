@@ -1,0 +1,19 @@
+{
+  "doc_id": "1XsPuGYKDlfSwI84-puDbHH7GPZw25uiF2wOO-O0-fF0",
+  "link": "https://docs.google.com/document/d/1XsPuGYKDlfSwI84-puDbHH7GPZw25uiF2wOO-O0-fF0",
+  "timestamp": "8/20/2025 15:56:53",
+  "display_name": "Afterword",
+  "legal_name": "Afterword Inc",
+  "company_name": "Afterword",
+  "system_description": "Afterword is a technology platform that helps funeral homes from first call to aftercare.",
+  "audit_end_date": "",
+  "observation_period": "May 6, 2025 - August 6, 2025",
+  "infra_provider": "GCP",
+  "website": "https://afterword.com",
+  "contact_email": "security@afterword.com",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1XsPuGYKDlfSwI84-puDbHH7GPZw25uiF2wOO-O0-fF0.pdf",
+  "txt_file": "1XsPuGYKDlfSwI84-puDbHH7GPZw25uiF2wOO-O0-fF0.txt",
+  "has_report": true
+}

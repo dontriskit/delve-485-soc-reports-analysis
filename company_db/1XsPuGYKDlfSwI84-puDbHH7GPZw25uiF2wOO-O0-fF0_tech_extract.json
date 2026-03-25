@@ -1,0 +1,256 @@
+{
+  "company": "Afterword Inc",
+  "product": "Afterword Platform",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "May 6, 2025 - August 6, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "hq": "No physical office — fully remote / cloud-based",
+  "signing_authority": "Zachary Moy, Co-founder & CTO",
+
+  "system_description": {
+    "overview": "Afterword is a comprehensive, cloud-based SaaS platform for the death care profession, founded in 2019. It provides funeral homes, crematoriums, and cemeteries with a unified suite of tools to manage all aspects of their operations from first call to aftercare.",
+    "products": {
+      "Case and Operations Management": "Centralized system for managing funeral home cases including vital statistics, documents, payments, communications, digital whiteboards, task management, automated document/contract generation with e-signature, integrated payment processing, and reporting dashboards with role-based permissions.",
+      "Family Experience and Collaboration": "Online Planner that guides families through arrangement decisions with educational content and merchandise selections. Secure family collaboration tools for remote document sharing and coordination with funeral home staff.",
+      "Cremation and Transfer Management": "Dedicated module for end-to-end chain of custody tracking for decedents with QR/barcode scanning from mobile devices, immutable audit trails with timestamps, user identity, GPS coordinates, and photo capture of decedent personal belongings.",
+      "Grace AI Assistant": "Integrated AI assistant that automates administrative tasks including first call intake, transcribing notes, pre-filling case data, generating obituaries, and managing family follow-up communications."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Google Cloud Platform (GCP) — carve-out method",
+    "regions": ["us-central1"],
+    "physical_presence": "None — no physical offices or servers; fully cloud-based",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": [],
+    "serverless": ["Cloud Run", "Cloud Functions"],
+    "cdn": "Google Cloud Storage (CDN layer for files/assets per architecture diagram)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with access control lists (ACLs). Network segmentation implemented to separate systems and data based on sensitivity and criticality.",
+    "api_gateway": "Auto-scaling Load Balancing (GCP)",
+    "waf": "GCP firewall rules configured on application gateway and production network",
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via GCP in conjunction with security policy network settings",
+    "vpn": "Remote access through bastion host with VPN",
+    "tls": "TLS encryption for all user requests using certificates from established third-party certificate authority",
+    "content_filtering": "Content filtering system routed through proxy server for all internet-connected systems",
+    "multi_region": false,
+    "topology": "Web Clients and Mobile Apps connect via enforced HTTPS to Auto-scaling Load Balancing, which routes to Firebase/App Engine Web Hosting and Firebase Auth User Service. Backend consists of Cloud Run Functions and Cloud Run/Queues for Bulk Jobs. CDN layer serves Files/Assets from Cloud Storage. Database is Firebase. Backups/DWH stored in Cloud Storage/BigQuery. Integration layer supports REST API and pre-built connectors (QuickBooks, Convey, Google Calendar, ASD, WordPress)."
+  },
+
+  "application_architecture": {
+    "pattern": "Serverless-heavy",
+    "languages": ["Not explicitly named — implied JavaScript/TypeScript given Firebase and Cloud Run ecosystem"],
+    "frameworks": ["Firebase", "App Engine"],
+    "compute": ["Cloud Run", "Cloud Functions", "App Engine"],
+    "api_style": "REST",
+    "environments": "Separate development/test and production environments (CC8.1.4 confirms changes developed and tested in separate environment before implementation)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Firebase (Firestore)"],
+    "caching": [],
+    "file_storage": ["Google Cloud Storage"],
+    "data_warehouse": "BigQuery",
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Firebase Auth",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1). Two-factor authentication required for employee email access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day",
+    "password_policy": "Controlled through GCP Password policy including periodic forced changes, password expiry, and complexity requirements. Accounts disabled after limited unsuccessful logon attempts."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service (GCP KMS implied via CC6.1.5)",
+    "key_management": "GCP cloud provider key management service — access to encryption keys restricted to authorized personnel",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool with MFA access (specific tool not named — likely GitHub given ecosystem)",
+    "ci_cd_tool": "Not explicitly named — formal change management lifecycle documented",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to production environment requires additional approval (CC8.1.2). Approval process followed prior to merging to master branch.",
+    "iac": "Infrastructure as code — baseline configurations retained within the infrastructure as code; configuration management tool used for implementation and rollback (CC7.1.1)",
+    "container_orchestration": "Cloud Run (serverless containers)",
+    "patch_management": "Automatic patch management with monthly reviews by CTO. Workstations scanned daily for patch compliance. OS patches managed and applied as they become available.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not explicitly named — continuous monitoring tools referenced for infrastructure performance",
+    "siem": "Not explicitly named — automated alerts for high and critical risk events; logging at application and infrastructure level",
+    "log_aggregation": "GCP logging — logging enabled to monitor administrative activities, logon attempts, data deletions at application and infrastructure level, changes to functions, security configurations, permissions, and roles",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events. Incident management process invoked for confirmed events.",
+    "metrics": ["CPU utilization", "disk space", "incoming/outgoing network traffic", "packet loss", "system capacity", "performance", "availability"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Google Cloud Platform (GCP)", "purpose": "Primary cloud infrastructure and data center services (subservice organization)", "criticality": "Critical"},
+    {"vendor": "Firebase", "purpose": "Authentication, database (Firestore), web hosting, App Engine", "criticality": "Critical"},
+    {"vendor": "BigQuery", "purpose": "Data warehouse and backups/analytics", "criticality": "High"},
+    {"vendor": "QuickBooks", "purpose": "Accounting/financial integration (pre-built connector)", "criticality": "Medium"},
+    {"vendor": "Convey", "purpose": "Integration connector (logistics/communications)", "criticality": "Medium"},
+    {"vendor": "Google Calendar", "purpose": "Scheduling integration", "criticality": "Low"},
+    {"vendor": "ASD", "purpose": "Answering service integration for funeral homes", "criticality": "Medium"},
+    {"vendor": "WordPress", "purpose": "Website/content integration", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers with continuous automatic scanning. Definitions updated weekly for production servers. Also installed on Mac workstations and laptops.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications, with frequency adjusted as required. Performed by internal IT Infrastructure team.",
+    "penetration_testing": "Annual external penetration testing by independent third-party. Results reviewed by IT management. High/critical findings remediated and added to risk register.",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 57,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — Significant changes to people, roles and responsibilities could not be tested because there were no significant changes during the engagement period",
+      "CC3.2.1 — Cybersecurity insurance could not be tested because there were no cyber incidents reported during the engagement period",
+      "CC6.5.2 — Customer data deletion upon termination could not be tested because there were no customer terminations during the engagement period",
+      "CC7.3.1 — Incident response policies could not be tested because there were no security incidents reported during the engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — Physical access to facilities: GCP is responsible for physical security of data centers; not in scope",
+      "A1.2 — Environmental protections: Afterword operates from co-working space managed by building management; environmental controls managed by building management / GCP",
+      "Processing Integrity — Determined not relevant to the system",
+      "Privacy — Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "RGEC (Risk and Governance Executive Committee) meets semiannually to review key internal control measures",
+      "IT Leadership Committee meets weekly to review security activities and processes",
+      "Board of Directors has independent members and reviews security program status regularly",
+      "Formal vendor management with quarterly risk assessments for critical vendors without SOC reports",
+      "Source code changes logged, time-stamped, attributed to author with MFA-protected access to source code tool",
+      "Configuration management tool with rollback capability for all infrastructure changes",
+      "Immutable audit trails with timestamps, user identity, and GPS coordinates for cremation chain of custody"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "GCP with multi-AZ and auto-scaling load balancing is solid. However, single-region (us-central1) with no multi-region failover is a limitation. Serverless compute (Cloud Run, Cloud Functions) is modern. No CDN beyond Cloud Storage mentioned. IaC referenced but specific tooling not named."
+    },
+    "application_architecture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Serverless-heavy architecture on Firebase/Cloud Run is modern and scalable. REST API with pre-built integrations shows maturity. Branch protection and code review enforced. AI assistant (Grace) shows innovation. However, specific languages/frameworks not disclosed, and no mention of automated testing."
+    },
+    "data_layer": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Firebase (Firestore) as primary database with BigQuery as data warehouse is a solid GCP-native stack. Daily backups with multi-AZ. Data classification policy in place. Per-tenant segmentation confirmed. No caching layer mentioned."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong security posture: WAF, IDS/IPS, annual pen testing, monthly vuln scans, MFA, endpoint protection, antivirus, server hardening, cybersecurity insurance. VPN via bastion host. Content filtering through proxy. Log protection enforced. No SIEM tool explicitly named, and specific security tools not identified by vendor."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "IaC with configuration management and rollback capability. Branch protection with merge approval required. Separate environments confirmed. Emergency change process documented. However, CI/CD tool not named, container orchestration is serverless Cloud Run (simpler), and specific automation tooling is undisclosed."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual testing with different loss scenarios. Daily backups with multi-AZ failover. However, no multi-region failover, RTO/RPO not disclosed, and DR plan specifics are thin — only references spinning up across AZs within GCP."
+    },
+    "vendor_diversity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Heavy concentration on Google ecosystem (GCP, Firebase, BigQuery, Cloud Run, Cloud Storage, App Engine). Virtually all critical infrastructure depends on a single vendor. Integration partners (QuickBooks, Convey, ASD, WordPress) add some diversity but are not infrastructure-critical."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Afterword demonstrates a well-governed, security-conscious early-stage company with clean audit results (zero exceptions). The serverless GCP-native architecture is modern and cost-efficient. Key strengths include strong governance (RGEC, ITLC), comprehensive access controls, and innovative product features (AI assistant, immutable chain of custody). Key gaps are single-region deployment, extreme Google vendor concentration, undisclosed RTO/RPO, and lack of named specific tooling for CI/CD, monitoring, and SIEM."
+    }
+  },
+
+  "red_flags": [
+    "Single-region deployment (us-central1 only) — a GCP regional outage would take down the entire platform",
+    "Extreme vendor concentration on Google ecosystem — Firebase, Cloud Run, BigQuery, Cloud Storage, App Engine all depend on GCP",
+    "RTO/RPO not disclosed despite having a BCDR policy",
+    "Very short audit period (3 months: May 6 - August 6, 2025) — this is the minimum for Type 2 and limits confidence in sustained control effectiveness",
+    "Processing Integrity and Privacy trust criteria excluded — notable for a platform handling sensitive death care data including personal belongings photos, GPS coordinates, and family information"
+  ],
+
+  "yellow_flags": [
+    "Specific CI/CD tooling not named — may indicate immature or manual deployment pipeline",
+    "No SIEM tool explicitly identified — monitoring described generically",
+    "No caching layer mentioned — may indicate performance concerns at scale",
+    "Source code management tool not named — only described generically as 'source code management tool'",
+    "No mention of automated testing in the CI/CD pipeline",
+    "Cybersecurity insurance control could not be tested (no incidents) — existence not independently verified via policy review",
+    "No explicit mention of WAF product — only GCP firewall rules described",
+    "Languages and frameworks not disclosed — limits technical assessment"
+  ],
+
+  "green_flags": [
+    "Zero exceptions across all 57 controls tested — clean audit",
+    "Unqualified opinion from auditor",
+    "Strong governance structure: Board with independent members, RGEC meeting semiannually, ITLC meeting weekly",
+    "MFA enforced for production access and email",
+    "Quarterly user access reviews with prompt revocation (within 1 business day)",
+    "Daily backups with multi-AZ configuration and alerts for backup failures",
+    "Annual external penetration testing with remediation tracking",
+    "Monthly vulnerability scans on infrastructure and applications",
+    "Formal vendor management program with SOC report reviews and quarterly risk assessments",
+    "Infrastructure as code with rollback capability",
+    "Branch protection with merge approval required for production deployments",
+    "Data classification policy established and implemented",
+    "Innovative product features: AI assistant, immutable chain of custody with GPS tracking",
+    "Founded by experienced technology leaders from Google, Shopify, and Workday"
+  ],
+
+  "key_observations": [
+    "This is Afterword's first SOC 2 report (3-month observation period suggests initial engagement) — positive that a startup in the death care vertical is pursuing compliance early",
+    "The architecture diagram reveals a Firebase-centric stack that is serverless-heavy — cost-efficient for a startup but creates deep platform lock-in to Google",
+    "Grace AI Assistant is a differentiating feature that automates first call intake, obituary generation, and case data pre-filling — indicates ML/AI engineering capability",
+    "The cremation chain of custody module with QR scanning, GPS coordinates, and immutable audit trails is a sophisticated compliance feature for a niche vertical",
+    "Company has no physical office — fully remote with all data in cloud, which simplifies their security boundary but makes cloud provider dependency more acute",
+    "Integration layer with REST API and pre-built connectors for QuickBooks, Convey, ASD, and WordPress suggests ecosystem play targeting funeral home back-office workflows",
+    "Org chart shows lean structure: CEO, CRO (Business Team), CTO (Technical Team) with Security & SREs, Software & ML Engineers, Designers & UX Research — indicates engineering-first culture for a startup",
+    "The report mentions 'Windows/Network team' for patch management which seems inconsistent with a fully cloud/serverless architecture — may be boilerplate from the audit firm template"
+  ]
+}

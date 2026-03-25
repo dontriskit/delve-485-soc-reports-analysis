@@ -1,0 +1,19 @@
+{
+  "doc_id": "1u-oX_vOFRiGExVZyBiPJB_OC5Vwl5pjFnQBDOsmjC1A",
+  "link": "https://docs.google.com/document/d/1u-oX_vOFRiGExVZyBiPJB_OC5Vwl5pjFnQBDOsmjC1A",
+  "timestamp": "10/1/2025 19:20:30",
+  "display_name": "Flai",
+  "legal_name": "Flai Technologies Inc.",
+  "company_name": "Flai",
+  "system_description": "Voice AI interviewer for frontline workers.",
+  "audit_end_date": "",
+  "observation_period": "June 29, 2025 - September 29, 2025",
+  "infra_provider": "Supabase",
+  "website": "https://useflai.com",
+  "contact_email": "alen@useflai.com",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1u-oX_vOFRiGExVZyBiPJB_OC5Vwl5pjFnQBDOsmjC1A.pdf",
+  "txt_file": "1u-oX_vOFRiGExVZyBiPJB_OC5Vwl5pjFnQBDOsmjC1A.txt",
+  "has_report": true
+}

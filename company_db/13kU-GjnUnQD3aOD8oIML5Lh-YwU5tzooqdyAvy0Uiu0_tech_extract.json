@@ -1,0 +1,233 @@
+{
+  "company": "Willow Care Inc.",
+  "product": "Willow Voice",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "August 14, 2025 - November 14, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "Palo Alto, California",
+  "signing_authority": "Lawrence Liu, Co-Founder, CTO",
+
+  "system_description": {
+    "overview": "Willow Care Inc. (known as Willow Voice) is a YC-backed AI-powered voice-to-text software designed to feel hyper-personalized and effortless across all apps. It learns each user's unique style, tone, and corrections over time. The Mac product integrates seamlessly into workflows including Messages, Slack, Gmail, and Docs.",
+    "products": {
+      "Willow Voice Mac Application": "Secure, high-speed voice-to-text transcription directly on macOS; integrates with productivity and communication apps; local client features capture audio, send dictation requests, and deliver transcriptions.",
+      "Backend Infrastructure & APIs": "Cloud-hosted services that process audio and deliver transcription results to the Mac client; provides secure communication, storage, and data management; includes monitoring, logging, and fault-tolerant design."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Supabase (carve-out — Supabase controls excluded from scope)",
+    "regions": ["Not specified — Supabase-managed"],
+    "physical_presence": "None — no physical offices; all data processed on cloud services",
+    "availability_zones": "Multi-AZ (production servers at Supabase maintain failover capabilities; high availability data centers with multiple availability zones)",
+    "additional_cloud": ["Cloudflare (JWT verification / CDN layer)", "Baseten (audio processing ML inference)", "Groq (LLM transcription formatting)"],
+    "serverless": ["Not mentioned"],
+    "cdn": "Cloudflare (used for JWT verification and traffic routing per network diagram)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "System hosted in Supabase VPC environment; segmented VPCs and ACLs; network segmentation implemented to separate systems and data based on sensitivity and criticality",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services; firewall rules reviewed annually by IT management",
+    "ids_ips": "IDS and IPS employed via Supabase to identify and protect against threats; intrusion detection system used to monitor and detect unauthorized access",
+    "vpn": "Remote access done through a bastion host with a VPN",
+    "tls": "TLS used for all web-based communication; certificates from established third-party certificate authority",
+    "content_filtering": "All systems restricted to internet via content filtering system routed through proxy server",
+    "multi_region": false,
+    "topology": "Client Application sends Active JWT + Audio File -> Cloudflare (JWT Verification) -> Audio File -> Baseten (audio processing) -> Transcription -> Groq (LLM formatting) -> Formatted Transcription -> Client Application -> Updated Word Count -> Supabase (database/storage)"
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid (Mac native client + cloud backend pipeline)",
+    "languages": ["Not disclosed"],
+    "frameworks": ["Not disclosed"],
+    "compute": ["Supabase-hosted servers", "Baseten (ML inference)", "Groq (LLM)"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development/test and production environments; changes tested before deployment to Stage or Production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Supabase (PostgreSQL-based)"],
+    "caching": ["Not mentioned"],
+    "file_storage": ["Supabase storage"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Daily (backups taken daily; multi-availability zones configured)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Supabase (password policy controlled through Supabase Password policy)",
+    "mfa": "MFA enforced for all user accounts with administrative access to production platform; MFA enforced for all remote access; source code tool restricted to authorized users using MFA",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Periodic forced changes, password expiry and complexity requirements enforced via Supabase Password policy; account lockout after limited unsuccessful logon attempts"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used (Supabase KMS)",
+    "key_management": "Cloud provider key management service; access to encryption keys restricted to authorized personnel",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named (source code management tool referenced; MFA-protected)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Code repository branch rules configured to require additional approval for every merge request to move change to production; developers cannot push directly to production",
+    "iac": "Baseline configurations retained within infrastructure as code; configuration management tool used for implementation and rollback",
+    "container_orchestration": "Not mentioned",
+    "patch_management": "Automatic patch management set up by CTO; monthly patch management reviews; workstations configured for automatic updates; daily patch compliance scanning",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named (monitoring tool referenced that generates alerts at predefined thresholds)",
+    "siem": "Not mentioned",
+    "log_aggregation": "Logging enabled for administrative activities, logon attempts, data deletions, changes to functions, security configurations, permissions, and roles; log protection in place",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; tracked until resolved within change-management/ticketing application",
+    "metrics": ["CPU utilization", "disk space", "incoming/outgoing network traffic", "packet loss", "system performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Supabase", "purpose": "Primary cloud infrastructure — database, storage, networking, VPC, physical data center", "criticality": "Critical"},
+    {"vendor": "Cloudflare", "purpose": "JWT verification, CDN/traffic layer between client and backend", "criticality": "Critical"},
+    {"vendor": "Baseten", "purpose": "ML model inference for audio-to-text transcription processing", "criticality": "Critical"},
+    {"vendor": "Groq", "purpose": "LLM for formatting/post-processing transcription output", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers and Mac workstations/laptops; auto-scan on continuous basis; definitions updated weekly on servers, daily via vendor website",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; scan frequency adjusted as needed",
+    "penetration_testing": "Annually by independent third-party; high/critical findings remediated in timely manner",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 57,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — no significant personnel changes made during engagement period",
+      "CC3.2.1 — cybersecurity insurance could not be tested because no cyber incidents reported during period",
+      "CC7.3.1 — incident response could not be tested because no security incidents reported during period",
+      "CC6.5.2 — customer data deletion could not be tested because no customer terminations during period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 — physical access to data centers; Supabase is responsible for physical security",
+      "A1.2 — availability environmental protections; Willow Care does not have office/physical servers; managed by building management/Supabase"
+    ],
+    "notable_controls": [
+      "Quarterly user access reviews for all accounts including admin-privileged accounts",
+      "Daily backup with multi-AZ configuration confirmed by auditor",
+      "Network diagram with Cloudflare JWT verification layer explicitly documented",
+      "BCDR tested annually with specific loss scenarios",
+      "IDS/IPS deployed via Supabase subservice"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Supabase-hosted with multi-AZ failover and Cloudflare CDN; IaC baseline confirmed. Single provider dependency (Supabase) with carve-out limiting audit coverage. No multi-region. Regions not specified."
+    },
+    "application_architecture": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Clear pipeline architecture documented with distinct services (Cloudflare, Baseten, Groq, Supabase). Branch protection and separate environments confirmed. Languages/frameworks not disclosed. No container orchestration mentioned."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Daily backups confirmed with multi-AZ. Supabase KMS for encryption at rest. Data classification and retention policies exist. No caching layer or data warehouse disclosed. Limited specifics on database technology."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Annual third-party pen testing, monthly vuln scans, IDS/IPS, MFA enforced, anti-malware on all endpoints, cybersecurity insurance in place. Firewall rules reviewed annually. No WAF explicitly called out. SIEM not mentioned."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "IaC confirmed, branch protection with required approvals, separate environments, emergency change process. CI/CD tool unnamed. Container orchestration not mentioned. Automated patch management in place."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and annually reviewed and tested. Daily backups with multi-AZ. Continuity via spinning up multiple servers across all AZs in Supabase. No multi-region failover. RTO/RPO not disclosed."
+    },
+    "vendor_diversity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "4 named vendors (Supabase, Cloudflare, Baseten, Groq). Critical single-point dependency on Supabase for infrastructure. Interesting use of specialized AI inference vendors (Baseten + Groq) showing modern ML pipeline thinking."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Clean SOC 2 Type 2 with zero exceptions and a well-documented network architecture for a small YC company. Strong security process hygiene. Main weaknesses: heavy Supabase dependency with carve-out, no named CI/CD tooling, no SIEM, RTO/RPO undisclosed."
+    }
+  },
+
+  "red_flags": [
+    "Heavy single-vendor dependency on Supabase for all infrastructure (compute, DB, storage, networking); controls at Supabase are carved out and not audited",
+    "No CI/CD tool named — cannot assess pipeline security or automation maturity",
+    "No SIEM mentioned — log aggregation appears manual/alerting-only",
+    "RTO and RPO not disclosed"
+  ],
+  "yellow_flags": [
+    "Multi-region failover not implemented — single Supabase region (unspecified)",
+    "No WAF explicitly mentioned (Cloudflare is present but only referenced for JWT verification, not WAF function)",
+    "Source control system not named",
+    "Programming languages and frameworks not disclosed — tech stack opaque",
+    "Trust criteria limited to Security only — Availability and Confidentiality not in scope"
+  ],
+  "green_flags": [
+    "Clean audit with zero exceptions across all 57 tested controls",
+    "Annual third-party penetration testing confirmed by auditor",
+    "Monthly automated vulnerability scanning",
+    "MFA enforced for all admin access and remote access",
+    "Daily backups with multi-AZ confirmed and evidence-tested by auditor",
+    "Quarterly user access reviews including privileged accounts",
+    "Clear network diagram published showing full AI pipeline (Cloudflare -> Baseten -> Groq -> Supabase)",
+    "Cybersecurity insurance maintained",
+    "BCDR annually tested with loss scenario coverage",
+    "Server hardening with IaC baseline configuration management"
+  ],
+  "key_observations": [
+    "Architecture diagram reveals a notable 4-hop AI pipeline: Client -> Cloudflare (JWT auth) -> Baseten (ASR/audio inference) -> Groq (LLM post-processing) -> Supabase (storage/DB). This is an unusually transparent disclosure of the full ML inference stack.",
+    "Groq usage for transcription post-processing is notable — Groq provides low-latency LLM inference, suggesting performance-sensitive real-time pipeline design.",
+    "Despite being a small YC company, the governance structure includes a formal Risk and Governance Executive Committee (RGEC) meeting semiannually — unusually mature for a seed-stage company.",
+    "Supabase itself has a SOC 2 report which Willow Care reviews annually — this is good vendor management practice even with carve-out treatment.",
+    "The report covers Security only (Processing Integrity and Privacy determined not relevant) — appropriate for a dictation product but limits assurance depth for healthcare/sensitive-data buyers.",
+    "No SSO mentioned — customer authentication method not described in detail; relies on Supabase's password policy infrastructure."
+  ]
+}

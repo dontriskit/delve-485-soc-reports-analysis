@@ -1,0 +1,224 @@
+{
+  "company": "Physion Works, Inc.",
+  "product": "Haleum AI",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of December 4, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "San Francisco, CA (no physical servers; all cloud)",
+  "signing_authority": "Adarsh Sairam Ambati, CEO",
+
+  "system_description": {
+    "overview": "Haleum AI is an AI-powered investigation platform for enterprise risk and security teams that automatically collects and analyzes evidence across security, GRC, and enterprise systems to accelerate internal investigations. It uses AI agents and LLMs to correlate behavioral data and enrich context, reducing investigation timelines from days to hours.",
+    "products": {
+      "Insider Risk Analysis": "Automated triage of anomalous employee behavior alerts; behavioral correlation and context enrichment using LLMs; rapid distinction between malicious and benign behavior",
+      "GRC Automation (Audit Automation)": "Accelerated security reviews and control testing; automated evidence gathering across enterprise systems; reduction of audit timelines from weeks to hours",
+      "AI-Powered Evidence Collection": "Intelligent agents that pull relevant data from security stack, GRC tools, and enterprise systems without endpoint agents; delivers enriched natural language reports"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out)",
+    "regions": ["us-east-1"],
+    "physical_presence": "None — no physical servers; all data processed on cloud services",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with ACLs; private subnets (Multi-AZ) for EKS cluster and data layer; public subnets (Multi-AZ) for load balancer and NAT gateway",
+    "api_gateway": "Nginx Ingress Controller (on EKS)",
+    "waf": null,
+    "firewalls": "Firewalls and IDS/IPS on application gateway and production network; firewall rules reviewed annually",
+    "ids_ips": "IDS and IPS via AWS",
+    "vpn": "Bastion host with VPN for remote access",
+    "tls": "TLS (certificates from established third-party CA); TLS termination at load balancer (HTTPS 443); Network Load Balancer",
+    "content_filtering": "Content filtering system via proxy server; all systems restricted to internet through proxy",
+    "multi_region": false,
+    "topology": "End users (internet) -> Route 53 DNS -> Network Load Balancer (HTTPS 443) -> Nginx Ingress Controller -> Frontend pod (demo.haleum.ai) -> Backend API pod (/api/*) -> Data Layer: PostgreSQL RDS (port 5432) + Redis ElastiCache (port 6379); CloudWatch for logs & metrics; Internet Gateway + NAT Gateway (outbound); TLS termination at load balancer; VPC CIDR 10.78.0.0/16"
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices (Kubernetes/EKS pods with separate frontend and backend API)",
+    "languages": [],
+    "frameworks": [],
+    "compute": ["EKS (Porter Managed)", "EC2 (underlying nodes)"],
+    "api_style": "REST (/api/* routing)",
+    "environments": "Separate development/test and production environments; changes tested before deployment to Stage or Production",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["PostgreSQL (RDS)"],
+    "caching": ["Redis (ElastiCache)"],
+    "file_storage": [],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Not specifically stated (backup policy exists)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS (Active Directory, server and database accounts; password policy controlled through AWS)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform; source code tool restricted to authorized users using MFA",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Unique user IDs and passwords required; periodic forced changes; password expiry and complexity requirements; accounts disabled after limited number of unsuccessful logon attempts"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider KMS",
+    "key_management": "AWS KMS (cloud provider key management service)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named (source code management tool mentioned; MFA required for access)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Branch rules configured to require additional approval for every merge request to production; developers cannot directly change production code without additional approval",
+    "iac": "Configuration management tool used (IaC implied; baseline configs retained as code with rollback capability)",
+    "container_orchestration": "EKS (Porter Managed)",
+    "patch_management": "Automatic patch management; CTO performs monthly patch management reviews; workstations receive automatic updates and are scanned daily for patch compliance; critical/security patches applied as they become available",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named",
+    "siem": "Not named",
+    "log_aggregation": "CloudWatch (Logs & Metrics)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events",
+    "metrics": ["CPU utilization", "disk space", "incoming/outgoing network traffic", "packet loss"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Data center / cloud infrastructure (subservice organization - carve-out)", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and malware protection on all production servers (continuous auto-scan; definitions updated weekly); anti-virus on Mac workstations and laptops",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; frequency adjusted as needed; self-assessment scan performed prior to every production release or annually",
+    "penetration_testing": "Annual external penetration testing by independent third party",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to data center facilities; AWS is responsible for physical security",
+      "A1.2 - Environmental protections and backup infrastructure; Haleum AI has no office/physical servers; managed by building management/AWS"
+    ],
+    "notable_controls": [
+      "EKS cluster managed by Porter (third-party Kubernetes management)",
+      "Network diagram shows VPC CIDR 10.78.0.0/16 in us-east-1 with explicit Multi-AZ private and public subnets",
+      "Quarterly user access reviews performed for all accounts including admin",
+      "BCDR plan tested annually with multiple loss scenarios",
+      "Emergency change process with accelerated timeline requiring prior approval",
+      "Vendor management includes quarterly risk assessments for critical vendors lacking SOC reports",
+      "Source code tool access restricted to authorized users using MFA"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 7,
+      "max": 10,
+      "rationale": "AWS with VPC, Multi-AZ, EKS, IaC-as-code configuration management, NAT/load balancer architecture well-documented with network diagram. Single region (us-east-1 only). No WAF named, no CDN. Porter-managed EKS is interesting dependency."
+    },
+    "application_architecture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Microservices on EKS with clear frontend/backend pod separation, separate environments, branch protection and code review enforced. No specific languages or frameworks disclosed. No CI/CD tool named."
+    },
+    "data_layer": {
+      "score": 5,
+      "max": 10,
+      "rationale": "PostgreSQL RDS + Redis ElastiCache; multi-AZ; data classification and retention policies exist; tenant segmentation noted. No data warehouse, no S3 mentioned, backup frequency not quantified."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Annual external pen testing, monthly vuln scanning, IDS/IPS via AWS, endpoint protection, antivirus, firewall rules reviewed annually, MFA on admin/production access, quarterly access reviews. No WAF named; no SIEM named."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "EKS container orchestration, IaC baseline configs, branch protection, separate environments, emergency change process, monthly patch management. CI/CD tool and source control platform not named — reduces transparency."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy exists, reviewed and tested annually, multi-AZ failover with spinning up servers across AZs. No multi-region. RTO/RPO not disclosed."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Only AWS disclosed as subservice organization. Porter mentioned as EKS manager but not formally listed. Very few third-party services disclosed — either very lean stack or limited disclosure."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Well-structured Type 1 report with good network diagram, clear multi-AZ EKS architecture, strong access controls and annual pen testing. Weak points: single region, no CI/CD or source control tool named, no CDN/WAF, very limited vendor disclosure, no RTO/RPO."
+    }
+  },
+
+  "red_flags": [
+    "CI/CD tool and source control platform never named — cannot assess supply chain or pipeline security",
+    "Only AWS disclosed as third-party/subservice — extremely sparse vendor list for an AI platform integrating with 'dozens of enterprise systems'",
+    "No WAF mentioned despite web-facing application serving enterprise security customers",
+    "Single region (us-east-1 only) — no geographic redundancy"
+  ],
+  "yellow_flags": [
+    "Porter (third-party Kubernetes management layer on EKS) not formally listed as subservice org or third-party vendor — unreviewed dependency",
+    "Backup frequency not quantified — policy exists but no stated daily/hourly cadence",
+    "RTO and RPO not disclosed",
+    "No data warehouse or analytics layer mentioned despite being a data-heavy investigation/analytics platform",
+    "No CDN mentioned for a SaaS platform"
+  ],
+  "green_flags": [
+    "Detailed network diagram published showing VPC topology, Multi-AZ subnets, EKS pods, RDS, Redis, Load Balancer — above-average transparency for Type 1",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scanning with remediation tracking",
+    "Quarterly user access reviews including admin accounts",
+    "Access revocation within one business day of termination",
+    "BCDR tested annually with multiple loss scenarios",
+    "MFA enforced for production/admin access and source code tool",
+    "Tenant data segmentation implemented"
+  ],
+  "key_observations": [
+    "The platform claims agentless deployment and integrates with 'dozens of enterprise systems' but none of these integrations appear in the vendor/subservice list — the scope is intentionally narrow",
+    "Porter is used to manage EKS — this is a third-party dependency that could affect cluster operations but is not formally reviewed as a subservice org",
+    "The product itself handles sensitive security data (insider risk, behavioral analytics, GRC evidence) — the limited vendor disclosure is a notable gap for such a data-sensitive product",
+    "VPC CIDR 10.78.0.0/16 in us-east-1; the network diagram is unusually detailed for a Type 1 report which is a positive signal of maturity"
+  ]
+}

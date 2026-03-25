@@ -1,0 +1,249 @@
+{
+  "company": "FullEnrich Corp",
+  "product": "FullEnrich",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "April 25, 2025 - July 25, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Confidentiality"],
+  "hq": "[Company Address] (not disclosed in report)",
+  "signing_authority": "Not disclosed (signature page uses placeholder 'Your Name Here')",
+
+  "system_description": {
+    "overview": "FullEnrich is a B2B contact enrichment platform that aggregates data from over 15 premium vendors to provide accurate and up-to-date email addresses and phone numbers for prospects. The report also describes the platform as an AI-automated compliance platform designed to help companies achieve and maintain compliance with various frameworks such as SOC 2, HIPAA, GDPR, ISO 27001, and PCI DSS.",
+    "products": {
+      "Automated Compliance Management Platform": "End-to-end compliance automation for SOC 2, HIPAA, ISO 27001, GDPR, PCI DSS and more. Integration capabilities with client existing technology stack. Continuous compliance monitoring and gap identification. Automated evidence collection.",
+      "AI-Powered Security and Compliance Features": "Automated code scanning for security vulnerabilities, automated infrastructure scanning for continuous monitoring, access control monitoring for unauthorized access detection, security questionnaire automation.",
+      "Compliance Support Services": "Compliance implementation services including onboarding, setup, and framework implementation. Ongoing compliance support including expert guidance and auditor coordination."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "DigitalOcean (carve-out)",
+    "regions": null,
+    "physical_presence": "None - no physical offices or servers; all data processed on cloud services",
+    "availability_zones": "Multi-AZ",
+    "additional_cloud": ["Render (noted in metadata as infra_provider)"],
+    "serverless": null,
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Segmented VPCs with access control lists (ACLs). Network segmentation implemented to separate systems and data based on sensitivity and criticality.",
+    "api_gateway": "Application gateway with firewalls configured",
+    "waf": null,
+    "firewalls": "System firewalls configured on the application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management. Firewall access restricted to authorized personnel.",
+    "ids_ips": "IDS and IPS via DigitalOcean to identify and protect against threats in conjunction with security policy network settings",
+    "vpn": "VPN for remote access through a bastion host. Network diagram shows VPC VPN Connection with IPSec VPN Tunnel between VPE WEST and VPE EAST.",
+    "tls": "TLS using certificates from established third-party certificate authority for web-based systems",
+    "content_filtering": "Content filtering system routed through proxy server; all systems restricted to internet with content filtering",
+    "multi_region": true,
+    "topology": "Internet -> VPC VPN Connection -> Internet Gateways -> VPE WEST and VPE EAST (multiple availability zones with VPC subnet private) -> Production HA, Dev, Test, D con environments in WEST; Prod HR in EAST -> VPC VPN Gateways -> IPSec VPN Tunnel -> Sub Power, IOS, Controller (main), Controller (Backup). Network diagram is a sample/template that was not replaced with actual architecture."
+  },
+
+  "application_architecture": {
+    "pattern": "Not disclosed",
+    "languages": null,
+    "frameworks": null,
+    "compute": ["DigitalOcean virtual servers"],
+    "api_style": null,
+    "environments": "Separate environments: Production, Stage/Test, Development (CC8.1.4 confirms changes developed and tested in separate dev/test environment before production)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Not specifically named - report mentions databases generically"],
+    "caching": null,
+    "file_storage": null,
+    "data_warehouse": null,
+    "backup_frequency": "Daily",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not specifically named - uses DigitalOcean password policy and unique user IDs",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform. MFA enforced for all remote access. MFA required for source code tool access. MFA required for email access.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within 1 business day upon termination of employment",
+    "password_policy": "Controlled through DigitalOcean password policy; includes periodic forced changes, password expiry, complexity requirements. Accounts disabled after limited number of unsuccessful logon attempts. Guest and anonymous logins not allowed. Desktops locked after inactivity."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service (not specifically named as KMS/AES-256)",
+    "key_management": "Cloud provider key management service; access to encryption keys restricted to authorized personnel only",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (not specifically named - likely Git-based given merge request references)",
+    "ci_cd_tool": "Not specifically named",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to move change to production environment requires additional approval. Developers cannot make changes to application code in production without additional approval.",
+    "iac": "Infrastructure as code - baseline configurations retained within infrastructure as code. Configuration management tool used for implementation and rollback capability.",
+    "container_orchestration": "None mentioned",
+    "patch_management": "Automatic patch management set up by CTO. Monthly patch management reviews via ITLC meetings. Workstations configured for automatic updates and scanned daily for patch compliance. Critical/security patches applied as they become available.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not specifically named - monitoring tool generates alerts when predefined thresholds are met",
+    "siem": "Not specifically named",
+    "log_aggregation": "Not specifically named - logging enabled to monitor administrative activities, logon attempts, data deletions at application and infrastructure level",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events",
+    "metrics": ["CPU utilization", "disk space", "incoming/outgoing network traffic", "packet loss", "system capacity", "availability", "efficiency", "reliability"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "DigitalOcean", "purpose": "Cloud infrastructure / data center services (subservice organization)", "criticality": "Critical"},
+    {"vendor": "Render", "purpose": "Application hosting (noted in metadata as infra_provider)", "criticality": "High"},
+    {"vendor": "15+ premium data vendors", "purpose": "B2B contact enrichment data sources", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers and Mac-based workstations/laptops. Auto-scanning on continuous basis. Virus definitions updated weekly for production servers, daily from vendor for workstations.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications (frequency adjusted as required). Performed by internal IT Infrastructure team.",
+    "penetration_testing": "Annual external penetration testing by independent third-party. Results reviewed by IT management. High/critical findings remediated and added to risk register.",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 56,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 - Significant changes to people, roles and responsibilities could not be tested because there were no significant changes made during the engagement period",
+      "CC3.2.1 - Cybersecurity insurance could not be tested because there were no cyber incidents reported during the engagement period",
+      "CC6.5.2 - Customer data deletion upon termination could not be tested because there were no customer terminations during the engagement period",
+      "CC7.3.1 - Security incident response could not be tested because there were no security incidents reported during the engagement period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities: DigitalOcean responsible for physical security of data center; not in scope",
+      "A1.2 - Environmental protections: Fullenrich does not have office or physical servers; managed by building management / DigitalOcean",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC8.1.2 - Branch protection with merge request approval required for production deployments",
+      "CC8.1.3 - Source code changes logged, time-stamped, attributed; MFA required for source code tool access",
+      "CC7.4.1 - BCDR policy documented and tested annually with different loss scenarios",
+      "CC7.4.2 - Daily backups with multi-AZ configured and alerts for backup failures",
+      "CC6.1.1 - MFA enforced for administrative access to production",
+      "CC4.1.1 - Annual external penetration testing by independent third-party",
+      "CC9.2.1 - Vendor management with annual SOC report reviews and quarterly risk assessments for critical vendors without SOC reports",
+      "CC2.1.2 - Risk and Governance Executive Committee (RGEC) meets semiannually to review internal controls"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 5,
+      "max": 10,
+      "rationale": "DigitalOcean VPC with multi-AZ is solid, and IaC is mentioned. However, the network diagram is a template placeholder (not replaced with actual architecture), no CDN mentioned, Render also in use but not described in report. Regions not specified. Single cloud provider dependency on DigitalOcean."
+    },
+    "application_architecture": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Almost no technical specifics disclosed. No languages, frameworks, or architectural patterns named. Branch protection and code review confirmed but the tooling is unnamed. Separate environments confirmed. The lack of any application-level detail is a significant gap."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Daily backups with multi-AZ confirmed. Data classification and retention policies in place. Per-tenant segregation mentioned (CC6.1.3). However, no specific databases, caching layers, file storage, or data warehouses named. Generic references only."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Good breadth: firewalls, IDS/IPS, antivirus/anti-malware, endpoint protection, MFA, annual pen testing, monthly vulnerability scanning, cybersecurity insurance, RBAC, quarterly access reviews. However, no WAF mentioned, no SIEM named, tools are generic/unnamed throughout. Password policy relies on DigitalOcean defaults."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "IaC with configuration management and rollback capability confirmed. Branch protection with merge request approval. Separate environments for dev/test/prod. Emergency change process documented. However, no CI/CD tool, source control platform, or container orchestration named. Patch management is systematic with monthly reviews."
+    },
+    "bcdr_readiness": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual testing with multiple loss scenarios. Daily backups with multi-AZ. Failover across availability zones in DigitalOcean. However, no RTO/RPO disclosed, no multi-region failover confirmed, and disaster recovery section is minimal (Section 5 is only 1 page)."
+    },
+    "vendor_diversity": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Heavy single-vendor dependency on DigitalOcean for all core infrastructure. Render mentioned in metadata but not in the report body. 15+ data enrichment vendors provide diversity on the data side, but infrastructure is concentrated. Vendor management program exists with annual SOC reviews."
+    },
+    "overall": {
+      "score": 4,
+      "max": 10,
+      "rationale": "This report is heavily template-based with numerous yellow-highlighted instructional placeholders left in the final document (e.g., 'Instructions: Modify this text...', sample org chart, sample network diagram). The system description section describes a compliance automation platform rather than the actual B2B contact enrichment product. Very few specific technologies, tools, or vendors are named beyond DigitalOcean. The controls framework is structurally sound with 0 exceptions, but the lack of technical specificity raises questions about the depth of the audit and the maturity of the organization."
+    }
+  },
+
+  "red_flags": [
+    "Report contains multiple unmodified template placeholders with yellow-highlighted instructions (e.g., 'Instructions: Modify this text to provide a brief background and overview of your company and then delete these instructions')",
+    "Network diagram is explicitly labeled 'Sample network diagram - Please replace this with your actual network diagram' and was never replaced",
+    "Organization chart is labeled 'Sample organization chart' with instructions to replace it",
+    "Signing authority page uses placeholder 'Your Name Here' with no actual name or designation filled in",
+    "System description describes a compliance automation platform (AI code scanning, compliance monitoring, questionnaire automation) which is inconsistent with the stated product (B2B contact enrichment platform)",
+    "Company address listed as '[Company Address]' - a placeholder that was never filled in",
+    "The report scope mentions DigitalOcean as subservice organization but the company metadata lists Render as the infrastructure provider - this inconsistency is unexplained"
+  ],
+
+  "yellow_flags": [
+    "No specific technology stack disclosed (no languages, frameworks, databases, monitoring tools, CI/CD tools, or source control platform named)",
+    "Processing Integrity and Privacy trust criteria excluded as 'not relevant' for a B2B contact data enrichment platform - this is questionable given the nature of the data handled",
+    "3-month audit period (April 25 - July 25, 2025) is relatively short for a Type 2 report",
+    "4 controls could not be operationally tested due to no events during the engagement period (no incidents, no terminations, no significant personnel changes, no customer terminations)",
+    "Cybersecurity insurance control could not be tested because no incidents occurred - this tests the wrong thing (should verify policy existence, not claims)",
+    "Very short Section 5 (Other Information) - only 1 page covering DR at a high level",
+    "No specific cloud regions or availability zones identified despite multi-AZ claims",
+    "Audit firm (Accorp Partners) is not a widely recognized compliance auditor"
+  ],
+
+  "green_flags": [
+    "Unqualified opinion with zero exceptions across all tested controls",
+    "MFA enforced across multiple vectors: production admin, remote access, source code, email",
+    "Branch protection with merge request approval required for production changes",
+    "Annual external penetration testing by independent third-party",
+    "Monthly automated vulnerability scanning",
+    "Quarterly user access reviews for all accounts including administrative privileges",
+    "Access revocation within 1 business day of termination",
+    "Daily backups with multi-AZ configuration and alerting",
+    "Annual BCDR testing with multiple loss scenarios",
+    "Vendor management program with SOC report reviews and quarterly risk assessments",
+    "Data classification policy established and documented",
+    "Risk and Governance Executive Committee (RGEC) providing board-level oversight",
+    "IT Leadership Committee meeting weekly on security operations"
+  ],
+
+  "key_observations": [
+    "This report appears to have been generated using a compliance automation tool's template (possibly the company's own product or a third-party tool) and was not properly customized before finalization. The presence of instructional placeholders, sample diagrams, and generic role descriptions throughout the final audited document is unusual and suggests either a rushed audit or inadequate review.",
+    "There is a fundamental inconsistency between the company's stated purpose (B2B contact enrichment aggregating 15+ data vendors) and the system description in the report (AI-automated compliance platform with code scanning, infrastructure monitoring, and questionnaire automation). This raises questions about whether the report was templated from another company's audit.",
+    "The metadata lists Render as the infrastructure provider, but the report exclusively discusses DigitalOcean. This suggests either the infrastructure has migrated, or there is a disconnect between what was audited and what is actually in production.",
+    "Despite being described as having 15+ data vendor integrations (a core business function), no data enrichment vendors are named anywhere in the report, and no controls around data vendor integration, data quality, or API management are described.",
+    "The audit firm license number (PAC-FIRM-LIC-47383) and SSAE 21 reference suggest a legitimate framework, but the overall quality of the deliverable is below the standard expected for a SOC 2 Type 2 report."
+  ]
+}

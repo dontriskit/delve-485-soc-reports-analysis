@@ -1,0 +1,219 @@
+{
+  "company": "Knowtex Inc.",
+  "product": "Knowtex Generative AI Platform",
+  "report_type": "ISO 27001",
+  "audit_period": "8/13/2025 (Certification date; Stage-1: 2 mandays, Stage-2: 3 mandays)",
+  "auditor": "Gradient Certification Inc.",
+  "opinion": "Certified (ISO 27001 certification granted)",
+  "trust_criteria": ["Information Security Management System (ISMS)"],
+  "hq": "220 Montgomery St, Suite 1120 San Francisco, CA 94104",
+  "signing_authority": "Jocelyn Kang, (Title not disclosed)",
+
+  "system_description": {
+    "overview": "Knowtex Inc. operates a Generative AI platform that parses doctor-patient conversations into actionable tasks and clinical insights. The platform securely processes sensitive healthcare information to generate structured outputs that support clinical decision-making and operational efficiency.",
+    "products": {
+      "Knowtex AI Platform": "Generative AI technology that parses doctor-patient conversations into actionable tasks and clinical insights, with proprietary AI technology, data processing infrastructure, and analytics tools for healthcare"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Not disclosed in report",
+    "regions": [],
+    "physical_presence": "220 Montgomery St, Suite 1120 San Francisco, CA 94104",
+    "availability_zones": "Not disclosed",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Not disclosed"
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": "Not disclosed. No diagram described in report.",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Not disclosed",
+    "ids_ips": "Not disclosed",
+    "vpn": "Not disclosed",
+    "tls": "Not disclosed",
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. Report is a certification agreement form, not a full audit report with architectural details."
+  },
+
+  "application_architecture": {
+    "pattern": "Not disclosed",
+    "languages": [],
+    "frameworks": [],
+    "compute": [],
+    "api_style": "Not disclosed",
+    "environments": "Not disclosed",
+    "branch_protection": null,
+    "code_review_required": null
+  },
+
+  "data_storage": {
+    "databases": [],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Not disclosed",
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not disclosed",
+    "mfa": "Not disclosed",
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": "Not disclosed",
+    "password_policy": "Not disclosed"
+  },
+
+  "encryption": {
+    "in_transit": "Not disclosed",
+    "at_rest": "Not disclosed",
+    "key_management": "Not disclosed",
+    "end_to_end": null
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not disclosed",
+    "ci_cd_tool": "Not disclosed",
+    "branch_protection": "Not disclosed",
+    "iac": "Not disclosed",
+    "container_orchestration": "Not disclosed",
+    "patch_management": "Not disclosed",
+    "separate_environments": null,
+    "emergency_change_process": null
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not disclosed",
+    "siem": "Not disclosed",
+    "log_aggregation": "Not disclosed",
+    "alerting": "Not disclosed",
+    "metrics": [],
+    "log_protection": null,
+    "ids": null
+  },
+
+  "third_party_services": [
+    {"vendor": "Gradient Certification Inc.", "purpose": "ISO 27001 certification body / auditor", "criticality": "Medium"},
+    {"vendor": "United Accreditation Foundation Inc. (UAF)", "purpose": "Accreditation body for the certification", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": "Not disclosed",
+    "endpoint_protection": null,
+    "vulnerability_scanning": "Not disclosed",
+    "penetration_testing": "Not disclosed",
+    "server_hardening": null,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": [
+      "Report is a Certification Agreement Form, not a detailed audit report. No individual controls are listed or tested in this document.",
+      "Statement of Applicability (SoA) Version 1.0 is referenced but not included in this document.",
+      "Scope covers: IT Infrastructure Management, Human Resources, Physical Security, Legal & Compliance, Administrative Operations.",
+      "Audit mandays: Stage-1 (2), Stage-2/Recertification (3), Surveillance-1 (2), Surveillance-2 (2), Total cycle: 9 mandays."
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No infrastructure details disclosed. ISO 27001 certification agreement does not contain technical architecture information. Cannot assess cloud, regions, AZs, or IaC."
+    },
+    "application_architecture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No application architecture details disclosed. We know it is a Generative AI platform processing healthcare data, but no languages, frameworks, compute, or patterns are described."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No data layer specifics disclosed. Report mentions 'sensitive healthcare information' and 'data processing infrastructure' but provides no details on databases, backups, caching, or storage."
+    },
+    "security_posture": {
+      "score": 3,
+      "max": 10,
+      "rationale": "ISO 27001 certification itself indicates a baseline security management system is in place (ISMS). However, no specific security tools, controls, or practices are detailed in this certification agreement. The existence of the certification provides some assurance."
+    },
+    "devops_maturity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No DevOps practices, CI/CD pipelines, source control, or IaC details are disclosed in this document."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No BCDR details disclosed. No RTO/RPO, backup strategy, or failover architecture mentioned."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "Only the certification body (Gradient Certification Inc.) and accreditation body (UAF) are mentioned. No technology vendors or service providers are identified."
+    },
+    "overall": {
+      "score": 2,
+      "max": 10,
+      "rationale": "This document is an ISO 27001 Certification Agreement Form, not a detailed audit report. It confirms that Knowtex Inc. achieved ISO 27001 certification but provides almost no technical detail about infrastructure, application architecture, security tools, or operational practices. The certification itself is a positive signal, but this document alone is insufficient for meaningful tech due diligence."
+    }
+  },
+
+  "red_flags": [
+    "Document is only a Certification Agreement Form (7 pages), not a full ISO 27001 audit report or Statement of Applicability -- extremely limited technical detail available.",
+    "No infrastructure, application architecture, or security tooling details are disclosed anywhere in the document.",
+    "Auditor is Gradient Certification Inc. -- a less well-known certification body compared to Big 4 or established players (e.g., BSI, TUV, Schellman). Warrants further verification of auditor credibility.",
+    "Only 9 total audit mandays for the full certification cycle is very low, suggesting a small-scope or lightweight audit.",
+    "No Statement of Applicability (SoA) is included or attached, despite being referenced as Version 1.0.",
+    "Processes sensitive healthcare information (PHI/clinical data) but no encryption, access control, or data protection specifics are provided."
+  ],
+
+  "yellow_flags": [
+    "ISO 27001 scope references 'Generative AI platform' processing 'sensitive healthcare information' -- should verify HIPAA compliance separately as ISO 27001 alone does not cover US healthcare regulatory requirements.",
+    "The report header shows badges for SOC 2, HIPAA, GDPR, and ISO 27001 but this document only covers ISO 27001 certification -- other certifications should be requested and verified separately.",
+    "Single physical location (San Francisco) mentioned with no indication of redundancy or disaster recovery sites.",
+    "UAF accreditation endorsement letter is unusual as a component of a compliance report package."
+  ],
+
+  "green_flags": [
+    "Company has achieved ISO 27001 certification, indicating a formal ISMS is established and maintained.",
+    "Scope explicitly includes healthcare AI platform and sensitive healthcare data processing, showing awareness of the data sensitivity.",
+    "Scope covers critical support functions: IT Infrastructure Management, HR, Physical Security, Legal & Compliance, and Administrative Operations -- suggesting a comprehensive ISMS scope.",
+    "Surveillance audit schedule is defined (annual), indicating ongoing compliance commitment.",
+    "Three-year recertification cycle is in place per standard ISO 27001 requirements."
+  ],
+
+  "key_observations": [
+    "This is NOT a full ISO 27001 audit report -- it is the Certification Agreement Form between Knowtex Inc. and Gradient Certification Inc. A full audit report, certificate, and Statement of Applicability should be requested for meaningful tech due diligence.",
+    "Knowtex operates in the healthcare AI space (parsing doctor-patient conversations), which carries significant regulatory and data sensitivity implications beyond what ISO 27001 alone covers.",
+    "The Delve platform header suggests the company may also hold SOC 2, HIPAA, and GDPR certifications, but these are not evidenced in this document.",
+    "Total audit effort of 9 mandays across the certification cycle is minimal, potentially indicating either a small organization or a narrow audit scope.",
+    "To complete tech due diligence, the following additional documents are needed: (1) ISO 27001 Certificate, (2) Statement of Applicability (SoA v1.0), (3) Full Stage-2 audit report, (4) SOC 2 report if available, (5) HIPAA compliance documentation."
+  ]
+}

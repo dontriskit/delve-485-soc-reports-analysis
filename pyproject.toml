@@ -1,0 +1,14 @@
+[project]
+name = "delve"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "aiohttp>=3.13.3",
+    "boto3>=1.42.74",
+    "diagrams>=0.25.1",
+    "matplotlib>=3.10.8",
+    "pandas>=3.0.1",
+    "seaborn>=0.13.2",
+    "tqdm>=4.67.3",
+]

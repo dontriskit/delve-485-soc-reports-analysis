@@ -1,0 +1,19 @@
+{
+  "doc_id": "1QiYAbXxl4UMnxCJ6Dtg3IqZBBHKqBWSSOCQzRS0yv94",
+  "link": "https://docs.google.com/document/d/1QiYAbXxl4UMnxCJ6Dtg3IqZBBHKqBWSSOCQzRS0yv94",
+  "timestamp": "10/23/2025 20:49:06",
+  "display_name": "Prime Intellect",
+  "legal_name": "Prime Intellect Inc.",
+  "company_name": "Prime Intellect",
+  "system_description": "Prime Intellect is building the stack for open superintelligence - from frontier agentic models to the infra that empowers any start-up, researcher or lab to train, fine-tune and deploy superintelligence.",
+  "audit_end_date": "October 15, 2025",
+  "observation_period": "",
+  "infra_provider": "GCP",
+  "website": "https://primeintellect.ai",
+  "contact_email": "security@primeintellect.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1QiYAbXxl4UMnxCJ6Dtg3IqZBBHKqBWSSOCQzRS0yv94.pdf",
+  "txt_file": "1QiYAbXxl4UMnxCJ6Dtg3IqZBBHKqBWSSOCQzRS0yv94.txt",
+  "has_report": true
+}

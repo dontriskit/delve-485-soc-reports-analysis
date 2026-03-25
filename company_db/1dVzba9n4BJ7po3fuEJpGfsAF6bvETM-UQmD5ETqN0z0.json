@@ -1,0 +1,19 @@
+{
+  "doc_id": "1dVzba9n4BJ7po3fuEJpGfsAF6bvETM-UQmD5ETqN0z0",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1dVzba9n4BJ7po3fuEJpGfsAF6bvETM-UQmD5ETqN0z0",
+  "timestamp": "5/13/2025 21:22:41",
+  "display_name": "Judgment Labs",
+  "legal_name": "Judgement, Inc",
+  "company_name": "Judgment Labs",
+  "system_description": "Judgment Labs\u2019 post-building platform enables teams to rigorously validate and continuously optimize agent systems",
+  "audit_end_date": "April 15, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://www.judgmentlabs.ai/",
+  "contact_email": "joseph@judgmentlabs.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1dVzba9n4BJ7po3fuEJpGfsAF6bvETM-UQmD5ETqN0z0.pdf",
+  "txt_file": "1dVzba9n4BJ7po3fuEJpGfsAF6bvETM-UQmD5ETqN0z0.txt",
+  "has_report": true
+}

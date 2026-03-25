@@ -1,0 +1,253 @@
+{
+  "company": "Lucidic AI, Inc.",
+  "product": "Lucidic AI Observability Platform",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of July 30, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "660 Live Oak Ave, Menlo Park, CA",
+  "signing_authority": "Abhinav Sinha, CEO",
+
+  "system_description": {
+    "overview": "Lucidic AI is an AI observability and debugging platform that helps teams build, test, and deploy reliable AI agents. The platform captures detailed traces of agent behavior across complex workflows, enabling developers to identify failure points, simulate edge cases, and understand model decision-making through structured evaluation tools. It supports scalable agent testing, root-cause analysis, and explainability.",
+    "products": {
+      "Lucidic AI Observability Platform": "End-to-end tracing and analysis of AI agent behavior including agent output logging, input capture, and decision tracking. Provides native SOC 2-aligned observability, seamless integration via SDKs and REST APIs, continuous monitoring for deviations and anomalous behavior, and automated evidence capture for agent decisions.",
+      "AI-Powered Evaluation and Testing Tools": "Scalable agent simulation engine to test agents across varied tasks, edge cases, and model versions. Includes customizable evaluation rubrics, pass/fail classification, and monitoring/alerting for access anomalies and unexpected model behavior.",
+      "Implementation and Integration Support": "Full onboarding services including platform setup, agent instrumentation, and configuration of evaluation pipelines. Ongoing agent compliance and performance support including coordination with external auditors."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out — AWS controls excluded from scope; Lucidic AI application/service controls in scope)",
+    "regions": ["us-west-2"],
+    "physical_presence": "No physical servers or offices in scope. HQ at 660 Live Oak Ave, Menlo Park. All data processed on cloud services.",
+    "availability_zones": "Multi-AZ (public and private subnets each labeled Multi-AZ in network diagram; DR plan references spinning up servers across all availability zones)",
+    "additional_cloud": [],
+    "serverless": ["AWS Lambda (VPC-attached; Lambda Functions shown in network diagram with LLM Tasks, DeepGraph, ManifestGraph, SampleProgram, DeepDebug — all 'State Stored')"],
+    "cdn": "CloudFront CDN (shown in network diagram: CloudFront CDN — Frontend/Website/Static)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "VPC (10.0.0.0/16) with public subnets (Multi-AZ) containing Application Load Balancer, NAT Gateway, and Bastion Host (SSH Access), and private subnets (Multi-AZ) containing ECS Fargate Cluster, Aurora Serverless v2, ElastiCache Redis, Lambda Functions (VPC-attached), and ECR. Segmented VPCs and ACLs enforced.",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS via AWS to identify and protect against threats in conjunction with security policy network settings. Firewalls and intrusion detection tools configured to prevent unauthorized access and detect external security threats.",
+    "vpn": "Remote access via bastion host with VPN. Bastion Host (SSH Access) shown in network diagram in public subnet.",
+    "tls": "TLS using certificates from an established third-party certificate authority (ACM — SSL Certificates shown in network diagram). All user requests encrypted via TLS.",
+    "content_filtering": "All systems restricted to internet via content filtering system routed through proxy server.",
+    "multi_region": false,
+    "topology": "Internet/Users -> CloudFront CDN -> Route 53 (DNS) -> ACM (SSL) -> Application Load Balancer (public subnet, Multi-AZ) -> [ECS Fargate Cluster (Django API, Redis, x4 vCPU / 8GB RAM, Auto-scaling >10 nodes, Kubernetes/Python 3.11) | Aurora Serverless v2 (Dev=0-16 ACUs, Prod=2-16 ACUs, Multi-AZ Encrypted) | ElastiCache Redis (Single Node, Cluster Disabled, TLS Encrypted) | Lambda Functions (VPC-attached)] <- NAT Gateway (Production). AWS Managed Services: S3 Buckets (Django API, Frontend files, Media/Screenshots), SQS Queues (Task Queues, DLQ Configured, 30min visibility timeout), Secrets Manager (API Keys, Secret Manager, AWS Encrypted), CloudWatch (Log & Metrics, Alerting, Auto-scaling Reports), IAM (Task Roles, Custom Rules, Service Policies). External APIs: OpenAI/Anthropic, Google Gemini, Stripe Payments, Posthog Analytics. IaC via CDK v2 (Pulumi). Environments: Production and Development."
+  },
+
+  "application_architecture": {
+    "pattern": "Microservices / Serverless-heavy (ECS Fargate + Lambda + Aurora Serverless v2)",
+    "languages": ["Python (Python 3.11 noted on ECS Fargate)"],
+    "frameworks": ["Django (Django API on ECS Fargate)"],
+    "compute": ["ECS Fargate (x4 vCPU / 8GB RAM, auto-scaling >10 nodes, Kubernetes noted)", "AWS Lambda (VPC-attached, multiple function types: LLM Tasks, DeepGraph, ManifestGraph, SampleProgram, DeepDebug)", "ECR (Container Registry — Docker Images)"],
+    "api_style": "REST (REST APIs mentioned; SDK and API access for embedding observability)",
+    "environments": "Production and Development environments shown in network diagram. IaC (CDK v2/TypeScript noted as Infrastructure as Code in diagram). Separate dev and production environments confirmed (CC8.1.4: changes developed and tested in separate dev/test environment before implementation).",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Aurora Serverless v2 (Dev=0-16 ACUs, Prod=2-16 ACUs, Multi-AZ, Encrypted — shown in network diagram)"],
+    "caching": ["ElastiCache Redis (Single Node, Cluster Disabled, TLS Encrypted — shown in network diagram)"],
+    "file_storage": ["S3 Buckets (Django API, Frontend files, Media/Screenshots)"],
+    "data_warehouse": "Posthog Analytics (listed as External API in network diagram — likely used for product analytics/data)",
+    "backup_frequency": "Formal backup policy exists; specific frequency not disclosed beyond 'suitable backups taken and maintained'",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS IAM (Task Roles, Custom Rules, Service Policies shown in network diagram; passwords controlled through AWS Password Policy)",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1). Source code management tool access restricted to authorized users using MFA (CC8.1.3). Email requires 2FA for employees.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination of employment",
+    "password_policy": "AWS Password Policy with periodic forced changes, password expiry, and complexity requirements. Account lockout after limited failed logon attempts requiring IT Support reset. Guest/anonymous logins not allowed."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified; certificates from third-party CA via ACM)",
+    "at_rest": "AWS KMS encryption (Aurora Serverless v2 Multi-AZ Encrypted, ElastiCache TLS Encrypted, Secrets Manager AWS Encrypted shown in diagram; CC6.1.5: cloud provider key management service used to encrypt data at rest)",
+    "key_management": "AWS KMS / Secrets Manager (API Keys stored in Secrets Manager, AWS Encrypted)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named explicitly (described as 'source code management tool' with MFA access)",
+    "ci_cd_tool": "Not named explicitly (described as internal tool for tracking changes from initiation through deployment and validation)",
+    "branch_protection": "Code repository branch rules configured to ensure every merge request to move change to production requires additional approval. Developers cannot make changes to production without additional approval (CC8.1.2).",
+    "iac": "CDK v2 (TypeScript) shown as 'Infrastructure as Code' in network diagram with Production and Development environments labeled",
+    "container_orchestration": "ECS Fargate (Kubernetes also noted on ECS Fargate node in diagram; ECR for container images)",
+    "patch_management": "Automatic patch management set up by CTO. Monthly patch management reviews. Workstations configured for automatic updates and scanned for patch compliance daily. OS patches applied as available.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "CloudWatch (Log & Metrics, Alerting, Auto-scaling Reports — shown in network diagram)",
+    "siem": "Not named; logging and automated alerts described without a specific SIEM product",
+    "log_aggregation": "CloudWatch (application and infrastructure level logging enabled)",
+    "alerting": "CloudWatch Alerting; automated alerts configured to notify IT management of high and critical risk events",
+    "metrics": ["disk space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "system capacity and performance", "administrative activities", "logon attempts", "data deletions", "security configurations", "permissions and roles changes"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Primary cloud infrastructure and data center services (subservice organization, carve-out)", "criticality": "Critical"},
+    {"vendor": "OpenAI / Anthropic", "purpose": "External LLM APIs (shown in network diagram as External APIs)", "criticality": "Critical"},
+    {"vendor": "Google Gemini", "purpose": "External LLM API (shown in network diagram as External APIs)", "criticality": "High"},
+    {"vendor": "Stripe", "purpose": "Payment processing (Stripe Payments shown in network diagram as External API)", "criticality": "High"},
+    {"vendor": "Posthog", "purpose": "Product analytics (Posthog Analytics shown in network diagram as External API)", "criticality": "Medium"},
+    {"vendor": "ACM (AWS Certificate Manager)", "purpose": "SSL/TLS certificate management", "criticality": "High"},
+    {"vendor": "Third-party certificate authority", "purpose": "TLS certificate issuance (referenced in system description)", "criticality": "Medium"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers (continuous scan, weekly definition updates) and all Mac workstations/laptops. Endpoint Security Solution with automatic scanning and log review by IT Head.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications. Internal IT Infrastructure team performs scans per audit calendar. Self-assessment scan before every production release.",
+    "penetration_testing": "Annual external penetration testing by independent third party. High/critical findings remediated in timely manner and tracked via incident management process.",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 29,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — Physical access to data center facilities: AWS is responsible for physical security; excluded as Lucidic AI has no physical servers",
+      "A1.2 — Environmental protections and recovery infrastructure: Lucidic AI does not have an office; all environmental controls managed by building management / AWS",
+      "Processing Integrity trust services category — determined not relevant to the system",
+      "Privacy trust services category — determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC8.1.3: Source code management tool access requires MFA — notable for a company this size",
+      "CC6.2.2: Quarterly user access reviews for all accounts including those with administrative privileges",
+      "CC6.1.4: Access revocation within one business day of termination",
+      "CC4.1.1: Annual external penetration testing by independent third party",
+      "CC7.1.2: Monthly automated vulnerability scans on infrastructure and applications",
+      "CC7.1.1: Baseline configurations retained as code (IaC) with rollback capability",
+      "CC8.1.2: Code repository branch protection — merge to production requires additional approval",
+      "CC7.4.1: BCDR tested annually across different loss scenarios",
+      "Lambda functions (LLM Tasks, DeepGraph, ManifestGraph, SampleProgram, DeepDebug) — indicates meaningful serverless inference pipeline for AI workloads",
+      "ECS Fargate cluster labeled with 'Kubernetes' suggesting orchestration layer on top of Fargate"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Multi-AZ VPC on AWS us-west-2 with ECS Fargate, Aurora Serverless v2, ElastiCache Redis, Lambda, S3, SQS, CloudFront CDN, and IaC (CDK v2). Solid architecture for an early-stage AI company. Single region is the primary limitation — no multi-region failover disclosed. DR plan covers multi-AZ spinning but not cross-region."
+    },
+    "application_architecture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Django/Python on ECS Fargate with Lambda for AI inference workloads, ECR for containers, branch protection, and separate environments. REST API and SDK model is appropriate. Kubernetes referenced on Fargate. Weakness: languages/frameworks are somewhat limited in disclosure; no mention of automated testing framework or SAST/DAST tooling."
+    },
+    "data_layer": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Aurora Serverless v2 (Multi-AZ, encrypted), ElastiCache Redis (TLS), S3 for file/object storage, SQS for queuing, Secrets Manager for credentials. Data classification policy and retention policy exist. Per-tenant segmentation confirmed (CC6.1.3). Backup policy exists but frequency not disclosed (no explicit 'daily' confirmed). No dedicated data warehouse beyond Posthog analytics."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Annual external pen test, monthly vuln scans, MFA on production admin and SCM, IDS/IPS via AWS, firewalls with annual rule review, antivirus on servers and endpoints, KMS encryption at rest and TLS in transit, quarterly access reviews, 1-business-day access revocation, content filtering via proxy. Solid for a seed/Series A company. Gaps: no WAF explicitly mentioned, no SIEM product named, no cybersecurity insurance confirmed."
+    },
+    "devops_maturity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "IaC via CDK v2, ECS Fargate + ECR containerization, branch protection with required approvals, separate dev/prod environments, emergency change process, monthly patch management with auto-updates. Source control tool with MFA. Gaps: CI/CD tool not named, no SAST/DAST mentioned, no deployment frequency metric."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented, reviewed, and tested annually with multiple loss scenarios. Multi-AZ failover capability via spinning up servers across all AZs. Backup and restore policy exists. Gaps: RTO/RPO not disclosed, no multi-region failover, backup frequency not explicitly stated as daily, DR plan described as 'informational only' in Section 5 (outside audited controls scope)."
+    },
+    "vendor_diversity": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Clear vendor diversity visible from network diagram: AWS (infra), OpenAI/Anthropic/Google Gemini (LLM APIs), Stripe (payments), Posthog (analytics). Vendor management policy with annual SOC report reviews and quarterly risk assessments for non-SOC vendors. Risk: heavy dependency on multiple LLM providers simultaneously is novel and introduces model-provider concentration risk if any single API changes pricing/availability. AWS is a single critical dependency for all infrastructure."
+    },
+    "overall": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Lucidic AI presents a surprisingly mature infrastructure for a very small company (CEO, CTO, CPO, and one Software Engineer visible in org chart — 4 people). The AWS architecture is well-designed with VPC segmentation, multi-AZ, IaC, containers, serverless AI inference, CDN, and multiple managed services. Security controls are substantive: annual pen test, monthly vuln scans, quarterly access reviews, MFA on admin/SCM access, IDS/IPS, antivirus. The network diagram is one of the most detailed seen for a company this size. Key risks are: (1) extremely small team — 4 people managing all of this; (2) single AWS region; (3) no RTO/RPO disclosed; (4) heavy reliance on external LLM APIs (OpenAI, Anthropic, Gemini) which are outside their control; (5) no WAF explicitly deployed."
+    }
+  },
+
+  "red_flags": [
+    "Extremely small team (org chart shows 4 people: CEO, CTO, CPO, 1 Software Engineer) — key person risk is very high; all security/infra controls depend on a 4-person org",
+    "Single AWS region (us-west-2) — no multi-region failover for disaster recovery",
+    "RTO and RPO not disclosed in the report",
+    "No WAF (Web Application Firewall) explicitly mentioned despite internet-facing application with CloudFront",
+    "Processing Integrity and Privacy trust service criteria explicitly excluded — relevant for a platform handling AI agent inputs/outputs and potentially sensitive customer data",
+    "Heavy dependence on external LLM APIs (OpenAI, Anthropic, Google Gemini) — these are third parties outside Lucidic AI's control that are critical to product function"
+  ],
+
+  "yellow_flags": [
+    "Backup frequency not explicitly stated — policy exists but 'daily' not confirmed",
+    "CI/CD tool not named — described generically; unclear if GitHub Actions, CircleCI, or other",
+    "Source control tool not named — MFA is enforced but vendor not disclosed",
+    "No SSO mentioned for customer-facing authentication — identity provider appears to be AWS IAM only",
+    "Cybersecurity insurance not confirmed",
+    "No SIEM product named — logging via CloudWatch but no dedicated SIEM",
+    "ElastiCache Redis configured as Single Node with Cluster Disabled — potential availability risk for caching layer",
+    "Monthly patch management reviews led by CTO personally — concentration of responsibility in one individual"
+  ],
+
+  "green_flags": [
+    "Remarkably detailed and accurate network diagram for a ~4-person company — shows deep technical sophistication from engineering team",
+    "CDK v2 (TypeScript) IaC with Production/Development environment separation — infrastructure managed as code with rollback capability",
+    "ECS Fargate + Lambda + Aurora Serverless v2 architecture is modern, scalable, and cost-efficient — appropriate for an early-stage AI platform",
+    "Multi-AZ deployment across both public and private subnets — production resilience built into the architecture",
+    "Lambda functions named with specific AI workload purposes (LLM Tasks, DeepGraph, ManifestGraph, SampleProgram, DeepDebug) — suggests a well-thought-out serverless AI inference architecture",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scans",
+    "MFA enforced on production admin accounts and source code management tool",
+    "Quarterly user access reviews including privileged accounts",
+    "1-business-day access revocation SLA",
+    "Aurora Serverless v2 Multi-AZ encrypted with auto-scaling (0-16 ACUs dev, 2-16 ACUs prod) — smart cost/availability balance",
+    "Per-tenant data segregation confirmed (CC6.1.3)",
+    "BCDR tested annually with multiple loss scenarios",
+    "Baseline configurations retained as code with rollback capability"
+  ],
+
+  "key_observations": [
+    "This is a 4-person company with an enterprise-grade AWS architecture — the gap between team size and infrastructure sophistication is unusual and suggests either heavy AWS managed services reliance (appropriate) or that the team is technically exceptional",
+    "The product itself (AI agent observability) is meta-infrastructure for AI systems — Lucidic AI is building compliance/observability tooling for the same kinds of SOC 2 controls they are subject to, creating interesting alignment between their product value proposition and their own security posture",
+    "The network diagram explicitly names external AI APIs (OpenAI/Anthropic, Google Gemini) as part of the production architecture — this is a dependency disclosure rarely seen this explicitly in SOC 2 reports and represents a significant third-party concentration for a core AI product",
+    "Aurora Serverless v2 is used rather than Aurora provisioned — this is cost-appropriate for early-stage but can have cold-start latency implications; the minimum 2 ACU floor in production suggests awareness of this tradeoff",
+    "Posthog is listed as an External API in the production network diagram alongside OpenAI/Anthropic/Stripe — this means product analytics data flows through the production infrastructure and Posthog has some level of data access, which should be reviewed in vendor assessments",
+    "The ECS Fargate node is labeled 'Kubernetes' in the diagram — this may mean they use Kubernetes on Fargate (EKS on Fargate) rather than pure ECS Fargate, which would be a more complex but more portable orchestration approach",
+    "SQS Dead Letter Queue (DLQ) is configured with 30-minute visibility timeout — indicates thoughtful async job handling for AI workloads, which often have long processing times",
+    "The report explicitly states Processing Integrity and Privacy trust criteria are 'not relevant to the system' — for an AI observability platform that captures agent inputs, outputs, and intermediate decisions at scale, this exclusion deserves scrutiny from due diligence perspective"
+  ]
+}

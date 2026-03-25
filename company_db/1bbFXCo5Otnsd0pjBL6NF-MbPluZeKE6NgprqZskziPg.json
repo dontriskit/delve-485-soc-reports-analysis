@@ -1,0 +1,19 @@
+{
+  "doc_id": "1bbFXCo5Otnsd0pjBL6NF-MbPluZeKE6NgprqZskziPg",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1bbFXCo5Otnsd0pjBL6NF-MbPluZeKE6NgprqZskziPg",
+  "timestamp": "5/8/2025 22:05:08",
+  "display_name": "Olive",
+  "legal_name": "Olive Financial, Inc.",
+  "company_name": "Olive",
+  "system_description": "Olive Financial Platform",
+  "audit_end_date": "May 1, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://fromolive.com/",
+  "contact_email": "bardia@fromolive.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1bbFXCo5Otnsd0pjBL6NF-MbPluZeKE6NgprqZskziPg.pdf",
+  "txt_file": "1bbFXCo5Otnsd0pjBL6NF-MbPluZeKE6NgprqZskziPg.txt",
+  "has_report": true
+}

@@ -1,0 +1,19 @@
+{
+  "doc_id": "1Zx1KJTlPzj4l8daZFJ1gVGDGquRoN0VPWo4LT7Q9QyE",
+  "link": "https://docs.google.com/document/d/1Zx1KJTlPzj4l8daZFJ1gVGDGquRoN0VPWo4LT7Q9QyE",
+  "timestamp": "10/31/2025 15:32:16",
+  "display_name": "Adaptive",
+  "legal_name": "ADAPTIVE REAL ESTATE",
+  "company_name": "Adaptive",
+  "system_description": "An AI-powered financial platform built for the construction industry.",
+  "audit_end_date": "",
+  "observation_period": "July 21, 2025 - October 21, 2025",
+  "infra_provider": "Heroku",
+  "website": "https://adaptive.build",
+  "contact_email": "accounting@adaptive.build",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1Zx1KJTlPzj4l8daZFJ1gVGDGquRoN0VPWo4LT7Q9QyE.pdf",
+  "txt_file": "1Zx1KJTlPzj4l8daZFJ1gVGDGquRoN0VPWo4LT7Q9QyE.txt",
+  "has_report": true
+}

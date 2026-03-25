@@ -1,0 +1,19 @@
+{
+  "doc_id": "1ShNgG83z16BOWb1-at8Tk3YmDGblSySzfPFFRaATGW0",
+  "link": "https://docs.google.com/document/d/1ShNgG83z16BOWb1-at8Tk3YmDGblSySzfPFFRaATGW0",
+  "timestamp": "10/23/2025 10:08:19",
+  "display_name": "Palace",
+  "legal_name": "Lucid Spring Inc.",
+  "company_name": "Palace",
+  "system_description": "One platform for private capital allocators to monitor and report on their investments. Get smarter from the data you already collect.",
+  "audit_end_date": "",
+  "observation_period": "July 14, 2025 - October 14, 2025",
+  "infra_provider": "AWS",
+  "website": "https://lucidspring.com",
+  "contact_email": "security@palace.so",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1ShNgG83z16BOWb1-at8Tk3YmDGblSySzfPFFRaATGW0.pdf",
+  "txt_file": "1ShNgG83z16BOWb1-at8Tk3YmDGblSySzfPFFRaATGW0.txt",
+  "has_report": true
+}

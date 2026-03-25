@@ -1,0 +1,217 @@
+{
+  "company": "Permut Inc",
+  "product": "Permut AI-powered conversational agents",
+  "report_type": "ISO 27001",
+  "audit_period": "8/14/2025 (Certification Agreement date; audit period not explicitly stated)",
+  "auditor": "Gradient Certification Inc",
+  "opinion": "Certification Agreement signed — certification pending completion of Stage 1 and Stage 2 audits",
+  "trust_criteria": ["Information Security (ISO 27001 ISMS)"],
+  "hq": "Carrer de Pujades, 69, Sant Martí, 08005 Barcelona, Spain",
+  "signing_authority": "Alex Lopera, (Title not disclosed)",
+
+  "system_description": {
+    "overview": "Permut Inc develops, deploys, and manages AI-powered agents that engage customers in personalized, brand-aligned conversations while capturing real-time insights at scale. The platform enables brands to prevent poor customer experiences, boost retention, and increase lifetime value through secure, intelligent, and context-aware interactions.",
+    "products": {
+      "Permut AI Agents": "AI-powered conversational agents for personalized, brand-aligned customer engagement with real-time insight capture"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Not disclosed",
+    "regions": [],
+    "physical_presence": "Carrer de Pujades, 69, Sant Martí, 08005 Barcelona, Spain",
+    "availability_zones": "Not disclosed",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Not disclosed"
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": "Not disclosed",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Not disclosed",
+    "ids_ips": "Not disclosed",
+    "vpn": "Not disclosed",
+    "tls": "Not disclosed",
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. This document is a certification agreement, not a technical audit report."
+  },
+
+  "application_architecture": {
+    "pattern": "Not disclosed",
+    "languages": [],
+    "frameworks": [],
+    "compute": [],
+    "api_style": "Not disclosed",
+    "environments": "Not disclosed",
+    "branch_protection": null,
+    "code_review_required": null
+  },
+
+  "data_storage": {
+    "databases": [],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Not disclosed",
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not disclosed",
+    "mfa": "Not disclosed",
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": "Not disclosed",
+    "password_policy": "Not disclosed"
+  },
+
+  "encryption": {
+    "in_transit": "Not disclosed",
+    "at_rest": "Not disclosed",
+    "key_management": "Not disclosed",
+    "end_to_end": null
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not disclosed",
+    "ci_cd_tool": "Not disclosed",
+    "branch_protection": "Not disclosed",
+    "iac": "Not disclosed",
+    "container_orchestration": "Not disclosed",
+    "patch_management": "Not disclosed",
+    "separate_environments": null,
+    "emergency_change_process": null
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not disclosed",
+    "siem": "Not disclosed",
+    "log_aggregation": "Not disclosed",
+    "alerting": "Not disclosed",
+    "metrics": [],
+    "log_protection": null,
+    "ids": null
+  },
+
+  "third_party_services": [
+    {"vendor": "Gradient Certification Inc", "purpose": "ISO 27001 certification body / auditor", "criticality": "Medium"},
+    {"vendor": "United Accreditation Foundation Inc (UAF)", "purpose": "Accreditation body for the certification body", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": "Not disclosed",
+    "endpoint_protection": null,
+    "vulnerability_scanning": "Not disclosed",
+    "penetration_testing": "Not disclosed",
+    "server_hardening": null,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": [
+      "Document is a Certification Agreement Form, not an audit report. No controls are tested or listed in this document.",
+      "Scope references a Statement of Applicability (SoA) Version 1.0, but the SoA itself is not included.",
+      "ISMS scope covers: AI technology development, conversational frameworks, data processing infrastructure, IT Infrastructure Management, HR, Physical Security, Legal & Compliance, and Administrative Operations.",
+      "Total audit mandays for full certification cycle: 9 (Stage-1: 2, Stage-2: 3, Surveillance-1: 2, Surveillance-2: 2)"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 1,
+      "max": 10,
+      "rationale": "Zero infrastructure details disclosed. The document is a certification agreement, not an audit report. No cloud provider, regions, or architecture details available."
+    },
+    "application_architecture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No application architecture details disclosed. We know they build AI-powered conversational agents but no technical stack information is provided."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No data storage, backup, or data management details disclosed. Scope mentions 'data processing infrastructure' but provides no specifics."
+    },
+    "security_posture": {
+      "score": 2,
+      "max": 10,
+      "rationale": "The pursuit of ISO 27001 certification indicates security intent, but no specific security tools, practices, or controls are described in this document."
+    },
+    "devops_maturity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No CI/CD, source control, IaC, or deployment information disclosed."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No BCDR policies, RTO/RPO, or disaster recovery details disclosed."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No technology vendors disclosed. Only the certification body (Gradient Certification Inc) and accreditation body (UAF) are mentioned."
+    },
+    "overall": {
+      "score": 1,
+      "max": 10,
+      "rationale": "This document is an ISO 27001 Certification Agreement Form — essentially a contract between Permut Inc and Gradient Certification Inc. It is NOT an audit report, certificate, or Statement of Applicability. It contains virtually no technical or security control information. The only useful data is the company identity, address, ISMS scope description, and auditor identity. A meaningful tech assessment requires the actual ISO 27001 certificate, SoA, or audit report."
+    }
+  },
+
+  "red_flags": [
+    "Document is a Certification Agreement, NOT an ISO 27001 audit report or certificate — no evidence of actual certification achieved",
+    "Zero technical infrastructure details disclosed across the entire document",
+    "No Statement of Applicability (SoA) included despite being referenced as Version 1.0",
+    "Auditor is Gradient Certification Inc (Sheridan, Wyoming / Houston, TX) — not a widely recognized top-tier certification body; should verify UAF accreditation standing",
+    "Only 7 pages total — this is a boilerplate certification services contract, not a compliance report",
+    "Total of only 9 audit mandays for the entire 3-year certification cycle raises questions about audit depth"
+  ],
+
+  "yellow_flags": [
+    "ISO 27001 scope is broadly defined — covers AI technology, conversational frameworks, data processing, IT infrastructure, HR, physical security, legal, compliance, and admin ops",
+    "No audit completion date evident — document dated 8/14/2025 appears to be the agreement signing date, not certification date",
+    "UAF (United Accreditation Foundation) is not an IAF signatory member — this means the ISO 27001 certificate may not be internationally recognized",
+    "Company HQ in Barcelona, Spain but certification body is US-based (Wyoming/Texas)"
+  ],
+
+  "green_flags": [
+    "Company is pursuing ISO 27001 certification, which demonstrates intent to formalize information security management",
+    "ISMS scope is comprehensive — covers core business functions plus support functions (IT, HR, Physical Security, Legal & Compliance, Admin)",
+    "Scope explicitly includes 'data processing infrastructure' as part of the ISMS boundary"
+  ],
+
+  "key_observations": [
+    "CRITICAL: This is NOT an ISO 27001 audit report — it is a Certification Agreement Form (a contract to engage the auditor). No tech due diligence conclusions should be drawn from this document alone.",
+    "The actual ISO 27001 certificate, Statement of Applicability (SoA), and/or Stage 2 audit report are needed for meaningful tech extraction.",
+    "Permut Inc builds AI-powered conversational agents for brand-customer engagement with real-time insights — the product involves proprietary AI technology and data processing, making the missing technical details especially significant for due diligence.",
+    "Gradient Certification Inc appears to be a smaller certification body; the accreditation is through UAF rather than a more established accreditation body (e.g., UKAS, ANAB, DAkkS).",
+    "The endorsement letter on page 1 is Permut Inc endorsing UAF's accreditation role — this is atypical and may indicate a non-standard certification path."
+  ]
+}

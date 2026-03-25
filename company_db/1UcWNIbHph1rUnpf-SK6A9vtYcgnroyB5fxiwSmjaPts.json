@@ -1,0 +1,19 @@
+{
+  "doc_id": "1UcWNIbHph1rUnpf-SK6A9vtYcgnroyB5fxiwSmjaPts",
+  "link": "https://docs.google.com/document/d/1UcWNIbHph1rUnpf-SK6A9vtYcgnroyB5fxiwSmjaPts",
+  "timestamp": "10/12/2025 16:44:06",
+  "display_name": "Talo AI",
+  "legal_name": "Talo.ai, Inc.",
+  "company_name": "Talo AI",
+  "system_description": "a real-time voice translation platform",
+  "audit_end_date": "",
+  "observation_period": "July 7, 2025 - October 7, 2025",
+  "infra_provider": "AWS",
+  "website": "https://taloai.com",
+  "contact_email": "security@taloai.com",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1UcWNIbHph1rUnpf-SK6A9vtYcgnroyB5fxiwSmjaPts.pdf",
+  "txt_file": "1UcWNIbHph1rUnpf-SK6A9vtYcgnroyB5fxiwSmjaPts.txt",
+  "has_report": true
+}

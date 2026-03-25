@@ -1,0 +1,19 @@
+{
+  "doc_id": "1AKB501DLKtXCt4mNDgtzWCNei1B8wn8YRz5xvXXcHIg",
+  "link": "Here is the link to your document: https://docs.google.com/document/d/1AKB501DLKtXCt4mNDgtzWCNei1B8wn8YRz5xvXXcHIg",
+  "timestamp": "7/8/2025 22:38:22",
+  "display_name": "Cluely",
+  "legal_name": "Cluely, Inc.",
+  "company_name": "Cluely",
+  "system_description": "Cluely is a desktop AI assistant to give you answers in real-time, when you need it.",
+  "audit_end_date": "June 27, 2025",
+  "observation_period": "",
+  "infra_provider": "Vercel",
+  "website": "https://cluely.com",
+  "contact_email": "admin@cluely.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1AKB501DLKtXCt4mNDgtzWCNei1B8wn8YRz5xvXXcHIg.pdf",
+  "txt_file": "1AKB501DLKtXCt4mNDgtzWCNei1B8wn8YRz5xvXXcHIg.txt",
+  "has_report": true
+}

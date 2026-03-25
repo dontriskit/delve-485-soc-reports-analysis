@@ -1,0 +1,167 @@
+{
+  "company": "g",
+  "product": "g",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of g [audit_end_date field contains 'g']",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "[blank — address field empty]",
+  "signing_authority": "[not reviewed — junk entry, reading stopped at p.3]",
+
+  "_flag": "JUNK_TEST_ENTRY — Company name is 'g', all metadata fields contain single-character keyboard-mash test data (company_name: 'g', system_description: 'g', audit_end_date: 'g', website: 'g', contact_email: 'g'). Cover page shows 'g' as company name. ToC shows 'Other Information Provided by g' in Section 5. Infra provider metadata says Render — cannot confirm from report. This is a test submission by a Delve platform user. Most minimal junk entry in the dataset — single character 'g' used for all text fields. Submitted earliest of the three junk entries (8/7/2025 13:48:27). DO NOT USE for any analysis.",
+
+  "system_description": {
+    "overview": "N/A — junk test entry. Company name 'g' entered as test data.",
+    "products": {}
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Render (per company_db metadata — unverifiable from report; not reviewed beyond p.3)",
+    "regions": ["Not reviewed"],
+    "physical_presence": "N/A — junk entry",
+    "availability_zones": "Not reviewed",
+    "additional_cloud": [],
+    "serverless": ["Not reviewed"],
+    "cdn": "Not reviewed"
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": "Not reviewed — junk entry",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Not reviewed",
+    "ids_ips": "Not reviewed",
+    "vpn": "Not reviewed",
+    "tls": "Not reviewed",
+    "content_filtering": "Not reviewed",
+    "multi_region": null,
+    "topology": "Not reviewed — junk entry, reading stopped at p.3"
+  },
+
+  "application_architecture": {
+    "pattern": "N/A",
+    "languages": ["N/A"],
+    "frameworks": ["N/A"],
+    "compute": ["N/A"],
+    "api_style": "N/A",
+    "environments": "N/A",
+    "branch_protection": null,
+    "code_review_required": null
+  },
+
+  "data_storage": {
+    "databases": ["N/A"],
+    "caching": ["N/A"],
+    "file_storage": ["N/A"],
+    "data_warehouse": "N/A",
+    "backup_frequency": "N/A",
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "N/A",
+    "mfa": "N/A",
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": "N/A",
+    "password_policy": "N/A"
+  },
+
+  "encryption": {
+    "in_transit": "N/A",
+    "at_rest": "N/A",
+    "key_management": "N/A",
+    "end_to_end": null
+  },
+
+  "ci_cd_devops": {
+    "source_control": "N/A",
+    "ci_cd_tool": "N/A",
+    "branch_protection": "N/A",
+    "iac": "N/A",
+    "container_orchestration": "N/A",
+    "patch_management": "N/A",
+    "separate_environments": null,
+    "emergency_change_process": null
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "N/A",
+    "siem": "N/A",
+    "log_aggregation": "N/A",
+    "alerting": "N/A",
+    "metrics": [],
+    "log_protection": null,
+    "ids": null
+  },
+
+  "third_party_services": [],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": "N/A",
+    "endpoint_protection": null,
+    "vulnerability_scanning": "N/A",
+    "penetration_testing": "N/A",
+    "server_hardening": null,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "N/A",
+    "rpo": "N/A"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "_note": "Junk entry — not reviewed beyond cover pages. SOC 2 Type 1 template structure (58 pages) identical to DOC 6 and DOC 10.",
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": []
+  },
+
+  "scoring": {
+    "infrastructure": {"score": 0, "max": 10, "rationale": "Junk test entry — no real company or infrastructure."},
+    "application_architecture": {"score": 0, "max": 10, "rationale": "Junk test entry."},
+    "data_layer": {"score": 0, "max": 10, "rationale": "Junk test entry."},
+    "security_posture": {"score": 0, "max": 10, "rationale": "Junk test entry."},
+    "devops_maturity": {"score": 0, "max": 10, "rationale": "Junk test entry."},
+    "bcdr_readiness": {"score": 0, "max": 10, "rationale": "Junk test entry."},
+    "vendor_diversity": {"score": 0, "max": 10, "rationale": "Junk test entry."},
+    "overall": {"score": 0, "max": 10, "rationale": "Junk test entry — most minimal entry in dataset, single character 'g' used for all text fields including audit_end_date and contact_email. Render listed as infra provider in metadata. Zero analytical value."}
+  },
+
+  "red_flags": [
+    "CRITICAL: Junk test entry — company name is 'g', all company_db fields contain single-character 'g' as test data.",
+    "CRITICAL: No real company, product, infrastructure, or business behind this report.",
+    "Cover page shows 'g' as company name with blank audit date.",
+    "Section 5 ToC reads 'Other Information Provided by g'.",
+    "audit_end_date field contains 'g' — not a real date.",
+    "contact_email field contains 'g' — not a real email address.",
+    "Infra provider metadata says Render — a developer PaaS, highly unusual for compliance-sensitive workloads."
+  ],
+  "yellow_flags": [],
+  "green_flags": [],
+  "key_observations": [
+    "This is the most minimal junk test submission in the dataset — single character 'g' used for every required text field.",
+    "The 58-page SOC 2 Type 1 report was generated by the Delve platform with 'g' substituted for company name throughout.",
+    "Render as listed infrastructure provider — Render is a developer PaaS typically used for hobby/startup projects, not enterprise compliance infrastructure.",
+    "Submitted 8/7/2025 13:48:27 — earliest of the three junk entries, 4 minutes before DOC 9 ('sd') and 4 minutes before DOC 7 ('sdf').",
+    "Should be excluded from any analysis of real customers or compliance postures."
+  ]
+}

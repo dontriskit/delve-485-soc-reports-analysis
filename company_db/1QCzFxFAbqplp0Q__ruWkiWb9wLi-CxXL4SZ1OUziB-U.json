@@ -1,0 +1,19 @@
+{
+  "doc_id": "1QCzFxFAbqplp0Q__ruWkiWb9wLi-CxXL4SZ1OUziB-U",
+  "link": "https://docs.google.com/document/d/1QCzFxFAbqplp0Q__ruWkiWb9wLi-CxXL4SZ1OUziB-U",
+  "timestamp": "11/24/2025 15:29:07",
+  "display_name": "Specter",
+  "legal_name": "Specter Inc",
+  "company_name": "Specter",
+  "system_description": "An AI-driven security platform built for critical physical environments.",
+  "audit_end_date": "November 20, 2025",
+  "observation_period": "",
+  "infra_provider": "AWS",
+  "website": "https://specter.co",
+  "contact_email": "xerxes@specter.co",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1QCzFxFAbqplp0Q__ruWkiWb9wLi-CxXL4SZ1OUziB-U.pdf",
+  "txt_file": "1QCzFxFAbqplp0Q__ruWkiWb9wLi-CxXL4SZ1OUziB-U.txt",
+  "has_report": true
+}

@@ -1,0 +1,248 @@
+{
+  "company": "Coframe Inc.",
+  "product": "Living interfaces (AI-Powered Website Optimization Platform)",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of July 31, 2025",
+  "auditor": "Accorp Partners (PAC-FIRM-LIC-47383)",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "380 Alabama Street, San Francisco, CA 94110",
+  "signing_authority": "Josh Payne, CEO & Founder",
+
+  "system_description": {
+    "overview": "Coframe provides an AI-powered website optimization and personalization platform designed to enhance conversion rates through automated content and user interface testing. The platform leverages advanced AI algorithms to generate, test, and refine website variations, offering A/B and multivariate testing, ML-based experimentation, continuous performance monitoring, and statistical analysis.",
+    "products": {
+      "AI-Powered Website Optimization": "Automated generation and testing of website variations using advanced AI algorithms; content and UI optimization for conversion rate improvement; machine learning-based testing and personalization capabilities",
+      "Experiment Management Services": "Full-service experiment design, deployment, and quality assurance; A/B split testing and multivariate testing methodologies; integration with client analytics platforms for performance measurement",
+      "Analytics and Insights": "Continuous performance monitoring and statistical analysis; comprehensive reporting with actionable insights and recommendations; support for client-proposed testing initiatives and strategic optimization"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out — AWS data center controls excluded from scope)",
+    "regions": ["Not explicitly named — inferred US region given SF HQ; network diagram shows multiple AWS accounts"],
+    "physical_presence": "No physical offices; all data processed on cloud services (explicitly stated in scope table)",
+    "availability_zones": "Multi-AZ (explicitly stated: 'high availability data centers with multiple availability zones'; DR plan spins up multiple servers across all availability zones in AWS)",
+    "additional_cloud": [],
+    "serverless": ["Not mentioned explicitly; network diagram suggests Lambda or similar based on AWS icons but not named in text"],
+    "cdn": "Not mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Hosted in AWS VPC with segmented VPCs and access control lists (ACLs). System components configured to segment company and customer access from other customer accounts (CC6.1.3).",
+    "api_gateway": null,
+    "waf": "Not explicitly named, but firewalls on application gateway mentioned (CC6.6.1): 'System firewalls are configured on the application gateway and production network to limit unnecessary ports, protocols and services.'",
+    "firewalls": "Firewalls and intrusion detection tools configured to prevent unauthorized access and detect external security threats. Application gateway and production network firewalls reviewed annually by IT management.",
+    "ids_ips": "IDS and IPS employed via AWS to identify and protect against threats in conjunction with security policy network settings (p.17). Also referenced in CC6.6.1 as intrusion detection tools.",
+    "vpn": "Remote access done through a bastion host with a VPN (p.17).",
+    "tls": "TLS via certificates from an established third-party certificate authority (p.17). Version not specified.",
+    "content_filtering": "Content filtering system routed through proxy server for internet-restricted systems (p.19).",
+    "multi_region": false,
+    "topology": "User requests reach the system over TLS. AWS VPC with segmented subnets and ACLs. Remote admin access via bastion host + VPN. IDS/IPS at network layer. Firewalls on application gateway and production network. Network diagram (p.18) shows multiple AWS accounts with VPCs containing public and private subnets, EC2 instances, and what appear to be RDS/database tiers."
+  },
+
+  "application_architecture": {
+    "pattern": "Not explicitly described — network diagram suggests microservices or service-oriented given multiple VPCs and accounts",
+    "languages": ["Not disclosed"],
+    "frameworks": ["Not disclosed"],
+    "compute": ["EC2 (inferred from 'virtual servers' and network diagram icons)", "Possibly Lambda (icons visible in network diagram but not named in text)"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development/test and production environments confirmed (CC8.1.4: 'Changes to application and system infrastructure are developed and tested in a separate development or test environment before implementation.')",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Not explicitly named — 'databases' referenced generically; network diagram shows what appear to be RDS instances"],
+    "caching": ["Not mentioned"],
+    "file_storage": ["Not explicitly named — S3 likely given AWS-only infrastructure"],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Formal backup policies exist; frequency not disclosed",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not named — references AWS password policy and Active Directory (CC6.1.2: 'Active Directory, server, and database accounts'). No third-party IdP named.",
+    "mfa": "MFA enforced for user accounts with administrative access to the production platform (CC6.1.1). MFA also required to access source code management tool (CC8.1.3).",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination (CC6.1.4)",
+    "password_policy": "Controlled through AWS password policy; includes periodic forced changes, password expiry, and complexity requirements. Accounts disabled after limited failed logon attempts. Guest/anonymous logins not allowed. Unattended desktops lock on inactivity."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used (CC6.1.5: 'uses its cloud provider key management service to encrypt data at rest')",
+    "key_management": "AWS KMS (implied by 'cloud provider key management service'; AWS is the only named cloud provider)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not explicitly named — described as 'source code management tool'; MFA required for access (CC8.1.3). GitHub most likely but not confirmed.",
+    "ci_cd_tool": "Not disclosed",
+    "branch_protection": "Code repository branch rules configured to require additional approval for every merge request to move changes to production (CC8.1.2). Developers cannot make changes to production code without additional approval.",
+    "iac": "Configuration management tool used for baseline implementation and rollback capability (CC7.1.1: 'baseline configurations are retained within the infrastructure as a code and a configuration management tool is used'). Tool not named.",
+    "container_orchestration": "Not disclosed",
+    "patch_management": "Automatic patch management set up by CTO. Monthly patch management reviews. Workstations configured for automatic updates and scanned daily for patch compliance. Critical patches applied as available.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named — described as 'monitoring tool' that generates alerts when predefined thresholds met (CC5.2.1)",
+    "siem": "Not mentioned",
+    "log_aggregation": "Logging enabled for administrative activities, logon attempts, data deletions, security configurations, permissions, and roles at application and infrastructure level (CC7.2.1). Tool not named.",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events (CC7.2.1). Tool not named.",
+    "metrics": ["Disc space", "Incoming/outgoing network traffic", "Packet loss", "CPU utilization"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {
+      "vendor": "Amazon Web Services (AWS)",
+      "purpose": "Primary cloud infrastructure — data center, compute, networking, storage, KMS",
+      "criticality": "Critical"
+    }
+  ],
+
+  "security_tools": {
+    "waf": true,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers (continuous auto-scan; definitions updated weekly). Also installed on Mac workstations and laptops.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; frequency can be adjusted. Internal IT Infrastructure team performs scans per audit calendar. High/critical vulnerabilities remediated per incident response plan.",
+    "penetration_testing": "Annual external penetration testing by independent third party. High/critical findings reviewed by IT management and tracked to resolution.",
+    "server_hardening": true,
+    "cybersecurity_insurance": "Not mentioned"
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": false,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — Physical access to data center facilities: AWS is responsible for physical security; not in scope",
+      "A1.2 — Environmental protections and recovery infrastructure: Coframe has no office/physical servers; managed by AWS"
+    ],
+    "notable_controls": [
+      "CC5.1 / CC8.1.3: Source code changes logged, time-stamped, and attributed to author in source code management tool; access requires MFA",
+      "CC6.1.1: MFA enforced for all accounts with administrative access to production platform",
+      "CC6.1.4: Access revoked within one business day upon termination; employee termination checklist enforced",
+      "CC6.2.2: Quarterly user access reviews for all accounts including privileged users",
+      "CC6.6.1: Firewalls on application gateway and production network; IDS/IPS configured; rules reviewed annually",
+      "CC7.1.2: Monthly automated vulnerability scans; management reviews and remediates high/critical findings",
+      "CC4.1.1 / CC4.1: Annual external penetration testing by independent third party",
+      "CC7.4.1 / CC9.1: BCDR policy and plan documented, reviewed annually, and tested annually per defined testing schedule",
+      "CC8.1.2: Branch protection — every merge to production requires additional approval beyond the developer",
+      "CC9.2.1: Annual SOC report review for critical vendors; quarterly vendor risk assessments for vendors without SOC reports",
+      "Processing Integrity and Privacy trust service categories explicitly excluded as not relevant to the system"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "AWS-only, multi-AZ, VPC with segmented subnets, IaC referenced (tool unnamed). No multi-region. No CDN mentioned. Single cloud provider. Network diagram shows meaningful architectural complexity with multiple accounts and VPCs."
+    },
+    "application_architecture": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Separate environments confirmed, branch protection and code review enforced, MFA on source code tool. However: no languages, frameworks, or compute services named; no container orchestration disclosed; CI/CD tool unnamed. Very limited technical transparency."
+    },
+    "data_layer": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Backup policy exists but frequency undisclosed. Multi-AZ confirmed. Data classification and retention policies confirmed. Per-tenant segregation confirmed (CC6.1.3). No specific DB technology named, no caching layer, no data warehouse, no file storage technology named. Very low disclosure."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong: annual external pen test, monthly vuln scans, IDS/IPS, firewalls, AV on servers and endpoints, MFA on admin and source code access, TLS in transit, KMS at rest, log protection, quarterly access reviews, 1-day access revocation SLA. Gaps: no SIEM named, no WAF product named, no cyber insurance mentioned, TLS version not specified."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Separate environments, branch protection with required approval, IaC for configuration management, automatic patch management, change management process with emergency path. Weaknesses: CI/CD tool unnamed, container orchestration not mentioned, source control tool not named."
+    },
+    "bcdr_readiness": {
+      "score": 6,
+      "max": 10,
+      "rationale": "BCDR policy documented and reviewed annually. Annual testing confirmed with scenario-based testing. Multi-AZ failover via AWS. DR plan includes role assignments and BIA. Weaknesses: no RTO/RPO disclosed, no multi-region failover, backup frequency undisclosed."
+    },
+    "vendor_diversity": {
+      "score": 2,
+      "max": 10,
+      "rationale": "AWS is the only named third-party service provider. No other vendors identified (no IdP, no monitoring tool, no CI/CD, no ticketing system named). Extremely concentrated single-vendor dependency with very low disclosure of the actual vendor ecosystem."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Coframe has reasonable security fundamentals for a Series A/early-stage AI SaaS: MFA, VPC, IDS/IPS, annual pen test, monthly vuln scans, branch protection, annual BCDR testing. However, the report is unusually sparse on specific technology names — no CI/CD tool, no monitoring tool, no database, no source control vendor, no language stack. This makes independent technical verification difficult and suggests the system description was written at minimum-disclosure level. Single cloud concentration (AWS only) with no redundant cloud or CDN."
+    }
+  },
+
+  "red_flags": [
+    "No specific technology vendors named beyond AWS — no monitoring tool, CI/CD platform, database engine, source control host, or IdP disclosed. Makes technical due diligence extremely difficult.",
+    "No RTO or RPO disclosed despite BCDR plan and annual testing being confirmed.",
+    "Single cloud provider (AWS only) with no secondary cloud or CDN for additional resilience.",
+    "No cybersecurity insurance mentioned.",
+    "No SIEM product mentioned — logging exists but aggregation/correlation tooling is unspecified.",
+    "Type 1 only as of July 31, 2025 — no operating effectiveness evidence; controls described as 'suitably designed' only."
+  ],
+
+  "yellow_flags": [
+    "Backup frequency not disclosed in the report — policy exists but interval is unknown.",
+    "TLS version not specified (could be TLS 1.0/1.1 legacy).",
+    "Source control tool not named — MFA is required for access but the specific platform is unconfirmed.",
+    "No SSO mentioned for employee access management.",
+    "No data warehouse or analytics backend disclosed — may be entirely client-side or undisclosed.",
+    "Processing Integrity and Privacy trust criteria explicitly excluded — relevant for an AI platform making content decisions on behalf of customers.",
+    "No container orchestration mentioned — unclear how workloads are deployed and scaled.",
+    "Very small company (CEO + Engineering/Growth/Operations/Finance/Service Delivery/Sales teams visible in org chart) — key person risk is high."
+  ],
+
+  "green_flags": [
+    "Annual external penetration testing by independent third party — strong for a company at this stage.",
+    "Monthly automated vulnerability scans with remediation tracking.",
+    "MFA enforced on production platform admin access AND source code management tool.",
+    "Quarterly user access reviews including privileged accounts.",
+    "Access revoked within one business day of termination — enforced by checklist.",
+    "Branch protection with mandatory approval for all merges to production.",
+    "IaC-based configuration management with rollback capability.",
+    "Multi-AZ deployment with AWS-managed failover.",
+    "IDS and IPS deployed at network layer.",
+    "BCDR plan tested annually against defined loss scenarios.",
+    "Per-tenant data segregation confirmed (CC6.1.3).",
+    "Network diagram included in report — shows architectural complexity with multiple VPCs and accounts.",
+    "Unqualified (clean) opinion from auditor."
+  ],
+
+  "key_observations": [
+    "Coframe is an AI-native CRO/personalization platform — its core product makes automated content and UI decisions on behalf of customers. The exclusion of Processing Integrity and Privacy trust service categories is notable given that the AI engine generates and deploys copy, images, and CTAs on customer websites. Prospective customers in regulated industries should probe this gap.",
+    "The network diagram (p.18) shows multiple AWS accounts (likely dev, staging, prod separation) with VPCs containing multiple subnets — more architectural maturity than the text descriptions suggest. The diagram is too small to read all labels clearly.",
+    "AWS is listed as both the sole named subservice organization AND the source of password policy controls — meaning Coframe's password management appears to rely on AWS native controls (IAM) rather than a standalone IdP like Okta. This is unusual and worth probing.",
+    "The report was prepared by Accorp Partners (PAC-FIRM-LIC-47383), a common SOC 2 mill auditor used by many early-stage startups. The control descriptions are heavily templated and re-use boilerplate across criteria, which reduces the informational value of the controls section.",
+    "Section 5 (Other Information, unaudited) confirms DR failover by spinning up multiple servers across all availability zones in AWS — confirming multi-AZ active approach rather than cold standby. No RTO/RPO targets are stated anywhere in the document.",
+    "The product description references 'integration with client analytics platforms' — suggesting data flows from customer analytics systems into Coframe. The boundaries and data handling for these integrations are not addressed in the security controls.",
+    "Despite being an AI company generating content on behalf of users, there is no mention of AI model security, prompt injection controls, or model governance — not required under CC (Security) criteria but relevant for enterprise buyers."
+  ]
+}

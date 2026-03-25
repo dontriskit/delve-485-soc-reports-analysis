@@ -1,0 +1,244 @@
+{
+  "company": "Accelerated Cloud Storage Corporation",
+  "product": "ACS Object Storage",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "March 26, 2025 – June 26, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+  "hq": "612 Sunflower Circle, Hockessin, DE 19707",
+  "signing_authority": "Nikhil Kanamarla, CEO",
+
+  "system_description": {
+    "overview": "ACS Object Storage is an S3-compatible, high-performance object storage platform designed for datacenter AI workloads. It provides scalable, reliable, and secure cloud storage infrastructure hosted entirely on AWS. The system is built to serve enterprises requiring high-throughput storage with strong availability and data integrity guarantees.",
+    "products": {
+      "ACS Object Storage": "S3-compatible high-performance object storage for datacenter AI workloads, providing scalable cloud storage with multi-AZ availability and strong access controls"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Amazon Web Services (AWS) — carve-out method",
+    "regions": ["us-east-1"],
+    "physical_presence": "No physical servers; all production in AWS",
+    "availability_zones": "Multi-AZ (spins up multiple servers across all availability zones in AWS on failover; Main VPC spans AZs a-f, Development VPC spans AZs a-c)",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Three VPCs: Default VPC (172.31.0.0/16), Main VPC (10.0.0.0/16, Multi-AZ a-f, IPv6 enabled, 6 public subnets + 6 private subnets + 6 NAT Gateways + 5 RDS private subnets), Development VPC (10.0.0.0/16, Multi-AZ a-c, IPv6 enabled). Network segmentation implemented to separate systems and data based on sensitivity and criticality.",
+    "api_gateway": "Not specifically named",
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services; firewall rules reviewed annually by IT management. 17 security groups including RDS, ElastiCache, and application-specific groups. Firewall access restricted to authorized personnel (CC6.6.1-6.6.3 all passed).",
+    "ids_ips": "Intrusion detection system (IDS) utilized to monitor and detect unauthorized access or anomalies within the network (CC2.1.1 confirmed tested). IDS and IPS via AWS.",
+    "vpn": "Remote access via bastion host with VPN",
+    "tls": "Encryption technologies used to protect communication and transmission of data over public networks (TLS, version not specified)",
+    "content_filtering": null,
+    "multi_region": false,
+    "topology": "Internet -> AWS VPC (Main, us-east-1, Multi-AZ a-f) -> 6 public subnets + 6 private subnets + 6 NAT Gateways. 17 Security Groups. 5 VPC Endpoints (S3 Gateway + Interface). RDS in 5 dedicated private subnets (Default VPC). ElastiCache in security groups. Development VPC isolated from production."
+  },
+
+  "application_architecture": {
+    "pattern": "Not fully disclosed; cloud-native on AWS with VMs and managed services",
+    "languages": ["Not disclosed"],
+    "frameworks": ["Not disclosed"],
+    "compute": ["EC2 (implied from VPC/subnet architecture)", "RDS (managed database)", "ElastiCache (caching layer)"],
+    "api_style": "S3-compatible API",
+    "environments": "Separate development and production environments; changes tested before migration to production (CC8.1.4 confirmed)",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["RDS (AWS, in dedicated private subnets across Default VPC)"],
+    "caching": ["ElastiCache (AWS, multiple security groups visible in network diagram)"],
+    "file_storage": ["S3 (5 VPC Endpoints: S3 Gateway + Interface for private access)"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Daily (CC7.4.2: Backups are taken daily, multi-availability zones are configured, alerts in place for backup failures)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS (Active Directory for server/database accounts); unique user IDs required for application production environment, infrastructure, Active Directory, server, and database accounts",
+    "mfa": "MFA enforced for all remote access (CC6.1.1 confirmed). MFA enforced for administrative access to production platform. MFA required to access source code management tool.",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination (CC6.1.4 and CC6.1.8 confirmed tested)",
+    "password_policy": "Password policy with complexity requirements; unique authentication mechanisms enforced for production database access (CC6.1.5, CC6.1.6 confirmed)"
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "AWS KMS — cloud provider key management service used to encrypt data at rest",
+    "key_management": "AWS KMS; access to production environment access keys restricted to authorized individuals; encryption key access restricted to authorized personnel only (CC6.1.9 confirmed)",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named (source code management tool with MFA access; branch rules configured — merge to master requires approval)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Code repository branch rules configured to require additional approval for every merge request to move change to production environment (CC8.1.2 and CC8.1.3 confirmed). Developers cannot make changes to production code without additional approval.",
+    "iac": "Configuration management tool used for implementation and rollback; baseline configurations retained as code in infrastructure (CC7.1.1 confirmed)",
+    "container_orchestration": "None mentioned",
+    "patch_management": "Automatic patch management set up by CTO; monthly patch management reviews via IT Leadership Committee (ITLC); workstations configured for automatic updates and scanned daily for patch compliance (CC7.5.1 confirmed tested)",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named (monitoring tool for capacity and anomaly detection; generates alerts when predefined thresholds are met)",
+    "siem": "Not named",
+    "log_aggregation": "AWS logging (implied); logging enabled for administrative activities, logon attempts, data deletions at application and infrastructure level, changes to functions/security configurations/permissions/roles (CC7.2.1 confirmed tested)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; issues resolved via incident management process (CC7.2.1 confirmed)",
+    "metrics": ["CPU utilization", "disk space", "network traffic", "availability/reliability thresholds"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Primary cloud infrastructure — compute, storage (S3), database (RDS), caching (ElastiCache), VPC networking, KMS", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed and configured on all production servers (continuous auto-scan; definitions updated weekly). Anti-virus and Malware protection software installed and configured for Mac workstations and laptops (CC6.8.1 confirmed tested).",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; remediation plan developed for high/critical findings (CC7.1.2 confirmed tested). Self-assessment scan prior to every production release or annually.",
+    "penetration_testing": "Annual external penetration testing by independent third-party; results reviewed by IT management; high/critical findings remediated and tracked via incident management (CC4.1.1 confirmed)",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 70,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 — No significant changes to key personnel roles/responsibilities occurred during the engagement period",
+      "CC3.2.1 (cybersecurity insurance) — No cyber incidents reported during the engagement period; control existence confirmed",
+      "CC6.5.2 — No customer terminations during the engagement period; control existence confirmed"
+    ],
+    "excluded_criteria": [
+      "CC6.4 (physical access to data center) — AWS is the subservice organization responsible for physical security; SOC 2 report of AWS reviewed annually",
+      "A1.2 (environmental protections and recovery infrastructure) — managed by AWS/building management"
+    ],
+    "notable_controls": [
+      "CC2.1.1: IDS deployed to monitor and detect unauthorized access or anomalies in the network",
+      "CC3.2.1: Cybersecurity insurance maintained (confirmed to exist; untestable during period due to no incidents)",
+      "CC6.1.1: MFA enforced for all remote access to information systems",
+      "CC6.1.4 + CC6.1.8: Access revoked within one business day of termination",
+      "CC6.1.9: Encryption key access restricted to authorized personnel only",
+      "CC6.6.1-6.6.3: Network firewalls implemented, configured, managed, and regularly reviewed",
+      "CC7.4.1: BCDR plan documented, reviewed, and tested annually across multiple loss scenarios",
+      "CC7.4.2: Daily backups with multi-AZ configuration and alerting for backup failures",
+      "CC8.1.2-8.1.3: Branch protection and source code management with MFA; no production changes without additional approval",
+      "CC9.1: Annual SOC report reviews of AWS subservice organization",
+      "RGEC (Risk and Governance Executive Committee): Board-empowered committee with charter, meeting semiannually to oversee internal controls",
+      "IT Leadership Committee (ITLC): Meets weekly to review security operations and key performance metrics"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 7,
+      "max": 10,
+      "rationale": "AWS us-east-1 with multi-AZ (6 AZs for main VPC), dedicated VPCs for prod/dev, RDS private subnets, ElastiCache, S3 VPC endpoints, NAT Gateways, IaC (config-as-code). No CDN mentioned, no multi-region, single cloud provider. Well-architected AWS topology with detailed network diagram."
+    },
+    "application_architecture": {
+      "score": 5,
+      "max": 10,
+      "rationale": "S3-compatible API, separate environments, branch protection, code reviews. No languages/frameworks disclosed. No container orchestration. Architecture details not fully revealed but AWS-native managed services (RDS, ElastiCache) indicate reasonable maturity."
+    },
+    "data_layer": {
+      "score": 7,
+      "max": 10,
+      "rationale": "RDS (relational), ElastiCache (caching), S3 (object storage via VPC endpoints) — three distinct storage tiers. Daily backups confirmed with multi-AZ. Data classification and retention policies in place. Per-tenant segregation confirmed. No data warehouse. Backup frequency explicitly confirmed as daily."
+    },
+    "security_posture": {
+      "score": 8,
+      "max": 10,
+      "rationale": "Annual external pen testing, monthly vuln scans, IDS/IPS, firewalls (17 security groups), MFA for all remote access, antivirus on servers and endpoints (weekly definitions), quarterly access reviews, 1-day revocation SLA, KMS encryption, cybersecurity insurance confirmed. No WAF specifically named, no SIEM named. All 5 trust criteria covered."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Branch protection, separate environments, emergency change process, config-as-code (unnamed tool), automatic patch management, monthly ITLC patch reviews, ITLC meets weekly. CI/CD tool not named, IaC tool not named, source control tool not named. SDLC documented."
+    },
+    "bcdr_readiness": {
+      "score": 7,
+      "max": 10,
+      "rationale": "BCDR policy documented, reviewed and tested annually with multiple loss scenarios. Daily backups confirmed. Multi-AZ failover via AWS (spins up multiple servers across all AZs). No RTO/RPO disclosed, no multi-region failover. Business impact analysis referenced."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Single critical vendor: AWS (compute, storage, database, caching, networking, KMS). No secondary cloud or CDN vendor identified. Extreme AWS concentration risk — entire stack on a single cloud provider in a single region."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Strong security posture for a SOC 2 Type 2 report covering all 5 trust criteria with zero exceptions. Excellent AWS architecture with multi-AZ, dedicated subnets for RDS/ElastiCache, daily backups, and cybersecurity insurance. Key weaknesses: single cloud provider (AWS only), no WAF or SIEM named, no RTO/RPO disclosed, no CDN, all tooling names undisclosed."
+    }
+  },
+
+  "red_flags": [
+    "Single cloud provider (AWS us-east-1 only) — entire infrastructure concentrated in one provider and one region",
+    "No RTO or RPO disclosed — BCDR maturity cannot be fully quantified despite daily backups and multi-AZ",
+    "No WAF named — web application attack surface unclear for an S3-compatible storage API",
+    "No SIEM tool named — security event correlation capability unknown",
+    "CI/CD tool, IaC tool, and source control tool names not disclosed — tooling quality unverifiable"
+  ],
+  "yellow_flags": [
+    "No multi-region failover — regional AWS outage (us-east-1) would impact service availability",
+    "No CDN mentioned — performance optimization for distributed customers may be limited",
+    "Application language and framework not disclosed — code quality and security posture at code level unverifiable",
+    "No container orchestration mentioned — scaling flexibility may be limited",
+    "SOC 2 Type 2 covers only 3-month period (March-June 2025) — relatively short observation window"
+  ],
+  "green_flags": [
+    "SOC 2 Type 2 with all 5 trust criteria: Security, Availability, Processing Integrity, Confidentiality, and Privacy",
+    "Zero exceptions across all tested controls",
+    "Cybersecurity insurance confirmed (CC3.2.1)",
+    "Daily backups with multi-AZ and backup failure alerting confirmed (CC7.4.2)",
+    "Annual external penetration testing by independent third-party",
+    "Monthly automated vulnerability scanning",
+    "MFA enforced for all remote access",
+    "Quarterly access reviews including privileged accounts",
+    "Access revocation within one business day of termination",
+    "BCDR plan tested annually with multiple loss scenarios",
+    "Risk and Governance Executive Committee (RGEC) with board-level empowerment, semiannual meetings",
+    "IT Leadership Committee meets weekly to review operations and security metrics",
+    "17 security groups with granular network segmentation (RDS, ElastiCache, application-specific)",
+    "5 VPC S3 Endpoints for private S3 access without internet exposure",
+    "KMS-based encryption with restricted key access",
+    "Antivirus on both production servers (weekly definitions) and Mac endpoints"
+  ],
+  "key_observations": [
+    "ACS is an S3-compatible object storage company — its core product competes directly with AWS S3 yet runs entirely on AWS infrastructure, creating an interesting competitive and dependency dynamic",
+    "The network diagram is unusually detailed: three VPCs (Default, Main spanning 6 AZs, Development spanning 3 AZs), 17 security groups, 5 VPC endpoints for S3, 6 NAT Gateways, and dedicated RDS private subnets — indicating serious AWS architecture maturity",
+    "All 5 AICPA trust criteria are covered (Security + Availability + Processing Integrity + Confidentiality + Privacy) — this is the broadest possible scope and unusual for a Type 2 covering only 3 months",
+    "Cybersecurity insurance is confirmed via CC3.2.1 — the control was 'untestable' only because no cyber incidents occurred during the engagement period, not because insurance was absent",
+    "The company has an unusually mature governance structure for its apparent size: a Board-empowered RGEC with a formal charter, semiannual meetings, and a weekly ITLC — suggesting institutional investor or enterprise customer requirements drove this",
+    "ElastiCache presence in the architecture confirms a caching layer, making ACS's data layer more mature than typical early-stage storage companies",
+    "The 3-month audit period (March-June 2025) is on the shorter end for Type 2 reports — prospective customers may want to request a future report with a longer observation window",
+    "HQ is Hockessin, DE 19707 — a small residential community in Delaware, suggesting this may be a small team with nominal Delaware incorporation; worth verifying team size and physical operations in due diligence"
+  ]
+}

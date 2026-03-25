@@ -1,0 +1,249 @@
+{
+  "company": "Explore Interfaces, Inc. (dba Context)",
+  "product": "Context",
+  "report_type": "SOC 2 Type 2",
+  "audit_period": "April 2, 2025 - July 2, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "Not disclosed (operates from co-working space managed by building management)",
+  "signing_authority": "Derek Hsieh, CPO",
+
+  "system_description": {
+    "overview": "Context is an AI-powered collaborative office suite for enterprises, offering tools for creating presentations, documents, and spreadsheets. The platform's core technology is the Context Engine, a proprietary AI system for understanding and processing enterprise content with integrations to major workplace apps.",
+    "products": {
+      "Context Workspace": "AI-powered office suite for creating presentations, documents, and spreadsheets with AI-assisted content generation and collaboration.",
+      "Context Engine": "Proprietary AI context understanding technology that powers the Workspace; processes enterprise data to enable intelligent content suggestions and automation.",
+      "Integrations": "Pre-built connectors to Google Drive, OneDrive, Gmail, QuickBooks, and Jira for pulling context from existing enterprise data sources."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Vercel (carve-out — Vercel is the sole subservice organization; has SOC 2 report; controls excluded from scope)",
+    "regions": ["Not explicitly named"],
+    "physical_presence": "No physical office; operates from co-working space managed by building management. No physical servers.",
+    "availability_zones": "Multi-AZ within Vercel. DR procedure spins up multiple servers across all availability zones in Vercel on AZ failure.",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "None explicitly named (Vercel includes CDN functionality natively)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "System hosted in Vercel VPC environment. Network topology includes segmented VPCs and access control lists (ACLs). System components configured such that company and customer access is segmented from other customer accounts.",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on the application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management. Formal network diagram outlining boundary protection mechanisms (firewalls, IDS, etc.) maintained for all network connections and reviewed annually.",
+    "ids_ips": "IDS and IPS via Vercel. Firewalls and intrusion detection tools configured to prevent unauthorized access and detect external security threats.",
+    "vpn": "Remote access via bastion host with VPN.",
+    "tls": "TLS (version not specified). Encryption technologies used to protect communication and transmission of data over public networks.",
+    "content_filtering": "Content filtering system routed through proxy server; all systems restricted to internet via proxy.",
+    "multi_region": false,
+    "topology": "Vercel Cloud VPC [Next.js Frontend + Next.js Backend + Monitoring & Logging + Firewall/Security Groups] -> Supabase [PostgreSQL Database + Storage service] + Trigger.dev [Long Running Tasks]; WorkOS [Authentication, SSO, Directory Sync, MFA] on auth path."
+  },
+
+  "application_architecture": {
+    "pattern": "Full-stack Next.js (frontend and backend both Next.js on Vercel; monolithic deployment pattern with Vercel as sole compute)",
+    "languages": ["JavaScript/TypeScript (implied by Next.js stack)"],
+    "frameworks": ["Next.js (both frontend and backend)"],
+    "compute": ["Vercel (both frontend and backend Next.js apps)"],
+    "api_style": "REST (implied from client-server architecture; Next.js API routes)",
+    "environments": "Separate development/test and production environments; changes tested prior to migration to production.",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["PostgreSQL via Supabase (visible in network diagram as primary database)"],
+    "caching": [],
+    "file_storage": ["Supabase Storage (visible in network diagram as storage service)"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Daily (backups taken daily; multi-AZ configured; alerts in place for backup failure — confirmed tested in CC7.4.2)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "WorkOS (Authentication, SSO, Directory Sync, MFA — visible in network diagram and confirmed in system description). Password policy via Vercel for infrastructure accounts.",
+    "mfa": "MFA enforced for all user accounts with administrative access to production platform (CC6.1.1). WorkOS provides MFA capability. Source code tool access MFA-protected (CC5.1, CC8.1.3).",
+    "rbac": true,
+    "sso": true,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination",
+    "password_policy": "Password policy via Vercel. Accounts disabled after limited failed logon attempts. Guest and anonymous logins not allowed. Unattended desktops locked within inactivity timeout."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified)",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest (CC6.1.5)",
+    "key_management": "Vercel KMS (cloud provider key management service). Access to encryption keys restricted to authorized personnel only.",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named explicitly (source code management tool referenced throughout; MFA-protected; immutable change logs)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Code repository branch rules configured to ensure every merge request to master branch requires additional approval before merging to production (CC8.1.2, CC8.1.3).",
+    "iac": "Configuration management tool used for baseline configuration implementation and rollback. Baseline configurations retained as code in infrastructure. Tool not named.",
+    "container_orchestration": "None mentioned (Vercel manages serverless/edge deployment natively)",
+    "patch_management": "CTO/Management sets up automatic patch management; monthly patch management reviews via ITLC. Workstations configured for automatic updates and scanned daily for patch compliance.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named (monitoring tool with threshold-based alerting described in system description; 'Monitoring & Logging' component visible in network diagram on Vercel VPC)",
+    "siem": "Not named",
+    "log_aggregation": "Logging enabled for administrative activities, logon attempts, data deletions, function changes, security configurations, permissions, and roles. Log access is restricted. Confirmed tested (CC7.2.1).",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events. Logs and alerts tracked until resolved within change-management/ticketing application.",
+    "metrics": ["System capacity", "performance anomalies", "predefined threshold-based alerts"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Vercel", "purpose": "Full platform hosting — frontend, backend, compute, and CDN (sole subservice organization)", "criticality": "Critical"},
+    {"vendor": "Supabase", "purpose": "PostgreSQL database and object storage", "criticality": "Critical"},
+    {"vendor": "WorkOS", "purpose": "Authentication, SSO, MFA, and Directory Sync", "criticality": "Critical"},
+    {"vendor": "Trigger.dev", "purpose": "Background job processing and long-running tasks", "criticality": "High"},
+    {"vendor": "Google Drive", "purpose": "Enterprise data integration/connector", "criticality": "Medium"},
+    {"vendor": "OneDrive", "purpose": "Enterprise data integration/connector", "criticality": "Medium"},
+    {"vendor": "Gmail", "purpose": "Enterprise data integration/connector", "criticality": "Medium"},
+    {"vendor": "QuickBooks", "purpose": "Financial data integration/connector", "criticality": "Medium"},
+    {"vendor": "Jira", "purpose": "Project management data integration/connector", "criticality": "Low"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed and configured on all production servers (continuous scanning; weekly definition updates) and Mac-based workstations and laptops. Confirmed tested (CC6.8.1).",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications. Remediation plan for critical and high vulnerabilities. Confirmed tested (CC7.1.2, CC7.1.4).",
+    "penetration_testing": "Annual external penetration testing by independent third party. High/critical findings tracked to resolution. Confirmed tested (CC4.1.1).",
+    "server_hardening": true,
+    "cybersecurity_insurance": true
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": true,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 55,
+    "exceptions": 0,
+    "untestable": [
+      "CC2.2.3 - No significant changes to key personnel roles/responsibilities during engagement period",
+      "CC3.2.1 - Cybersecurity insurance control untestable because no cyber incidents occurred during period",
+      "CC6.5.2 - Customer data deletion untestable because no customer terminations occurred during period",
+      "CC7.3.1 - Security incident response untestable because no security incidents reported during period"
+    ],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities: Vercel is responsible for physical security of its data centers; controls not in scope",
+      "A1.2 - Environmental protections: Context does not have an office; managed by building management / Vercel",
+      "Processing Integrity and Privacy: Context has determined these trust service categories are not relevant to the system"
+    ],
+    "notable_controls": [
+      "Risk and Governance Executive Committee (RGEC) with Board oversight — meets semiannually",
+      "IT Leadership Committee (ITLC) meets weekly to review security activities and performance metrics",
+      "WorkOS as identity provider with SSO, MFA, and Directory Sync — enterprise-grade auth stack",
+      "Daily backups with multi-AZ configuration and failure alerting — confirmed tested",
+      "DR spins up multiple servers across all availability zones in Vercel on AZ failure",
+      "Cybersecurity insurance maintained — confirmed design tested",
+      "Quarterly user access reviews including privileged accounts",
+      "Annual external penetration testing with tracked remediation"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Single cloud provider (Vercel) with multi-AZ failover. Vercel provides native CDN and edge capabilities. No multi-region, no named IaC tool (config-as-code referenced but unnamed). Vercel is a PaaS/edge platform — less infrastructure flexibility than AWS/Azure/GCP but purpose-built for Next.js workloads. Extreme Vercel concentration."
+    },
+    "application_architecture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Full-stack Next.js (frontend + backend) on Vercel is a modern, well-integrated pattern for an office productivity SaaS. Supabase for PostgreSQL + storage is a solid choice. Trigger.dev for background jobs shows architectural maturity. Separate environments, branch protection enforced. No container orchestration needed for Vercel deployment model."
+    },
+    "data_layer": {
+      "score": 7,
+      "max": 10,
+      "rationale": "PostgreSQL via Supabase (production-grade hosted Postgres), Supabase Storage for files — clear separation of structured and unstructured data. Daily backups confirmed and tested, multi-AZ, data classification and retention policies, per-tenant segregation confirmed. No caching layer or data warehouse named. Supabase as managed service reduces operational burden."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Annual external pen test, monthly vuln scans, IDS/IPS via Vercel, firewalls, antivirus on servers and endpoints, MFA enforced, KMS encryption at rest, TLS in transit, quarterly access reviews, cybersecurity insurance. WorkOS for enterprise-grade auth with SSO and directory sync. No WAF explicitly named, no SIEM named."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Branch protection enforced, separate environments, emergency change process, IaC for baselines, automatic patch management. Source control and CI/CD tool not named. Vercel handles deployment natively — CI/CD may be embedded in Vercel platform. No container orchestration needed."
+    },
+    "bcdr_readiness": {
+      "score": 7,
+      "max": 10,
+      "rationale": "BCDR policy documented, reviewed and tested annually with multiple loss scenarios. Multi-AZ failover via Vercel AZ spin-up confirmed. Daily backups with alerts confirmed tested. Cybersecurity insurance maintained. No stated RTO/RPO. No multi-region failover — single-provider (Vercel) dependency is primary risk."
+    },
+    "vendor_diversity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Vercel as sole subservice org is high concentration for compute. However, Supabase (PostgreSQL + storage), WorkOS (auth/SSO), and Trigger.dev (background jobs) are separate named vendors providing meaningful service diversification at the application layer. 9 named integration connectors show broad ecosystem reach. Data-layer and auth are not on Vercel, which limits blast radius."
+    },
+    "overall": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Context demonstrates solid security fundamentals for a 3-month-old SOC 2 Type 2 engagement: zero exceptions across all tested controls, daily backups confirmed, annual pen testing, cybersecurity insurance, WorkOS for enterprise auth with SSO/MFA/Directory Sync, and RGEC/ITLC governance structures. The full-stack Vercel + Supabase + WorkOS + Trigger.dev architecture is modern and purpose-built. Key gaps are extreme Vercel concentration (sole subservice org for all compute), no named WAF or SIEM, no disclosed RTO/RPO, and unnamed source control/CI/CD tools."
+    }
+  },
+
+  "red_flags": [
+    "Extreme Vercel concentration — all compute (frontend + backend) on single provider; Vercel outage = total platform outage",
+    "No RTO or RPO disclosed despite BCDR policy, testing, and daily backups existing",
+    "No WAF mentioned anywhere in the report",
+    "No SIEM or named log aggregation tool (monitoring component visible in diagram but unnamed)",
+    "Source control and CI/CD tools not named — toolchain assessment impossible"
+  ],
+  "yellow_flags": [
+    "Supabase is the sole database and storage provider — adds a second critical single-vendor dependency alongside Vercel",
+    "Trigger.dev is a relatively new background jobs platform — security maturity of this service is unproven at enterprise scale",
+    "WorkOS is a critical auth dependency — WorkOS outage would break SSO and directory sync for all enterprise customers",
+    "No programming languages explicitly disclosed (Next.js stack implies TypeScript/JavaScript but not confirmed)",
+    "Multi-region failover not available — Vercel AZ failure is recoverable but a full Vercel region outage is not"
+  ],
+  "green_flags": [
+    "SOC 2 Type 2 with zero exceptions across all tested controls — operating effectiveness confirmed over 3-month period",
+    "Daily backups with multi-AZ configuration and failure alerting — confirmed and tested by auditor",
+    "WorkOS for enterprise authentication with SSO, MFA, and Directory Sync — above-average auth sophistication for an early-stage company",
+    "Cybersecurity insurance maintained — confirmed design tested",
+    "Annual external penetration testing by independent third party",
+    "Monthly automated vulnerability scanning",
+    "Quarterly user access reviews including privileged accounts",
+    "RGEC and ITLC governance structures (weekly ITLC meetings) — mature governance",
+    "Trigger.dev for background jobs — dedicated async processing infrastructure vs. cron workarounds",
+    "Supabase provides both PostgreSQL and object storage in a single managed service",
+    "Separate development/test and production environments with enforced branch protection",
+    "BCDR plan tested annually with multiple loss scenarios"
+  ],
+  "key_observations": [
+    "Context uses Vercel as its exclusive compute platform for both frontend and backend (both are Next.js applications) — this is a full-stack Vercel deployment pattern, not just frontend hosting. This is architecturally coherent for a Next.js-native product but creates extreme provider concentration.",
+    "WorkOS as the identity provider (not Auth0, Okta, or Clerk) indicates a focus on enterprise B2B authentication with built-in SSO and directory sync — well-suited for selling to enterprise organizations that require SAML/OIDC integration.",
+    "Trigger.dev for background jobs is a notable architectural choice — it provides durable execution for long-running tasks (like AI processing of large documents) that would otherwise timeout in serverless environments. This suggests the AI content generation involves meaningful compute-intensive tasks.",
+    "Supabase provides both the database (PostgreSQL) and file storage in a single managed service — this simplifies operations but creates a second critical vendor dependency alongside Vercel.",
+    "The 3-month audit period (April 2 – July 2, 2025) is the minimum for a Type 2 report. Zero exceptions across a meaningful control set is a strong result for a first Type 2 engagement.",
+    "The RGEC (Risk and Governance Executive Committee) with Board oversight and weekly ITLC meetings suggests a governance structure more mature than typical for an early-stage company — similar to the pattern seen in Chicory AI.",
+    "DR is achieved by spinning up multiple servers across all Vercel availability zones — this is Vercel's native multi-AZ capability. There is no multi-region failover; a complete Vercel regional outage would be a single point of failure.",
+    "The enterprise integration connectors (Google Drive, OneDrive, Gmail, QuickBooks, Jira) are core to the product value proposition — they pull context from customer data to power the AI office suite features.",
+    "No AI model provider is named in the report — unlike Magic Patterns (Anthropic) or Dialtone (OpenAI), Context's AI dependency is not disclosed in the SOC 2 report, which limits third-party risk assessment of the AI layer."
+  ]
+}

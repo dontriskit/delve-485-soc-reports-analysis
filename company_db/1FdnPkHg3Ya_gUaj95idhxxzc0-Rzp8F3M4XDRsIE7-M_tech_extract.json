@@ -1,0 +1,229 @@
+{
+  "company": "Klaris AI LTD",
+  "product": "Klaris AI (AI-powered MedTech compliance platform)",
+  "report_type": "ISO 27001",
+  "audit_period": "Certification date: 8/14/2025 (Stage 1: 2 mandays, Stage 2: 3 mandays)",
+  "auditor": "Gradient Certification Inc.",
+  "opinion": "Certification agreement signed — certification pending completion of Stage 1 and Stage 2 audits",
+  "trust_criteria": ["Information Security Management System (ISMS) — ISO 27001"],
+  "hq": "32 - 38 Leman Street, London E1 8EW, United Kingdom",
+  "signing_authority": "Mihai-Sorin Dobre (signatory on behalf of Klaris AI LTD)",
+
+  "system_description": {
+    "overview": "Klaris AI LTD operates an AI-powered platform that automates compliance processes for the MedTech industry. The platform securely analyzes regulatory requirements, generates compliance documentation, and streamlines approval workflows for medical technology products.",
+    "products": {
+      "Klaris AI Platform": "AI-powered compliance automation platform for MedTech — analyzes regulatory requirements, generates compliance documentation, and streamlines approval workflows for medical technology products"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Not disclosed in report",
+    "regions": [],
+    "physical_presence": "32 - 38 Leman Street, London E1 8EW, United Kingdom (single site under scope of certification)",
+    "availability_zones": "Not disclosed",
+    "additional_cloud": [],
+    "serverless": [],
+    "cdn": "Not disclosed",
+    "_note": "ISO 27001 certification agreement does not detail infrastructure specifics. The scope mentions 'data processing infrastructure' and 'IT Infrastructure Management' as in scope but provides no vendor or architecture details."
+  },
+
+  "network_architecture": {
+    "vpc": null,
+    "network_segmentation": "Not disclosed",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "Not disclosed",
+    "ids_ips": "Not disclosed",
+    "vpn": "Not disclosed",
+    "tls": "Not disclosed",
+    "content_filtering": null,
+    "multi_region": null,
+    "topology": "No diagram described in report. This document is a certification agreement, not a technical audit report."
+  },
+
+  "application_architecture": {
+    "pattern": "Not disclosed",
+    "languages": [],
+    "frameworks": [],
+    "compute": [],
+    "api_style": "Not disclosed",
+    "environments": "Not disclosed",
+    "branch_protection": null,
+    "code_review_required": null,
+    "_note": "The scope references 'proprietary technology' and 'automation tools' but provides no architecture details."
+  },
+
+  "data_storage": {
+    "databases": [],
+    "caching": [],
+    "file_storage": [],
+    "data_warehouse": "Not disclosed",
+    "backup_frequency": "Not disclosed",
+    "multi_az": null,
+    "data_classification_policy": null,
+    "data_retention_policy": null,
+    "per_tenant_segregation": null,
+    "_note": "The scope references 'data processing infrastructure' but provides no storage specifics."
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Not disclosed",
+    "mfa": "Not disclosed",
+    "rbac": null,
+    "sso": null,
+    "unique_user_ids": null,
+    "quarterly_access_reviews": null,
+    "access_revocation_sla": "Not disclosed",
+    "password_policy": "Not disclosed"
+  },
+
+  "encryption": {
+    "in_transit": "Not disclosed",
+    "at_rest": "Not disclosed",
+    "key_management": "Not disclosed",
+    "end_to_end": null
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not disclosed",
+    "ci_cd_tool": "Not disclosed",
+    "branch_protection": "Not disclosed",
+    "iac": "Not disclosed",
+    "container_orchestration": "Not disclosed",
+    "patch_management": "Not disclosed",
+    "separate_environments": null,
+    "emergency_change_process": null
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not disclosed",
+    "siem": "Not disclosed",
+    "log_aggregation": "Not disclosed",
+    "alerting": "Not disclosed",
+    "metrics": [],
+    "log_protection": null,
+    "ids": null
+  },
+
+  "third_party_services": [
+    {
+      "vendor": "Gradient Certification Inc.",
+      "purpose": "ISO 27001 certification body / auditor",
+      "criticality": "Medium"
+    },
+    {
+      "vendor": "United Accreditation Foundation Inc. (UAF)",
+      "purpose": "Accreditation body for the certification body",
+      "criticality": "Low"
+    }
+  ],
+
+  "security_tools": {
+    "waf": null,
+    "ids_ips": null,
+    "antivirus": "Not disclosed",
+    "endpoint_protection": null,
+    "vulnerability_scanning": "Not disclosed",
+    "penetration_testing": "Not disclosed",
+    "server_hardening": null,
+    "cybersecurity_insurance": null
+  },
+
+  "bcdr": {
+    "bcdr_policy": null,
+    "annual_review": null,
+    "annual_testing": null,
+    "multi_az_failover": null,
+    "multi_region_failover": null,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [],
+    "notable_controls": [
+      "This document is an ISO 27001 Certification Agreement Form, not the actual audit report or Statement of Applicability (SoA). The SoA Version 1.0 is referenced but not included in this PDF.",
+      "ISMS scope covers: development, deployment, management of AI platform; data processing infrastructure; IT Infrastructure Management; Human Resources; Physical Security; Legal & Compliance; Administrative Operations.",
+      "Total audit cycle: 9 mandays (Stage 1: 2, Stage 2: 3, Surveillance 1: 2, Surveillance 2: 2)",
+      "Single-site certification — no additional or temporary sites"
+    ],
+    "_note": "No individual controls are enumerated in this document. The Statement of Applicability (SoA) Version 1.0 is referenced but not included."
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No infrastructure details disclosed. The certification agreement references 'data processing infrastructure' in scope but provides zero specifics on cloud providers, regions, architecture, or redundancy."
+    },
+    "application_architecture": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No application architecture details disclosed. Only known: AI-powered platform with proprietary technology and automation tools for MedTech compliance."
+    },
+    "data_layer": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No data storage specifics disclosed. 'Data processing infrastructure' is in scope but no databases, backup policies, or data classification details are provided."
+    },
+    "security_posture": {
+      "score": 2,
+      "max": 10,
+      "rationale": "The act of pursuing ISO 27001 certification indicates some security commitment, but this document contains no specific security controls, tools, or practices. The SoA is referenced but not included."
+    },
+    "devops_maturity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No DevOps practices, CI/CD tools, or deployment processes are mentioned anywhere in the document."
+    },
+    "bcdr_readiness": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No BCDR information disclosed. No RTO/RPO, backup frequency, or disaster recovery details are present."
+    },
+    "vendor_diversity": {
+      "score": 1,
+      "max": 10,
+      "rationale": "No technology vendors are named. Unable to assess vendor diversity or concentration risk from this document."
+    },
+    "overall": {
+      "score": 1,
+      "max": 10,
+      "rationale": "This PDF is an ISO 27001 Certification Agreement Form — essentially a contract between Klaris AI LTD and Gradient Certification Inc. It is NOT the actual ISO 27001 audit report, certificate, or Statement of Applicability. Almost no technical information can be extracted. The only useful data is the company identity, scope of ISMS, and the fact that certification is being pursued."
+    }
+  },
+
+  "red_flags": [
+    "CRITICAL: This PDF is a certification agreement/contract, NOT the actual ISO 27001 audit report or certificate. It contains no technical controls, findings, or security details.",
+    "The Statement of Applicability (SoA) Version 1.0 is referenced but not included — this is the key document that would list which ISO 27001 Annex A controls are in/out of scope.",
+    "No actual ISO 27001 certificate is present — this appears to be the pre-audit agreement, meaning certification may not yet have been completed.",
+    "Auditor is Gradient Certification Inc. (accredited by UAF) — not one of the major/well-known certification bodies (e.g., BSI, Bureau Veritas, TUV, Schellman).",
+    "Only 7 pages total — legitimate ISO 27001 audit reports typically run 30-100+ pages.",
+    "Report flagged as potentially incomplete: fewer than 10 pages."
+  ],
+
+  "yellow_flags": [
+    "Total audit cycle is only 9 mandays — relatively lean for an ISMS covering AI platform development, data processing infrastructure, and multiple support functions.",
+    "Single-site certification only — no mention of remote workers or distributed infrastructure considerations.",
+    "No technical details whatsoever are available for due diligence assessment from this document alone."
+  ],
+
+  "green_flags": [
+    "Company is actively pursuing ISO 27001 certification, indicating commitment to information security governance.",
+    "ISMS scope is comprehensive: covers core platform development, data processing, IT infrastructure management, HR, physical security, legal & compliance, and administrative operations.",
+    "Scope explicitly includes 'data processing infrastructure and automation tools that securely analyze regulatory requirements' — security of data handling is in scope."
+  ],
+
+  "key_observations": [
+    "This document is a Certification Agreement Form, not a completed audit report or issued certificate. It represents the contractual arrangement for conducting the ISO 27001 audit, not the results.",
+    "Klaris AI LTD builds an AI-powered compliance automation platform specifically for the MedTech industry — they help medical technology companies navigate regulatory requirements.",
+    "The company operates from London (Leman Street, E1) — this is in the Aldgate/Whitechapel area, a known tech hub.",
+    "To perform meaningful tech due diligence, the actual ISO 27001 certificate, Statement of Applicability (SoA), and ideally the Stage 2 audit report would be needed.",
+    "The certification is being conducted by Gradient Certification Inc. (Wyoming/Texas, USA) with UAF accreditation — worth verifying UAF accreditation standing independently.",
+    "Signatory Mihai-Sorin Dobre signed both the UAF endorsement letter and the certification agreement on the same date (8/14/2025), suggesting this was the initiation of the certification process."
+  ]
+}

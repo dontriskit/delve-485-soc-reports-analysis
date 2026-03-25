@@ -1,0 +1,244 @@
+{
+  "company": "Delve Technologies Inc.",
+  "product": "Delve Compliance Platform",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of January 1, 2025",
+  "auditor": "Accorp Partners",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security"],
+  "hq": "[Company Address] — not disclosed in report; placeholder text present",
+  "signing_authority": "Your Name Here — placeholder not filled (highlighted instruction text present)",
+
+  "_flag": "TEMPLATE_NOT_FULLY_COMPLETED — Multiple highlighted instruction blocks and placeholder text remain unfilled (company address, org chart, network diagram, signing authority name). This is a Delve-generated SOC 2 template used as their own product's report. Subservice organization is Vercel (not Azure as in DOC 1).",
+
+  "system_description": {
+    "overview": "Delve Technologies Inc. provides an AI-automated compliance platform designed to help companies achieve and maintain compliance with frameworks including SOC 2, HIPAA, GDPR, ISO 27001, and PCI DSS. The platform leverages AI to automate evidence gathering, perform continuous compliance monitoring, and includes AI code scanning, infrastructure monitoring, automated security questionnaire completion, and access control management.",
+    "products": {
+      "Automated Compliance Management Platform": "End-to-end compliance automation for SOC 2, HIPAA, ISO 27001, GDPR, PCI DSS, and more; integration with client existing tech stack; continuous compliance monitoring and gap identification; automated evidence collection.",
+      "AI-Powered Security and Compliance Features": "Automated code scanning (review of code pushes for security vulnerabilities), automated infrastructure scanning (continuous monitoring), access control monitoring (detection and alerts for unauthorized access), security questionnaire automation.",
+      "Compliance Support Services": "Compliance implementation services including onboarding, setup, and framework implementation; ongoing compliance support including expert guidance and auditor coordination."
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "Vercel (carve-out — Vercel data center controls excluded from scope)",
+    "regions": ["Not specified — Vercel regions not named in report"],
+    "physical_presence": "None — no physical offices; all data processed on cloud services",
+    "availability_zones": "Multi-AZ — DR plan references spinning up multiple servers across all availability zones in Vercel",
+    "additional_cloud": [],
+    "serverless": ["Not mentioned explicitly; Vercel is a serverless-capable platform"],
+    "cdn": "Not mentioned (Vercel natively provides CDN but not stated in report)"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "System hosted in Vercel in a virtual private cloud (VPC) environment with segmented VPCs and access control lists (ACLs). Network segmentation implemented to separate systems and data based on sensitivity and criticality.",
+    "api_gateway": null,
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols and services. Firewall rules reviewed annually by IT management. Network firewalls and intrusion detection tools configured to prevent unauthorized access (CC6.6.1).",
+    "ids_ips": "IDS and IPS deployed via Vercel to identify and protect against threats. Firewalls and intrusion detection tools configured to prevent unauthorized access and detect external security threats.",
+    "vpn": "Remote access done through a bastion host with a virtual private network (VPN). VPC VPN connections shown in network diagram.",
+    "tls": "Encryption technologies used to protect communication and transmission of data over public networks (CC6.1.6). TLS version not specified.",
+    "content_filtering": "Not mentioned",
+    "multi_region": false,
+    "topology": "Internet -> VPN/Internet Gateway -> VPC with multiple availability zones. Remote users connect via bastion host + VPN. NOTE: Network diagram in report is a sample/placeholder — instruction text overlay present saying 'Please replace this with your actual network diagram'. Vercel-specific VPC topology not shown."
+  },
+
+  "application_architecture": {
+    "pattern": "Not disclosed",
+    "languages": ["Not disclosed"],
+    "frameworks": ["Not disclosed"],
+    "compute": ["Vercel cloud infrastructure (virtual servers/serverless; specific compute type not named)"],
+    "api_style": "Not disclosed",
+    "environments": "Separate development, test, staging, and production environments. Changes tested in separate development or test environment before implementation (CC8.1.4).",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Not named — generic reference to production information assets"],
+    "caching": ["Not mentioned"],
+    "file_storage": ["Vercel cloud storage (implied)"],
+    "data_warehouse": "Not mentioned",
+    "backup_frequency": "Not explicitly stated; backup policy and procedures referenced but no frequency confirmed (Type 1 — no test results)",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "Vercel (passwords controlled through Password policy of Vercel; Active Directory referenced for server and database accounts — CC6.1.2: 'Unique user IDs and passwords are required... Active Directory, server, and database accounts')",
+    "mfa": "MFA enforced for user accounts with administrative access to production platform (CC6.1.1); MFA required for source code tool access (CC8.1.3); MFA for email implied",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination (CC6.1.4, CC6.2 confirmed)",
+    "password_policy": "Vercel password policy: periodic forced changes, password expiry and complexity requirements; accounts disabled after limited unsuccessful logon attempts; guest and anonymous logins not allowed; unattended desktops locked on inactivity; biometrics as unlock alternative"
+  },
+
+  "encryption": {
+    "in_transit": "Encryption technologies used to protect data over public networks (CC6.1.6) — TLS version not specified",
+    "at_rest": "Cloud provider key management service used to encrypt data at rest (CC6.1.5)",
+    "key_management": "Vercel KMS (cloud provider key management service) — access to production environment access keys restricted to authorized individuals",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Not named — 'source code management tool' referenced with MFA access (CC8.1.3)",
+    "ci_cd_tool": "Not named",
+    "branch_protection": "Code repository branch rules configured to ensure every merge request to move change to production requires additional approval. Developers cannot make changes to production without additional approval (CC8.1.2).",
+    "iac": "Baseline configurations retained within infrastructure as code; configuration management tool used for implementation and rollback (CC7.1.1)",
+    "container_orchestration": "Not mentioned",
+    "patch_management": "CTO/Management set up automatic patch management; monthly patch management reviews; workstations configured for automatic updates and scanned daily for patch compliance (CC7.5.1)",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Not named — 'monitoring tool' that generates alerts on predefined thresholds (CC5.2.1)",
+    "siem": "Not named",
+    "log_aggregation": "Not named — logging enabled for administrative activities, logon attempts, data deletions, changes to functions, security configurations, permissions, and roles (CC7.2.1)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events. Issues resolved via incident management process.",
+    "metrics": ["System capacity", "performance anomalies"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Vercel", "purpose": "Cloud infrastructure / data center services (subservice organization, carve-out)", "criticality": "Critical"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers (continuous scanning, weekly definition updates) and Mac workstations/laptops (CC6.8.1, CC6.7)",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications (CC7.1.2); management reviews high/critical findings",
+    "penetration_testing": "Annually by independent third-party (CC4.1.1); high/critical findings tracked to resolution",
+    "server_hardening": true,
+    "cybersecurity_insurance": "Not explicitly mentioned in this report (unlike Azure Type 2 version)"
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": "Not confirmed — backup policy exists but frequency not stated (Type 1 report, no test results)",
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 0,
+    "exceptions": 0,
+    "_note": "SOC 2 Type 1 — design of controls only, no tests of operating effectiveness performed. No 'tested' column in Section 4.",
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 — Vercel responsible for physical security of data center",
+      "A1.2 — Delve does not have an office; environmental security managed by building management/Vercel",
+      "Processing Integrity criteria — deemed not relevant to system",
+      "Privacy criteria — deemed not relevant to system"
+    ],
+    "notable_controls": [
+      "CC8.1.2 — Branch protection rules enforced; merge requires additional approval",
+      "CC8.1.3 — Source code changes logged, time-stamped, attributed in SCM tool with MFA access",
+      "CC8.1.4 — Separate dev/test environments confirmed",
+      "CC4.1.1 — Annual external penetration testing by independent third party",
+      "CC6.1.5 — Cloud provider KMS for encryption key management",
+      "CC7.1.2 — Monthly automated vulnerability scanning",
+      "CC6.6.1 — Firewalls and IDS tools configured to detect external security threats",
+      "CC7.4.1 — BCDR policy with annual testing confirmed",
+      "CC9.2.1 — Vendor management policy; annual SOC report review; quarterly risk assessments for critical vendors without SOC reports"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Vercel VPC with multi-AZ confirmed, IDS/IPS, VPN via bastion host, IaC. Vercel is a serverless-native platform with built-in CDN but this is not explicitly stated in the report. No named regions. Network diagram is placeholder. Single cloud provider. Slightly lower confidence than Azure version due to Vercel being less enterprise-standard for compliance-heavy workloads."
+    },
+    "application_architecture": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Separate environments confirmed, branch protection confirmed, IaC referenced. No languages, frameworks, compute types, API style, or CI/CD tool disclosed. Architecture pattern not stated. Type 1 report provides no test evidence."
+    },
+    "data_layer": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Backup policy exists, multi-AZ referenced, data classification and retention policies confirmed, per-tenant segregation confirmed. Backup frequency not confirmed (Type 1 — no tested evidence). No specific database technologies named. No caching or data warehouse."
+    },
+    "security_posture": {
+      "score": 6,
+      "max": 10,
+      "rationale": "Annual external pen test, monthly vuln scans, IDS/IPS, firewalls, MFA enforced, anti-virus/malware, quarterly access reviews, 1-business-day termination SLA, KMS encryption. No WAF named, no SIEM named, no cybersecurity insurance explicitly mentioned (unlike Azure T2 report). Type 1 provides no test evidence of controls operating."
+    },
+    "devops_maturity": {
+      "score": 5,
+      "max": 10,
+      "rationale": "IaC referenced, branch protection confirmed, separate environments, emergency change process, monthly patch management. No CI/CD tool named, no SCM platform named, no container orchestration mentioned."
+    },
+    "bcdr_readiness": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BCDR policy exists, annual review and testing confirmed, multi-AZ failover confirmed (spinning up servers across AZs in Vercel). No RTO/RPO disclosed. No multi-region failover. Daily backup frequency not explicitly confirmed in this Type 1 report."
+    },
+    "vendor_diversity": {
+      "score": 2,
+      "max": 10,
+      "rationale": "Only Vercel explicitly named as subservice organization. No other third-party vendors disclosed. Single critical cloud dependency. Vercel is less enterprise-standard than Azure/AWS/GCP for compliance-sensitive infrastructure."
+    },
+    "overall": {
+      "score": 4,
+      "max": 10,
+      "rationale": "SOC 2 Type 1 provides less assurance than Type 2 — only design of controls, no operating effectiveness tested. Report contains same critical unfilled template placeholders as the Azure T2 version (placeholder network diagram, signing authority 'Your Name Here', company address placeholder). Vercel as sole named subservice organization is unusual for an enterprise compliance product. Very limited tech stack specificity."
+    }
+  },
+
+  "red_flags": [
+    "CRITICAL: Network diagram in report is explicitly a placeholder/sample — instruction overlay text says 'Please replace this with your actual network diagram'. Company submitted a template diagram, not their actual infrastructure.",
+    "CRITICAL: Multiple highlighted instruction blocks remain in the report body (yellow highlight with 'Instructions: Modify this text...') indicating this is a partially-completed Delve template used as their own report.",
+    "Signing authority name field is 'Your Name Here' — placeholder not completed.",
+    "Company address is '[Company Address]' placeholder.",
+    "SOC 2 Type 1 only — no operating effectiveness tested; provides significantly less assurance than Type 2.",
+    "Vercel as sole cloud provider for a compliance platform — Vercel is a frontend/serverless deployment platform, which is an unusual infrastructure choice for a compliance SaaS with sensitive customer data."
+  ],
+  "yellow_flags": [
+    "No CI/CD tool named despite source code management being referenced.",
+    "No SIEM or log aggregation platform named.",
+    "Cybersecurity insurance not mentioned in this report (present in Azure T2 version — may be a template variant difference).",
+    "RTO and RPO not disclosed.",
+    "Only one named subservice organization (Vercel) — no other vendors disclosed despite being a SaaS platform with likely multiple dependencies.",
+    "Audit firm 'Accorp Partners' — less established than Big 4 or major SOC auditors.",
+    "Backup frequency not confirmed (Type 1 report — no test evidence).",
+    "No specific Vercel regions named.",
+    "Availability Criteria not included in scope — only Security trust criterion covered."
+  ],
+  "green_flags": [
+    "Annual external penetration testing by independent third party confirmed (CC4.1.1).",
+    "Monthly automated vulnerability scanning confirmed (CC7.1.2).",
+    "Multi-AZ deployment with BCDR annual testing confirmed.",
+    "MFA enforced for administrative and production access.",
+    "Quarterly access reviews performed.",
+    "1-business-day access revocation SLA for terminated employees.",
+    "IaC used for infrastructure management with rollback capability.",
+    "Branch protection rules enforced with required approvals for production merges.",
+    "BCDR plan with annual testing confirmed.",
+    "Vendor management policy with quarterly risk assessments for critical vendors without SOC reports.",
+    "Data retention and disposal policy in place."
+  ],
+  "key_observations": [
+    "This is Delve's own SOC 2 Type 1 report using Vercel as the subservice organization — a different infrastructure variant from the Azure and AWS Type 2 reports. Delve appears to generate template variants for each major cloud provider.",
+    "Type 1 report only covers design of controls as of January 1, 2025 — provides significantly less assurance than the Type 2 Azure report covering Jan-Apr 2025.",
+    "Vercel as a cloud provider for a compliance platform is noteworthy — Vercel is primarily a frontend deployment platform (Next.js-native). If accurate, this suggests Delve's backend may be primarily serverless/edge functions, which is unusual for compliance data processing.",
+    "Only Security trust criterion in scope — Availability and Confidentiality not included (unlike the Azure T2 version which includes all three). This is a narrower scope.",
+    "CC6.4 physical security excluded citing Vercel responsibility — acceptable for cloud-only companies but Vercel's physical security posture is less documented than Azure/AWS/GCP.",
+    "Password policy explicitly references 'Password policy of Vercel' (page 24) confirming Vercel as identity infrastructure.",
+    "DR plan explicitly states continuity by 'spinning up multiple servers across all availability zones in Vercel' — confirms multi-AZ but no multi-region.",
+    "Section 5 (page 57) notes disaster recovery is AICPA-compliant but provides no quantitative RTO/RPO targets."
+  ]
+}

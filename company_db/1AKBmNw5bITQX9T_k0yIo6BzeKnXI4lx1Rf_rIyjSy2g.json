@@ -1,0 +1,19 @@
+{
+  "doc_id": "1AKBmNw5bITQX9T_k0yIo6BzeKnXI4lx1Rf_rIyjSy2g",
+  "link": "https://docs.google.com/document/d/1AKBmNw5bITQX9T_k0yIo6BzeKnXI4lx1Rf_rIyjSy2g",
+  "timestamp": "9/5/2025 14:34:41",
+  "display_name": "Rally",
+  "legal_name": "Rally Europe B.V.",
+  "company_name": "Rally",
+  "system_description": "Rally is a financial platform for businesses that operate vehicle fleets.",
+  "audit_end_date": "August 25, 2025",
+  "observation_period": "",
+  "infra_provider": "Supabase",
+  "website": "https://getrally.com",
+  "contact_email": "legal@getrally.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1AKBmNw5bITQX9T_k0yIo6BzeKnXI4lx1Rf_rIyjSy2g.pdf",
+  "txt_file": "1AKBmNw5bITQX9T_k0yIo6BzeKnXI4lx1Rf_rIyjSy2g.txt",
+  "has_report": true
+}

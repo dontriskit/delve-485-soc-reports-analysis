@@ -1,0 +1,244 @@
+{
+  "company": "Bandar Systems Inc.",
+  "product": "S2 (Stream Store)",
+  "report_type": "SOC 2 Type 1",
+  "audit_period": "As of August 4, 2025",
+  "auditor": "Accorp Partners CPA LLC (PAC-FIRM-LIC-47383)",
+  "opinion": "Unqualified",
+  "trust_criteria": ["Security", "Availability", "Processing Integrity", "Confidentiality", "Privacy"],
+  "hq": "166 Geary St. 15th Floor, Suite 145, San Francisco, California 94108, United States",
+  "signing_authority": "Shikhar Bhushan, CEO",
+
+  "system_description": {
+    "overview": "S2 is a serverless API for durable streams of records, backed by object storage. It is a cloud-based streaming data service that provides control plane APIs for managing basins (containers for streams), streams of records, and access tokens, along with data plane APIs for appending and reading records. The company also provides open source SDKs and integrations.",
+    "products": {
+      "S2 Cloud - Control Plane": "API for managing basins, streams, and access tokens with fine-grained scopes",
+      "S2 Cloud - Data Plane": "API for appending records to a stream, reading records from a stream, and checking the last record on a stream",
+      "S2 Web Dashboard": "User management, resource operations on basins/streams/access tokens, usage monitoring and billing"
+    }
+  },
+
+  "infrastructure": {
+    "cloud_provider": "AWS (carve-out method - AWS controls excluded from scope)",
+    "regions": ["Not explicitly named; single region implied from network diagram"],
+    "physical_presence": "None - no physical offices or servers; all cloud-based",
+    "availability_zones": "Multi-AZ (3 availability zones visible in network diagram: AZ-1, AZ-2, AZ-3)",
+    "additional_cloud": [],
+    "serverless": ["Described as 'serverless API' but underlying compute uses container orchestration with Auto Scaling Groups"],
+    "cdn": "None mentioned"
+  },
+
+  "network_architecture": {
+    "vpc": true,
+    "network_segmentation": "Production VPC with segmented VPCs and ACLs. Each of 3 availability zones has private subnets (container orchestration platform with Auto Scaling Groups and worker/validator nodes) and public subnets (NLB interfaces). NAT Gateways per AZ for outbound traffic.",
+    "api_gateway": "Application gateway mentioned in firewall context (CC6.6.1)",
+    "waf": null,
+    "firewalls": "System firewalls configured on application gateway and production network to limit unnecessary ports, protocols, and services. Firewall rules reviewed annually by IT management. Formal network diagram outlining boundary protection mechanisms maintained.",
+    "ids_ips": "IDS and IPS via AWS to identify and protect against threats in conjunction with security policy network settings",
+    "vpn": "Remote access through bastion host with VPN",
+    "tls": "TLS encryption for all web-based user requests using certificates from established third-party CA",
+    "content_filtering": "Content filtering system routed through proxy server for all systems restricted to internet access",
+    "multi_region": false,
+    "topology": "External clients -> Network Load Balancer -> Public Subnets (NLB interfaces in 3 AZs) -> Private Subnets (Container Orchestration Platform with Auto Scaling Groups of worker/validator nodes in 3 AZs) -> Object Storage (S3). NAT Gateways per AZ for outbound. Route 53 public zone for DNS. Internet Gateway at VPC edge."
+  },
+
+  "application_architecture": {
+    "pattern": "Hybrid - serverless API backed by container orchestration platform with auto-scaling worker/validator nodes",
+    "languages": ["Not disclosed"],
+    "frameworks": ["Not disclosed"],
+    "compute": ["Auto Scaling Groups (EC2-based)", "Container Orchestration Platform"],
+    "api_style": "REST (HTTP endpoints)",
+    "environments": "Separate development/test and production environments (CC8.1.4 confirms changes developed and tested in separate environment before implementation). Stage and Production mentioned.",
+    "branch_protection": true,
+    "code_review_required": true
+  },
+
+  "data_storage": {
+    "databases": ["Object storage (S3 - visible in network diagram)"],
+    "caching": [],
+    "file_storage": ["S3 (object storage backing the streaming service)"],
+    "data_warehouse": "None mentioned",
+    "backup_frequency": "Not explicitly stated; formal backup policies and procedures exist per Backup Policy",
+    "multi_az": true,
+    "data_classification_policy": true,
+    "data_retention_policy": true,
+    "per_tenant_segregation": true
+  },
+
+  "authentication_access_control": {
+    "identity_provider": "AWS Password Policy for internal; access tokens with fine-grained scopes for API consumers",
+    "mfa": "MFA enforced for administrative access to production platform (CC6.1.1, CC6.6); MFA for source code tool access (CC8.1.3); two-factor authentication required for employee email access",
+    "rbac": true,
+    "sso": false,
+    "unique_user_ids": true,
+    "quarterly_access_reviews": true,
+    "access_revocation_sla": "Within one business day upon termination (CC6.1.4)",
+    "password_policy": "Controlled through AWS Password Policy; includes periodic forced changes, password expiry, and complexity requirements. Accounts disabled after limited unsuccessful logon attempts. Guest and anonymous logins not allowed. Desktops locked after inactivity."
+  },
+
+  "encryption": {
+    "in_transit": "TLS (version not specified) using certificates from established third-party CA",
+    "at_rest": "Cloud provider key management service (AWS KMS implied - CC6.1.5)",
+    "key_management": "Cloud provider key management service for encryption keys; access to production environment access keys restricted to authorized individuals",
+    "end_to_end": false
+  },
+
+  "ci_cd_devops": {
+    "source_control": "Source code management tool (name not disclosed); changes logged, time-stamped, attributed to author (CC8.1.3)",
+    "ci_cd_tool": "Not named; internal tool tracks changes from initiation through deployment and validation",
+    "branch_protection": "Repository branch rules configured to ensure every merge request to production requires additional approval (CC8.1.2)",
+    "iac": "Infrastructure as code implied - baseline configurations retained within infrastructure as a code, configuration management tool used for implementation and rollback (CC7.1.1)",
+    "container_orchestration": "Container Orchestration Platform (visible in network diagram - appears to be ECS or similar with Auto Scaling Groups)",
+    "patch_management": "Automatic patch management with monthly patch management reviews by CTO. Workstations configured for automatic updates and scanned for patch compliance daily. OS patches tested for stability and availability before production deployment.",
+    "separate_environments": true,
+    "emergency_change_process": true
+  },
+
+  "monitoring_logging": {
+    "apm_tool": "Monitoring tools (not named) for system capacity and performance monitoring",
+    "siem": "Not named; automated alerts for high and critical risk events",
+    "log_aggregation": "Logging enabled at application and infrastructure level for administrative activities, logon attempts, data deletions, security configurations, permissions, and roles (CC7.2.1)",
+    "alerting": "Automated alerts configured to notify IT management of high and critical risk events; incident management process invoked for confirmed events",
+    "metrics": ["disc space", "incoming/outgoing network traffic", "packet loss", "CPU utilization", "system capacity", "performance"],
+    "log_protection": true,
+    "ids": true
+  },
+
+  "third_party_services": [
+    {"vendor": "Amazon Web Services (AWS)", "purpose": "Primary cloud infrastructure provider - data center services, compute, storage, networking", "criticality": "Critical"},
+    {"vendor": "Third-party CA", "purpose": "TLS certificate authority for web encryption", "criticality": "Medium"},
+    {"vendor": "Anti-virus/Malware vendor", "purpose": "Endpoint security solution for production servers and workstations", "criticality": "High"}
+  ],
+
+  "security_tools": {
+    "waf": false,
+    "ids_ips": true,
+    "antivirus": "Anti-virus and Malware protection software installed on all production servers (continuous scan, weekly definition updates) and Mac-based workstations/laptops. Email scanning for malicious scripts and viruses.",
+    "endpoint_protection": true,
+    "vulnerability_scanning": "Monthly automated vulnerability scans on infrastructure and applications; frequency adjusted as required. Also self-assessment scan prior to every release or on yearly basis.",
+    "penetration_testing": "Annual external penetration testing by independent third-party. Results reviewed by IT management. High/critical findings remediated in timely manner.",
+    "server_hardening": true,
+    "cybersecurity_insurance": false
+  },
+
+  "bcdr": {
+    "bcdr_policy": true,
+    "annual_review": true,
+    "annual_testing": true,
+    "multi_az_failover": true,
+    "multi_region_failover": false,
+    "daily_backups": null,
+    "rto": "Not disclosed",
+    "rpo": "Not disclosed"
+  },
+
+  "compliance_controls": {
+    "total_controls_tested": 52,
+    "exceptions": 0,
+    "untestable": [],
+    "excluded_criteria": [
+      "CC6.4 - Physical access to facilities: AWS responsible for data center physical security; not in scope",
+      "A1.2 - Environmental protections/backup/recovery infrastructure: S2 has no office or working space; managed by building management/AWS",
+      "Processing Integrity - Determined not relevant to the system",
+      "Privacy - Determined not relevant to the system"
+    ],
+    "notable_controls": [
+      "CC8.1.2 - Branch protection requiring merge request approval for production changes",
+      "CC8.1.3 - Source code changes logged, time-stamped, attributed; MFA required for source code tool access",
+      "CC7.1.1 - Infrastructure as code with configuration management tool and rollback capability",
+      "CC6.1.1 - MFA enforced for administrative access to production",
+      "CC6.1.3 - Customer access appropriately segmented from other customer accounts (tenant isolation)",
+      "CC4.1.1 - Annual external penetration testing by independent third-party",
+      "CC7.4.1 - BCDR plans tested annually per defined testing schedule across different loss scenarios",
+      "CC6.6.1 - Firewalls and intrusion detection tools configured on application gateway and production network"
+    ]
+  },
+
+  "scoring": {
+    "infrastructure": {
+      "score": 6,
+      "max": 10,
+      "rationale": "AWS with Multi-AZ (3 AZs), VPC with proper segmentation, NLB, Auto Scaling Groups, and IaC. However, single-region only, no CDN mentioned, no multi-region failover. Solid for a startup but lacks geographic redundancy."
+    },
+    "application_architecture": {
+      "score": 5,
+      "max": 10,
+      "rationale": "Container orchestration with auto-scaling worker/validator nodes is good architecture. However, languages, frameworks, and specific compute services are not disclosed. Branch protection and code review are confirmed. API style is REST via HTTP endpoints."
+    },
+    "data_layer": {
+      "score": 4,
+      "max": 10,
+      "rationale": "Object storage (S3) is the primary backing store which fits the product's append-only stream model. However, no caching layer, no data warehouse, no database specifics beyond S3. Backup frequency not stated. Data classification and retention policies exist. Per-tenant segregation confirmed."
+    },
+    "security_posture": {
+      "score": 7,
+      "max": 10,
+      "rationale": "Strong fundamentals: MFA on production and source code, IDS/IPS, firewalls on app gateway, annual pen testing, monthly vulnerability scanning, endpoint protection, anti-malware, server hardening, content filtering via proxy. Missing: no WAF mentioned, no named SIEM tool, no cybersecurity insurance disclosed."
+    },
+    "devops_maturity": {
+      "score": 6,
+      "max": 10,
+      "rationale": "IaC with configuration management and rollback capability. Branch protection with merge request approval required. Separate dev/test/stage/production environments. Emergency change process documented. Source code management with MFA. However, no specific CI/CD tool, container orchestration, or source control platform named."
+    },
+    "bcdr_readiness": {
+      "score": 5,
+      "max": 10,
+      "rationale": "BCDR policy exists, documented and reviewed annually. Annual testing of BCDR plans across different loss scenarios. Multi-AZ failover with servers spanning all availability zones. However, no multi-region failover, RTO/RPO not disclosed, backup frequency not specified."
+    },
+    "vendor_diversity": {
+      "score": 3,
+      "max": 10,
+      "rationale": "Heavy single-vendor dependency on AWS for all infrastructure. No additional cloud providers, no CDN vendor, no named monitoring/SIEM/CI-CD vendors. This represents significant vendor concentration risk."
+    },
+    "overall": {
+      "score": 5,
+      "max": 10,
+      "rationale": "S2/Bandar Systems has a solid security foundation for an early-stage company achieving its first SOC 2 Type 1. The Multi-AZ architecture with container orchestration and proper network segmentation is well-designed. Security controls are comprehensive with MFA, IDS/IPS, annual pen testing, and vulnerability scanning. Key gaps include single-region deployment, heavy AWS concentration, minimal technology disclosure (no named tools for most categories), and no stated RTO/RPO. The Type 1 nature means operating effectiveness has not yet been validated."
+    }
+  },
+
+  "red_flags": [
+    "Type 1 report only - no operating effectiveness tested; controls are designed but not proven over a period",
+    "Single-region deployment with no multi-region failover creates geographic risk",
+    "RTO and RPO not disclosed despite having BCDR policy",
+    "Heavy AWS vendor concentration with no secondary cloud provider",
+    "No WAF mentioned despite having public-facing HTTP API endpoints",
+    "Backup frequency not specified in report despite formal backup policy existing"
+  ],
+
+  "yellow_flags": [
+    "Most technology tools not named (CI/CD, source control, monitoring, SIEM, container platform) - limits ability to assess actual tool maturity",
+    "No cybersecurity insurance disclosed",
+    "No CDN mentioned for a public API service",
+    "Processing Integrity and Privacy trust criteria excluded as 'not relevant' - unusual for a data storage/streaming service",
+    "No SSO mentioned for internal identity management",
+    "Patch management references Windows/Network team which seems inconsistent with a cloud-native serverless company"
+  ],
+
+  "green_flags": [
+    "Clean unqualified opinion with zero exceptions",
+    "Multi-AZ architecture across 3 availability zones with proper auto-scaling",
+    "MFA enforced at multiple layers: production admin, source code, employee email",
+    "Infrastructure as code with configuration management and rollback capability",
+    "Branch protection requiring merge request approval before production deployment",
+    "Annual external penetration testing by independent third-party",
+    "Monthly automated vulnerability scanning with frequency adjusted as needed",
+    "Quarterly user access reviews for all accounts including admin-privileged",
+    "Formal vendor management program with SOC report reviews and quarterly risk assessments",
+    "Network diagram provided showing well-structured VPC architecture with private/public subnet separation",
+    "BCDR plans tested annually across different loss scenarios",
+    "Per-tenant data segregation confirmed (CC6.1.3)",
+    "Access revocation within one business day of termination"
+  ],
+
+  "key_observations": [
+    "The product is described as a 'serverless API' but the network diagram reveals container orchestration with EC2-based Auto Scaling Groups - this is not truly serverless but rather a managed container platform",
+    "The network diagram shows worker and validator nodes suggesting a distributed consensus or verification architecture for the streaming data service",
+    "Report uses very generic/template language in many control descriptions (particularly CC1.x through CC5.x) which are nearly identical to boilerplate SOC 2 reports - suggests audit firm may have used standardized templates",
+    "Despite being a data streaming/storage company, the report excludes Processing Integrity criteria, which would be highly relevant to verifying data is processed completely and accurately",
+    "The org chart shows only CEO -> CTO/CISO -> Developer team/SRE team, indicating a very small company (likely under 20 employees)",
+    "No mention of any specific database technology beyond S3 object storage, which is unusual - the control plane likely requires metadata storage that is not disclosed",
+    "The NLB (Network Load Balancer) in the diagram rather than ALB suggests TCP/gRPC-level load balancing rather than HTTP-level, consistent with a low-latency streaming data service",
+    "Report was signed August 24, 2025 and digitally signed August 29, 2025 - very quick turnaround from audit date of August 4, suggesting a fast audit engagement typical of Type 1 point-in-time assessments"
+  ]
+}

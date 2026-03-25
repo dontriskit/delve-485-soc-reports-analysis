@@ -1,0 +1,19 @@
+{
+  "doc_id": "1TLxJ-U9id4noVXcUXhbCYlG3mfV8D2550vdafTRPPmE",
+  "link": "https://docs.google.com/document/d/1TLxJ-U9id4noVXcUXhbCYlG3mfV8D2550vdafTRPPmE",
+  "timestamp": "9/17/2025 15:32:06",
+  "display_name": "Truth Systems",
+  "legal_name": "Truth Systems Inc.",
+  "company_name": "Truth Systems",
+  "system_description": "Truth Systems is an AI governance tool for law firms. We monitor interactions with AI software to ensure that they are safe and compliant.",
+  "audit_end_date": "",
+  "observation_period": "June 10, 2025 - September 10, 2025",
+  "infra_provider": "AWS",
+  "website": "https://truthsystems.ai",
+  "contact_email": "alex@truthsystems.ai",
+  "address": "",
+  "report_type": "SOC 2 Type 2",
+  "pdf_file": "1TLxJ-U9id4noVXcUXhbCYlG3mfV8D2550vdafTRPPmE.pdf",
+  "txt_file": "1TLxJ-U9id4noVXcUXhbCYlG3mfV8D2550vdafTRPPmE.txt",
+  "has_report": true
+}

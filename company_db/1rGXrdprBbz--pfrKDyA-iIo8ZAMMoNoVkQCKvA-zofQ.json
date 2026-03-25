@@ -1,0 +1,19 @@
+{
+  "doc_id": "1rGXrdprBbz--pfrKDyA-iIo8ZAMMoNoVkQCKvA-zofQ",
+  "link": "https://docs.google.com/document/d/1rGXrdprBbz--pfrKDyA-iIo8ZAMMoNoVkQCKvA-zofQ",
+  "timestamp": "11/3/2025 15:56:02",
+  "display_name": "River",
+  "legal_name": "River Software, LLC",
+  "company_name": "River",
+  "system_description": "River builds background queueing library software targeted at Go developers.",
+  "audit_end_date": "October 23, 2025",
+  "observation_period": "",
+  "infra_provider": "Render",
+  "website": "https://riverqueue.com",
+  "contact_email": "compliance@riverqueue.com",
+  "address": "",
+  "report_type": "SOC 2 Type 1",
+  "pdf_file": "1rGXrdprBbz--pfrKDyA-iIo8ZAMMoNoVkQCKvA-zofQ.pdf",
+  "txt_file": "1rGXrdprBbz--pfrKDyA-iIo8ZAMMoNoVkQCKvA-zofQ.txt",
+  "has_report": true
+}
