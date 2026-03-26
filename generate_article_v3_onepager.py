@@ -1,0 +1,213 @@
+"""
+v3: One-pager landing page with key insights, inviting readers to the full report.
+Sharp, punchy, visual. A kick in the gut, not a 4000-word meal.
+"""
+import base64, json
+import pandas as pd
+from pathlib import Path
+
+OUT = Path("reports/article_v3")
+OUT.mkdir(parents=True, exist_ok=True)
+
+df = pd.read_csv("data_export/companies_clean.csv")
+N = len(df)
+
+def embed(path):
+    p = Path(path)
+    if not p.exists(): return ""
+    with open(p,"rb") as f: return f"data:image/png;base64,{base64.b64encode(f.read()).decode()}"
+
+comp_mat = embed("reports/article_v2/compliance_to_maturity.png")
+reveals = embed("reports/article_v2/reveals_vs_hides.png")
+funding = embed("reports/output/13_funding_signals/funding_vs_score.png")
+
+html = f"""<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>500 SOC 2 Reports. One Uncomfortable Truth.</title>
+<meta name="description" content="We analyzed 500 SOC 2 reports from VC-backed companies. $291M in funding. a16z, Benchmark, Kleiner Perkins. The finding: compliance ≠ maturity.">
+<meta property="og:title" content="500 SOC 2 Reports. One Uncomfortable Truth.">
+<meta property="og:description" content="$75M from a16z buys you the same SOC 2 as $500K from YC. We have the data.">
+<meta name="author" content="Jacek Podoba, Maksym Huczyński">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>tailwind.config = {{ darkMode: 'class', theme: {{ extend: {{ fontFamily: {{ sans: ['Inter', 'system-ui'] }} }} }} }}</script>
+<style>
+html {{ scroll-behavior: smooth; }}
+body {{ background: #0f172a; }}
+.stat-glow {{ box-shadow: 0 0 40px rgba(59, 130, 246, 0.08); }}
+</style>
+</head>
+<body class="bg-slate-950 text-slate-200 font-sans">
+
+<div class="max-w-3xl mx-auto px-6 py-16 md:py-24">
+
+  <!-- HEADLINE -->
+  <div class="text-center mb-16">
+    <p class="text-blue-400 text-sm font-semibold tracking-wide mb-4">RESEARCH · {N} COMPANIES · $291M+ TRACKED</p>
+    <h1 class="text-4xl md:text-6xl font-black text-white leading-[1.1] mb-6">
+      500 SOC 2 Reports.<br>
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">One Uncomfortable Truth.</span>
+    </h1>
+    <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+      We analyzed every page of {N} compliance reports from companies backed by
+      a16z, Benchmark, Kleiner Perkins, Lightspeed, and Y Combinator.
+    </p>
+  </div>
+
+  <!-- THE PUNCH -->
+  <div class="bg-gradient-to-br from-red-950/40 to-slate-900 border border-red-800/30 rounded-2xl p-8 md:p-12 mb-12 text-center">
+    <p class="text-red-400 text-sm font-bold uppercase tracking-wider mb-3">The finding</p>
+    <p class="text-2xl md:text-3xl font-black text-white leading-tight mb-4">
+      A company that raised $75M from&nbsp;a16z<br>
+      produces the same SOC 2 report<br>
+      as a $500K seed startup.
+    </p>
+    <p class="text-slate-400 text-lg">
+      Funding buys market access. It does not buy operational discipline.
+    </p>
+  </div>
+
+  <!-- 5 STATS -->
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-16">
+    <div class="bg-slate-800/80 rounded-xl p-4 text-center stat-glow border border-slate-700/50">
+      <div class="text-2xl md:text-3xl font-black text-white">99%</div>
+      <div class="text-slate-500 text-xs mt-1">have MFA</div>
+    </div>
+    <div class="bg-slate-800/80 rounded-xl p-4 text-center stat-glow border border-slate-700/50">
+      <div class="text-2xl md:text-3xl font-black text-amber-400">28%</div>
+      <div class="text-slate-500 text-xs mt-1">multi-region</div>
+    </div>
+    <div class="bg-slate-800/80 rounded-xl p-4 text-center stat-glow border border-slate-700/50">
+      <div class="text-2xl md:text-3xl font-black text-red-400">22%</div>
+      <div class="text-slate-500 text-xs mt-1">cyber insured</div>
+    </div>
+    <div class="bg-slate-800/80 rounded-xl p-4 text-center stat-glow border border-slate-700/50">
+      <div class="text-2xl md:text-3xl font-black text-purple-400">70%</div>
+      <div class="text-slate-500 text-xs mt-1">template boilerplate</div>
+    </div>
+    <div class="bg-slate-800/80 rounded-xl p-4 text-center stat-glow border border-slate-700/50">
+      <div class="text-2xl md:text-3xl font-black text-blue-400">0%</div>
+      <div class="text-slate-500 text-xs mt-1">code quality signal</div>
+    </div>
+  </div>
+
+  <!-- 5 INSIGHTS -->
+  <div class="space-y-4 mb-16">
+
+    <div class="flex gap-4 items-start bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-red-500/30 transition">
+      <div class="text-3xl font-black text-red-400 shrink-0 w-10">01</div>
+      <div>
+        <p class="text-white font-bold mb-1">$75M buys you the same SOC 2 as $500K.</p>
+        <p class="text-slate-400 text-sm">Across 27 researched companies ($291M total), funding level has zero correlation with compliance quality. The highest-funded company scores identically to seed-stage startups. The best report in the dataset? A bootstrapped company from Canada.</p>
+      </div>
+    </div>
+
+    <div class="flex gap-4 items-start bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-amber-500/30 transition">
+      <div class="text-3xl font-black text-amber-400 shrink-0 w-10">02</div>
+      <div>
+        <p class="text-white font-bold mb-1">70% of every report is copy-paste.</p>
+        <p class="text-slate-400 text-sm">One auditor. Same template. Identical control descriptions across hundreds of companies. The unique signal lives in two places: the architecture diagram (page 18) and the vendor list. Everything else is boilerplate.</p>
+      </div>
+    </div>
+
+    <div class="flex gap-4 items-start bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-purple-500/30 transition">
+      <div class="text-3xl font-black text-purple-400 shrink-0 w-10">03</div>
+      <div>
+        <p class="text-white font-bold mb-1">78% pass SOC 2 without insuring against breach.</p>
+        <p class="text-slate-400 text-sm">If they trusted their security controls, cyber insurance would be cheap and obvious. Its absence says more than the audit opinion.</p>
+      </div>
+    </div>
+
+    <div class="flex gap-4 items-start bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-blue-500/30 transition">
+      <div class="text-3xl font-black text-blue-400 shrink-0 w-10">04</div>
+      <div>
+        <p class="text-white font-bold mb-1">100% have a disaster recovery plan. 49% have never tested it.</p>
+        <p class="text-slate-400 text-sm">The gap between policy and practice is the real story. 88% have multi-AZ (a cloud default). Only 28% chose multi-region (an actual decision). SOC 2 counts both as "available."</p>
+      </div>
+    </div>
+
+    <div class="flex gap-4 items-start bg-slate-800/50 rounded-xl p-5 border border-slate-700/50 hover:border-green-500/30 transition">
+      <div class="text-3xl font-black text-green-400 shrink-0 w-10">05</div>
+      <div>
+        <p class="text-white font-bold mb-1">SOC 2 tells you nothing about what actually matters.</p>
+        <p class="text-slate-400 text-sm">Code quality. SDLC process. Team capability. Deployment speed. Scalability. Tech debt. AI practices. Zero signal in 500 reports. SOC 2 validates how you operate — not what you've built.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- THE LINE -->
+  <div class="text-center my-16">
+    <div class="h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent mb-8"></div>
+    <p class="text-2xl md:text-3xl font-black text-white mb-3">SOC 2 is the starting line.</p>
+    <p class="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Real Tech DD is the race.</p>
+    <div class="h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent mt-8"></div>
+  </div>
+
+  <!-- CTA: READ FULL -->
+  <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-8 mb-8 text-center">
+    <p class="text-slate-400 mb-4">The full report: 7 sections, 12 charts, 4,000 words.</p>
+    <p class="text-slate-400 mb-6 text-sm">What SOC 2 actually reveals about security, availability, infrastructure, and process discipline — section by section, with data for every claim.</p>
+    <a href="v2.html" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold px-10 py-4 rounded-xl text-lg transition shadow-lg shadow-blue-600/20">
+      Read the Full Report →
+    </a>
+  </div>
+
+  <!-- MORE RESOURCES -->
+  <div class="grid md:grid-cols-3 gap-3 mb-12">
+    <a href="modules/" class="block bg-slate-800/50 border border-slate-700/50 rounded-xl p-5 hover:border-blue-500/30 transition text-center">
+      <div class="text-xl mb-1">📊</div>
+      <div class="text-white font-semibold text-sm">13 Deep Dive Modules</div>
+      <div class="text-slate-500 text-xs mt-1">Security, vendors, BCDR, AI, funding</div>
+    </a>
+    <a href="diagrams/" class="block bg-slate-800/50 border border-slate-700/50 rounded-xl p-5 hover:border-blue-500/30 transition text-center">
+      <div class="text-xl mb-1">🏗️</div>
+      <div class="text-white font-semibold text-sm">479 Architecture Diagrams</div>
+      <div class="text-slate-500 text-xs mt-1">The one real signal in SOC 2</div>
+    </a>
+    <a href="https://delve-vision-extract.whitecontext.workers.dev/" class="block bg-slate-800/50 border border-slate-700/50 rounded-xl p-5 hover:border-blue-500/30 transition text-center">
+      <div class="text-xl mb-1">🔍</div>
+      <div class="text-white font-semibold text-sm">Search {N} Companies</div>
+      <div class="text-slate-500 text-xs mt-1">By tech, vendor, cloud, score</div>
+    </a>
+  </div>
+
+  <!-- AUTHORS -->
+  <div class="flex flex-wrap items-center justify-center gap-8 mb-8">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">JP</div>
+      <div><div class="text-white font-semibold text-sm">Jacek Podoba</div><div class="text-slate-500 text-xs">CEO, <a href="https://altimi.com" class="text-blue-400">Altimi.com</a></div></div>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">MH</div>
+      <div><div class="text-white font-semibold text-sm">Maksym Huczyński</div><div class="text-slate-500 text-xs">CTO, <a href="https://whitecontext.com" class="text-blue-400">WhiteContext.com</a></div></div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="text-center">
+    <div class="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+      <a href="mailto:hello@altimi.com" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3 rounded-lg transition text-sm">Talk to Altimi →</a>
+      <a href="https://whitecontext.com" class="bg-slate-700 hover:bg-slate-600 text-white font-bold px-6 py-3 rounded-lg transition text-sm">Talk to WhiteContext →</a>
+    </div>
+  </div>
+
+  <footer class="text-center text-slate-600 text-xs pt-8 border-t border-slate-800/50">
+    <p>© 2026 <a href="https://altimi.com" class="text-slate-500">Altimi</a> × <a href="https://whitecontext.com" class="text-slate-500">WhiteContext</a> · {N} SOC 2 reports · <a href="https://github.com/dontriskit/delve-485-soc-reports-analysis" class="text-slate-500">GitHub</a></p>
+  </footer>
+
+</div>
+</body>
+</html>"""
+
+with open(OUT / "index.html", "w") as f:
+    f.write(html)
+
+import re
+text_parts = re.findall(r'>([^<]+)<', html)
+visible = ' '.join(t.strip() for t in text_parts if t.strip())
+words = len([w for w in visible.split() if len(w) > 0])
+print(f"v3 one-pager: {words} words, {len(html)/1024:.0f} KB")
